@@ -36,7 +36,7 @@ namespace Coplt.Mathematics;
             WriteLine($"        [MethodImpl(256 | 512)]");
             WriteLine($"        get => vector.GetElement({c});");
             WriteLine($"        [MethodImpl(256 | 512)]");
-            WriteLine($"        set => vector = vector.WithElement(0, value);");
+            WriteLine($"        set => vector = vector.WithElement({c}, value);");
             WriteLine($"    }}");
         }
     }

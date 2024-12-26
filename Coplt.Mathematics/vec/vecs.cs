@@ -77,7 +77,7 @@ public partial struct float2 :
         [MethodImpl(256 | 512)]
         get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(1, value);
     }
     #else // NET8_0_OR_GREATER
     private float _x;
@@ -316,14 +316,14 @@ public partial struct float3 :
         [MethodImpl(256 | 512)]
         get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(1, value);
     }
     public float z
     {
         [MethodImpl(256 | 512)]
         get => vector.GetElement(2);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(2, value);
     }
     #else // NET8_0_OR_GREATER
     private float _x;
@@ -587,21 +587,21 @@ public partial struct float4 :
         [MethodImpl(256 | 512)]
         get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(1, value);
     }
     public float z
     {
         [MethodImpl(256 | 512)]
         get => vector.GetElement(2);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(2, value);
     }
     public float w
     {
         [MethodImpl(256 | 512)]
         get => vector.GetElement(3);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(3, value);
     }
     #else // NET8_0_OR_GREATER
     private float _x;
@@ -888,7 +888,7 @@ public partial struct double2 :
         [MethodImpl(256 | 512)]
         get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(1, value);
     }
     #else // NET8_0_OR_GREATER
     private double _x;
@@ -1127,14 +1127,14 @@ public partial struct double3 :
         [MethodImpl(256 | 512)]
         get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(1, value);
     }
     public double z
     {
         [MethodImpl(256 | 512)]
         get => vector.GetElement(2);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(2, value);
     }
     #else // NET8_0_OR_GREATER
     private double _x;
@@ -1398,21 +1398,21 @@ public partial struct double4 :
         [MethodImpl(256 | 512)]
         get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(1, value);
     }
     public double z
     {
         [MethodImpl(256 | 512)]
         get => vector.GetElement(2);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(2, value);
     }
     public double w
     {
         [MethodImpl(256 | 512)]
         get => vector.GetElement(3);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(3, value);
     }
     #else // NET8_0_OR_GREATER
     private double _x;
@@ -2925,7 +2925,7 @@ public partial struct int2 :
         [MethodImpl(256 | 512)]
         get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(1, value);
     }
     #else // NET8_0_OR_GREATER
     private int _x;
@@ -3164,14 +3164,14 @@ public partial struct int3 :
         [MethodImpl(256 | 512)]
         get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(1, value);
     }
     public int z
     {
         [MethodImpl(256 | 512)]
         get => vector.GetElement(2);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(2, value);
     }
     #else // NET8_0_OR_GREATER
     private int _x;
@@ -3435,21 +3435,21 @@ public partial struct int4 :
         [MethodImpl(256 | 512)]
         get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(1, value);
     }
     public int z
     {
         [MethodImpl(256 | 512)]
         get => vector.GetElement(2);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(2, value);
     }
     public int w
     {
         [MethodImpl(256 | 512)]
         get => vector.GetElement(3);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(3, value);
     }
     #else // NET8_0_OR_GREATER
     private int _x;
@@ -3736,7 +3736,7 @@ public partial struct uint2 :
         [MethodImpl(256 | 512)]
         get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(1, value);
     }
     #else // NET8_0_OR_GREATER
     private uint _x;
@@ -3975,14 +3975,14 @@ public partial struct uint3 :
         [MethodImpl(256 | 512)]
         get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(1, value);
     }
     public uint z
     {
         [MethodImpl(256 | 512)]
         get => vector.GetElement(2);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(2, value);
     }
     #else // NET8_0_OR_GREATER
     private uint _x;
@@ -4246,21 +4246,21 @@ public partial struct uint4 :
         [MethodImpl(256 | 512)]
         get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(1, value);
     }
     public uint z
     {
         [MethodImpl(256 | 512)]
         get => vector.GetElement(2);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(2, value);
     }
     public uint w
     {
         [MethodImpl(256 | 512)]
         get => vector.GetElement(3);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(3, value);
     }
     #else // NET8_0_OR_GREATER
     private uint _x;
@@ -4547,7 +4547,7 @@ public partial struct long2 :
         [MethodImpl(256 | 512)]
         get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(1, value);
     }
     #else // NET8_0_OR_GREATER
     private long _x;
@@ -4786,14 +4786,14 @@ public partial struct long3 :
         [MethodImpl(256 | 512)]
         get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(1, value);
     }
     public long z
     {
         [MethodImpl(256 | 512)]
         get => vector.GetElement(2);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(2, value);
     }
     #else // NET8_0_OR_GREATER
     private long _x;
@@ -5057,21 +5057,21 @@ public partial struct long4 :
         [MethodImpl(256 | 512)]
         get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(1, value);
     }
     public long z
     {
         [MethodImpl(256 | 512)]
         get => vector.GetElement(2);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(2, value);
     }
     public long w
     {
         [MethodImpl(256 | 512)]
         get => vector.GetElement(3);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(3, value);
     }
     #else // NET8_0_OR_GREATER
     private long _x;
@@ -5358,7 +5358,7 @@ public partial struct ulong2 :
         [MethodImpl(256 | 512)]
         get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(1, value);
     }
     #else // NET8_0_OR_GREATER
     private ulong _x;
@@ -5597,14 +5597,14 @@ public partial struct ulong3 :
         [MethodImpl(256 | 512)]
         get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(1, value);
     }
     public ulong z
     {
         [MethodImpl(256 | 512)]
         get => vector.GetElement(2);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(2, value);
     }
     #else // NET8_0_OR_GREATER
     private ulong _x;
@@ -5868,21 +5868,21 @@ public partial struct ulong4 :
         [MethodImpl(256 | 512)]
         get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(1, value);
     }
     public ulong z
     {
         [MethodImpl(256 | 512)]
         get => vector.GetElement(2);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(2, value);
     }
     public ulong w
     {
         [MethodImpl(256 | 512)]
         get => vector.GetElement(3);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(3, value);
     }
     #else // NET8_0_OR_GREATER
     private ulong _x;
@@ -8008,7 +8008,7 @@ public partial struct b32v2 :
         [MethodImpl(256 | 512)]
         get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(1, value);
     }
     #else // NET8_0_OR_GREATER
     private b32 _x;
@@ -8247,14 +8247,14 @@ public partial struct b32v3 :
         [MethodImpl(256 | 512)]
         get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(1, value);
     }
     public b32 z
     {
         [MethodImpl(256 | 512)]
         get => vector.GetElement(2);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(2, value);
     }
     #else // NET8_0_OR_GREATER
     private b32 _x;
@@ -8518,21 +8518,21 @@ public partial struct b32v4 :
         [MethodImpl(256 | 512)]
         get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(1, value);
     }
     public b32 z
     {
         [MethodImpl(256 | 512)]
         get => vector.GetElement(2);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(2, value);
     }
     public b32 w
     {
         [MethodImpl(256 | 512)]
         get => vector.GetElement(3);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(3, value);
     }
     #else // NET8_0_OR_GREATER
     private b32 _x;
@@ -8819,7 +8819,7 @@ public partial struct b64v2 :
         [MethodImpl(256 | 512)]
         get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(1, value);
     }
     #else // NET8_0_OR_GREATER
     private b64 _x;
@@ -9058,14 +9058,14 @@ public partial struct b64v3 :
         [MethodImpl(256 | 512)]
         get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(1, value);
     }
     public b64 z
     {
         [MethodImpl(256 | 512)]
         get => vector.GetElement(2);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(2, value);
     }
     #else // NET8_0_OR_GREATER
     private b64 _x;
@@ -9329,21 +9329,21 @@ public partial struct b64v4 :
         [MethodImpl(256 | 512)]
         get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(1, value);
     }
     public b64 z
     {
         [MethodImpl(256 | 512)]
         get => vector.GetElement(2);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(2, value);
     }
     public b64 w
     {
         [MethodImpl(256 | 512)]
         get => vector.GetElement(3);
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(0, value);
+        set => vector = vector.WithElement(3, value);
     }
     #else // NET8_0_OR_GREATER
     private b64 _x;
