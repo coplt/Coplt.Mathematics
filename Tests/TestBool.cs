@@ -1,6 +1,6 @@
 ﻿using Coplt.Mathematics;
 
-namespace MathTests;
+namespace Tests;
 
 public class TestBool
 {

@@ -4,17 +4,17 @@ using Coplt.Mathematics;
 #if NET8_0_OR_GREATER
 using Coplt.Mathematics.Simd;
 
-namespace MathTests;
+namespace Tests;
 
 [Parallelizable]
-public class TestAsin
+public class TestAcos
 {
     [Test]
     [Parallelizable]
-    public void FloatTestASin([Random(-1.1f, 1.1f, 1000)] float x)
+    public void FloatTestACos([Random(-1.1f, 1.1f, 1000)] float x)
     {
-        var a = simd_math.Asin(new float4(x).UnsafeGetInner()).GetElement(0);
-        var b = MathF.Asin(x);
+        var a = simd_math.Acos(new float4(x).UnsafeGetInner()).GetElement(0);
+        var b = MathF.Acos(x);
         Console.WriteLine($"{a}");
         Console.WriteLine($"{b}");
         Assert.That(b, Is.EqualTo(a).Within(2).Ulps);
@@ -22,10 +22,10 @@ public class TestAsin
     
     [Test]
     [Parallelizable]
-    public void DoubleTestASin([Random(-1.1f, 1.1f, 1000)] double x)
+    public void DoubleTestACos([Random(-1.1f, 1.1f, 1000)] double x)
     {
-        var a = simd_math.Asin(new double4(x).UnsafeGetInner()).GetElement(0);
-        var b = Math.Asin(x);
+        var a = simd_math.Acos(new double4(x).UnsafeGetInner()).GetElement(0);
+        var b = Math.Acos(x);
         Console.WriteLine($"{a}");
         Console.WriteLine($"{b}");
         Assert.That(b, Is.EqualTo(a).Within(2).Ulps);

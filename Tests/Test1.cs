@@ -1,73 +1,56 @@
-using System.Runtime.InteropServices;
-using Coplt.Shader;
-using Coplt.Shader.Shaders;
+using System.Numerics;
+using System.Runtime.CompilerServices;
+using System.Runtime.Intrinsics;
+using System.Text;
 using Coplt.Mathematics;
+#if NET8_0_OR_GREATER
+using Coplt.Mathematics.Simd;
+#endif
 
-namespace Tests.Test1;
+namespace Tests;
 
-public struct SceneInfo
+[Parallelizable]
+public class Test1
 {
-    public ViewInfo view;
-}
-
-public struct ViewInfo
-{
-    public float4x4 proj;
-    public float4x4 view;
-}
-
-public struct ObjectInfo
-{
-    public float4x4 transform;
-}
-
-public class Shader1 : IShaderModule
-{
-    [Uniform]
-    public SceneInfo scene;
-    [Storage]
-    public ObjectInfo[] objects = null!;
-
-    public Texture2D<float4> tex = null!;
-    public SamplerState ss;
-
-    public struct Attributes
+    #if NET8_0_OR_GREATER
+    [Test]
+    public void Foo()
     {
-        [Semantic("POSITION")]
-        public float4 pos;
-        [Semantic("TEXCOORD")]
-        public float2 uv;
-        [SV_InstanceID]
-        public uint iid;
+        // var a = Vector256.Create(-5f, -5f, 5f, 5f, -6f, 6f, -6f, 6f);
+        // var b = Vector256.Create(-6f, 6f, -6f, 6f, -5f, -5f, 5f, 5f);
+        // var r = simd_math.Atan2(a, b);
+        // Console.WriteLine(r);
+        // var a = new double4(1, 2, 3, 4).UnsafeGetInner();
+        // var b = new double4(5, 6, 7, 8).UnsafeGetInner();
+        // var r = simd.UnpackHigh(a, b);
+        // Console.WriteLine(r);
+        // var a = new float4(.01f, .02f, .03f, .04f);
+        // var b = new float4(.05f, .06f, .07f, .08f);
+        // var c = new float4(.09f, .10f, .11f, .12f);
+        // var d = new float4(.13f, .14f, .15f, .16f);
+        // var r = math.inverse(new float4x4(a, b, c, d));
+        // Console.WriteLine(r);
+        // Console.WriteLine(r.c0);
+        // Console.WriteLine(r.c1);
+        // Console.WriteLine(r.c2);
+        // Console.WriteLine(r.c3);
     }
 
-    public struct Varyings
+    [Test]
+    public void Float()
     {
-        [SV_Position]
-        public float4 pos;
-        public float2 uv;
-        [NoInterpolation]
-        public uint iid;
+        var a = new float4(9);
+        var r = simd_math.AsinhAcosh(a.UnsafeGetInner());
+        Console.WriteLine(r);
+        Console.WriteLine(MathF.Acosh(9));
     }
-
-    [Shader("vertex")]
-    public Varyings Vertex(Attributes input)
+    [Test]
+    public void Double()
     {
-        var obj = objects[input.iid];
-        var pos = scene.view.proj.mul(scene.view.view.mul(obj.transform.mul(input.pos)));
-        return new() { pos = pos, uv = input.uv, iid = input.iid };
+        var a = new double4(9);
+        var r = simd_math.AsinhAcosh(a.UnsafeGetInner());
+        Console.WriteLine(r);
+        Console.WriteLine(Math.Acosh(9.0));
     }
-
-    [Shader("pixel"), SV_Target]
-    public float4 Pixel(Varyings input) => tex.Sample(ss, input.uv);
-}
-
-public static class Test1
-{
-    public static void Foo()
-    {
-        var shader = ShaderLoader.Of<Shader1>().Load(ShaderTarget.DirectX, ShaderModuleType.Hlsl);
-        var code = MemoryMarshal.Cast<byte, char>(shader.Blob()).ToString();
-        Console.WriteLine(code);
-    }
+    #endif
 }

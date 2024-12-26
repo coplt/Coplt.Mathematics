@@ -23,7 +23,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Include="..\Coplt.Mathematics\Readme.md">
+        <None Include="..\Readme.md">
             <Pack>True</Pack>
             <PackagePath>\</PackagePath>
         </None>

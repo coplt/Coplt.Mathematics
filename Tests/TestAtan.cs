@@ -4,7 +4,7 @@ using Coplt.Mathematics;
 #if NET8_0_OR_GREATER
 using Coplt.Mathematics.Simd;
 
-namespace MathTests;
+namespace Tests;
 
 [Parallelizable]
 public class TestAtan

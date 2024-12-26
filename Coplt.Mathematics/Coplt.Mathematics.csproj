@@ -6,7 +6,7 @@
         <TargetFrameworks>netstandard2.1;net8.0;net9.0</TargetFrameworks>
         <TransformOnBuild>true</TransformOnBuild>
         <TransformOutOfDateOnly>false</TransformOutOfDateOnly>
-        <NoWarn>CS8981;CS0169</NoWarn>
+        <NoWarn>CS8981;CS0169;CS1591</NoWarn>
         <RunPostBuildEvent>Always</RunPostBuildEvent>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -16,10 +16,11 @@
         <RepositoryUrl>https://github.com/2A5F/Coplt.Shader</RepositoryUrl>
         <PackageReadmeFile>Readme.md</PackageReadmeFile>
         <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
     </PropertyGroup>
 
     <ItemGroup>
-	  <None Include=".\Readme.md">
+	  <None Include="..\Readme.md">
 	    <Pack>True</Pack>
 	    <PackagePath>\</PackagePath>
 	  </None>
@@ -30,75 +31,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <TextTemplate Include="bool\bool.tt" />
-        <TextTemplate Include="Geometries\quaternion.tt" />
-        <TextTemplate Include="interface.tt" />
-        <TextTemplate Include="mat\arith\mat.arith.2x2.tt" />
-        <TextTemplate Include="mat\arith\mat.arith.3x3.tt" />
-        <TextTemplate Include="mat\arith\mat.arith.4x4.tt" />
-        <TextTemplate Include="mat\arith\mat.arith.float.bin.tt" />
-        <TextTemplate Include="mat\arith\mat.arith.float.tt" />
-        <TextTemplate Include="mat\arith\mat.arith.int.tt" />
-        <TextTemplate Include="mat\arith\mat.arith.mul.tt" />
-        <TextTemplate Include="mat\arith\mat.arith.mul.vec.tt" />
-        <TextTemplate Include="mat\arith\mat.arith.tt" />
-        <TextTemplate Include="mat\as\mat.as.common.tt" />
-        <TextTemplate Include="mat\as\mat.as.tt" />
-        <TextTemplate Include="mat\bool\mat.bool.tt" />
-        <TextTemplate Include="mat\bool\mat.bool_op.tt" />
-        <TextTemplate Include="mat\mats.tt" />
-        <TextTemplate Include="mat\misc\mat.conv.tt" />
-        <TextTemplate Include="mat\misc\mat.json.tt" />
-        <TextTemplate Include="mat\misc\mat.str.tt" />
-        <TextTemplate Include="mat\op\mat.bitop.tt" />
-        <TextTemplate Include="mat\op\mat.cmp.tt" />
-        <TextTemplate Include="mat\op\mat.eq.tt" />
-        <TextTemplate Include="mat\op\mat.trn.tt" />
-        <TextTemplate Include="misc\norm.tt" />
-        <TextTemplate Include="misc\Shuffle.4.2.tt" />
-        <TextTemplate Include="misc\soft_shuffle.4.2.tt" />
-        <TextTemplate Include="simd\dual\simd.dual.tt" />
-        <TextTemplate Include="simd\matrix\simd_matrix_trn_2x2.tt" />
-        <TextTemplate Include="simd\matrix\simd_matrix_trn_2x4_to_4x2.tt" />
-        <TextTemplate Include="simd\matrix\simd_matrix_trn_3x3.tt" />
-        <TextTemplate Include="simd\matrix\simd_matrix_trn_4x2_to_2x4.tt" />
-        <TextTemplate Include="simd\matrix\simd_matrix_trn_4x4.tt" />
-        <TextTemplate Include="simd\shuffle\simd_shuffle.4.2.table.tt" />
-        <TextTemplate Include="simd\shuffle\simd_shuffle.4.2.tt" />
-        <TextTemplate Include="simd\simd.math.tri.double.tt" />
-        <TextTemplate Include="simd\simd.math.tri.float.tt" />
-        <TextTemplate Include="simd\simd.math.tt" />
-        <TextTemplate Include="vec\arith\vec.arith.float.bin.tt" />
-        <TextTemplate Include="vec\arith\vec.arith.float.tt" />
-        <TextTemplate Include="vec\arith\vec.arith.int.tt" />
-        <TextTemplate Include="vec\arith\vec.arith.tt" />
-        <TextTemplate Include="vec\as\vec.as.common.tt" />
-        <TextTemplate Include="vec\as\vec.as.tt" />
-        <TextTemplate Include="vec\bool\vec.bool.tt" />
-        <TextTemplate Include="vec\bool\vec.bool_op.tt" />
-        <TextTemplate Include="vec\ctor\vec.ctor.merge.3.tt" />
-        <TextTemplate Include="vec\ctor\vec.ctor.merge.4.2.tt" />
-        <TextTemplate Include="vec\ctor\vec.ctor.merge.4.3.tt" />
-        <TextTemplate Include="vec\misc\vec.conv.tt" />
-        <TextTemplate Include="vec\misc\vec.json.tt" />
-        <TextTemplate Include="vec\misc\vec.mov_lh_hl.4.tt" />
-        <TextTemplate Include="vec\misc\vec.str.tt" />
-        <TextTemplate Include="vec\misc\vec.unpack.4.tt" />
-        <TextTemplate Include="vec\op\vec.bitop.tt" />
-        <TextTemplate Include="vec\op\vec.cmp.tt" />
-        <TextTemplate Include="vec\op\vec.eq.tt" />
-        <TextTemplate Include="vec\shuffle\vec.shuffle.4.tt" />
-        <TextTemplate Include="vec\shuffle\vec.shuffle.table.4.tt" />
-        <TextTemplate Include="vec\swizzle\vec.swizzle.2.3.tt" />
-        <TextTemplate Include="vec\swizzle\vec.swizzle.2.4.tt" />
-        <TextTemplate Include="vec\swizzle\vec.swizzle.2.tt" />
-        <TextTemplate Include="vec\swizzle\vec.swizzle.3.2.tt" />
-        <TextTemplate Include="vec\swizzle\vec.swizzle.3.4.tt" />
-        <TextTemplate Include="vec\swizzle\vec.swizzle.3.tt" />
-        <TextTemplate Include="vec\swizzle\vec.swizzle.4.2.tt" />
-        <TextTemplate Include="vec\swizzle\vec.swizzle.4.3.tt" />
-        <TextTemplate Include="vec\swizzle\vec.swizzle.4.tt" />
-        <TextTemplate Include="vec\vecs.tt" />
+        <TextTemplate Include="**\*.tt" />
     </ItemGroup>
 
     <ItemGroup>

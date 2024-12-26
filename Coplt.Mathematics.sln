@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coplt.Mathematics", "Coplt.Mathematics\Coplt.Mathematics.csproj", "{5745D85D-B9C1-43B8-90A0-D820184CBBBB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{EAEDC447-AA5D-48D6-B285-425C5E8D52B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coplt.Mathematics.SignedDistances", "Coplt.Mathematics.SignedDistances\Coplt.Mathematics.SignedDistances.csproj", "{A8E41063-557E-4421-88A4-4DE59E49295B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5745D85D-B9C1-43B8-90A0-D820184CBBBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5745D85D-B9C1-43B8-90A0-D820184CBBBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5745D85D-B9C1-43B8-90A0-D820184CBBBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5745D85D-B9C1-43B8-90A0-D820184CBBBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAEDC447-AA5D-48D6-B285-425C5E8D52B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAEDC447-AA5D-48D6-B285-425C5E8D52B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAEDC447-AA5D-48D6-B285-425C5E8D52B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAEDC447-AA5D-48D6-B285-425C5E8D52B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8E41063-557E-4421-88A4-4DE59E49295B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8E41063-557E-4421-88A4-4DE59E49295B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8E41063-557E-4421-88A4-4DE59E49295B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8E41063-557E-4421-88A4-4DE59E49295B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
