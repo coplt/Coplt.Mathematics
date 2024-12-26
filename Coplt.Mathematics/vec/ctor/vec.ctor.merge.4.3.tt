@@ -21,6 +21,42 @@ namespace Coplt.Mathematics;
 
 #region <#= typeName #>
 
+public static partial class math
+{
+    /// <summary>
+    /// Unchecked convert to <#= typeName3 #>, must ensure that the w component is 0.
+    /// </summary>
+    [MethodImpl(256 | 512)]
+    public static <#= typeName3 #> as3(this <#= typeName #> xyzw)
+    {
+<#
+        if (typ.simd)
+        {
+#>
+        #if NET8_0_OR_GREATER
+        return new(xyzw.vector);
+        #else // NET8_0_OR_GREATER
+<#
+        }
+#>
+        return xyzw.xyz;
+<#
+        if (typ.simd)
+        {
+#>
+        #endif // NET8_0_OR_GREATER
+<#
+        }
+#>
+    }
+
+    /// <summary>
+    /// Convert to <#= typeName3 #>, the w component will be 0.
+    /// </summary>
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> as4(this <#= typeName3 #> xyz) => new(xyz);
+}
+
 public partial struct <#= typeName #> 
 {
     [MethodImpl(256 | 512)]

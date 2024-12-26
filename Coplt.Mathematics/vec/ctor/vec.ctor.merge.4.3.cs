@@ -4,6 +4,28 @@ namespace Coplt.Mathematics;
 
 #region float4
 
+public static partial class math
+{
+    /// <summary>
+    /// Unchecked convert to float3, must ensure that the w component is 0.
+    /// </summary>
+    [MethodImpl(256 | 512)]
+    public static float3 as3(this float4 xyzw)
+    {
+        #if NET8_0_OR_GREATER
+        return new(xyzw.vector);
+        #else // NET8_0_OR_GREATER
+        return xyzw.xyz;
+        #endif // NET8_0_OR_GREATER
+    }
+
+    /// <summary>
+    /// Convert to float3, the w component will be 0.
+    /// </summary>
+    [MethodImpl(256 | 512)]
+    public static float4 as4(this float3 xyz) => new(xyz);
+}
+
 public partial struct float4 
 {
     [MethodImpl(256 | 512)]
@@ -106,6 +128,28 @@ public static partial class math
 #endregion // float4
 
 #region double4
+
+public static partial class math
+{
+    /// <summary>
+    /// Unchecked convert to double3, must ensure that the w component is 0.
+    /// </summary>
+    [MethodImpl(256 | 512)]
+    public static double3 as3(this double4 xyzw)
+    {
+        #if NET8_0_OR_GREATER
+        return new(xyzw.vector);
+        #else // NET8_0_OR_GREATER
+        return xyzw.xyz;
+        #endif // NET8_0_OR_GREATER
+    }
+
+    /// <summary>
+    /// Convert to double3, the w component will be 0.
+    /// </summary>
+    [MethodImpl(256 | 512)]
+    public static double4 as4(this double3 xyz) => new(xyz);
+}
 
 public partial struct double4 
 {
@@ -210,6 +254,24 @@ public static partial class math
 
 #region short4
 
+public static partial class math
+{
+    /// <summary>
+    /// Unchecked convert to short3, must ensure that the w component is 0.
+    /// </summary>
+    [MethodImpl(256 | 512)]
+    public static short3 as3(this short4 xyzw)
+    {
+        return xyzw.xyz;
+    }
+
+    /// <summary>
+    /// Convert to short3, the w component will be 0.
+    /// </summary>
+    [MethodImpl(256 | 512)]
+    public static short4 as4(this short3 xyz) => new(xyz);
+}
+
 public partial struct short4 
 {
     [MethodImpl(256 | 512)]
@@ -293,6 +355,24 @@ public static partial class math
 
 #region ushort4
 
+public static partial class math
+{
+    /// <summary>
+    /// Unchecked convert to ushort3, must ensure that the w component is 0.
+    /// </summary>
+    [MethodImpl(256 | 512)]
+    public static ushort3 as3(this ushort4 xyzw)
+    {
+        return xyzw.xyz;
+    }
+
+    /// <summary>
+    /// Convert to ushort3, the w component will be 0.
+    /// </summary>
+    [MethodImpl(256 | 512)]
+    public static ushort4 as4(this ushort3 xyz) => new(xyz);
+}
+
 public partial struct ushort4 
 {
     [MethodImpl(256 | 512)]
@@ -375,6 +455,28 @@ public static partial class math
 #endregion // ushort4
 
 #region int4
+
+public static partial class math
+{
+    /// <summary>
+    /// Unchecked convert to int3, must ensure that the w component is 0.
+    /// </summary>
+    [MethodImpl(256 | 512)]
+    public static int3 as3(this int4 xyzw)
+    {
+        #if NET8_0_OR_GREATER
+        return new(xyzw.vector);
+        #else // NET8_0_OR_GREATER
+        return xyzw.xyz;
+        #endif // NET8_0_OR_GREATER
+    }
+
+    /// <summary>
+    /// Convert to int3, the w component will be 0.
+    /// </summary>
+    [MethodImpl(256 | 512)]
+    public static int4 as4(this int3 xyz) => new(xyz);
+}
 
 public partial struct int4 
 {
@@ -479,6 +581,28 @@ public static partial class math
 
 #region uint4
 
+public static partial class math
+{
+    /// <summary>
+    /// Unchecked convert to uint3, must ensure that the w component is 0.
+    /// </summary>
+    [MethodImpl(256 | 512)]
+    public static uint3 as3(this uint4 xyzw)
+    {
+        #if NET8_0_OR_GREATER
+        return new(xyzw.vector);
+        #else // NET8_0_OR_GREATER
+        return xyzw.xyz;
+        #endif // NET8_0_OR_GREATER
+    }
+
+    /// <summary>
+    /// Convert to uint3, the w component will be 0.
+    /// </summary>
+    [MethodImpl(256 | 512)]
+    public static uint4 as4(this uint3 xyz) => new(xyz);
+}
+
 public partial struct uint4 
 {
     [MethodImpl(256 | 512)]
@@ -581,6 +705,28 @@ public static partial class math
 #endregion // uint4
 
 #region long4
+
+public static partial class math
+{
+    /// <summary>
+    /// Unchecked convert to long3, must ensure that the w component is 0.
+    /// </summary>
+    [MethodImpl(256 | 512)]
+    public static long3 as3(this long4 xyzw)
+    {
+        #if NET8_0_OR_GREATER
+        return new(xyzw.vector);
+        #else // NET8_0_OR_GREATER
+        return xyzw.xyz;
+        #endif // NET8_0_OR_GREATER
+    }
+
+    /// <summary>
+    /// Convert to long3, the w component will be 0.
+    /// </summary>
+    [MethodImpl(256 | 512)]
+    public static long4 as4(this long3 xyz) => new(xyz);
+}
 
 public partial struct long4 
 {
@@ -685,6 +831,28 @@ public static partial class math
 
 #region ulong4
 
+public static partial class math
+{
+    /// <summary>
+    /// Unchecked convert to ulong3, must ensure that the w component is 0.
+    /// </summary>
+    [MethodImpl(256 | 512)]
+    public static ulong3 as3(this ulong4 xyzw)
+    {
+        #if NET8_0_OR_GREATER
+        return new(xyzw.vector);
+        #else // NET8_0_OR_GREATER
+        return xyzw.xyz;
+        #endif // NET8_0_OR_GREATER
+    }
+
+    /// <summary>
+    /// Convert to ulong3, the w component will be 0.
+    /// </summary>
+    [MethodImpl(256 | 512)]
+    public static ulong4 as4(this ulong3 xyz) => new(xyz);
+}
+
 public partial struct ulong4 
 {
     [MethodImpl(256 | 512)]
@@ -788,6 +956,24 @@ public static partial class math
 
 #region decimal4
 
+public static partial class math
+{
+    /// <summary>
+    /// Unchecked convert to decimal3, must ensure that the w component is 0.
+    /// </summary>
+    [MethodImpl(256 | 512)]
+    public static decimal3 as3(this decimal4 xyzw)
+    {
+        return xyzw.xyz;
+    }
+
+    /// <summary>
+    /// Convert to decimal3, the w component will be 0.
+    /// </summary>
+    [MethodImpl(256 | 512)]
+    public static decimal4 as4(this decimal3 xyz) => new(xyz);
+}
+
 public partial struct decimal4 
 {
     [MethodImpl(256 | 512)]
@@ -870,6 +1056,24 @@ public static partial class math
 #endregion // decimal4
 
 #region half4
+
+public static partial class math
+{
+    /// <summary>
+    /// Unchecked convert to half3, must ensure that the w component is 0.
+    /// </summary>
+    [MethodImpl(256 | 512)]
+    public static half3 as3(this half4 xyzw)
+    {
+        return xyzw.xyz;
+    }
+
+    /// <summary>
+    /// Convert to half3, the w component will be 0.
+    /// </summary>
+    [MethodImpl(256 | 512)]
+    public static half4 as4(this half3 xyz) => new(xyz);
+}
 
 public partial struct half4 
 {
@@ -954,6 +1158,24 @@ public static partial class math
 
 #region b16v4
 
+public static partial class math
+{
+    /// <summary>
+    /// Unchecked convert to b16v3, must ensure that the w component is 0.
+    /// </summary>
+    [MethodImpl(256 | 512)]
+    public static b16v3 as3(this b16v4 xyzw)
+    {
+        return xyzw.xyz;
+    }
+
+    /// <summary>
+    /// Convert to b16v3, the w component will be 0.
+    /// </summary>
+    [MethodImpl(256 | 512)]
+    public static b16v4 as4(this b16v3 xyz) => new(xyz);
+}
+
 public partial struct b16v4 
 {
     [MethodImpl(256 | 512)]
@@ -1036,6 +1258,28 @@ public static partial class math
 #endregion // b16v4
 
 #region b32v4
+
+public static partial class math
+{
+    /// <summary>
+    /// Unchecked convert to b32v3, must ensure that the w component is 0.
+    /// </summary>
+    [MethodImpl(256 | 512)]
+    public static b32v3 as3(this b32v4 xyzw)
+    {
+        #if NET8_0_OR_GREATER
+        return new(xyzw.vector);
+        #else // NET8_0_OR_GREATER
+        return xyzw.xyz;
+        #endif // NET8_0_OR_GREATER
+    }
+
+    /// <summary>
+    /// Convert to b32v3, the w component will be 0.
+    /// </summary>
+    [MethodImpl(256 | 512)]
+    public static b32v4 as4(this b32v3 xyz) => new(xyz);
+}
 
 public partial struct b32v4 
 {
@@ -1139,6 +1383,28 @@ public static partial class math
 #endregion // b32v4
 
 #region b64v4
+
+public static partial class math
+{
+    /// <summary>
+    /// Unchecked convert to b64v3, must ensure that the w component is 0.
+    /// </summary>
+    [MethodImpl(256 | 512)]
+    public static b64v3 as3(this b64v4 xyzw)
+    {
+        #if NET8_0_OR_GREATER
+        return new(xyzw.vector);
+        #else // NET8_0_OR_GREATER
+        return xyzw.xyz;
+        #endif // NET8_0_OR_GREATER
+    }
+
+    /// <summary>
+    /// Convert to b64v3, the w component will be 0.
+    /// </summary>
+    [MethodImpl(256 | 512)]
+    public static b64v4 as4(this b64v3 xyz) => new(xyz);
+}
 
 public partial struct b64v4 
 {
