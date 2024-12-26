@@ -23,6 +23,8 @@ jobs:
           6.0.x
           8.0.x
           9.0.x
+    - name: Restore dotnet tools
+      run: dotnet tool restore
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
