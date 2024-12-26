@@ -40,4 +40,4 @@ hlsl-style linear algebra library
 
 ## Related Projects
 
-- https://github.com/2A5F/Coplt.Shader
+- https://github.com/coplt/Coplt.Shader

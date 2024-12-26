@@ -175,6 +175,18 @@ public static partial class math
         (float)(dot(a, onto) / dot(onto, onto)) * onto;
 
     [MethodImpl(256 | 512)]
+    public static float2 projectOnPlane(this float2 a, float2 plane_normal) => 
+        a - project(a, plane_normal);
+
+    [MethodImpl(256 | 512)]
+    public static float2 projectNormalized(this float2 a, float2 onto) =>
+        (float)(dot(a, onto)) * onto;
+
+    [MethodImpl(256 | 512)]
+    public static float2 projectOnPlaneNormalized(this float2 a, float2 plane_normal) => 
+        a - projectNormalized(a, plane_normal);
+
+    [MethodImpl(256 | 512)]
     public static float2 radians(this float2 a) => a * float2.DegToRad;
 
     [MethodImpl(256 | 512)]
@@ -354,6 +366,18 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float3 project(this float3 a, float3 onto) =>
         (float)(dot(a, onto) / dot(onto, onto)) * onto;
+
+    [MethodImpl(256 | 512)]
+    public static float3 projectOnPlane(this float3 a, float3 plane_normal) => 
+        a - project(a, plane_normal);
+
+    [MethodImpl(256 | 512)]
+    public static float3 projectNormalized(this float3 a, float3 onto) =>
+        (float)(dot(a, onto)) * onto;
+
+    [MethodImpl(256 | 512)]
+    public static float3 projectOnPlaneNormalized(this float3 a, float3 plane_normal) => 
+        a - projectNormalized(a, plane_normal);
 
     [MethodImpl(256 | 512)]
     public static float3 radians(this float3 a) => a * float3.DegToRad;
@@ -537,6 +561,18 @@ public static partial class math
         (float)(dot(a, onto) / dot(onto, onto)) * onto;
 
     [MethodImpl(256 | 512)]
+    public static float4 projectOnPlane(this float4 a, float4 plane_normal) => 
+        a - project(a, plane_normal);
+
+    [MethodImpl(256 | 512)]
+    public static float4 projectNormalized(this float4 a, float4 onto) =>
+        (float)(dot(a, onto)) * onto;
+
+    [MethodImpl(256 | 512)]
+    public static float4 projectOnPlaneNormalized(this float4 a, float4 plane_normal) => 
+        a - projectNormalized(a, plane_normal);
+
+    [MethodImpl(256 | 512)]
     public static float4 radians(this float4 a) => a * float4.DegToRad;
 
     [MethodImpl(256 | 512)]
@@ -716,6 +752,18 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double2 project(this double2 a, double2 onto) =>
         (double)(dot(a, onto) / dot(onto, onto)) * onto;
+
+    [MethodImpl(256 | 512)]
+    public static double2 projectOnPlane(this double2 a, double2 plane_normal) => 
+        a - project(a, plane_normal);
+
+    [MethodImpl(256 | 512)]
+    public static double2 projectNormalized(this double2 a, double2 onto) =>
+        (double)(dot(a, onto)) * onto;
+
+    [MethodImpl(256 | 512)]
+    public static double2 projectOnPlaneNormalized(this double2 a, double2 plane_normal) => 
+        a - projectNormalized(a, plane_normal);
 
     [MethodImpl(256 | 512)]
     public static double2 radians(this double2 a) => a * double2.DegToRad;
@@ -899,6 +947,18 @@ public static partial class math
         (double)(dot(a, onto) / dot(onto, onto)) * onto;
 
     [MethodImpl(256 | 512)]
+    public static double3 projectOnPlane(this double3 a, double3 plane_normal) => 
+        a - project(a, plane_normal);
+
+    [MethodImpl(256 | 512)]
+    public static double3 projectNormalized(this double3 a, double3 onto) =>
+        (double)(dot(a, onto)) * onto;
+
+    [MethodImpl(256 | 512)]
+    public static double3 projectOnPlaneNormalized(this double3 a, double3 plane_normal) => 
+        a - projectNormalized(a, plane_normal);
+
+    [MethodImpl(256 | 512)]
     public static double3 radians(this double3 a) => a * double3.DegToRad;
 
     [MethodImpl(256 | 512)]
@@ -1080,6 +1140,18 @@ public static partial class math
         (double)(dot(a, onto) / dot(onto, onto)) * onto;
 
     [MethodImpl(256 | 512)]
+    public static double4 projectOnPlane(this double4 a, double4 plane_normal) => 
+        a - project(a, plane_normal);
+
+    [MethodImpl(256 | 512)]
+    public static double4 projectNormalized(this double4 a, double4 onto) =>
+        (double)(dot(a, onto)) * onto;
+
+    [MethodImpl(256 | 512)]
+    public static double4 projectOnPlaneNormalized(this double4 a, double4 plane_normal) => 
+        a - projectNormalized(a, plane_normal);
+
+    [MethodImpl(256 | 512)]
     public static double4 radians(this double4 a) => a * double4.DegToRad;
 
     [MethodImpl(256 | 512)]
@@ -1221,6 +1293,18 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static decimal2 project(this decimal2 a, decimal2 onto) =>
         (decimal)(dot(a, onto) / dot(onto, onto)) * onto;
+
+    [MethodImpl(256 | 512)]
+    public static decimal2 projectOnPlane(this decimal2 a, decimal2 plane_normal) => 
+        a - project(a, plane_normal);
+
+    [MethodImpl(256 | 512)]
+    public static decimal2 projectNormalized(this decimal2 a, decimal2 onto) =>
+        (decimal)(dot(a, onto)) * onto;
+
+    [MethodImpl(256 | 512)]
+    public static decimal2 projectOnPlaneNormalized(this decimal2 a, decimal2 plane_normal) => 
+        a - projectNormalized(a, plane_normal);
 
     [MethodImpl(256 | 512)]
     public static decimal2 radians(this decimal2 a) => a * decimal2.DegToRad;
@@ -1366,6 +1450,18 @@ public static partial class math
         (decimal)(dot(a, onto) / dot(onto, onto)) * onto;
 
     [MethodImpl(256 | 512)]
+    public static decimal3 projectOnPlane(this decimal3 a, decimal3 plane_normal) => 
+        a - project(a, plane_normal);
+
+    [MethodImpl(256 | 512)]
+    public static decimal3 projectNormalized(this decimal3 a, decimal3 onto) =>
+        (decimal)(dot(a, onto)) * onto;
+
+    [MethodImpl(256 | 512)]
+    public static decimal3 projectOnPlaneNormalized(this decimal3 a, decimal3 plane_normal) => 
+        a - projectNormalized(a, plane_normal);
+
+    [MethodImpl(256 | 512)]
     public static decimal3 radians(this decimal3 a) => a * decimal3.DegToRad;
 
     [MethodImpl(256 | 512)]
@@ -1507,6 +1603,18 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static decimal4 project(this decimal4 a, decimal4 onto) =>
         (decimal)(dot(a, onto) / dot(onto, onto)) * onto;
+
+    [MethodImpl(256 | 512)]
+    public static decimal4 projectOnPlane(this decimal4 a, decimal4 plane_normal) => 
+        a - project(a, plane_normal);
+
+    [MethodImpl(256 | 512)]
+    public static decimal4 projectNormalized(this decimal4 a, decimal4 onto) =>
+        (decimal)(dot(a, onto)) * onto;
+
+    [MethodImpl(256 | 512)]
+    public static decimal4 projectOnPlaneNormalized(this decimal4 a, decimal4 plane_normal) => 
+        a - projectNormalized(a, plane_normal);
 
     [MethodImpl(256 | 512)]
     public static decimal4 radians(this decimal4 a) => a * decimal4.DegToRad;
@@ -1652,6 +1760,18 @@ public static partial class math
         (half)(dot(a, onto) / dot(onto, onto)) * onto;
 
     [MethodImpl(256 | 512)]
+    public static half2 projectOnPlane(this half2 a, half2 plane_normal) => 
+        a - project(a, plane_normal);
+
+    [MethodImpl(256 | 512)]
+    public static half2 projectNormalized(this half2 a, half2 onto) =>
+        (half)(dot(a, onto)) * onto;
+
+    [MethodImpl(256 | 512)]
+    public static half2 projectOnPlaneNormalized(this half2 a, half2 plane_normal) => 
+        a - projectNormalized(a, plane_normal);
+
+    [MethodImpl(256 | 512)]
     public static half2 radians(this half2 a) => a * half2.DegToRad;
 
     [MethodImpl(256 | 512)]
@@ -1795,6 +1915,18 @@ public static partial class math
         (half)(dot(a, onto) / dot(onto, onto)) * onto;
 
     [MethodImpl(256 | 512)]
+    public static half3 projectOnPlane(this half3 a, half3 plane_normal) => 
+        a - project(a, plane_normal);
+
+    [MethodImpl(256 | 512)]
+    public static half3 projectNormalized(this half3 a, half3 onto) =>
+        (half)(dot(a, onto)) * onto;
+
+    [MethodImpl(256 | 512)]
+    public static half3 projectOnPlaneNormalized(this half3 a, half3 plane_normal) => 
+        a - projectNormalized(a, plane_normal);
+
+    [MethodImpl(256 | 512)]
     public static half3 radians(this half3 a) => a * half3.DegToRad;
 
     [MethodImpl(256 | 512)]
@@ -1936,6 +2068,18 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static half4 project(this half4 a, half4 onto) =>
         (half)(dot(a, onto) / dot(onto, onto)) * onto;
+
+    [MethodImpl(256 | 512)]
+    public static half4 projectOnPlane(this half4 a, half4 plane_normal) => 
+        a - project(a, plane_normal);
+
+    [MethodImpl(256 | 512)]
+    public static half4 projectNormalized(this half4 a, half4 onto) =>
+        (half)(dot(a, onto)) * onto;
+
+    [MethodImpl(256 | 512)]
+    public static half4 projectOnPlaneNormalized(this half4 a, half4 plane_normal) => 
+        a - projectNormalized(a, plane_normal);
 
     [MethodImpl(256 | 512)]
     public static half4 radians(this half4 a) => a * half4.DegToRad;

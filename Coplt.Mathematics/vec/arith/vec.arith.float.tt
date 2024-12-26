@@ -323,6 +323,18 @@ public static partial class math
         (<#= typ.simdComp #>)(dot(a, onto) / dot(onto, onto)) * onto;
 
     [MethodImpl(256 | 512)]
+    public static <#= typeName #> projectOnPlane(this <#= typeName #> a, <#= typeName #> plane_normal) => 
+        a - project(a, plane_normal);
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> projectNormalized(this <#= typeName #> a, <#= typeName #> onto) =>
+        (<#= typ.simdComp #>)(dot(a, onto)) * onto;
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> projectOnPlaneNormalized(this <#= typeName #> a, <#= typeName #> plane_normal) => 
+        a - projectNormalized(a, plane_normal);
+
+    [MethodImpl(256 | 512)]
     public static <#= typeName #> radians(this <#= typeName #> a) => a * <#= typeName #>.DegToRad;
 
     [MethodImpl(256 | 512)]
