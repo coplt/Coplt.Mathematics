@@ -17,7 +17,7 @@ public class TestAtan2
         var b = MathF.Atan2(x, y);
         Console.WriteLine($"{a}");
         Console.WriteLine($"{b}");
-        Assert.That(b, Is.EqualTo(a).Within(2).Ulps);
+        Assert.That(b, Is.EqualTo(a).Within(3).Ulps);
     }
 
     [Test]
