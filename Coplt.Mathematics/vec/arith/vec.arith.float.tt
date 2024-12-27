@@ -339,6 +339,13 @@ public static partial class math
 
     [MethodImpl(256 | 512)]
     public static <#= typeName #> degrees(this <#= typeName #> a) => a * <#= typeName #>.RadToDeg;
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> wrap(this <#= typeName #> x, <#= typeName #> min, <#= typeName #> max)
+    {
+        var range = max - min;
+        return min + ((x - min) % range + range) % range;
+    }
 }
 
 #endregion // <#= typeName #>

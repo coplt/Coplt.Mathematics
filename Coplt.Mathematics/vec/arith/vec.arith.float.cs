@@ -191,6 +191,13 @@ public static partial class math
 
     [MethodImpl(256 | 512)]
     public static float2 degrees(this float2 a) => a * float2.RadToDeg;
+
+    [MethodImpl(256 | 512)]
+    public static float2 wrap(this float2 x, float2 min, float2 max)
+    {
+        var range = max - min;
+        return min + ((x - min) % range + range) % range;
+    }
 }
 
 #endregion // float2
@@ -384,6 +391,13 @@ public static partial class math
 
     [MethodImpl(256 | 512)]
     public static float3 degrees(this float3 a) => a * float3.RadToDeg;
+
+    [MethodImpl(256 | 512)]
+    public static float3 wrap(this float3 x, float3 min, float3 max)
+    {
+        var range = max - min;
+        return min + ((x - min) % range + range) % range;
+    }
 }
 
 #endregion // float3
@@ -577,6 +591,13 @@ public static partial class math
 
     [MethodImpl(256 | 512)]
     public static float4 degrees(this float4 a) => a * float4.RadToDeg;
+
+    [MethodImpl(256 | 512)]
+    public static float4 wrap(this float4 x, float4 min, float4 max)
+    {
+        var range = max - min;
+        return min + ((x - min) % range + range) % range;
+    }
 }
 
 #endregion // float4
@@ -770,6 +791,13 @@ public static partial class math
 
     [MethodImpl(256 | 512)]
     public static double2 degrees(this double2 a) => a * double2.RadToDeg;
+
+    [MethodImpl(256 | 512)]
+    public static double2 wrap(this double2 x, double2 min, double2 max)
+    {
+        var range = max - min;
+        return min + ((x - min) % range + range) % range;
+    }
 }
 
 #endregion // double2
@@ -963,6 +991,13 @@ public static partial class math
 
     [MethodImpl(256 | 512)]
     public static double3 degrees(this double3 a) => a * double3.RadToDeg;
+
+    [MethodImpl(256 | 512)]
+    public static double3 wrap(this double3 x, double3 min, double3 max)
+    {
+        var range = max - min;
+        return min + ((x - min) % range + range) % range;
+    }
 }
 
 #endregion // double3
@@ -1156,6 +1191,13 @@ public static partial class math
 
     [MethodImpl(256 | 512)]
     public static double4 degrees(this double4 a) => a * double4.RadToDeg;
+
+    [MethodImpl(256 | 512)]
+    public static double4 wrap(this double4 x, double4 min, double4 max)
+    {
+        var range = max - min;
+        return min + ((x - min) % range + range) % range;
+    }
 }
 
 #endregion // double4
@@ -1311,6 +1353,13 @@ public static partial class math
 
     [MethodImpl(256 | 512)]
     public static decimal2 degrees(this decimal2 a) => a * decimal2.RadToDeg;
+
+    [MethodImpl(256 | 512)]
+    public static decimal2 wrap(this decimal2 x, decimal2 min, decimal2 max)
+    {
+        var range = max - min;
+        return min + ((x - min) % range + range) % range;
+    }
 }
 
 #endregion // decimal2
@@ -1466,6 +1515,13 @@ public static partial class math
 
     [MethodImpl(256 | 512)]
     public static decimal3 degrees(this decimal3 a) => a * decimal3.RadToDeg;
+
+    [MethodImpl(256 | 512)]
+    public static decimal3 wrap(this decimal3 x, decimal3 min, decimal3 max)
+    {
+        var range = max - min;
+        return min + ((x - min) % range + range) % range;
+    }
 }
 
 #endregion // decimal3
@@ -1621,6 +1677,13 @@ public static partial class math
 
     [MethodImpl(256 | 512)]
     public static decimal4 degrees(this decimal4 a) => a * decimal4.RadToDeg;
+
+    [MethodImpl(256 | 512)]
+    public static decimal4 wrap(this decimal4 x, decimal4 min, decimal4 max)
+    {
+        var range = max - min;
+        return min + ((x - min) % range + range) % range;
+    }
 }
 
 #endregion // decimal4
@@ -1776,6 +1839,13 @@ public static partial class math
 
     [MethodImpl(256 | 512)]
     public static half2 degrees(this half2 a) => a * half2.RadToDeg;
+
+    [MethodImpl(256 | 512)]
+    public static half2 wrap(this half2 x, half2 min, half2 max)
+    {
+        var range = max - min;
+        return min + ((x - min) % range + range) % range;
+    }
 }
 
 #endregion // half2
@@ -1931,6 +2001,13 @@ public static partial class math
 
     [MethodImpl(256 | 512)]
     public static half3 degrees(this half3 a) => a * half3.RadToDeg;
+
+    [MethodImpl(256 | 512)]
+    public static half3 wrap(this half3 x, half3 min, half3 max)
+    {
+        var range = max - min;
+        return min + ((x - min) % range + range) % range;
+    }
 }
 
 #endregion // half3
@@ -2086,6 +2163,13 @@ public static partial class math
 
     [MethodImpl(256 | 512)]
     public static half4 degrees(this half4 a) => a * half4.RadToDeg;
+
+    [MethodImpl(256 | 512)]
+    public static half4 wrap(this half4 x, half4 min, half4 max)
+    {
+        var range = max - min;
+        return min + ((x - min) % range + range) % range;
+    }
 }
 
 #endregion // half4

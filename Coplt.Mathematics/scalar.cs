@@ -2023,4 +2023,25 @@ public static partial class math
     public static double degrees(this double a) => a * D_RadToDeg;
 
     #endregion
+
+    #region wrap
+
+    [MethodImpl(256 | 512)]
+    public static half wrap(this half x, half min, half max) => (half)wrap((float)x, (float)min, (float)max);
+
+    [MethodImpl(256 | 512)]
+    public static float wrap(this float x, float min, float max)
+    {
+        var range = max - min;
+        return min + ((x - min) % range + range) % range;
+    }
+    
+    [MethodImpl(256 | 512)]
+    public static double wrap(this double x, double min, double max) 
+    {
+        var range = max - min;
+        return min + ((x - min) % range + range) % range;
+    }
+
+    #endregion
 }

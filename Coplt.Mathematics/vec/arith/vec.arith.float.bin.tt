@@ -777,7 +777,6 @@ public static partial class math
                     typ.name switch { "half" => "0x8000", "float" => "0x8000_0000", "double" => "0x8000_0000_0000_0000", _ => "" } #>).asf();
         return (b & sig) ^ a;
     }
-
 }
 
 #endregion // <#= typeName #>

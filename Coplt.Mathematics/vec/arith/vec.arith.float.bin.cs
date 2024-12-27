@@ -354,7 +354,6 @@ public static partial class math
         var sig = new uint2(0x8000_0000).asf();
         return (b & sig) ^ a;
     }
-
 }
 
 #endregion // float2
@@ -713,7 +712,6 @@ public static partial class math
         var sig = new uint3(0x8000_0000).asf();
         return (b & sig) ^ a;
     }
-
 }
 
 #endregion // float3
@@ -1074,7 +1072,6 @@ public static partial class math
         var sig = new uint4(0x8000_0000).asf();
         return (b & sig) ^ a;
     }
-
 }
 
 #endregion // float4
@@ -1431,7 +1428,6 @@ public static partial class math
         var sig = new ulong2(0x8000_0000_0000_0000).asf();
         return (b & sig) ^ a;
     }
-
 }
 
 #endregion // double2
@@ -1790,7 +1786,6 @@ public static partial class math
         var sig = new ulong3(0x8000_0000_0000_0000).asf();
         return (b & sig) ^ a;
     }
-
 }
 
 #endregion // double3
@@ -2151,7 +2146,6 @@ public static partial class math
         var sig = new ulong4(0x8000_0000_0000_0000).asf();
         return (b & sig) ^ a;
     }
-
 }
 
 #endregion // double4
@@ -2393,7 +2387,6 @@ public static partial class math
         var sig = new ushort2(0x8000).asf();
         return (b & sig) ^ a;
     }
-
 }
 
 #endregion // half2
@@ -2637,7 +2630,6 @@ public static partial class math
         var sig = new ushort3(0x8000).asf();
         return (b & sig) ^ a;
     }
-
 }
 
 #endregion // half3
@@ -2883,7 +2875,6 @@ public static partial class math
         var sig = new ushort4(0x8000).asf();
         return (b & sig) ^ a;
     }
-
 }
 
 #endregion // half4
