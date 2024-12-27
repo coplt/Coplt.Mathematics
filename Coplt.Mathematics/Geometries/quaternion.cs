@@ -8,6 +8,8 @@ public partial struct quaternion
 {
     public float4 value;
 
+    public override string ToString() => $"{nameof(quaternion)}({value.x}, {value.y}, {value.z}, {value.w})";
+
     public static quaternion Identity
     {
         [MethodImpl(256 | 512)]
@@ -94,6 +96,27 @@ public partial struct quaternion
         return new(new float4(axis * sina, cosa));
     }
 
+    /// <summary>
+    /// Returns a quaternion constructed by first performing 3 rotations around the principal axes in a given order.
+    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
+    /// When the rotation order is known at compile time, it is recommended for performance reasons to use specific
+    /// Euler rotation constructors such as EulerZXY(...).
+    /// </summary>
+    /// <param name="xyz">A float3 vector containing the rotation angles around the x-, y- and z-axis measures in radians.</param>
+    /// <param name="order">The order in which the rotations are applied.</param>
+    /// <returns>The quaternion representing the Euler angle rotation in the specified order.</returns>
+    [MethodImpl(256 | 512)]
+    public static quaternion Euler(float3 xyz, RotationOrder order = RotationOrder.Default) => order switch
+    {
+        RotationOrder.XYZ => EulerXYZ(xyz),
+        RotationOrder.XZY => EulerXZY(xyz),
+        RotationOrder.YXZ => EulerYXZ(xyz),
+        RotationOrder.YZX => EulerYZX(xyz),
+        RotationOrder.ZXY => EulerZXY(xyz),
+        RotationOrder.ZYX => EulerZYX(xyz),
+        _ => Identity,
+    };
+    
     /// <summary>
     /// Returns a quaternion constructed by first performing a rotation around the x-axis, then the y-axis and finally the z-axis.
     /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
@@ -607,6 +630,8 @@ public partial struct quaternion_d
 {
     public double4 value;
 
+    public override string ToString() => $"{nameof(quaternion_d)}({value.x}, {value.y}, {value.z}, {value.w})";
+
     public static quaternion_d Identity
     {
         [MethodImpl(256 | 512)]
@@ -693,6 +718,27 @@ public partial struct quaternion_d
         return new(new double4(axis * sina, cosa));
     }
 
+    /// <summary>
+    /// Returns a quaternion constructed by first performing 3 rotations around the principal axes in a given order.
+    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
+    /// When the rotation order is known at compile time, it is recommended for performance reasons to use specific
+    /// Euler rotation constructors such as EulerZXY(...).
+    /// </summary>
+    /// <param name="xyz">A float3 vector containing the rotation angles around the x-, y- and z-axis measures in radians.</param>
+    /// <param name="order">The order in which the rotations are applied.</param>
+    /// <returns>The quaternion representing the Euler angle rotation in the specified order.</returns>
+    [MethodImpl(256 | 512)]
+    public static quaternion_d Euler(double3 xyz, RotationOrder order = RotationOrder.Default) => order switch
+    {
+        RotationOrder.XYZ => EulerXYZ(xyz),
+        RotationOrder.XZY => EulerXZY(xyz),
+        RotationOrder.YXZ => EulerYXZ(xyz),
+        RotationOrder.YZX => EulerYZX(xyz),
+        RotationOrder.ZXY => EulerZXY(xyz),
+        RotationOrder.ZYX => EulerZYX(xyz),
+        _ => Identity,
+    };
+    
     /// <summary>
     /// Returns a quaternion constructed by first performing a rotation around the x-axis, then the y-axis and finally the z-axis.
     /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
@@ -1206,6 +1252,8 @@ public partial struct quaternion_h
 {
     public half4 value;
 
+    public override string ToString() => $"{nameof(quaternion_h)}({value.x}, {value.y}, {value.z}, {value.w})";
+
     public static quaternion_h Identity
     {
         [MethodImpl(256 | 512)]
@@ -1292,6 +1340,27 @@ public partial struct quaternion_h
         return new(new half4(axis * sina, cosa));
     }
 
+    /// <summary>
+    /// Returns a quaternion constructed by first performing 3 rotations around the principal axes in a given order.
+    /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
+    /// When the rotation order is known at compile time, it is recommended for performance reasons to use specific
+    /// Euler rotation constructors such as EulerZXY(...).
+    /// </summary>
+    /// <param name="xyz">A float3 vector containing the rotation angles around the x-, y- and z-axis measures in radians.</param>
+    /// <param name="order">The order in which the rotations are applied.</param>
+    /// <returns>The quaternion representing the Euler angle rotation in the specified order.</returns>
+    [MethodImpl(256 | 512)]
+    public static quaternion_h Euler(half3 xyz, RotationOrder order = RotationOrder.Default) => order switch
+    {
+        RotationOrder.XYZ => EulerXYZ(xyz),
+        RotationOrder.XZY => EulerXZY(xyz),
+        RotationOrder.YXZ => EulerYXZ(xyz),
+        RotationOrder.YZX => EulerYZX(xyz),
+        RotationOrder.ZXY => EulerZXY(xyz),
+        RotationOrder.ZYX => EulerZYX(xyz),
+        _ => Identity,
+    };
+    
     /// <summary>
     /// Returns a quaternion constructed by first performing a rotation around the x-axis, then the y-axis and finally the z-axis.
     /// All rotation angles are in radians and clockwise when looking along the rotation axis towards the origin.
