@@ -1189,6 +1189,43 @@ public static partial class math
 
     #endregion
 
+    #region step
+
+    [MethodImpl(256 | 512)]
+    public static byte step(this byte a, byte threshold) => select(a >= threshold, (byte)1, (byte)0);
+    
+    [MethodImpl(256 | 512)]
+    public static sbyte step(this sbyte a, sbyte threshold) => select(a >= threshold, (sbyte)1, (sbyte)0);
+    
+    [MethodImpl(256 | 512)]
+    public static ushort step(this ushort a, ushort threshold) => select(a >= threshold, (ushort)1, (ushort)0);
+    
+    [MethodImpl(256 | 512)]
+    public static short step(this short a, short threshold) => select(a >= threshold, (short)1, (short)0);
+    
+    [MethodImpl(256 | 512)]
+    public static uint step(this uint a, uint threshold) => select(a >= threshold, 1u, 0u);
+    
+    [MethodImpl(256 | 512)]
+    public static int step(this int a, int threshold) => select(a >= threshold, 1, 0);
+    
+    [MethodImpl(256 | 512)]
+    public static ulong step(this ulong a, ulong threshold) => select(a >= threshold, 1UL, 0UL);
+    
+    [MethodImpl(256 | 512)]
+    public static long step(this long a, long threshold) => select(a >= threshold, 1L, 0L);
+    
+    [MethodImpl(256 | 512)]
+    public static half step(this half a, half threshold) => select(a >= threshold, (half)1f, (half)0f);
+    
+    [MethodImpl(256 | 512)]
+    public static float step(this float a, float threshold) => select(a >= threshold, 1f, 0f);
+    
+    [MethodImpl(256 | 512)]
+    public static double step(this double a, double threshold) => select(a >= threshold, 1d, 0d);
+
+    #endregion
+
     #region SmoothStep
 
     [MethodImpl(256 | 512)]
