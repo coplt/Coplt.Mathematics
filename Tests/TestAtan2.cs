@@ -37,7 +37,7 @@ public class TestAtan2
     public void FloatTestATan2Error1(float y, float x, float r)
     {
         var a = simd_math.Atan2(new float4(y).UnsafeGetInner(), new float4(x).UnsafeGetInner()).GetElement(0);
-        Console.WriteLine($"{a}");
+        // Console.WriteLine($"{a}");
         Assert.That(a, Is.EqualTo(r));
     }
 
@@ -69,7 +69,7 @@ public class TestAtan2
     public void DoubleTestATan2Error1(double y, double x, double r)
     {
         var a = simd_math.Atan2(new double4(y).UnsafeGetInner(), new double4(x).UnsafeGetInner()).GetElement(0);
-        Console.WriteLine($"{a}");
+        // Console.WriteLine($"{a}");
         Assert.That(a, Is.EqualTo(r));
     }
 }

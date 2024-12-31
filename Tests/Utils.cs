@@ -71,15 +71,15 @@ public static class Utils
                 var a = calc_a(i);
                 var b = calc_b(i);
                 var ulp = CalcULP(a, b);
-                return (a, b, ulp);
+                return (a, b, ulp, i);
             }).ToArray();
         var pass_rate = data.AsParallel()
             .Select(i =>
             {
-                var (a, b, ulp) = i;
+                var (a, b, ulp, p) = i;
                 if (ulp > (uint)target_ulp)
                 {
-                    Console.WriteLine($"[{name}] Ulp Error: {{ Ulp = {ulp}, A = {a}, B = {b} }}");
+                    Console.WriteLine($"[{name}] Ulp Error: {{ Ulp = {ulp}, A = {a}, B = {b}, I = {p} }}");
                     return 0;
                 }
                 return 1;
@@ -104,15 +104,15 @@ public static class Utils
                 var a = calc_a(i);
                 var b = calc_b(i);
                 var ulp = CalcULP(a, b);
-                return (a, b, ulp);
+                return (a, b, ulp, i);
             }).ToArray();
         var pass_rate = data.AsParallel()
             .Select(i =>
             {
-                var (a, b, ulp) = i;
+                var (a, b, ulp, p) = i;
                 if (ulp > (uint)target_ulp)
                 {
-                    Console.WriteLine($"[{name}] Ulp Error: {{ Ulp = {ulp}, A = {a}, B = {b} }}");
+                    Console.WriteLine($"[{name}] Ulp Error: {{ Ulp = {ulp}, A = {a}, B = {b}, I = {p} }}");
                     return 0;
                 }
                 return 1;
@@ -139,15 +139,15 @@ public static class Utils
                 var a = calc_a(ia, ib);
                 var b = calc_b(ia, ib);
                 var ulp = CalcULP(a, b);
-                return (a, b, ulp);
+                return (a, b, ulp, ia, ib);
             }).ToArray();
         var pass_rate = data.AsParallel()
             .Select(i =>
             {
-                var (a, b, ulp) = i;
+                var (a, b, ulp, ia, ib) = i;
                 if (ulp > (uint)target_ulp)
                 {
-                    Console.WriteLine($"[{name}] Ulp Error: {{ Ulp = {ulp}, A = {a}, B = {b} }}");
+                    Console.WriteLine($"[{name}] Ulp Error: {{ Ulp = {ulp}, A = {a}, B = {b}, IA = {ia}, IB = {ib} }}");
                     return 0;
                 }
                 return 1;
@@ -174,15 +174,15 @@ public static class Utils
                 var a = calc_a(ia, ib);
                 var b = calc_b(ia, ib);
                 var ulp = CalcULP(a, b);
-                return (a, b, ulp);
+                return (a, b, ulp, ia, ib);
             }).ToArray();
         var pass_rate = data.AsParallel()
             .Select(i =>
             {
-                var (a, b, ulp) = i;
+                var (a, b, ulp, ia, ib) = i;
                 if (ulp > (ulong)target_ulp)
                 {
-                    Console.WriteLine($"[{name}] Ulp Error: {{ Ulp = {ulp}, A = {a}, B = {b} }}");
+                    Console.WriteLine($"[{name}] Ulp Error: {{ Ulp = {ulp}, A = {a}, B = {b}, IA = {ia}, IB = {ib} }}");
                     return 0;
                 }
                 return 1;

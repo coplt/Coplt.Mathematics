@@ -34,8 +34,6 @@ public class TestLog
     {
         var a = simd_math.Log2(new float4(v).UnsafeGetInner()).GetElement(0);
         var b = MathF.Log2(v);
-        Console.WriteLine($"{a}");
-        Console.WriteLine($"{b}");
         Assert.That(b, Is.EqualTo(a));
     }
     
@@ -56,8 +54,6 @@ public class TestLog
     {
         var a = simd_math.Log2(new double4(v).UnsafeGetInner()).GetElement(0);
         var b = simd_math.Log2(new double2(v).UnsafeGetInner()).GetElement(0);
-        Console.WriteLine($"{a}");
-        Console.WriteLine($"{b}");
         Assert.That(a, Is.EqualTo(b));
     }
     
@@ -67,8 +63,6 @@ public class TestLog
     {
         var a = simd_math.Log2(new double4(v).UnsafeGetInner()).GetElement(0);
         var b = Math.Log2(v);
-        Console.WriteLine($"{a}");
-        Console.WriteLine($"{b}");
         Assert.That(b, Is.EqualTo(a));
     }
 }
