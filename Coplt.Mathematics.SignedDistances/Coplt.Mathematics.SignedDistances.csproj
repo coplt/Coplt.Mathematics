@@ -3,7 +3,7 @@
     <PropertyGroup>
         <Nullable>enable</Nullable>
         <LangVersion>13.0</LangVersion>
-        <TargetFrameworks>netstandard2.1;net8.0;net9.0</TargetFrameworks>
+        <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
         <TransformOnBuild>true</TransformOnBuild>
         <TransformOutOfDateOnly>false</TransformOutOfDateOnly>
         <NoWarn>CS8981;CS0169</NoWarn>
@@ -34,11 +34,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <TextTemplate Include="sdf.2d.shape.tt"/>
-        <TextTemplate Include="sdf.2d.tt"/>
-        <TextTemplate Include="sdf.3d.shape.tt"/>
-        <TextTemplate Include="sdf.3d.tt"/>
-        <TextTemplate Include="sdf.tt"/>
+        <TextTemplate Include="**\*.tt"/>
     </ItemGroup>
 
     <!--    Inputs="@(TextTemplate)" Outputs="@(TextTemplate->'%(RelativeDir)%(Filename).cs')"-->

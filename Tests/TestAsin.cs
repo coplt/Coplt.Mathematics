@@ -11,24 +11,24 @@ public class TestAsin
 {
     [Test]
     [Parallelizable]
-    public void FloatTestASin([Random(-1.1f, 1.1f, 1000)] float x)
+    public void FloatTestASin()
     {
-        var a = simd_math.Asin(new float4(x).UnsafeGetInner()).GetElement(0);
-        var b = MathF.Asin(x);
-        Console.WriteLine($"{a}");
-        Console.WriteLine($"{b}");
-        Assert.That(b, Is.EqualTo(a).Within(2).Ulps);
+        Utils.AssertUlpRate(nameof(FloatTestASin), 1000, 0.9, 2,
+            (-1.1f, 1.1f),
+            x => simd_math.Asin(new float4(x).UnsafeGetInner()).GetElement(0),
+            MathF.Asin
+        );
     }
     
     [Test]
     [Parallelizable]
-    public void DoubleTestASin([Random(-1.1f, 1.1f, 1000)] double x)
+    public void DoubleTestASin()
     {
-        var a = simd_math.Asin(new double4(x).UnsafeGetInner()).GetElement(0);
-        var b = Math.Asin(x);
-        Console.WriteLine($"{a}");
-        Console.WriteLine($"{b}");
-        Assert.That(b, Is.EqualTo(a).Within(2).Ulps);
+        Utils.AssertUlpRate(nameof(FloatTestASin), 1000, 0.9, 2,
+            (-1.1, 1.1),
+            x => simd_math.Asin(new double4(x).UnsafeGetInner()).GetElement(0),
+            Math.Asin
+        );
     }
 }
 

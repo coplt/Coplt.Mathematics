@@ -11,24 +11,24 @@ public class TestAtan
 {
     [Test]
     [Parallelizable]
-    public void FloatTestATan([Random(-12f, 12f, 1000)] float x)
+    public void FloatTestATan()
     {
-        var a = simd_math.Atan(new float4(x).UnsafeGetInner()).GetElement(0);
-        var b = MathF.Atan(x);
-        Console.WriteLine($"{a}");
-        Console.WriteLine($"{b}");
-        Assert.That(b, Is.EqualTo(a).Within(2).Ulps);
+        Utils.AssertUlpRate(nameof(FloatTestATan), 1000, 0.9, 2,
+            (-12f, 12f),
+            x => simd_math.Atan(new float4(x).UnsafeGetInner()).GetElement(0),
+            MathF.Atan
+        );
     }
     
     [Test]
     [Parallelizable]
-    public void DoubleTestATan([Random(-12f, 12f, 1000)] double x)
+    public void DoubleTestATan()
     {
-        var a = simd_math.Atan(new double4(x).UnsafeGetInner()).GetElement(0);
-        var b = Math.Atan(x);
-        Console.WriteLine($"{a}");
-        Console.WriteLine($"{b}");
-        Assert.That(b, Is.EqualTo(a).Within(2).Ulps);
+        Utils.AssertUlpRate(nameof(DoubleTestATan), 1000, 0.9, 2,
+            (-12.0, 12.0),
+            x => simd_math.Atan(new double4(x).UnsafeGetInner()).GetElement(0),
+            Math.Atan
+        );
     }
 }
 

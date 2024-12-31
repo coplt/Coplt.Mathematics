@@ -11,13 +11,13 @@ public class TestAtan2
 {
     [Test]
     [Parallelizable]
-    public void FloatTestATan2([Random(-10f, 10f, 50)] float x, [Random(-10f, 10f, 50)] float y)
+    public void FloatTestATan2()
     {
-        var a = simd_math.Atan2(new float4(x).UnsafeGetInner(), new float4(y).UnsafeGetInner()).GetElement(0);
-        var b = MathF.Atan2(x, y);
-        Console.WriteLine($"{a}");
-        Console.WriteLine($"{b}");
-        Assert.That(b, Is.EqualTo(a).Within(3).Ulps);
+        Utils.AssertUlpRate(nameof(FloatTestATan2),1000, 0.9, 2,
+            (-10f, 10f), (-10f, 10f),
+            (x, y) => simd_math.Atan2(new float4(x).UnsafeGetInner(), new float4(y).UnsafeGetInner()).GetElement(0),
+            MathF.Atan2
+        );
     }
 
     [Test]
@@ -40,16 +40,16 @@ public class TestAtan2
         Console.WriteLine($"{a}");
         Assert.That(a, Is.EqualTo(r));
     }
-    
+
     [Test]
     [Parallelizable]
-    public void DoubleTestATan2([Random(-10.0, 10.0, 50)] double x, [Random(-10.0, 10.0, 50)] double y)
+    public void DoubleTestATan2()
     {
-        var a = simd_math.Atan2(new double4(x).UnsafeGetInner(), new double4(y).UnsafeGetInner()).GetElement(0);
-        var b = Math.Atan2(x, y);
-        Console.WriteLine($"{a}");
-        Console.WriteLine($"{b}");
-        Assert.That(b, Is.EqualTo(a).Within(2).Ulps);
+        Utils.AssertUlpRate(nameof(DoubleTestATan2),1000, 0.9, 2,
+            (-10.0, 10.0), (-10.0, 10.0),
+            (x, y) => simd_math.Atan2(new double4(x).UnsafeGetInner(), new double4(y).UnsafeGetInner()).GetElement(0),
+            Math.Atan2
+        );
     }
 
     [Test]

@@ -1,12 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <LangVersion>13.0</LangVersion>
         <IsPackable>false</IsPackable>
         <IsTestProject>true</IsTestProject>
-        <TargetFrameworks>net9.0;net8.0;net6.0</TargetFrameworks>
         <RootNamespace>MathTests</RootNamespace>
     </PropertyGroup>
 
@@ -17,7 +17,7 @@
         <PackageReference Include="NUnit.Analyzers" Version="3.9.0"/>
         <PackageReference Include="NUnit3TestAdapter" Version="4.5.0"/>
     </ItemGroup>
-
+    
     <ItemGroup>
         <Using Include="NUnit.Framework"/>
     </ItemGroup>

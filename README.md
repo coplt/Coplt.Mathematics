@@ -8,7 +8,7 @@ hlsl-style linear algebra library
 - Vector2~4 (float3 double4 int2 ...)
 - Matrix2x2~4x4 (float3x3 double4x2 int2x3 ...)
 - Hlsl-like cartesian product swizzle (.yzx .abgr ...)
-- Full simd support (net8+ only)
+- Full simd support
 - Simd accelerated [[3]](#note-3) log, exp, pow, fmod, trigonometry
 
 > [!NOTE]
@@ -23,11 +23,11 @@ hlsl-style linear algebra library
 
 | function | float | double |
 |----------|-------|--------|
-| log2     |   1   |   2    |
-| asin     |   2   |   2    |
-| acos     |   2   |   2    |
-| atan     |   2   |   2    |
-| atan2    |   2   |   2    |
+| log2     | 1     | 1      |
+| asin     | 2     | 2      |
+| acos     | 2     | 2      |
+| atan     | 2     | 2      |
+| atan2    | 2     | 2      |
 
 - The function that needs to be rewritten due to insufficient precision is not in the table
 

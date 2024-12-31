@@ -11,24 +11,24 @@ public class TestAcos
 {
     [Test]
     [Parallelizable]
-    public void FloatTestACos([Random(-1.1f, 1.1f, 1000)] float x)
+    public void FloatTestACos()
     {
-        var a = simd_math.Acos(new float4(x).UnsafeGetInner()).GetElement(0);
-        var b = MathF.Acos(x);
-        Console.WriteLine($"{a}");
-        Console.WriteLine($"{b}");
-        Assert.That(b, Is.EqualTo(a).Within(2).Ulps);
+        Utils.AssertUlpRate(nameof(FloatTestACos), 1000, 0.9, 2,
+            (-1.1f, 1.1f),
+            x => simd_math.Acos(new float4(x).UnsafeGetInner()).GetElement(0),
+            MathF.Acos
+        );
     }
-    
+
     [Test]
     [Parallelizable]
-    public void DoubleTestACos([Random(-1.1f, 1.1f, 1000)] double x)
+    public void DoubleTestACos()
     {
-        var a = simd_math.Acos(new double4(x).UnsafeGetInner()).GetElement(0);
-        var b = Math.Acos(x);
-        Console.WriteLine($"{a}");
-        Console.WriteLine($"{b}");
-        Assert.That(b, Is.EqualTo(a).Within(2).Ulps);
+        Utils.AssertUlpRate(nameof(DoubleTestACos), 1000, 0.9, 2,
+            (-1.1, 1.1),
+            x => simd_math.Acos(new double4(x).UnsafeGetInner()).GetElement(0),
+            Math.Acos
+        );
     }
 }
 
