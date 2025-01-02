@@ -4,1086 +4,1159 @@ namespace Coplt.Mathematics;
 
 #region float2x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float2x2 asfloat(this float2x2 v) => v.BitCast<float2x2, float2x2>();
+    public static float2x2 asfloat([This] float2x2 v) => v.BitCast<float2x2, float2x2>();
     [MethodImpl(256 | 512)]
-    public static int2x2 asint(this float2x2 v) => v.BitCast<float2x2, int2x2>();
+    public static int2x2 asint([This] float2x2 v) => v.BitCast<float2x2, int2x2>();
     [MethodImpl(256 | 512)]
-    public static uint2x2 asuint(this float2x2 v) => v.BitCast<float2x2, uint2x2>();
+    public static uint2x2 asuint([This] float2x2 v) => v.BitCast<float2x2, uint2x2>();
     [MethodImpl(256 | 512)]
-    public static b32m2x2 asb32(this float2x2 v) => v.BitCast<float2x2, b32m2x2>();
+    public static b32m2x2 asb32([This] float2x2 v) => v.BitCast<float2x2, b32m2x2>();
 }
 
 #endregion // float2x2
 
 #region float2x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float2x3 asfloat(this float2x3 v) => v.BitCast<float2x3, float2x3>();
+    public static float2x3 asfloat([This] float2x3 v) => v.BitCast<float2x3, float2x3>();
     [MethodImpl(256 | 512)]
-    public static int2x3 asint(this float2x3 v) => v.BitCast<float2x3, int2x3>();
+    public static int2x3 asint([This] float2x3 v) => v.BitCast<float2x3, int2x3>();
     [MethodImpl(256 | 512)]
-    public static uint2x3 asuint(this float2x3 v) => v.BitCast<float2x3, uint2x3>();
+    public static uint2x3 asuint([This] float2x3 v) => v.BitCast<float2x3, uint2x3>();
     [MethodImpl(256 | 512)]
-    public static b32m2x3 asb32(this float2x3 v) => v.BitCast<float2x3, b32m2x3>();
+    public static b32m2x3 asb32([This] float2x3 v) => v.BitCast<float2x3, b32m2x3>();
 }
 
 #endregion // float2x3
 
 #region float2x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float2x4 asfloat(this float2x4 v) => v.BitCast<float2x4, float2x4>();
+    public static float2x4 asfloat([This] float2x4 v) => v.BitCast<float2x4, float2x4>();
     [MethodImpl(256 | 512)]
-    public static int2x4 asint(this float2x4 v) => v.BitCast<float2x4, int2x4>();
+    public static int2x4 asint([This] float2x4 v) => v.BitCast<float2x4, int2x4>();
     [MethodImpl(256 | 512)]
-    public static uint2x4 asuint(this float2x4 v) => v.BitCast<float2x4, uint2x4>();
+    public static uint2x4 asuint([This] float2x4 v) => v.BitCast<float2x4, uint2x4>();
     [MethodImpl(256 | 512)]
-    public static b32m2x4 asb32(this float2x4 v) => v.BitCast<float2x4, b32m2x4>();
+    public static b32m2x4 asb32([This] float2x4 v) => v.BitCast<float2x4, b32m2x4>();
 }
 
 #endregion // float2x4
 
 #region float3x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float3x2 asfloat(this float3x2 v) => v.BitCast<float3x2, float3x2>();
+    public static float3x2 asfloat([This] float3x2 v) => v.BitCast<float3x2, float3x2>();
     [MethodImpl(256 | 512)]
-    public static int3x2 asint(this float3x2 v) => v.BitCast<float3x2, int3x2>();
+    public static int3x2 asint([This] float3x2 v) => v.BitCast<float3x2, int3x2>();
     [MethodImpl(256 | 512)]
-    public static uint3x2 asuint(this float3x2 v) => v.BitCast<float3x2, uint3x2>();
+    public static uint3x2 asuint([This] float3x2 v) => v.BitCast<float3x2, uint3x2>();
     [MethodImpl(256 | 512)]
-    public static b32m3x2 asb32(this float3x2 v) => v.BitCast<float3x2, b32m3x2>();
+    public static b32m3x2 asb32([This] float3x2 v) => v.BitCast<float3x2, b32m3x2>();
 }
 
 #endregion // float3x2
 
 #region float3x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float3x3 asfloat(this float3x3 v) => v.BitCast<float3x3, float3x3>();
+    public static float3x3 asfloat([This] float3x3 v) => v.BitCast<float3x3, float3x3>();
     [MethodImpl(256 | 512)]
-    public static int3x3 asint(this float3x3 v) => v.BitCast<float3x3, int3x3>();
+    public static int3x3 asint([This] float3x3 v) => v.BitCast<float3x3, int3x3>();
     [MethodImpl(256 | 512)]
-    public static uint3x3 asuint(this float3x3 v) => v.BitCast<float3x3, uint3x3>();
+    public static uint3x3 asuint([This] float3x3 v) => v.BitCast<float3x3, uint3x3>();
     [MethodImpl(256 | 512)]
-    public static b32m3x3 asb32(this float3x3 v) => v.BitCast<float3x3, b32m3x3>();
+    public static b32m3x3 asb32([This] float3x3 v) => v.BitCast<float3x3, b32m3x3>();
 }
 
 #endregion // float3x3
 
 #region float3x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float3x4 asfloat(this float3x4 v) => v.BitCast<float3x4, float3x4>();
+    public static float3x4 asfloat([This] float3x4 v) => v.BitCast<float3x4, float3x4>();
     [MethodImpl(256 | 512)]
-    public static int3x4 asint(this float3x4 v) => v.BitCast<float3x4, int3x4>();
+    public static int3x4 asint([This] float3x4 v) => v.BitCast<float3x4, int3x4>();
     [MethodImpl(256 | 512)]
-    public static uint3x4 asuint(this float3x4 v) => v.BitCast<float3x4, uint3x4>();
+    public static uint3x4 asuint([This] float3x4 v) => v.BitCast<float3x4, uint3x4>();
     [MethodImpl(256 | 512)]
-    public static b32m3x4 asb32(this float3x4 v) => v.BitCast<float3x4, b32m3x4>();
+    public static b32m3x4 asb32([This] float3x4 v) => v.BitCast<float3x4, b32m3x4>();
 }
 
 #endregion // float3x4
 
 #region float4x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float4x2 asfloat(this float4x2 v) => v.BitCast<float4x2, float4x2>();
+    public static float4x2 asfloat([This] float4x2 v) => v.BitCast<float4x2, float4x2>();
     [MethodImpl(256 | 512)]
-    public static int4x2 asint(this float4x2 v) => v.BitCast<float4x2, int4x2>();
+    public static int4x2 asint([This] float4x2 v) => v.BitCast<float4x2, int4x2>();
     [MethodImpl(256 | 512)]
-    public static uint4x2 asuint(this float4x2 v) => v.BitCast<float4x2, uint4x2>();
+    public static uint4x2 asuint([This] float4x2 v) => v.BitCast<float4x2, uint4x2>();
     [MethodImpl(256 | 512)]
-    public static b32m4x2 asb32(this float4x2 v) => v.BitCast<float4x2, b32m4x2>();
+    public static b32m4x2 asb32([This] float4x2 v) => v.BitCast<float4x2, b32m4x2>();
 }
 
 #endregion // float4x2
 
 #region float4x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float4x3 asfloat(this float4x3 v) => v.BitCast<float4x3, float4x3>();
+    public static float4x3 asfloat([This] float4x3 v) => v.BitCast<float4x3, float4x3>();
     [MethodImpl(256 | 512)]
-    public static int4x3 asint(this float4x3 v) => v.BitCast<float4x3, int4x3>();
+    public static int4x3 asint([This] float4x3 v) => v.BitCast<float4x3, int4x3>();
     [MethodImpl(256 | 512)]
-    public static uint4x3 asuint(this float4x3 v) => v.BitCast<float4x3, uint4x3>();
+    public static uint4x3 asuint([This] float4x3 v) => v.BitCast<float4x3, uint4x3>();
     [MethodImpl(256 | 512)]
-    public static b32m4x3 asb32(this float4x3 v) => v.BitCast<float4x3, b32m4x3>();
+    public static b32m4x3 asb32([This] float4x3 v) => v.BitCast<float4x3, b32m4x3>();
 }
 
 #endregion // float4x3
 
 #region float4x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float4x4 asfloat(this float4x4 v) => v.BitCast<float4x4, float4x4>();
+    public static float4x4 asfloat([This] float4x4 v) => v.BitCast<float4x4, float4x4>();
     [MethodImpl(256 | 512)]
-    public static int4x4 asint(this float4x4 v) => v.BitCast<float4x4, int4x4>();
+    public static int4x4 asint([This] float4x4 v) => v.BitCast<float4x4, int4x4>();
     [MethodImpl(256 | 512)]
-    public static uint4x4 asuint(this float4x4 v) => v.BitCast<float4x4, uint4x4>();
+    public static uint4x4 asuint([This] float4x4 v) => v.BitCast<float4x4, uint4x4>();
     [MethodImpl(256 | 512)]
-    public static b32m4x4 asb32(this float4x4 v) => v.BitCast<float4x4, b32m4x4>();
+    public static b32m4x4 asb32([This] float4x4 v) => v.BitCast<float4x4, b32m4x4>();
 }
 
 #endregion // float4x4
 
 #region double2x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double2x2 asdouble(this double2x2 v) => v.BitCast<double2x2, double2x2>();
+    public static double2x2 asdouble([This] double2x2 v) => v.BitCast<double2x2, double2x2>();
     [MethodImpl(256 | 512)]
-    public static long2x2 aslong(this double2x2 v) => v.BitCast<double2x2, long2x2>();
+    public static long2x2 aslong([This] double2x2 v) => v.BitCast<double2x2, long2x2>();
     [MethodImpl(256 | 512)]
-    public static ulong2x2 asulong(this double2x2 v) => v.BitCast<double2x2, ulong2x2>();
+    public static ulong2x2 asulong([This] double2x2 v) => v.BitCast<double2x2, ulong2x2>();
     [MethodImpl(256 | 512)]
-    public static b64m2x2 asb64(this double2x2 v) => v.BitCast<double2x2, b64m2x2>();
+    public static b64m2x2 asb64([This] double2x2 v) => v.BitCast<double2x2, b64m2x2>();
 }
 
 #endregion // double2x2
 
 #region double2x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double2x3 asdouble(this double2x3 v) => v.BitCast<double2x3, double2x3>();
+    public static double2x3 asdouble([This] double2x3 v) => v.BitCast<double2x3, double2x3>();
     [MethodImpl(256 | 512)]
-    public static long2x3 aslong(this double2x3 v) => v.BitCast<double2x3, long2x3>();
+    public static long2x3 aslong([This] double2x3 v) => v.BitCast<double2x3, long2x3>();
     [MethodImpl(256 | 512)]
-    public static ulong2x3 asulong(this double2x3 v) => v.BitCast<double2x3, ulong2x3>();
+    public static ulong2x3 asulong([This] double2x3 v) => v.BitCast<double2x3, ulong2x3>();
     [MethodImpl(256 | 512)]
-    public static b64m2x3 asb64(this double2x3 v) => v.BitCast<double2x3, b64m2x3>();
+    public static b64m2x3 asb64([This] double2x3 v) => v.BitCast<double2x3, b64m2x3>();
 }
 
 #endregion // double2x3
 
 #region double2x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double2x4 asdouble(this double2x4 v) => v.BitCast<double2x4, double2x4>();
+    public static double2x4 asdouble([This] double2x4 v) => v.BitCast<double2x4, double2x4>();
     [MethodImpl(256 | 512)]
-    public static long2x4 aslong(this double2x4 v) => v.BitCast<double2x4, long2x4>();
+    public static long2x4 aslong([This] double2x4 v) => v.BitCast<double2x4, long2x4>();
     [MethodImpl(256 | 512)]
-    public static ulong2x4 asulong(this double2x4 v) => v.BitCast<double2x4, ulong2x4>();
+    public static ulong2x4 asulong([This] double2x4 v) => v.BitCast<double2x4, ulong2x4>();
     [MethodImpl(256 | 512)]
-    public static b64m2x4 asb64(this double2x4 v) => v.BitCast<double2x4, b64m2x4>();
+    public static b64m2x4 asb64([This] double2x4 v) => v.BitCast<double2x4, b64m2x4>();
 }
 
 #endregion // double2x4
 
 #region double3x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double3x2 asdouble(this double3x2 v) => v.BitCast<double3x2, double3x2>();
+    public static double3x2 asdouble([This] double3x2 v) => v.BitCast<double3x2, double3x2>();
     [MethodImpl(256 | 512)]
-    public static long3x2 aslong(this double3x2 v) => v.BitCast<double3x2, long3x2>();
+    public static long3x2 aslong([This] double3x2 v) => v.BitCast<double3x2, long3x2>();
     [MethodImpl(256 | 512)]
-    public static ulong3x2 asulong(this double3x2 v) => v.BitCast<double3x2, ulong3x2>();
+    public static ulong3x2 asulong([This] double3x2 v) => v.BitCast<double3x2, ulong3x2>();
     [MethodImpl(256 | 512)]
-    public static b64m3x2 asb64(this double3x2 v) => v.BitCast<double3x2, b64m3x2>();
+    public static b64m3x2 asb64([This] double3x2 v) => v.BitCast<double3x2, b64m3x2>();
 }
 
 #endregion // double3x2
 
 #region double3x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double3x3 asdouble(this double3x3 v) => v.BitCast<double3x3, double3x3>();
+    public static double3x3 asdouble([This] double3x3 v) => v.BitCast<double3x3, double3x3>();
     [MethodImpl(256 | 512)]
-    public static long3x3 aslong(this double3x3 v) => v.BitCast<double3x3, long3x3>();
+    public static long3x3 aslong([This] double3x3 v) => v.BitCast<double3x3, long3x3>();
     [MethodImpl(256 | 512)]
-    public static ulong3x3 asulong(this double3x3 v) => v.BitCast<double3x3, ulong3x3>();
+    public static ulong3x3 asulong([This] double3x3 v) => v.BitCast<double3x3, ulong3x3>();
     [MethodImpl(256 | 512)]
-    public static b64m3x3 asb64(this double3x3 v) => v.BitCast<double3x3, b64m3x3>();
+    public static b64m3x3 asb64([This] double3x3 v) => v.BitCast<double3x3, b64m3x3>();
 }
 
 #endregion // double3x3
 
 #region double3x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double3x4 asdouble(this double3x4 v) => v.BitCast<double3x4, double3x4>();
+    public static double3x4 asdouble([This] double3x4 v) => v.BitCast<double3x4, double3x4>();
     [MethodImpl(256 | 512)]
-    public static long3x4 aslong(this double3x4 v) => v.BitCast<double3x4, long3x4>();
+    public static long3x4 aslong([This] double3x4 v) => v.BitCast<double3x4, long3x4>();
     [MethodImpl(256 | 512)]
-    public static ulong3x4 asulong(this double3x4 v) => v.BitCast<double3x4, ulong3x4>();
+    public static ulong3x4 asulong([This] double3x4 v) => v.BitCast<double3x4, ulong3x4>();
     [MethodImpl(256 | 512)]
-    public static b64m3x4 asb64(this double3x4 v) => v.BitCast<double3x4, b64m3x4>();
+    public static b64m3x4 asb64([This] double3x4 v) => v.BitCast<double3x4, b64m3x4>();
 }
 
 #endregion // double3x4
 
 #region double4x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double4x2 asdouble(this double4x2 v) => v.BitCast<double4x2, double4x2>();
+    public static double4x2 asdouble([This] double4x2 v) => v.BitCast<double4x2, double4x2>();
     [MethodImpl(256 | 512)]
-    public static long4x2 aslong(this double4x2 v) => v.BitCast<double4x2, long4x2>();
+    public static long4x2 aslong([This] double4x2 v) => v.BitCast<double4x2, long4x2>();
     [MethodImpl(256 | 512)]
-    public static ulong4x2 asulong(this double4x2 v) => v.BitCast<double4x2, ulong4x2>();
+    public static ulong4x2 asulong([This] double4x2 v) => v.BitCast<double4x2, ulong4x2>();
     [MethodImpl(256 | 512)]
-    public static b64m4x2 asb64(this double4x2 v) => v.BitCast<double4x2, b64m4x2>();
+    public static b64m4x2 asb64([This] double4x2 v) => v.BitCast<double4x2, b64m4x2>();
 }
 
 #endregion // double4x2
 
 #region double4x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double4x3 asdouble(this double4x3 v) => v.BitCast<double4x3, double4x3>();
+    public static double4x3 asdouble([This] double4x3 v) => v.BitCast<double4x3, double4x3>();
     [MethodImpl(256 | 512)]
-    public static long4x3 aslong(this double4x3 v) => v.BitCast<double4x3, long4x3>();
+    public static long4x3 aslong([This] double4x3 v) => v.BitCast<double4x3, long4x3>();
     [MethodImpl(256 | 512)]
-    public static ulong4x3 asulong(this double4x3 v) => v.BitCast<double4x3, ulong4x3>();
+    public static ulong4x3 asulong([This] double4x3 v) => v.BitCast<double4x3, ulong4x3>();
     [MethodImpl(256 | 512)]
-    public static b64m4x3 asb64(this double4x3 v) => v.BitCast<double4x3, b64m4x3>();
+    public static b64m4x3 asb64([This] double4x3 v) => v.BitCast<double4x3, b64m4x3>();
 }
 
 #endregion // double4x3
 
 #region double4x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double4x4 asdouble(this double4x4 v) => v.BitCast<double4x4, double4x4>();
+    public static double4x4 asdouble([This] double4x4 v) => v.BitCast<double4x4, double4x4>();
     [MethodImpl(256 | 512)]
-    public static long4x4 aslong(this double4x4 v) => v.BitCast<double4x4, long4x4>();
+    public static long4x4 aslong([This] double4x4 v) => v.BitCast<double4x4, long4x4>();
     [MethodImpl(256 | 512)]
-    public static ulong4x4 asulong(this double4x4 v) => v.BitCast<double4x4, ulong4x4>();
+    public static ulong4x4 asulong([This] double4x4 v) => v.BitCast<double4x4, ulong4x4>();
     [MethodImpl(256 | 512)]
-    public static b64m4x4 asb64(this double4x4 v) => v.BitCast<double4x4, b64m4x4>();
+    public static b64m4x4 asb64([This] double4x4 v) => v.BitCast<double4x4, b64m4x4>();
 }
 
 #endregion // double4x4
 
 #region short2x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half2x2 ashalf(this short2x2 v) => v.BitCast<short2x2, half2x2>();
+    public static half2x2 ashalf([This] short2x2 v) => v.BitCast<short2x2, half2x2>();
     [MethodImpl(256 | 512)]
-    public static b16m2x2 asb16(this short2x2 v) => v.BitCast<short2x2, b16m2x2>();
+    public static b16m2x2 asb16([This] short2x2 v) => v.BitCast<short2x2, b16m2x2>();
 }
 
 #endregion // short2x2
 
 #region short2x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half2x3 ashalf(this short2x3 v) => v.BitCast<short2x3, half2x3>();
+    public static half2x3 ashalf([This] short2x3 v) => v.BitCast<short2x3, half2x3>();
     [MethodImpl(256 | 512)]
-    public static b16m2x3 asb16(this short2x3 v) => v.BitCast<short2x3, b16m2x3>();
+    public static b16m2x3 asb16([This] short2x3 v) => v.BitCast<short2x3, b16m2x3>();
 }
 
 #endregion // short2x3
 
 #region short2x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half2x4 ashalf(this short2x4 v) => v.BitCast<short2x4, half2x4>();
+    public static half2x4 ashalf([This] short2x4 v) => v.BitCast<short2x4, half2x4>();
     [MethodImpl(256 | 512)]
-    public static b16m2x4 asb16(this short2x4 v) => v.BitCast<short2x4, b16m2x4>();
+    public static b16m2x4 asb16([This] short2x4 v) => v.BitCast<short2x4, b16m2x4>();
 }
 
 #endregion // short2x4
 
 #region short3x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half3x2 ashalf(this short3x2 v) => v.BitCast<short3x2, half3x2>();
+    public static half3x2 ashalf([This] short3x2 v) => v.BitCast<short3x2, half3x2>();
     [MethodImpl(256 | 512)]
-    public static b16m3x2 asb16(this short3x2 v) => v.BitCast<short3x2, b16m3x2>();
+    public static b16m3x2 asb16([This] short3x2 v) => v.BitCast<short3x2, b16m3x2>();
 }
 
 #endregion // short3x2
 
 #region short3x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half3x3 ashalf(this short3x3 v) => v.BitCast<short3x3, half3x3>();
+    public static half3x3 ashalf([This] short3x3 v) => v.BitCast<short3x3, half3x3>();
     [MethodImpl(256 | 512)]
-    public static b16m3x3 asb16(this short3x3 v) => v.BitCast<short3x3, b16m3x3>();
+    public static b16m3x3 asb16([This] short3x3 v) => v.BitCast<short3x3, b16m3x3>();
 }
 
 #endregion // short3x3
 
 #region short3x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half3x4 ashalf(this short3x4 v) => v.BitCast<short3x4, half3x4>();
+    public static half3x4 ashalf([This] short3x4 v) => v.BitCast<short3x4, half3x4>();
     [MethodImpl(256 | 512)]
-    public static b16m3x4 asb16(this short3x4 v) => v.BitCast<short3x4, b16m3x4>();
+    public static b16m3x4 asb16([This] short3x4 v) => v.BitCast<short3x4, b16m3x4>();
 }
 
 #endregion // short3x4
 
 #region short4x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half4x2 ashalf(this short4x2 v) => v.BitCast<short4x2, half4x2>();
+    public static half4x2 ashalf([This] short4x2 v) => v.BitCast<short4x2, half4x2>();
     [MethodImpl(256 | 512)]
-    public static b16m4x2 asb16(this short4x2 v) => v.BitCast<short4x2, b16m4x2>();
+    public static b16m4x2 asb16([This] short4x2 v) => v.BitCast<short4x2, b16m4x2>();
 }
 
 #endregion // short4x2
 
 #region short4x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half4x3 ashalf(this short4x3 v) => v.BitCast<short4x3, half4x3>();
+    public static half4x3 ashalf([This] short4x3 v) => v.BitCast<short4x3, half4x3>();
     [MethodImpl(256 | 512)]
-    public static b16m4x3 asb16(this short4x3 v) => v.BitCast<short4x3, b16m4x3>();
+    public static b16m4x3 asb16([This] short4x3 v) => v.BitCast<short4x3, b16m4x3>();
 }
 
 #endregion // short4x3
 
 #region short4x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half4x4 ashalf(this short4x4 v) => v.BitCast<short4x4, half4x4>();
+    public static half4x4 ashalf([This] short4x4 v) => v.BitCast<short4x4, half4x4>();
     [MethodImpl(256 | 512)]
-    public static b16m4x4 asb16(this short4x4 v) => v.BitCast<short4x4, b16m4x4>();
+    public static b16m4x4 asb16([This] short4x4 v) => v.BitCast<short4x4, b16m4x4>();
 }
 
 #endregion // short4x4
 
 #region ushort2x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half2x2 ashalf(this ushort2x2 v) => v.BitCast<ushort2x2, half2x2>();
+    public static half2x2 ashalf([This] ushort2x2 v) => v.BitCast<ushort2x2, half2x2>();
     [MethodImpl(256 | 512)]
-    public static b16m2x2 asb16(this ushort2x2 v) => v.BitCast<ushort2x2, b16m2x2>();
+    public static b16m2x2 asb16([This] ushort2x2 v) => v.BitCast<ushort2x2, b16m2x2>();
 }
 
 #endregion // ushort2x2
 
 #region ushort2x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half2x3 ashalf(this ushort2x3 v) => v.BitCast<ushort2x3, half2x3>();
+    public static half2x3 ashalf([This] ushort2x3 v) => v.BitCast<ushort2x3, half2x3>();
     [MethodImpl(256 | 512)]
-    public static b16m2x3 asb16(this ushort2x3 v) => v.BitCast<ushort2x3, b16m2x3>();
+    public static b16m2x3 asb16([This] ushort2x3 v) => v.BitCast<ushort2x3, b16m2x3>();
 }
 
 #endregion // ushort2x3
 
 #region ushort2x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half2x4 ashalf(this ushort2x4 v) => v.BitCast<ushort2x4, half2x4>();
+    public static half2x4 ashalf([This] ushort2x4 v) => v.BitCast<ushort2x4, half2x4>();
     [MethodImpl(256 | 512)]
-    public static b16m2x4 asb16(this ushort2x4 v) => v.BitCast<ushort2x4, b16m2x4>();
+    public static b16m2x4 asb16([This] ushort2x4 v) => v.BitCast<ushort2x4, b16m2x4>();
 }
 
 #endregion // ushort2x4
 
 #region ushort3x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half3x2 ashalf(this ushort3x2 v) => v.BitCast<ushort3x2, half3x2>();
+    public static half3x2 ashalf([This] ushort3x2 v) => v.BitCast<ushort3x2, half3x2>();
     [MethodImpl(256 | 512)]
-    public static b16m3x2 asb16(this ushort3x2 v) => v.BitCast<ushort3x2, b16m3x2>();
+    public static b16m3x2 asb16([This] ushort3x2 v) => v.BitCast<ushort3x2, b16m3x2>();
 }
 
 #endregion // ushort3x2
 
 #region ushort3x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half3x3 ashalf(this ushort3x3 v) => v.BitCast<ushort3x3, half3x3>();
+    public static half3x3 ashalf([This] ushort3x3 v) => v.BitCast<ushort3x3, half3x3>();
     [MethodImpl(256 | 512)]
-    public static b16m3x3 asb16(this ushort3x3 v) => v.BitCast<ushort3x3, b16m3x3>();
+    public static b16m3x3 asb16([This] ushort3x3 v) => v.BitCast<ushort3x3, b16m3x3>();
 }
 
 #endregion // ushort3x3
 
 #region ushort3x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half3x4 ashalf(this ushort3x4 v) => v.BitCast<ushort3x4, half3x4>();
+    public static half3x4 ashalf([This] ushort3x4 v) => v.BitCast<ushort3x4, half3x4>();
     [MethodImpl(256 | 512)]
-    public static b16m3x4 asb16(this ushort3x4 v) => v.BitCast<ushort3x4, b16m3x4>();
+    public static b16m3x4 asb16([This] ushort3x4 v) => v.BitCast<ushort3x4, b16m3x4>();
 }
 
 #endregion // ushort3x4
 
 #region ushort4x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half4x2 ashalf(this ushort4x2 v) => v.BitCast<ushort4x2, half4x2>();
+    public static half4x2 ashalf([This] ushort4x2 v) => v.BitCast<ushort4x2, half4x2>();
     [MethodImpl(256 | 512)]
-    public static b16m4x2 asb16(this ushort4x2 v) => v.BitCast<ushort4x2, b16m4x2>();
+    public static b16m4x2 asb16([This] ushort4x2 v) => v.BitCast<ushort4x2, b16m4x2>();
 }
 
 #endregion // ushort4x2
 
 #region ushort4x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half4x3 ashalf(this ushort4x3 v) => v.BitCast<ushort4x3, half4x3>();
+    public static half4x3 ashalf([This] ushort4x3 v) => v.BitCast<ushort4x3, half4x3>();
     [MethodImpl(256 | 512)]
-    public static b16m4x3 asb16(this ushort4x3 v) => v.BitCast<ushort4x3, b16m4x3>();
+    public static b16m4x3 asb16([This] ushort4x3 v) => v.BitCast<ushort4x3, b16m4x3>();
 }
 
 #endregion // ushort4x3
 
 #region ushort4x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half4x4 ashalf(this ushort4x4 v) => v.BitCast<ushort4x4, half4x4>();
+    public static half4x4 ashalf([This] ushort4x4 v) => v.BitCast<ushort4x4, half4x4>();
     [MethodImpl(256 | 512)]
-    public static b16m4x4 asb16(this ushort4x4 v) => v.BitCast<ushort4x4, b16m4x4>();
+    public static b16m4x4 asb16([This] ushort4x4 v) => v.BitCast<ushort4x4, b16m4x4>();
 }
 
 #endregion // ushort4x4
 
 #region int2x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float2x2 asfloat(this int2x2 v) => v.BitCast<int2x2, float2x2>();
+    public static float2x2 asfloat([This] int2x2 v) => v.BitCast<int2x2, float2x2>();
     [MethodImpl(256 | 512)]
-    public static int2x2 asint(this int2x2 v) => v.BitCast<int2x2, int2x2>();
+    public static int2x2 asint([This] int2x2 v) => v.BitCast<int2x2, int2x2>();
     [MethodImpl(256 | 512)]
-    public static uint2x2 asuint(this int2x2 v) => v.BitCast<int2x2, uint2x2>();
+    public static uint2x2 asuint([This] int2x2 v) => v.BitCast<int2x2, uint2x2>();
     [MethodImpl(256 | 512)]
-    public static b32m2x2 asb32(this int2x2 v) => v.BitCast<int2x2, b32m2x2>();
+    public static b32m2x2 asb32([This] int2x2 v) => v.BitCast<int2x2, b32m2x2>();
 }
 
 #endregion // int2x2
 
 #region int2x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float2x3 asfloat(this int2x3 v) => v.BitCast<int2x3, float2x3>();
+    public static float2x3 asfloat([This] int2x3 v) => v.BitCast<int2x3, float2x3>();
     [MethodImpl(256 | 512)]
-    public static int2x3 asint(this int2x3 v) => v.BitCast<int2x3, int2x3>();
+    public static int2x3 asint([This] int2x3 v) => v.BitCast<int2x3, int2x3>();
     [MethodImpl(256 | 512)]
-    public static uint2x3 asuint(this int2x3 v) => v.BitCast<int2x3, uint2x3>();
+    public static uint2x3 asuint([This] int2x3 v) => v.BitCast<int2x3, uint2x3>();
     [MethodImpl(256 | 512)]
-    public static b32m2x3 asb32(this int2x3 v) => v.BitCast<int2x3, b32m2x3>();
+    public static b32m2x3 asb32([This] int2x3 v) => v.BitCast<int2x3, b32m2x3>();
 }
 
 #endregion // int2x3
 
 #region int2x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float2x4 asfloat(this int2x4 v) => v.BitCast<int2x4, float2x4>();
+    public static float2x4 asfloat([This] int2x4 v) => v.BitCast<int2x4, float2x4>();
     [MethodImpl(256 | 512)]
-    public static int2x4 asint(this int2x4 v) => v.BitCast<int2x4, int2x4>();
+    public static int2x4 asint([This] int2x4 v) => v.BitCast<int2x4, int2x4>();
     [MethodImpl(256 | 512)]
-    public static uint2x4 asuint(this int2x4 v) => v.BitCast<int2x4, uint2x4>();
+    public static uint2x4 asuint([This] int2x4 v) => v.BitCast<int2x4, uint2x4>();
     [MethodImpl(256 | 512)]
-    public static b32m2x4 asb32(this int2x4 v) => v.BitCast<int2x4, b32m2x4>();
+    public static b32m2x4 asb32([This] int2x4 v) => v.BitCast<int2x4, b32m2x4>();
 }
 
 #endregion // int2x4
 
 #region int3x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float3x2 asfloat(this int3x2 v) => v.BitCast<int3x2, float3x2>();
+    public static float3x2 asfloat([This] int3x2 v) => v.BitCast<int3x2, float3x2>();
     [MethodImpl(256 | 512)]
-    public static int3x2 asint(this int3x2 v) => v.BitCast<int3x2, int3x2>();
+    public static int3x2 asint([This] int3x2 v) => v.BitCast<int3x2, int3x2>();
     [MethodImpl(256 | 512)]
-    public static uint3x2 asuint(this int3x2 v) => v.BitCast<int3x2, uint3x2>();
+    public static uint3x2 asuint([This] int3x2 v) => v.BitCast<int3x2, uint3x2>();
     [MethodImpl(256 | 512)]
-    public static b32m3x2 asb32(this int3x2 v) => v.BitCast<int3x2, b32m3x2>();
+    public static b32m3x2 asb32([This] int3x2 v) => v.BitCast<int3x2, b32m3x2>();
 }
 
 #endregion // int3x2
 
 #region int3x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float3x3 asfloat(this int3x3 v) => v.BitCast<int3x3, float3x3>();
+    public static float3x3 asfloat([This] int3x3 v) => v.BitCast<int3x3, float3x3>();
     [MethodImpl(256 | 512)]
-    public static int3x3 asint(this int3x3 v) => v.BitCast<int3x3, int3x3>();
+    public static int3x3 asint([This] int3x3 v) => v.BitCast<int3x3, int3x3>();
     [MethodImpl(256 | 512)]
-    public static uint3x3 asuint(this int3x3 v) => v.BitCast<int3x3, uint3x3>();
+    public static uint3x3 asuint([This] int3x3 v) => v.BitCast<int3x3, uint3x3>();
     [MethodImpl(256 | 512)]
-    public static b32m3x3 asb32(this int3x3 v) => v.BitCast<int3x3, b32m3x3>();
+    public static b32m3x3 asb32([This] int3x3 v) => v.BitCast<int3x3, b32m3x3>();
 }
 
 #endregion // int3x3
 
 #region int3x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float3x4 asfloat(this int3x4 v) => v.BitCast<int3x4, float3x4>();
+    public static float3x4 asfloat([This] int3x4 v) => v.BitCast<int3x4, float3x4>();
     [MethodImpl(256 | 512)]
-    public static int3x4 asint(this int3x4 v) => v.BitCast<int3x4, int3x4>();
+    public static int3x4 asint([This] int3x4 v) => v.BitCast<int3x4, int3x4>();
     [MethodImpl(256 | 512)]
-    public static uint3x4 asuint(this int3x4 v) => v.BitCast<int3x4, uint3x4>();
+    public static uint3x4 asuint([This] int3x4 v) => v.BitCast<int3x4, uint3x4>();
     [MethodImpl(256 | 512)]
-    public static b32m3x4 asb32(this int3x4 v) => v.BitCast<int3x4, b32m3x4>();
+    public static b32m3x4 asb32([This] int3x4 v) => v.BitCast<int3x4, b32m3x4>();
 }
 
 #endregion // int3x4
 
 #region int4x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float4x2 asfloat(this int4x2 v) => v.BitCast<int4x2, float4x2>();
+    public static float4x2 asfloat([This] int4x2 v) => v.BitCast<int4x2, float4x2>();
     [MethodImpl(256 | 512)]
-    public static int4x2 asint(this int4x2 v) => v.BitCast<int4x2, int4x2>();
+    public static int4x2 asint([This] int4x2 v) => v.BitCast<int4x2, int4x2>();
     [MethodImpl(256 | 512)]
-    public static uint4x2 asuint(this int4x2 v) => v.BitCast<int4x2, uint4x2>();
+    public static uint4x2 asuint([This] int4x2 v) => v.BitCast<int4x2, uint4x2>();
     [MethodImpl(256 | 512)]
-    public static b32m4x2 asb32(this int4x2 v) => v.BitCast<int4x2, b32m4x2>();
+    public static b32m4x2 asb32([This] int4x2 v) => v.BitCast<int4x2, b32m4x2>();
 }
 
 #endregion // int4x2
 
 #region int4x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float4x3 asfloat(this int4x3 v) => v.BitCast<int4x3, float4x3>();
+    public static float4x3 asfloat([This] int4x3 v) => v.BitCast<int4x3, float4x3>();
     [MethodImpl(256 | 512)]
-    public static int4x3 asint(this int4x3 v) => v.BitCast<int4x3, int4x3>();
+    public static int4x3 asint([This] int4x3 v) => v.BitCast<int4x3, int4x3>();
     [MethodImpl(256 | 512)]
-    public static uint4x3 asuint(this int4x3 v) => v.BitCast<int4x3, uint4x3>();
+    public static uint4x3 asuint([This] int4x3 v) => v.BitCast<int4x3, uint4x3>();
     [MethodImpl(256 | 512)]
-    public static b32m4x3 asb32(this int4x3 v) => v.BitCast<int4x3, b32m4x3>();
+    public static b32m4x3 asb32([This] int4x3 v) => v.BitCast<int4x3, b32m4x3>();
 }
 
 #endregion // int4x3
 
 #region int4x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float4x4 asfloat(this int4x4 v) => v.BitCast<int4x4, float4x4>();
+    public static float4x4 asfloat([This] int4x4 v) => v.BitCast<int4x4, float4x4>();
     [MethodImpl(256 | 512)]
-    public static int4x4 asint(this int4x4 v) => v.BitCast<int4x4, int4x4>();
+    public static int4x4 asint([This] int4x4 v) => v.BitCast<int4x4, int4x4>();
     [MethodImpl(256 | 512)]
-    public static uint4x4 asuint(this int4x4 v) => v.BitCast<int4x4, uint4x4>();
+    public static uint4x4 asuint([This] int4x4 v) => v.BitCast<int4x4, uint4x4>();
     [MethodImpl(256 | 512)]
-    public static b32m4x4 asb32(this int4x4 v) => v.BitCast<int4x4, b32m4x4>();
+    public static b32m4x4 asb32([This] int4x4 v) => v.BitCast<int4x4, b32m4x4>();
 }
 
 #endregion // int4x4
 
 #region uint2x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float2x2 asfloat(this uint2x2 v) => v.BitCast<uint2x2, float2x2>();
+    public static float2x2 asfloat([This] uint2x2 v) => v.BitCast<uint2x2, float2x2>();
     [MethodImpl(256 | 512)]
-    public static int2x2 asint(this uint2x2 v) => v.BitCast<uint2x2, int2x2>();
+    public static int2x2 asint([This] uint2x2 v) => v.BitCast<uint2x2, int2x2>();
     [MethodImpl(256 | 512)]
-    public static uint2x2 asuint(this uint2x2 v) => v.BitCast<uint2x2, uint2x2>();
+    public static uint2x2 asuint([This] uint2x2 v) => v.BitCast<uint2x2, uint2x2>();
     [MethodImpl(256 | 512)]
-    public static b32m2x2 asb32(this uint2x2 v) => v.BitCast<uint2x2, b32m2x2>();
+    public static b32m2x2 asb32([This] uint2x2 v) => v.BitCast<uint2x2, b32m2x2>();
 }
 
 #endregion // uint2x2
 
 #region uint2x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float2x3 asfloat(this uint2x3 v) => v.BitCast<uint2x3, float2x3>();
+    public static float2x3 asfloat([This] uint2x3 v) => v.BitCast<uint2x3, float2x3>();
     [MethodImpl(256 | 512)]
-    public static int2x3 asint(this uint2x3 v) => v.BitCast<uint2x3, int2x3>();
+    public static int2x3 asint([This] uint2x3 v) => v.BitCast<uint2x3, int2x3>();
     [MethodImpl(256 | 512)]
-    public static uint2x3 asuint(this uint2x3 v) => v.BitCast<uint2x3, uint2x3>();
+    public static uint2x3 asuint([This] uint2x3 v) => v.BitCast<uint2x3, uint2x3>();
     [MethodImpl(256 | 512)]
-    public static b32m2x3 asb32(this uint2x3 v) => v.BitCast<uint2x3, b32m2x3>();
+    public static b32m2x3 asb32([This] uint2x3 v) => v.BitCast<uint2x3, b32m2x3>();
 }
 
 #endregion // uint2x3
 
 #region uint2x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float2x4 asfloat(this uint2x4 v) => v.BitCast<uint2x4, float2x4>();
+    public static float2x4 asfloat([This] uint2x4 v) => v.BitCast<uint2x4, float2x4>();
     [MethodImpl(256 | 512)]
-    public static int2x4 asint(this uint2x4 v) => v.BitCast<uint2x4, int2x4>();
+    public static int2x4 asint([This] uint2x4 v) => v.BitCast<uint2x4, int2x4>();
     [MethodImpl(256 | 512)]
-    public static uint2x4 asuint(this uint2x4 v) => v.BitCast<uint2x4, uint2x4>();
+    public static uint2x4 asuint([This] uint2x4 v) => v.BitCast<uint2x4, uint2x4>();
     [MethodImpl(256 | 512)]
-    public static b32m2x4 asb32(this uint2x4 v) => v.BitCast<uint2x4, b32m2x4>();
+    public static b32m2x4 asb32([This] uint2x4 v) => v.BitCast<uint2x4, b32m2x4>();
 }
 
 #endregion // uint2x4
 
 #region uint3x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float3x2 asfloat(this uint3x2 v) => v.BitCast<uint3x2, float3x2>();
+    public static float3x2 asfloat([This] uint3x2 v) => v.BitCast<uint3x2, float3x2>();
     [MethodImpl(256 | 512)]
-    public static int3x2 asint(this uint3x2 v) => v.BitCast<uint3x2, int3x2>();
+    public static int3x2 asint([This] uint3x2 v) => v.BitCast<uint3x2, int3x2>();
     [MethodImpl(256 | 512)]
-    public static uint3x2 asuint(this uint3x2 v) => v.BitCast<uint3x2, uint3x2>();
+    public static uint3x2 asuint([This] uint3x2 v) => v.BitCast<uint3x2, uint3x2>();
     [MethodImpl(256 | 512)]
-    public static b32m3x2 asb32(this uint3x2 v) => v.BitCast<uint3x2, b32m3x2>();
+    public static b32m3x2 asb32([This] uint3x2 v) => v.BitCast<uint3x2, b32m3x2>();
 }
 
 #endregion // uint3x2
 
 #region uint3x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float3x3 asfloat(this uint3x3 v) => v.BitCast<uint3x3, float3x3>();
+    public static float3x3 asfloat([This] uint3x3 v) => v.BitCast<uint3x3, float3x3>();
     [MethodImpl(256 | 512)]
-    public static int3x3 asint(this uint3x3 v) => v.BitCast<uint3x3, int3x3>();
+    public static int3x3 asint([This] uint3x3 v) => v.BitCast<uint3x3, int3x3>();
     [MethodImpl(256 | 512)]
-    public static uint3x3 asuint(this uint3x3 v) => v.BitCast<uint3x3, uint3x3>();
+    public static uint3x3 asuint([This] uint3x3 v) => v.BitCast<uint3x3, uint3x3>();
     [MethodImpl(256 | 512)]
-    public static b32m3x3 asb32(this uint3x3 v) => v.BitCast<uint3x3, b32m3x3>();
+    public static b32m3x3 asb32([This] uint3x3 v) => v.BitCast<uint3x3, b32m3x3>();
 }
 
 #endregion // uint3x3
 
 #region uint3x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float3x4 asfloat(this uint3x4 v) => v.BitCast<uint3x4, float3x4>();
+    public static float3x4 asfloat([This] uint3x4 v) => v.BitCast<uint3x4, float3x4>();
     [MethodImpl(256 | 512)]
-    public static int3x4 asint(this uint3x4 v) => v.BitCast<uint3x4, int3x4>();
+    public static int3x4 asint([This] uint3x4 v) => v.BitCast<uint3x4, int3x4>();
     [MethodImpl(256 | 512)]
-    public static uint3x4 asuint(this uint3x4 v) => v.BitCast<uint3x4, uint3x4>();
+    public static uint3x4 asuint([This] uint3x4 v) => v.BitCast<uint3x4, uint3x4>();
     [MethodImpl(256 | 512)]
-    public static b32m3x4 asb32(this uint3x4 v) => v.BitCast<uint3x4, b32m3x4>();
+    public static b32m3x4 asb32([This] uint3x4 v) => v.BitCast<uint3x4, b32m3x4>();
 }
 
 #endregion // uint3x4
 
 #region uint4x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float4x2 asfloat(this uint4x2 v) => v.BitCast<uint4x2, float4x2>();
+    public static float4x2 asfloat([This] uint4x2 v) => v.BitCast<uint4x2, float4x2>();
     [MethodImpl(256 | 512)]
-    public static int4x2 asint(this uint4x2 v) => v.BitCast<uint4x2, int4x2>();
+    public static int4x2 asint([This] uint4x2 v) => v.BitCast<uint4x2, int4x2>();
     [MethodImpl(256 | 512)]
-    public static uint4x2 asuint(this uint4x2 v) => v.BitCast<uint4x2, uint4x2>();
+    public static uint4x2 asuint([This] uint4x2 v) => v.BitCast<uint4x2, uint4x2>();
     [MethodImpl(256 | 512)]
-    public static b32m4x2 asb32(this uint4x2 v) => v.BitCast<uint4x2, b32m4x2>();
+    public static b32m4x2 asb32([This] uint4x2 v) => v.BitCast<uint4x2, b32m4x2>();
 }
 
 #endregion // uint4x2
 
 #region uint4x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float4x3 asfloat(this uint4x3 v) => v.BitCast<uint4x3, float4x3>();
+    public static float4x3 asfloat([This] uint4x3 v) => v.BitCast<uint4x3, float4x3>();
     [MethodImpl(256 | 512)]
-    public static int4x3 asint(this uint4x3 v) => v.BitCast<uint4x3, int4x3>();
+    public static int4x3 asint([This] uint4x3 v) => v.BitCast<uint4x3, int4x3>();
     [MethodImpl(256 | 512)]
-    public static uint4x3 asuint(this uint4x3 v) => v.BitCast<uint4x3, uint4x3>();
+    public static uint4x3 asuint([This] uint4x3 v) => v.BitCast<uint4x3, uint4x3>();
     [MethodImpl(256 | 512)]
-    public static b32m4x3 asb32(this uint4x3 v) => v.BitCast<uint4x3, b32m4x3>();
+    public static b32m4x3 asb32([This] uint4x3 v) => v.BitCast<uint4x3, b32m4x3>();
 }
 
 #endregion // uint4x3
 
 #region uint4x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float4x4 asfloat(this uint4x4 v) => v.BitCast<uint4x4, float4x4>();
+    public static float4x4 asfloat([This] uint4x4 v) => v.BitCast<uint4x4, float4x4>();
     [MethodImpl(256 | 512)]
-    public static int4x4 asint(this uint4x4 v) => v.BitCast<uint4x4, int4x4>();
+    public static int4x4 asint([This] uint4x4 v) => v.BitCast<uint4x4, int4x4>();
     [MethodImpl(256 | 512)]
-    public static uint4x4 asuint(this uint4x4 v) => v.BitCast<uint4x4, uint4x4>();
+    public static uint4x4 asuint([This] uint4x4 v) => v.BitCast<uint4x4, uint4x4>();
     [MethodImpl(256 | 512)]
-    public static b32m4x4 asb32(this uint4x4 v) => v.BitCast<uint4x4, b32m4x4>();
+    public static b32m4x4 asb32([This] uint4x4 v) => v.BitCast<uint4x4, b32m4x4>();
 }
 
 #endregion // uint4x4
 
 #region long2x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double2x2 asdouble(this long2x2 v) => v.BitCast<long2x2, double2x2>();
+    public static double2x2 asdouble([This] long2x2 v) => v.BitCast<long2x2, double2x2>();
     [MethodImpl(256 | 512)]
-    public static long2x2 aslong(this long2x2 v) => v.BitCast<long2x2, long2x2>();
+    public static long2x2 aslong([This] long2x2 v) => v.BitCast<long2x2, long2x2>();
     [MethodImpl(256 | 512)]
-    public static ulong2x2 asulong(this long2x2 v) => v.BitCast<long2x2, ulong2x2>();
+    public static ulong2x2 asulong([This] long2x2 v) => v.BitCast<long2x2, ulong2x2>();
     [MethodImpl(256 | 512)]
-    public static b64m2x2 asb64(this long2x2 v) => v.BitCast<long2x2, b64m2x2>();
+    public static b64m2x2 asb64([This] long2x2 v) => v.BitCast<long2x2, b64m2x2>();
 }
 
 #endregion // long2x2
 
 #region long2x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double2x3 asdouble(this long2x3 v) => v.BitCast<long2x3, double2x3>();
+    public static double2x3 asdouble([This] long2x3 v) => v.BitCast<long2x3, double2x3>();
     [MethodImpl(256 | 512)]
-    public static long2x3 aslong(this long2x3 v) => v.BitCast<long2x3, long2x3>();
+    public static long2x3 aslong([This] long2x3 v) => v.BitCast<long2x3, long2x3>();
     [MethodImpl(256 | 512)]
-    public static ulong2x3 asulong(this long2x3 v) => v.BitCast<long2x3, ulong2x3>();
+    public static ulong2x3 asulong([This] long2x3 v) => v.BitCast<long2x3, ulong2x3>();
     [MethodImpl(256 | 512)]
-    public static b64m2x3 asb64(this long2x3 v) => v.BitCast<long2x3, b64m2x3>();
+    public static b64m2x3 asb64([This] long2x3 v) => v.BitCast<long2x3, b64m2x3>();
 }
 
 #endregion // long2x3
 
 #region long2x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double2x4 asdouble(this long2x4 v) => v.BitCast<long2x4, double2x4>();
+    public static double2x4 asdouble([This] long2x4 v) => v.BitCast<long2x4, double2x4>();
     [MethodImpl(256 | 512)]
-    public static long2x4 aslong(this long2x4 v) => v.BitCast<long2x4, long2x4>();
+    public static long2x4 aslong([This] long2x4 v) => v.BitCast<long2x4, long2x4>();
     [MethodImpl(256 | 512)]
-    public static ulong2x4 asulong(this long2x4 v) => v.BitCast<long2x4, ulong2x4>();
+    public static ulong2x4 asulong([This] long2x4 v) => v.BitCast<long2x4, ulong2x4>();
     [MethodImpl(256 | 512)]
-    public static b64m2x4 asb64(this long2x4 v) => v.BitCast<long2x4, b64m2x4>();
+    public static b64m2x4 asb64([This] long2x4 v) => v.BitCast<long2x4, b64m2x4>();
 }
 
 #endregion // long2x4
 
 #region long3x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double3x2 asdouble(this long3x2 v) => v.BitCast<long3x2, double3x2>();
+    public static double3x2 asdouble([This] long3x2 v) => v.BitCast<long3x2, double3x2>();
     [MethodImpl(256 | 512)]
-    public static long3x2 aslong(this long3x2 v) => v.BitCast<long3x2, long3x2>();
+    public static long3x2 aslong([This] long3x2 v) => v.BitCast<long3x2, long3x2>();
     [MethodImpl(256 | 512)]
-    public static ulong3x2 asulong(this long3x2 v) => v.BitCast<long3x2, ulong3x2>();
+    public static ulong3x2 asulong([This] long3x2 v) => v.BitCast<long3x2, ulong3x2>();
     [MethodImpl(256 | 512)]
-    public static b64m3x2 asb64(this long3x2 v) => v.BitCast<long3x2, b64m3x2>();
+    public static b64m3x2 asb64([This] long3x2 v) => v.BitCast<long3x2, b64m3x2>();
 }
 
 #endregion // long3x2
 
 #region long3x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double3x3 asdouble(this long3x3 v) => v.BitCast<long3x3, double3x3>();
+    public static double3x3 asdouble([This] long3x3 v) => v.BitCast<long3x3, double3x3>();
     [MethodImpl(256 | 512)]
-    public static long3x3 aslong(this long3x3 v) => v.BitCast<long3x3, long3x3>();
+    public static long3x3 aslong([This] long3x3 v) => v.BitCast<long3x3, long3x3>();
     [MethodImpl(256 | 512)]
-    public static ulong3x3 asulong(this long3x3 v) => v.BitCast<long3x3, ulong3x3>();
+    public static ulong3x3 asulong([This] long3x3 v) => v.BitCast<long3x3, ulong3x3>();
     [MethodImpl(256 | 512)]
-    public static b64m3x3 asb64(this long3x3 v) => v.BitCast<long3x3, b64m3x3>();
+    public static b64m3x3 asb64([This] long3x3 v) => v.BitCast<long3x3, b64m3x3>();
 }
 
 #endregion // long3x3
 
 #region long3x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double3x4 asdouble(this long3x4 v) => v.BitCast<long3x4, double3x4>();
+    public static double3x4 asdouble([This] long3x4 v) => v.BitCast<long3x4, double3x4>();
     [MethodImpl(256 | 512)]
-    public static long3x4 aslong(this long3x4 v) => v.BitCast<long3x4, long3x4>();
+    public static long3x4 aslong([This] long3x4 v) => v.BitCast<long3x4, long3x4>();
     [MethodImpl(256 | 512)]
-    public static ulong3x4 asulong(this long3x4 v) => v.BitCast<long3x4, ulong3x4>();
+    public static ulong3x4 asulong([This] long3x4 v) => v.BitCast<long3x4, ulong3x4>();
     [MethodImpl(256 | 512)]
-    public static b64m3x4 asb64(this long3x4 v) => v.BitCast<long3x4, b64m3x4>();
+    public static b64m3x4 asb64([This] long3x4 v) => v.BitCast<long3x4, b64m3x4>();
 }
 
 #endregion // long3x4
 
 #region long4x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double4x2 asdouble(this long4x2 v) => v.BitCast<long4x2, double4x2>();
+    public static double4x2 asdouble([This] long4x2 v) => v.BitCast<long4x2, double4x2>();
     [MethodImpl(256 | 512)]
-    public static long4x2 aslong(this long4x2 v) => v.BitCast<long4x2, long4x2>();
+    public static long4x2 aslong([This] long4x2 v) => v.BitCast<long4x2, long4x2>();
     [MethodImpl(256 | 512)]
-    public static ulong4x2 asulong(this long4x2 v) => v.BitCast<long4x2, ulong4x2>();
+    public static ulong4x2 asulong([This] long4x2 v) => v.BitCast<long4x2, ulong4x2>();
     [MethodImpl(256 | 512)]
-    public static b64m4x2 asb64(this long4x2 v) => v.BitCast<long4x2, b64m4x2>();
+    public static b64m4x2 asb64([This] long4x2 v) => v.BitCast<long4x2, b64m4x2>();
 }
 
 #endregion // long4x2
 
 #region long4x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double4x3 asdouble(this long4x3 v) => v.BitCast<long4x3, double4x3>();
+    public static double4x3 asdouble([This] long4x3 v) => v.BitCast<long4x3, double4x3>();
     [MethodImpl(256 | 512)]
-    public static long4x3 aslong(this long4x3 v) => v.BitCast<long4x3, long4x3>();
+    public static long4x3 aslong([This] long4x3 v) => v.BitCast<long4x3, long4x3>();
     [MethodImpl(256 | 512)]
-    public static ulong4x3 asulong(this long4x3 v) => v.BitCast<long4x3, ulong4x3>();
+    public static ulong4x3 asulong([This] long4x3 v) => v.BitCast<long4x3, ulong4x3>();
     [MethodImpl(256 | 512)]
-    public static b64m4x3 asb64(this long4x3 v) => v.BitCast<long4x3, b64m4x3>();
+    public static b64m4x3 asb64([This] long4x3 v) => v.BitCast<long4x3, b64m4x3>();
 }
 
 #endregion // long4x3
 
 #region long4x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double4x4 asdouble(this long4x4 v) => v.BitCast<long4x4, double4x4>();
+    public static double4x4 asdouble([This] long4x4 v) => v.BitCast<long4x4, double4x4>();
     [MethodImpl(256 | 512)]
-    public static long4x4 aslong(this long4x4 v) => v.BitCast<long4x4, long4x4>();
+    public static long4x4 aslong([This] long4x4 v) => v.BitCast<long4x4, long4x4>();
     [MethodImpl(256 | 512)]
-    public static ulong4x4 asulong(this long4x4 v) => v.BitCast<long4x4, ulong4x4>();
+    public static ulong4x4 asulong([This] long4x4 v) => v.BitCast<long4x4, ulong4x4>();
     [MethodImpl(256 | 512)]
-    public static b64m4x4 asb64(this long4x4 v) => v.BitCast<long4x4, b64m4x4>();
+    public static b64m4x4 asb64([This] long4x4 v) => v.BitCast<long4x4, b64m4x4>();
 }
 
 #endregion // long4x4
 
 #region ulong2x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double2x2 asdouble(this ulong2x2 v) => v.BitCast<ulong2x2, double2x2>();
+    public static double2x2 asdouble([This] ulong2x2 v) => v.BitCast<ulong2x2, double2x2>();
     [MethodImpl(256 | 512)]
-    public static long2x2 aslong(this ulong2x2 v) => v.BitCast<ulong2x2, long2x2>();
+    public static long2x2 aslong([This] ulong2x2 v) => v.BitCast<ulong2x2, long2x2>();
     [MethodImpl(256 | 512)]
-    public static ulong2x2 asulong(this ulong2x2 v) => v.BitCast<ulong2x2, ulong2x2>();
+    public static ulong2x2 asulong([This] ulong2x2 v) => v.BitCast<ulong2x2, ulong2x2>();
     [MethodImpl(256 | 512)]
-    public static b64m2x2 asb64(this ulong2x2 v) => v.BitCast<ulong2x2, b64m2x2>();
+    public static b64m2x2 asb64([This] ulong2x2 v) => v.BitCast<ulong2x2, b64m2x2>();
 }
 
 #endregion // ulong2x2
 
 #region ulong2x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double2x3 asdouble(this ulong2x3 v) => v.BitCast<ulong2x3, double2x3>();
+    public static double2x3 asdouble([This] ulong2x3 v) => v.BitCast<ulong2x3, double2x3>();
     [MethodImpl(256 | 512)]
-    public static long2x3 aslong(this ulong2x3 v) => v.BitCast<ulong2x3, long2x3>();
+    public static long2x3 aslong([This] ulong2x3 v) => v.BitCast<ulong2x3, long2x3>();
     [MethodImpl(256 | 512)]
-    public static ulong2x3 asulong(this ulong2x3 v) => v.BitCast<ulong2x3, ulong2x3>();
+    public static ulong2x3 asulong([This] ulong2x3 v) => v.BitCast<ulong2x3, ulong2x3>();
     [MethodImpl(256 | 512)]
-    public static b64m2x3 asb64(this ulong2x3 v) => v.BitCast<ulong2x3, b64m2x3>();
+    public static b64m2x3 asb64([This] ulong2x3 v) => v.BitCast<ulong2x3, b64m2x3>();
 }
 
 #endregion // ulong2x3
 
 #region ulong2x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double2x4 asdouble(this ulong2x4 v) => v.BitCast<ulong2x4, double2x4>();
+    public static double2x4 asdouble([This] ulong2x4 v) => v.BitCast<ulong2x4, double2x4>();
     [MethodImpl(256 | 512)]
-    public static long2x4 aslong(this ulong2x4 v) => v.BitCast<ulong2x4, long2x4>();
+    public static long2x4 aslong([This] ulong2x4 v) => v.BitCast<ulong2x4, long2x4>();
     [MethodImpl(256 | 512)]
-    public static ulong2x4 asulong(this ulong2x4 v) => v.BitCast<ulong2x4, ulong2x4>();
+    public static ulong2x4 asulong([This] ulong2x4 v) => v.BitCast<ulong2x4, ulong2x4>();
     [MethodImpl(256 | 512)]
-    public static b64m2x4 asb64(this ulong2x4 v) => v.BitCast<ulong2x4, b64m2x4>();
+    public static b64m2x4 asb64([This] ulong2x4 v) => v.BitCast<ulong2x4, b64m2x4>();
 }
 
 #endregion // ulong2x4
 
 #region ulong3x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double3x2 asdouble(this ulong3x2 v) => v.BitCast<ulong3x2, double3x2>();
+    public static double3x2 asdouble([This] ulong3x2 v) => v.BitCast<ulong3x2, double3x2>();
     [MethodImpl(256 | 512)]
-    public static long3x2 aslong(this ulong3x2 v) => v.BitCast<ulong3x2, long3x2>();
+    public static long3x2 aslong([This] ulong3x2 v) => v.BitCast<ulong3x2, long3x2>();
     [MethodImpl(256 | 512)]
-    public static ulong3x2 asulong(this ulong3x2 v) => v.BitCast<ulong3x2, ulong3x2>();
+    public static ulong3x2 asulong([This] ulong3x2 v) => v.BitCast<ulong3x2, ulong3x2>();
     [MethodImpl(256 | 512)]
-    public static b64m3x2 asb64(this ulong3x2 v) => v.BitCast<ulong3x2, b64m3x2>();
+    public static b64m3x2 asb64([This] ulong3x2 v) => v.BitCast<ulong3x2, b64m3x2>();
 }
 
 #endregion // ulong3x2
 
 #region ulong3x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double3x3 asdouble(this ulong3x3 v) => v.BitCast<ulong3x3, double3x3>();
+    public static double3x3 asdouble([This] ulong3x3 v) => v.BitCast<ulong3x3, double3x3>();
     [MethodImpl(256 | 512)]
-    public static long3x3 aslong(this ulong3x3 v) => v.BitCast<ulong3x3, long3x3>();
+    public static long3x3 aslong([This] ulong3x3 v) => v.BitCast<ulong3x3, long3x3>();
     [MethodImpl(256 | 512)]
-    public static ulong3x3 asulong(this ulong3x3 v) => v.BitCast<ulong3x3, ulong3x3>();
+    public static ulong3x3 asulong([This] ulong3x3 v) => v.BitCast<ulong3x3, ulong3x3>();
     [MethodImpl(256 | 512)]
-    public static b64m3x3 asb64(this ulong3x3 v) => v.BitCast<ulong3x3, b64m3x3>();
+    public static b64m3x3 asb64([This] ulong3x3 v) => v.BitCast<ulong3x3, b64m3x3>();
 }
 
 #endregion // ulong3x3
 
 #region ulong3x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double3x4 asdouble(this ulong3x4 v) => v.BitCast<ulong3x4, double3x4>();
+    public static double3x4 asdouble([This] ulong3x4 v) => v.BitCast<ulong3x4, double3x4>();
     [MethodImpl(256 | 512)]
-    public static long3x4 aslong(this ulong3x4 v) => v.BitCast<ulong3x4, long3x4>();
+    public static long3x4 aslong([This] ulong3x4 v) => v.BitCast<ulong3x4, long3x4>();
     [MethodImpl(256 | 512)]
-    public static ulong3x4 asulong(this ulong3x4 v) => v.BitCast<ulong3x4, ulong3x4>();
+    public static ulong3x4 asulong([This] ulong3x4 v) => v.BitCast<ulong3x4, ulong3x4>();
     [MethodImpl(256 | 512)]
-    public static b64m3x4 asb64(this ulong3x4 v) => v.BitCast<ulong3x4, b64m3x4>();
+    public static b64m3x4 asb64([This] ulong3x4 v) => v.BitCast<ulong3x4, b64m3x4>();
 }
 
 #endregion // ulong3x4
 
 #region ulong4x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double4x2 asdouble(this ulong4x2 v) => v.BitCast<ulong4x2, double4x2>();
+    public static double4x2 asdouble([This] ulong4x2 v) => v.BitCast<ulong4x2, double4x2>();
     [MethodImpl(256 | 512)]
-    public static long4x2 aslong(this ulong4x2 v) => v.BitCast<ulong4x2, long4x2>();
+    public static long4x2 aslong([This] ulong4x2 v) => v.BitCast<ulong4x2, long4x2>();
     [MethodImpl(256 | 512)]
-    public static ulong4x2 asulong(this ulong4x2 v) => v.BitCast<ulong4x2, ulong4x2>();
+    public static ulong4x2 asulong([This] ulong4x2 v) => v.BitCast<ulong4x2, ulong4x2>();
     [MethodImpl(256 | 512)]
-    public static b64m4x2 asb64(this ulong4x2 v) => v.BitCast<ulong4x2, b64m4x2>();
+    public static b64m4x2 asb64([This] ulong4x2 v) => v.BitCast<ulong4x2, b64m4x2>();
 }
 
 #endregion // ulong4x2
 
 #region ulong4x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double4x3 asdouble(this ulong4x3 v) => v.BitCast<ulong4x3, double4x3>();
+    public static double4x3 asdouble([This] ulong4x3 v) => v.BitCast<ulong4x3, double4x3>();
     [MethodImpl(256 | 512)]
-    public static long4x3 aslong(this ulong4x3 v) => v.BitCast<ulong4x3, long4x3>();
+    public static long4x3 aslong([This] ulong4x3 v) => v.BitCast<ulong4x3, long4x3>();
     [MethodImpl(256 | 512)]
-    public static ulong4x3 asulong(this ulong4x3 v) => v.BitCast<ulong4x3, ulong4x3>();
+    public static ulong4x3 asulong([This] ulong4x3 v) => v.BitCast<ulong4x3, ulong4x3>();
     [MethodImpl(256 | 512)]
-    public static b64m4x3 asb64(this ulong4x3 v) => v.BitCast<ulong4x3, b64m4x3>();
+    public static b64m4x3 asb64([This] ulong4x3 v) => v.BitCast<ulong4x3, b64m4x3>();
 }
 
 #endregion // ulong4x3
 
 #region ulong4x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double4x4 asdouble(this ulong4x4 v) => v.BitCast<ulong4x4, double4x4>();
+    public static double4x4 asdouble([This] ulong4x4 v) => v.BitCast<ulong4x4, double4x4>();
     [MethodImpl(256 | 512)]
-    public static long4x4 aslong(this ulong4x4 v) => v.BitCast<ulong4x4, long4x4>();
+    public static long4x4 aslong([This] ulong4x4 v) => v.BitCast<ulong4x4, long4x4>();
     [MethodImpl(256 | 512)]
-    public static ulong4x4 asulong(this ulong4x4 v) => v.BitCast<ulong4x4, ulong4x4>();
+    public static ulong4x4 asulong([This] ulong4x4 v) => v.BitCast<ulong4x4, ulong4x4>();
     [MethodImpl(256 | 512)]
-    public static b64m4x4 asb64(this ulong4x4 v) => v.BitCast<ulong4x4, b64m4x4>();
+    public static b64m4x4 asb64([This] ulong4x4 v) => v.BitCast<ulong4x4, b64m4x4>();
 }
 
 #endregion // ulong4x4
 
 #region decimal2x2
 
+[Ex]
 public static partial class math
 {
 }
@@ -1092,6 +1165,7 @@ public static partial class math
 
 #region decimal2x3
 
+[Ex]
 public static partial class math
 {
 }
@@ -1100,6 +1174,7 @@ public static partial class math
 
 #region decimal2x4
 
+[Ex]
 public static partial class math
 {
 }
@@ -1108,6 +1183,7 @@ public static partial class math
 
 #region decimal3x2
 
+[Ex]
 public static partial class math
 {
 }
@@ -1116,6 +1192,7 @@ public static partial class math
 
 #region decimal3x3
 
+[Ex]
 public static partial class math
 {
 }
@@ -1124,6 +1201,7 @@ public static partial class math
 
 #region decimal3x4
 
+[Ex]
 public static partial class math
 {
 }
@@ -1132,6 +1210,7 @@ public static partial class math
 
 #region decimal4x2
 
+[Ex]
 public static partial class math
 {
 }
@@ -1140,6 +1219,7 @@ public static partial class math
 
 #region decimal4x3
 
+[Ex]
 public static partial class math
 {
 }
@@ -1148,6 +1228,7 @@ public static partial class math
 
 #region decimal4x4
 
+[Ex]
 public static partial class math
 {
 }
@@ -1156,504 +1237,540 @@ public static partial class math
 
 #region half2x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half2x2 ashalf(this half2x2 v) => v.BitCast<half2x2, half2x2>();
+    public static half2x2 ashalf([This] half2x2 v) => v.BitCast<half2x2, half2x2>();
     [MethodImpl(256 | 512)]
-    public static b16m2x2 asb16(this half2x2 v) => v.BitCast<half2x2, b16m2x2>();
+    public static b16m2x2 asb16([This] half2x2 v) => v.BitCast<half2x2, b16m2x2>();
 }
 
 #endregion // half2x2
 
 #region half2x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half2x3 ashalf(this half2x3 v) => v.BitCast<half2x3, half2x3>();
+    public static half2x3 ashalf([This] half2x3 v) => v.BitCast<half2x3, half2x3>();
     [MethodImpl(256 | 512)]
-    public static b16m2x3 asb16(this half2x3 v) => v.BitCast<half2x3, b16m2x3>();
+    public static b16m2x3 asb16([This] half2x3 v) => v.BitCast<half2x3, b16m2x3>();
 }
 
 #endregion // half2x3
 
 #region half2x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half2x4 ashalf(this half2x4 v) => v.BitCast<half2x4, half2x4>();
+    public static half2x4 ashalf([This] half2x4 v) => v.BitCast<half2x4, half2x4>();
     [MethodImpl(256 | 512)]
-    public static b16m2x4 asb16(this half2x4 v) => v.BitCast<half2x4, b16m2x4>();
+    public static b16m2x4 asb16([This] half2x4 v) => v.BitCast<half2x4, b16m2x4>();
 }
 
 #endregion // half2x4
 
 #region half3x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half3x2 ashalf(this half3x2 v) => v.BitCast<half3x2, half3x2>();
+    public static half3x2 ashalf([This] half3x2 v) => v.BitCast<half3x2, half3x2>();
     [MethodImpl(256 | 512)]
-    public static b16m3x2 asb16(this half3x2 v) => v.BitCast<half3x2, b16m3x2>();
+    public static b16m3x2 asb16([This] half3x2 v) => v.BitCast<half3x2, b16m3x2>();
 }
 
 #endregion // half3x2
 
 #region half3x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half3x3 ashalf(this half3x3 v) => v.BitCast<half3x3, half3x3>();
+    public static half3x3 ashalf([This] half3x3 v) => v.BitCast<half3x3, half3x3>();
     [MethodImpl(256 | 512)]
-    public static b16m3x3 asb16(this half3x3 v) => v.BitCast<half3x3, b16m3x3>();
+    public static b16m3x3 asb16([This] half3x3 v) => v.BitCast<half3x3, b16m3x3>();
 }
 
 #endregion // half3x3
 
 #region half3x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half3x4 ashalf(this half3x4 v) => v.BitCast<half3x4, half3x4>();
+    public static half3x4 ashalf([This] half3x4 v) => v.BitCast<half3x4, half3x4>();
     [MethodImpl(256 | 512)]
-    public static b16m3x4 asb16(this half3x4 v) => v.BitCast<half3x4, b16m3x4>();
+    public static b16m3x4 asb16([This] half3x4 v) => v.BitCast<half3x4, b16m3x4>();
 }
 
 #endregion // half3x4
 
 #region half4x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half4x2 ashalf(this half4x2 v) => v.BitCast<half4x2, half4x2>();
+    public static half4x2 ashalf([This] half4x2 v) => v.BitCast<half4x2, half4x2>();
     [MethodImpl(256 | 512)]
-    public static b16m4x2 asb16(this half4x2 v) => v.BitCast<half4x2, b16m4x2>();
+    public static b16m4x2 asb16([This] half4x2 v) => v.BitCast<half4x2, b16m4x2>();
 }
 
 #endregion // half4x2
 
 #region half4x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half4x3 ashalf(this half4x3 v) => v.BitCast<half4x3, half4x3>();
+    public static half4x3 ashalf([This] half4x3 v) => v.BitCast<half4x3, half4x3>();
     [MethodImpl(256 | 512)]
-    public static b16m4x3 asb16(this half4x3 v) => v.BitCast<half4x3, b16m4x3>();
+    public static b16m4x3 asb16([This] half4x3 v) => v.BitCast<half4x3, b16m4x3>();
 }
 
 #endregion // half4x3
 
 #region half4x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half4x4 ashalf(this half4x4 v) => v.BitCast<half4x4, half4x4>();
+    public static half4x4 ashalf([This] half4x4 v) => v.BitCast<half4x4, half4x4>();
     [MethodImpl(256 | 512)]
-    public static b16m4x4 asb16(this half4x4 v) => v.BitCast<half4x4, b16m4x4>();
+    public static b16m4x4 asb16([This] half4x4 v) => v.BitCast<half4x4, b16m4x4>();
 }
 
 #endregion // half4x4
 
 #region b16m2x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half2x2 ashalf(this b16m2x2 v) => v.BitCast<b16m2x2, half2x2>();
+    public static half2x2 ashalf([This] b16m2x2 v) => v.BitCast<b16m2x2, half2x2>();
     [MethodImpl(256 | 512)]
-    public static b16m2x2 asb16(this b16m2x2 v) => v.BitCast<b16m2x2, b16m2x2>();
+    public static b16m2x2 asb16([This] b16m2x2 v) => v.BitCast<b16m2x2, b16m2x2>();
 }
 
 #endregion // b16m2x2
 
 #region b16m2x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half2x3 ashalf(this b16m2x3 v) => v.BitCast<b16m2x3, half2x3>();
+    public static half2x3 ashalf([This] b16m2x3 v) => v.BitCast<b16m2x3, half2x3>();
     [MethodImpl(256 | 512)]
-    public static b16m2x3 asb16(this b16m2x3 v) => v.BitCast<b16m2x3, b16m2x3>();
+    public static b16m2x3 asb16([This] b16m2x3 v) => v.BitCast<b16m2x3, b16m2x3>();
 }
 
 #endregion // b16m2x3
 
 #region b16m2x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half2x4 ashalf(this b16m2x4 v) => v.BitCast<b16m2x4, half2x4>();
+    public static half2x4 ashalf([This] b16m2x4 v) => v.BitCast<b16m2x4, half2x4>();
     [MethodImpl(256 | 512)]
-    public static b16m2x4 asb16(this b16m2x4 v) => v.BitCast<b16m2x4, b16m2x4>();
+    public static b16m2x4 asb16([This] b16m2x4 v) => v.BitCast<b16m2x4, b16m2x4>();
 }
 
 #endregion // b16m2x4
 
 #region b16m3x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half3x2 ashalf(this b16m3x2 v) => v.BitCast<b16m3x2, half3x2>();
+    public static half3x2 ashalf([This] b16m3x2 v) => v.BitCast<b16m3x2, half3x2>();
     [MethodImpl(256 | 512)]
-    public static b16m3x2 asb16(this b16m3x2 v) => v.BitCast<b16m3x2, b16m3x2>();
+    public static b16m3x2 asb16([This] b16m3x2 v) => v.BitCast<b16m3x2, b16m3x2>();
 }
 
 #endregion // b16m3x2
 
 #region b16m3x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half3x3 ashalf(this b16m3x3 v) => v.BitCast<b16m3x3, half3x3>();
+    public static half3x3 ashalf([This] b16m3x3 v) => v.BitCast<b16m3x3, half3x3>();
     [MethodImpl(256 | 512)]
-    public static b16m3x3 asb16(this b16m3x3 v) => v.BitCast<b16m3x3, b16m3x3>();
+    public static b16m3x3 asb16([This] b16m3x3 v) => v.BitCast<b16m3x3, b16m3x3>();
 }
 
 #endregion // b16m3x3
 
 #region b16m3x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half3x4 ashalf(this b16m3x4 v) => v.BitCast<b16m3x4, half3x4>();
+    public static half3x4 ashalf([This] b16m3x4 v) => v.BitCast<b16m3x4, half3x4>();
     [MethodImpl(256 | 512)]
-    public static b16m3x4 asb16(this b16m3x4 v) => v.BitCast<b16m3x4, b16m3x4>();
+    public static b16m3x4 asb16([This] b16m3x4 v) => v.BitCast<b16m3x4, b16m3x4>();
 }
 
 #endregion // b16m3x4
 
 #region b16m4x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half4x2 ashalf(this b16m4x2 v) => v.BitCast<b16m4x2, half4x2>();
+    public static half4x2 ashalf([This] b16m4x2 v) => v.BitCast<b16m4x2, half4x2>();
     [MethodImpl(256 | 512)]
-    public static b16m4x2 asb16(this b16m4x2 v) => v.BitCast<b16m4x2, b16m4x2>();
+    public static b16m4x2 asb16([This] b16m4x2 v) => v.BitCast<b16m4x2, b16m4x2>();
 }
 
 #endregion // b16m4x2
 
 #region b16m4x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half4x3 ashalf(this b16m4x3 v) => v.BitCast<b16m4x3, half4x3>();
+    public static half4x3 ashalf([This] b16m4x3 v) => v.BitCast<b16m4x3, half4x3>();
     [MethodImpl(256 | 512)]
-    public static b16m4x3 asb16(this b16m4x3 v) => v.BitCast<b16m4x3, b16m4x3>();
+    public static b16m4x3 asb16([This] b16m4x3 v) => v.BitCast<b16m4x3, b16m4x3>();
 }
 
 #endregion // b16m4x3
 
 #region b16m4x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half4x4 ashalf(this b16m4x4 v) => v.BitCast<b16m4x4, half4x4>();
+    public static half4x4 ashalf([This] b16m4x4 v) => v.BitCast<b16m4x4, half4x4>();
     [MethodImpl(256 | 512)]
-    public static b16m4x4 asb16(this b16m4x4 v) => v.BitCast<b16m4x4, b16m4x4>();
+    public static b16m4x4 asb16([This] b16m4x4 v) => v.BitCast<b16m4x4, b16m4x4>();
 }
 
 #endregion // b16m4x4
 
 #region b32m2x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float2x2 asfloat(this b32m2x2 v) => v.BitCast<b32m2x2, float2x2>();
+    public static float2x2 asfloat([This] b32m2x2 v) => v.BitCast<b32m2x2, float2x2>();
     [MethodImpl(256 | 512)]
-    public static int2x2 asint(this b32m2x2 v) => v.BitCast<b32m2x2, int2x2>();
+    public static int2x2 asint([This] b32m2x2 v) => v.BitCast<b32m2x2, int2x2>();
     [MethodImpl(256 | 512)]
-    public static uint2x2 asuint(this b32m2x2 v) => v.BitCast<b32m2x2, uint2x2>();
+    public static uint2x2 asuint([This] b32m2x2 v) => v.BitCast<b32m2x2, uint2x2>();
     [MethodImpl(256 | 512)]
-    public static b32m2x2 asb32(this b32m2x2 v) => v.BitCast<b32m2x2, b32m2x2>();
+    public static b32m2x2 asb32([This] b32m2x2 v) => v.BitCast<b32m2x2, b32m2x2>();
 }
 
 #endregion // b32m2x2
 
 #region b32m2x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float2x3 asfloat(this b32m2x3 v) => v.BitCast<b32m2x3, float2x3>();
+    public static float2x3 asfloat([This] b32m2x3 v) => v.BitCast<b32m2x3, float2x3>();
     [MethodImpl(256 | 512)]
-    public static int2x3 asint(this b32m2x3 v) => v.BitCast<b32m2x3, int2x3>();
+    public static int2x3 asint([This] b32m2x3 v) => v.BitCast<b32m2x3, int2x3>();
     [MethodImpl(256 | 512)]
-    public static uint2x3 asuint(this b32m2x3 v) => v.BitCast<b32m2x3, uint2x3>();
+    public static uint2x3 asuint([This] b32m2x3 v) => v.BitCast<b32m2x3, uint2x3>();
     [MethodImpl(256 | 512)]
-    public static b32m2x3 asb32(this b32m2x3 v) => v.BitCast<b32m2x3, b32m2x3>();
+    public static b32m2x3 asb32([This] b32m2x3 v) => v.BitCast<b32m2x3, b32m2x3>();
 }
 
 #endregion // b32m2x3
 
 #region b32m2x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float2x4 asfloat(this b32m2x4 v) => v.BitCast<b32m2x4, float2x4>();
+    public static float2x4 asfloat([This] b32m2x4 v) => v.BitCast<b32m2x4, float2x4>();
     [MethodImpl(256 | 512)]
-    public static int2x4 asint(this b32m2x4 v) => v.BitCast<b32m2x4, int2x4>();
+    public static int2x4 asint([This] b32m2x4 v) => v.BitCast<b32m2x4, int2x4>();
     [MethodImpl(256 | 512)]
-    public static uint2x4 asuint(this b32m2x4 v) => v.BitCast<b32m2x4, uint2x4>();
+    public static uint2x4 asuint([This] b32m2x4 v) => v.BitCast<b32m2x4, uint2x4>();
     [MethodImpl(256 | 512)]
-    public static b32m2x4 asb32(this b32m2x4 v) => v.BitCast<b32m2x4, b32m2x4>();
+    public static b32m2x4 asb32([This] b32m2x4 v) => v.BitCast<b32m2x4, b32m2x4>();
 }
 
 #endregion // b32m2x4
 
 #region b32m3x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float3x2 asfloat(this b32m3x2 v) => v.BitCast<b32m3x2, float3x2>();
+    public static float3x2 asfloat([This] b32m3x2 v) => v.BitCast<b32m3x2, float3x2>();
     [MethodImpl(256 | 512)]
-    public static int3x2 asint(this b32m3x2 v) => v.BitCast<b32m3x2, int3x2>();
+    public static int3x2 asint([This] b32m3x2 v) => v.BitCast<b32m3x2, int3x2>();
     [MethodImpl(256 | 512)]
-    public static uint3x2 asuint(this b32m3x2 v) => v.BitCast<b32m3x2, uint3x2>();
+    public static uint3x2 asuint([This] b32m3x2 v) => v.BitCast<b32m3x2, uint3x2>();
     [MethodImpl(256 | 512)]
-    public static b32m3x2 asb32(this b32m3x2 v) => v.BitCast<b32m3x2, b32m3x2>();
+    public static b32m3x2 asb32([This] b32m3x2 v) => v.BitCast<b32m3x2, b32m3x2>();
 }
 
 #endregion // b32m3x2
 
 #region b32m3x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float3x3 asfloat(this b32m3x3 v) => v.BitCast<b32m3x3, float3x3>();
+    public static float3x3 asfloat([This] b32m3x3 v) => v.BitCast<b32m3x3, float3x3>();
     [MethodImpl(256 | 512)]
-    public static int3x3 asint(this b32m3x3 v) => v.BitCast<b32m3x3, int3x3>();
+    public static int3x3 asint([This] b32m3x3 v) => v.BitCast<b32m3x3, int3x3>();
     [MethodImpl(256 | 512)]
-    public static uint3x3 asuint(this b32m3x3 v) => v.BitCast<b32m3x3, uint3x3>();
+    public static uint3x3 asuint([This] b32m3x3 v) => v.BitCast<b32m3x3, uint3x3>();
     [MethodImpl(256 | 512)]
-    public static b32m3x3 asb32(this b32m3x3 v) => v.BitCast<b32m3x3, b32m3x3>();
+    public static b32m3x3 asb32([This] b32m3x3 v) => v.BitCast<b32m3x3, b32m3x3>();
 }
 
 #endregion // b32m3x3
 
 #region b32m3x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float3x4 asfloat(this b32m3x4 v) => v.BitCast<b32m3x4, float3x4>();
+    public static float3x4 asfloat([This] b32m3x4 v) => v.BitCast<b32m3x4, float3x4>();
     [MethodImpl(256 | 512)]
-    public static int3x4 asint(this b32m3x4 v) => v.BitCast<b32m3x4, int3x4>();
+    public static int3x4 asint([This] b32m3x4 v) => v.BitCast<b32m3x4, int3x4>();
     [MethodImpl(256 | 512)]
-    public static uint3x4 asuint(this b32m3x4 v) => v.BitCast<b32m3x4, uint3x4>();
+    public static uint3x4 asuint([This] b32m3x4 v) => v.BitCast<b32m3x4, uint3x4>();
     [MethodImpl(256 | 512)]
-    public static b32m3x4 asb32(this b32m3x4 v) => v.BitCast<b32m3x4, b32m3x4>();
+    public static b32m3x4 asb32([This] b32m3x4 v) => v.BitCast<b32m3x4, b32m3x4>();
 }
 
 #endregion // b32m3x4
 
 #region b32m4x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float4x2 asfloat(this b32m4x2 v) => v.BitCast<b32m4x2, float4x2>();
+    public static float4x2 asfloat([This] b32m4x2 v) => v.BitCast<b32m4x2, float4x2>();
     [MethodImpl(256 | 512)]
-    public static int4x2 asint(this b32m4x2 v) => v.BitCast<b32m4x2, int4x2>();
+    public static int4x2 asint([This] b32m4x2 v) => v.BitCast<b32m4x2, int4x2>();
     [MethodImpl(256 | 512)]
-    public static uint4x2 asuint(this b32m4x2 v) => v.BitCast<b32m4x2, uint4x2>();
+    public static uint4x2 asuint([This] b32m4x2 v) => v.BitCast<b32m4x2, uint4x2>();
     [MethodImpl(256 | 512)]
-    public static b32m4x2 asb32(this b32m4x2 v) => v.BitCast<b32m4x2, b32m4x2>();
+    public static b32m4x2 asb32([This] b32m4x2 v) => v.BitCast<b32m4x2, b32m4x2>();
 }
 
 #endregion // b32m4x2
 
 #region b32m4x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float4x3 asfloat(this b32m4x3 v) => v.BitCast<b32m4x3, float4x3>();
+    public static float4x3 asfloat([This] b32m4x3 v) => v.BitCast<b32m4x3, float4x3>();
     [MethodImpl(256 | 512)]
-    public static int4x3 asint(this b32m4x3 v) => v.BitCast<b32m4x3, int4x3>();
+    public static int4x3 asint([This] b32m4x3 v) => v.BitCast<b32m4x3, int4x3>();
     [MethodImpl(256 | 512)]
-    public static uint4x3 asuint(this b32m4x3 v) => v.BitCast<b32m4x3, uint4x3>();
+    public static uint4x3 asuint([This] b32m4x3 v) => v.BitCast<b32m4x3, uint4x3>();
     [MethodImpl(256 | 512)]
-    public static b32m4x3 asb32(this b32m4x3 v) => v.BitCast<b32m4x3, b32m4x3>();
+    public static b32m4x3 asb32([This] b32m4x3 v) => v.BitCast<b32m4x3, b32m4x3>();
 }
 
 #endregion // b32m4x3
 
 #region b32m4x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float4x4 asfloat(this b32m4x4 v) => v.BitCast<b32m4x4, float4x4>();
+    public static float4x4 asfloat([This] b32m4x4 v) => v.BitCast<b32m4x4, float4x4>();
     [MethodImpl(256 | 512)]
-    public static int4x4 asint(this b32m4x4 v) => v.BitCast<b32m4x4, int4x4>();
+    public static int4x4 asint([This] b32m4x4 v) => v.BitCast<b32m4x4, int4x4>();
     [MethodImpl(256 | 512)]
-    public static uint4x4 asuint(this b32m4x4 v) => v.BitCast<b32m4x4, uint4x4>();
+    public static uint4x4 asuint([This] b32m4x4 v) => v.BitCast<b32m4x4, uint4x4>();
     [MethodImpl(256 | 512)]
-    public static b32m4x4 asb32(this b32m4x4 v) => v.BitCast<b32m4x4, b32m4x4>();
+    public static b32m4x4 asb32([This] b32m4x4 v) => v.BitCast<b32m4x4, b32m4x4>();
 }
 
 #endregion // b32m4x4
 
 #region b64m2x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double2x2 asdouble(this b64m2x2 v) => v.BitCast<b64m2x2, double2x2>();
+    public static double2x2 asdouble([This] b64m2x2 v) => v.BitCast<b64m2x2, double2x2>();
     [MethodImpl(256 | 512)]
-    public static long2x2 aslong(this b64m2x2 v) => v.BitCast<b64m2x2, long2x2>();
+    public static long2x2 aslong([This] b64m2x2 v) => v.BitCast<b64m2x2, long2x2>();
     [MethodImpl(256 | 512)]
-    public static ulong2x2 asulong(this b64m2x2 v) => v.BitCast<b64m2x2, ulong2x2>();
+    public static ulong2x2 asulong([This] b64m2x2 v) => v.BitCast<b64m2x2, ulong2x2>();
     [MethodImpl(256 | 512)]
-    public static b64m2x2 asb64(this b64m2x2 v) => v.BitCast<b64m2x2, b64m2x2>();
+    public static b64m2x2 asb64([This] b64m2x2 v) => v.BitCast<b64m2x2, b64m2x2>();
 }
 
 #endregion // b64m2x2
 
 #region b64m2x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double2x3 asdouble(this b64m2x3 v) => v.BitCast<b64m2x3, double2x3>();
+    public static double2x3 asdouble([This] b64m2x3 v) => v.BitCast<b64m2x3, double2x3>();
     [MethodImpl(256 | 512)]
-    public static long2x3 aslong(this b64m2x3 v) => v.BitCast<b64m2x3, long2x3>();
+    public static long2x3 aslong([This] b64m2x3 v) => v.BitCast<b64m2x3, long2x3>();
     [MethodImpl(256 | 512)]
-    public static ulong2x3 asulong(this b64m2x3 v) => v.BitCast<b64m2x3, ulong2x3>();
+    public static ulong2x3 asulong([This] b64m2x3 v) => v.BitCast<b64m2x3, ulong2x3>();
     [MethodImpl(256 | 512)]
-    public static b64m2x3 asb64(this b64m2x3 v) => v.BitCast<b64m2x3, b64m2x3>();
+    public static b64m2x3 asb64([This] b64m2x3 v) => v.BitCast<b64m2x3, b64m2x3>();
 }
 
 #endregion // b64m2x3
 
 #region b64m2x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double2x4 asdouble(this b64m2x4 v) => v.BitCast<b64m2x4, double2x4>();
+    public static double2x4 asdouble([This] b64m2x4 v) => v.BitCast<b64m2x4, double2x4>();
     [MethodImpl(256 | 512)]
-    public static long2x4 aslong(this b64m2x4 v) => v.BitCast<b64m2x4, long2x4>();
+    public static long2x4 aslong([This] b64m2x4 v) => v.BitCast<b64m2x4, long2x4>();
     [MethodImpl(256 | 512)]
-    public static ulong2x4 asulong(this b64m2x4 v) => v.BitCast<b64m2x4, ulong2x4>();
+    public static ulong2x4 asulong([This] b64m2x4 v) => v.BitCast<b64m2x4, ulong2x4>();
     [MethodImpl(256 | 512)]
-    public static b64m2x4 asb64(this b64m2x4 v) => v.BitCast<b64m2x4, b64m2x4>();
+    public static b64m2x4 asb64([This] b64m2x4 v) => v.BitCast<b64m2x4, b64m2x4>();
 }
 
 #endregion // b64m2x4
 
 #region b64m3x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double3x2 asdouble(this b64m3x2 v) => v.BitCast<b64m3x2, double3x2>();
+    public static double3x2 asdouble([This] b64m3x2 v) => v.BitCast<b64m3x2, double3x2>();
     [MethodImpl(256 | 512)]
-    public static long3x2 aslong(this b64m3x2 v) => v.BitCast<b64m3x2, long3x2>();
+    public static long3x2 aslong([This] b64m3x2 v) => v.BitCast<b64m3x2, long3x2>();
     [MethodImpl(256 | 512)]
-    public static ulong3x2 asulong(this b64m3x2 v) => v.BitCast<b64m3x2, ulong3x2>();
+    public static ulong3x2 asulong([This] b64m3x2 v) => v.BitCast<b64m3x2, ulong3x2>();
     [MethodImpl(256 | 512)]
-    public static b64m3x2 asb64(this b64m3x2 v) => v.BitCast<b64m3x2, b64m3x2>();
+    public static b64m3x2 asb64([This] b64m3x2 v) => v.BitCast<b64m3x2, b64m3x2>();
 }
 
 #endregion // b64m3x2
 
 #region b64m3x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double3x3 asdouble(this b64m3x3 v) => v.BitCast<b64m3x3, double3x3>();
+    public static double3x3 asdouble([This] b64m3x3 v) => v.BitCast<b64m3x3, double3x3>();
     [MethodImpl(256 | 512)]
-    public static long3x3 aslong(this b64m3x3 v) => v.BitCast<b64m3x3, long3x3>();
+    public static long3x3 aslong([This] b64m3x3 v) => v.BitCast<b64m3x3, long3x3>();
     [MethodImpl(256 | 512)]
-    public static ulong3x3 asulong(this b64m3x3 v) => v.BitCast<b64m3x3, ulong3x3>();
+    public static ulong3x3 asulong([This] b64m3x3 v) => v.BitCast<b64m3x3, ulong3x3>();
     [MethodImpl(256 | 512)]
-    public static b64m3x3 asb64(this b64m3x3 v) => v.BitCast<b64m3x3, b64m3x3>();
+    public static b64m3x3 asb64([This] b64m3x3 v) => v.BitCast<b64m3x3, b64m3x3>();
 }
 
 #endregion // b64m3x3
 
 #region b64m3x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double3x4 asdouble(this b64m3x4 v) => v.BitCast<b64m3x4, double3x4>();
+    public static double3x4 asdouble([This] b64m3x4 v) => v.BitCast<b64m3x4, double3x4>();
     [MethodImpl(256 | 512)]
-    public static long3x4 aslong(this b64m3x4 v) => v.BitCast<b64m3x4, long3x4>();
+    public static long3x4 aslong([This] b64m3x4 v) => v.BitCast<b64m3x4, long3x4>();
     [MethodImpl(256 | 512)]
-    public static ulong3x4 asulong(this b64m3x4 v) => v.BitCast<b64m3x4, ulong3x4>();
+    public static ulong3x4 asulong([This] b64m3x4 v) => v.BitCast<b64m3x4, ulong3x4>();
     [MethodImpl(256 | 512)]
-    public static b64m3x4 asb64(this b64m3x4 v) => v.BitCast<b64m3x4, b64m3x4>();
+    public static b64m3x4 asb64([This] b64m3x4 v) => v.BitCast<b64m3x4, b64m3x4>();
 }
 
 #endregion // b64m3x4
 
 #region b64m4x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double4x2 asdouble(this b64m4x2 v) => v.BitCast<b64m4x2, double4x2>();
+    public static double4x2 asdouble([This] b64m4x2 v) => v.BitCast<b64m4x2, double4x2>();
     [MethodImpl(256 | 512)]
-    public static long4x2 aslong(this b64m4x2 v) => v.BitCast<b64m4x2, long4x2>();
+    public static long4x2 aslong([This] b64m4x2 v) => v.BitCast<b64m4x2, long4x2>();
     [MethodImpl(256 | 512)]
-    public static ulong4x2 asulong(this b64m4x2 v) => v.BitCast<b64m4x2, ulong4x2>();
+    public static ulong4x2 asulong([This] b64m4x2 v) => v.BitCast<b64m4x2, ulong4x2>();
     [MethodImpl(256 | 512)]
-    public static b64m4x2 asb64(this b64m4x2 v) => v.BitCast<b64m4x2, b64m4x2>();
+    public static b64m4x2 asb64([This] b64m4x2 v) => v.BitCast<b64m4x2, b64m4x2>();
 }
 
 #endregion // b64m4x2
 
 #region b64m4x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double4x3 asdouble(this b64m4x3 v) => v.BitCast<b64m4x3, double4x3>();
+    public static double4x3 asdouble([This] b64m4x3 v) => v.BitCast<b64m4x3, double4x3>();
     [MethodImpl(256 | 512)]
-    public static long4x3 aslong(this b64m4x3 v) => v.BitCast<b64m4x3, long4x3>();
+    public static long4x3 aslong([This] b64m4x3 v) => v.BitCast<b64m4x3, long4x3>();
     [MethodImpl(256 | 512)]
-    public static ulong4x3 asulong(this b64m4x3 v) => v.BitCast<b64m4x3, ulong4x3>();
+    public static ulong4x3 asulong([This] b64m4x3 v) => v.BitCast<b64m4x3, ulong4x3>();
     [MethodImpl(256 | 512)]
-    public static b64m4x3 asb64(this b64m4x3 v) => v.BitCast<b64m4x3, b64m4x3>();
+    public static b64m4x3 asb64([This] b64m4x3 v) => v.BitCast<b64m4x3, b64m4x3>();
 }
 
 #endregion // b64m4x3
 
 #region b64m4x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double4x4 asdouble(this b64m4x4 v) => v.BitCast<b64m4x4, double4x4>();
+    public static double4x4 asdouble([This] b64m4x4 v) => v.BitCast<b64m4x4, double4x4>();
     [MethodImpl(256 | 512)]
-    public static long4x4 aslong(this b64m4x4 v) => v.BitCast<b64m4x4, long4x4>();
+    public static long4x4 aslong([This] b64m4x4 v) => v.BitCast<b64m4x4, long4x4>();
     [MethodImpl(256 | 512)]
-    public static ulong4x4 asulong(this b64m4x4 v) => v.BitCast<b64m4x4, ulong4x4>();
+    public static ulong4x4 asulong([This] b64m4x4 v) => v.BitCast<b64m4x4, ulong4x4>();
     [MethodImpl(256 | 512)]
-    public static b64m4x4 asb64(this b64m4x4 v) => v.BitCast<b64m4x4, b64m4x4>();
+    public static b64m4x4 asb64([This] b64m4x4 v) => v.BitCast<b64m4x4, b64m4x4>();
 }
 
 #endregion // b64m4x4

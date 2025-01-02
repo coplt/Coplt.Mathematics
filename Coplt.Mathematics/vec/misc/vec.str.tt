@@ -24,19 +24,17 @@ namespace Coplt.Mathematics;
 #region <#= typeName #>
 
 public partial struct <#= typeName #> : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
-    public override string ToString() => $"<#= typeName #>(<#= format #>)";
+    public readonly override string ToString() => $"<#= typeName #>(<#= format #>)";
 
     [CpuOnly]
-    public string ToString(string? format, IFormatProvider? formatProvider) => $"<#= typeName #>(<#= format2 #>)";
+    public readonly string ToString(string? format, IFormatProvider? formatProvider) => $"<#= typeName #>(<#= format2 #>)";
 
     [CpuOnly]
-    public bool TryFormat(Span<char> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
+    public readonly bool TryFormat(Span<char> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
         nc = 0;
         if (!TryFormatPart(ref dst, ref nc, "<#= typeName #>(")) return false;
@@ -65,7 +63,7 @@ public partial struct <#= typeName #> : IFormattable
 
     #if NET8_0_OR_GREATER
     [CpuOnly]
-    public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
+    public readonly bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
         nc = 0;
         if (!TryFormatPart(ref dst, ref nc, "<#= typeName #>("u8)) return false;

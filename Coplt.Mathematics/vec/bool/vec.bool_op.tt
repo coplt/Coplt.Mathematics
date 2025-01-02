@@ -25,35 +25,27 @@ namespace Coplt.Mathematics;
 
 #region <#= typeName #>
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> select(this <#= bTypeName #> c, <#= typeName #> t, <#= typeName #> f) 
+    public static <#= typeName #> select([This] <#= bTypeName #> c, <#= typeName #> t, <#= typeName #> f) 
     {
 <#
             if (typ.simd)
             {
 #>
-        #if NET8_0_OR_GREATER
-        return new(Vector<#= bitSize #>.ConditionalSelect(c.vector.As<#=typ.Type#>(), t.vector, f.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return new(Vector<#= bitSize #>.ConditionalSelect(c.vector.As<#=typ.Type#>(), t.vector, f.vector));
 <#
             }
 #>
         return new(<#=
                 string.Join(", ", Enumerable.Range(0, i).Select(n => $"c.{Typ.xyzw[n]} ? t.{Typ.xyzw[n]} : f.{Typ.xyzw[n]}")) #>);
-<#
-            if (typ.simd)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-            }
-#>
     }
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> select(this bool c, <#= typeName #> t, <#= typeName #> f) => c ? t : f;
+    public static <#= typeName #> select([This] bool c, <#= typeName #> t, <#= typeName #> f) => c ? t : f;
 }
 
 #endregion // <#= typeName #>

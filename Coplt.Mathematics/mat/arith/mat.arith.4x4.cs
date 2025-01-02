@@ -12,15 +12,9 @@ public partial struct float4x4
     [MethodImpl(256 | 512)]
     public float4x4(float3x3 rotation, float3 translation)
     {
-        #if NET8_0_OR_GREATER
-        c0 = new(rotation.c0.vector);
-        c1 = new(rotation.c1.vector);
-        c2 = new(rotation.c2.vector);
-        #else // NET8_0_OR_GREATER
-        c0 = new(rotation.c0, default);
-        c1 = new(rotation.c1, default);
-        c2 = new(rotation.c2, default);
-        #endif // NET8_0_OR_GREATER
+        c0 = as4(rotation.c0);
+        c1 = as4(rotation.c1);
+        c2 = as4(rotation.c2);
         c3 = new(translation, 1.0f);
     }
 
@@ -801,20 +795,21 @@ public partial struct float4x4
     );
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float3 rotate(this float4x4 a, float3 b) 
+    public static float3 rotate([This] float4x4 a, float3 b) 
         => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz * a.c2)).xyz;
         // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z).xyz;
 
     [MethodImpl(256 | 512)]
-    public static float3 transform(this float4x4 a, float3 b) 
+    public static float3 transform([This] float4x4 a, float3 b) 
         => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz.fma(a.c2, a.c3))).xyz;
         // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z + a.c3).xyz;
 
     [MethodImpl(256 | 512)]
-    public static float4x4 inverse(this float4x4 m)
+    public static float4x4 inverse([This] float4x4 m)
     {
         var (c0, c1, c2, c3) = m;
 
@@ -884,7 +879,7 @@ public static partial class math
     /// <param name="m">Matrix to invert</param>
     /// <returns>The inverted matrix</returns>
     [MethodImpl(256 | 512)]
-    public static float4x4 fastinverse(this float4x4 m)
+    public static float4x4 fastinverse([This] float4x4 m)
     {
         var (c0, c1, c2, pos) = m;
 
@@ -908,7 +903,7 @@ public static partial class math
     /// <param name="m">Matrix to use when computing determinant</param>
     /// <returns>The determinant of the matrix</returns>
     [MethodImpl(256 | 512)]
-    public static float determinant(this float4x4 m)
+    public static float determinant([This] float4x4 m)
     {
         var (c0, c1, c2, c3) = m;
 
@@ -960,15 +955,9 @@ public partial struct double4x4
     [MethodImpl(256 | 512)]
     public double4x4(double3x3 rotation, double3 translation)
     {
-        #if NET8_0_OR_GREATER
-        c0 = new(rotation.c0.vector);
-        c1 = new(rotation.c1.vector);
-        c2 = new(rotation.c2.vector);
-        #else // NET8_0_OR_GREATER
-        c0 = new(rotation.c0, default);
-        c1 = new(rotation.c1, default);
-        c2 = new(rotation.c2, default);
-        #endif // NET8_0_OR_GREATER
+        c0 = as4(rotation.c0);
+        c1 = as4(rotation.c1);
+        c2 = as4(rotation.c2);
         c3 = new(translation, 1.0);
     }
 
@@ -1749,20 +1738,21 @@ public partial struct double4x4
     );
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double3 rotate(this double4x4 a, double3 b) 
+    public static double3 rotate([This] double4x4 a, double3 b) 
         => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz * a.c2)).xyz;
         // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z).xyz;
 
     [MethodImpl(256 | 512)]
-    public static double3 transform(this double4x4 a, double3 b) 
+    public static double3 transform([This] double4x4 a, double3 b) 
         => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz.fma(a.c2, a.c3))).xyz;
         // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z + a.c3).xyz;
 
     [MethodImpl(256 | 512)]
-    public static double4x4 inverse(this double4x4 m)
+    public static double4x4 inverse([This] double4x4 m)
     {
         var (c0, c1, c2, c3) = m;
 
@@ -1832,7 +1822,7 @@ public static partial class math
     /// <param name="m">Matrix to invert</param>
     /// <returns>The inverted matrix</returns>
     [MethodImpl(256 | 512)]
-    public static double4x4 fastinverse(this double4x4 m)
+    public static double4x4 fastinverse([This] double4x4 m)
     {
         var (c0, c1, c2, pos) = m;
 
@@ -1856,7 +1846,7 @@ public static partial class math
     /// <param name="m">Matrix to use when computing determinant</param>
     /// <returns>The determinant of the matrix</returns>
     [MethodImpl(256 | 512)]
-    public static double determinant(this double4x4 m)
+    public static double determinant([This] double4x4 m)
     {
         var (c0, c1, c2, c3) = m;
 
@@ -1908,9 +1898,9 @@ public partial struct short4x4
     [MethodImpl(256 | 512)]
     public short4x4(short3x3 rotation, short3 translation)
     {
-        c0 = new(rotation.c0, default);
-        c1 = new(rotation.c1, default);
-        c2 = new(rotation.c2, default);
+        c0 = as4(rotation.c0);
+        c1 = as4(rotation.c1);
+        c2 = as4(rotation.c2);
         c3 = new(translation, (short)1);
     }
 
@@ -1956,15 +1946,16 @@ public partial struct short4x4
     );
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static short3 rotate(this short4x4 a, short3 b) 
+    public static short3 rotate([This] short4x4 a, short3 b) 
         => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz * a.c2)).xyz;
         // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z).xyz;
 
     [MethodImpl(256 | 512)]
-    public static short3 transform(this short4x4 a, short3 b) 
+    public static short3 transform([This] short4x4 a, short3 b) 
         => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz.fma(a.c2, a.c3))).xyz;
         // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z + a.c3).xyz;
 }
@@ -1981,9 +1972,9 @@ public partial struct ushort4x4
     [MethodImpl(256 | 512)]
     public ushort4x4(ushort3x3 rotation, ushort3 translation)
     {
-        c0 = new(rotation.c0, default);
-        c1 = new(rotation.c1, default);
-        c2 = new(rotation.c2, default);
+        c0 = as4(rotation.c0);
+        c1 = as4(rotation.c1);
+        c2 = as4(rotation.c2);
         c3 = new(translation, (ushort)1);
     }
 
@@ -2029,15 +2020,16 @@ public partial struct ushort4x4
     );
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ushort3 rotate(this ushort4x4 a, ushort3 b) 
+    public static ushort3 rotate([This] ushort4x4 a, ushort3 b) 
         => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz * a.c2)).xyz;
         // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z).xyz;
 
     [MethodImpl(256 | 512)]
-    public static ushort3 transform(this ushort4x4 a, ushort3 b) 
+    public static ushort3 transform([This] ushort4x4 a, ushort3 b) 
         => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz.fma(a.c2, a.c3))).xyz;
         // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z + a.c3).xyz;
 }
@@ -2054,15 +2046,9 @@ public partial struct int4x4
     [MethodImpl(256 | 512)]
     public int4x4(int3x3 rotation, int3 translation)
     {
-        #if NET8_0_OR_GREATER
-        c0 = new(rotation.c0.vector);
-        c1 = new(rotation.c1.vector);
-        c2 = new(rotation.c2.vector);
-        #else // NET8_0_OR_GREATER
-        c0 = new(rotation.c0, default);
-        c1 = new(rotation.c1, default);
-        c2 = new(rotation.c2, default);
-        #endif // NET8_0_OR_GREATER
+        c0 = as4(rotation.c0);
+        c1 = as4(rotation.c1);
+        c2 = as4(rotation.c2);
         c3 = new(translation, 1);
     }
 
@@ -2108,15 +2094,16 @@ public partial struct int4x4
     );
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static int3 rotate(this int4x4 a, int3 b) 
+    public static int3 rotate([This] int4x4 a, int3 b) 
         => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz * a.c2)).xyz;
         // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z).xyz;
 
     [MethodImpl(256 | 512)]
-    public static int3 transform(this int4x4 a, int3 b) 
+    public static int3 transform([This] int4x4 a, int3 b) 
         => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz.fma(a.c2, a.c3))).xyz;
         // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z + a.c3).xyz;
 }
@@ -2133,15 +2120,9 @@ public partial struct uint4x4
     [MethodImpl(256 | 512)]
     public uint4x4(uint3x3 rotation, uint3 translation)
     {
-        #if NET8_0_OR_GREATER
-        c0 = new(rotation.c0.vector);
-        c1 = new(rotation.c1.vector);
-        c2 = new(rotation.c2.vector);
-        #else // NET8_0_OR_GREATER
-        c0 = new(rotation.c0, default);
-        c1 = new(rotation.c1, default);
-        c2 = new(rotation.c2, default);
-        #endif // NET8_0_OR_GREATER
+        c0 = as4(rotation.c0);
+        c1 = as4(rotation.c1);
+        c2 = as4(rotation.c2);
         c3 = new(translation, 1u);
     }
 
@@ -2187,15 +2168,16 @@ public partial struct uint4x4
     );
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static uint3 rotate(this uint4x4 a, uint3 b) 
+    public static uint3 rotate([This] uint4x4 a, uint3 b) 
         => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz * a.c2)).xyz;
         // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z).xyz;
 
     [MethodImpl(256 | 512)]
-    public static uint3 transform(this uint4x4 a, uint3 b) 
+    public static uint3 transform([This] uint4x4 a, uint3 b) 
         => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz.fma(a.c2, a.c3))).xyz;
         // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z + a.c3).xyz;
 }
@@ -2212,15 +2194,9 @@ public partial struct long4x4
     [MethodImpl(256 | 512)]
     public long4x4(long3x3 rotation, long3 translation)
     {
-        #if NET8_0_OR_GREATER
-        c0 = new(rotation.c0.vector);
-        c1 = new(rotation.c1.vector);
-        c2 = new(rotation.c2.vector);
-        #else // NET8_0_OR_GREATER
-        c0 = new(rotation.c0, default);
-        c1 = new(rotation.c1, default);
-        c2 = new(rotation.c2, default);
-        #endif // NET8_0_OR_GREATER
+        c0 = as4(rotation.c0);
+        c1 = as4(rotation.c1);
+        c2 = as4(rotation.c2);
         c3 = new(translation, 1L);
     }
 
@@ -2266,15 +2242,16 @@ public partial struct long4x4
     );
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static long3 rotate(this long4x4 a, long3 b) 
+    public static long3 rotate([This] long4x4 a, long3 b) 
         => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz * a.c2)).xyz;
         // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z).xyz;
 
     [MethodImpl(256 | 512)]
-    public static long3 transform(this long4x4 a, long3 b) 
+    public static long3 transform([This] long4x4 a, long3 b) 
         => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz.fma(a.c2, a.c3))).xyz;
         // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z + a.c3).xyz;
 }
@@ -2291,15 +2268,9 @@ public partial struct ulong4x4
     [MethodImpl(256 | 512)]
     public ulong4x4(ulong3x3 rotation, ulong3 translation)
     {
-        #if NET8_0_OR_GREATER
-        c0 = new(rotation.c0.vector);
-        c1 = new(rotation.c1.vector);
-        c2 = new(rotation.c2.vector);
-        #else // NET8_0_OR_GREATER
-        c0 = new(rotation.c0, default);
-        c1 = new(rotation.c1, default);
-        c2 = new(rotation.c2, default);
-        #endif // NET8_0_OR_GREATER
+        c0 = as4(rotation.c0);
+        c1 = as4(rotation.c1);
+        c2 = as4(rotation.c2);
         c3 = new(translation, 1UL);
     }
 
@@ -2345,15 +2316,16 @@ public partial struct ulong4x4
     );
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ulong3 rotate(this ulong4x4 a, ulong3 b) 
+    public static ulong3 rotate([This] ulong4x4 a, ulong3 b) 
         => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz * a.c2)).xyz;
         // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z).xyz;
 
     [MethodImpl(256 | 512)]
-    public static ulong3 transform(this ulong4x4 a, ulong3 b) 
+    public static ulong3 transform([This] ulong4x4 a, ulong3 b) 
         => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz.fma(a.c2, a.c3))).xyz;
         // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z + a.c3).xyz;
 }
@@ -2370,9 +2342,9 @@ public partial struct decimal4x4
     [MethodImpl(256 | 512)]
     public decimal4x4(decimal3x3 rotation, decimal3 translation)
     {
-        c0 = new(rotation.c0, default);
-        c1 = new(rotation.c1, default);
-        c2 = new(rotation.c2, default);
+        c0 = as4(rotation.c0);
+        c1 = as4(rotation.c1);
+        c2 = as4(rotation.c2);
         c3 = new(translation, 1m);
     }
 
@@ -2418,20 +2390,21 @@ public partial struct decimal4x4
     );
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static decimal3 rotate(this decimal4x4 a, decimal3 b) 
+    public static decimal3 rotate([This] decimal4x4 a, decimal3 b) 
         => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz * a.c2)).xyz;
         // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z).xyz;
 
     [MethodImpl(256 | 512)]
-    public static decimal3 transform(this decimal4x4 a, decimal3 b) 
+    public static decimal3 transform([This] decimal4x4 a, decimal3 b) 
         => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz.fma(a.c2, a.c3))).xyz;
         // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z + a.c3).xyz;
 
     [MethodImpl(256 | 512)]
-    public static decimal4x4 inverse(this decimal4x4 m)
+    public static decimal4x4 inverse([This] decimal4x4 m)
     {
         var (c0, c1, c2, c3) = m;
 
@@ -2501,7 +2474,7 @@ public static partial class math
     /// <param name="m">Matrix to invert</param>
     /// <returns>The inverted matrix</returns>
     [MethodImpl(256 | 512)]
-    public static decimal4x4 fastinverse(this decimal4x4 m)
+    public static decimal4x4 fastinverse([This] decimal4x4 m)
     {
         var (c0, c1, c2, pos) = m;
 
@@ -2525,7 +2498,7 @@ public static partial class math
     /// <param name="m">Matrix to use when computing determinant</param>
     /// <returns>The determinant of the matrix</returns>
     [MethodImpl(256 | 512)]
-    public static decimal determinant(this decimal4x4 m)
+    public static decimal determinant([This] decimal4x4 m)
     {
         var (c0, c1, c2, c3) = m;
 
@@ -2577,9 +2550,9 @@ public partial struct half4x4
     [MethodImpl(256 | 512)]
     public half4x4(half3x3 rotation, half3 translation)
     {
-        c0 = new(rotation.c0, default);
-        c1 = new(rotation.c1, default);
-        c2 = new(rotation.c2, default);
+        c0 = as4(rotation.c0);
+        c1 = as4(rotation.c1);
+        c2 = as4(rotation.c2);
         c3 = new(translation, (half)1.0);
     }
 
@@ -3360,20 +3333,21 @@ public partial struct half4x4
     );
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half3 rotate(this half4x4 a, half3 b) 
+    public static half3 rotate([This] half4x4 a, half3 b) 
         => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz * a.c2)).xyz;
         // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z).xyz;
 
     [MethodImpl(256 | 512)]
-    public static half3 transform(this half4x4 a, half3 b) 
+    public static half3 transform([This] half4x4 a, half3 b) 
         => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz.fma(a.c2, a.c3))).xyz;
         // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z + a.c3).xyz;
 
     [MethodImpl(256 | 512)]
-    public static half4x4 inverse(this half4x4 m)
+    public static half4x4 inverse([This] half4x4 m)
     {
         var (c0, c1, c2, c3) = m;
 
@@ -3443,7 +3417,7 @@ public static partial class math
     /// <param name="m">Matrix to invert</param>
     /// <returns>The inverted matrix</returns>
     [MethodImpl(256 | 512)]
-    public static half4x4 fastinverse(this half4x4 m)
+    public static half4x4 fastinverse([This] half4x4 m)
     {
         var (c0, c1, c2, pos) = m;
 
@@ -3467,7 +3441,7 @@ public static partial class math
     /// <param name="m">Matrix to use when computing determinant</param>
     /// <returns>The determinant of the matrix</returns>
     [MethodImpl(256 | 512)]
-    public static half determinant(this half4x4 m)
+    public static half determinant([This] half4x4 m)
     {
         var (c0, c1, c2, c3) = m;
 

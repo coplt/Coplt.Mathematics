@@ -5,73 +5,60 @@ namespace Coplt.Mathematics;
 #region float2
 
 public partial struct float2 : IEquatable<float2>
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<float2, float2, bool>
     , IEqualityOperators<float2, float2, b32v2>
-    #endif
 {
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public bool Equals(float2 other) => EqualsAll(other);
+    public readonly bool Equals(float2 other) => EqualsAll(other);
     [MethodImpl(256 | 512)]
-    public override bool Equals(object? obj) => obj is float2 other && Equals(other);
+    public readonly override bool Equals(object? obj) => obj is float2 other && Equals(other);
     [MethodImpl(256 | 512)]
-    public override int GetHashCode() 
+    public readonly override int GetHashCode() 
     {
-        #if NET8_0_OR_GREATER
-        return vector.GetHashCode();
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return vector.GetHashCode();
         return HashCode.Combine(x, y);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAll(float2 other)
+    public readonly bool EqualsAll(float2 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).all();
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.EqualsAll(vector, other.vector);
         return x == other.x && y == other.y;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAny(float2 other)
+    public readonly bool EqualsAny(float2 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).any();
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.EqualsAny(vector, other.vector);
         return x == other.x || y == other.y;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b32v2 EqualsVector(float2 other)
+    public readonly b32v2 EqualsVector(float2 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector64.Equals(vector, other.vector).AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(Vector64.Equals(vector, other.vector).AsUInt32());
         return new(x == other.x, y == other.y);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b32v2 EqualsVectorNot(float2 other)
+    public readonly b32v2 EqualsVectorNot(float2 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Ne(vector, other.vector).AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(simd.Ne(vector, other.vector).AsUInt32());
         return new(x != other.x, y != other.y);
-        #endif // NET8_0_OR_GREATER
     }
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<float2, float2, bool>.operator ==(float2 left, float2 right) => left.Equals(right);
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<float2, float2, bool>.operator !=(float2 left, float2 right) => !left.Equals(right);
-    #endif
+
 
     [MethodImpl(256 | 512)]
     public static b32v2 operator ==(float2 left, float2 right) => left.EqualsVector(right);
@@ -86,73 +73,60 @@ public partial struct float2 : IEquatable<float2>
 #region float3
 
 public partial struct float3 : IEquatable<float3>
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<float3, float3, bool>
     , IEqualityOperators<float3, float3, b32v3>
-    #endif
 {
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public bool Equals(float3 other) => EqualsAll(other);
+    public readonly bool Equals(float3 other) => EqualsAll(other);
     [MethodImpl(256 | 512)]
-    public override bool Equals(object? obj) => obj is float3 other && Equals(other);
+    public readonly override bool Equals(object? obj) => obj is float3 other && Equals(other);
     [MethodImpl(256 | 512)]
-    public override int GetHashCode() 
+    public readonly override int GetHashCode() 
     {
-        #if NET8_0_OR_GREATER
-        return vector.GetHashCode();
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return vector.GetHashCode();
         return HashCode.Combine(x, y, z);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAll(float3 other)
+    public readonly bool EqualsAll(float3 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).all();
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.EqualsAll(vector, other.vector);
         return x == other.x && y == other.y && z == other.z;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAny(float3 other)
+    public readonly bool EqualsAny(float3 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).any();
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.EqualsAny(vector, other.vector);
         return x == other.x || y == other.y || z == other.z;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b32v3 EqualsVector(float3 other)
+    public readonly b32v3 EqualsVector(float3 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Equals(vector, other.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Equals(vector, other.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         return new(x == other.x, y == other.y, z == other.z);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b32v3 EqualsVectorNot(float3 other)
+    public readonly b32v3 EqualsVectorNot(float3 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Ne(vector, other.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Ne(vector, other.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         return new(x != other.x, y != other.y, z != other.z);
-        #endif // NET8_0_OR_GREATER
     }
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<float3, float3, bool>.operator ==(float3 left, float3 right) => left.Equals(right);
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<float3, float3, bool>.operator !=(float3 left, float3 right) => !left.Equals(right);
-    #endif
+
 
     [MethodImpl(256 | 512)]
     public static b32v3 operator ==(float3 left, float3 right) => left.EqualsVector(right);
@@ -167,73 +141,60 @@ public partial struct float3 : IEquatable<float3>
 #region float4
 
 public partial struct float4 : IEquatable<float4>
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<float4, float4, bool>
     , IEqualityOperators<float4, float4, b32v4>
-    #endif
 {
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public bool Equals(float4 other) => EqualsAll(other);
+    public readonly bool Equals(float4 other) => EqualsAll(other);
     [MethodImpl(256 | 512)]
-    public override bool Equals(object? obj) => obj is float4 other && Equals(other);
+    public readonly override bool Equals(object? obj) => obj is float4 other && Equals(other);
     [MethodImpl(256 | 512)]
-    public override int GetHashCode() 
+    public readonly override int GetHashCode() 
     {
-        #if NET8_0_OR_GREATER
-        return vector.GetHashCode();
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return vector.GetHashCode();
         return HashCode.Combine(x, y, z, w);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAll(float4 other)
+    public readonly bool EqualsAll(float4 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).all();
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.EqualsAll(vector, other.vector);
         return x == other.x && y == other.y && z == other.z && w == other.w;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAny(float4 other)
+    public readonly bool EqualsAny(float4 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).any();
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.EqualsAny(vector, other.vector);
         return x == other.x || y == other.y || z == other.z || w == other.w;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b32v4 EqualsVector(float4 other)
+    public readonly b32v4 EqualsVector(float4 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Equals(vector, other.vector).AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Equals(vector, other.vector).AsUInt32());
         return new(x == other.x, y == other.y, z == other.z, w == other.w);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b32v4 EqualsVectorNot(float4 other)
+    public readonly b32v4 EqualsVectorNot(float4 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Ne(vector, other.vector).AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Ne(vector, other.vector).AsUInt32());
         return new(x != other.x, y != other.y, z != other.z, w != other.w);
-        #endif // NET8_0_OR_GREATER
     }
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<float4, float4, bool>.operator ==(float4 left, float4 right) => left.Equals(right);
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<float4, float4, bool>.operator !=(float4 left, float4 right) => !left.Equals(right);
-    #endif
+
 
     [MethodImpl(256 | 512)]
     public static b32v4 operator ==(float4 left, float4 right) => left.EqualsVector(right);
@@ -248,73 +209,60 @@ public partial struct float4 : IEquatable<float4>
 #region double2
 
 public partial struct double2 : IEquatable<double2>
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<double2, double2, bool>
     , IEqualityOperators<double2, double2, b64v2>
-    #endif
 {
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public bool Equals(double2 other) => EqualsAll(other);
+    public readonly bool Equals(double2 other) => EqualsAll(other);
     [MethodImpl(256 | 512)]
-    public override bool Equals(object? obj) => obj is double2 other && Equals(other);
+    public readonly override bool Equals(object? obj) => obj is double2 other && Equals(other);
     [MethodImpl(256 | 512)]
-    public override int GetHashCode() 
+    public readonly override int GetHashCode() 
     {
-        #if NET8_0_OR_GREATER
-        return vector.GetHashCode();
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return vector.GetHashCode();
         return HashCode.Combine(x, y);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAll(double2 other)
+    public readonly bool EqualsAll(double2 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).all();
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.EqualsAll(vector, other.vector);
         return x == other.x && y == other.y;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAny(double2 other)
+    public readonly bool EqualsAny(double2 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).any();
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.EqualsAny(vector, other.vector);
         return x == other.x || y == other.y;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b64v2 EqualsVector(double2 other)
+    public readonly b64v2 EqualsVector(double2 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Equals(vector, other.vector).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Equals(vector, other.vector).AsUInt64());
         return new(x == other.x, y == other.y);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b64v2 EqualsVectorNot(double2 other)
+    public readonly b64v2 EqualsVectorNot(double2 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Ne(vector, other.vector).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Ne(vector, other.vector).AsUInt64());
         return new(x != other.x, y != other.y);
-        #endif // NET8_0_OR_GREATER
     }
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<double2, double2, bool>.operator ==(double2 left, double2 right) => left.Equals(right);
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<double2, double2, bool>.operator !=(double2 left, double2 right) => !left.Equals(right);
-    #endif
+
 
     [MethodImpl(256 | 512)]
     public static b64v2 operator ==(double2 left, double2 right) => left.EqualsVector(right);
@@ -329,73 +277,60 @@ public partial struct double2 : IEquatable<double2>
 #region double3
 
 public partial struct double3 : IEquatable<double3>
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<double3, double3, bool>
     , IEqualityOperators<double3, double3, b64v3>
-    #endif
 {
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public bool Equals(double3 other) => EqualsAll(other);
+    public readonly bool Equals(double3 other) => EqualsAll(other);
     [MethodImpl(256 | 512)]
-    public override bool Equals(object? obj) => obj is double3 other && Equals(other);
+    public readonly override bool Equals(object? obj) => obj is double3 other && Equals(other);
     [MethodImpl(256 | 512)]
-    public override int GetHashCode() 
+    public readonly override int GetHashCode() 
     {
-        #if NET8_0_OR_GREATER
-        return vector.GetHashCode();
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return vector.GetHashCode();
         return HashCode.Combine(x, y, z);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAll(double3 other)
+    public readonly bool EqualsAll(double3 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).all();
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.EqualsAll(vector, other.vector);
         return x == other.x && y == other.y && z == other.z;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAny(double3 other)
+    public readonly bool EqualsAny(double3 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).any();
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.EqualsAny(vector, other.vector);
         return x == other.x || y == other.y || z == other.z;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b64v3 EqualsVector(double3 other)
+    public readonly b64v3 EqualsVector(double3 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.Equals(vector, other.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.Equals(vector, other.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         return new(x == other.x, y == other.y, z == other.z);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b64v3 EqualsVectorNot(double3 other)
+    public readonly b64v3 EqualsVectorNot(double3 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Ne(vector, other.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Ne(vector, other.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         return new(x != other.x, y != other.y, z != other.z);
-        #endif // NET8_0_OR_GREATER
     }
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<double3, double3, bool>.operator ==(double3 left, double3 right) => left.Equals(right);
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<double3, double3, bool>.operator !=(double3 left, double3 right) => !left.Equals(right);
-    #endif
+
 
     [MethodImpl(256 | 512)]
     public static b64v3 operator ==(double3 left, double3 right) => left.EqualsVector(right);
@@ -410,73 +345,60 @@ public partial struct double3 : IEquatable<double3>
 #region double4
 
 public partial struct double4 : IEquatable<double4>
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<double4, double4, bool>
     , IEqualityOperators<double4, double4, b64v4>
-    #endif
 {
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public bool Equals(double4 other) => EqualsAll(other);
+    public readonly bool Equals(double4 other) => EqualsAll(other);
     [MethodImpl(256 | 512)]
-    public override bool Equals(object? obj) => obj is double4 other && Equals(other);
+    public readonly override bool Equals(object? obj) => obj is double4 other && Equals(other);
     [MethodImpl(256 | 512)]
-    public override int GetHashCode() 
+    public readonly override int GetHashCode() 
     {
-        #if NET8_0_OR_GREATER
-        return vector.GetHashCode();
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return vector.GetHashCode();
         return HashCode.Combine(x, y, z, w);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAll(double4 other)
+    public readonly bool EqualsAll(double4 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).all();
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.EqualsAll(vector, other.vector);
         return x == other.x && y == other.y && z == other.z && w == other.w;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAny(double4 other)
+    public readonly bool EqualsAny(double4 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).any();
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.EqualsAny(vector, other.vector);
         return x == other.x || y == other.y || z == other.z || w == other.w;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b64v4 EqualsVector(double4 other)
+    public readonly b64v4 EqualsVector(double4 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.Equals(vector, other.vector).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.Equals(vector, other.vector).AsUInt64());
         return new(x == other.x, y == other.y, z == other.z, w == other.w);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b64v4 EqualsVectorNot(double4 other)
+    public readonly b64v4 EqualsVectorNot(double4 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Ne(vector, other.vector).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Ne(vector, other.vector).AsUInt64());
         return new(x != other.x, y != other.y, z != other.z, w != other.w);
-        #endif // NET8_0_OR_GREATER
     }
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<double4, double4, bool>.operator ==(double4 left, double4 right) => left.Equals(right);
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<double4, double4, bool>.operator !=(double4 left, double4 right) => !left.Equals(right);
-    #endif
+
 
     [MethodImpl(256 | 512)]
     public static b64v4 operator ==(double4 left, double4 right) => left.EqualsVector(right);
@@ -491,53 +413,50 @@ public partial struct double4 : IEquatable<double4>
 #region short2
 
 public partial struct short2 : IEquatable<short2>
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<short2, short2, bool>
     , IEqualityOperators<short2, short2, b16v2>
-    #endif
 {
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public bool Equals(short2 other) => EqualsAll(other);
+    public readonly bool Equals(short2 other) => EqualsAll(other);
     [MethodImpl(256 | 512)]
-    public override bool Equals(object? obj) => obj is short2 other && Equals(other);
+    public readonly override bool Equals(object? obj) => obj is short2 other && Equals(other);
     [MethodImpl(256 | 512)]
-    public override int GetHashCode() 
+    public readonly override int GetHashCode() 
     {
         return HashCode.Combine(x, y);
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAll(short2 other)
+    public readonly bool EqualsAll(short2 other)
     {
         return x == other.x && y == other.y;
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAny(short2 other)
+    public readonly bool EqualsAny(short2 other)
     {
         return x == other.x || y == other.y;
     }
 
     [MethodImpl(256 | 512)]
-    public b16v2 EqualsVector(short2 other)
+    public readonly b16v2 EqualsVector(short2 other)
     {
         return new(x == other.x, y == other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public b16v2 EqualsVectorNot(short2 other)
+    public readonly b16v2 EqualsVectorNot(short2 other)
     {
         return new(x != other.x, y != other.y);
     }
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<short2, short2, bool>.operator ==(short2 left, short2 right) => left.Equals(right);
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<short2, short2, bool>.operator !=(short2 left, short2 right) => !left.Equals(right);
-    #endif
+
 
     [MethodImpl(256 | 512)]
     public static b16v2 operator ==(short2 left, short2 right) => left.EqualsVector(right);
@@ -552,53 +471,50 @@ public partial struct short2 : IEquatable<short2>
 #region short3
 
 public partial struct short3 : IEquatable<short3>
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<short3, short3, bool>
     , IEqualityOperators<short3, short3, b16v3>
-    #endif
 {
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public bool Equals(short3 other) => EqualsAll(other);
+    public readonly bool Equals(short3 other) => EqualsAll(other);
     [MethodImpl(256 | 512)]
-    public override bool Equals(object? obj) => obj is short3 other && Equals(other);
+    public readonly override bool Equals(object? obj) => obj is short3 other && Equals(other);
     [MethodImpl(256 | 512)]
-    public override int GetHashCode() 
+    public readonly override int GetHashCode() 
     {
         return HashCode.Combine(x, y, z);
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAll(short3 other)
+    public readonly bool EqualsAll(short3 other)
     {
         return x == other.x && y == other.y && z == other.z;
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAny(short3 other)
+    public readonly bool EqualsAny(short3 other)
     {
         return x == other.x || y == other.y || z == other.z;
     }
 
     [MethodImpl(256 | 512)]
-    public b16v3 EqualsVector(short3 other)
+    public readonly b16v3 EqualsVector(short3 other)
     {
         return new(x == other.x, y == other.y, z == other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public b16v3 EqualsVectorNot(short3 other)
+    public readonly b16v3 EqualsVectorNot(short3 other)
     {
         return new(x != other.x, y != other.y, z != other.z);
     }
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<short3, short3, bool>.operator ==(short3 left, short3 right) => left.Equals(right);
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<short3, short3, bool>.operator !=(short3 left, short3 right) => !left.Equals(right);
-    #endif
+
 
     [MethodImpl(256 | 512)]
     public static b16v3 operator ==(short3 left, short3 right) => left.EqualsVector(right);
@@ -613,53 +529,50 @@ public partial struct short3 : IEquatable<short3>
 #region short4
 
 public partial struct short4 : IEquatable<short4>
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<short4, short4, bool>
     , IEqualityOperators<short4, short4, b16v4>
-    #endif
 {
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public bool Equals(short4 other) => EqualsAll(other);
+    public readonly bool Equals(short4 other) => EqualsAll(other);
     [MethodImpl(256 | 512)]
-    public override bool Equals(object? obj) => obj is short4 other && Equals(other);
+    public readonly override bool Equals(object? obj) => obj is short4 other && Equals(other);
     [MethodImpl(256 | 512)]
-    public override int GetHashCode() 
+    public readonly override int GetHashCode() 
     {
         return HashCode.Combine(x, y, z, w);
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAll(short4 other)
+    public readonly bool EqualsAll(short4 other)
     {
         return x == other.x && y == other.y && z == other.z && w == other.w;
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAny(short4 other)
+    public readonly bool EqualsAny(short4 other)
     {
         return x == other.x || y == other.y || z == other.z || w == other.w;
     }
 
     [MethodImpl(256 | 512)]
-    public b16v4 EqualsVector(short4 other)
+    public readonly b16v4 EqualsVector(short4 other)
     {
         return new(x == other.x, y == other.y, z == other.z, w == other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public b16v4 EqualsVectorNot(short4 other)
+    public readonly b16v4 EqualsVectorNot(short4 other)
     {
         return new(x != other.x, y != other.y, z != other.z, w != other.w);
     }
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<short4, short4, bool>.operator ==(short4 left, short4 right) => left.Equals(right);
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<short4, short4, bool>.operator !=(short4 left, short4 right) => !left.Equals(right);
-    #endif
+
 
     [MethodImpl(256 | 512)]
     public static b16v4 operator ==(short4 left, short4 right) => left.EqualsVector(right);
@@ -674,53 +587,50 @@ public partial struct short4 : IEquatable<short4>
 #region ushort2
 
 public partial struct ushort2 : IEquatable<ushort2>
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<ushort2, ushort2, bool>
     , IEqualityOperators<ushort2, ushort2, b16v2>
-    #endif
 {
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public bool Equals(ushort2 other) => EqualsAll(other);
+    public readonly bool Equals(ushort2 other) => EqualsAll(other);
     [MethodImpl(256 | 512)]
-    public override bool Equals(object? obj) => obj is ushort2 other && Equals(other);
+    public readonly override bool Equals(object? obj) => obj is ushort2 other && Equals(other);
     [MethodImpl(256 | 512)]
-    public override int GetHashCode() 
+    public readonly override int GetHashCode() 
     {
         return HashCode.Combine(x, y);
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAll(ushort2 other)
+    public readonly bool EqualsAll(ushort2 other)
     {
         return x == other.x && y == other.y;
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAny(ushort2 other)
+    public readonly bool EqualsAny(ushort2 other)
     {
         return x == other.x || y == other.y;
     }
 
     [MethodImpl(256 | 512)]
-    public b16v2 EqualsVector(ushort2 other)
+    public readonly b16v2 EqualsVector(ushort2 other)
     {
         return new(x == other.x, y == other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public b16v2 EqualsVectorNot(ushort2 other)
+    public readonly b16v2 EqualsVectorNot(ushort2 other)
     {
         return new(x != other.x, y != other.y);
     }
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<ushort2, ushort2, bool>.operator ==(ushort2 left, ushort2 right) => left.Equals(right);
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<ushort2, ushort2, bool>.operator !=(ushort2 left, ushort2 right) => !left.Equals(right);
-    #endif
+
 
     [MethodImpl(256 | 512)]
     public static b16v2 operator ==(ushort2 left, ushort2 right) => left.EqualsVector(right);
@@ -735,53 +645,50 @@ public partial struct ushort2 : IEquatable<ushort2>
 #region ushort3
 
 public partial struct ushort3 : IEquatable<ushort3>
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<ushort3, ushort3, bool>
     , IEqualityOperators<ushort3, ushort3, b16v3>
-    #endif
 {
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public bool Equals(ushort3 other) => EqualsAll(other);
+    public readonly bool Equals(ushort3 other) => EqualsAll(other);
     [MethodImpl(256 | 512)]
-    public override bool Equals(object? obj) => obj is ushort3 other && Equals(other);
+    public readonly override bool Equals(object? obj) => obj is ushort3 other && Equals(other);
     [MethodImpl(256 | 512)]
-    public override int GetHashCode() 
+    public readonly override int GetHashCode() 
     {
         return HashCode.Combine(x, y, z);
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAll(ushort3 other)
+    public readonly bool EqualsAll(ushort3 other)
     {
         return x == other.x && y == other.y && z == other.z;
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAny(ushort3 other)
+    public readonly bool EqualsAny(ushort3 other)
     {
         return x == other.x || y == other.y || z == other.z;
     }
 
     [MethodImpl(256 | 512)]
-    public b16v3 EqualsVector(ushort3 other)
+    public readonly b16v3 EqualsVector(ushort3 other)
     {
         return new(x == other.x, y == other.y, z == other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public b16v3 EqualsVectorNot(ushort3 other)
+    public readonly b16v3 EqualsVectorNot(ushort3 other)
     {
         return new(x != other.x, y != other.y, z != other.z);
     }
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<ushort3, ushort3, bool>.operator ==(ushort3 left, ushort3 right) => left.Equals(right);
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<ushort3, ushort3, bool>.operator !=(ushort3 left, ushort3 right) => !left.Equals(right);
-    #endif
+
 
     [MethodImpl(256 | 512)]
     public static b16v3 operator ==(ushort3 left, ushort3 right) => left.EqualsVector(right);
@@ -796,53 +703,50 @@ public partial struct ushort3 : IEquatable<ushort3>
 #region ushort4
 
 public partial struct ushort4 : IEquatable<ushort4>
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<ushort4, ushort4, bool>
     , IEqualityOperators<ushort4, ushort4, b16v4>
-    #endif
 {
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public bool Equals(ushort4 other) => EqualsAll(other);
+    public readonly bool Equals(ushort4 other) => EqualsAll(other);
     [MethodImpl(256 | 512)]
-    public override bool Equals(object? obj) => obj is ushort4 other && Equals(other);
+    public readonly override bool Equals(object? obj) => obj is ushort4 other && Equals(other);
     [MethodImpl(256 | 512)]
-    public override int GetHashCode() 
+    public readonly override int GetHashCode() 
     {
         return HashCode.Combine(x, y, z, w);
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAll(ushort4 other)
+    public readonly bool EqualsAll(ushort4 other)
     {
         return x == other.x && y == other.y && z == other.z && w == other.w;
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAny(ushort4 other)
+    public readonly bool EqualsAny(ushort4 other)
     {
         return x == other.x || y == other.y || z == other.z || w == other.w;
     }
 
     [MethodImpl(256 | 512)]
-    public b16v4 EqualsVector(ushort4 other)
+    public readonly b16v4 EqualsVector(ushort4 other)
     {
         return new(x == other.x, y == other.y, z == other.z, w == other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public b16v4 EqualsVectorNot(ushort4 other)
+    public readonly b16v4 EqualsVectorNot(ushort4 other)
     {
         return new(x != other.x, y != other.y, z != other.z, w != other.w);
     }
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<ushort4, ushort4, bool>.operator ==(ushort4 left, ushort4 right) => left.Equals(right);
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<ushort4, ushort4, bool>.operator !=(ushort4 left, ushort4 right) => !left.Equals(right);
-    #endif
+
 
     [MethodImpl(256 | 512)]
     public static b16v4 operator ==(ushort4 left, ushort4 right) => left.EqualsVector(right);
@@ -857,73 +761,60 @@ public partial struct ushort4 : IEquatable<ushort4>
 #region int2
 
 public partial struct int2 : IEquatable<int2>
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<int2, int2, bool>
     , IEqualityOperators<int2, int2, b32v2>
-    #endif
 {
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public bool Equals(int2 other) => EqualsAll(other);
+    public readonly bool Equals(int2 other) => EqualsAll(other);
     [MethodImpl(256 | 512)]
-    public override bool Equals(object? obj) => obj is int2 other && Equals(other);
+    public readonly override bool Equals(object? obj) => obj is int2 other && Equals(other);
     [MethodImpl(256 | 512)]
-    public override int GetHashCode() 
+    public readonly override int GetHashCode() 
     {
-        #if NET8_0_OR_GREATER
-        return vector.GetHashCode();
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return vector.GetHashCode();
         return HashCode.Combine(x, y);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAll(int2 other)
+    public readonly bool EqualsAll(int2 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).all();
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.EqualsAll(vector, other.vector);
         return x == other.x && y == other.y;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAny(int2 other)
+    public readonly bool EqualsAny(int2 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).any();
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.EqualsAny(vector, other.vector);
         return x == other.x || y == other.y;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b32v2 EqualsVector(int2 other)
+    public readonly b32v2 EqualsVector(int2 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector64.Equals(vector, other.vector).AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(Vector64.Equals(vector, other.vector).AsUInt32());
         return new(x == other.x, y == other.y);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b32v2 EqualsVectorNot(int2 other)
+    public readonly b32v2 EqualsVectorNot(int2 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(~Vector64.Equals(vector, other.vector).AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(~Vector64.Equals(vector, other.vector).AsUInt32());
         return new(x != other.x, y != other.y);
-        #endif // NET8_0_OR_GREATER
     }
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<int2, int2, bool>.operator ==(int2 left, int2 right) => left.Equals(right);
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<int2, int2, bool>.operator !=(int2 left, int2 right) => !left.Equals(right);
-    #endif
+
 
     [MethodImpl(256 | 512)]
     public static b32v2 operator ==(int2 left, int2 right) => left.EqualsVector(right);
@@ -938,73 +829,60 @@ public partial struct int2 : IEquatable<int2>
 #region int3
 
 public partial struct int3 : IEquatable<int3>
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<int3, int3, bool>
     , IEqualityOperators<int3, int3, b32v3>
-    #endif
 {
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public bool Equals(int3 other) => EqualsAll(other);
+    public readonly bool Equals(int3 other) => EqualsAll(other);
     [MethodImpl(256 | 512)]
-    public override bool Equals(object? obj) => obj is int3 other && Equals(other);
+    public readonly override bool Equals(object? obj) => obj is int3 other && Equals(other);
     [MethodImpl(256 | 512)]
-    public override int GetHashCode() 
+    public readonly override int GetHashCode() 
     {
-        #if NET8_0_OR_GREATER
-        return vector.GetHashCode();
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return vector.GetHashCode();
         return HashCode.Combine(x, y, z);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAll(int3 other)
+    public readonly bool EqualsAll(int3 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).all();
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.EqualsAll(vector, other.vector);
         return x == other.x && y == other.y && z == other.z;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAny(int3 other)
+    public readonly bool EqualsAny(int3 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).any();
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.EqualsAny(vector, other.vector);
         return x == other.x || y == other.y || z == other.z;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b32v3 EqualsVector(int3 other)
+    public readonly b32v3 EqualsVector(int3 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Equals(vector, other.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Equals(vector, other.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         return new(x == other.x, y == other.y, z == other.z);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b32v3 EqualsVectorNot(int3 other)
+    public readonly b32v3 EqualsVectorNot(int3 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(~Vector128.Equals(vector, other.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(~Vector128.Equals(vector, other.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         return new(x != other.x, y != other.y, z != other.z);
-        #endif // NET8_0_OR_GREATER
     }
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<int3, int3, bool>.operator ==(int3 left, int3 right) => left.Equals(right);
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<int3, int3, bool>.operator !=(int3 left, int3 right) => !left.Equals(right);
-    #endif
+
 
     [MethodImpl(256 | 512)]
     public static b32v3 operator ==(int3 left, int3 right) => left.EqualsVector(right);
@@ -1019,73 +897,60 @@ public partial struct int3 : IEquatable<int3>
 #region int4
 
 public partial struct int4 : IEquatable<int4>
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<int4, int4, bool>
     , IEqualityOperators<int4, int4, b32v4>
-    #endif
 {
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public bool Equals(int4 other) => EqualsAll(other);
+    public readonly bool Equals(int4 other) => EqualsAll(other);
     [MethodImpl(256 | 512)]
-    public override bool Equals(object? obj) => obj is int4 other && Equals(other);
+    public readonly override bool Equals(object? obj) => obj is int4 other && Equals(other);
     [MethodImpl(256 | 512)]
-    public override int GetHashCode() 
+    public readonly override int GetHashCode() 
     {
-        #if NET8_0_OR_GREATER
-        return vector.GetHashCode();
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return vector.GetHashCode();
         return HashCode.Combine(x, y, z, w);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAll(int4 other)
+    public readonly bool EqualsAll(int4 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).all();
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.EqualsAll(vector, other.vector);
         return x == other.x && y == other.y && z == other.z && w == other.w;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAny(int4 other)
+    public readonly bool EqualsAny(int4 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).any();
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.EqualsAny(vector, other.vector);
         return x == other.x || y == other.y || z == other.z || w == other.w;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b32v4 EqualsVector(int4 other)
+    public readonly b32v4 EqualsVector(int4 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Equals(vector, other.vector).AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Equals(vector, other.vector).AsUInt32());
         return new(x == other.x, y == other.y, z == other.z, w == other.w);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b32v4 EqualsVectorNot(int4 other)
+    public readonly b32v4 EqualsVectorNot(int4 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(~Vector128.Equals(vector, other.vector).AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(~Vector128.Equals(vector, other.vector).AsUInt32());
         return new(x != other.x, y != other.y, z != other.z, w != other.w);
-        #endif // NET8_0_OR_GREATER
     }
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<int4, int4, bool>.operator ==(int4 left, int4 right) => left.Equals(right);
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<int4, int4, bool>.operator !=(int4 left, int4 right) => !left.Equals(right);
-    #endif
+
 
     [MethodImpl(256 | 512)]
     public static b32v4 operator ==(int4 left, int4 right) => left.EqualsVector(right);
@@ -1100,73 +965,60 @@ public partial struct int4 : IEquatable<int4>
 #region uint2
 
 public partial struct uint2 : IEquatable<uint2>
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<uint2, uint2, bool>
     , IEqualityOperators<uint2, uint2, b32v2>
-    #endif
 {
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public bool Equals(uint2 other) => EqualsAll(other);
+    public readonly bool Equals(uint2 other) => EqualsAll(other);
     [MethodImpl(256 | 512)]
-    public override bool Equals(object? obj) => obj is uint2 other && Equals(other);
+    public readonly override bool Equals(object? obj) => obj is uint2 other && Equals(other);
     [MethodImpl(256 | 512)]
-    public override int GetHashCode() 
+    public readonly override int GetHashCode() 
     {
-        #if NET8_0_OR_GREATER
-        return vector.GetHashCode();
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return vector.GetHashCode();
         return HashCode.Combine(x, y);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAll(uint2 other)
+    public readonly bool EqualsAll(uint2 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).all();
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.EqualsAll(vector, other.vector);
         return x == other.x && y == other.y;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAny(uint2 other)
+    public readonly bool EqualsAny(uint2 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).any();
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.EqualsAny(vector, other.vector);
         return x == other.x || y == other.y;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b32v2 EqualsVector(uint2 other)
+    public readonly b32v2 EqualsVector(uint2 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector64.Equals(vector, other.vector).AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(Vector64.Equals(vector, other.vector).AsUInt32());
         return new(x == other.x, y == other.y);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b32v2 EqualsVectorNot(uint2 other)
+    public readonly b32v2 EqualsVectorNot(uint2 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(~Vector64.Equals(vector, other.vector).AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(~Vector64.Equals(vector, other.vector).AsUInt32());
         return new(x != other.x, y != other.y);
-        #endif // NET8_0_OR_GREATER
     }
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<uint2, uint2, bool>.operator ==(uint2 left, uint2 right) => left.Equals(right);
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<uint2, uint2, bool>.operator !=(uint2 left, uint2 right) => !left.Equals(right);
-    #endif
+
 
     [MethodImpl(256 | 512)]
     public static b32v2 operator ==(uint2 left, uint2 right) => left.EqualsVector(right);
@@ -1181,73 +1033,60 @@ public partial struct uint2 : IEquatable<uint2>
 #region uint3
 
 public partial struct uint3 : IEquatable<uint3>
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<uint3, uint3, bool>
     , IEqualityOperators<uint3, uint3, b32v3>
-    #endif
 {
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public bool Equals(uint3 other) => EqualsAll(other);
+    public readonly bool Equals(uint3 other) => EqualsAll(other);
     [MethodImpl(256 | 512)]
-    public override bool Equals(object? obj) => obj is uint3 other && Equals(other);
+    public readonly override bool Equals(object? obj) => obj is uint3 other && Equals(other);
     [MethodImpl(256 | 512)]
-    public override int GetHashCode() 
+    public readonly override int GetHashCode() 
     {
-        #if NET8_0_OR_GREATER
-        return vector.GetHashCode();
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return vector.GetHashCode();
         return HashCode.Combine(x, y, z);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAll(uint3 other)
+    public readonly bool EqualsAll(uint3 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).all();
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.EqualsAll(vector, other.vector);
         return x == other.x && y == other.y && z == other.z;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAny(uint3 other)
+    public readonly bool EqualsAny(uint3 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).any();
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.EqualsAny(vector, other.vector);
         return x == other.x || y == other.y || z == other.z;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b32v3 EqualsVector(uint3 other)
+    public readonly b32v3 EqualsVector(uint3 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Equals(vector, other.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Equals(vector, other.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         return new(x == other.x, y == other.y, z == other.z);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b32v3 EqualsVectorNot(uint3 other)
+    public readonly b32v3 EqualsVectorNot(uint3 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(~Vector128.Equals(vector, other.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(~Vector128.Equals(vector, other.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         return new(x != other.x, y != other.y, z != other.z);
-        #endif // NET8_0_OR_GREATER
     }
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<uint3, uint3, bool>.operator ==(uint3 left, uint3 right) => left.Equals(right);
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<uint3, uint3, bool>.operator !=(uint3 left, uint3 right) => !left.Equals(right);
-    #endif
+
 
     [MethodImpl(256 | 512)]
     public static b32v3 operator ==(uint3 left, uint3 right) => left.EqualsVector(right);
@@ -1262,73 +1101,60 @@ public partial struct uint3 : IEquatable<uint3>
 #region uint4
 
 public partial struct uint4 : IEquatable<uint4>
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<uint4, uint4, bool>
     , IEqualityOperators<uint4, uint4, b32v4>
-    #endif
 {
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public bool Equals(uint4 other) => EqualsAll(other);
+    public readonly bool Equals(uint4 other) => EqualsAll(other);
     [MethodImpl(256 | 512)]
-    public override bool Equals(object? obj) => obj is uint4 other && Equals(other);
+    public readonly override bool Equals(object? obj) => obj is uint4 other && Equals(other);
     [MethodImpl(256 | 512)]
-    public override int GetHashCode() 
+    public readonly override int GetHashCode() 
     {
-        #if NET8_0_OR_GREATER
-        return vector.GetHashCode();
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return vector.GetHashCode();
         return HashCode.Combine(x, y, z, w);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAll(uint4 other)
+    public readonly bool EqualsAll(uint4 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).all();
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.EqualsAll(vector, other.vector);
         return x == other.x && y == other.y && z == other.z && w == other.w;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAny(uint4 other)
+    public readonly bool EqualsAny(uint4 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).any();
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.EqualsAny(vector, other.vector);
         return x == other.x || y == other.y || z == other.z || w == other.w;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b32v4 EqualsVector(uint4 other)
+    public readonly b32v4 EqualsVector(uint4 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Equals(vector, other.vector).AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Equals(vector, other.vector).AsUInt32());
         return new(x == other.x, y == other.y, z == other.z, w == other.w);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b32v4 EqualsVectorNot(uint4 other)
+    public readonly b32v4 EqualsVectorNot(uint4 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(~Vector128.Equals(vector, other.vector).AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(~Vector128.Equals(vector, other.vector).AsUInt32());
         return new(x != other.x, y != other.y, z != other.z, w != other.w);
-        #endif // NET8_0_OR_GREATER
     }
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<uint4, uint4, bool>.operator ==(uint4 left, uint4 right) => left.Equals(right);
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<uint4, uint4, bool>.operator !=(uint4 left, uint4 right) => !left.Equals(right);
-    #endif
+
 
     [MethodImpl(256 | 512)]
     public static b32v4 operator ==(uint4 left, uint4 right) => left.EqualsVector(right);
@@ -1343,73 +1169,60 @@ public partial struct uint4 : IEquatable<uint4>
 #region long2
 
 public partial struct long2 : IEquatable<long2>
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<long2, long2, bool>
     , IEqualityOperators<long2, long2, b64v2>
-    #endif
 {
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public bool Equals(long2 other) => EqualsAll(other);
+    public readonly bool Equals(long2 other) => EqualsAll(other);
     [MethodImpl(256 | 512)]
-    public override bool Equals(object? obj) => obj is long2 other && Equals(other);
+    public readonly override bool Equals(object? obj) => obj is long2 other && Equals(other);
     [MethodImpl(256 | 512)]
-    public override int GetHashCode() 
+    public readonly override int GetHashCode() 
     {
-        #if NET8_0_OR_GREATER
-        return vector.GetHashCode();
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return vector.GetHashCode();
         return HashCode.Combine(x, y);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAll(long2 other)
+    public readonly bool EqualsAll(long2 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).all();
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.EqualsAll(vector, other.vector);
         return x == other.x && y == other.y;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAny(long2 other)
+    public readonly bool EqualsAny(long2 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).any();
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.EqualsAny(vector, other.vector);
         return x == other.x || y == other.y;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b64v2 EqualsVector(long2 other)
+    public readonly b64v2 EqualsVector(long2 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Equals(vector, other.vector).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Equals(vector, other.vector).AsUInt64());
         return new(x == other.x, y == other.y);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b64v2 EqualsVectorNot(long2 other)
+    public readonly b64v2 EqualsVectorNot(long2 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(~Vector128.Equals(vector, other.vector).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(~Vector128.Equals(vector, other.vector).AsUInt64());
         return new(x != other.x, y != other.y);
-        #endif // NET8_0_OR_GREATER
     }
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<long2, long2, bool>.operator ==(long2 left, long2 right) => left.Equals(right);
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<long2, long2, bool>.operator !=(long2 left, long2 right) => !left.Equals(right);
-    #endif
+
 
     [MethodImpl(256 | 512)]
     public static b64v2 operator ==(long2 left, long2 right) => left.EqualsVector(right);
@@ -1424,73 +1237,60 @@ public partial struct long2 : IEquatable<long2>
 #region long3
 
 public partial struct long3 : IEquatable<long3>
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<long3, long3, bool>
     , IEqualityOperators<long3, long3, b64v3>
-    #endif
 {
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public bool Equals(long3 other) => EqualsAll(other);
+    public readonly bool Equals(long3 other) => EqualsAll(other);
     [MethodImpl(256 | 512)]
-    public override bool Equals(object? obj) => obj is long3 other && Equals(other);
+    public readonly override bool Equals(object? obj) => obj is long3 other && Equals(other);
     [MethodImpl(256 | 512)]
-    public override int GetHashCode() 
+    public readonly override int GetHashCode() 
     {
-        #if NET8_0_OR_GREATER
-        return vector.GetHashCode();
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return vector.GetHashCode();
         return HashCode.Combine(x, y, z);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAll(long3 other)
+    public readonly bool EqualsAll(long3 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).all();
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.EqualsAll(vector, other.vector);
         return x == other.x && y == other.y && z == other.z;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAny(long3 other)
+    public readonly bool EqualsAny(long3 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).any();
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.EqualsAny(vector, other.vector);
         return x == other.x || y == other.y || z == other.z;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b64v3 EqualsVector(long3 other)
+    public readonly b64v3 EqualsVector(long3 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.Equals(vector, other.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.Equals(vector, other.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         return new(x == other.x, y == other.y, z == other.z);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b64v3 EqualsVectorNot(long3 other)
+    public readonly b64v3 EqualsVectorNot(long3 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(~Vector256.Equals(vector, other.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(~Vector256.Equals(vector, other.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         return new(x != other.x, y != other.y, z != other.z);
-        #endif // NET8_0_OR_GREATER
     }
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<long3, long3, bool>.operator ==(long3 left, long3 right) => left.Equals(right);
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<long3, long3, bool>.operator !=(long3 left, long3 right) => !left.Equals(right);
-    #endif
+
 
     [MethodImpl(256 | 512)]
     public static b64v3 operator ==(long3 left, long3 right) => left.EqualsVector(right);
@@ -1505,73 +1305,60 @@ public partial struct long3 : IEquatable<long3>
 #region long4
 
 public partial struct long4 : IEquatable<long4>
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<long4, long4, bool>
     , IEqualityOperators<long4, long4, b64v4>
-    #endif
 {
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public bool Equals(long4 other) => EqualsAll(other);
+    public readonly bool Equals(long4 other) => EqualsAll(other);
     [MethodImpl(256 | 512)]
-    public override bool Equals(object? obj) => obj is long4 other && Equals(other);
+    public readonly override bool Equals(object? obj) => obj is long4 other && Equals(other);
     [MethodImpl(256 | 512)]
-    public override int GetHashCode() 
+    public readonly override int GetHashCode() 
     {
-        #if NET8_0_OR_GREATER
-        return vector.GetHashCode();
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return vector.GetHashCode();
         return HashCode.Combine(x, y, z, w);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAll(long4 other)
+    public readonly bool EqualsAll(long4 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).all();
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.EqualsAll(vector, other.vector);
         return x == other.x && y == other.y && z == other.z && w == other.w;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAny(long4 other)
+    public readonly bool EqualsAny(long4 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).any();
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.EqualsAny(vector, other.vector);
         return x == other.x || y == other.y || z == other.z || w == other.w;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b64v4 EqualsVector(long4 other)
+    public readonly b64v4 EqualsVector(long4 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.Equals(vector, other.vector).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.Equals(vector, other.vector).AsUInt64());
         return new(x == other.x, y == other.y, z == other.z, w == other.w);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b64v4 EqualsVectorNot(long4 other)
+    public readonly b64v4 EqualsVectorNot(long4 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(~Vector256.Equals(vector, other.vector).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(~Vector256.Equals(vector, other.vector).AsUInt64());
         return new(x != other.x, y != other.y, z != other.z, w != other.w);
-        #endif // NET8_0_OR_GREATER
     }
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<long4, long4, bool>.operator ==(long4 left, long4 right) => left.Equals(right);
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<long4, long4, bool>.operator !=(long4 left, long4 right) => !left.Equals(right);
-    #endif
+
 
     [MethodImpl(256 | 512)]
     public static b64v4 operator ==(long4 left, long4 right) => left.EqualsVector(right);
@@ -1586,73 +1373,60 @@ public partial struct long4 : IEquatable<long4>
 #region ulong2
 
 public partial struct ulong2 : IEquatable<ulong2>
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<ulong2, ulong2, bool>
     , IEqualityOperators<ulong2, ulong2, b64v2>
-    #endif
 {
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public bool Equals(ulong2 other) => EqualsAll(other);
+    public readonly bool Equals(ulong2 other) => EqualsAll(other);
     [MethodImpl(256 | 512)]
-    public override bool Equals(object? obj) => obj is ulong2 other && Equals(other);
+    public readonly override bool Equals(object? obj) => obj is ulong2 other && Equals(other);
     [MethodImpl(256 | 512)]
-    public override int GetHashCode() 
+    public readonly override int GetHashCode() 
     {
-        #if NET8_0_OR_GREATER
-        return vector.GetHashCode();
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return vector.GetHashCode();
         return HashCode.Combine(x, y);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAll(ulong2 other)
+    public readonly bool EqualsAll(ulong2 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).all();
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.EqualsAll(vector, other.vector);
         return x == other.x && y == other.y;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAny(ulong2 other)
+    public readonly bool EqualsAny(ulong2 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).any();
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.EqualsAny(vector, other.vector);
         return x == other.x || y == other.y;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b64v2 EqualsVector(ulong2 other)
+    public readonly b64v2 EqualsVector(ulong2 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Equals(vector, other.vector).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Equals(vector, other.vector).AsUInt64());
         return new(x == other.x, y == other.y);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b64v2 EqualsVectorNot(ulong2 other)
+    public readonly b64v2 EqualsVectorNot(ulong2 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(~Vector128.Equals(vector, other.vector).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(~Vector128.Equals(vector, other.vector).AsUInt64());
         return new(x != other.x, y != other.y);
-        #endif // NET8_0_OR_GREATER
     }
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<ulong2, ulong2, bool>.operator ==(ulong2 left, ulong2 right) => left.Equals(right);
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<ulong2, ulong2, bool>.operator !=(ulong2 left, ulong2 right) => !left.Equals(right);
-    #endif
+
 
     [MethodImpl(256 | 512)]
     public static b64v2 operator ==(ulong2 left, ulong2 right) => left.EqualsVector(right);
@@ -1667,73 +1441,60 @@ public partial struct ulong2 : IEquatable<ulong2>
 #region ulong3
 
 public partial struct ulong3 : IEquatable<ulong3>
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<ulong3, ulong3, bool>
     , IEqualityOperators<ulong3, ulong3, b64v3>
-    #endif
 {
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public bool Equals(ulong3 other) => EqualsAll(other);
+    public readonly bool Equals(ulong3 other) => EqualsAll(other);
     [MethodImpl(256 | 512)]
-    public override bool Equals(object? obj) => obj is ulong3 other && Equals(other);
+    public readonly override bool Equals(object? obj) => obj is ulong3 other && Equals(other);
     [MethodImpl(256 | 512)]
-    public override int GetHashCode() 
+    public readonly override int GetHashCode() 
     {
-        #if NET8_0_OR_GREATER
-        return vector.GetHashCode();
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return vector.GetHashCode();
         return HashCode.Combine(x, y, z);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAll(ulong3 other)
+    public readonly bool EqualsAll(ulong3 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).all();
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.EqualsAll(vector, other.vector);
         return x == other.x && y == other.y && z == other.z;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAny(ulong3 other)
+    public readonly bool EqualsAny(ulong3 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).any();
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.EqualsAny(vector, other.vector);
         return x == other.x || y == other.y || z == other.z;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b64v3 EqualsVector(ulong3 other)
+    public readonly b64v3 EqualsVector(ulong3 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.Equals(vector, other.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.Equals(vector, other.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         return new(x == other.x, y == other.y, z == other.z);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b64v3 EqualsVectorNot(ulong3 other)
+    public readonly b64v3 EqualsVectorNot(ulong3 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(~Vector256.Equals(vector, other.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(~Vector256.Equals(vector, other.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         return new(x != other.x, y != other.y, z != other.z);
-        #endif // NET8_0_OR_GREATER
     }
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<ulong3, ulong3, bool>.operator ==(ulong3 left, ulong3 right) => left.Equals(right);
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<ulong3, ulong3, bool>.operator !=(ulong3 left, ulong3 right) => !left.Equals(right);
-    #endif
+
 
     [MethodImpl(256 | 512)]
     public static b64v3 operator ==(ulong3 left, ulong3 right) => left.EqualsVector(right);
@@ -1748,73 +1509,60 @@ public partial struct ulong3 : IEquatable<ulong3>
 #region ulong4
 
 public partial struct ulong4 : IEquatable<ulong4>
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<ulong4, ulong4, bool>
     , IEqualityOperators<ulong4, ulong4, b64v4>
-    #endif
 {
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public bool Equals(ulong4 other) => EqualsAll(other);
+    public readonly bool Equals(ulong4 other) => EqualsAll(other);
     [MethodImpl(256 | 512)]
-    public override bool Equals(object? obj) => obj is ulong4 other && Equals(other);
+    public readonly override bool Equals(object? obj) => obj is ulong4 other && Equals(other);
     [MethodImpl(256 | 512)]
-    public override int GetHashCode() 
+    public readonly override int GetHashCode() 
     {
-        #if NET8_0_OR_GREATER
-        return vector.GetHashCode();
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return vector.GetHashCode();
         return HashCode.Combine(x, y, z, w);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAll(ulong4 other)
+    public readonly bool EqualsAll(ulong4 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).all();
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.EqualsAll(vector, other.vector);
         return x == other.x && y == other.y && z == other.z && w == other.w;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAny(ulong4 other)
+    public readonly bool EqualsAny(ulong4 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).any();
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.EqualsAny(vector, other.vector);
         return x == other.x || y == other.y || z == other.z || w == other.w;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b64v4 EqualsVector(ulong4 other)
+    public readonly b64v4 EqualsVector(ulong4 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.Equals(vector, other.vector).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.Equals(vector, other.vector).AsUInt64());
         return new(x == other.x, y == other.y, z == other.z, w == other.w);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b64v4 EqualsVectorNot(ulong4 other)
+    public readonly b64v4 EqualsVectorNot(ulong4 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(~Vector256.Equals(vector, other.vector).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(~Vector256.Equals(vector, other.vector).AsUInt64());
         return new(x != other.x, y != other.y, z != other.z, w != other.w);
-        #endif // NET8_0_OR_GREATER
     }
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<ulong4, ulong4, bool>.operator ==(ulong4 left, ulong4 right) => left.Equals(right);
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<ulong4, ulong4, bool>.operator !=(ulong4 left, ulong4 right) => !left.Equals(right);
-    #endif
+
 
     [MethodImpl(256 | 512)]
     public static b64v4 operator ==(ulong4 left, ulong4 right) => left.EqualsVector(right);
@@ -1829,40 +1577,37 @@ public partial struct ulong4 : IEquatable<ulong4>
 #region decimal2
 
 public partial struct decimal2 : IEquatable<decimal2>
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<decimal2, decimal2, bool>
-    #endif
 {
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public bool Equals(decimal2 other) => EqualsAll(other);
+    public readonly bool Equals(decimal2 other) => EqualsAll(other);
     [MethodImpl(256 | 512)]
-    public override bool Equals(object? obj) => obj is decimal2 other && Equals(other);
+    public readonly override bool Equals(object? obj) => obj is decimal2 other && Equals(other);
     [MethodImpl(256 | 512)]
-    public override int GetHashCode() 
+    public readonly override int GetHashCode() 
     {
         return HashCode.Combine(x, y);
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAll(decimal2 other)
+    public readonly bool EqualsAll(decimal2 other)
     {
         return x == other.x && y == other.y;
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAny(decimal2 other)
+    public readonly bool EqualsAny(decimal2 other)
     {
         return x == other.x || y == other.y;
     }
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<decimal2, decimal2, bool>.operator ==(decimal2 left, decimal2 right) => left.Equals(right);
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<decimal2, decimal2, bool>.operator !=(decimal2 left, decimal2 right) => !left.Equals(right);
-    #endif
+
 
     #endregion
 }
@@ -1872,40 +1617,37 @@ public partial struct decimal2 : IEquatable<decimal2>
 #region decimal3
 
 public partial struct decimal3 : IEquatable<decimal3>
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<decimal3, decimal3, bool>
-    #endif
 {
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public bool Equals(decimal3 other) => EqualsAll(other);
+    public readonly bool Equals(decimal3 other) => EqualsAll(other);
     [MethodImpl(256 | 512)]
-    public override bool Equals(object? obj) => obj is decimal3 other && Equals(other);
+    public readonly override bool Equals(object? obj) => obj is decimal3 other && Equals(other);
     [MethodImpl(256 | 512)]
-    public override int GetHashCode() 
+    public readonly override int GetHashCode() 
     {
         return HashCode.Combine(x, y, z);
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAll(decimal3 other)
+    public readonly bool EqualsAll(decimal3 other)
     {
         return x == other.x && y == other.y && z == other.z;
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAny(decimal3 other)
+    public readonly bool EqualsAny(decimal3 other)
     {
         return x == other.x || y == other.y || z == other.z;
     }
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<decimal3, decimal3, bool>.operator ==(decimal3 left, decimal3 right) => left.Equals(right);
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<decimal3, decimal3, bool>.operator !=(decimal3 left, decimal3 right) => !left.Equals(right);
-    #endif
+
 
     #endregion
 }
@@ -1915,40 +1657,37 @@ public partial struct decimal3 : IEquatable<decimal3>
 #region decimal4
 
 public partial struct decimal4 : IEquatable<decimal4>
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<decimal4, decimal4, bool>
-    #endif
 {
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public bool Equals(decimal4 other) => EqualsAll(other);
+    public readonly bool Equals(decimal4 other) => EqualsAll(other);
     [MethodImpl(256 | 512)]
-    public override bool Equals(object? obj) => obj is decimal4 other && Equals(other);
+    public readonly override bool Equals(object? obj) => obj is decimal4 other && Equals(other);
     [MethodImpl(256 | 512)]
-    public override int GetHashCode() 
+    public readonly override int GetHashCode() 
     {
         return HashCode.Combine(x, y, z, w);
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAll(decimal4 other)
+    public readonly bool EqualsAll(decimal4 other)
     {
         return x == other.x && y == other.y && z == other.z && w == other.w;
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAny(decimal4 other)
+    public readonly bool EqualsAny(decimal4 other)
     {
         return x == other.x || y == other.y || z == other.z || w == other.w;
     }
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<decimal4, decimal4, bool>.operator ==(decimal4 left, decimal4 right) => left.Equals(right);
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<decimal4, decimal4, bool>.operator !=(decimal4 left, decimal4 right) => !left.Equals(right);
-    #endif
+
 
     #endregion
 }
@@ -1958,53 +1697,50 @@ public partial struct decimal4 : IEquatable<decimal4>
 #region half2
 
 public partial struct half2 : IEquatable<half2>
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<half2, half2, bool>
     , IEqualityOperators<half2, half2, b16v2>
-    #endif
 {
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public bool Equals(half2 other) => EqualsAll(other);
+    public readonly bool Equals(half2 other) => EqualsAll(other);
     [MethodImpl(256 | 512)]
-    public override bool Equals(object? obj) => obj is half2 other && Equals(other);
+    public readonly override bool Equals(object? obj) => obj is half2 other && Equals(other);
     [MethodImpl(256 | 512)]
-    public override int GetHashCode() 
+    public readonly override int GetHashCode() 
     {
         return HashCode.Combine(x, y);
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAll(half2 other)
+    public readonly bool EqualsAll(half2 other)
     {
         return x == other.x && y == other.y;
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAny(half2 other)
+    public readonly bool EqualsAny(half2 other)
     {
         return x == other.x || y == other.y;
     }
 
     [MethodImpl(256 | 512)]
-    public b16v2 EqualsVector(half2 other)
+    public readonly b16v2 EqualsVector(half2 other)
     {
         return new(x == other.x, y == other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public b16v2 EqualsVectorNot(half2 other)
+    public readonly b16v2 EqualsVectorNot(half2 other)
     {
         return new(x != other.x, y != other.y);
     }
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<half2, half2, bool>.operator ==(half2 left, half2 right) => left.Equals(right);
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<half2, half2, bool>.operator !=(half2 left, half2 right) => !left.Equals(right);
-    #endif
+
 
     [MethodImpl(256 | 512)]
     public static b16v2 operator ==(half2 left, half2 right) => left.EqualsVector(right);
@@ -2019,53 +1755,50 @@ public partial struct half2 : IEquatable<half2>
 #region half3
 
 public partial struct half3 : IEquatable<half3>
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<half3, half3, bool>
     , IEqualityOperators<half3, half3, b16v3>
-    #endif
 {
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public bool Equals(half3 other) => EqualsAll(other);
+    public readonly bool Equals(half3 other) => EqualsAll(other);
     [MethodImpl(256 | 512)]
-    public override bool Equals(object? obj) => obj is half3 other && Equals(other);
+    public readonly override bool Equals(object? obj) => obj is half3 other && Equals(other);
     [MethodImpl(256 | 512)]
-    public override int GetHashCode() 
+    public readonly override int GetHashCode() 
     {
         return HashCode.Combine(x, y, z);
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAll(half3 other)
+    public readonly bool EqualsAll(half3 other)
     {
         return x == other.x && y == other.y && z == other.z;
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAny(half3 other)
+    public readonly bool EqualsAny(half3 other)
     {
         return x == other.x || y == other.y || z == other.z;
     }
 
     [MethodImpl(256 | 512)]
-    public b16v3 EqualsVector(half3 other)
+    public readonly b16v3 EqualsVector(half3 other)
     {
         return new(x == other.x, y == other.y, z == other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public b16v3 EqualsVectorNot(half3 other)
+    public readonly b16v3 EqualsVectorNot(half3 other)
     {
         return new(x != other.x, y != other.y, z != other.z);
     }
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<half3, half3, bool>.operator ==(half3 left, half3 right) => left.Equals(right);
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<half3, half3, bool>.operator !=(half3 left, half3 right) => !left.Equals(right);
-    #endif
+
 
     [MethodImpl(256 | 512)]
     public static b16v3 operator ==(half3 left, half3 right) => left.EqualsVector(right);
@@ -2080,53 +1813,50 @@ public partial struct half3 : IEquatable<half3>
 #region half4
 
 public partial struct half4 : IEquatable<half4>
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<half4, half4, bool>
     , IEqualityOperators<half4, half4, b16v4>
-    #endif
 {
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public bool Equals(half4 other) => EqualsAll(other);
+    public readonly bool Equals(half4 other) => EqualsAll(other);
     [MethodImpl(256 | 512)]
-    public override bool Equals(object? obj) => obj is half4 other && Equals(other);
+    public readonly override bool Equals(object? obj) => obj is half4 other && Equals(other);
     [MethodImpl(256 | 512)]
-    public override int GetHashCode() 
+    public readonly override int GetHashCode() 
     {
         return HashCode.Combine(x, y, z, w);
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAll(half4 other)
+    public readonly bool EqualsAll(half4 other)
     {
         return x == other.x && y == other.y && z == other.z && w == other.w;
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAny(half4 other)
+    public readonly bool EqualsAny(half4 other)
     {
         return x == other.x || y == other.y || z == other.z || w == other.w;
     }
 
     [MethodImpl(256 | 512)]
-    public b16v4 EqualsVector(half4 other)
+    public readonly b16v4 EqualsVector(half4 other)
     {
         return new(x == other.x, y == other.y, z == other.z, w == other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public b16v4 EqualsVectorNot(half4 other)
+    public readonly b16v4 EqualsVectorNot(half4 other)
     {
         return new(x != other.x, y != other.y, z != other.z, w != other.w);
     }
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<half4, half4, bool>.operator ==(half4 left, half4 right) => left.Equals(right);
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<half4, half4, bool>.operator !=(half4 left, half4 right) => !left.Equals(right);
-    #endif
+
 
     [MethodImpl(256 | 512)]
     public static b16v4 operator ==(half4 left, half4 right) => left.EqualsVector(right);
@@ -2141,53 +1871,50 @@ public partial struct half4 : IEquatable<half4>
 #region b16v2
 
 public partial struct b16v2 : IEquatable<b16v2>
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<b16v2, b16v2, bool>
     , IEqualityOperators<b16v2, b16v2, b16v2>
-    #endif
 {
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public bool Equals(b16v2 other) => EqualsAll(other);
+    public readonly bool Equals(b16v2 other) => EqualsAll(other);
     [MethodImpl(256 | 512)]
-    public override bool Equals(object? obj) => obj is b16v2 other && Equals(other);
+    public readonly override bool Equals(object? obj) => obj is b16v2 other && Equals(other);
     [MethodImpl(256 | 512)]
-    public override int GetHashCode() 
+    public readonly override int GetHashCode() 
     {
         return HashCode.Combine(x, y);
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAll(b16v2 other)
+    public readonly bool EqualsAll(b16v2 other)
     {
         return x == other.x && y == other.y;
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAny(b16v2 other)
+    public readonly bool EqualsAny(b16v2 other)
     {
         return x == other.x || y == other.y;
     }
 
     [MethodImpl(256 | 512)]
-    public b16v2 EqualsVector(b16v2 other)
+    public readonly b16v2 EqualsVector(b16v2 other)
     {
         return new(x == other.x, y == other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public b16v2 EqualsVectorNot(b16v2 other)
+    public readonly b16v2 EqualsVectorNot(b16v2 other)
     {
         return new(x != other.x, y != other.y);
     }
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<b16v2, b16v2, bool>.operator ==(b16v2 left, b16v2 right) => left.Equals(right);
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<b16v2, b16v2, bool>.operator !=(b16v2 left, b16v2 right) => !left.Equals(right);
-    #endif
+
 
     [MethodImpl(256 | 512)]
     public static b16v2 operator ==(b16v2 left, b16v2 right) => left.EqualsVector(right);
@@ -2202,53 +1929,50 @@ public partial struct b16v2 : IEquatable<b16v2>
 #region b16v3
 
 public partial struct b16v3 : IEquatable<b16v3>
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<b16v3, b16v3, bool>
     , IEqualityOperators<b16v3, b16v3, b16v3>
-    #endif
 {
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public bool Equals(b16v3 other) => EqualsAll(other);
+    public readonly bool Equals(b16v3 other) => EqualsAll(other);
     [MethodImpl(256 | 512)]
-    public override bool Equals(object? obj) => obj is b16v3 other && Equals(other);
+    public readonly override bool Equals(object? obj) => obj is b16v3 other && Equals(other);
     [MethodImpl(256 | 512)]
-    public override int GetHashCode() 
+    public readonly override int GetHashCode() 
     {
         return HashCode.Combine(x, y, z);
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAll(b16v3 other)
+    public readonly bool EqualsAll(b16v3 other)
     {
         return x == other.x && y == other.y && z == other.z;
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAny(b16v3 other)
+    public readonly bool EqualsAny(b16v3 other)
     {
         return x == other.x || y == other.y || z == other.z;
     }
 
     [MethodImpl(256 | 512)]
-    public b16v3 EqualsVector(b16v3 other)
+    public readonly b16v3 EqualsVector(b16v3 other)
     {
         return new(x == other.x, y == other.y, z == other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public b16v3 EqualsVectorNot(b16v3 other)
+    public readonly b16v3 EqualsVectorNot(b16v3 other)
     {
         return new(x != other.x, y != other.y, z != other.z);
     }
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<b16v3, b16v3, bool>.operator ==(b16v3 left, b16v3 right) => left.Equals(right);
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<b16v3, b16v3, bool>.operator !=(b16v3 left, b16v3 right) => !left.Equals(right);
-    #endif
+
 
     [MethodImpl(256 | 512)]
     public static b16v3 operator ==(b16v3 left, b16v3 right) => left.EqualsVector(right);
@@ -2263,53 +1987,50 @@ public partial struct b16v3 : IEquatable<b16v3>
 #region b16v4
 
 public partial struct b16v4 : IEquatable<b16v4>
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<b16v4, b16v4, bool>
     , IEqualityOperators<b16v4, b16v4, b16v4>
-    #endif
 {
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public bool Equals(b16v4 other) => EqualsAll(other);
+    public readonly bool Equals(b16v4 other) => EqualsAll(other);
     [MethodImpl(256 | 512)]
-    public override bool Equals(object? obj) => obj is b16v4 other && Equals(other);
+    public readonly override bool Equals(object? obj) => obj is b16v4 other && Equals(other);
     [MethodImpl(256 | 512)]
-    public override int GetHashCode() 
+    public readonly override int GetHashCode() 
     {
         return HashCode.Combine(x, y, z, w);
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAll(b16v4 other)
+    public readonly bool EqualsAll(b16v4 other)
     {
         return x == other.x && y == other.y && z == other.z && w == other.w;
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAny(b16v4 other)
+    public readonly bool EqualsAny(b16v4 other)
     {
         return x == other.x || y == other.y || z == other.z || w == other.w;
     }
 
     [MethodImpl(256 | 512)]
-    public b16v4 EqualsVector(b16v4 other)
+    public readonly b16v4 EqualsVector(b16v4 other)
     {
         return new(x == other.x, y == other.y, z == other.z, w == other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public b16v4 EqualsVectorNot(b16v4 other)
+    public readonly b16v4 EqualsVectorNot(b16v4 other)
     {
         return new(x != other.x, y != other.y, z != other.z, w != other.w);
     }
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<b16v4, b16v4, bool>.operator ==(b16v4 left, b16v4 right) => left.Equals(right);
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<b16v4, b16v4, bool>.operator !=(b16v4 left, b16v4 right) => !left.Equals(right);
-    #endif
+
 
     [MethodImpl(256 | 512)]
     public static b16v4 operator ==(b16v4 left, b16v4 right) => left.EqualsVector(right);
@@ -2324,73 +2045,60 @@ public partial struct b16v4 : IEquatable<b16v4>
 #region b32v2
 
 public partial struct b32v2 : IEquatable<b32v2>
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<b32v2, b32v2, bool>
     , IEqualityOperators<b32v2, b32v2, b32v2>
-    #endif
 {
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public bool Equals(b32v2 other) => EqualsAll(other);
+    public readonly bool Equals(b32v2 other) => EqualsAll(other);
     [MethodImpl(256 | 512)]
-    public override bool Equals(object? obj) => obj is b32v2 other && Equals(other);
+    public readonly override bool Equals(object? obj) => obj is b32v2 other && Equals(other);
     [MethodImpl(256 | 512)]
-    public override int GetHashCode() 
+    public readonly override int GetHashCode() 
     {
-        #if NET8_0_OR_GREATER
-        return vector.GetHashCode();
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return vector.GetHashCode();
         return HashCode.Combine(x, y);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAll(b32v2 other)
+    public readonly bool EqualsAll(b32v2 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).all();
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.EqualsAll(vector, other.vector);
         return x == other.x && y == other.y;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAny(b32v2 other)
+    public readonly bool EqualsAny(b32v2 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).any();
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.EqualsAny(vector, other.vector);
         return x == other.x || y == other.y;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b32v2 EqualsVector(b32v2 other)
+    public readonly b32v2 EqualsVector(b32v2 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector64.Equals(vector, other.vector).AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(Vector64.Equals(vector, other.vector).AsUInt32());
         return new(x == other.x, y == other.y);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b32v2 EqualsVectorNot(b32v2 other)
+    public readonly b32v2 EqualsVectorNot(b32v2 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(~Vector64.Equals(vector, other.vector).AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(~Vector64.Equals(vector, other.vector).AsUInt32());
         return new(x != other.x, y != other.y);
-        #endif // NET8_0_OR_GREATER
     }
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<b32v2, b32v2, bool>.operator ==(b32v2 left, b32v2 right) => left.Equals(right);
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<b32v2, b32v2, bool>.operator !=(b32v2 left, b32v2 right) => !left.Equals(right);
-    #endif
+
 
     [MethodImpl(256 | 512)]
     public static b32v2 operator ==(b32v2 left, b32v2 right) => left.EqualsVector(right);
@@ -2405,73 +2113,60 @@ public partial struct b32v2 : IEquatable<b32v2>
 #region b32v3
 
 public partial struct b32v3 : IEquatable<b32v3>
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<b32v3, b32v3, bool>
     , IEqualityOperators<b32v3, b32v3, b32v3>
-    #endif
 {
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public bool Equals(b32v3 other) => EqualsAll(other);
+    public readonly bool Equals(b32v3 other) => EqualsAll(other);
     [MethodImpl(256 | 512)]
-    public override bool Equals(object? obj) => obj is b32v3 other && Equals(other);
+    public readonly override bool Equals(object? obj) => obj is b32v3 other && Equals(other);
     [MethodImpl(256 | 512)]
-    public override int GetHashCode() 
+    public readonly override int GetHashCode() 
     {
-        #if NET8_0_OR_GREATER
-        return vector.GetHashCode();
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return vector.GetHashCode();
         return HashCode.Combine(x, y, z);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAll(b32v3 other)
+    public readonly bool EqualsAll(b32v3 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).all();
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.EqualsAll(vector, other.vector);
         return x == other.x && y == other.y && z == other.z;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAny(b32v3 other)
+    public readonly bool EqualsAny(b32v3 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).any();
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.EqualsAny(vector, other.vector);
         return x == other.x || y == other.y || z == other.z;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b32v3 EqualsVector(b32v3 other)
+    public readonly b32v3 EqualsVector(b32v3 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Equals(vector, other.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Equals(vector, other.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         return new(x == other.x, y == other.y, z == other.z);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b32v3 EqualsVectorNot(b32v3 other)
+    public readonly b32v3 EqualsVectorNot(b32v3 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(~Vector128.Equals(vector, other.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(~Vector128.Equals(vector, other.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         return new(x != other.x, y != other.y, z != other.z);
-        #endif // NET8_0_OR_GREATER
     }
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<b32v3, b32v3, bool>.operator ==(b32v3 left, b32v3 right) => left.Equals(right);
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<b32v3, b32v3, bool>.operator !=(b32v3 left, b32v3 right) => !left.Equals(right);
-    #endif
+
 
     [MethodImpl(256 | 512)]
     public static b32v3 operator ==(b32v3 left, b32v3 right) => left.EqualsVector(right);
@@ -2486,73 +2181,60 @@ public partial struct b32v3 : IEquatable<b32v3>
 #region b32v4
 
 public partial struct b32v4 : IEquatable<b32v4>
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<b32v4, b32v4, bool>
     , IEqualityOperators<b32v4, b32v4, b32v4>
-    #endif
 {
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public bool Equals(b32v4 other) => EqualsAll(other);
+    public readonly bool Equals(b32v4 other) => EqualsAll(other);
     [MethodImpl(256 | 512)]
-    public override bool Equals(object? obj) => obj is b32v4 other && Equals(other);
+    public readonly override bool Equals(object? obj) => obj is b32v4 other && Equals(other);
     [MethodImpl(256 | 512)]
-    public override int GetHashCode() 
+    public readonly override int GetHashCode() 
     {
-        #if NET8_0_OR_GREATER
-        return vector.GetHashCode();
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return vector.GetHashCode();
         return HashCode.Combine(x, y, z, w);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAll(b32v4 other)
+    public readonly bool EqualsAll(b32v4 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).all();
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.EqualsAll(vector, other.vector);
         return x == other.x && y == other.y && z == other.z && w == other.w;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAny(b32v4 other)
+    public readonly bool EqualsAny(b32v4 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).any();
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.EqualsAny(vector, other.vector);
         return x == other.x || y == other.y || z == other.z || w == other.w;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b32v4 EqualsVector(b32v4 other)
+    public readonly b32v4 EqualsVector(b32v4 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Equals(vector, other.vector).AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Equals(vector, other.vector).AsUInt32());
         return new(x == other.x, y == other.y, z == other.z, w == other.w);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b32v4 EqualsVectorNot(b32v4 other)
+    public readonly b32v4 EqualsVectorNot(b32v4 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(~Vector128.Equals(vector, other.vector).AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(~Vector128.Equals(vector, other.vector).AsUInt32());
         return new(x != other.x, y != other.y, z != other.z, w != other.w);
-        #endif // NET8_0_OR_GREATER
     }
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<b32v4, b32v4, bool>.operator ==(b32v4 left, b32v4 right) => left.Equals(right);
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<b32v4, b32v4, bool>.operator !=(b32v4 left, b32v4 right) => !left.Equals(right);
-    #endif
+
 
     [MethodImpl(256 | 512)]
     public static b32v4 operator ==(b32v4 left, b32v4 right) => left.EqualsVector(right);
@@ -2567,73 +2249,60 @@ public partial struct b32v4 : IEquatable<b32v4>
 #region b64v2
 
 public partial struct b64v2 : IEquatable<b64v2>
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<b64v2, b64v2, bool>
     , IEqualityOperators<b64v2, b64v2, b64v2>
-    #endif
 {
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public bool Equals(b64v2 other) => EqualsAll(other);
+    public readonly bool Equals(b64v2 other) => EqualsAll(other);
     [MethodImpl(256 | 512)]
-    public override bool Equals(object? obj) => obj is b64v2 other && Equals(other);
+    public readonly override bool Equals(object? obj) => obj is b64v2 other && Equals(other);
     [MethodImpl(256 | 512)]
-    public override int GetHashCode() 
+    public readonly override int GetHashCode() 
     {
-        #if NET8_0_OR_GREATER
-        return vector.GetHashCode();
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return vector.GetHashCode();
         return HashCode.Combine(x, y);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAll(b64v2 other)
+    public readonly bool EqualsAll(b64v2 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).all();
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.EqualsAll(vector, other.vector);
         return x == other.x && y == other.y;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAny(b64v2 other)
+    public readonly bool EqualsAny(b64v2 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).any();
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.EqualsAny(vector, other.vector);
         return x == other.x || y == other.y;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b64v2 EqualsVector(b64v2 other)
+    public readonly b64v2 EqualsVector(b64v2 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Equals(vector, other.vector).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Equals(vector, other.vector).AsUInt64());
         return new(x == other.x, y == other.y);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b64v2 EqualsVectorNot(b64v2 other)
+    public readonly b64v2 EqualsVectorNot(b64v2 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(~Vector128.Equals(vector, other.vector).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(~Vector128.Equals(vector, other.vector).AsUInt64());
         return new(x != other.x, y != other.y);
-        #endif // NET8_0_OR_GREATER
     }
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<b64v2, b64v2, bool>.operator ==(b64v2 left, b64v2 right) => left.Equals(right);
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<b64v2, b64v2, bool>.operator !=(b64v2 left, b64v2 right) => !left.Equals(right);
-    #endif
+
 
     [MethodImpl(256 | 512)]
     public static b64v2 operator ==(b64v2 left, b64v2 right) => left.EqualsVector(right);
@@ -2648,73 +2317,60 @@ public partial struct b64v2 : IEquatable<b64v2>
 #region b64v3
 
 public partial struct b64v3 : IEquatable<b64v3>
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<b64v3, b64v3, bool>
     , IEqualityOperators<b64v3, b64v3, b64v3>
-    #endif
 {
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public bool Equals(b64v3 other) => EqualsAll(other);
+    public readonly bool Equals(b64v3 other) => EqualsAll(other);
     [MethodImpl(256 | 512)]
-    public override bool Equals(object? obj) => obj is b64v3 other && Equals(other);
+    public readonly override bool Equals(object? obj) => obj is b64v3 other && Equals(other);
     [MethodImpl(256 | 512)]
-    public override int GetHashCode() 
+    public readonly override int GetHashCode() 
     {
-        #if NET8_0_OR_GREATER
-        return vector.GetHashCode();
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return vector.GetHashCode();
         return HashCode.Combine(x, y, z);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAll(b64v3 other)
+    public readonly bool EqualsAll(b64v3 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).all();
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.EqualsAll(vector, other.vector);
         return x == other.x && y == other.y && z == other.z;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAny(b64v3 other)
+    public readonly bool EqualsAny(b64v3 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).any();
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.EqualsAny(vector, other.vector);
         return x == other.x || y == other.y || z == other.z;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b64v3 EqualsVector(b64v3 other)
+    public readonly b64v3 EqualsVector(b64v3 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.Equals(vector, other.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.Equals(vector, other.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         return new(x == other.x, y == other.y, z == other.z);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b64v3 EqualsVectorNot(b64v3 other)
+    public readonly b64v3 EqualsVectorNot(b64v3 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(~Vector256.Equals(vector, other.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(~Vector256.Equals(vector, other.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         return new(x != other.x, y != other.y, z != other.z);
-        #endif // NET8_0_OR_GREATER
     }
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<b64v3, b64v3, bool>.operator ==(b64v3 left, b64v3 right) => left.Equals(right);
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<b64v3, b64v3, bool>.operator !=(b64v3 left, b64v3 right) => !left.Equals(right);
-    #endif
+
 
     [MethodImpl(256 | 512)]
     public static b64v3 operator ==(b64v3 left, b64v3 right) => left.EqualsVector(right);
@@ -2729,73 +2385,60 @@ public partial struct b64v3 : IEquatable<b64v3>
 #region b64v4
 
 public partial struct b64v4 : IEquatable<b64v4>
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<b64v4, b64v4, bool>
     , IEqualityOperators<b64v4, b64v4, b64v4>
-    #endif
 {
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public bool Equals(b64v4 other) => EqualsAll(other);
+    public readonly bool Equals(b64v4 other) => EqualsAll(other);
     [MethodImpl(256 | 512)]
-    public override bool Equals(object? obj) => obj is b64v4 other && Equals(other);
+    public readonly override bool Equals(object? obj) => obj is b64v4 other && Equals(other);
     [MethodImpl(256 | 512)]
-    public override int GetHashCode() 
+    public readonly override int GetHashCode() 
     {
-        #if NET8_0_OR_GREATER
-        return vector.GetHashCode();
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return vector.GetHashCode();
         return HashCode.Combine(x, y, z, w);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAll(b64v4 other)
+    public readonly bool EqualsAll(b64v4 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).all();
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.EqualsAll(vector, other.vector);
         return x == other.x && y == other.y && z == other.z && w == other.w;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAny(b64v4 other)
+    public readonly bool EqualsAny(b64v4 other)
     {
-        #if NET8_0_OR_GREATER
-        return (this == other).any();
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.EqualsAny(vector, other.vector);
         return x == other.x || y == other.y || z == other.z || w == other.w;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b64v4 EqualsVector(b64v4 other)
+    public readonly b64v4 EqualsVector(b64v4 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.Equals(vector, other.vector).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.Equals(vector, other.vector).AsUInt64());
         return new(x == other.x, y == other.y, z == other.z, w == other.w);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public b64v4 EqualsVectorNot(b64v4 other)
+    public readonly b64v4 EqualsVectorNot(b64v4 other)
     {
-        #if NET8_0_OR_GREATER
-        return new(~Vector256.Equals(vector, other.vector).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(~Vector256.Equals(vector, other.vector).AsUInt64());
         return new(x != other.x, y != other.y, z != other.z, w != other.w);
-        #endif // NET8_0_OR_GREATER
     }
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<b64v4, b64v4, bool>.operator ==(b64v4 left, b64v4 right) => left.Equals(right);
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<b64v4, b64v4, bool>.operator !=(b64v4 left, b64v4 right) => !left.Equals(right);
-    #endif
+
 
     [MethodImpl(256 | 512)]
     public static b64v4 operator ==(b64v4 left, b64v4 right) => left.EqualsVector(right);

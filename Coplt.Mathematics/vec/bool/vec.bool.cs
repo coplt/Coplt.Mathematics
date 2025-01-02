@@ -24,23 +24,24 @@ public partial struct b16v2
     }
 }
 
+[Ex]
 public static partial class math
 {
 
     [MethodImpl(256 | 512)]
-    public static bool all(this b16v2 v)
+    public static bool all([This] b16v2 v)
     {
         return v.x && v.y;
     }
 
     [MethodImpl(256 | 512)]
-    public static bool any(this b16v2 v)
+    public static bool any([This] b16v2 v)
     {
         return v.x || v.y;
     }
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse(this b16v2 v)
+    public static bool allFalse([This] b16v2 v)
     {
         return !v.x && !v.y;
     }
@@ -70,23 +71,24 @@ public partial struct b16v3
     }
 }
 
+[Ex]
 public static partial class math
 {
 
     [MethodImpl(256 | 512)]
-    public static bool all(this b16v3 v)
+    public static bool all([This] b16v3 v)
     {
         return v.x && v.y && v.z;
     }
 
     [MethodImpl(256 | 512)]
-    public static bool any(this b16v3 v)
+    public static bool any([This] b16v3 v)
     {
         return v.x || v.y || v.z;
     }
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse(this b16v3 v)
+    public static bool allFalse([This] b16v3 v)
     {
         return !v.x && !v.y && !v.z;
     }
@@ -116,23 +118,24 @@ public partial struct b16v4
     }
 }
 
+[Ex]
 public static partial class math
 {
 
     [MethodImpl(256 | 512)]
-    public static bool all(this b16v4 v)
+    public static bool all([This] b16v4 v)
     {
         return v.x && v.y && v.z && v.w;
     }
 
     [MethodImpl(256 | 512)]
-    public static bool any(this b16v4 v)
+    public static bool any([This] b16v4 v)
     {
         return v.x || v.y || v.z || v.w;
     }
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse(this b16v4 v)
+    public static bool allFalse([This] b16v4 v)
     {
         return !v.x && !v.y && !v.z && !v.w;
     }
@@ -158,45 +161,38 @@ public partial struct b32v2
     [MethodImpl(256 | 512)]
     public static b32v2 operator !(b32v2 self)
     {
-        #if NET8_0_OR_GREATER
-        return new((~self.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new((~self.vector));
         return new(!self.x, !self.y);
-        #endif // NET8_0_OR_GREATER
     }
 }
 
+[Ex]
 public static partial class math
 {
 
     [MethodImpl(256 | 512)]
-    public static bool all(this b32v2 v)
+    public static bool all([This] b32v2 v)
     {
-        #if NET8_0_OR_GREATER
-        return v.vector.ExtractMostSignificantBits() >= 0xF;
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return v.vector.ExtractMostSignificantBits() >= 0xF;
         return v.x && v.y;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static bool any(this b32v2 v)
+    public static bool any([This] b32v2 v)
     {
-        #if NET8_0_OR_GREATER
-        return v.vector.ExtractMostSignificantBits() != 0;
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return v.vector.ExtractMostSignificantBits() != 0;
         return v.x || v.y;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse(this b32v2 v)
+    public static bool allFalse([This] b32v2 v)
     {
-        #if NET8_0_OR_GREATER
-        return v.vector.ExtractMostSignificantBits() == 0;
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return v.vector.ExtractMostSignificantBits() == 0;
         return !v.x && !v.y;
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -220,45 +216,38 @@ public partial struct b32v3
     [MethodImpl(256 | 512)]
     public static b32v3 operator !(b32v3 self)
     {
-        #if NET8_0_OR_GREATER
-        return new((~self.vector) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new((~self.vector) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         return new(!self.x, !self.y, !self.z);
-        #endif // NET8_0_OR_GREATER
     }
 }
 
+[Ex]
 public static partial class math
 {
 
     [MethodImpl(256 | 512)]
-    public static bool all(this b32v3 v)
+    public static bool all([This] b32v3 v)
     {
-        #if NET8_0_OR_GREATER
-        return v.vector.ExtractMostSignificantBits() >= 0x7;
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return v.vector.ExtractMostSignificantBits() >= 0x7;
         return v.x && v.y && v.z;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static bool any(this b32v3 v)
+    public static bool any([This] b32v3 v)
     {
-        #if NET8_0_OR_GREATER
-        return v.vector.ExtractMostSignificantBits() != 0;
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return v.vector.ExtractMostSignificantBits() != 0;
         return v.x || v.y || v.z;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse(this b32v3 v)
+    public static bool allFalse([This] b32v3 v)
     {
-        #if NET8_0_OR_GREATER
-        return v.vector.ExtractMostSignificantBits() == 0;
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return v.vector.ExtractMostSignificantBits() == 0;
         return !v.x && !v.y && !v.z;
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -282,45 +271,38 @@ public partial struct b32v4
     [MethodImpl(256 | 512)]
     public static b32v4 operator !(b32v4 self)
     {
-        #if NET8_0_OR_GREATER
-        return new((~self.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new((~self.vector));
         return new(!self.x, !self.y, !self.z, !self.w);
-        #endif // NET8_0_OR_GREATER
     }
 }
 
+[Ex]
 public static partial class math
 {
 
     [MethodImpl(256 | 512)]
-    public static bool all(this b32v4 v)
+    public static bool all([This] b32v4 v)
     {
-        #if NET8_0_OR_GREATER
-        return v.vector.ExtractMostSignificantBits() >= 0xF;
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return v.vector.ExtractMostSignificantBits() >= 0xF;
         return v.x && v.y && v.z && v.w;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static bool any(this b32v4 v)
+    public static bool any([This] b32v4 v)
     {
-        #if NET8_0_OR_GREATER
-        return v.vector.ExtractMostSignificantBits() != 0;
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return v.vector.ExtractMostSignificantBits() != 0;
         return v.x || v.y || v.z || v.w;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse(this b32v4 v)
+    public static bool allFalse([This] b32v4 v)
     {
-        #if NET8_0_OR_GREATER
-        return v.vector.ExtractMostSignificantBits() == 0;
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return v.vector.ExtractMostSignificantBits() == 0;
         return !v.x && !v.y && !v.z && !v.w;
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -344,45 +326,38 @@ public partial struct b64v2
     [MethodImpl(256 | 512)]
     public static b64v2 operator !(b64v2 self)
     {
-        #if NET8_0_OR_GREATER
-        return new((~self.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new((~self.vector));
         return new(!self.x, !self.y);
-        #endif // NET8_0_OR_GREATER
     }
 }
 
+[Ex]
 public static partial class math
 {
 
     [MethodImpl(256 | 512)]
-    public static bool all(this b64v2 v)
+    public static bool all([This] b64v2 v)
     {
-        #if NET8_0_OR_GREATER
-        return v.vector.ExtractMostSignificantBits() >= 0xF;
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return v.vector.ExtractMostSignificantBits() >= 0xF;
         return v.x && v.y;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static bool any(this b64v2 v)
+    public static bool any([This] b64v2 v)
     {
-        #if NET8_0_OR_GREATER
-        return v.vector.ExtractMostSignificantBits() != 0;
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return v.vector.ExtractMostSignificantBits() != 0;
         return v.x || v.y;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse(this b64v2 v)
+    public static bool allFalse([This] b64v2 v)
     {
-        #if NET8_0_OR_GREATER
-        return v.vector.ExtractMostSignificantBits() == 0;
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return v.vector.ExtractMostSignificantBits() == 0;
         return !v.x && !v.y;
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -406,45 +381,38 @@ public partial struct b64v3
     [MethodImpl(256 | 512)]
     public static b64v3 operator !(b64v3 self)
     {
-        #if NET8_0_OR_GREATER
-        return new((~self.vector) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new((~self.vector) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         return new(!self.x, !self.y, !self.z);
-        #endif // NET8_0_OR_GREATER
     }
 }
 
+[Ex]
 public static partial class math
 {
 
     [MethodImpl(256 | 512)]
-    public static bool all(this b64v3 v)
+    public static bool all([This] b64v3 v)
     {
-        #if NET8_0_OR_GREATER
-        return v.vector.ExtractMostSignificantBits() >= 0x7;
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return v.vector.ExtractMostSignificantBits() >= 0x7;
         return v.x && v.y && v.z;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static bool any(this b64v3 v)
+    public static bool any([This] b64v3 v)
     {
-        #if NET8_0_OR_GREATER
-        return v.vector.ExtractMostSignificantBits() != 0;
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return v.vector.ExtractMostSignificantBits() != 0;
         return v.x || v.y || v.z;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse(this b64v3 v)
+    public static bool allFalse([This] b64v3 v)
     {
-        #if NET8_0_OR_GREATER
-        return v.vector.ExtractMostSignificantBits() == 0;
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return v.vector.ExtractMostSignificantBits() == 0;
         return !v.x && !v.y && !v.z;
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -468,45 +436,38 @@ public partial struct b64v4
     [MethodImpl(256 | 512)]
     public static b64v4 operator !(b64v4 self)
     {
-        #if NET8_0_OR_GREATER
-        return new((~self.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new((~self.vector));
         return new(!self.x, !self.y, !self.z, !self.w);
-        #endif // NET8_0_OR_GREATER
     }
 }
 
+[Ex]
 public static partial class math
 {
 
     [MethodImpl(256 | 512)]
-    public static bool all(this b64v4 v)
+    public static bool all([This] b64v4 v)
     {
-        #if NET8_0_OR_GREATER
-        return v.vector.ExtractMostSignificantBits() >= 0xF;
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return v.vector.ExtractMostSignificantBits() >= 0xF;
         return v.x && v.y && v.z && v.w;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static bool any(this b64v4 v)
+    public static bool any([This] b64v4 v)
     {
-        #if NET8_0_OR_GREATER
-        return v.vector.ExtractMostSignificantBits() != 0;
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return v.vector.ExtractMostSignificantBits() != 0;
         return v.x || v.y || v.z || v.w;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse(this b64v4 v)
+    public static bool allFalse([This] b64v4 v)
     {
-        #if NET8_0_OR_GREATER
-        return v.vector.ExtractMostSignificantBits() == 0;
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return v.vector.ExtractMostSignificantBits() == 0;
         return !v.x && !v.y && !v.z && !v.w;
-        #endif // NET8_0_OR_GREATER
     }
 }
 

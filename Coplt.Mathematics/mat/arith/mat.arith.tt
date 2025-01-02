@@ -93,30 +93,31 @@ public partial struct <#= typeName #>
     public static <#= typeName #> operator ++(<#= typeName #> a) => a + One;
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> abs(this <#= typeName #> a) => 
+    public static <#= typeName #> abs([This] <#= typeName #> a) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.abs()")) #>);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> sign(this <#= typeName #> a) => 
+    public static <#= typeName #> sign([This] <#= typeName #> a) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.sign()")) #>);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> min(this <#= typeName #> a, <#= typeName #> b) => 
+    public static <#= typeName #> min([This] <#= typeName #> a, <#= typeName #> b) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.min(b.c{i})")) #>);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> max(this <#= typeName #> a, <#= typeName #> b) => 
+    public static <#= typeName #> max([This] <#= typeName #> a, <#= typeName #> b) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.max(b.c{i})")) #>);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> clamp(this <#= typeName #> v, <#= typeName #> min, <#= typeName #> max) => 
+    public static <#= typeName #> clamp([This] <#= typeName #> v, <#= typeName #> min, <#= typeName #> max) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"v.c{i}.clamp(min.c{i}, max.c{i})")) #>);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> square(this <#= typeName #> a) => a * a;
+    public static <#= typeName #> square([This] <#= typeName #> a) => a * a;
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -126,7 +127,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> fma(this <#= typeName #> a, <#= typeName #> b, <#= typeName #> c) => 
+    public static <#= typeName #> fma([This] <#= typeName #> a, <#= typeName #> b, <#= typeName #> c) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.fma(b.c{i}, c.c{i})")) #>);
 
     /// <summary>
@@ -137,7 +138,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> fms(this <#= typeName #> a, <#= typeName #> b, <#= typeName #> c) => 
+    public static <#= typeName #> fms([This] <#= typeName #> a, <#= typeName #> b, <#= typeName #> c) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.fms(b.c{i}, c.c{i})")) #>);
 
     /// <summary>
@@ -148,7 +149,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> fnma(this <#= typeName #> a, <#= typeName #> b, <#= typeName #> c) => 
+    public static <#= typeName #> fnma([This] <#= typeName #> a, <#= typeName #> b, <#= typeName #> c) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.fnma(b.c{i}, c.c{i})")) #>);
 
     /// <summary>
@@ -159,7 +160,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> fsm(this <#= typeName #> c, <#= typeName #> a, <#= typeName #> b) => fnma(a, b, c);
+    public static <#= typeName #> fsm([This] <#= typeName #> c, <#= typeName #> a, <#= typeName #> b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -169,7 +170,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> fam(this <#= typeName #> c, <#= typeName #> a, <#= typeName #> b) => fma(a, b, c);
+    public static <#= typeName #> fam([This] <#= typeName #> c, <#= typeName #> a, <#= typeName #> b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -179,18 +180,18 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> mad(this <#= typeName #> a, <#= typeName #> b, <#= typeName #> c) => fma(a, b, c);
+    public static <#= typeName #> mad([This] <#= typeName #> a, <#= typeName #> b, <#= typeName #> c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static <#= vecTypeNameM #> csum(this <#= typeName #> a) => 
+    public static <#= vecTypeNameM #> csum([This] <#= typeName #> a) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.csum()")) #>);
 
     [MethodImpl(256 | 512)]
-    public static <#= vecTypeNameM #> cmin(this <#= typeName #> a) => 
+    public static <#= vecTypeNameM #> cmin([This] <#= typeName #> a) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.cmin()")) #>);
 
     [MethodImpl(256 | 512)]
-    public static <#= vecTypeNameM #> cmax(this <#= typeName #> a) => 
+    public static <#= vecTypeNameM #> cmax([This] <#= typeName #> a) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.cmax()")) #>);
 }
 

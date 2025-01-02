@@ -9,47 +9,44 @@ public partial struct float3
     [MethodImpl(256 | 512)]
     public float3(float2 xy, float z)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.Create(xy.vector, Vector64.Create(z, default));
-        #else // NET8_0_OR_GREATER
-        this.x = xy.x;
-        this.y = xy.y;
-        this.z = z;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public float3(float x, float2 yz)
     {
-        #if NET8_0_OR_GREATER
-        vector = Vector128.Shuffle(
-            Vector128.Create(Vector64.Create(x, default), yz.vector),
-            Vector128.Create(0, 2, 3, 1)
-        );
-        #else // NET8_0_OR_GREATER
-        this.x = x;
-        this.y = yz.x;
-        this.z = yz.y;
-        #endif // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            vector = Vector128.Shuffle(
+                Vector128.Create(Vector64.Create(x, default), yz.vector),
+                Vector128.Create(0, 2, 3, 1)
+            );
+        else
+            this = new(x, yz.x, yz.y);
     }
 
     [MethodImpl(256 | 512)]
     internal float3(float2 xz, float y, insert_y _)
     {
-        #if NET8_0_OR_GREATER
-        vector = Vector128.Shuffle(
-            Vector128.Create(xz.vector, Vector64.Create(y, default)),
-            Vector128.Create(0, 2, 1, 3)
-        );
-        #else // NET8_0_OR_GREATER
-        this.x = xz.x;
-        this.y = y;
-        this.z = xz.y;
-        #endif // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            vector = Vector128.Shuffle(
+                Vector128.Create(xz.vector, Vector64.Create(y, default)),
+                Vector128.Create(0, 2, 1, 3)
+            );
+        else
+            this = new(xz.x, y, xz.y);
     }
 }
 
-public static partial class math
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static float3 float3(float2 xy, float z) => new(xy, z);
+
+    [MethodImpl(256 | 512)]
+    public static float3 float3(float x, float2 yz) => new(x, yz);
+}
+
+public static partial class math_ex
 {
     /// <summary>
     /// Insert X component
@@ -82,47 +79,44 @@ public partial struct double3
     [MethodImpl(256 | 512)]
     public double3(double2 xy, double z)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector256.Create(xy.vector, Vector128.Create(z, default));
-        #else // NET8_0_OR_GREATER
-        this.x = xy.x;
-        this.y = xy.y;
-        this.z = z;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public double3(double x, double2 yz)
     {
-        #if NET8_0_OR_GREATER
-        vector = Vector256.Shuffle(
-            Vector256.Create(Vector128.Create(x, default), yz.vector),
-            Vector256.Create(0, 2, 3, 1)
-        );
-        #else // NET8_0_OR_GREATER
-        this.x = x;
-        this.y = yz.x;
-        this.z = yz.y;
-        #endif // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            vector = Vector256.Shuffle(
+                Vector256.Create(Vector128.Create(x, default), yz.vector),
+                Vector256.Create(0, 2, 3, 1)
+            );
+        else
+            this = new(x, yz.x, yz.y);
     }
 
     [MethodImpl(256 | 512)]
     internal double3(double2 xz, double y, insert_y _)
     {
-        #if NET8_0_OR_GREATER
-        vector = Vector256.Shuffle(
-            Vector256.Create(xz.vector, Vector128.Create(y, default)),
-            Vector256.Create(0, 2, 1, 3)
-        );
-        #else // NET8_0_OR_GREATER
-        this.x = xz.x;
-        this.y = y;
-        this.z = xz.y;
-        #endif // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            vector = Vector256.Shuffle(
+                Vector256.Create(xz.vector, Vector128.Create(y, default)),
+                Vector256.Create(0, 2, 1, 3)
+            );
+        else
+            this = new(xz.x, y, xz.y);
     }
 }
 
-public static partial class math
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static double3 double3(double2 xy, double z) => new(xy, z);
+
+    [MethodImpl(256 | 512)]
+    public static double3 double3(double x, double2 yz) => new(x, yz);
+}
+
+public static partial class math_ex
 {
     /// <summary>
     /// Insert X component
@@ -177,7 +171,16 @@ public partial struct short3
     }
 }
 
-public static partial class math
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static short3 short3(short2 xy, short z) => new(xy, z);
+
+    [MethodImpl(256 | 512)]
+    public static short3 short3(short x, short2 yz) => new(x, yz);
+}
+
+public static partial class math_ex
 {
     /// <summary>
     /// Insert X component
@@ -232,7 +235,16 @@ public partial struct ushort3
     }
 }
 
-public static partial class math
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static ushort3 ushort3(ushort2 xy, ushort z) => new(xy, z);
+
+    [MethodImpl(256 | 512)]
+    public static ushort3 ushort3(ushort x, ushort2 yz) => new(x, yz);
+}
+
+public static partial class math_ex
 {
     /// <summary>
     /// Insert X component
@@ -265,47 +277,44 @@ public partial struct int3
     [MethodImpl(256 | 512)]
     public int3(int2 xy, int z)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.Create(xy.vector, Vector64.Create(z, default));
-        #else // NET8_0_OR_GREATER
-        this.x = xy.x;
-        this.y = xy.y;
-        this.z = z;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public int3(int x, int2 yz)
     {
-        #if NET8_0_OR_GREATER
-        vector = Vector128.Shuffle(
-            Vector128.Create(Vector64.Create(x, default), yz.vector),
-            Vector128.Create(0, 2, 3, 1)
-        );
-        #else // NET8_0_OR_GREATER
-        this.x = x;
-        this.y = yz.x;
-        this.z = yz.y;
-        #endif // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            vector = Vector128.Shuffle(
+                Vector128.Create(Vector64.Create(x, default), yz.vector),
+                Vector128.Create(0, 2, 3, 1)
+            );
+        else
+            this = new(x, yz.x, yz.y);
     }
 
     [MethodImpl(256 | 512)]
     internal int3(int2 xz, int y, insert_y _)
     {
-        #if NET8_0_OR_GREATER
-        vector = Vector128.Shuffle(
-            Vector128.Create(xz.vector, Vector64.Create(y, default)),
-            Vector128.Create(0, 2, 1, 3)
-        );
-        #else // NET8_0_OR_GREATER
-        this.x = xz.x;
-        this.y = y;
-        this.z = xz.y;
-        #endif // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            vector = Vector128.Shuffle(
+                Vector128.Create(xz.vector, Vector64.Create(y, default)),
+                Vector128.Create(0, 2, 1, 3)
+            );
+        else
+            this = new(xz.x, y, xz.y);
     }
 }
 
-public static partial class math
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static int3 int3(int2 xy, int z) => new(xy, z);
+
+    [MethodImpl(256 | 512)]
+    public static int3 int3(int x, int2 yz) => new(x, yz);
+}
+
+public static partial class math_ex
 {
     /// <summary>
     /// Insert X component
@@ -338,47 +347,44 @@ public partial struct uint3
     [MethodImpl(256 | 512)]
     public uint3(uint2 xy, uint z)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.Create(xy.vector, Vector64.Create(z, default));
-        #else // NET8_0_OR_GREATER
-        this.x = xy.x;
-        this.y = xy.y;
-        this.z = z;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public uint3(uint x, uint2 yz)
     {
-        #if NET8_0_OR_GREATER
-        vector = Vector128.Shuffle(
-            Vector128.Create(Vector64.Create(x, default), yz.vector),
-            Vector128.Create((uint)0, 2, 3, 1)
-        );
-        #else // NET8_0_OR_GREATER
-        this.x = x;
-        this.y = yz.x;
-        this.z = yz.y;
-        #endif // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            vector = Vector128.Shuffle(
+                Vector128.Create(Vector64.Create(x, default), yz.vector),
+                Vector128.Create((uint)0, 2, 3, 1)
+            );
+        else
+            this = new(x, yz.x, yz.y);
     }
 
     [MethodImpl(256 | 512)]
     internal uint3(uint2 xz, uint y, insert_y _)
     {
-        #if NET8_0_OR_GREATER
-        vector = Vector128.Shuffle(
-            Vector128.Create(xz.vector, Vector64.Create(y, default)),
-            Vector128.Create((uint)0, 2, 1, 3)
-        );
-        #else // NET8_0_OR_GREATER
-        this.x = xz.x;
-        this.y = y;
-        this.z = xz.y;
-        #endif // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            vector = Vector128.Shuffle(
+                Vector128.Create(xz.vector, Vector64.Create(y, default)),
+                Vector128.Create((uint)0, 2, 1, 3)
+            );
+        else
+            this = new(xz.x, y, xz.y);
     }
 }
 
-public static partial class math
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static uint3 uint3(uint2 xy, uint z) => new(xy, z);
+
+    [MethodImpl(256 | 512)]
+    public static uint3 uint3(uint x, uint2 yz) => new(x, yz);
+}
+
+public static partial class math_ex
 {
     /// <summary>
     /// Insert X component
@@ -411,47 +417,44 @@ public partial struct long3
     [MethodImpl(256 | 512)]
     public long3(long2 xy, long z)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector256.Create(xy.vector, Vector128.Create(z, default));
-        #else // NET8_0_OR_GREATER
-        this.x = xy.x;
-        this.y = xy.y;
-        this.z = z;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public long3(long x, long2 yz)
     {
-        #if NET8_0_OR_GREATER
-        vector = Vector256.Shuffle(
-            Vector256.Create(Vector128.Create(x, default), yz.vector),
-            Vector256.Create(0, 2, 3, 1)
-        );
-        #else // NET8_0_OR_GREATER
-        this.x = x;
-        this.y = yz.x;
-        this.z = yz.y;
-        #endif // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            vector = Vector256.Shuffle(
+                Vector256.Create(Vector128.Create(x, default), yz.vector),
+                Vector256.Create(0, 2, 3, 1)
+            );
+        else
+            this = new(x, yz.x, yz.y);
     }
 
     [MethodImpl(256 | 512)]
     internal long3(long2 xz, long y, insert_y _)
     {
-        #if NET8_0_OR_GREATER
-        vector = Vector256.Shuffle(
-            Vector256.Create(xz.vector, Vector128.Create(y, default)),
-            Vector256.Create(0, 2, 1, 3)
-        );
-        #else // NET8_0_OR_GREATER
-        this.x = xz.x;
-        this.y = y;
-        this.z = xz.y;
-        #endif // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            vector = Vector256.Shuffle(
+                Vector256.Create(xz.vector, Vector128.Create(y, default)),
+                Vector256.Create(0, 2, 1, 3)
+            );
+        else
+            this = new(xz.x, y, xz.y);
     }
 }
 
-public static partial class math
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static long3 long3(long2 xy, long z) => new(xy, z);
+
+    [MethodImpl(256 | 512)]
+    public static long3 long3(long x, long2 yz) => new(x, yz);
+}
+
+public static partial class math_ex
 {
     /// <summary>
     /// Insert X component
@@ -484,47 +487,44 @@ public partial struct ulong3
     [MethodImpl(256 | 512)]
     public ulong3(ulong2 xy, ulong z)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector256.Create(xy.vector, Vector128.Create(z, default));
-        #else // NET8_0_OR_GREATER
-        this.x = xy.x;
-        this.y = xy.y;
-        this.z = z;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public ulong3(ulong x, ulong2 yz)
     {
-        #if NET8_0_OR_GREATER
-        vector = Vector256.Shuffle(
-            Vector256.Create(Vector128.Create(x, default), yz.vector),
-            Vector256.Create((ulong)0, 2, 3, 1)
-        );
-        #else // NET8_0_OR_GREATER
-        this.x = x;
-        this.y = yz.x;
-        this.z = yz.y;
-        #endif // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            vector = Vector256.Shuffle(
+                Vector256.Create(Vector128.Create(x, default), yz.vector),
+                Vector256.Create((ulong)0, 2, 3, 1)
+            );
+        else
+            this = new(x, yz.x, yz.y);
     }
 
     [MethodImpl(256 | 512)]
     internal ulong3(ulong2 xz, ulong y, insert_y _)
     {
-        #if NET8_0_OR_GREATER
-        vector = Vector256.Shuffle(
-            Vector256.Create(xz.vector, Vector128.Create(y, default)),
-            Vector256.Create((ulong)0, 2, 1, 3)
-        );
-        #else // NET8_0_OR_GREATER
-        this.x = xz.x;
-        this.y = y;
-        this.z = xz.y;
-        #endif // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            vector = Vector256.Shuffle(
+                Vector256.Create(xz.vector, Vector128.Create(y, default)),
+                Vector256.Create((ulong)0, 2, 1, 3)
+            );
+        else
+            this = new(xz.x, y, xz.y);
     }
 }
 
-public static partial class math
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static ulong3 ulong3(ulong2 xy, ulong z) => new(xy, z);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3 ulong3(ulong x, ulong2 yz) => new(x, yz);
+}
+
+public static partial class math_ex
 {
     /// <summary>
     /// Insert X component
@@ -579,7 +579,16 @@ public partial struct decimal3
     }
 }
 
-public static partial class math
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static decimal3 decimal3(decimal2 xy, decimal z) => new(xy, z);
+
+    [MethodImpl(256 | 512)]
+    public static decimal3 decimal3(decimal x, decimal2 yz) => new(x, yz);
+}
+
+public static partial class math_ex
 {
     /// <summary>
     /// Insert X component
@@ -634,7 +643,16 @@ public partial struct half3
     }
 }
 
-public static partial class math
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static half3 half3(half2 xy, half z) => new(xy, z);
+
+    [MethodImpl(256 | 512)]
+    public static half3 half3(half x, half2 yz) => new(x, yz);
+}
+
+public static partial class math_ex
 {
     /// <summary>
     /// Insert X component
@@ -689,7 +707,16 @@ public partial struct b16v3
     }
 }
 
-public static partial class math
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static b16v3 b16v3(b16v2 xy, b16 z) => new(xy, z);
+
+    [MethodImpl(256 | 512)]
+    public static b16v3 b16v3(b16 x, b16v2 yz) => new(x, yz);
+}
+
+public static partial class math_ex
 {
     /// <summary>
     /// Insert X component
@@ -722,47 +749,44 @@ public partial struct b32v3
     [MethodImpl(256 | 512)]
     public b32v3(b32v2 xy, b32 z)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.Create(xy.vector, Vector64.Create(z, default));
-        #else // NET8_0_OR_GREATER
-        this.x = xy.x;
-        this.y = xy.y;
-        this.z = z;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public b32v3(b32 x, b32v2 yz)
     {
-        #if NET8_0_OR_GREATER
-        vector = Vector128.Shuffle(
-            Vector128.Create(Vector64.Create(x, default), yz.vector),
-            Vector128.Create((uint)0, 2, 3, 1)
-        );
-        #else // NET8_0_OR_GREATER
-        this.x = x;
-        this.y = yz.x;
-        this.z = yz.y;
-        #endif // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            vector = Vector128.Shuffle(
+                Vector128.Create(Vector64.Create(x, default), yz.vector),
+                Vector128.Create((uint)0, 2, 3, 1)
+            );
+        else
+            this = new(x, yz.x, yz.y);
     }
 
     [MethodImpl(256 | 512)]
     internal b32v3(b32v2 xz, b32 y, insert_y _)
     {
-        #if NET8_0_OR_GREATER
-        vector = Vector128.Shuffle(
-            Vector128.Create(xz.vector, Vector64.Create(y, default)),
-            Vector128.Create((uint)0, 2, 1, 3)
-        );
-        #else // NET8_0_OR_GREATER
-        this.x = xz.x;
-        this.y = y;
-        this.z = xz.y;
-        #endif // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            vector = Vector128.Shuffle(
+                Vector128.Create(xz.vector, Vector64.Create(y, default)),
+                Vector128.Create((uint)0, 2, 1, 3)
+            );
+        else
+            this = new(xz.x, y, xz.y);
     }
 }
 
-public static partial class math
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static b32v3 b32v3(b32v2 xy, b32 z) => new(xy, z);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3 b32v3(b32 x, b32v2 yz) => new(x, yz);
+}
+
+public static partial class math_ex
 {
     /// <summary>
     /// Insert X component
@@ -795,47 +819,44 @@ public partial struct b64v3
     [MethodImpl(256 | 512)]
     public b64v3(b64v2 xy, b64 z)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector256.Create(xy.vector, Vector128.Create(z, default));
-        #else // NET8_0_OR_GREATER
-        this.x = xy.x;
-        this.y = xy.y;
-        this.z = z;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public b64v3(b64 x, b64v2 yz)
     {
-        #if NET8_0_OR_GREATER
-        vector = Vector256.Shuffle(
-            Vector256.Create(Vector128.Create(x, default), yz.vector),
-            Vector256.Create((ulong)0, 2, 3, 1)
-        );
-        #else // NET8_0_OR_GREATER
-        this.x = x;
-        this.y = yz.x;
-        this.z = yz.y;
-        #endif // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            vector = Vector256.Shuffle(
+                Vector256.Create(Vector128.Create(x, default), yz.vector),
+                Vector256.Create((ulong)0, 2, 3, 1)
+            );
+        else
+            this = new(x, yz.x, yz.y);
     }
 
     [MethodImpl(256 | 512)]
     internal b64v3(b64v2 xz, b64 y, insert_y _)
     {
-        #if NET8_0_OR_GREATER
-        vector = Vector256.Shuffle(
-            Vector256.Create(xz.vector, Vector128.Create(y, default)),
-            Vector256.Create((ulong)0, 2, 1, 3)
-        );
-        #else // NET8_0_OR_GREATER
-        this.x = xz.x;
-        this.y = y;
-        this.z = xz.y;
-        #endif // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            vector = Vector256.Shuffle(
+                Vector256.Create(xz.vector, Vector128.Create(y, default)),
+                Vector256.Create((ulong)0, 2, 1, 3)
+            );
+        else
+            this = new(xz.x, y, xz.y);
     }
 }
 
-public static partial class math
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static b64v3 b64v3(b64v2 xy, b64 z) => new(xy, z);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3 b64v3(b64 x, b64v2 yz) => new(x, yz);
+}
+
+public static partial class math_ex
 {
     /// <summary>
     /// Insert X component

@@ -5,10 +5,8 @@ namespace Coplt.Mathematics;
 #region float2x2
 
 public partial struct float2x2 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<float2x2, float2x2, float2x2>
     , IShiftOperators<float2x2, int, float2x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static float2x2 operator ~(float2x2 a) => new(~a.c0, ~a.c1);
@@ -32,10 +30,11 @@ public partial struct float2x2 : IMatrixBitops
     public static float2x2 operator >>>(float2x2 a, int b) => new(a.c0 >>> b, a.c1 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float2x2 andnot(this float2x2 a, float2x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
+    public static float2x2 andnot([This] float2x2 a, float2x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
 }
 
 #endregion // float2x2
@@ -43,10 +42,8 @@ public static partial class math
 #region float2x3
 
 public partial struct float2x3 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<float2x3, float2x3, float2x3>
     , IShiftOperators<float2x3, int, float2x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static float2x3 operator ~(float2x3 a) => new(~a.c0, ~a.c1, ~a.c2);
@@ -70,10 +67,11 @@ public partial struct float2x3 : IMatrixBitops
     public static float2x3 operator >>>(float2x3 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float2x3 andnot(this float2x3 a, float2x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
+    public static float2x3 andnot([This] float2x3 a, float2x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
 }
 
 #endregion // float2x3
@@ -81,10 +79,8 @@ public static partial class math
 #region float2x4
 
 public partial struct float2x4 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<float2x4, float2x4, float2x4>
     , IShiftOperators<float2x4, int, float2x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static float2x4 operator ~(float2x4 a) => new(~a.c0, ~a.c1, ~a.c2, ~a.c3);
@@ -108,10 +104,11 @@ public partial struct float2x4 : IMatrixBitops
     public static float2x4 operator >>>(float2x4 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b, a.c3 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float2x4 andnot(this float2x4 a, float2x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
+    public static float2x4 andnot([This] float2x4 a, float2x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
 }
 
 #endregion // float2x4
@@ -119,10 +116,8 @@ public static partial class math
 #region float3x2
 
 public partial struct float3x2 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<float3x2, float3x2, float3x2>
     , IShiftOperators<float3x2, int, float3x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static float3x2 operator ~(float3x2 a) => new(~a.c0, ~a.c1);
@@ -146,10 +141,11 @@ public partial struct float3x2 : IMatrixBitops
     public static float3x2 operator >>>(float3x2 a, int b) => new(a.c0 >>> b, a.c1 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float3x2 andnot(this float3x2 a, float3x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
+    public static float3x2 andnot([This] float3x2 a, float3x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
 }
 
 #endregion // float3x2
@@ -157,10 +153,8 @@ public static partial class math
 #region float3x3
 
 public partial struct float3x3 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<float3x3, float3x3, float3x3>
     , IShiftOperators<float3x3, int, float3x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static float3x3 operator ~(float3x3 a) => new(~a.c0, ~a.c1, ~a.c2);
@@ -184,10 +178,11 @@ public partial struct float3x3 : IMatrixBitops
     public static float3x3 operator >>>(float3x3 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float3x3 andnot(this float3x3 a, float3x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
+    public static float3x3 andnot([This] float3x3 a, float3x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
 }
 
 #endregion // float3x3
@@ -195,10 +190,8 @@ public static partial class math
 #region float3x4
 
 public partial struct float3x4 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<float3x4, float3x4, float3x4>
     , IShiftOperators<float3x4, int, float3x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static float3x4 operator ~(float3x4 a) => new(~a.c0, ~a.c1, ~a.c2, ~a.c3);
@@ -222,10 +215,11 @@ public partial struct float3x4 : IMatrixBitops
     public static float3x4 operator >>>(float3x4 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b, a.c3 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float3x4 andnot(this float3x4 a, float3x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
+    public static float3x4 andnot([This] float3x4 a, float3x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
 }
 
 #endregion // float3x4
@@ -233,10 +227,8 @@ public static partial class math
 #region float4x2
 
 public partial struct float4x2 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<float4x2, float4x2, float4x2>
     , IShiftOperators<float4x2, int, float4x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static float4x2 operator ~(float4x2 a) => new(~a.c0, ~a.c1);
@@ -260,10 +252,11 @@ public partial struct float4x2 : IMatrixBitops
     public static float4x2 operator >>>(float4x2 a, int b) => new(a.c0 >>> b, a.c1 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float4x2 andnot(this float4x2 a, float4x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
+    public static float4x2 andnot([This] float4x2 a, float4x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
 }
 
 #endregion // float4x2
@@ -271,10 +264,8 @@ public static partial class math
 #region float4x3
 
 public partial struct float4x3 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<float4x3, float4x3, float4x3>
     , IShiftOperators<float4x3, int, float4x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static float4x3 operator ~(float4x3 a) => new(~a.c0, ~a.c1, ~a.c2);
@@ -298,10 +289,11 @@ public partial struct float4x3 : IMatrixBitops
     public static float4x3 operator >>>(float4x3 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float4x3 andnot(this float4x3 a, float4x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
+    public static float4x3 andnot([This] float4x3 a, float4x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
 }
 
 #endregion // float4x3
@@ -309,10 +301,8 @@ public static partial class math
 #region float4x4
 
 public partial struct float4x4 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<float4x4, float4x4, float4x4>
     , IShiftOperators<float4x4, int, float4x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static float4x4 operator ~(float4x4 a) => new(~a.c0, ~a.c1, ~a.c2, ~a.c3);
@@ -336,10 +326,11 @@ public partial struct float4x4 : IMatrixBitops
     public static float4x4 operator >>>(float4x4 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b, a.c3 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float4x4 andnot(this float4x4 a, float4x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
+    public static float4x4 andnot([This] float4x4 a, float4x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
 }
 
 #endregion // float4x4
@@ -347,10 +338,8 @@ public static partial class math
 #region double2x2
 
 public partial struct double2x2 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<double2x2, double2x2, double2x2>
     , IShiftOperators<double2x2, int, double2x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static double2x2 operator ~(double2x2 a) => new(~a.c0, ~a.c1);
@@ -374,10 +363,11 @@ public partial struct double2x2 : IMatrixBitops
     public static double2x2 operator >>>(double2x2 a, int b) => new(a.c0 >>> b, a.c1 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double2x2 andnot(this double2x2 a, double2x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
+    public static double2x2 andnot([This] double2x2 a, double2x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
 }
 
 #endregion // double2x2
@@ -385,10 +375,8 @@ public static partial class math
 #region double2x3
 
 public partial struct double2x3 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<double2x3, double2x3, double2x3>
     , IShiftOperators<double2x3, int, double2x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static double2x3 operator ~(double2x3 a) => new(~a.c0, ~a.c1, ~a.c2);
@@ -412,10 +400,11 @@ public partial struct double2x3 : IMatrixBitops
     public static double2x3 operator >>>(double2x3 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double2x3 andnot(this double2x3 a, double2x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
+    public static double2x3 andnot([This] double2x3 a, double2x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
 }
 
 #endregion // double2x3
@@ -423,10 +412,8 @@ public static partial class math
 #region double2x4
 
 public partial struct double2x4 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<double2x4, double2x4, double2x4>
     , IShiftOperators<double2x4, int, double2x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static double2x4 operator ~(double2x4 a) => new(~a.c0, ~a.c1, ~a.c2, ~a.c3);
@@ -450,10 +437,11 @@ public partial struct double2x4 : IMatrixBitops
     public static double2x4 operator >>>(double2x4 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b, a.c3 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double2x4 andnot(this double2x4 a, double2x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
+    public static double2x4 andnot([This] double2x4 a, double2x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
 }
 
 #endregion // double2x4
@@ -461,10 +449,8 @@ public static partial class math
 #region double3x2
 
 public partial struct double3x2 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<double3x2, double3x2, double3x2>
     , IShiftOperators<double3x2, int, double3x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static double3x2 operator ~(double3x2 a) => new(~a.c0, ~a.c1);
@@ -488,10 +474,11 @@ public partial struct double3x2 : IMatrixBitops
     public static double3x2 operator >>>(double3x2 a, int b) => new(a.c0 >>> b, a.c1 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double3x2 andnot(this double3x2 a, double3x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
+    public static double3x2 andnot([This] double3x2 a, double3x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
 }
 
 #endregion // double3x2
@@ -499,10 +486,8 @@ public static partial class math
 #region double3x3
 
 public partial struct double3x3 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<double3x3, double3x3, double3x3>
     , IShiftOperators<double3x3, int, double3x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static double3x3 operator ~(double3x3 a) => new(~a.c0, ~a.c1, ~a.c2);
@@ -526,10 +511,11 @@ public partial struct double3x3 : IMatrixBitops
     public static double3x3 operator >>>(double3x3 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double3x3 andnot(this double3x3 a, double3x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
+    public static double3x3 andnot([This] double3x3 a, double3x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
 }
 
 #endregion // double3x3
@@ -537,10 +523,8 @@ public static partial class math
 #region double3x4
 
 public partial struct double3x4 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<double3x4, double3x4, double3x4>
     , IShiftOperators<double3x4, int, double3x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static double3x4 operator ~(double3x4 a) => new(~a.c0, ~a.c1, ~a.c2, ~a.c3);
@@ -564,10 +548,11 @@ public partial struct double3x4 : IMatrixBitops
     public static double3x4 operator >>>(double3x4 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b, a.c3 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double3x4 andnot(this double3x4 a, double3x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
+    public static double3x4 andnot([This] double3x4 a, double3x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
 }
 
 #endregion // double3x4
@@ -575,10 +560,8 @@ public static partial class math
 #region double4x2
 
 public partial struct double4x2 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<double4x2, double4x2, double4x2>
     , IShiftOperators<double4x2, int, double4x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static double4x2 operator ~(double4x2 a) => new(~a.c0, ~a.c1);
@@ -602,10 +585,11 @@ public partial struct double4x2 : IMatrixBitops
     public static double4x2 operator >>>(double4x2 a, int b) => new(a.c0 >>> b, a.c1 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double4x2 andnot(this double4x2 a, double4x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
+    public static double4x2 andnot([This] double4x2 a, double4x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
 }
 
 #endregion // double4x2
@@ -613,10 +597,8 @@ public static partial class math
 #region double4x3
 
 public partial struct double4x3 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<double4x3, double4x3, double4x3>
     , IShiftOperators<double4x3, int, double4x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static double4x3 operator ~(double4x3 a) => new(~a.c0, ~a.c1, ~a.c2);
@@ -640,10 +622,11 @@ public partial struct double4x3 : IMatrixBitops
     public static double4x3 operator >>>(double4x3 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double4x3 andnot(this double4x3 a, double4x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
+    public static double4x3 andnot([This] double4x3 a, double4x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
 }
 
 #endregion // double4x3
@@ -651,10 +634,8 @@ public static partial class math
 #region double4x4
 
 public partial struct double4x4 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<double4x4, double4x4, double4x4>
     , IShiftOperators<double4x4, int, double4x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static double4x4 operator ~(double4x4 a) => new(~a.c0, ~a.c1, ~a.c2, ~a.c3);
@@ -678,10 +659,11 @@ public partial struct double4x4 : IMatrixBitops
     public static double4x4 operator >>>(double4x4 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b, a.c3 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double4x4 andnot(this double4x4 a, double4x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
+    public static double4x4 andnot([This] double4x4 a, double4x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
 }
 
 #endregion // double4x4
@@ -689,10 +671,8 @@ public static partial class math
 #region short2x2
 
 public partial struct short2x2 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<short2x2, short2x2, short2x2>
     , IShiftOperators<short2x2, int, short2x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static short2x2 operator ~(short2x2 a) => new(~a.c0, ~a.c1);
@@ -716,10 +696,11 @@ public partial struct short2x2 : IMatrixBitops
     public static short2x2 operator >>>(short2x2 a, int b) => new(a.c0 >>> b, a.c1 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static short2x2 andnot(this short2x2 a, short2x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
+    public static short2x2 andnot([This] short2x2 a, short2x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
 }
 
 #endregion // short2x2
@@ -727,10 +708,8 @@ public static partial class math
 #region short2x3
 
 public partial struct short2x3 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<short2x3, short2x3, short2x3>
     , IShiftOperators<short2x3, int, short2x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static short2x3 operator ~(short2x3 a) => new(~a.c0, ~a.c1, ~a.c2);
@@ -754,10 +733,11 @@ public partial struct short2x3 : IMatrixBitops
     public static short2x3 operator >>>(short2x3 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static short2x3 andnot(this short2x3 a, short2x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
+    public static short2x3 andnot([This] short2x3 a, short2x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
 }
 
 #endregion // short2x3
@@ -765,10 +745,8 @@ public static partial class math
 #region short2x4
 
 public partial struct short2x4 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<short2x4, short2x4, short2x4>
     , IShiftOperators<short2x4, int, short2x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static short2x4 operator ~(short2x4 a) => new(~a.c0, ~a.c1, ~a.c2, ~a.c3);
@@ -792,10 +770,11 @@ public partial struct short2x4 : IMatrixBitops
     public static short2x4 operator >>>(short2x4 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b, a.c3 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static short2x4 andnot(this short2x4 a, short2x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
+    public static short2x4 andnot([This] short2x4 a, short2x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
 }
 
 #endregion // short2x4
@@ -803,10 +782,8 @@ public static partial class math
 #region short3x2
 
 public partial struct short3x2 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<short3x2, short3x2, short3x2>
     , IShiftOperators<short3x2, int, short3x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static short3x2 operator ~(short3x2 a) => new(~a.c0, ~a.c1);
@@ -830,10 +807,11 @@ public partial struct short3x2 : IMatrixBitops
     public static short3x2 operator >>>(short3x2 a, int b) => new(a.c0 >>> b, a.c1 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static short3x2 andnot(this short3x2 a, short3x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
+    public static short3x2 andnot([This] short3x2 a, short3x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
 }
 
 #endregion // short3x2
@@ -841,10 +819,8 @@ public static partial class math
 #region short3x3
 
 public partial struct short3x3 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<short3x3, short3x3, short3x3>
     , IShiftOperators<short3x3, int, short3x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static short3x3 operator ~(short3x3 a) => new(~a.c0, ~a.c1, ~a.c2);
@@ -868,10 +844,11 @@ public partial struct short3x3 : IMatrixBitops
     public static short3x3 operator >>>(short3x3 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static short3x3 andnot(this short3x3 a, short3x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
+    public static short3x3 andnot([This] short3x3 a, short3x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
 }
 
 #endregion // short3x3
@@ -879,10 +856,8 @@ public static partial class math
 #region short3x4
 
 public partial struct short3x4 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<short3x4, short3x4, short3x4>
     , IShiftOperators<short3x4, int, short3x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static short3x4 operator ~(short3x4 a) => new(~a.c0, ~a.c1, ~a.c2, ~a.c3);
@@ -906,10 +881,11 @@ public partial struct short3x4 : IMatrixBitops
     public static short3x4 operator >>>(short3x4 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b, a.c3 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static short3x4 andnot(this short3x4 a, short3x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
+    public static short3x4 andnot([This] short3x4 a, short3x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
 }
 
 #endregion // short3x4
@@ -917,10 +893,8 @@ public static partial class math
 #region short4x2
 
 public partial struct short4x2 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<short4x2, short4x2, short4x2>
     , IShiftOperators<short4x2, int, short4x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static short4x2 operator ~(short4x2 a) => new(~a.c0, ~a.c1);
@@ -944,10 +918,11 @@ public partial struct short4x2 : IMatrixBitops
     public static short4x2 operator >>>(short4x2 a, int b) => new(a.c0 >>> b, a.c1 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static short4x2 andnot(this short4x2 a, short4x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
+    public static short4x2 andnot([This] short4x2 a, short4x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
 }
 
 #endregion // short4x2
@@ -955,10 +930,8 @@ public static partial class math
 #region short4x3
 
 public partial struct short4x3 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<short4x3, short4x3, short4x3>
     , IShiftOperators<short4x3, int, short4x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static short4x3 operator ~(short4x3 a) => new(~a.c0, ~a.c1, ~a.c2);
@@ -982,10 +955,11 @@ public partial struct short4x3 : IMatrixBitops
     public static short4x3 operator >>>(short4x3 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static short4x3 andnot(this short4x3 a, short4x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
+    public static short4x3 andnot([This] short4x3 a, short4x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
 }
 
 #endregion // short4x3
@@ -993,10 +967,8 @@ public static partial class math
 #region short4x4
 
 public partial struct short4x4 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<short4x4, short4x4, short4x4>
     , IShiftOperators<short4x4, int, short4x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static short4x4 operator ~(short4x4 a) => new(~a.c0, ~a.c1, ~a.c2, ~a.c3);
@@ -1020,10 +992,11 @@ public partial struct short4x4 : IMatrixBitops
     public static short4x4 operator >>>(short4x4 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b, a.c3 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static short4x4 andnot(this short4x4 a, short4x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
+    public static short4x4 andnot([This] short4x4 a, short4x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
 }
 
 #endregion // short4x4
@@ -1031,10 +1004,8 @@ public static partial class math
 #region ushort2x2
 
 public partial struct ushort2x2 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<ushort2x2, ushort2x2, ushort2x2>
     , IShiftOperators<ushort2x2, int, ushort2x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static ushort2x2 operator ~(ushort2x2 a) => new(~a.c0, ~a.c1);
@@ -1058,10 +1029,11 @@ public partial struct ushort2x2 : IMatrixBitops
     public static ushort2x2 operator >>>(ushort2x2 a, int b) => new(a.c0 >>> b, a.c1 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ushort2x2 andnot(this ushort2x2 a, ushort2x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
+    public static ushort2x2 andnot([This] ushort2x2 a, ushort2x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
 }
 
 #endregion // ushort2x2
@@ -1069,10 +1041,8 @@ public static partial class math
 #region ushort2x3
 
 public partial struct ushort2x3 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<ushort2x3, ushort2x3, ushort2x3>
     , IShiftOperators<ushort2x3, int, ushort2x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static ushort2x3 operator ~(ushort2x3 a) => new(~a.c0, ~a.c1, ~a.c2);
@@ -1096,10 +1066,11 @@ public partial struct ushort2x3 : IMatrixBitops
     public static ushort2x3 operator >>>(ushort2x3 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ushort2x3 andnot(this ushort2x3 a, ushort2x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
+    public static ushort2x3 andnot([This] ushort2x3 a, ushort2x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
 }
 
 #endregion // ushort2x3
@@ -1107,10 +1078,8 @@ public static partial class math
 #region ushort2x4
 
 public partial struct ushort2x4 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<ushort2x4, ushort2x4, ushort2x4>
     , IShiftOperators<ushort2x4, int, ushort2x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static ushort2x4 operator ~(ushort2x4 a) => new(~a.c0, ~a.c1, ~a.c2, ~a.c3);
@@ -1134,10 +1103,11 @@ public partial struct ushort2x4 : IMatrixBitops
     public static ushort2x4 operator >>>(ushort2x4 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b, a.c3 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ushort2x4 andnot(this ushort2x4 a, ushort2x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
+    public static ushort2x4 andnot([This] ushort2x4 a, ushort2x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
 }
 
 #endregion // ushort2x4
@@ -1145,10 +1115,8 @@ public static partial class math
 #region ushort3x2
 
 public partial struct ushort3x2 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<ushort3x2, ushort3x2, ushort3x2>
     , IShiftOperators<ushort3x2, int, ushort3x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static ushort3x2 operator ~(ushort3x2 a) => new(~a.c0, ~a.c1);
@@ -1172,10 +1140,11 @@ public partial struct ushort3x2 : IMatrixBitops
     public static ushort3x2 operator >>>(ushort3x2 a, int b) => new(a.c0 >>> b, a.c1 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ushort3x2 andnot(this ushort3x2 a, ushort3x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
+    public static ushort3x2 andnot([This] ushort3x2 a, ushort3x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
 }
 
 #endregion // ushort3x2
@@ -1183,10 +1152,8 @@ public static partial class math
 #region ushort3x3
 
 public partial struct ushort3x3 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<ushort3x3, ushort3x3, ushort3x3>
     , IShiftOperators<ushort3x3, int, ushort3x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static ushort3x3 operator ~(ushort3x3 a) => new(~a.c0, ~a.c1, ~a.c2);
@@ -1210,10 +1177,11 @@ public partial struct ushort3x3 : IMatrixBitops
     public static ushort3x3 operator >>>(ushort3x3 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ushort3x3 andnot(this ushort3x3 a, ushort3x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
+    public static ushort3x3 andnot([This] ushort3x3 a, ushort3x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
 }
 
 #endregion // ushort3x3
@@ -1221,10 +1189,8 @@ public static partial class math
 #region ushort3x4
 
 public partial struct ushort3x4 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<ushort3x4, ushort3x4, ushort3x4>
     , IShiftOperators<ushort3x4, int, ushort3x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static ushort3x4 operator ~(ushort3x4 a) => new(~a.c0, ~a.c1, ~a.c2, ~a.c3);
@@ -1248,10 +1214,11 @@ public partial struct ushort3x4 : IMatrixBitops
     public static ushort3x4 operator >>>(ushort3x4 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b, a.c3 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ushort3x4 andnot(this ushort3x4 a, ushort3x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
+    public static ushort3x4 andnot([This] ushort3x4 a, ushort3x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
 }
 
 #endregion // ushort3x4
@@ -1259,10 +1226,8 @@ public static partial class math
 #region ushort4x2
 
 public partial struct ushort4x2 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<ushort4x2, ushort4x2, ushort4x2>
     , IShiftOperators<ushort4x2, int, ushort4x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static ushort4x2 operator ~(ushort4x2 a) => new(~a.c0, ~a.c1);
@@ -1286,10 +1251,11 @@ public partial struct ushort4x2 : IMatrixBitops
     public static ushort4x2 operator >>>(ushort4x2 a, int b) => new(a.c0 >>> b, a.c1 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ushort4x2 andnot(this ushort4x2 a, ushort4x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
+    public static ushort4x2 andnot([This] ushort4x2 a, ushort4x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
 }
 
 #endregion // ushort4x2
@@ -1297,10 +1263,8 @@ public static partial class math
 #region ushort4x3
 
 public partial struct ushort4x3 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<ushort4x3, ushort4x3, ushort4x3>
     , IShiftOperators<ushort4x3, int, ushort4x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static ushort4x3 operator ~(ushort4x3 a) => new(~a.c0, ~a.c1, ~a.c2);
@@ -1324,10 +1288,11 @@ public partial struct ushort4x3 : IMatrixBitops
     public static ushort4x3 operator >>>(ushort4x3 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ushort4x3 andnot(this ushort4x3 a, ushort4x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
+    public static ushort4x3 andnot([This] ushort4x3 a, ushort4x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
 }
 
 #endregion // ushort4x3
@@ -1335,10 +1300,8 @@ public static partial class math
 #region ushort4x4
 
 public partial struct ushort4x4 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<ushort4x4, ushort4x4, ushort4x4>
     , IShiftOperators<ushort4x4, int, ushort4x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static ushort4x4 operator ~(ushort4x4 a) => new(~a.c0, ~a.c1, ~a.c2, ~a.c3);
@@ -1362,10 +1325,11 @@ public partial struct ushort4x4 : IMatrixBitops
     public static ushort4x4 operator >>>(ushort4x4 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b, a.c3 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ushort4x4 andnot(this ushort4x4 a, ushort4x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
+    public static ushort4x4 andnot([This] ushort4x4 a, ushort4x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
 }
 
 #endregion // ushort4x4
@@ -1373,10 +1337,8 @@ public static partial class math
 #region int2x2
 
 public partial struct int2x2 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<int2x2, int2x2, int2x2>
     , IShiftOperators<int2x2, int, int2x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static int2x2 operator ~(int2x2 a) => new(~a.c0, ~a.c1);
@@ -1400,10 +1362,11 @@ public partial struct int2x2 : IMatrixBitops
     public static int2x2 operator >>>(int2x2 a, int b) => new(a.c0 >>> b, a.c1 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static int2x2 andnot(this int2x2 a, int2x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
+    public static int2x2 andnot([This] int2x2 a, int2x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
 }
 
 #endregion // int2x2
@@ -1411,10 +1374,8 @@ public static partial class math
 #region int2x3
 
 public partial struct int2x3 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<int2x3, int2x3, int2x3>
     , IShiftOperators<int2x3, int, int2x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static int2x3 operator ~(int2x3 a) => new(~a.c0, ~a.c1, ~a.c2);
@@ -1438,10 +1399,11 @@ public partial struct int2x3 : IMatrixBitops
     public static int2x3 operator >>>(int2x3 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static int2x3 andnot(this int2x3 a, int2x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
+    public static int2x3 andnot([This] int2x3 a, int2x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
 }
 
 #endregion // int2x3
@@ -1449,10 +1411,8 @@ public static partial class math
 #region int2x4
 
 public partial struct int2x4 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<int2x4, int2x4, int2x4>
     , IShiftOperators<int2x4, int, int2x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static int2x4 operator ~(int2x4 a) => new(~a.c0, ~a.c1, ~a.c2, ~a.c3);
@@ -1476,10 +1436,11 @@ public partial struct int2x4 : IMatrixBitops
     public static int2x4 operator >>>(int2x4 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b, a.c3 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static int2x4 andnot(this int2x4 a, int2x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
+    public static int2x4 andnot([This] int2x4 a, int2x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
 }
 
 #endregion // int2x4
@@ -1487,10 +1448,8 @@ public static partial class math
 #region int3x2
 
 public partial struct int3x2 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<int3x2, int3x2, int3x2>
     , IShiftOperators<int3x2, int, int3x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static int3x2 operator ~(int3x2 a) => new(~a.c0, ~a.c1);
@@ -1514,10 +1473,11 @@ public partial struct int3x2 : IMatrixBitops
     public static int3x2 operator >>>(int3x2 a, int b) => new(a.c0 >>> b, a.c1 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static int3x2 andnot(this int3x2 a, int3x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
+    public static int3x2 andnot([This] int3x2 a, int3x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
 }
 
 #endregion // int3x2
@@ -1525,10 +1485,8 @@ public static partial class math
 #region int3x3
 
 public partial struct int3x3 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<int3x3, int3x3, int3x3>
     , IShiftOperators<int3x3, int, int3x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static int3x3 operator ~(int3x3 a) => new(~a.c0, ~a.c1, ~a.c2);
@@ -1552,10 +1510,11 @@ public partial struct int3x3 : IMatrixBitops
     public static int3x3 operator >>>(int3x3 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static int3x3 andnot(this int3x3 a, int3x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
+    public static int3x3 andnot([This] int3x3 a, int3x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
 }
 
 #endregion // int3x3
@@ -1563,10 +1522,8 @@ public static partial class math
 #region int3x4
 
 public partial struct int3x4 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<int3x4, int3x4, int3x4>
     , IShiftOperators<int3x4, int, int3x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static int3x4 operator ~(int3x4 a) => new(~a.c0, ~a.c1, ~a.c2, ~a.c3);
@@ -1590,10 +1547,11 @@ public partial struct int3x4 : IMatrixBitops
     public static int3x4 operator >>>(int3x4 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b, a.c3 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static int3x4 andnot(this int3x4 a, int3x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
+    public static int3x4 andnot([This] int3x4 a, int3x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
 }
 
 #endregion // int3x4
@@ -1601,10 +1559,8 @@ public static partial class math
 #region int4x2
 
 public partial struct int4x2 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<int4x2, int4x2, int4x2>
     , IShiftOperators<int4x2, int, int4x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static int4x2 operator ~(int4x2 a) => new(~a.c0, ~a.c1);
@@ -1628,10 +1584,11 @@ public partial struct int4x2 : IMatrixBitops
     public static int4x2 operator >>>(int4x2 a, int b) => new(a.c0 >>> b, a.c1 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static int4x2 andnot(this int4x2 a, int4x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
+    public static int4x2 andnot([This] int4x2 a, int4x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
 }
 
 #endregion // int4x2
@@ -1639,10 +1596,8 @@ public static partial class math
 #region int4x3
 
 public partial struct int4x3 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<int4x3, int4x3, int4x3>
     , IShiftOperators<int4x3, int, int4x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static int4x3 operator ~(int4x3 a) => new(~a.c0, ~a.c1, ~a.c2);
@@ -1666,10 +1621,11 @@ public partial struct int4x3 : IMatrixBitops
     public static int4x3 operator >>>(int4x3 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static int4x3 andnot(this int4x3 a, int4x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
+    public static int4x3 andnot([This] int4x3 a, int4x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
 }
 
 #endregion // int4x3
@@ -1677,10 +1633,8 @@ public static partial class math
 #region int4x4
 
 public partial struct int4x4 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<int4x4, int4x4, int4x4>
     , IShiftOperators<int4x4, int, int4x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static int4x4 operator ~(int4x4 a) => new(~a.c0, ~a.c1, ~a.c2, ~a.c3);
@@ -1704,10 +1658,11 @@ public partial struct int4x4 : IMatrixBitops
     public static int4x4 operator >>>(int4x4 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b, a.c3 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static int4x4 andnot(this int4x4 a, int4x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
+    public static int4x4 andnot([This] int4x4 a, int4x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
 }
 
 #endregion // int4x4
@@ -1715,10 +1670,8 @@ public static partial class math
 #region uint2x2
 
 public partial struct uint2x2 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<uint2x2, uint2x2, uint2x2>
     , IShiftOperators<uint2x2, int, uint2x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static uint2x2 operator ~(uint2x2 a) => new(~a.c0, ~a.c1);
@@ -1742,10 +1695,11 @@ public partial struct uint2x2 : IMatrixBitops
     public static uint2x2 operator >>>(uint2x2 a, int b) => new(a.c0 >>> b, a.c1 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static uint2x2 andnot(this uint2x2 a, uint2x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
+    public static uint2x2 andnot([This] uint2x2 a, uint2x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
 }
 
 #endregion // uint2x2
@@ -1753,10 +1707,8 @@ public static partial class math
 #region uint2x3
 
 public partial struct uint2x3 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<uint2x3, uint2x3, uint2x3>
     , IShiftOperators<uint2x3, int, uint2x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static uint2x3 operator ~(uint2x3 a) => new(~a.c0, ~a.c1, ~a.c2);
@@ -1780,10 +1732,11 @@ public partial struct uint2x3 : IMatrixBitops
     public static uint2x3 operator >>>(uint2x3 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static uint2x3 andnot(this uint2x3 a, uint2x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
+    public static uint2x3 andnot([This] uint2x3 a, uint2x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
 }
 
 #endregion // uint2x3
@@ -1791,10 +1744,8 @@ public static partial class math
 #region uint2x4
 
 public partial struct uint2x4 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<uint2x4, uint2x4, uint2x4>
     , IShiftOperators<uint2x4, int, uint2x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static uint2x4 operator ~(uint2x4 a) => new(~a.c0, ~a.c1, ~a.c2, ~a.c3);
@@ -1818,10 +1769,11 @@ public partial struct uint2x4 : IMatrixBitops
     public static uint2x4 operator >>>(uint2x4 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b, a.c3 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static uint2x4 andnot(this uint2x4 a, uint2x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
+    public static uint2x4 andnot([This] uint2x4 a, uint2x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
 }
 
 #endregion // uint2x4
@@ -1829,10 +1781,8 @@ public static partial class math
 #region uint3x2
 
 public partial struct uint3x2 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<uint3x2, uint3x2, uint3x2>
     , IShiftOperators<uint3x2, int, uint3x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static uint3x2 operator ~(uint3x2 a) => new(~a.c0, ~a.c1);
@@ -1856,10 +1806,11 @@ public partial struct uint3x2 : IMatrixBitops
     public static uint3x2 operator >>>(uint3x2 a, int b) => new(a.c0 >>> b, a.c1 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static uint3x2 andnot(this uint3x2 a, uint3x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
+    public static uint3x2 andnot([This] uint3x2 a, uint3x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
 }
 
 #endregion // uint3x2
@@ -1867,10 +1818,8 @@ public static partial class math
 #region uint3x3
 
 public partial struct uint3x3 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<uint3x3, uint3x3, uint3x3>
     , IShiftOperators<uint3x3, int, uint3x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static uint3x3 operator ~(uint3x3 a) => new(~a.c0, ~a.c1, ~a.c2);
@@ -1894,10 +1843,11 @@ public partial struct uint3x3 : IMatrixBitops
     public static uint3x3 operator >>>(uint3x3 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static uint3x3 andnot(this uint3x3 a, uint3x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
+    public static uint3x3 andnot([This] uint3x3 a, uint3x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
 }
 
 #endregion // uint3x3
@@ -1905,10 +1855,8 @@ public static partial class math
 #region uint3x4
 
 public partial struct uint3x4 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<uint3x4, uint3x4, uint3x4>
     , IShiftOperators<uint3x4, int, uint3x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static uint3x4 operator ~(uint3x4 a) => new(~a.c0, ~a.c1, ~a.c2, ~a.c3);
@@ -1932,10 +1880,11 @@ public partial struct uint3x4 : IMatrixBitops
     public static uint3x4 operator >>>(uint3x4 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b, a.c3 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static uint3x4 andnot(this uint3x4 a, uint3x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
+    public static uint3x4 andnot([This] uint3x4 a, uint3x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
 }
 
 #endregion // uint3x4
@@ -1943,10 +1892,8 @@ public static partial class math
 #region uint4x2
 
 public partial struct uint4x2 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<uint4x2, uint4x2, uint4x2>
     , IShiftOperators<uint4x2, int, uint4x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static uint4x2 operator ~(uint4x2 a) => new(~a.c0, ~a.c1);
@@ -1970,10 +1917,11 @@ public partial struct uint4x2 : IMatrixBitops
     public static uint4x2 operator >>>(uint4x2 a, int b) => new(a.c0 >>> b, a.c1 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static uint4x2 andnot(this uint4x2 a, uint4x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
+    public static uint4x2 andnot([This] uint4x2 a, uint4x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
 }
 
 #endregion // uint4x2
@@ -1981,10 +1929,8 @@ public static partial class math
 #region uint4x3
 
 public partial struct uint4x3 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<uint4x3, uint4x3, uint4x3>
     , IShiftOperators<uint4x3, int, uint4x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static uint4x3 operator ~(uint4x3 a) => new(~a.c0, ~a.c1, ~a.c2);
@@ -2008,10 +1954,11 @@ public partial struct uint4x3 : IMatrixBitops
     public static uint4x3 operator >>>(uint4x3 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static uint4x3 andnot(this uint4x3 a, uint4x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
+    public static uint4x3 andnot([This] uint4x3 a, uint4x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
 }
 
 #endregion // uint4x3
@@ -2019,10 +1966,8 @@ public static partial class math
 #region uint4x4
 
 public partial struct uint4x4 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<uint4x4, uint4x4, uint4x4>
     , IShiftOperators<uint4x4, int, uint4x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static uint4x4 operator ~(uint4x4 a) => new(~a.c0, ~a.c1, ~a.c2, ~a.c3);
@@ -2046,10 +1991,11 @@ public partial struct uint4x4 : IMatrixBitops
     public static uint4x4 operator >>>(uint4x4 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b, a.c3 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static uint4x4 andnot(this uint4x4 a, uint4x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
+    public static uint4x4 andnot([This] uint4x4 a, uint4x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
 }
 
 #endregion // uint4x4
@@ -2057,10 +2003,8 @@ public static partial class math
 #region long2x2
 
 public partial struct long2x2 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<long2x2, long2x2, long2x2>
     , IShiftOperators<long2x2, int, long2x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static long2x2 operator ~(long2x2 a) => new(~a.c0, ~a.c1);
@@ -2084,10 +2028,11 @@ public partial struct long2x2 : IMatrixBitops
     public static long2x2 operator >>>(long2x2 a, int b) => new(a.c0 >>> b, a.c1 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static long2x2 andnot(this long2x2 a, long2x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
+    public static long2x2 andnot([This] long2x2 a, long2x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
 }
 
 #endregion // long2x2
@@ -2095,10 +2040,8 @@ public static partial class math
 #region long2x3
 
 public partial struct long2x3 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<long2x3, long2x3, long2x3>
     , IShiftOperators<long2x3, int, long2x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static long2x3 operator ~(long2x3 a) => new(~a.c0, ~a.c1, ~a.c2);
@@ -2122,10 +2065,11 @@ public partial struct long2x3 : IMatrixBitops
     public static long2x3 operator >>>(long2x3 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static long2x3 andnot(this long2x3 a, long2x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
+    public static long2x3 andnot([This] long2x3 a, long2x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
 }
 
 #endregion // long2x3
@@ -2133,10 +2077,8 @@ public static partial class math
 #region long2x4
 
 public partial struct long2x4 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<long2x4, long2x4, long2x4>
     , IShiftOperators<long2x4, int, long2x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static long2x4 operator ~(long2x4 a) => new(~a.c0, ~a.c1, ~a.c2, ~a.c3);
@@ -2160,10 +2102,11 @@ public partial struct long2x4 : IMatrixBitops
     public static long2x4 operator >>>(long2x4 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b, a.c3 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static long2x4 andnot(this long2x4 a, long2x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
+    public static long2x4 andnot([This] long2x4 a, long2x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
 }
 
 #endregion // long2x4
@@ -2171,10 +2114,8 @@ public static partial class math
 #region long3x2
 
 public partial struct long3x2 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<long3x2, long3x2, long3x2>
     , IShiftOperators<long3x2, int, long3x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static long3x2 operator ~(long3x2 a) => new(~a.c0, ~a.c1);
@@ -2198,10 +2139,11 @@ public partial struct long3x2 : IMatrixBitops
     public static long3x2 operator >>>(long3x2 a, int b) => new(a.c0 >>> b, a.c1 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static long3x2 andnot(this long3x2 a, long3x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
+    public static long3x2 andnot([This] long3x2 a, long3x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
 }
 
 #endregion // long3x2
@@ -2209,10 +2151,8 @@ public static partial class math
 #region long3x3
 
 public partial struct long3x3 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<long3x3, long3x3, long3x3>
     , IShiftOperators<long3x3, int, long3x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static long3x3 operator ~(long3x3 a) => new(~a.c0, ~a.c1, ~a.c2);
@@ -2236,10 +2176,11 @@ public partial struct long3x3 : IMatrixBitops
     public static long3x3 operator >>>(long3x3 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static long3x3 andnot(this long3x3 a, long3x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
+    public static long3x3 andnot([This] long3x3 a, long3x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
 }
 
 #endregion // long3x3
@@ -2247,10 +2188,8 @@ public static partial class math
 #region long3x4
 
 public partial struct long3x4 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<long3x4, long3x4, long3x4>
     , IShiftOperators<long3x4, int, long3x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static long3x4 operator ~(long3x4 a) => new(~a.c0, ~a.c1, ~a.c2, ~a.c3);
@@ -2274,10 +2213,11 @@ public partial struct long3x4 : IMatrixBitops
     public static long3x4 operator >>>(long3x4 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b, a.c3 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static long3x4 andnot(this long3x4 a, long3x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
+    public static long3x4 andnot([This] long3x4 a, long3x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
 }
 
 #endregion // long3x4
@@ -2285,10 +2225,8 @@ public static partial class math
 #region long4x2
 
 public partial struct long4x2 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<long4x2, long4x2, long4x2>
     , IShiftOperators<long4x2, int, long4x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static long4x2 operator ~(long4x2 a) => new(~a.c0, ~a.c1);
@@ -2312,10 +2250,11 @@ public partial struct long4x2 : IMatrixBitops
     public static long4x2 operator >>>(long4x2 a, int b) => new(a.c0 >>> b, a.c1 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static long4x2 andnot(this long4x2 a, long4x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
+    public static long4x2 andnot([This] long4x2 a, long4x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
 }
 
 #endregion // long4x2
@@ -2323,10 +2262,8 @@ public static partial class math
 #region long4x3
 
 public partial struct long4x3 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<long4x3, long4x3, long4x3>
     , IShiftOperators<long4x3, int, long4x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static long4x3 operator ~(long4x3 a) => new(~a.c0, ~a.c1, ~a.c2);
@@ -2350,10 +2287,11 @@ public partial struct long4x3 : IMatrixBitops
     public static long4x3 operator >>>(long4x3 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static long4x3 andnot(this long4x3 a, long4x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
+    public static long4x3 andnot([This] long4x3 a, long4x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
 }
 
 #endregion // long4x3
@@ -2361,10 +2299,8 @@ public static partial class math
 #region long4x4
 
 public partial struct long4x4 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<long4x4, long4x4, long4x4>
     , IShiftOperators<long4x4, int, long4x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static long4x4 operator ~(long4x4 a) => new(~a.c0, ~a.c1, ~a.c2, ~a.c3);
@@ -2388,10 +2324,11 @@ public partial struct long4x4 : IMatrixBitops
     public static long4x4 operator >>>(long4x4 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b, a.c3 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static long4x4 andnot(this long4x4 a, long4x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
+    public static long4x4 andnot([This] long4x4 a, long4x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
 }
 
 #endregion // long4x4
@@ -2399,10 +2336,8 @@ public static partial class math
 #region ulong2x2
 
 public partial struct ulong2x2 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<ulong2x2, ulong2x2, ulong2x2>
     , IShiftOperators<ulong2x2, int, ulong2x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static ulong2x2 operator ~(ulong2x2 a) => new(~a.c0, ~a.c1);
@@ -2426,10 +2361,11 @@ public partial struct ulong2x2 : IMatrixBitops
     public static ulong2x2 operator >>>(ulong2x2 a, int b) => new(a.c0 >>> b, a.c1 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ulong2x2 andnot(this ulong2x2 a, ulong2x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
+    public static ulong2x2 andnot([This] ulong2x2 a, ulong2x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
 }
 
 #endregion // ulong2x2
@@ -2437,10 +2373,8 @@ public static partial class math
 #region ulong2x3
 
 public partial struct ulong2x3 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<ulong2x3, ulong2x3, ulong2x3>
     , IShiftOperators<ulong2x3, int, ulong2x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static ulong2x3 operator ~(ulong2x3 a) => new(~a.c0, ~a.c1, ~a.c2);
@@ -2464,10 +2398,11 @@ public partial struct ulong2x3 : IMatrixBitops
     public static ulong2x3 operator >>>(ulong2x3 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ulong2x3 andnot(this ulong2x3 a, ulong2x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
+    public static ulong2x3 andnot([This] ulong2x3 a, ulong2x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
 }
 
 #endregion // ulong2x3
@@ -2475,10 +2410,8 @@ public static partial class math
 #region ulong2x4
 
 public partial struct ulong2x4 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<ulong2x4, ulong2x4, ulong2x4>
     , IShiftOperators<ulong2x4, int, ulong2x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static ulong2x4 operator ~(ulong2x4 a) => new(~a.c0, ~a.c1, ~a.c2, ~a.c3);
@@ -2502,10 +2435,11 @@ public partial struct ulong2x4 : IMatrixBitops
     public static ulong2x4 operator >>>(ulong2x4 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b, a.c3 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ulong2x4 andnot(this ulong2x4 a, ulong2x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
+    public static ulong2x4 andnot([This] ulong2x4 a, ulong2x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
 }
 
 #endregion // ulong2x4
@@ -2513,10 +2447,8 @@ public static partial class math
 #region ulong3x2
 
 public partial struct ulong3x2 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<ulong3x2, ulong3x2, ulong3x2>
     , IShiftOperators<ulong3x2, int, ulong3x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static ulong3x2 operator ~(ulong3x2 a) => new(~a.c0, ~a.c1);
@@ -2540,10 +2472,11 @@ public partial struct ulong3x2 : IMatrixBitops
     public static ulong3x2 operator >>>(ulong3x2 a, int b) => new(a.c0 >>> b, a.c1 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ulong3x2 andnot(this ulong3x2 a, ulong3x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
+    public static ulong3x2 andnot([This] ulong3x2 a, ulong3x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
 }
 
 #endregion // ulong3x2
@@ -2551,10 +2484,8 @@ public static partial class math
 #region ulong3x3
 
 public partial struct ulong3x3 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<ulong3x3, ulong3x3, ulong3x3>
     , IShiftOperators<ulong3x3, int, ulong3x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static ulong3x3 operator ~(ulong3x3 a) => new(~a.c0, ~a.c1, ~a.c2);
@@ -2578,10 +2509,11 @@ public partial struct ulong3x3 : IMatrixBitops
     public static ulong3x3 operator >>>(ulong3x3 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ulong3x3 andnot(this ulong3x3 a, ulong3x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
+    public static ulong3x3 andnot([This] ulong3x3 a, ulong3x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
 }
 
 #endregion // ulong3x3
@@ -2589,10 +2521,8 @@ public static partial class math
 #region ulong3x4
 
 public partial struct ulong3x4 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<ulong3x4, ulong3x4, ulong3x4>
     , IShiftOperators<ulong3x4, int, ulong3x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static ulong3x4 operator ~(ulong3x4 a) => new(~a.c0, ~a.c1, ~a.c2, ~a.c3);
@@ -2616,10 +2546,11 @@ public partial struct ulong3x4 : IMatrixBitops
     public static ulong3x4 operator >>>(ulong3x4 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b, a.c3 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ulong3x4 andnot(this ulong3x4 a, ulong3x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
+    public static ulong3x4 andnot([This] ulong3x4 a, ulong3x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
 }
 
 #endregion // ulong3x4
@@ -2627,10 +2558,8 @@ public static partial class math
 #region ulong4x2
 
 public partial struct ulong4x2 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<ulong4x2, ulong4x2, ulong4x2>
     , IShiftOperators<ulong4x2, int, ulong4x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static ulong4x2 operator ~(ulong4x2 a) => new(~a.c0, ~a.c1);
@@ -2654,10 +2583,11 @@ public partial struct ulong4x2 : IMatrixBitops
     public static ulong4x2 operator >>>(ulong4x2 a, int b) => new(a.c0 >>> b, a.c1 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ulong4x2 andnot(this ulong4x2 a, ulong4x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
+    public static ulong4x2 andnot([This] ulong4x2 a, ulong4x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
 }
 
 #endregion // ulong4x2
@@ -2665,10 +2595,8 @@ public static partial class math
 #region ulong4x3
 
 public partial struct ulong4x3 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<ulong4x3, ulong4x3, ulong4x3>
     , IShiftOperators<ulong4x3, int, ulong4x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static ulong4x3 operator ~(ulong4x3 a) => new(~a.c0, ~a.c1, ~a.c2);
@@ -2692,10 +2620,11 @@ public partial struct ulong4x3 : IMatrixBitops
     public static ulong4x3 operator >>>(ulong4x3 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ulong4x3 andnot(this ulong4x3 a, ulong4x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
+    public static ulong4x3 andnot([This] ulong4x3 a, ulong4x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
 }
 
 #endregion // ulong4x3
@@ -2703,10 +2632,8 @@ public static partial class math
 #region ulong4x4
 
 public partial struct ulong4x4 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<ulong4x4, ulong4x4, ulong4x4>
     , IShiftOperators<ulong4x4, int, ulong4x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static ulong4x4 operator ~(ulong4x4 a) => new(~a.c0, ~a.c1, ~a.c2, ~a.c3);
@@ -2730,10 +2657,11 @@ public partial struct ulong4x4 : IMatrixBitops
     public static ulong4x4 operator >>>(ulong4x4 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b, a.c3 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ulong4x4 andnot(this ulong4x4 a, ulong4x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
+    public static ulong4x4 andnot([This] ulong4x4 a, ulong4x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
 }
 
 #endregion // ulong4x4
@@ -2741,10 +2669,8 @@ public static partial class math
 #region half2x2
 
 public partial struct half2x2 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<half2x2, half2x2, half2x2>
     , IShiftOperators<half2x2, int, half2x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static half2x2 operator ~(half2x2 a) => new(~a.c0, ~a.c1);
@@ -2768,10 +2694,11 @@ public partial struct half2x2 : IMatrixBitops
     public static half2x2 operator >>>(half2x2 a, int b) => new(a.c0 >>> b, a.c1 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half2x2 andnot(this half2x2 a, half2x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
+    public static half2x2 andnot([This] half2x2 a, half2x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
 }
 
 #endregion // half2x2
@@ -2779,10 +2706,8 @@ public static partial class math
 #region half2x3
 
 public partial struct half2x3 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<half2x3, half2x3, half2x3>
     , IShiftOperators<half2x3, int, half2x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static half2x3 operator ~(half2x3 a) => new(~a.c0, ~a.c1, ~a.c2);
@@ -2806,10 +2731,11 @@ public partial struct half2x3 : IMatrixBitops
     public static half2x3 operator >>>(half2x3 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half2x3 andnot(this half2x3 a, half2x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
+    public static half2x3 andnot([This] half2x3 a, half2x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
 }
 
 #endregion // half2x3
@@ -2817,10 +2743,8 @@ public static partial class math
 #region half2x4
 
 public partial struct half2x4 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<half2x4, half2x4, half2x4>
     , IShiftOperators<half2x4, int, half2x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static half2x4 operator ~(half2x4 a) => new(~a.c0, ~a.c1, ~a.c2, ~a.c3);
@@ -2844,10 +2768,11 @@ public partial struct half2x4 : IMatrixBitops
     public static half2x4 operator >>>(half2x4 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b, a.c3 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half2x4 andnot(this half2x4 a, half2x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
+    public static half2x4 andnot([This] half2x4 a, half2x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
 }
 
 #endregion // half2x4
@@ -2855,10 +2780,8 @@ public static partial class math
 #region half3x2
 
 public partial struct half3x2 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<half3x2, half3x2, half3x2>
     , IShiftOperators<half3x2, int, half3x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static half3x2 operator ~(half3x2 a) => new(~a.c0, ~a.c1);
@@ -2882,10 +2805,11 @@ public partial struct half3x2 : IMatrixBitops
     public static half3x2 operator >>>(half3x2 a, int b) => new(a.c0 >>> b, a.c1 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half3x2 andnot(this half3x2 a, half3x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
+    public static half3x2 andnot([This] half3x2 a, half3x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
 }
 
 #endregion // half3x2
@@ -2893,10 +2817,8 @@ public static partial class math
 #region half3x3
 
 public partial struct half3x3 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<half3x3, half3x3, half3x3>
     , IShiftOperators<half3x3, int, half3x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static half3x3 operator ~(half3x3 a) => new(~a.c0, ~a.c1, ~a.c2);
@@ -2920,10 +2842,11 @@ public partial struct half3x3 : IMatrixBitops
     public static half3x3 operator >>>(half3x3 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half3x3 andnot(this half3x3 a, half3x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
+    public static half3x3 andnot([This] half3x3 a, half3x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
 }
 
 #endregion // half3x3
@@ -2931,10 +2854,8 @@ public static partial class math
 #region half3x4
 
 public partial struct half3x4 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<half3x4, half3x4, half3x4>
     , IShiftOperators<half3x4, int, half3x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static half3x4 operator ~(half3x4 a) => new(~a.c0, ~a.c1, ~a.c2, ~a.c3);
@@ -2958,10 +2879,11 @@ public partial struct half3x4 : IMatrixBitops
     public static half3x4 operator >>>(half3x4 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b, a.c3 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half3x4 andnot(this half3x4 a, half3x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
+    public static half3x4 andnot([This] half3x4 a, half3x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
 }
 
 #endregion // half3x4
@@ -2969,10 +2891,8 @@ public static partial class math
 #region half4x2
 
 public partial struct half4x2 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<half4x2, half4x2, half4x2>
     , IShiftOperators<half4x2, int, half4x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static half4x2 operator ~(half4x2 a) => new(~a.c0, ~a.c1);
@@ -2996,10 +2916,11 @@ public partial struct half4x2 : IMatrixBitops
     public static half4x2 operator >>>(half4x2 a, int b) => new(a.c0 >>> b, a.c1 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half4x2 andnot(this half4x2 a, half4x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
+    public static half4x2 andnot([This] half4x2 a, half4x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
 }
 
 #endregion // half4x2
@@ -3007,10 +2928,8 @@ public static partial class math
 #region half4x3
 
 public partial struct half4x3 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<half4x3, half4x3, half4x3>
     , IShiftOperators<half4x3, int, half4x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static half4x3 operator ~(half4x3 a) => new(~a.c0, ~a.c1, ~a.c2);
@@ -3034,10 +2953,11 @@ public partial struct half4x3 : IMatrixBitops
     public static half4x3 operator >>>(half4x3 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half4x3 andnot(this half4x3 a, half4x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
+    public static half4x3 andnot([This] half4x3 a, half4x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
 }
 
 #endregion // half4x3
@@ -3045,10 +2965,8 @@ public static partial class math
 #region half4x4
 
 public partial struct half4x4 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<half4x4, half4x4, half4x4>
     , IShiftOperators<half4x4, int, half4x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static half4x4 operator ~(half4x4 a) => new(~a.c0, ~a.c1, ~a.c2, ~a.c3);
@@ -3072,10 +2990,11 @@ public partial struct half4x4 : IMatrixBitops
     public static half4x4 operator >>>(half4x4 a, int b) => new(a.c0 >>> b, a.c1 >>> b, a.c2 >>> b, a.c3 >>> b);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half4x4 andnot(this half4x4 a, half4x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
+    public static half4x4 andnot([This] half4x4 a, half4x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
 }
 
 #endregion // half4x4
@@ -3083,9 +3002,7 @@ public static partial class math
 #region b16m2x2
 
 public partial struct b16m2x2 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<b16m2x2, b16m2x2, b16m2x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static b16m2x2 operator ~(b16m2x2 a) => new(~a.c0, ~a.c1);
@@ -3100,10 +3017,11 @@ public partial struct b16m2x2 : IMatrixBitops
     public static b16m2x2 operator ^(b16m2x2 a, b16m2x2 b) => new(a.c0 ^ b.c0, a.c1 ^ b.c1);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m2x2 andnot(this b16m2x2 a, b16m2x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
+    public static b16m2x2 andnot([This] b16m2x2 a, b16m2x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
 }
 
 #endregion // b16m2x2
@@ -3111,9 +3029,7 @@ public static partial class math
 #region b16m2x3
 
 public partial struct b16m2x3 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<b16m2x3, b16m2x3, b16m2x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static b16m2x3 operator ~(b16m2x3 a) => new(~a.c0, ~a.c1, ~a.c2);
@@ -3128,10 +3044,11 @@ public partial struct b16m2x3 : IMatrixBitops
     public static b16m2x3 operator ^(b16m2x3 a, b16m2x3 b) => new(a.c0 ^ b.c0, a.c1 ^ b.c1, a.c2 ^ b.c2);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m2x3 andnot(this b16m2x3 a, b16m2x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
+    public static b16m2x3 andnot([This] b16m2x3 a, b16m2x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
 }
 
 #endregion // b16m2x3
@@ -3139,9 +3056,7 @@ public static partial class math
 #region b16m2x4
 
 public partial struct b16m2x4 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<b16m2x4, b16m2x4, b16m2x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static b16m2x4 operator ~(b16m2x4 a) => new(~a.c0, ~a.c1, ~a.c2, ~a.c3);
@@ -3156,10 +3071,11 @@ public partial struct b16m2x4 : IMatrixBitops
     public static b16m2x4 operator ^(b16m2x4 a, b16m2x4 b) => new(a.c0 ^ b.c0, a.c1 ^ b.c1, a.c2 ^ b.c2, a.c3 ^ b.c3);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m2x4 andnot(this b16m2x4 a, b16m2x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
+    public static b16m2x4 andnot([This] b16m2x4 a, b16m2x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
 }
 
 #endregion // b16m2x4
@@ -3167,9 +3083,7 @@ public static partial class math
 #region b16m3x2
 
 public partial struct b16m3x2 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<b16m3x2, b16m3x2, b16m3x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static b16m3x2 operator ~(b16m3x2 a) => new(~a.c0, ~a.c1);
@@ -3184,10 +3098,11 @@ public partial struct b16m3x2 : IMatrixBitops
     public static b16m3x2 operator ^(b16m3x2 a, b16m3x2 b) => new(a.c0 ^ b.c0, a.c1 ^ b.c1);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m3x2 andnot(this b16m3x2 a, b16m3x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
+    public static b16m3x2 andnot([This] b16m3x2 a, b16m3x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
 }
 
 #endregion // b16m3x2
@@ -3195,9 +3110,7 @@ public static partial class math
 #region b16m3x3
 
 public partial struct b16m3x3 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<b16m3x3, b16m3x3, b16m3x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static b16m3x3 operator ~(b16m3x3 a) => new(~a.c0, ~a.c1, ~a.c2);
@@ -3212,10 +3125,11 @@ public partial struct b16m3x3 : IMatrixBitops
     public static b16m3x3 operator ^(b16m3x3 a, b16m3x3 b) => new(a.c0 ^ b.c0, a.c1 ^ b.c1, a.c2 ^ b.c2);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m3x3 andnot(this b16m3x3 a, b16m3x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
+    public static b16m3x3 andnot([This] b16m3x3 a, b16m3x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
 }
 
 #endregion // b16m3x3
@@ -3223,9 +3137,7 @@ public static partial class math
 #region b16m3x4
 
 public partial struct b16m3x4 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<b16m3x4, b16m3x4, b16m3x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static b16m3x4 operator ~(b16m3x4 a) => new(~a.c0, ~a.c1, ~a.c2, ~a.c3);
@@ -3240,10 +3152,11 @@ public partial struct b16m3x4 : IMatrixBitops
     public static b16m3x4 operator ^(b16m3x4 a, b16m3x4 b) => new(a.c0 ^ b.c0, a.c1 ^ b.c1, a.c2 ^ b.c2, a.c3 ^ b.c3);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m3x4 andnot(this b16m3x4 a, b16m3x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
+    public static b16m3x4 andnot([This] b16m3x4 a, b16m3x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
 }
 
 #endregion // b16m3x4
@@ -3251,9 +3164,7 @@ public static partial class math
 #region b16m4x2
 
 public partial struct b16m4x2 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<b16m4x2, b16m4x2, b16m4x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static b16m4x2 operator ~(b16m4x2 a) => new(~a.c0, ~a.c1);
@@ -3268,10 +3179,11 @@ public partial struct b16m4x2 : IMatrixBitops
     public static b16m4x2 operator ^(b16m4x2 a, b16m4x2 b) => new(a.c0 ^ b.c0, a.c1 ^ b.c1);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m4x2 andnot(this b16m4x2 a, b16m4x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
+    public static b16m4x2 andnot([This] b16m4x2 a, b16m4x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
 }
 
 #endregion // b16m4x2
@@ -3279,9 +3191,7 @@ public static partial class math
 #region b16m4x3
 
 public partial struct b16m4x3 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<b16m4x3, b16m4x3, b16m4x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static b16m4x3 operator ~(b16m4x3 a) => new(~a.c0, ~a.c1, ~a.c2);
@@ -3296,10 +3206,11 @@ public partial struct b16m4x3 : IMatrixBitops
     public static b16m4x3 operator ^(b16m4x3 a, b16m4x3 b) => new(a.c0 ^ b.c0, a.c1 ^ b.c1, a.c2 ^ b.c2);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m4x3 andnot(this b16m4x3 a, b16m4x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
+    public static b16m4x3 andnot([This] b16m4x3 a, b16m4x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
 }
 
 #endregion // b16m4x3
@@ -3307,9 +3218,7 @@ public static partial class math
 #region b16m4x4
 
 public partial struct b16m4x4 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<b16m4x4, b16m4x4, b16m4x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static b16m4x4 operator ~(b16m4x4 a) => new(~a.c0, ~a.c1, ~a.c2, ~a.c3);
@@ -3324,10 +3233,11 @@ public partial struct b16m4x4 : IMatrixBitops
     public static b16m4x4 operator ^(b16m4x4 a, b16m4x4 b) => new(a.c0 ^ b.c0, a.c1 ^ b.c1, a.c2 ^ b.c2, a.c3 ^ b.c3);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m4x4 andnot(this b16m4x4 a, b16m4x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
+    public static b16m4x4 andnot([This] b16m4x4 a, b16m4x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
 }
 
 #endregion // b16m4x4
@@ -3335,9 +3245,7 @@ public static partial class math
 #region b32m2x2
 
 public partial struct b32m2x2 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<b32m2x2, b32m2x2, b32m2x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static b32m2x2 operator ~(b32m2x2 a) => new(~a.c0, ~a.c1);
@@ -3352,10 +3260,11 @@ public partial struct b32m2x2 : IMatrixBitops
     public static b32m2x2 operator ^(b32m2x2 a, b32m2x2 b) => new(a.c0 ^ b.c0, a.c1 ^ b.c1);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m2x2 andnot(this b32m2x2 a, b32m2x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
+    public static b32m2x2 andnot([This] b32m2x2 a, b32m2x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
 }
 
 #endregion // b32m2x2
@@ -3363,9 +3272,7 @@ public static partial class math
 #region b32m2x3
 
 public partial struct b32m2x3 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<b32m2x3, b32m2x3, b32m2x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static b32m2x3 operator ~(b32m2x3 a) => new(~a.c0, ~a.c1, ~a.c2);
@@ -3380,10 +3287,11 @@ public partial struct b32m2x3 : IMatrixBitops
     public static b32m2x3 operator ^(b32m2x3 a, b32m2x3 b) => new(a.c0 ^ b.c0, a.c1 ^ b.c1, a.c2 ^ b.c2);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m2x3 andnot(this b32m2x3 a, b32m2x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
+    public static b32m2x3 andnot([This] b32m2x3 a, b32m2x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
 }
 
 #endregion // b32m2x3
@@ -3391,9 +3299,7 @@ public static partial class math
 #region b32m2x4
 
 public partial struct b32m2x4 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<b32m2x4, b32m2x4, b32m2x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static b32m2x4 operator ~(b32m2x4 a) => new(~a.c0, ~a.c1, ~a.c2, ~a.c3);
@@ -3408,10 +3314,11 @@ public partial struct b32m2x4 : IMatrixBitops
     public static b32m2x4 operator ^(b32m2x4 a, b32m2x4 b) => new(a.c0 ^ b.c0, a.c1 ^ b.c1, a.c2 ^ b.c2, a.c3 ^ b.c3);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m2x4 andnot(this b32m2x4 a, b32m2x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
+    public static b32m2x4 andnot([This] b32m2x4 a, b32m2x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
 }
 
 #endregion // b32m2x4
@@ -3419,9 +3326,7 @@ public static partial class math
 #region b32m3x2
 
 public partial struct b32m3x2 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<b32m3x2, b32m3x2, b32m3x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static b32m3x2 operator ~(b32m3x2 a) => new(~a.c0, ~a.c1);
@@ -3436,10 +3341,11 @@ public partial struct b32m3x2 : IMatrixBitops
     public static b32m3x2 operator ^(b32m3x2 a, b32m3x2 b) => new(a.c0 ^ b.c0, a.c1 ^ b.c1);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m3x2 andnot(this b32m3x2 a, b32m3x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
+    public static b32m3x2 andnot([This] b32m3x2 a, b32m3x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
 }
 
 #endregion // b32m3x2
@@ -3447,9 +3353,7 @@ public static partial class math
 #region b32m3x3
 
 public partial struct b32m3x3 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<b32m3x3, b32m3x3, b32m3x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static b32m3x3 operator ~(b32m3x3 a) => new(~a.c0, ~a.c1, ~a.c2);
@@ -3464,10 +3368,11 @@ public partial struct b32m3x3 : IMatrixBitops
     public static b32m3x3 operator ^(b32m3x3 a, b32m3x3 b) => new(a.c0 ^ b.c0, a.c1 ^ b.c1, a.c2 ^ b.c2);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m3x3 andnot(this b32m3x3 a, b32m3x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
+    public static b32m3x3 andnot([This] b32m3x3 a, b32m3x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
 }
 
 #endregion // b32m3x3
@@ -3475,9 +3380,7 @@ public static partial class math
 #region b32m3x4
 
 public partial struct b32m3x4 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<b32m3x4, b32m3x4, b32m3x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static b32m3x4 operator ~(b32m3x4 a) => new(~a.c0, ~a.c1, ~a.c2, ~a.c3);
@@ -3492,10 +3395,11 @@ public partial struct b32m3x4 : IMatrixBitops
     public static b32m3x4 operator ^(b32m3x4 a, b32m3x4 b) => new(a.c0 ^ b.c0, a.c1 ^ b.c1, a.c2 ^ b.c2, a.c3 ^ b.c3);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m3x4 andnot(this b32m3x4 a, b32m3x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
+    public static b32m3x4 andnot([This] b32m3x4 a, b32m3x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
 }
 
 #endregion // b32m3x4
@@ -3503,9 +3407,7 @@ public static partial class math
 #region b32m4x2
 
 public partial struct b32m4x2 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<b32m4x2, b32m4x2, b32m4x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static b32m4x2 operator ~(b32m4x2 a) => new(~a.c0, ~a.c1);
@@ -3520,10 +3422,11 @@ public partial struct b32m4x2 : IMatrixBitops
     public static b32m4x2 operator ^(b32m4x2 a, b32m4x2 b) => new(a.c0 ^ b.c0, a.c1 ^ b.c1);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m4x2 andnot(this b32m4x2 a, b32m4x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
+    public static b32m4x2 andnot([This] b32m4x2 a, b32m4x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
 }
 
 #endregion // b32m4x2
@@ -3531,9 +3434,7 @@ public static partial class math
 #region b32m4x3
 
 public partial struct b32m4x3 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<b32m4x3, b32m4x3, b32m4x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static b32m4x3 operator ~(b32m4x3 a) => new(~a.c0, ~a.c1, ~a.c2);
@@ -3548,10 +3449,11 @@ public partial struct b32m4x3 : IMatrixBitops
     public static b32m4x3 operator ^(b32m4x3 a, b32m4x3 b) => new(a.c0 ^ b.c0, a.c1 ^ b.c1, a.c2 ^ b.c2);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m4x3 andnot(this b32m4x3 a, b32m4x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
+    public static b32m4x3 andnot([This] b32m4x3 a, b32m4x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
 }
 
 #endregion // b32m4x3
@@ -3559,9 +3461,7 @@ public static partial class math
 #region b32m4x4
 
 public partial struct b32m4x4 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<b32m4x4, b32m4x4, b32m4x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static b32m4x4 operator ~(b32m4x4 a) => new(~a.c0, ~a.c1, ~a.c2, ~a.c3);
@@ -3576,10 +3476,11 @@ public partial struct b32m4x4 : IMatrixBitops
     public static b32m4x4 operator ^(b32m4x4 a, b32m4x4 b) => new(a.c0 ^ b.c0, a.c1 ^ b.c1, a.c2 ^ b.c2, a.c3 ^ b.c3);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m4x4 andnot(this b32m4x4 a, b32m4x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
+    public static b32m4x4 andnot([This] b32m4x4 a, b32m4x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
 }
 
 #endregion // b32m4x4
@@ -3587,9 +3488,7 @@ public static partial class math
 #region b64m2x2
 
 public partial struct b64m2x2 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<b64m2x2, b64m2x2, b64m2x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static b64m2x2 operator ~(b64m2x2 a) => new(~a.c0, ~a.c1);
@@ -3604,10 +3503,11 @@ public partial struct b64m2x2 : IMatrixBitops
     public static b64m2x2 operator ^(b64m2x2 a, b64m2x2 b) => new(a.c0 ^ b.c0, a.c1 ^ b.c1);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m2x2 andnot(this b64m2x2 a, b64m2x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
+    public static b64m2x2 andnot([This] b64m2x2 a, b64m2x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
 }
 
 #endregion // b64m2x2
@@ -3615,9 +3515,7 @@ public static partial class math
 #region b64m2x3
 
 public partial struct b64m2x3 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<b64m2x3, b64m2x3, b64m2x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static b64m2x3 operator ~(b64m2x3 a) => new(~a.c0, ~a.c1, ~a.c2);
@@ -3632,10 +3530,11 @@ public partial struct b64m2x3 : IMatrixBitops
     public static b64m2x3 operator ^(b64m2x3 a, b64m2x3 b) => new(a.c0 ^ b.c0, a.c1 ^ b.c1, a.c2 ^ b.c2);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m2x3 andnot(this b64m2x3 a, b64m2x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
+    public static b64m2x3 andnot([This] b64m2x3 a, b64m2x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
 }
 
 #endregion // b64m2x3
@@ -3643,9 +3542,7 @@ public static partial class math
 #region b64m2x4
 
 public partial struct b64m2x4 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<b64m2x4, b64m2x4, b64m2x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static b64m2x4 operator ~(b64m2x4 a) => new(~a.c0, ~a.c1, ~a.c2, ~a.c3);
@@ -3660,10 +3557,11 @@ public partial struct b64m2x4 : IMatrixBitops
     public static b64m2x4 operator ^(b64m2x4 a, b64m2x4 b) => new(a.c0 ^ b.c0, a.c1 ^ b.c1, a.c2 ^ b.c2, a.c3 ^ b.c3);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m2x4 andnot(this b64m2x4 a, b64m2x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
+    public static b64m2x4 andnot([This] b64m2x4 a, b64m2x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
 }
 
 #endregion // b64m2x4
@@ -3671,9 +3569,7 @@ public static partial class math
 #region b64m3x2
 
 public partial struct b64m3x2 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<b64m3x2, b64m3x2, b64m3x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static b64m3x2 operator ~(b64m3x2 a) => new(~a.c0, ~a.c1);
@@ -3688,10 +3584,11 @@ public partial struct b64m3x2 : IMatrixBitops
     public static b64m3x2 operator ^(b64m3x2 a, b64m3x2 b) => new(a.c0 ^ b.c0, a.c1 ^ b.c1);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m3x2 andnot(this b64m3x2 a, b64m3x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
+    public static b64m3x2 andnot([This] b64m3x2 a, b64m3x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
 }
 
 #endregion // b64m3x2
@@ -3699,9 +3596,7 @@ public static partial class math
 #region b64m3x3
 
 public partial struct b64m3x3 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<b64m3x3, b64m3x3, b64m3x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static b64m3x3 operator ~(b64m3x3 a) => new(~a.c0, ~a.c1, ~a.c2);
@@ -3716,10 +3611,11 @@ public partial struct b64m3x3 : IMatrixBitops
     public static b64m3x3 operator ^(b64m3x3 a, b64m3x3 b) => new(a.c0 ^ b.c0, a.c1 ^ b.c1, a.c2 ^ b.c2);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m3x3 andnot(this b64m3x3 a, b64m3x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
+    public static b64m3x3 andnot([This] b64m3x3 a, b64m3x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
 }
 
 #endregion // b64m3x3
@@ -3727,9 +3623,7 @@ public static partial class math
 #region b64m3x4
 
 public partial struct b64m3x4 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<b64m3x4, b64m3x4, b64m3x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static b64m3x4 operator ~(b64m3x4 a) => new(~a.c0, ~a.c1, ~a.c2, ~a.c3);
@@ -3744,10 +3638,11 @@ public partial struct b64m3x4 : IMatrixBitops
     public static b64m3x4 operator ^(b64m3x4 a, b64m3x4 b) => new(a.c0 ^ b.c0, a.c1 ^ b.c1, a.c2 ^ b.c2, a.c3 ^ b.c3);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m3x4 andnot(this b64m3x4 a, b64m3x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
+    public static b64m3x4 andnot([This] b64m3x4 a, b64m3x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
 }
 
 #endregion // b64m3x4
@@ -3755,9 +3650,7 @@ public static partial class math
 #region b64m4x2
 
 public partial struct b64m4x2 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<b64m4x2, b64m4x2, b64m4x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static b64m4x2 operator ~(b64m4x2 a) => new(~a.c0, ~a.c1);
@@ -3772,10 +3665,11 @@ public partial struct b64m4x2 : IMatrixBitops
     public static b64m4x2 operator ^(b64m4x2 a, b64m4x2 b) => new(a.c0 ^ b.c0, a.c1 ^ b.c1);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m4x2 andnot(this b64m4x2 a, b64m4x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
+    public static b64m4x2 andnot([This] b64m4x2 a, b64m4x2 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1));
 }
 
 #endregion // b64m4x2
@@ -3783,9 +3677,7 @@ public static partial class math
 #region b64m4x3
 
 public partial struct b64m4x3 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<b64m4x3, b64m4x3, b64m4x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static b64m4x3 operator ~(b64m4x3 a) => new(~a.c0, ~a.c1, ~a.c2);
@@ -3800,10 +3692,11 @@ public partial struct b64m4x3 : IMatrixBitops
     public static b64m4x3 operator ^(b64m4x3 a, b64m4x3 b) => new(a.c0 ^ b.c0, a.c1 ^ b.c1, a.c2 ^ b.c2);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m4x3 andnot(this b64m4x3 a, b64m4x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
+    public static b64m4x3 andnot([This] b64m4x3 a, b64m4x3 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2));
 }
 
 #endregion // b64m4x3
@@ -3811,9 +3704,7 @@ public static partial class math
 #region b64m4x4
 
 public partial struct b64m4x4 : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<b64m4x4, b64m4x4, b64m4x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static b64m4x4 operator ~(b64m4x4 a) => new(~a.c0, ~a.c1, ~a.c2, ~a.c3);
@@ -3828,10 +3719,11 @@ public partial struct b64m4x4 : IMatrixBitops
     public static b64m4x4 operator ^(b64m4x4 a, b64m4x4 b) => new(a.c0 ^ b.c0, a.c1 ^ b.c1, a.c2 ^ b.c2, a.c3 ^ b.c3);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m4x4 andnot(this b64m4x4 a, b64m4x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
+    public static b64m4x4 andnot([This] b64m4x4 a, b64m4x4 b) => new(a.c0.andnot(b.c0), a.c1.andnot(b.c1), a.c2.andnot(b.c2), a.c3.andnot(b.c3));
 }
 
 #endregion // b64m4x4

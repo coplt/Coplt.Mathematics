@@ -29,7 +29,7 @@ public partial struct <#= typeName #>
 {
     public <#= vecTypeName #> value;
 
-    public override string ToString() => $"{nameof(<#= typeName #>)}({value.x}, {value.y}, {value.z}, {value.w})";
+    public readonly override string ToString() => $"{nameof(<#= typeName #>)}({value.x}, {value.y}, {value.z}, {value.w})";
 
     public static <#= typeName #> Identity
     {
@@ -306,36 +306,37 @@ public partial struct <#= typeName #>
     }
 }
 
+[Ex]
 public static partial class math
 {
     /// <summary>Returns the conjugate of a quaternion value</summary>
     /// <param name="q">The quaternion to conjugate</param>
     /// <returns>The conjugate of the input quaternion</returns>
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> conjugate(this <#= typeName #> q) => 
+    public static <#= typeName #> conjugate([This] <#= typeName #> q) => 
         new(q.value * new <#= vecTypeName #>(-1.0<#= typ.suffix #>, -1.0<#= typ.suffix #>, -1.0<#= typ.suffix #>, 1.0<#= typ.suffix #>));
 
     /// <summary>Returns the inverse of a quaternion value</summary>
     /// <param name="q">The quaternion to invert</param>
     /// <returns>The quaternion inverse of the input quaternion</returns>
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> inverse(this <#= typeName #> q) => 
+    public static <#= typeName #> inverse([This] <#= typeName #> q) => 
         new(q.dot(q).rcp() * q.value *  new <#= vecTypeName #>(-1.0<#= typ.suffix #>, -1.0<#= typ.suffix #>, -1.0<#= typ.suffix #>, 1.0<#= typ.suffix #>));
 
     [MethodImpl(256 | 512)]
-    public static <#= typ.compType #> dot(this <#= typeName #> a, <#= typeName #> b) => a.value.dot(b.value);
+    public static <#= typ.compType #> dot([This] <#= typeName #> a, <#= typeName #> b) => a.value.dot(b.value);
 
     [MethodImpl(256 | 512)]
-    public static <#= typ.compType #> length(this <#= typeName #> q) => q.lengthsq().sqrt();
+    public static <#= typ.compType #> length([This] <#= typeName #> q) => q.lengthsq().sqrt();
 
     [MethodImpl(256 | 512)]
-    public static <#= typ.compType #> lengthsq(this <#= typeName #> q) => q.dot(q);
+    public static <#= typ.compType #> lengthsq([This] <#= typeName #> q) => q.dot(q);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> normalize(this <#= typeName #> q) => new(q.dot(q).rsqrt() * q.value);
+    public static <#= typeName #> normalize([This] <#= typeName #> q) => new(q.dot(q).rsqrt() * q.value);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> normalizesafe(this <#= typeName #> q)
+    public static <#= typeName #> normalizeSafe([This] <#= typeName #> q)
     {
         var len = q.lengthsq();
         if (len > MinNormal<<#= typ.compType #>>()) return <#= typeName #>.Identity;
@@ -343,7 +344,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> normalizesafe(this <#= typeName #> q, <#= typeName #> defaultValue)
+    public static <#= typeName #> normalizeSafe([This] <#= typeName #> q, <#= typeName #> defaultValue)
     {
         var len = q.lengthsq();
         if (len > MinNormal<<#= typ.compType #>>()) return defaultValue;
@@ -351,7 +352,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> unitexp(this <#= typeName #> q)
+    public static <#= typeName #> unitExp([This] <#= typeName #> q)
     {
         var v_rcp_len = q.value.xyz.lengthsq().rsqrt();
         var v_len = v_rcp_len.rcp();
@@ -360,7 +361,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> exp(this <#= typeName #> q)
+    public static <#= typeName #> exp([This] <#= typeName #> q)
     {
         var v_rcp_len = q.value.xyz.lengthsq().rsqrt();
         var v_len = v_rcp_len.rcp();
@@ -369,7 +370,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> unitlog(this <#= typeName #> q)
+    public static <#= typeName #> unitLog([This] <#= typeName #> q)
     {
         var w = q.value.w.clamp(-1.0<#= typ.suffix #>, 1.0<#= typ.suffix #>);
         var s = <#= typ.arithCast #>(acos(w) * rsqrt(1.0<#= typ.suffix #> - w*w));
@@ -377,7 +378,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> log(this <#= typeName #> q)
+    public static <#= typeName #> log([This] <#= typeName #> q)
     {
         var v_len_sq = q.value.xyz.lengthsq();
         var q_len_sq = v_len_sq + q.value.w * q.value.w;
@@ -387,27 +388,27 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> mul(this <#= typeName #> a, <#= typeName #> b) => new(
+    public static <#= typeName #> mul([This] <#= typeName #> a, <#= typeName #> b) => new(
         a.value.wwww * b.value + (a.value.xyzx * b.value.wwwx + a.value.yzxy * b.value.zxyy) 
         * new <#= vecTypeName #>(1.0<#= typ.suffix #>, 1.0<#= typ.suffix #>, 1.0<#= typ.suffix #>, -1.0<#= typ.suffix #>) - a.value.zxyz * b.value.yzxz
     );
 
     [MethodImpl(256 | 512)]
-    public static <#= vecTypeName3 #> mul(this <#= typeName #> q, <#= vecTypeName3 #> v)
+    public static <#= vecTypeName3 #> mul([This] <#= typeName #> q, <#= vecTypeName3 #> v)
     {
         var t = <#= typ.two #> * q.value.xyz.cross(v);
         return v + q.value.w * t + q.value.xyz.cross(t);
     }
 
     [MethodImpl(256 | 512)]
-    public static <#= vecTypeName3 #> rotate(this <#= typeName #> q, <#= vecTypeName3 #> v) => mul(q, v);
+    public static <#= vecTypeName3 #> rotate([This] <#= typeName #> q, <#= vecTypeName3 #> v) => mul(q, v);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> nlerp(this <#= typ.compType #> t, <#= typeName #> q1, <#= typeName #> q2) => 
+    public static <#= typeName #> nlerp([This] <#= typ.compType #> t, <#= typeName #> q1, <#= typeName #> q2) => 
         normalize(q1.value + t * (chgsign(q2.value, dot(q1, q2)) - q1.value));
     
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> slerp(this <#= typ.compType #> t, <#= typeName #> q1, <#= typeName #> q2)
+    public static <#= typeName #> slerp([This] <#= typ.compType #> t, <#= typeName #> q1, <#= typeName #> q2)
     {
         var dt = dot(q1, q2);
         if (dt < 0.0<#= typ.suffix #>)
@@ -432,14 +433,14 @@ public static partial class math
     }
     
     [MethodImpl(256 | 512)]
-    public static <#= typ.compType #> angle(this <#= typeName #> q1, <#= typeName #> q2)
+    public static <#= typ.compType #> angle([This] <#= typeName #> q1, <#= typeName #> q2)
     {
         var diff = q1.conjugate().mul(q2).normalize().value.xyz.length().asin();
         return <#= typ.arithCast #>(diff + diff);
     }
     
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> rotation(this <#= matTypeName3x3 #> m)
+    public static <#= typeName #> rotation([This] <#= matTypeName3x3 #> m)
     {
         var det = m.determinant();
         if (math.abs(1<#= typ.suffix #> - det) < svd.k_EpsilonDeterminant_<#= typ.compType #>)
@@ -456,7 +457,7 @@ public static partial class math
     }
     
     [MethodImpl(256 | 512)]
-    public static <#= matTypeName3x3 #> adj(this <#= matTypeName3x3 #> m, out <#= typ.compType #> det)
+    public static <#= matTypeName3x3 #> adj([This] <#= matTypeName3x3 #> m, out <#= typ.compType #> det)
     {
         <#= matTypeName3x3 #> adjT;
         adjT.c0 = m.c1.cross(m.c2);
@@ -468,14 +469,14 @@ public static partial class math
     }
     
     [MethodImpl(256 | 512)]
-    public static bool adj(this <#= matTypeName3x3 #> m, out <#= matTypeName3x3 #> i)
+    public static bool adj([This] <#= matTypeName3x3 #> m, out <#= matTypeName3x3 #> i)
     {
         var epsilon = <#= typ.compType switch { "half" => "1e-5", "float" => "1e-30", "double" => "1e-300", _ => "0" } #><#= typ.suffix #>;
         return m.adj(out i, epsilon);
     }
 
     [MethodImpl(256 | 512)]
-    public static bool adj(this <#= matTypeName3x3 #> m, out <#= matTypeName3x3 #> i, <#= typ.compType #> epsilon)
+    public static bool adj([This] <#= matTypeName3x3 #> m, out <#= matTypeName3x3 #> i, <#= typ.compType #> epsilon)
     {
         i = adj(m, out <#= typ.compType #> det);
         var c = det.abs() > epsilon;

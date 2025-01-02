@@ -5,10 +5,8 @@ namespace Coplt.Mathematics;
 #region b16
 
 public readonly partial record struct b16 : IEquatable<bool>, IFormattable
-#if NET8_0_OR_GREATER
     , ISpanFormattable, IUtf8SpanFormattable
     , IEqualityOperators<b16, b16, bool>
-#endif
 {
     [MethodImpl(256 | 512)]
     internal b16(ushort value) => this.value = value;
@@ -17,19 +15,18 @@ public readonly partial record struct b16 : IEquatable<bool>, IFormattable
     public static readonly b16 True = new(ushort.MaxValue);
     public static readonly b16 False = new(0);
 
-    public bool Equals(bool other) => other == (bool)this;
+    public readonly bool Equals(bool other) => other == (bool)this;
 
     #region ToString
 
-    public override string ToString() => ((bool)this).ToString();
+    public readonly override string ToString() => ((bool)this).ToString();
 
-    public string ToString(string? format, IFormatProvider? formatProvider) => ToString();
+    public readonly string ToString(string? format, IFormatProvider? formatProvider) => ToString();
 
-    public bool TryFormat(Span<char> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
+    public readonly bool TryFormat(Span<char> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
         => ((bool)this).TryFormat(destination, out charsWritten);
 
-    #if NET8_0_OR_GREATER
-    public bool TryFormat(Span<byte> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
+    public readonly bool TryFormat(Span<byte> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
         charsWritten = 0;
         if (this)
@@ -48,7 +45,6 @@ public readonly partial record struct b16 : IEquatable<bool>, IFormattable
         }
         return true;
     }
-    #endif
 
     #endregion
 
@@ -134,10 +130,8 @@ public readonly partial record struct b16 : IEquatable<bool>, IFormattable
 #region b32
 
 public readonly partial record struct b32 : IEquatable<bool>, IFormattable
-#if NET8_0_OR_GREATER
     , ISpanFormattable, IUtf8SpanFormattable
     , IEqualityOperators<b32, b32, bool>
-#endif
 {
     [MethodImpl(256 | 512)]
     internal b32(uint value) => this.value = value;
@@ -146,19 +140,18 @@ public readonly partial record struct b32 : IEquatable<bool>, IFormattable
     public static readonly b32 True = new(uint.MaxValue);
     public static readonly b32 False = new(0);
 
-    public bool Equals(bool other) => other == (bool)this;
+    public readonly bool Equals(bool other) => other == (bool)this;
 
     #region ToString
 
-    public override string ToString() => ((bool)this).ToString();
+    public readonly override string ToString() => ((bool)this).ToString();
 
-    public string ToString(string? format, IFormatProvider? formatProvider) => ToString();
+    public readonly string ToString(string? format, IFormatProvider? formatProvider) => ToString();
 
-    public bool TryFormat(Span<char> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
+    public readonly bool TryFormat(Span<char> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
         => ((bool)this).TryFormat(destination, out charsWritten);
 
-    #if NET8_0_OR_GREATER
-    public bool TryFormat(Span<byte> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
+    public readonly bool TryFormat(Span<byte> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
         charsWritten = 0;
         if (this)
@@ -177,7 +170,6 @@ public readonly partial record struct b32 : IEquatable<bool>, IFormattable
         }
         return true;
     }
-    #endif
 
     #endregion
 
@@ -263,10 +255,8 @@ public readonly partial record struct b32 : IEquatable<bool>, IFormattable
 #region b64
 
 public readonly partial record struct b64 : IEquatable<bool>, IFormattable
-#if NET8_0_OR_GREATER
     , ISpanFormattable, IUtf8SpanFormattable
     , IEqualityOperators<b64, b64, bool>
-#endif
 {
     [MethodImpl(256 | 512)]
     internal b64(ulong value) => this.value = value;
@@ -275,19 +265,18 @@ public readonly partial record struct b64 : IEquatable<bool>, IFormattable
     public static readonly b64 True = new(ulong.MaxValue);
     public static readonly b64 False = new(0);
 
-    public bool Equals(bool other) => other == (bool)this;
+    public readonly bool Equals(bool other) => other == (bool)this;
 
     #region ToString
 
-    public override string ToString() => ((bool)this).ToString();
+    public readonly override string ToString() => ((bool)this).ToString();
 
-    public string ToString(string? format, IFormatProvider? formatProvider) => ToString();
+    public readonly string ToString(string? format, IFormatProvider? formatProvider) => ToString();
 
-    public bool TryFormat(Span<char> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
+    public readonly bool TryFormat(Span<char> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
         => ((bool)this).TryFormat(destination, out charsWritten);
 
-    #if NET8_0_OR_GREATER
-    public bool TryFormat(Span<byte> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
+    public readonly bool TryFormat(Span<byte> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
         charsWritten = 0;
         if (this)
@@ -306,7 +295,6 @@ public readonly partial record struct b64 : IEquatable<bool>, IFormattable
         }
         return true;
     }
-    #endif
 
     #endregion
 

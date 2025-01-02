@@ -47,32 +47,32 @@ public partial struct <#= typeName #>
             var xyzw = $"{Typ.xyzw[a]}{Typ.xyzw[b]}{Typ.xyzw[c]}";
             var rgba = $"{Typ.rgba[a]}{Typ.rgba[b]}{Typ.rgba[c]}";
             var no_overlap = abc.Distinct().Count() == 3;
+            var ordered = a == 0 && b == 1 && c == 2;
             for (var t = 0; t < 2; t++)
             {
 #>
-    public <#= retTypeName #> <#= t == 0 ? xyzw : rgba #>
+    public <#= no_overlap || ordered ? "" : "readonly " #><#= retTypeName #> <#= t == 0 ? xyzw : rgba #>
     {
 <#
                 if (typ.simd)
                 {
-                    WriteLine("#if NET8_0_OR_GREATER");
-                    if (a == 0 && b == 1 && c == 2)
+                    if (ordered)
                     {
 #>
         [MethodImpl(256 | 512)]
-        get => new(vector & Vector<#= bitSize4 #>.Create(-1, -1, -1, 0).As<#= typ.Type #>());
+        readonly get => new(vector & Vector<#= bitSize4 #>.Create(-1, -1, -1, 0).As<#= typ.Type #>());
 <#
                     }
                     else
                     {
 #>
         [MethodImpl(256 | 512)]
-        get => new(Vector<#= bitSize4 #>.Shuffle(vector, Vector<#= bitSize4 #>.Create(<#= typ.shuffleCast #><#= a #>, <#= b #>, <#= c #>, 3)) & Vector<#= bitSize4 #>.Create(-1, -1, -1, 0).As<#= typ.Type #>());
+        <#= no_overlap ? "readonly " : "" #>get => new(Vector<#= bitSize4 #>.Shuffle(vector, Vector<#= bitSize4 #>.Create(<#= typ.shuffleCast #><#= a #>, <#= b #>, <#= c #>, 3)) & Vector<#= bitSize4 #>.Create(-1, -1, -1, 0).As<#= typ.Type #>());
 <#
                     }
                     if (no_overlap)
                     {
-                        if (a == 0 && b == 1 && c == 2)
+                        if (ordered)
                         {
 #>
         [MethodImpl(256 | 512)]
@@ -95,20 +95,21 @@ public partial struct <#= typeName #>
 <#
                         }
                     }
-                    WriteLine("#else // NET8_0_OR_GREATER");
                 }
+                else
+                {
 #>
         [MethodImpl(256 | 512)]
-        get => new(<#= Typ.xyzw[a] #>, <#= Typ.xyzw[b] #>, <#= Typ.xyzw[c] #>);
+        <#= no_overlap ? "readonly " : "" #>get => new(<#= Typ.xyzw[a] #>, <#= Typ.xyzw[b] #>, <#= Typ.xyzw[c] #>);
 <#
-                if (no_overlap)
-                {
+                    if (no_overlap)
+                    {
 #>
         [MethodImpl(256 | 512)]
         set { <#= Typ.xyzw[a] #> = value.x; <#= Typ.xyzw[b] #> = value.y; <#= Typ.xyzw[c] #> = value.z; }
 <#
+                    }
                 }
-                if (typ.simd) WriteLine("#endif // NET8_0_OR_GREATER");
 #>
     }
 <#

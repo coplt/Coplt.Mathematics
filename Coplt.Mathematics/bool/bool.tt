@@ -18,10 +18,8 @@ namespace Coplt.Mathematics;
 #region <#= typeName #>
 
 public readonly partial record struct <#= typeName #> : IEquatable<bool>, IFormattable
-#if NET8_0_OR_GREATER
     , ISpanFormattable, IUtf8SpanFormattable
     , IEqualityOperators<<#= typeName #>, <#= typeName #>, bool>
-#endif
 {
     [MethodImpl(256 | 512)]
     internal <#= typeName #>(<#= type #> value) => this.value = value;
@@ -30,19 +28,18 @@ public readonly partial record struct <#= typeName #> : IEquatable<bool>, IForma
     public static readonly <#= typeName #> True = new(<#= type #>.MaxValue);
     public static readonly <#= typeName #> False = new(0);
 
-    public bool Equals(bool other) => other == (bool)this;
+    public readonly bool Equals(bool other) => other == (bool)this;
 
     #region ToString
 
-    public override string ToString() => ((bool)this).ToString();
+    public readonly override string ToString() => ((bool)this).ToString();
 
-    public string ToString(string? format, IFormatProvider? formatProvider) => ToString();
+    public readonly string ToString(string? format, IFormatProvider? formatProvider) => ToString();
 
-    public bool TryFormat(Span<char> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
+    public readonly bool TryFormat(Span<char> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
         => ((bool)this).TryFormat(destination, out charsWritten);
 
-    #if NET8_0_OR_GREATER
-    public bool TryFormat(Span<byte> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
+    public readonly bool TryFormat(Span<byte> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
         charsWritten = 0;
         if (this)
@@ -61,7 +58,6 @@ public readonly partial record struct <#= typeName #> : IEquatable<bool>, IForma
         }
         return true;
     }
-    #endif
 
     #endregion
 

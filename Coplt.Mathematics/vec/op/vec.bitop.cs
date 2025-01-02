@@ -5,79 +5,63 @@ namespace Coplt.Mathematics;
 #region float2
 
 public partial struct float2 : IVectorBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<float2, float2, float2>
     , IShiftOperators<float2, int, float2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static float2 operator ~(float2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(~a.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(~a.vector);
         return new(a.x.BitNot(), a.y.BitNot());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static float2 operator |(float2 a, float2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector | b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(a.vector | b.vector);
         return new(a.x.BitOr(b.x), a.y.BitOr(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static float2 operator &(float2 a, float2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector & b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(a.vector & b.vector);
         return new(a.x.BitAnd(b.x), a.y.BitAnd(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static float2 operator ^(float2 a, float2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector ^ b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(a.vector ^ b.vector);
         return new(a.x.BitXor(b.x), a.y.BitXor(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static float2 operator <<(float2 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector << b);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(a.vector << b);
         return new(a.x.BitShiftLeft(b), a.y.BitShiftLeft(b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static float2 operator >>(float2 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector >> b);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(a.vector >> b);
         return new(a.x.BitShiftRight(b), a.y.BitShiftRight(b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static float2 operator >>>(float2 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector >>> b);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(a.vector >>> b);
         return new(a.x.BitShiftRightUnsigned(b), a.y.BitShiftRightUnsigned(b));
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -86,11 +70,9 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float2 andnot(this float2 a, float2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector64.AndNot(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(Vector64.AndNot(a.vector, b.vector));
         return new(a.x.andnot(b.x), a.y.andnot(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -117,79 +99,63 @@ public static partial class math
 #region float3
 
 public partial struct float3 : IVectorBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<float3, float3, float3>
     , IShiftOperators<float3, int, float3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static float3 operator ~(float3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(~a.vector & Vector128.Create(-1, -1, -1, 0).AsSingle());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(~a.vector & Vector128.Create(-1, -1, -1, 0).AsSingle());
         return new(a.x.BitNot(), a.y.BitNot(), a.z.BitNot());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static float3 operator |(float3 a, float3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector | b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector | b.vector);
         return new(a.x.BitOr(b.x), a.y.BitOr(b.y), a.z.BitOr(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static float3 operator &(float3 a, float3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector & b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector & b.vector);
         return new(a.x.BitAnd(b.x), a.y.BitAnd(b.y), a.z.BitAnd(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static float3 operator ^(float3 a, float3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector ^ b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector ^ b.vector);
         return new(a.x.BitXor(b.x), a.y.BitXor(b.y), a.z.BitXor(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static float3 operator <<(float3 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector << b);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector << b);
         return new(a.x.BitShiftLeft(b), a.y.BitShiftLeft(b), a.z.BitShiftLeft(b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static float3 operator >>(float3 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector >> b);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector >> b);
         return new(a.x.BitShiftRight(b), a.y.BitShiftRight(b), a.z.BitShiftRight(b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static float3 operator >>>(float3 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector >>> b);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector >>> b);
         return new(a.x.BitShiftRightUnsigned(b), a.y.BitShiftRightUnsigned(b), a.z.BitShiftRightUnsigned(b));
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -198,11 +164,9 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float3 andnot(this float3 a, float3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.AndNot(a.vector, b.vector) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.AndNot(a.vector, b.vector) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         return new(a.x.andnot(b.x), a.y.andnot(b.y), a.z.andnot(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -229,79 +193,63 @@ public static partial class math
 #region float4
 
 public partial struct float4 : IVectorBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<float4, float4, float4>
     , IShiftOperators<float4, int, float4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static float4 operator ~(float4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(~a.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(~a.vector);
         return new(a.x.BitNot(), a.y.BitNot(), a.z.BitNot(), a.w.BitNot());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static float4 operator |(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector | b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector | b.vector);
         return new(a.x.BitOr(b.x), a.y.BitOr(b.y), a.z.BitOr(b.z), a.w.BitOr(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static float4 operator &(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector & b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector & b.vector);
         return new(a.x.BitAnd(b.x), a.y.BitAnd(b.y), a.z.BitAnd(b.z), a.w.BitAnd(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static float4 operator ^(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector ^ b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector ^ b.vector);
         return new(a.x.BitXor(b.x), a.y.BitXor(b.y), a.z.BitXor(b.z), a.w.BitXor(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static float4 operator <<(float4 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector << b);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector << b);
         return new(a.x.BitShiftLeft(b), a.y.BitShiftLeft(b), a.z.BitShiftLeft(b), a.w.BitShiftLeft(b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static float4 operator >>(float4 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector >> b);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector >> b);
         return new(a.x.BitShiftRight(b), a.y.BitShiftRight(b), a.z.BitShiftRight(b), a.w.BitShiftRight(b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static float4 operator >>>(float4 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector >>> b);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector >>> b);
         return new(a.x.BitShiftRightUnsigned(b), a.y.BitShiftRightUnsigned(b), a.z.BitShiftRightUnsigned(b), a.w.BitShiftRightUnsigned(b));
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -310,11 +258,9 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 andnot(this float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.AndNot(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.AndNot(a.vector, b.vector));
         return new(a.x.andnot(b.x), a.y.andnot(b.y), a.z.andnot(b.z), a.w.andnot(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -341,79 +287,63 @@ public static partial class math
 #region double2
 
 public partial struct double2 : IVectorBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<double2, double2, double2>
     , IShiftOperators<double2, int, double2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static double2 operator ~(double2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(~a.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(~a.vector);
         return new(a.x.BitNot(), a.y.BitNot());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static double2 operator |(double2 a, double2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector | b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector | b.vector);
         return new(a.x.BitOr(b.x), a.y.BitOr(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static double2 operator &(double2 a, double2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector & b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector & b.vector);
         return new(a.x.BitAnd(b.x), a.y.BitAnd(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static double2 operator ^(double2 a, double2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector ^ b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector ^ b.vector);
         return new(a.x.BitXor(b.x), a.y.BitXor(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static double2 operator <<(double2 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector << b);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector << b);
         return new(a.x.BitShiftLeft(b), a.y.BitShiftLeft(b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static double2 operator >>(double2 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector >> b);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector >> b);
         return new(a.x.BitShiftRight(b), a.y.BitShiftRight(b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static double2 operator >>>(double2 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector >>> b);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector >>> b);
         return new(a.x.BitShiftRightUnsigned(b), a.y.BitShiftRightUnsigned(b));
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -422,11 +352,9 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double2 andnot(this double2 a, double2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.AndNot(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.AndNot(a.vector, b.vector));
         return new(a.x.andnot(b.x), a.y.andnot(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -453,79 +381,63 @@ public static partial class math
 #region double3
 
 public partial struct double3 : IVectorBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<double3, double3, double3>
     , IShiftOperators<double3, int, double3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static double3 operator ~(double3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(~a.vector & Vector256.Create(-1, -1, -1, 0).AsDouble());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(~a.vector & Vector256.Create(-1, -1, -1, 0).AsDouble());
         return new(a.x.BitNot(), a.y.BitNot(), a.z.BitNot());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static double3 operator |(double3 a, double3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector | b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector | b.vector);
         return new(a.x.BitOr(b.x), a.y.BitOr(b.y), a.z.BitOr(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static double3 operator &(double3 a, double3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector & b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector & b.vector);
         return new(a.x.BitAnd(b.x), a.y.BitAnd(b.y), a.z.BitAnd(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static double3 operator ^(double3 a, double3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector ^ b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector ^ b.vector);
         return new(a.x.BitXor(b.x), a.y.BitXor(b.y), a.z.BitXor(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static double3 operator <<(double3 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector << b);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector << b);
         return new(a.x.BitShiftLeft(b), a.y.BitShiftLeft(b), a.z.BitShiftLeft(b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static double3 operator >>(double3 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector >> b);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector >> b);
         return new(a.x.BitShiftRight(b), a.y.BitShiftRight(b), a.z.BitShiftRight(b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static double3 operator >>>(double3 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector >>> b);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector >>> b);
         return new(a.x.BitShiftRightUnsigned(b), a.y.BitShiftRightUnsigned(b), a.z.BitShiftRightUnsigned(b));
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -534,11 +446,9 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double3 andnot(this double3 a, double3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.AndNot(a.vector, b.vector) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.AndNot(a.vector, b.vector) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         return new(a.x.andnot(b.x), a.y.andnot(b.y), a.z.andnot(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -565,79 +475,63 @@ public static partial class math
 #region double4
 
 public partial struct double4 : IVectorBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<double4, double4, double4>
     , IShiftOperators<double4, int, double4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static double4 operator ~(double4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(~a.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(~a.vector);
         return new(a.x.BitNot(), a.y.BitNot(), a.z.BitNot(), a.w.BitNot());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static double4 operator |(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector | b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector | b.vector);
         return new(a.x.BitOr(b.x), a.y.BitOr(b.y), a.z.BitOr(b.z), a.w.BitOr(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static double4 operator &(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector & b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector & b.vector);
         return new(a.x.BitAnd(b.x), a.y.BitAnd(b.y), a.z.BitAnd(b.z), a.w.BitAnd(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static double4 operator ^(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector ^ b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector ^ b.vector);
         return new(a.x.BitXor(b.x), a.y.BitXor(b.y), a.z.BitXor(b.z), a.w.BitXor(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static double4 operator <<(double4 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector << b);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector << b);
         return new(a.x.BitShiftLeft(b), a.y.BitShiftLeft(b), a.z.BitShiftLeft(b), a.w.BitShiftLeft(b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static double4 operator >>(double4 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector >> b);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector >> b);
         return new(a.x.BitShiftRight(b), a.y.BitShiftRight(b), a.z.BitShiftRight(b), a.w.BitShiftRight(b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static double4 operator >>>(double4 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector >>> b);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector >>> b);
         return new(a.x.BitShiftRightUnsigned(b), a.y.BitShiftRightUnsigned(b), a.z.BitShiftRightUnsigned(b), a.w.BitShiftRightUnsigned(b));
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -646,11 +540,9 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 andnot(this double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.AndNot(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.AndNot(a.vector, b.vector));
         return new(a.x.andnot(b.x), a.y.andnot(b.y), a.z.andnot(b.z), a.w.andnot(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -677,10 +569,8 @@ public static partial class math
 #region short2
 
 public partial struct short2 : IVectorBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<short2, short2, short2>
     , IShiftOperators<short2, int, short2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static short2 operator ~(short2 a)
@@ -757,10 +647,8 @@ public static partial class math
 #region short3
 
 public partial struct short3 : IVectorBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<short3, short3, short3>
     , IShiftOperators<short3, int, short3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static short3 operator ~(short3 a)
@@ -837,10 +725,8 @@ public static partial class math
 #region short4
 
 public partial struct short4 : IVectorBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<short4, short4, short4>
     , IShiftOperators<short4, int, short4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static short4 operator ~(short4 a)
@@ -917,10 +803,8 @@ public static partial class math
 #region ushort2
 
 public partial struct ushort2 : IVectorBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<ushort2, ushort2, ushort2>
     , IShiftOperators<ushort2, int, ushort2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static ushort2 operator ~(ushort2 a)
@@ -997,10 +881,8 @@ public static partial class math
 #region ushort3
 
 public partial struct ushort3 : IVectorBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<ushort3, ushort3, ushort3>
     , IShiftOperators<ushort3, int, ushort3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static ushort3 operator ~(ushort3 a)
@@ -1077,10 +959,8 @@ public static partial class math
 #region ushort4
 
 public partial struct ushort4 : IVectorBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<ushort4, ushort4, ushort4>
     , IShiftOperators<ushort4, int, ushort4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static ushort4 operator ~(ushort4 a)
@@ -1157,79 +1037,63 @@ public static partial class math
 #region int2
 
 public partial struct int2 : IVectorBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<int2, int2, int2>
     , IShiftOperators<int2, int, int2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static int2 operator ~(int2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(~a.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(~a.vector);
         return new(a.x.BitNot(), a.y.BitNot());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static int2 operator |(int2 a, int2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector | b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(a.vector | b.vector);
         return new(a.x.BitOr(b.x), a.y.BitOr(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static int2 operator &(int2 a, int2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector & b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(a.vector & b.vector);
         return new(a.x.BitAnd(b.x), a.y.BitAnd(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static int2 operator ^(int2 a, int2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector ^ b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(a.vector ^ b.vector);
         return new(a.x.BitXor(b.x), a.y.BitXor(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static int2 operator <<(int2 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector << b);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(a.vector << b);
         return new(a.x.BitShiftLeft(b), a.y.BitShiftLeft(b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static int2 operator >>(int2 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector >> b);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(a.vector >> b);
         return new(a.x.BitShiftRight(b), a.y.BitShiftRight(b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static int2 operator >>>(int2 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector >>> b);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(a.vector >>> b);
         return new(a.x.BitShiftRightUnsigned(b), a.y.BitShiftRightUnsigned(b));
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -1238,11 +1102,9 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int2 andnot(this int2 a, int2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector64.AndNot(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(Vector64.AndNot(a.vector, b.vector));
         return new(a.x.andnot(b.x), a.y.andnot(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -1269,79 +1131,63 @@ public static partial class math
 #region int3
 
 public partial struct int3 : IVectorBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<int3, int3, int3>
     , IShiftOperators<int3, int, int3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static int3 operator ~(int3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(~a.vector & Vector128.Create(-1, -1, -1, 0).AsInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(~a.vector & Vector128.Create(-1, -1, -1, 0).AsInt32());
         return new(a.x.BitNot(), a.y.BitNot(), a.z.BitNot());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static int3 operator |(int3 a, int3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector | b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector | b.vector);
         return new(a.x.BitOr(b.x), a.y.BitOr(b.y), a.z.BitOr(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static int3 operator &(int3 a, int3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector & b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector & b.vector);
         return new(a.x.BitAnd(b.x), a.y.BitAnd(b.y), a.z.BitAnd(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static int3 operator ^(int3 a, int3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector ^ b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector ^ b.vector);
         return new(a.x.BitXor(b.x), a.y.BitXor(b.y), a.z.BitXor(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static int3 operator <<(int3 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector << b);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector << b);
         return new(a.x.BitShiftLeft(b), a.y.BitShiftLeft(b), a.z.BitShiftLeft(b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static int3 operator >>(int3 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector >> b);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector >> b);
         return new(a.x.BitShiftRight(b), a.y.BitShiftRight(b), a.z.BitShiftRight(b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static int3 operator >>>(int3 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector >>> b);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector >>> b);
         return new(a.x.BitShiftRightUnsigned(b), a.y.BitShiftRightUnsigned(b), a.z.BitShiftRightUnsigned(b));
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -1350,11 +1196,9 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int3 andnot(this int3 a, int3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.AndNot(a.vector, b.vector) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.AndNot(a.vector, b.vector) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         return new(a.x.andnot(b.x), a.y.andnot(b.y), a.z.andnot(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -1381,79 +1225,63 @@ public static partial class math
 #region int4
 
 public partial struct int4 : IVectorBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<int4, int4, int4>
     , IShiftOperators<int4, int, int4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static int4 operator ~(int4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(~a.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(~a.vector);
         return new(a.x.BitNot(), a.y.BitNot(), a.z.BitNot(), a.w.BitNot());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static int4 operator |(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector | b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector | b.vector);
         return new(a.x.BitOr(b.x), a.y.BitOr(b.y), a.z.BitOr(b.z), a.w.BitOr(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static int4 operator &(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector & b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector & b.vector);
         return new(a.x.BitAnd(b.x), a.y.BitAnd(b.y), a.z.BitAnd(b.z), a.w.BitAnd(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static int4 operator ^(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector ^ b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector ^ b.vector);
         return new(a.x.BitXor(b.x), a.y.BitXor(b.y), a.z.BitXor(b.z), a.w.BitXor(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static int4 operator <<(int4 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector << b);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector << b);
         return new(a.x.BitShiftLeft(b), a.y.BitShiftLeft(b), a.z.BitShiftLeft(b), a.w.BitShiftLeft(b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static int4 operator >>(int4 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector >> b);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector >> b);
         return new(a.x.BitShiftRight(b), a.y.BitShiftRight(b), a.z.BitShiftRight(b), a.w.BitShiftRight(b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static int4 operator >>>(int4 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector >>> b);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector >>> b);
         return new(a.x.BitShiftRightUnsigned(b), a.y.BitShiftRightUnsigned(b), a.z.BitShiftRightUnsigned(b), a.w.BitShiftRightUnsigned(b));
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -1462,11 +1290,9 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 andnot(this int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.AndNot(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.AndNot(a.vector, b.vector));
         return new(a.x.andnot(b.x), a.y.andnot(b.y), a.z.andnot(b.z), a.w.andnot(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -1493,79 +1319,63 @@ public static partial class math
 #region uint2
 
 public partial struct uint2 : IVectorBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<uint2, uint2, uint2>
     , IShiftOperators<uint2, int, uint2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static uint2 operator ~(uint2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(~a.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(~a.vector);
         return new(a.x.BitNot(), a.y.BitNot());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static uint2 operator |(uint2 a, uint2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector | b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(a.vector | b.vector);
         return new(a.x.BitOr(b.x), a.y.BitOr(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static uint2 operator &(uint2 a, uint2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector & b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(a.vector & b.vector);
         return new(a.x.BitAnd(b.x), a.y.BitAnd(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static uint2 operator ^(uint2 a, uint2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector ^ b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(a.vector ^ b.vector);
         return new(a.x.BitXor(b.x), a.y.BitXor(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static uint2 operator <<(uint2 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector << b);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(a.vector << b);
         return new(a.x.BitShiftLeft(b), a.y.BitShiftLeft(b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static uint2 operator >>(uint2 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector >> b);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(a.vector >> b);
         return new(a.x.BitShiftRight(b), a.y.BitShiftRight(b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static uint2 operator >>>(uint2 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector >>> b);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(a.vector >>> b);
         return new(a.x.BitShiftRightUnsigned(b), a.y.BitShiftRightUnsigned(b));
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -1574,11 +1384,9 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint2 andnot(this uint2 a, uint2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector64.AndNot(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(Vector64.AndNot(a.vector, b.vector));
         return new(a.x.andnot(b.x), a.y.andnot(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -1605,79 +1413,63 @@ public static partial class math
 #region uint3
 
 public partial struct uint3 : IVectorBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<uint3, uint3, uint3>
     , IShiftOperators<uint3, int, uint3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static uint3 operator ~(uint3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(~a.vector & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(~a.vector & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         return new(a.x.BitNot(), a.y.BitNot(), a.z.BitNot());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static uint3 operator |(uint3 a, uint3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector | b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector | b.vector);
         return new(a.x.BitOr(b.x), a.y.BitOr(b.y), a.z.BitOr(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static uint3 operator &(uint3 a, uint3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector & b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector & b.vector);
         return new(a.x.BitAnd(b.x), a.y.BitAnd(b.y), a.z.BitAnd(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static uint3 operator ^(uint3 a, uint3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector ^ b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector ^ b.vector);
         return new(a.x.BitXor(b.x), a.y.BitXor(b.y), a.z.BitXor(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static uint3 operator <<(uint3 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector << b);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector << b);
         return new(a.x.BitShiftLeft(b), a.y.BitShiftLeft(b), a.z.BitShiftLeft(b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static uint3 operator >>(uint3 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector >> b);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector >> b);
         return new(a.x.BitShiftRight(b), a.y.BitShiftRight(b), a.z.BitShiftRight(b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static uint3 operator >>>(uint3 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector >>> b);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector >>> b);
         return new(a.x.BitShiftRightUnsigned(b), a.y.BitShiftRightUnsigned(b), a.z.BitShiftRightUnsigned(b));
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -1686,11 +1478,9 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint3 andnot(this uint3 a, uint3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.AndNot(a.vector, b.vector) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.AndNot(a.vector, b.vector) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         return new(a.x.andnot(b.x), a.y.andnot(b.y), a.z.andnot(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -1717,79 +1507,63 @@ public static partial class math
 #region uint4
 
 public partial struct uint4 : IVectorBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<uint4, uint4, uint4>
     , IShiftOperators<uint4, int, uint4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static uint4 operator ~(uint4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(~a.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(~a.vector);
         return new(a.x.BitNot(), a.y.BitNot(), a.z.BitNot(), a.w.BitNot());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static uint4 operator |(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector | b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector | b.vector);
         return new(a.x.BitOr(b.x), a.y.BitOr(b.y), a.z.BitOr(b.z), a.w.BitOr(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static uint4 operator &(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector & b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector & b.vector);
         return new(a.x.BitAnd(b.x), a.y.BitAnd(b.y), a.z.BitAnd(b.z), a.w.BitAnd(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static uint4 operator ^(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector ^ b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector ^ b.vector);
         return new(a.x.BitXor(b.x), a.y.BitXor(b.y), a.z.BitXor(b.z), a.w.BitXor(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static uint4 operator <<(uint4 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector << b);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector << b);
         return new(a.x.BitShiftLeft(b), a.y.BitShiftLeft(b), a.z.BitShiftLeft(b), a.w.BitShiftLeft(b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static uint4 operator >>(uint4 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector >> b);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector >> b);
         return new(a.x.BitShiftRight(b), a.y.BitShiftRight(b), a.z.BitShiftRight(b), a.w.BitShiftRight(b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static uint4 operator >>>(uint4 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector >>> b);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector >>> b);
         return new(a.x.BitShiftRightUnsigned(b), a.y.BitShiftRightUnsigned(b), a.z.BitShiftRightUnsigned(b), a.w.BitShiftRightUnsigned(b));
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -1798,11 +1572,9 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 andnot(this uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.AndNot(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.AndNot(a.vector, b.vector));
         return new(a.x.andnot(b.x), a.y.andnot(b.y), a.z.andnot(b.z), a.w.andnot(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -1829,79 +1601,63 @@ public static partial class math
 #region long2
 
 public partial struct long2 : IVectorBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<long2, long2, long2>
     , IShiftOperators<long2, int, long2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static long2 operator ~(long2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(~a.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(~a.vector);
         return new(a.x.BitNot(), a.y.BitNot());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static long2 operator |(long2 a, long2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector | b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector | b.vector);
         return new(a.x.BitOr(b.x), a.y.BitOr(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static long2 operator &(long2 a, long2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector & b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector & b.vector);
         return new(a.x.BitAnd(b.x), a.y.BitAnd(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static long2 operator ^(long2 a, long2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector ^ b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector ^ b.vector);
         return new(a.x.BitXor(b.x), a.y.BitXor(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static long2 operator <<(long2 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector << b);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector << b);
         return new(a.x.BitShiftLeft(b), a.y.BitShiftLeft(b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static long2 operator >>(long2 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector >> b);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector >> b);
         return new(a.x.BitShiftRight(b), a.y.BitShiftRight(b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static long2 operator >>>(long2 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector >>> b);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector >>> b);
         return new(a.x.BitShiftRightUnsigned(b), a.y.BitShiftRightUnsigned(b));
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -1910,11 +1666,9 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long2 andnot(this long2 a, long2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.AndNot(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.AndNot(a.vector, b.vector));
         return new(a.x.andnot(b.x), a.y.andnot(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -1941,79 +1695,63 @@ public static partial class math
 #region long3
 
 public partial struct long3 : IVectorBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<long3, long3, long3>
     , IShiftOperators<long3, int, long3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static long3 operator ~(long3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(~a.vector & Vector256.Create(-1, -1, -1, 0).AsInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(~a.vector & Vector256.Create(-1, -1, -1, 0).AsInt64());
         return new(a.x.BitNot(), a.y.BitNot(), a.z.BitNot());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static long3 operator |(long3 a, long3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector | b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector | b.vector);
         return new(a.x.BitOr(b.x), a.y.BitOr(b.y), a.z.BitOr(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static long3 operator &(long3 a, long3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector & b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector & b.vector);
         return new(a.x.BitAnd(b.x), a.y.BitAnd(b.y), a.z.BitAnd(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static long3 operator ^(long3 a, long3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector ^ b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector ^ b.vector);
         return new(a.x.BitXor(b.x), a.y.BitXor(b.y), a.z.BitXor(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static long3 operator <<(long3 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector << b);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector << b);
         return new(a.x.BitShiftLeft(b), a.y.BitShiftLeft(b), a.z.BitShiftLeft(b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static long3 operator >>(long3 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector >> b);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector >> b);
         return new(a.x.BitShiftRight(b), a.y.BitShiftRight(b), a.z.BitShiftRight(b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static long3 operator >>>(long3 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector >>> b);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector >>> b);
         return new(a.x.BitShiftRightUnsigned(b), a.y.BitShiftRightUnsigned(b), a.z.BitShiftRightUnsigned(b));
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -2022,11 +1760,9 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long3 andnot(this long3 a, long3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.AndNot(a.vector, b.vector) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.AndNot(a.vector, b.vector) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         return new(a.x.andnot(b.x), a.y.andnot(b.y), a.z.andnot(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -2053,79 +1789,63 @@ public static partial class math
 #region long4
 
 public partial struct long4 : IVectorBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<long4, long4, long4>
     , IShiftOperators<long4, int, long4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static long4 operator ~(long4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(~a.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(~a.vector);
         return new(a.x.BitNot(), a.y.BitNot(), a.z.BitNot(), a.w.BitNot());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static long4 operator |(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector | b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector | b.vector);
         return new(a.x.BitOr(b.x), a.y.BitOr(b.y), a.z.BitOr(b.z), a.w.BitOr(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static long4 operator &(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector & b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector & b.vector);
         return new(a.x.BitAnd(b.x), a.y.BitAnd(b.y), a.z.BitAnd(b.z), a.w.BitAnd(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static long4 operator ^(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector ^ b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector ^ b.vector);
         return new(a.x.BitXor(b.x), a.y.BitXor(b.y), a.z.BitXor(b.z), a.w.BitXor(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static long4 operator <<(long4 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector << b);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector << b);
         return new(a.x.BitShiftLeft(b), a.y.BitShiftLeft(b), a.z.BitShiftLeft(b), a.w.BitShiftLeft(b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static long4 operator >>(long4 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector >> b);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector >> b);
         return new(a.x.BitShiftRight(b), a.y.BitShiftRight(b), a.z.BitShiftRight(b), a.w.BitShiftRight(b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static long4 operator >>>(long4 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector >>> b);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector >>> b);
         return new(a.x.BitShiftRightUnsigned(b), a.y.BitShiftRightUnsigned(b), a.z.BitShiftRightUnsigned(b), a.w.BitShiftRightUnsigned(b));
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -2134,11 +1854,9 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 andnot(this long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.AndNot(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.AndNot(a.vector, b.vector));
         return new(a.x.andnot(b.x), a.y.andnot(b.y), a.z.andnot(b.z), a.w.andnot(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -2165,79 +1883,63 @@ public static partial class math
 #region ulong2
 
 public partial struct ulong2 : IVectorBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<ulong2, ulong2, ulong2>
     , IShiftOperators<ulong2, int, ulong2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static ulong2 operator ~(ulong2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(~a.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(~a.vector);
         return new(a.x.BitNot(), a.y.BitNot());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static ulong2 operator |(ulong2 a, ulong2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector | b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector | b.vector);
         return new(a.x.BitOr(b.x), a.y.BitOr(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static ulong2 operator &(ulong2 a, ulong2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector & b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector & b.vector);
         return new(a.x.BitAnd(b.x), a.y.BitAnd(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static ulong2 operator ^(ulong2 a, ulong2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector ^ b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector ^ b.vector);
         return new(a.x.BitXor(b.x), a.y.BitXor(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static ulong2 operator <<(ulong2 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector << b);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector << b);
         return new(a.x.BitShiftLeft(b), a.y.BitShiftLeft(b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static ulong2 operator >>(ulong2 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector >> b);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector >> b);
         return new(a.x.BitShiftRight(b), a.y.BitShiftRight(b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static ulong2 operator >>>(ulong2 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector >>> b);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector >>> b);
         return new(a.x.BitShiftRightUnsigned(b), a.y.BitShiftRightUnsigned(b));
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -2246,11 +1948,9 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong2 andnot(this ulong2 a, ulong2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.AndNot(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.AndNot(a.vector, b.vector));
         return new(a.x.andnot(b.x), a.y.andnot(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -2277,79 +1977,63 @@ public static partial class math
 #region ulong3
 
 public partial struct ulong3 : IVectorBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<ulong3, ulong3, ulong3>
     , IShiftOperators<ulong3, int, ulong3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static ulong3 operator ~(ulong3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(~a.vector & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(~a.vector & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         return new(a.x.BitNot(), a.y.BitNot(), a.z.BitNot());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static ulong3 operator |(ulong3 a, ulong3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector | b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector | b.vector);
         return new(a.x.BitOr(b.x), a.y.BitOr(b.y), a.z.BitOr(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static ulong3 operator &(ulong3 a, ulong3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector & b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector & b.vector);
         return new(a.x.BitAnd(b.x), a.y.BitAnd(b.y), a.z.BitAnd(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static ulong3 operator ^(ulong3 a, ulong3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector ^ b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector ^ b.vector);
         return new(a.x.BitXor(b.x), a.y.BitXor(b.y), a.z.BitXor(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static ulong3 operator <<(ulong3 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector << b);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector << b);
         return new(a.x.BitShiftLeft(b), a.y.BitShiftLeft(b), a.z.BitShiftLeft(b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static ulong3 operator >>(ulong3 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector >> b);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector >> b);
         return new(a.x.BitShiftRight(b), a.y.BitShiftRight(b), a.z.BitShiftRight(b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static ulong3 operator >>>(ulong3 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector >>> b);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector >>> b);
         return new(a.x.BitShiftRightUnsigned(b), a.y.BitShiftRightUnsigned(b), a.z.BitShiftRightUnsigned(b));
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -2358,11 +2042,9 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong3 andnot(this ulong3 a, ulong3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.AndNot(a.vector, b.vector) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.AndNot(a.vector, b.vector) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         return new(a.x.andnot(b.x), a.y.andnot(b.y), a.z.andnot(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -2389,79 +2071,63 @@ public static partial class math
 #region ulong4
 
 public partial struct ulong4 : IVectorBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<ulong4, ulong4, ulong4>
     , IShiftOperators<ulong4, int, ulong4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static ulong4 operator ~(ulong4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(~a.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(~a.vector);
         return new(a.x.BitNot(), a.y.BitNot(), a.z.BitNot(), a.w.BitNot());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static ulong4 operator |(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector | b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector | b.vector);
         return new(a.x.BitOr(b.x), a.y.BitOr(b.y), a.z.BitOr(b.z), a.w.BitOr(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static ulong4 operator &(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector & b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector & b.vector);
         return new(a.x.BitAnd(b.x), a.y.BitAnd(b.y), a.z.BitAnd(b.z), a.w.BitAnd(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static ulong4 operator ^(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector ^ b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector ^ b.vector);
         return new(a.x.BitXor(b.x), a.y.BitXor(b.y), a.z.BitXor(b.z), a.w.BitXor(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static ulong4 operator <<(ulong4 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector << b);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector << b);
         return new(a.x.BitShiftLeft(b), a.y.BitShiftLeft(b), a.z.BitShiftLeft(b), a.w.BitShiftLeft(b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static ulong4 operator >>(ulong4 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector >> b);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector >> b);
         return new(a.x.BitShiftRight(b), a.y.BitShiftRight(b), a.z.BitShiftRight(b), a.w.BitShiftRight(b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static ulong4 operator >>>(ulong4 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector >>> b);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector >>> b);
         return new(a.x.BitShiftRightUnsigned(b), a.y.BitShiftRightUnsigned(b), a.z.BitShiftRightUnsigned(b), a.w.BitShiftRightUnsigned(b));
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -2470,11 +2136,9 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 andnot(this ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.AndNot(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.AndNot(a.vector, b.vector));
         return new(a.x.andnot(b.x), a.y.andnot(b.y), a.z.andnot(b.z), a.w.andnot(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -2501,10 +2165,8 @@ public static partial class math
 #region half2
 
 public partial struct half2 : IVectorBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<half2, half2, half2>
     , IShiftOperators<half2, int, half2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static half2 operator ~(half2 a)
@@ -2581,10 +2243,8 @@ public static partial class math
 #region half3
 
 public partial struct half3 : IVectorBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<half3, half3, half3>
     , IShiftOperators<half3, int, half3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static half3 operator ~(half3 a)
@@ -2661,10 +2321,8 @@ public static partial class math
 #region half4
 
 public partial struct half4 : IVectorBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<half4, half4, half4>
     , IShiftOperators<half4, int, half4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static half4 operator ~(half4 a)
@@ -2741,9 +2399,7 @@ public static partial class math
 #region b16v2
 
 public partial struct b16v2 : IVectorBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<b16v2, b16v2, b16v2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static b16v2 operator ~(b16v2 a)
@@ -2802,9 +2458,7 @@ public static partial class math
 #region b16v3
 
 public partial struct b16v3 : IVectorBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<b16v3, b16v3, b16v3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static b16v3 operator ~(b16v3 a)
@@ -2863,9 +2517,7 @@ public static partial class math
 #region b16v4
 
 public partial struct b16v4 : IVectorBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<b16v4, b16v4, b16v4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static b16v4 operator ~(b16v4 a)
@@ -2924,48 +2576,38 @@ public static partial class math
 #region b32v2
 
 public partial struct b32v2 : IVectorBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<b32v2, b32v2, b32v2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static b32v2 operator ~(b32v2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(~a.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(~a.vector);
         return new(a.x.BitNot(), a.y.BitNot());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static b32v2 operator |(b32v2 a, b32v2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector | b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(a.vector | b.vector);
         return new(a.x.BitOr(b.x), a.y.BitOr(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static b32v2 operator &(b32v2 a, b32v2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector & b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(a.vector & b.vector);
         return new(a.x.BitAnd(b.x), a.y.BitAnd(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static b32v2 operator ^(b32v2 a, b32v2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector ^ b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(a.vector ^ b.vector);
         return new(a.x.BitXor(b.x), a.y.BitXor(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -2974,11 +2616,9 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v2 andnot(this b32v2 a, b32v2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector64.AndNot(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(Vector64.AndNot(a.vector, b.vector));
         return new(a.x.andnot(b.x), a.y.andnot(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -3005,48 +2645,38 @@ public static partial class math
 #region b32v3
 
 public partial struct b32v3 : IVectorBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<b32v3, b32v3, b32v3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static b32v3 operator ~(b32v3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(~a.vector & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(~a.vector & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         return new(a.x.BitNot(), a.y.BitNot(), a.z.BitNot());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static b32v3 operator |(b32v3 a, b32v3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector | b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector | b.vector);
         return new(a.x.BitOr(b.x), a.y.BitOr(b.y), a.z.BitOr(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static b32v3 operator &(b32v3 a, b32v3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector & b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector & b.vector);
         return new(a.x.BitAnd(b.x), a.y.BitAnd(b.y), a.z.BitAnd(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static b32v3 operator ^(b32v3 a, b32v3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector ^ b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector ^ b.vector);
         return new(a.x.BitXor(b.x), a.y.BitXor(b.y), a.z.BitXor(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -3055,11 +2685,9 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v3 andnot(this b32v3 a, b32v3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.AndNot(a.vector, b.vector) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.AndNot(a.vector, b.vector) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         return new(a.x.andnot(b.x), a.y.andnot(b.y), a.z.andnot(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -3086,48 +2714,38 @@ public static partial class math
 #region b32v4
 
 public partial struct b32v4 : IVectorBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<b32v4, b32v4, b32v4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static b32v4 operator ~(b32v4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(~a.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(~a.vector);
         return new(a.x.BitNot(), a.y.BitNot(), a.z.BitNot(), a.w.BitNot());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static b32v4 operator |(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector | b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector | b.vector);
         return new(a.x.BitOr(b.x), a.y.BitOr(b.y), a.z.BitOr(b.z), a.w.BitOr(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static b32v4 operator &(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector & b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector & b.vector);
         return new(a.x.BitAnd(b.x), a.y.BitAnd(b.y), a.z.BitAnd(b.z), a.w.BitAnd(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static b32v4 operator ^(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector ^ b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector ^ b.vector);
         return new(a.x.BitXor(b.x), a.y.BitXor(b.y), a.z.BitXor(b.z), a.w.BitXor(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -3136,11 +2754,9 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 andnot(this b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.AndNot(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.AndNot(a.vector, b.vector));
         return new(a.x.andnot(b.x), a.y.andnot(b.y), a.z.andnot(b.z), a.w.andnot(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -3167,48 +2783,38 @@ public static partial class math
 #region b64v2
 
 public partial struct b64v2 : IVectorBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<b64v2, b64v2, b64v2>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static b64v2 operator ~(b64v2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(~a.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(~a.vector);
         return new(a.x.BitNot(), a.y.BitNot());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static b64v2 operator |(b64v2 a, b64v2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector | b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector | b.vector);
         return new(a.x.BitOr(b.x), a.y.BitOr(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static b64v2 operator &(b64v2 a, b64v2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector & b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector & b.vector);
         return new(a.x.BitAnd(b.x), a.y.BitAnd(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static b64v2 operator ^(b64v2 a, b64v2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector ^ b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector ^ b.vector);
         return new(a.x.BitXor(b.x), a.y.BitXor(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -3217,11 +2823,9 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v2 andnot(this b64v2 a, b64v2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.AndNot(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.AndNot(a.vector, b.vector));
         return new(a.x.andnot(b.x), a.y.andnot(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -3248,48 +2852,38 @@ public static partial class math
 #region b64v3
 
 public partial struct b64v3 : IVectorBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<b64v3, b64v3, b64v3>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static b64v3 operator ~(b64v3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(~a.vector & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(~a.vector & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         return new(a.x.BitNot(), a.y.BitNot(), a.z.BitNot());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static b64v3 operator |(b64v3 a, b64v3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector | b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector | b.vector);
         return new(a.x.BitOr(b.x), a.y.BitOr(b.y), a.z.BitOr(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static b64v3 operator &(b64v3 a, b64v3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector & b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector & b.vector);
         return new(a.x.BitAnd(b.x), a.y.BitAnd(b.y), a.z.BitAnd(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static b64v3 operator ^(b64v3 a, b64v3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector ^ b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector ^ b.vector);
         return new(a.x.BitXor(b.x), a.y.BitXor(b.y), a.z.BitXor(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -3298,11 +2892,9 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v3 andnot(this b64v3 a, b64v3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.AndNot(a.vector, b.vector) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.AndNot(a.vector, b.vector) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         return new(a.x.andnot(b.x), a.y.andnot(b.y), a.z.andnot(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -3329,48 +2921,38 @@ public static partial class math
 #region b64v4
 
 public partial struct b64v4 : IVectorBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<b64v4, b64v4, b64v4>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static b64v4 operator ~(b64v4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(~a.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(~a.vector);
         return new(a.x.BitNot(), a.y.BitNot(), a.z.BitNot(), a.w.BitNot());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static b64v4 operator |(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector | b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector | b.vector);
         return new(a.x.BitOr(b.x), a.y.BitOr(b.y), a.z.BitOr(b.z), a.w.BitOr(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static b64v4 operator &(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector & b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector & b.vector);
         return new(a.x.BitAnd(b.x), a.y.BitAnd(b.y), a.z.BitAnd(b.z), a.w.BitAnd(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static b64v4 operator ^(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector ^ b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector ^ b.vector);
         return new(a.x.BitXor(b.x), a.y.BitXor(b.y), a.z.BitXor(b.z), a.w.BitXor(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -3379,11 +2961,9 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 andnot(this b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.AndNot(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.AndNot(a.vector, b.vector));
         return new(a.x.andnot(b.x), a.y.andnot(b.y), a.z.andnot(b.z), a.w.andnot(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]

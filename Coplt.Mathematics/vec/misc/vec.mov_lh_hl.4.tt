@@ -14,6 +14,7 @@ namespace Coplt.Mathematics;
         var typeName = $"{typ.name}4";
 #>
 
+[Ex]
 public static partial class math
 {
     /// <summary>
@@ -25,27 +26,18 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> movelh(this <#= typeName #> a, <#= typeName #> b)
+    public static <#= typeName #> movelh([This] <#= typeName #> a, <#= typeName #> b)
     {
 <#
         if (typ.simd)
         {
 #>
-        #if NET8_0_OR_GREATER
-        return new(simd.MoveLowToHigh(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize4 #>.IsHardwareAccelerated)
+            return new(simd.MoveLowToHigh(a.vector, b.vector));
 <#
         }
 #>
         return new(a.x, a.y, b.x, b.y);
-<#
-        if (typ.simd)
-        {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-        }
-#>
     }
 
     /// <summary>
@@ -57,27 +49,18 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> movehl(this <#= typeName #> a, <#= typeName #> b)
+    public static <#= typeName #> movehl([This] <#= typeName #> a, <#= typeName #> b)
     {
 <#
         if (typ.simd)
         {
 #>
-        #if NET8_0_OR_GREATER
-        return new(simd.MoveHighToLow(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize4 #>.IsHardwareAccelerated)
+            return new(simd.MoveHighToLow(a.vector, b.vector));
 <#
         }
 #>
         return new(b.z, b.w, a.z, a.w);
-<#
-        if (typ.simd)
-        {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-        }
-#>
     }
 }
 <#

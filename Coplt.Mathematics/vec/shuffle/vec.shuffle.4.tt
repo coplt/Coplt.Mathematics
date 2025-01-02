@@ -47,23 +47,18 @@ public static partial class math
     public static <#= typeName #> shuffle_<#= xyzw #>(<#= typeName #> a, <#= typeName #> b)
     {
 <#
-        if (typ.simd)
-        {
+                if (typ.simd)
+                {
 #>
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_<#= xyzw #>(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
 <#
-        }
+                }
+                else
+                {
 #>
         return soft_shuffle.Shuffle<<#= typ.compType #>, <#= typeName #>>(a, b, Shuffle42.<#= xyzw #>);
 <#
-        if (typ.simd)
-        {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-        }
+                }
 #>
     }
 <#

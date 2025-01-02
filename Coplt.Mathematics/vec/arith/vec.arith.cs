@@ -11,21 +11,17 @@ public partial struct float2
     [MethodImpl(256 | 512)]
     public static float2 operator -(float2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(-a.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(-a.vector);
         return new((-a.x), (-a.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static float2 operator +(float2 a, float2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector + b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(a.vector + b.vector);
         return new((float)(a.x + b.x), (float)(a.y + b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -37,11 +33,9 @@ public partial struct float2
     [MethodImpl(256 | 512)]
     public static float2 operator -(float2 a, float2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector - b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(a.vector - b.vector);
         return new((float)(a.x - b.x), (float)(a.y - b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -53,51 +47,41 @@ public partial struct float2
     [MethodImpl(256 | 512)]
     public static float2 operator *(float2 a, float2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector * b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(a.vector * b.vector);
         return new((float)(a.x * b.x), (float)(a.y * b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static float2 operator *(float a, float2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a * b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(a * b.vector);
         return new((float)(a * b.x), (float)(a * b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static float2 operator *(float2 a, float b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector * b);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(a.vector * b);
         return new((float)(a.x * b), (float)(a.y * b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static float2 operator /(float2 a, float2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new((a.vector / b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new((a.vector / b.vector));
         return new((float)(a.x / b.x), (float)(a.y / b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static float2 operator /(float2 a, float b)
     {
-        #if NET8_0_OR_GREATER
-        return new((a.vector / b));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new((a.vector / b));
         return new((float)(a.x / b), (float)(a.y / b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -106,21 +90,17 @@ public partial struct float2
     [MethodImpl(256 | 512)]
     public static float2 operator %(float2 a, float2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Rem(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(simd.Rem(a.vector, b.vector));
         return new((float)(a.x % b.x), (float)(a.y % b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static float2 operator %(float2 a, float b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Rem(a.vector, b));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(simd.Rem(a.vector, b));
         return new((float)(a.x % b), (float)(a.y % b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -133,136 +113,114 @@ public partial struct float2
     public static float2 operator ++(float2 a) => a + One;
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float2 abs(this float2 a)
+    public static float2 abs([This] float2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector64.Abs(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(Vector64.Abs(a.vector));
         return new(a.x.abs(), a.y.abs());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 sign(this float2 a)
+    public static float2 sign([This] float2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.SignFloat(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(simd.SignFloat(a.vector));
         return new(a.x.sign(), a.y.sign());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 min(this float2 a, float2 b)
+    public static float2 min([This] float2 a, float2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector64.Min(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(Vector64.Min(a.vector, b.vector));
         return new(a.x.min(b.x), a.y.min(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 max(this float2 a, float2 b)
+    public static float2 max([This] float2 a, float2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector64.Max(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(Vector64.Max(a.vector, b.vector));
         return new(a.x.max(b.x), a.y.max(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 clamp(this float2 v, float2 min, float2 max)
+    public static float2 clamp([This] float2 v, float2 min, float2 max)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector64.Max(min.vector, Vector64.Min(max.vector, v.vector)));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(Vector64.Max(min.vector, Vector64.Min(max.vector, v.vector)));
         return new(v.x.clamp(min.x, max.x), v.y.clamp(min.y, max.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 clamp(this float2 v, float min, float max) => v.clamp(new float2(min), new float2(max));
+    public static float2 clamp([This] float2 v, float min, float max) => v.clamp(new float2(min), new float2(max));
 
     [MethodImpl(256 | 512)]
-    public static float2 lerp(this float2 t, float2 start, float2 end)
+    public static float2 lerp(float2 start, float2 end, [This] float2 t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(t, end - start, start);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return fma(t, end - start, start);
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 lerp(this float t, float2 start, float2 end)
+    public static float2 lerp(float2 start, float2 end, [This] float t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(new(t), end - start, start);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return fma(new(t), end - start, start);
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 lerp(this float2 t, float start, float end)
+    public static float2 lerp(float start, float end, [This] float2 t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(t, (end - start), new(start));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return fma(t, (end - start), new(start));
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 unlerp(this float2 a, float2 start, float2 end) => (a - start) / (end - start);
+    public static float2 unlerp([This] float2 a, float2 start, float2 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static float2 unlerp(this float a, float2 start, float2 end) => (a - start) / (end - start);
+    public static float2 unlerp([This] float a, float2 start, float2 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static float2 unlerp(this float2 a, float start, float end) => (a - start) / (end - start);
+    public static float2 unlerp([This] float2 a, float start, float end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static float2 remap(this float2 a, float2 srcStart, float2 srcEnd, float2 dstStart, float2 dstEnd) => 
+    public static float2 remap([This] float2 a, float2 srcStart, float2 srcEnd, float2 dstStart, float2 dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static float2 remap(this float2 a, float srcStart, float srcEnd, float dstStart, float dstEnd) => 
+    public static float2 remap([This] float2 a, float srcStart, float srcEnd, float dstStart, float dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static float dot(this float2 a, float2 b)
+    public static float dot([This] float2 a, float2 b)
     {
-        #if NET8_0_OR_GREATER
-        return Vector64.Dot(a.vector, b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.Dot(a.vector, b.vector);
         return (float)(a.x * b.x + a.y * b.y);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float lengthsq(this float2 a)
+    public static float lengthsq([This] float2 a)
     {
-        #if NET8_0_OR_GREATER
-        return Vector64.Dot(a.vector, a.vector);
-        #else // NET8_0_OR_GREATER
-        return a.dot(a);
-        #endif // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.Dot(a.vector, a.vector);
+        return (float)(a.x * a.x + a.y * a.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static float distancesq(this float2 a, float2 b) => lengthsq(b - a);
+    public static float distancesq([This] float2 a, float2 b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static float2 square(this float2 a) => a * a;
+    public static float2 square([This] float2 a) => a * a;
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -272,13 +230,11 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static float2 fma(this float2 a, float2 b, float2 c)
+    public static float2 fma([This] float2 a, float2 b, float2 c)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Fma(a.vector, b.vector, c.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(simd.Fma(a.vector, b.vector, c.vector));
         return new(a.x.fma(b.x, c.x), a.y.fma(b.y, c.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -289,13 +245,11 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static float2 fms(this float2 a, float2 b, float2 c)
+    public static float2 fms([This] float2 a, float2 b, float2 c)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Fms(a.vector, b.vector, c.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(simd.Fms(a.vector, b.vector, c.vector));
         return new(a.x.fms(b.x, c.x), a.y.fms(b.y, c.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -306,13 +260,11 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static float2 fnma(this float2 a, float2 b, float2 c)
+    public static float2 fnma([This] float2 a, float2 b, float2 c)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Fnma(a.vector, b.vector, c.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(simd.Fnma(a.vector, b.vector, c.vector));
         return new(a.x.fnma(b.x, c.x), a.y.fnma(b.y, c.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -323,7 +275,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static float2 fsm(this float2 c, float2 a, float2 b) => fnma(a, b, c);
+    public static float2 fsm([This] float2 c, float2 a, float2 b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -333,7 +285,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static float2 fam(this float2 c, float2 a, float2 b) => fma(a, b, c);
+    public static float2 fam([This] float2 c, float2 a, float2 b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -343,26 +295,24 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static float2 mad(this float2 a, float2 b, float2 c) => fma(a, b, c);
+    public static float2 mad([This] float2 a, float2 b, float2 c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static float csum(this float2 a)
+    public static float csum([This] float2 a)
     {
-        #if NET8_0_OR_GREATER
-        return Vector64.Sum(a.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.Sum(a.vector);
         return (a.x + a.y);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float cmin(this float2 a)
+    public static float cmin([This] float2 a)
     {
         return a.x.min(a.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static float cmax(this float2 a)
+    public static float cmax([This] float2 a)
     {
         return a.x.max(a.y);
     }
@@ -379,21 +329,17 @@ public partial struct float3
     [MethodImpl(256 | 512)]
     public static float3 operator -(float3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(-a.vector & Vector128.Create(-1, -1, -1, 0).AsSingle());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(-a.vector & Vector128.Create(-1, -1, -1, 0).AsSingle());
         return new((-a.x), (-a.y), (-a.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static float3 operator +(float3 a, float3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector + b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector + b.vector);
         return new((float)(a.x + b.x), (float)(a.y + b.y), (float)(a.z + b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -405,11 +351,9 @@ public partial struct float3
     [MethodImpl(256 | 512)]
     public static float3 operator -(float3 a, float3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector - b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector - b.vector);
         return new((float)(a.x - b.x), (float)(a.y - b.y), (float)(a.z - b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -421,51 +365,41 @@ public partial struct float3
     [MethodImpl(256 | 512)]
     public static float3 operator *(float3 a, float3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector * b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector * b.vector);
         return new((float)(a.x * b.x), (float)(a.y * b.y), (float)(a.z * b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static float3 operator *(float a, float3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a * b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a * b.vector);
         return new((float)(a * b.x), (float)(a * b.y), (float)(a * b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static float3 operator *(float3 a, float b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector * b);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector * b);
         return new((float)(a.x * b), (float)(a.y * b), (float)(a.z * b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static float3 operator /(float3 a, float3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new((a.vector / b.vector) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new((a.vector / b.vector) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         return new((float)(a.x / b.x), (float)(a.y / b.y), (float)(a.z / b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static float3 operator /(float3 a, float b)
     {
-        #if NET8_0_OR_GREATER
-        return new((a.vector / b) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new((a.vector / b) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         return new((float)(a.x / b), (float)(a.y / b), (float)(a.z / b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -474,21 +408,17 @@ public partial struct float3
     [MethodImpl(256 | 512)]
     public static float3 operator %(float3 a, float3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Rem(a.vector, b.vector) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Rem(a.vector, b.vector) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         return new((float)(a.x % b.x), (float)(a.y % b.y), (float)(a.z % b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static float3 operator %(float3 a, float b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Rem(a.vector, b) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Rem(a.vector, b) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         return new((float)(a.x % b), (float)(a.y % b), (float)(a.z % b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -501,139 +431,117 @@ public partial struct float3
     public static float3 operator ++(float3 a) => a + One;
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float3 abs(this float3 a)
+    public static float3 abs([This] float3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Abs(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Abs(a.vector));
         return new(a.x.abs(), a.y.abs(), a.z.abs());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 sign(this float3 a)
+    public static float3 sign([This] float3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.SignFloat(a.vector) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.SignFloat(a.vector) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         return new(a.x.sign(), a.y.sign(), a.z.sign());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 min(this float3 a, float3 b)
+    public static float3 min([This] float3 a, float3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Min(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Min(a.vector, b.vector));
         return new(a.x.min(b.x), a.y.min(b.y), a.z.min(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 max(this float3 a, float3 b)
+    public static float3 max([This] float3 a, float3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Max(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Max(a.vector, b.vector));
         return new(a.x.max(b.x), a.y.max(b.y), a.z.max(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 clamp(this float3 v, float3 min, float3 max)
+    public static float3 clamp([This] float3 v, float3 min, float3 max)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Max(min.vector, Vector128.Min(max.vector, v.vector)));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Max(min.vector, Vector128.Min(max.vector, v.vector)));
         return new(v.x.clamp(min.x, max.x), v.y.clamp(min.y, max.y), v.z.clamp(min.z, max.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 clamp(this float3 v, float min, float max) => v.clamp(new float3(min), new float3(max));
+    public static float3 clamp([This] float3 v, float min, float max) => v.clamp(new float3(min), new float3(max));
 
     [MethodImpl(256 | 512)]
-    public static float3 lerp(this float3 t, float3 start, float3 end)
+    public static float3 lerp(float3 start, float3 end, [This] float3 t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(t, end - start, start);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return fma(t, end - start, start);
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 lerp(this float t, float3 start, float3 end)
+    public static float3 lerp(float3 start, float3 end, [This] float t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(new(t), end - start, start);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return fma(new(t), end - start, start);
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 lerp(this float3 t, float start, float end)
+    public static float3 lerp(float start, float end, [This] float3 t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(t, (end - start), new(start));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return fma(t, (end - start), new(start));
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 unlerp(this float3 a, float3 start, float3 end) => (a - start) / (end - start);
+    public static float3 unlerp([This] float3 a, float3 start, float3 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static float3 unlerp(this float a, float3 start, float3 end) => (a - start) / (end - start);
+    public static float3 unlerp([This] float a, float3 start, float3 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static float3 unlerp(this float3 a, float start, float end) => (a - start) / (end - start);
+    public static float3 unlerp([This] float3 a, float start, float end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static float3 remap(this float3 a, float3 srcStart, float3 srcEnd, float3 dstStart, float3 dstEnd) => 
+    public static float3 remap([This] float3 a, float3 srcStart, float3 srcEnd, float3 dstStart, float3 dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static float3 remap(this float3 a, float srcStart, float srcEnd, float dstStart, float dstEnd) => 
+    public static float3 remap([This] float3 a, float srcStart, float srcEnd, float dstStart, float dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static float dot(this float3 a, float3 b)
+    public static float dot([This] float3 a, float3 b)
     {
-        #if NET8_0_OR_GREATER
-        return Vector128.Dot(a.vector, b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.Dot(a.vector, b.vector);
         return (float)(a.x * b.x + a.y * b.y + a.z * b.z);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 cross(this float3 a, float3 b) => (a * b.yzx - a.yzx * b).yzx;
+    public static float3 cross([This] float3 a, float3 b) => (a * b.yzx - a.yzx * b).yzx;
 
     [MethodImpl(256 | 512)]
-    public static float lengthsq(this float3 a)
+    public static float lengthsq([This] float3 a)
     {
-        #if NET8_0_OR_GREATER
-        return Vector128.Dot(a.vector, a.vector);
-        #else // NET8_0_OR_GREATER
-        return a.dot(a);
-        #endif // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.Dot(a.vector, a.vector);
+        return (float)(a.x * a.x + a.y * a.y + a.z * a.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static float distancesq(this float3 a, float3 b) => lengthsq(b - a);
+    public static float distancesq([This] float3 a, float3 b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static float3 square(this float3 a) => a * a;
+    public static float3 square([This] float3 a) => a * a;
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -643,13 +551,11 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static float3 fma(this float3 a, float3 b, float3 c)
+    public static float3 fma([This] float3 a, float3 b, float3 c)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Fma(a.vector, b.vector, c.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Fma(a.vector, b.vector, c.vector));
         return new(a.x.fma(b.x, c.x), a.y.fma(b.y, c.y), a.z.fma(b.z, c.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -660,13 +566,11 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static float3 fms(this float3 a, float3 b, float3 c)
+    public static float3 fms([This] float3 a, float3 b, float3 c)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Fms(a.vector, b.vector, c.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Fms(a.vector, b.vector, c.vector));
         return new(a.x.fms(b.x, c.x), a.y.fms(b.y, c.y), a.z.fms(b.z, c.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -677,13 +581,11 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static float3 fnma(this float3 a, float3 b, float3 c)
+    public static float3 fnma([This] float3 a, float3 b, float3 c)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Fnma(a.vector, b.vector, c.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Fnma(a.vector, b.vector, c.vector));
         return new(a.x.fnma(b.x, c.x), a.y.fnma(b.y, c.y), a.z.fnma(b.z, c.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -694,7 +596,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static float3 fsm(this float3 c, float3 a, float3 b) => fnma(a, b, c);
+    public static float3 fsm([This] float3 c, float3 a, float3 b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -704,7 +606,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static float3 fam(this float3 c, float3 a, float3 b) => fma(a, b, c);
+    public static float3 fam([This] float3 c, float3 a, float3 b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -714,26 +616,24 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static float3 mad(this float3 a, float3 b, float3 c) => fma(a, b, c);
+    public static float3 mad([This] float3 a, float3 b, float3 c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static float csum(this float3 a)
+    public static float csum([This] float3 a)
     {
-        #if NET8_0_OR_GREATER
-        return Vector128.Sum(a.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.Sum(a.vector);
         return (a.x + a.y + a.z);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float cmin(this float3 a)
+    public static float cmin([This] float3 a)
     {
         return a.x.min(a.y).min(a.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static float cmax(this float3 a)
+    public static float cmax([This] float3 a)
     {
         return a.x.max(a.y).max(a.z);
     }
@@ -750,21 +650,17 @@ public partial struct float4
     [MethodImpl(256 | 512)]
     public static float4 operator -(float4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(-a.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(-a.vector);
         return new((-a.x), (-a.y), (-a.z), (-a.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static float4 operator +(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector + b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector + b.vector);
         return new((float)(a.x + b.x), (float)(a.y + b.y), (float)(a.z + b.z), (float)(a.w + b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -776,11 +672,9 @@ public partial struct float4
     [MethodImpl(256 | 512)]
     public static float4 operator -(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector - b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector - b.vector);
         return new((float)(a.x - b.x), (float)(a.y - b.y), (float)(a.z - b.z), (float)(a.w - b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -792,51 +686,41 @@ public partial struct float4
     [MethodImpl(256 | 512)]
     public static float4 operator *(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector * b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector * b.vector);
         return new((float)(a.x * b.x), (float)(a.y * b.y), (float)(a.z * b.z), (float)(a.w * b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static float4 operator *(float a, float4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a * b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a * b.vector);
         return new((float)(a * b.x), (float)(a * b.y), (float)(a * b.z), (float)(a * b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static float4 operator *(float4 a, float b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector * b);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector * b);
         return new((float)(a.x * b), (float)(a.y * b), (float)(a.z * b), (float)(a.w * b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static float4 operator /(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new((a.vector / b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new((a.vector / b.vector));
         return new((float)(a.x / b.x), (float)(a.y / b.y), (float)(a.z / b.z), (float)(a.w / b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static float4 operator /(float4 a, float b)
     {
-        #if NET8_0_OR_GREATER
-        return new((a.vector / b));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new((a.vector / b));
         return new((float)(a.x / b), (float)(a.y / b), (float)(a.z / b), (float)(a.w / b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -845,21 +729,17 @@ public partial struct float4
     [MethodImpl(256 | 512)]
     public static float4 operator %(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Rem(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Rem(a.vector, b.vector));
         return new((float)(a.x % b.x), (float)(a.y % b.y), (float)(a.z % b.z), (float)(a.w % b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static float4 operator %(float4 a, float b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Rem(a.vector, b));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Rem(a.vector, b));
         return new((float)(a.x % b), (float)(a.y % b), (float)(a.z % b), (float)(a.w % b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -872,136 +752,114 @@ public partial struct float4
     public static float4 operator ++(float4 a) => a + One;
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float4 abs(this float4 a)
+    public static float4 abs([This] float4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Abs(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Abs(a.vector));
         return new(a.x.abs(), a.y.abs(), a.z.abs(), a.w.abs());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 sign(this float4 a)
+    public static float4 sign([This] float4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.SignFloat(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.SignFloat(a.vector));
         return new(a.x.sign(), a.y.sign(), a.z.sign(), a.w.sign());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 min(this float4 a, float4 b)
+    public static float4 min([This] float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Min(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Min(a.vector, b.vector));
         return new(a.x.min(b.x), a.y.min(b.y), a.z.min(b.z), a.w.min(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 max(this float4 a, float4 b)
+    public static float4 max([This] float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Max(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Max(a.vector, b.vector));
         return new(a.x.max(b.x), a.y.max(b.y), a.z.max(b.z), a.w.max(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 clamp(this float4 v, float4 min, float4 max)
+    public static float4 clamp([This] float4 v, float4 min, float4 max)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Max(min.vector, Vector128.Min(max.vector, v.vector)));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Max(min.vector, Vector128.Min(max.vector, v.vector)));
         return new(v.x.clamp(min.x, max.x), v.y.clamp(min.y, max.y), v.z.clamp(min.z, max.z), v.w.clamp(min.w, max.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 clamp(this float4 v, float min, float max) => v.clamp(new float4(min), new float4(max));
+    public static float4 clamp([This] float4 v, float min, float max) => v.clamp(new float4(min), new float4(max));
 
     [MethodImpl(256 | 512)]
-    public static float4 lerp(this float4 t, float4 start, float4 end)
+    public static float4 lerp(float4 start, float4 end, [This] float4 t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(t, end - start, start);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return fma(t, end - start, start);
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 lerp(this float t, float4 start, float4 end)
+    public static float4 lerp(float4 start, float4 end, [This] float t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(new(t), end - start, start);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return fma(new(t), end - start, start);
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 lerp(this float4 t, float start, float end)
+    public static float4 lerp(float start, float end, [This] float4 t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(t, (end - start), new(start));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return fma(t, (end - start), new(start));
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 unlerp(this float4 a, float4 start, float4 end) => (a - start) / (end - start);
+    public static float4 unlerp([This] float4 a, float4 start, float4 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static float4 unlerp(this float a, float4 start, float4 end) => (a - start) / (end - start);
+    public static float4 unlerp([This] float a, float4 start, float4 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static float4 unlerp(this float4 a, float start, float end) => (a - start) / (end - start);
+    public static float4 unlerp([This] float4 a, float start, float end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static float4 remap(this float4 a, float4 srcStart, float4 srcEnd, float4 dstStart, float4 dstEnd) => 
+    public static float4 remap([This] float4 a, float4 srcStart, float4 srcEnd, float4 dstStart, float4 dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static float4 remap(this float4 a, float srcStart, float srcEnd, float dstStart, float dstEnd) => 
+    public static float4 remap([This] float4 a, float srcStart, float srcEnd, float dstStart, float dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static float dot(this float4 a, float4 b)
+    public static float dot([This] float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
-        return Vector128.Dot(a.vector, b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.Dot(a.vector, b.vector);
         return (float)(a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float lengthsq(this float4 a)
+    public static float lengthsq([This] float4 a)
     {
-        #if NET8_0_OR_GREATER
-        return Vector128.Dot(a.vector, a.vector);
-        #else // NET8_0_OR_GREATER
-        return a.dot(a);
-        #endif // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.Dot(a.vector, a.vector);
+        return (float)(a.x * a.x + a.y * a.y + a.z * a.z + a.w * a.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static float distancesq(this float4 a, float4 b) => lengthsq(b - a);
+    public static float distancesq([This] float4 a, float4 b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static float4 square(this float4 a) => a * a;
+    public static float4 square([This] float4 a) => a * a;
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -1011,13 +869,11 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static float4 fma(this float4 a, float4 b, float4 c)
+    public static float4 fma([This] float4 a, float4 b, float4 c)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Fma(a.vector, b.vector, c.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Fma(a.vector, b.vector, c.vector));
         return new(a.x.fma(b.x, c.x), a.y.fma(b.y, c.y), a.z.fma(b.z, c.z), a.w.fma(b.w, c.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1028,13 +884,11 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static float4 fms(this float4 a, float4 b, float4 c)
+    public static float4 fms([This] float4 a, float4 b, float4 c)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Fms(a.vector, b.vector, c.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Fms(a.vector, b.vector, c.vector));
         return new(a.x.fms(b.x, c.x), a.y.fms(b.y, c.y), a.z.fms(b.z, c.z), a.w.fms(b.w, c.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1045,13 +899,11 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static float4 fnma(this float4 a, float4 b, float4 c)
+    public static float4 fnma([This] float4 a, float4 b, float4 c)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Fnma(a.vector, b.vector, c.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Fnma(a.vector, b.vector, c.vector));
         return new(a.x.fnma(b.x, c.x), a.y.fnma(b.y, c.y), a.z.fnma(b.z, c.z), a.w.fnma(b.w, c.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1062,7 +914,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static float4 fsm(this float4 c, float4 a, float4 b) => fnma(a, b, c);
+    public static float4 fsm([This] float4 c, float4 a, float4 b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -1072,7 +924,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static float4 fam(this float4 c, float4 a, float4 b) => fma(a, b, c);
+    public static float4 fam([This] float4 c, float4 a, float4 b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -1082,26 +934,24 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static float4 mad(this float4 a, float4 b, float4 c) => fma(a, b, c);
+    public static float4 mad([This] float4 a, float4 b, float4 c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static float csum(this float4 a)
+    public static float csum([This] float4 a)
     {
-        #if NET8_0_OR_GREATER
-        return Vector128.Sum(a.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.Sum(a.vector);
         return (a.x + a.y + a.z + a.w);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float cmin(this float4 a)
+    public static float cmin([This] float4 a)
     {
         return a.x.min(a.y).min(a.z).min(a.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static float cmax(this float4 a)
+    public static float cmax([This] float4 a)
     {
         return a.x.max(a.y).max(a.z).max(a.w);
     }
@@ -1118,21 +968,17 @@ public partial struct double2
     [MethodImpl(256 | 512)]
     public static double2 operator -(double2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(-a.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(-a.vector);
         return new((-a.x), (-a.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static double2 operator +(double2 a, double2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector + b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector + b.vector);
         return new((double)(a.x + b.x), (double)(a.y + b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -1144,11 +990,9 @@ public partial struct double2
     [MethodImpl(256 | 512)]
     public static double2 operator -(double2 a, double2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector - b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector - b.vector);
         return new((double)(a.x - b.x), (double)(a.y - b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -1160,51 +1004,41 @@ public partial struct double2
     [MethodImpl(256 | 512)]
     public static double2 operator *(double2 a, double2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector * b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector * b.vector);
         return new((double)(a.x * b.x), (double)(a.y * b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static double2 operator *(double a, double2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a * b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a * b.vector);
         return new((double)(a * b.x), (double)(a * b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static double2 operator *(double2 a, double b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector * b);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector * b);
         return new((double)(a.x * b), (double)(a.y * b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static double2 operator /(double2 a, double2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new((a.vector / b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new((a.vector / b.vector));
         return new((double)(a.x / b.x), (double)(a.y / b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static double2 operator /(double2 a, double b)
     {
-        #if NET8_0_OR_GREATER
-        return new((a.vector / b));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new((a.vector / b));
         return new((double)(a.x / b), (double)(a.y / b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -1213,21 +1047,17 @@ public partial struct double2
     [MethodImpl(256 | 512)]
     public static double2 operator %(double2 a, double2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Rem(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Rem(a.vector, b.vector));
         return new((double)(a.x % b.x), (double)(a.y % b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static double2 operator %(double2 a, double b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Rem(a.vector, b));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Rem(a.vector, b));
         return new((double)(a.x % b), (double)(a.y % b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -1240,136 +1070,114 @@ public partial struct double2
     public static double2 operator ++(double2 a) => a + One;
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double2 abs(this double2 a)
+    public static double2 abs([This] double2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Abs(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Abs(a.vector));
         return new(a.x.abs(), a.y.abs());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 sign(this double2 a)
+    public static double2 sign([This] double2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.SignFloat(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.SignFloat(a.vector));
         return new(a.x.sign(), a.y.sign());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 min(this double2 a, double2 b)
+    public static double2 min([This] double2 a, double2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Min(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Min(a.vector, b.vector));
         return new(a.x.min(b.x), a.y.min(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 max(this double2 a, double2 b)
+    public static double2 max([This] double2 a, double2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Max(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Max(a.vector, b.vector));
         return new(a.x.max(b.x), a.y.max(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 clamp(this double2 v, double2 min, double2 max)
+    public static double2 clamp([This] double2 v, double2 min, double2 max)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Max(min.vector, Vector128.Min(max.vector, v.vector)));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Max(min.vector, Vector128.Min(max.vector, v.vector)));
         return new(v.x.clamp(min.x, max.x), v.y.clamp(min.y, max.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 clamp(this double2 v, double min, double max) => v.clamp(new double2(min), new double2(max));
+    public static double2 clamp([This] double2 v, double min, double max) => v.clamp(new double2(min), new double2(max));
 
     [MethodImpl(256 | 512)]
-    public static double2 lerp(this double2 t, double2 start, double2 end)
+    public static double2 lerp(double2 start, double2 end, [This] double2 t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(t, end - start, start);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return fma(t, end - start, start);
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 lerp(this double t, double2 start, double2 end)
+    public static double2 lerp(double2 start, double2 end, [This] double t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(new(t), end - start, start);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return fma(new(t), end - start, start);
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 lerp(this double2 t, double start, double end)
+    public static double2 lerp(double start, double end, [This] double2 t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(t, (end - start), new(start));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return fma(t, (end - start), new(start));
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 unlerp(this double2 a, double2 start, double2 end) => (a - start) / (end - start);
+    public static double2 unlerp([This] double2 a, double2 start, double2 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static double2 unlerp(this double a, double2 start, double2 end) => (a - start) / (end - start);
+    public static double2 unlerp([This] double a, double2 start, double2 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static double2 unlerp(this double2 a, double start, double end) => (a - start) / (end - start);
+    public static double2 unlerp([This] double2 a, double start, double end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static double2 remap(this double2 a, double2 srcStart, double2 srcEnd, double2 dstStart, double2 dstEnd) => 
+    public static double2 remap([This] double2 a, double2 srcStart, double2 srcEnd, double2 dstStart, double2 dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static double2 remap(this double2 a, double srcStart, double srcEnd, double dstStart, double dstEnd) => 
+    public static double2 remap([This] double2 a, double srcStart, double srcEnd, double dstStart, double dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static double dot(this double2 a, double2 b)
+    public static double dot([This] double2 a, double2 b)
     {
-        #if NET8_0_OR_GREATER
-        return Vector128.Dot(a.vector, b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.Dot(a.vector, b.vector);
         return (double)(a.x * b.x + a.y * b.y);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double lengthsq(this double2 a)
+    public static double lengthsq([This] double2 a)
     {
-        #if NET8_0_OR_GREATER
-        return Vector128.Dot(a.vector, a.vector);
-        #else // NET8_0_OR_GREATER
-        return a.dot(a);
-        #endif // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.Dot(a.vector, a.vector);
+        return (double)(a.x * a.x + a.y * a.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static double distancesq(this double2 a, double2 b) => lengthsq(b - a);
+    public static double distancesq([This] double2 a, double2 b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static double2 square(this double2 a) => a * a;
+    public static double2 square([This] double2 a) => a * a;
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -1379,13 +1187,11 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static double2 fma(this double2 a, double2 b, double2 c)
+    public static double2 fma([This] double2 a, double2 b, double2 c)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Fma(a.vector, b.vector, c.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Fma(a.vector, b.vector, c.vector));
         return new(a.x.fma(b.x, c.x), a.y.fma(b.y, c.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1396,13 +1202,11 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static double2 fms(this double2 a, double2 b, double2 c)
+    public static double2 fms([This] double2 a, double2 b, double2 c)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Fms(a.vector, b.vector, c.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Fms(a.vector, b.vector, c.vector));
         return new(a.x.fms(b.x, c.x), a.y.fms(b.y, c.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1413,13 +1217,11 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static double2 fnma(this double2 a, double2 b, double2 c)
+    public static double2 fnma([This] double2 a, double2 b, double2 c)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Fnma(a.vector, b.vector, c.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Fnma(a.vector, b.vector, c.vector));
         return new(a.x.fnma(b.x, c.x), a.y.fnma(b.y, c.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1430,7 +1232,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static double2 fsm(this double2 c, double2 a, double2 b) => fnma(a, b, c);
+    public static double2 fsm([This] double2 c, double2 a, double2 b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -1440,7 +1242,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static double2 fam(this double2 c, double2 a, double2 b) => fma(a, b, c);
+    public static double2 fam([This] double2 c, double2 a, double2 b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -1450,26 +1252,24 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static double2 mad(this double2 a, double2 b, double2 c) => fma(a, b, c);
+    public static double2 mad([This] double2 a, double2 b, double2 c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static double csum(this double2 a)
+    public static double csum([This] double2 a)
     {
-        #if NET8_0_OR_GREATER
-        return Vector128.Sum(a.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.Sum(a.vector);
         return (a.x + a.y);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double cmin(this double2 a)
+    public static double cmin([This] double2 a)
     {
         return a.x.min(a.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static double cmax(this double2 a)
+    public static double cmax([This] double2 a)
     {
         return a.x.max(a.y);
     }
@@ -1486,21 +1286,17 @@ public partial struct double3
     [MethodImpl(256 | 512)]
     public static double3 operator -(double3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(-a.vector & Vector256.Create(-1, -1, -1, 0).AsDouble());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(-a.vector & Vector256.Create(-1, -1, -1, 0).AsDouble());
         return new((-a.x), (-a.y), (-a.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static double3 operator +(double3 a, double3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector + b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector + b.vector);
         return new((double)(a.x + b.x), (double)(a.y + b.y), (double)(a.z + b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -1512,11 +1308,9 @@ public partial struct double3
     [MethodImpl(256 | 512)]
     public static double3 operator -(double3 a, double3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector - b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector - b.vector);
         return new((double)(a.x - b.x), (double)(a.y - b.y), (double)(a.z - b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -1528,51 +1322,41 @@ public partial struct double3
     [MethodImpl(256 | 512)]
     public static double3 operator *(double3 a, double3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector * b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector * b.vector);
         return new((double)(a.x * b.x), (double)(a.y * b.y), (double)(a.z * b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static double3 operator *(double a, double3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a * b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a * b.vector);
         return new((double)(a * b.x), (double)(a * b.y), (double)(a * b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static double3 operator *(double3 a, double b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector * b);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector * b);
         return new((double)(a.x * b), (double)(a.y * b), (double)(a.z * b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static double3 operator /(double3 a, double3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new((a.vector / b.vector) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new((a.vector / b.vector) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         return new((double)(a.x / b.x), (double)(a.y / b.y), (double)(a.z / b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static double3 operator /(double3 a, double b)
     {
-        #if NET8_0_OR_GREATER
-        return new((a.vector / b) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new((a.vector / b) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         return new((double)(a.x / b), (double)(a.y / b), (double)(a.z / b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -1581,21 +1365,17 @@ public partial struct double3
     [MethodImpl(256 | 512)]
     public static double3 operator %(double3 a, double3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Rem(a.vector, b.vector) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Rem(a.vector, b.vector) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         return new((double)(a.x % b.x), (double)(a.y % b.y), (double)(a.z % b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static double3 operator %(double3 a, double b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Rem(a.vector, b) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Rem(a.vector, b) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         return new((double)(a.x % b), (double)(a.y % b), (double)(a.z % b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -1608,139 +1388,117 @@ public partial struct double3
     public static double3 operator ++(double3 a) => a + One;
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double3 abs(this double3 a)
+    public static double3 abs([This] double3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.Abs(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.Abs(a.vector));
         return new(a.x.abs(), a.y.abs(), a.z.abs());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 sign(this double3 a)
+    public static double3 sign([This] double3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.SignFloat(a.vector) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.SignFloat(a.vector) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         return new(a.x.sign(), a.y.sign(), a.z.sign());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 min(this double3 a, double3 b)
+    public static double3 min([This] double3 a, double3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.Min(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.Min(a.vector, b.vector));
         return new(a.x.min(b.x), a.y.min(b.y), a.z.min(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 max(this double3 a, double3 b)
+    public static double3 max([This] double3 a, double3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.Max(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.Max(a.vector, b.vector));
         return new(a.x.max(b.x), a.y.max(b.y), a.z.max(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 clamp(this double3 v, double3 min, double3 max)
+    public static double3 clamp([This] double3 v, double3 min, double3 max)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.Max(min.vector, Vector256.Min(max.vector, v.vector)));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.Max(min.vector, Vector256.Min(max.vector, v.vector)));
         return new(v.x.clamp(min.x, max.x), v.y.clamp(min.y, max.y), v.z.clamp(min.z, max.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 clamp(this double3 v, double min, double max) => v.clamp(new double3(min), new double3(max));
+    public static double3 clamp([This] double3 v, double min, double max) => v.clamp(new double3(min), new double3(max));
 
     [MethodImpl(256 | 512)]
-    public static double3 lerp(this double3 t, double3 start, double3 end)
+    public static double3 lerp(double3 start, double3 end, [This] double3 t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(t, end - start, start);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return fma(t, end - start, start);
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 lerp(this double t, double3 start, double3 end)
+    public static double3 lerp(double3 start, double3 end, [This] double t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(new(t), end - start, start);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return fma(new(t), end - start, start);
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 lerp(this double3 t, double start, double end)
+    public static double3 lerp(double start, double end, [This] double3 t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(t, (end - start), new(start));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return fma(t, (end - start), new(start));
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 unlerp(this double3 a, double3 start, double3 end) => (a - start) / (end - start);
+    public static double3 unlerp([This] double3 a, double3 start, double3 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static double3 unlerp(this double a, double3 start, double3 end) => (a - start) / (end - start);
+    public static double3 unlerp([This] double a, double3 start, double3 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static double3 unlerp(this double3 a, double start, double end) => (a - start) / (end - start);
+    public static double3 unlerp([This] double3 a, double start, double end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static double3 remap(this double3 a, double3 srcStart, double3 srcEnd, double3 dstStart, double3 dstEnd) => 
+    public static double3 remap([This] double3 a, double3 srcStart, double3 srcEnd, double3 dstStart, double3 dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static double3 remap(this double3 a, double srcStart, double srcEnd, double dstStart, double dstEnd) => 
+    public static double3 remap([This] double3 a, double srcStart, double srcEnd, double dstStart, double dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static double dot(this double3 a, double3 b)
+    public static double dot([This] double3 a, double3 b)
     {
-        #if NET8_0_OR_GREATER
-        return Vector256.Dot(a.vector, b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.Dot(a.vector, b.vector);
         return (double)(a.x * b.x + a.y * b.y + a.z * b.z);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 cross(this double3 a, double3 b) => (a * b.yzx - a.yzx * b).yzx;
+    public static double3 cross([This] double3 a, double3 b) => (a * b.yzx - a.yzx * b).yzx;
 
     [MethodImpl(256 | 512)]
-    public static double lengthsq(this double3 a)
+    public static double lengthsq([This] double3 a)
     {
-        #if NET8_0_OR_GREATER
-        return Vector256.Dot(a.vector, a.vector);
-        #else // NET8_0_OR_GREATER
-        return a.dot(a);
-        #endif // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.Dot(a.vector, a.vector);
+        return (double)(a.x * a.x + a.y * a.y + a.z * a.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static double distancesq(this double3 a, double3 b) => lengthsq(b - a);
+    public static double distancesq([This] double3 a, double3 b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static double3 square(this double3 a) => a * a;
+    public static double3 square([This] double3 a) => a * a;
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -1750,13 +1508,11 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static double3 fma(this double3 a, double3 b, double3 c)
+    public static double3 fma([This] double3 a, double3 b, double3 c)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Fma(a.vector, b.vector, c.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Fma(a.vector, b.vector, c.vector));
         return new(a.x.fma(b.x, c.x), a.y.fma(b.y, c.y), a.z.fma(b.z, c.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1767,13 +1523,11 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static double3 fms(this double3 a, double3 b, double3 c)
+    public static double3 fms([This] double3 a, double3 b, double3 c)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Fms(a.vector, b.vector, c.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Fms(a.vector, b.vector, c.vector));
         return new(a.x.fms(b.x, c.x), a.y.fms(b.y, c.y), a.z.fms(b.z, c.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1784,13 +1538,11 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static double3 fnma(this double3 a, double3 b, double3 c)
+    public static double3 fnma([This] double3 a, double3 b, double3 c)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Fnma(a.vector, b.vector, c.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Fnma(a.vector, b.vector, c.vector));
         return new(a.x.fnma(b.x, c.x), a.y.fnma(b.y, c.y), a.z.fnma(b.z, c.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1801,7 +1553,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static double3 fsm(this double3 c, double3 a, double3 b) => fnma(a, b, c);
+    public static double3 fsm([This] double3 c, double3 a, double3 b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -1811,7 +1563,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static double3 fam(this double3 c, double3 a, double3 b) => fma(a, b, c);
+    public static double3 fam([This] double3 c, double3 a, double3 b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -1821,26 +1573,24 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static double3 mad(this double3 a, double3 b, double3 c) => fma(a, b, c);
+    public static double3 mad([This] double3 a, double3 b, double3 c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static double csum(this double3 a)
+    public static double csum([This] double3 a)
     {
-        #if NET8_0_OR_GREATER
-        return Vector256.Sum(a.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.Sum(a.vector);
         return (a.x + a.y + a.z);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double cmin(this double3 a)
+    public static double cmin([This] double3 a)
     {
         return a.x.min(a.y).min(a.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static double cmax(this double3 a)
+    public static double cmax([This] double3 a)
     {
         return a.x.max(a.y).max(a.z);
     }
@@ -1857,21 +1607,17 @@ public partial struct double4
     [MethodImpl(256 | 512)]
     public static double4 operator -(double4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(-a.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(-a.vector);
         return new((-a.x), (-a.y), (-a.z), (-a.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static double4 operator +(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector + b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector + b.vector);
         return new((double)(a.x + b.x), (double)(a.y + b.y), (double)(a.z + b.z), (double)(a.w + b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -1883,11 +1629,9 @@ public partial struct double4
     [MethodImpl(256 | 512)]
     public static double4 operator -(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector - b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector - b.vector);
         return new((double)(a.x - b.x), (double)(a.y - b.y), (double)(a.z - b.z), (double)(a.w - b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -1899,51 +1643,41 @@ public partial struct double4
     [MethodImpl(256 | 512)]
     public static double4 operator *(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector * b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector * b.vector);
         return new((double)(a.x * b.x), (double)(a.y * b.y), (double)(a.z * b.z), (double)(a.w * b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static double4 operator *(double a, double4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a * b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a * b.vector);
         return new((double)(a * b.x), (double)(a * b.y), (double)(a * b.z), (double)(a * b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static double4 operator *(double4 a, double b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector * b);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector * b);
         return new((double)(a.x * b), (double)(a.y * b), (double)(a.z * b), (double)(a.w * b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static double4 operator /(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new((a.vector / b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new((a.vector / b.vector));
         return new((double)(a.x / b.x), (double)(a.y / b.y), (double)(a.z / b.z), (double)(a.w / b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static double4 operator /(double4 a, double b)
     {
-        #if NET8_0_OR_GREATER
-        return new((a.vector / b));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new((a.vector / b));
         return new((double)(a.x / b), (double)(a.y / b), (double)(a.z / b), (double)(a.w / b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -1952,21 +1686,17 @@ public partial struct double4
     [MethodImpl(256 | 512)]
     public static double4 operator %(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Rem(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Rem(a.vector, b.vector));
         return new((double)(a.x % b.x), (double)(a.y % b.y), (double)(a.z % b.z), (double)(a.w % b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static double4 operator %(double4 a, double b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Rem(a.vector, b));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Rem(a.vector, b));
         return new((double)(a.x % b), (double)(a.y % b), (double)(a.z % b), (double)(a.w % b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -1979,136 +1709,114 @@ public partial struct double4
     public static double4 operator ++(double4 a) => a + One;
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double4 abs(this double4 a)
+    public static double4 abs([This] double4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.Abs(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.Abs(a.vector));
         return new(a.x.abs(), a.y.abs(), a.z.abs(), a.w.abs());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 sign(this double4 a)
+    public static double4 sign([This] double4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.SignFloat(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.SignFloat(a.vector));
         return new(a.x.sign(), a.y.sign(), a.z.sign(), a.w.sign());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 min(this double4 a, double4 b)
+    public static double4 min([This] double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.Min(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.Min(a.vector, b.vector));
         return new(a.x.min(b.x), a.y.min(b.y), a.z.min(b.z), a.w.min(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 max(this double4 a, double4 b)
+    public static double4 max([This] double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.Max(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.Max(a.vector, b.vector));
         return new(a.x.max(b.x), a.y.max(b.y), a.z.max(b.z), a.w.max(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 clamp(this double4 v, double4 min, double4 max)
+    public static double4 clamp([This] double4 v, double4 min, double4 max)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.Max(min.vector, Vector256.Min(max.vector, v.vector)));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.Max(min.vector, Vector256.Min(max.vector, v.vector)));
         return new(v.x.clamp(min.x, max.x), v.y.clamp(min.y, max.y), v.z.clamp(min.z, max.z), v.w.clamp(min.w, max.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 clamp(this double4 v, double min, double max) => v.clamp(new double4(min), new double4(max));
+    public static double4 clamp([This] double4 v, double min, double max) => v.clamp(new double4(min), new double4(max));
 
     [MethodImpl(256 | 512)]
-    public static double4 lerp(this double4 t, double4 start, double4 end)
+    public static double4 lerp(double4 start, double4 end, [This] double4 t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(t, end - start, start);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return fma(t, end - start, start);
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 lerp(this double t, double4 start, double4 end)
+    public static double4 lerp(double4 start, double4 end, [This] double t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(new(t), end - start, start);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return fma(new(t), end - start, start);
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 lerp(this double4 t, double start, double end)
+    public static double4 lerp(double start, double end, [This] double4 t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(t, (end - start), new(start));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return fma(t, (end - start), new(start));
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 unlerp(this double4 a, double4 start, double4 end) => (a - start) / (end - start);
+    public static double4 unlerp([This] double4 a, double4 start, double4 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static double4 unlerp(this double a, double4 start, double4 end) => (a - start) / (end - start);
+    public static double4 unlerp([This] double a, double4 start, double4 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static double4 unlerp(this double4 a, double start, double end) => (a - start) / (end - start);
+    public static double4 unlerp([This] double4 a, double start, double end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static double4 remap(this double4 a, double4 srcStart, double4 srcEnd, double4 dstStart, double4 dstEnd) => 
+    public static double4 remap([This] double4 a, double4 srcStart, double4 srcEnd, double4 dstStart, double4 dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static double4 remap(this double4 a, double srcStart, double srcEnd, double dstStart, double dstEnd) => 
+    public static double4 remap([This] double4 a, double srcStart, double srcEnd, double dstStart, double dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static double dot(this double4 a, double4 b)
+    public static double dot([This] double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
-        return Vector256.Dot(a.vector, b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.Dot(a.vector, b.vector);
         return (double)(a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double lengthsq(this double4 a)
+    public static double lengthsq([This] double4 a)
     {
-        #if NET8_0_OR_GREATER
-        return Vector256.Dot(a.vector, a.vector);
-        #else // NET8_0_OR_GREATER
-        return a.dot(a);
-        #endif // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.Dot(a.vector, a.vector);
+        return (double)(a.x * a.x + a.y * a.y + a.z * a.z + a.w * a.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static double distancesq(this double4 a, double4 b) => lengthsq(b - a);
+    public static double distancesq([This] double4 a, double4 b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static double4 square(this double4 a) => a * a;
+    public static double4 square([This] double4 a) => a * a;
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -2118,13 +1826,11 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static double4 fma(this double4 a, double4 b, double4 c)
+    public static double4 fma([This] double4 a, double4 b, double4 c)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Fma(a.vector, b.vector, c.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Fma(a.vector, b.vector, c.vector));
         return new(a.x.fma(b.x, c.x), a.y.fma(b.y, c.y), a.z.fma(b.z, c.z), a.w.fma(b.w, c.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2135,13 +1841,11 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static double4 fms(this double4 a, double4 b, double4 c)
+    public static double4 fms([This] double4 a, double4 b, double4 c)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Fms(a.vector, b.vector, c.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Fms(a.vector, b.vector, c.vector));
         return new(a.x.fms(b.x, c.x), a.y.fms(b.y, c.y), a.z.fms(b.z, c.z), a.w.fms(b.w, c.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2152,13 +1856,11 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static double4 fnma(this double4 a, double4 b, double4 c)
+    public static double4 fnma([This] double4 a, double4 b, double4 c)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Fnma(a.vector, b.vector, c.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Fnma(a.vector, b.vector, c.vector));
         return new(a.x.fnma(b.x, c.x), a.y.fnma(b.y, c.y), a.z.fnma(b.z, c.z), a.w.fnma(b.w, c.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2169,7 +1871,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static double4 fsm(this double4 c, double4 a, double4 b) => fnma(a, b, c);
+    public static double4 fsm([This] double4 c, double4 a, double4 b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -2179,7 +1881,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static double4 fam(this double4 c, double4 a, double4 b) => fma(a, b, c);
+    public static double4 fam([This] double4 c, double4 a, double4 b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -2189,26 +1891,24 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static double4 mad(this double4 a, double4 b, double4 c) => fma(a, b, c);
+    public static double4 mad([This] double4 a, double4 b, double4 c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static double csum(this double4 a)
+    public static double csum([This] double4 a)
     {
-        #if NET8_0_OR_GREATER
-        return Vector256.Sum(a.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.Sum(a.vector);
         return (a.x + a.y + a.z + a.w);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double cmin(this double4 a)
+    public static double cmin([This] double4 a)
     {
         return a.x.min(a.y).min(a.z).min(a.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static double cmax(this double4 a)
+    public static double cmax([This] double4 a)
     {
         return a.x.max(a.y).max(a.z).max(a.w);
     }
@@ -2307,93 +2007,94 @@ public partial struct short2
     public static short2 operator ++(short2 a) => a + One;
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static short2 abs(this short2 a)
+    public static short2 abs([This] short2 a)
     {
         return new(a.x.abs(), a.y.abs());
     }
 
     [MethodImpl(256 | 512)]
-    public static short2 sign(this short2 a)
+    public static short2 sign([This] short2 a)
     {
         return new(a.x.sign(), a.y.sign());
     }
 
     [MethodImpl(256 | 512)]
-    public static short2 min(this short2 a, short2 b)
+    public static short2 min([This] short2 a, short2 b)
     {
         return new(a.x.min(b.x), a.y.min(b.y));
     }
 
     [MethodImpl(256 | 512)]
-    public static short2 max(this short2 a, short2 b)
+    public static short2 max([This] short2 a, short2 b)
     {
         return new(a.x.max(b.x), a.y.max(b.y));
     }
 
     [MethodImpl(256 | 512)]
-    public static short2 clamp(this short2 v, short2 min, short2 max)
+    public static short2 clamp([This] short2 v, short2 min, short2 max)
     {
         return new(v.x.clamp(min.x, max.x), v.y.clamp(min.y, max.y));
     }
 
     [MethodImpl(256 | 512)]
-    public static short2 clamp(this short2 v, short min, short max) => v.clamp(new short2(min), new short2(max));
+    public static short2 clamp([This] short2 v, short min, short max) => v.clamp(new short2(min), new short2(max));
 
     [MethodImpl(256 | 512)]
-    public static short2 lerp(this short2 t, short2 start, short2 end)
+    public static short2 lerp(short2 start, short2 end, [This] short2 t)
     {
         return start + t * (end - start);
     }
 
     [MethodImpl(256 | 512)]
-    public static short2 lerp(this short t, short2 start, short2 end)
+    public static short2 lerp(short2 start, short2 end, [This] short t)
     {
         return start + t * (end - start);
     }
 
     [MethodImpl(256 | 512)]
-    public static short2 lerp(this short2 t, short start, short end)
+    public static short2 lerp(short start, short end, [This] short2 t)
     {
         return start + t * (short)(end - start);
     }
 
     [MethodImpl(256 | 512)]
-    public static short2 unlerp(this short2 a, short2 start, short2 end) => (a - start) / (end - start);
+    public static short2 unlerp([This] short2 a, short2 start, short2 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static short2 unlerp(this short a, short2 start, short2 end) => (a - start) / (end - start);
+    public static short2 unlerp([This] short a, short2 start, short2 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static short2 unlerp(this short2 a, short start, short end) => (a - start) / (short)(end - start);
+    public static short2 unlerp([This] short2 a, short start, short end) => (a - start) / (short)(end - start);
 
     [MethodImpl(256 | 512)]
-    public static short2 remap(this short2 a, short2 srcStart, short2 srcEnd, short2 dstStart, short2 dstEnd) => 
+    public static short2 remap([This] short2 a, short2 srcStart, short2 srcEnd, short2 dstStart, short2 dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static short2 remap(this short2 a, short srcStart, short srcEnd, short dstStart, short dstEnd) => 
+    public static short2 remap([This] short2 a, short srcStart, short srcEnd, short dstStart, short dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static short dot(this short2 a, short2 b)
+    public static short dot([This] short2 a, short2 b)
     {
         return (short)(a.x * b.x + a.y * b.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static short lengthsq(this short2 a)
+    public static short lengthsq([This] short2 a)
     {
-        return a.dot(a);
+        return (short)(a.x * a.x + a.y * a.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static short distancesq(this short2 a, short2 b) => lengthsq(b - a);
+    public static short distancesq([This] short2 a, short2 b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static short2 square(this short2 a) => a * a;
+    public static short2 square([This] short2 a) => a * a;
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -2403,7 +2104,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static short2 fma(this short2 a, short2 b, short2 c)
+    public static short2 fma([This] short2 a, short2 b, short2 c)
     {
         return new(a.x.fma(b.x, c.x), a.y.fma(b.y, c.y));
     }
@@ -2416,7 +2117,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static short2 fms(this short2 a, short2 b, short2 c)
+    public static short2 fms([This] short2 a, short2 b, short2 c)
     {
         return new(a.x.fms(b.x, c.x), a.y.fms(b.y, c.y));
     }
@@ -2429,7 +2130,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static short2 fnma(this short2 a, short2 b, short2 c)
+    public static short2 fnma([This] short2 a, short2 b, short2 c)
     {
         return new(a.x.fnma(b.x, c.x), a.y.fnma(b.y, c.y));
     }
@@ -2442,7 +2143,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static short2 fsm(this short2 c, short2 a, short2 b) => fnma(a, b, c);
+    public static short2 fsm([This] short2 c, short2 a, short2 b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -2452,7 +2153,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static short2 fam(this short2 c, short2 a, short2 b) => fma(a, b, c);
+    public static short2 fam([This] short2 c, short2 a, short2 b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -2462,22 +2163,22 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static short2 mad(this short2 a, short2 b, short2 c) => fma(a, b, c);
+    public static short2 mad([This] short2 a, short2 b, short2 c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static short csum(this short2 a)
+    public static short csum([This] short2 a)
     {
         return (short)(a.x + a.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static short cmin(this short2 a)
+    public static short cmin([This] short2 a)
     {
         return a.x.min(a.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static short cmax(this short2 a)
+    public static short cmax([This] short2 a)
     {
         return a.x.max(a.y);
     }
@@ -2576,96 +2277,97 @@ public partial struct short3
     public static short3 operator ++(short3 a) => a + One;
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static short3 abs(this short3 a)
+    public static short3 abs([This] short3 a)
     {
         return new(a.x.abs(), a.y.abs(), a.z.abs());
     }
 
     [MethodImpl(256 | 512)]
-    public static short3 sign(this short3 a)
+    public static short3 sign([This] short3 a)
     {
         return new(a.x.sign(), a.y.sign(), a.z.sign());
     }
 
     [MethodImpl(256 | 512)]
-    public static short3 min(this short3 a, short3 b)
+    public static short3 min([This] short3 a, short3 b)
     {
         return new(a.x.min(b.x), a.y.min(b.y), a.z.min(b.z));
     }
 
     [MethodImpl(256 | 512)]
-    public static short3 max(this short3 a, short3 b)
+    public static short3 max([This] short3 a, short3 b)
     {
         return new(a.x.max(b.x), a.y.max(b.y), a.z.max(b.z));
     }
 
     [MethodImpl(256 | 512)]
-    public static short3 clamp(this short3 v, short3 min, short3 max)
+    public static short3 clamp([This] short3 v, short3 min, short3 max)
     {
         return new(v.x.clamp(min.x, max.x), v.y.clamp(min.y, max.y), v.z.clamp(min.z, max.z));
     }
 
     [MethodImpl(256 | 512)]
-    public static short3 clamp(this short3 v, short min, short max) => v.clamp(new short3(min), new short3(max));
+    public static short3 clamp([This] short3 v, short min, short max) => v.clamp(new short3(min), new short3(max));
 
     [MethodImpl(256 | 512)]
-    public static short3 lerp(this short3 t, short3 start, short3 end)
+    public static short3 lerp(short3 start, short3 end, [This] short3 t)
     {
         return start + t * (end - start);
     }
 
     [MethodImpl(256 | 512)]
-    public static short3 lerp(this short t, short3 start, short3 end)
+    public static short3 lerp(short3 start, short3 end, [This] short t)
     {
         return start + t * (end - start);
     }
 
     [MethodImpl(256 | 512)]
-    public static short3 lerp(this short3 t, short start, short end)
+    public static short3 lerp(short start, short end, [This] short3 t)
     {
         return start + t * (short)(end - start);
     }
 
     [MethodImpl(256 | 512)]
-    public static short3 unlerp(this short3 a, short3 start, short3 end) => (a - start) / (end - start);
+    public static short3 unlerp([This] short3 a, short3 start, short3 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static short3 unlerp(this short a, short3 start, short3 end) => (a - start) / (end - start);
+    public static short3 unlerp([This] short a, short3 start, short3 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static short3 unlerp(this short3 a, short start, short end) => (a - start) / (short)(end - start);
+    public static short3 unlerp([This] short3 a, short start, short end) => (a - start) / (short)(end - start);
 
     [MethodImpl(256 | 512)]
-    public static short3 remap(this short3 a, short3 srcStart, short3 srcEnd, short3 dstStart, short3 dstEnd) => 
+    public static short3 remap([This] short3 a, short3 srcStart, short3 srcEnd, short3 dstStart, short3 dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static short3 remap(this short3 a, short srcStart, short srcEnd, short dstStart, short dstEnd) => 
+    public static short3 remap([This] short3 a, short srcStart, short srcEnd, short dstStart, short dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static short dot(this short3 a, short3 b)
+    public static short dot([This] short3 a, short3 b)
     {
         return (short)(a.x * b.x + a.y * b.y + a.z * b.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static short3 cross(this short3 a, short3 b) => (a * b.yzx - a.yzx * b).yzx;
+    public static short3 cross([This] short3 a, short3 b) => (a * b.yzx - a.yzx * b).yzx;
 
     [MethodImpl(256 | 512)]
-    public static short lengthsq(this short3 a)
+    public static short lengthsq([This] short3 a)
     {
-        return a.dot(a);
+        return (short)(a.x * a.x + a.y * a.y + a.z * a.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static short distancesq(this short3 a, short3 b) => lengthsq(b - a);
+    public static short distancesq([This] short3 a, short3 b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static short3 square(this short3 a) => a * a;
+    public static short3 square([This] short3 a) => a * a;
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -2675,7 +2377,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static short3 fma(this short3 a, short3 b, short3 c)
+    public static short3 fma([This] short3 a, short3 b, short3 c)
     {
         return new(a.x.fma(b.x, c.x), a.y.fma(b.y, c.y), a.z.fma(b.z, c.z));
     }
@@ -2688,7 +2390,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static short3 fms(this short3 a, short3 b, short3 c)
+    public static short3 fms([This] short3 a, short3 b, short3 c)
     {
         return new(a.x.fms(b.x, c.x), a.y.fms(b.y, c.y), a.z.fms(b.z, c.z));
     }
@@ -2701,7 +2403,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static short3 fnma(this short3 a, short3 b, short3 c)
+    public static short3 fnma([This] short3 a, short3 b, short3 c)
     {
         return new(a.x.fnma(b.x, c.x), a.y.fnma(b.y, c.y), a.z.fnma(b.z, c.z));
     }
@@ -2714,7 +2416,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static short3 fsm(this short3 c, short3 a, short3 b) => fnma(a, b, c);
+    public static short3 fsm([This] short3 c, short3 a, short3 b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -2724,7 +2426,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static short3 fam(this short3 c, short3 a, short3 b) => fma(a, b, c);
+    public static short3 fam([This] short3 c, short3 a, short3 b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -2734,22 +2436,22 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static short3 mad(this short3 a, short3 b, short3 c) => fma(a, b, c);
+    public static short3 mad([This] short3 a, short3 b, short3 c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static short csum(this short3 a)
+    public static short csum([This] short3 a)
     {
         return (short)(a.x + a.y + a.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static short cmin(this short3 a)
+    public static short cmin([This] short3 a)
     {
         return a.x.min(a.y).min(a.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static short cmax(this short3 a)
+    public static short cmax([This] short3 a)
     {
         return a.x.max(a.y).max(a.z);
     }
@@ -2848,93 +2550,94 @@ public partial struct short4
     public static short4 operator ++(short4 a) => a + One;
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static short4 abs(this short4 a)
+    public static short4 abs([This] short4 a)
     {
         return new(a.x.abs(), a.y.abs(), a.z.abs(), a.w.abs());
     }
 
     [MethodImpl(256 | 512)]
-    public static short4 sign(this short4 a)
+    public static short4 sign([This] short4 a)
     {
         return new(a.x.sign(), a.y.sign(), a.z.sign(), a.w.sign());
     }
 
     [MethodImpl(256 | 512)]
-    public static short4 min(this short4 a, short4 b)
+    public static short4 min([This] short4 a, short4 b)
     {
         return new(a.x.min(b.x), a.y.min(b.y), a.z.min(b.z), a.w.min(b.w));
     }
 
     [MethodImpl(256 | 512)]
-    public static short4 max(this short4 a, short4 b)
+    public static short4 max([This] short4 a, short4 b)
     {
         return new(a.x.max(b.x), a.y.max(b.y), a.z.max(b.z), a.w.max(b.w));
     }
 
     [MethodImpl(256 | 512)]
-    public static short4 clamp(this short4 v, short4 min, short4 max)
+    public static short4 clamp([This] short4 v, short4 min, short4 max)
     {
         return new(v.x.clamp(min.x, max.x), v.y.clamp(min.y, max.y), v.z.clamp(min.z, max.z), v.w.clamp(min.w, max.w));
     }
 
     [MethodImpl(256 | 512)]
-    public static short4 clamp(this short4 v, short min, short max) => v.clamp(new short4(min), new short4(max));
+    public static short4 clamp([This] short4 v, short min, short max) => v.clamp(new short4(min), new short4(max));
 
     [MethodImpl(256 | 512)]
-    public static short4 lerp(this short4 t, short4 start, short4 end)
+    public static short4 lerp(short4 start, short4 end, [This] short4 t)
     {
         return start + t * (end - start);
     }
 
     [MethodImpl(256 | 512)]
-    public static short4 lerp(this short t, short4 start, short4 end)
+    public static short4 lerp(short4 start, short4 end, [This] short t)
     {
         return start + t * (end - start);
     }
 
     [MethodImpl(256 | 512)]
-    public static short4 lerp(this short4 t, short start, short end)
+    public static short4 lerp(short start, short end, [This] short4 t)
     {
         return start + t * (short)(end - start);
     }
 
     [MethodImpl(256 | 512)]
-    public static short4 unlerp(this short4 a, short4 start, short4 end) => (a - start) / (end - start);
+    public static short4 unlerp([This] short4 a, short4 start, short4 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static short4 unlerp(this short a, short4 start, short4 end) => (a - start) / (end - start);
+    public static short4 unlerp([This] short a, short4 start, short4 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static short4 unlerp(this short4 a, short start, short end) => (a - start) / (short)(end - start);
+    public static short4 unlerp([This] short4 a, short start, short end) => (a - start) / (short)(end - start);
 
     [MethodImpl(256 | 512)]
-    public static short4 remap(this short4 a, short4 srcStart, short4 srcEnd, short4 dstStart, short4 dstEnd) => 
+    public static short4 remap([This] short4 a, short4 srcStart, short4 srcEnd, short4 dstStart, short4 dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static short4 remap(this short4 a, short srcStart, short srcEnd, short dstStart, short dstEnd) => 
+    public static short4 remap([This] short4 a, short srcStart, short srcEnd, short dstStart, short dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static short dot(this short4 a, short4 b)
+    public static short dot([This] short4 a, short4 b)
     {
         return (short)(a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static short lengthsq(this short4 a)
+    public static short lengthsq([This] short4 a)
     {
-        return a.dot(a);
+        return (short)(a.x * a.x + a.y * a.y + a.z * a.z + a.w * a.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static short distancesq(this short4 a, short4 b) => lengthsq(b - a);
+    public static short distancesq([This] short4 a, short4 b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static short4 square(this short4 a) => a * a;
+    public static short4 square([This] short4 a) => a * a;
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -2944,7 +2647,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static short4 fma(this short4 a, short4 b, short4 c)
+    public static short4 fma([This] short4 a, short4 b, short4 c)
     {
         return new(a.x.fma(b.x, c.x), a.y.fma(b.y, c.y), a.z.fma(b.z, c.z), a.w.fma(b.w, c.w));
     }
@@ -2957,7 +2660,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static short4 fms(this short4 a, short4 b, short4 c)
+    public static short4 fms([This] short4 a, short4 b, short4 c)
     {
         return new(a.x.fms(b.x, c.x), a.y.fms(b.y, c.y), a.z.fms(b.z, c.z), a.w.fms(b.w, c.w));
     }
@@ -2970,7 +2673,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static short4 fnma(this short4 a, short4 b, short4 c)
+    public static short4 fnma([This] short4 a, short4 b, short4 c)
     {
         return new(a.x.fnma(b.x, c.x), a.y.fnma(b.y, c.y), a.z.fnma(b.z, c.z), a.w.fnma(b.w, c.w));
     }
@@ -2983,7 +2686,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static short4 fsm(this short4 c, short4 a, short4 b) => fnma(a, b, c);
+    public static short4 fsm([This] short4 c, short4 a, short4 b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -2993,7 +2696,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static short4 fam(this short4 c, short4 a, short4 b) => fma(a, b, c);
+    public static short4 fam([This] short4 c, short4 a, short4 b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -3003,22 +2706,22 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static short4 mad(this short4 a, short4 b, short4 c) => fma(a, b, c);
+    public static short4 mad([This] short4 a, short4 b, short4 c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static short csum(this short4 a)
+    public static short csum([This] short4 a)
     {
         return (short)(a.x + a.y + a.z + a.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static short cmin(this short4 a)
+    public static short cmin([This] short4 a)
     {
         return a.x.min(a.y).min(a.z).min(a.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static short cmax(this short4 a)
+    public static short cmax([This] short4 a)
     {
         return a.x.max(a.y).max(a.z).max(a.w);
     }
@@ -3112,93 +2815,94 @@ public partial struct ushort2
     public static ushort2 operator ++(ushort2 a) => a + One;
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ushort2 abs(this ushort2 a)
+    public static ushort2 abs([This] ushort2 a)
     {
         return new(a.x.abs(), a.y.abs());
     }
 
     [MethodImpl(256 | 512)]
-    public static ushort2 sign(this ushort2 a)
+    public static ushort2 sign([This] ushort2 a)
     {
         return new(a.x.sign(), a.y.sign());
     }
 
     [MethodImpl(256 | 512)]
-    public static ushort2 min(this ushort2 a, ushort2 b)
+    public static ushort2 min([This] ushort2 a, ushort2 b)
     {
         return new(a.x.min(b.x), a.y.min(b.y));
     }
 
     [MethodImpl(256 | 512)]
-    public static ushort2 max(this ushort2 a, ushort2 b)
+    public static ushort2 max([This] ushort2 a, ushort2 b)
     {
         return new(a.x.max(b.x), a.y.max(b.y));
     }
 
     [MethodImpl(256 | 512)]
-    public static ushort2 clamp(this ushort2 v, ushort2 min, ushort2 max)
+    public static ushort2 clamp([This] ushort2 v, ushort2 min, ushort2 max)
     {
         return new(v.x.clamp(min.x, max.x), v.y.clamp(min.y, max.y));
     }
 
     [MethodImpl(256 | 512)]
-    public static ushort2 clamp(this ushort2 v, ushort min, ushort max) => v.clamp(new ushort2(min), new ushort2(max));
+    public static ushort2 clamp([This] ushort2 v, ushort min, ushort max) => v.clamp(new ushort2(min), new ushort2(max));
 
     [MethodImpl(256 | 512)]
-    public static ushort2 lerp(this ushort2 t, ushort2 start, ushort2 end)
+    public static ushort2 lerp(ushort2 start, ushort2 end, [This] ushort2 t)
     {
         return start + t * (end - start);
     }
 
     [MethodImpl(256 | 512)]
-    public static ushort2 lerp(this ushort t, ushort2 start, ushort2 end)
+    public static ushort2 lerp(ushort2 start, ushort2 end, [This] ushort t)
     {
         return start + t * (end - start);
     }
 
     [MethodImpl(256 | 512)]
-    public static ushort2 lerp(this ushort2 t, ushort start, ushort end)
+    public static ushort2 lerp(ushort start, ushort end, [This] ushort2 t)
     {
         return start + t * (ushort)(end - start);
     }
 
     [MethodImpl(256 | 512)]
-    public static ushort2 unlerp(this ushort2 a, ushort2 start, ushort2 end) => (a - start) / (end - start);
+    public static ushort2 unlerp([This] ushort2 a, ushort2 start, ushort2 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static ushort2 unlerp(this ushort a, ushort2 start, ushort2 end) => (a - start) / (end - start);
+    public static ushort2 unlerp([This] ushort a, ushort2 start, ushort2 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static ushort2 unlerp(this ushort2 a, ushort start, ushort end) => (a - start) / (ushort)(end - start);
+    public static ushort2 unlerp([This] ushort2 a, ushort start, ushort end) => (a - start) / (ushort)(end - start);
 
     [MethodImpl(256 | 512)]
-    public static ushort2 remap(this ushort2 a, ushort2 srcStart, ushort2 srcEnd, ushort2 dstStart, ushort2 dstEnd) => 
+    public static ushort2 remap([This] ushort2 a, ushort2 srcStart, ushort2 srcEnd, ushort2 dstStart, ushort2 dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static ushort2 remap(this ushort2 a, ushort srcStart, ushort srcEnd, ushort dstStart, ushort dstEnd) => 
+    public static ushort2 remap([This] ushort2 a, ushort srcStart, ushort srcEnd, ushort dstStart, ushort dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static ushort dot(this ushort2 a, ushort2 b)
+    public static ushort dot([This] ushort2 a, ushort2 b)
     {
         return (ushort)(a.x * b.x + a.y * b.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static ushort lengthsq(this ushort2 a)
+    public static ushort lengthsq([This] ushort2 a)
     {
-        return a.dot(a);
+        return (ushort)(a.x * a.x + a.y * a.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static ushort distancesq(this ushort2 a, ushort2 b) => lengthsq(b - a);
+    public static ushort distancesq([This] ushort2 a, ushort2 b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static ushort2 square(this ushort2 a) => a * a;
+    public static ushort2 square([This] ushort2 a) => a * a;
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -3208,7 +2912,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static ushort2 fma(this ushort2 a, ushort2 b, ushort2 c)
+    public static ushort2 fma([This] ushort2 a, ushort2 b, ushort2 c)
     {
         return new(a.x.fma(b.x, c.x), a.y.fma(b.y, c.y));
     }
@@ -3221,7 +2925,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static ushort2 fms(this ushort2 a, ushort2 b, ushort2 c)
+    public static ushort2 fms([This] ushort2 a, ushort2 b, ushort2 c)
     {
         return new(a.x.fms(b.x, c.x), a.y.fms(b.y, c.y));
     }
@@ -3234,7 +2938,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static ushort2 fnma(this ushort2 a, ushort2 b, ushort2 c)
+    public static ushort2 fnma([This] ushort2 a, ushort2 b, ushort2 c)
     {
         return new(a.x.fnma(b.x, c.x), a.y.fnma(b.y, c.y));
     }
@@ -3247,7 +2951,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static ushort2 fsm(this ushort2 c, ushort2 a, ushort2 b) => fnma(a, b, c);
+    public static ushort2 fsm([This] ushort2 c, ushort2 a, ushort2 b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -3257,7 +2961,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static ushort2 fam(this ushort2 c, ushort2 a, ushort2 b) => fma(a, b, c);
+    public static ushort2 fam([This] ushort2 c, ushort2 a, ushort2 b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -3267,22 +2971,22 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static ushort2 mad(this ushort2 a, ushort2 b, ushort2 c) => fma(a, b, c);
+    public static ushort2 mad([This] ushort2 a, ushort2 b, ushort2 c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static ushort csum(this ushort2 a)
+    public static ushort csum([This] ushort2 a)
     {
         return (ushort)(a.x + a.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static ushort cmin(this ushort2 a)
+    public static ushort cmin([This] ushort2 a)
     {
         return a.x.min(a.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static ushort cmax(this ushort2 a)
+    public static ushort cmax([This] ushort2 a)
     {
         return a.x.max(a.y);
     }
@@ -3376,96 +3080,97 @@ public partial struct ushort3
     public static ushort3 operator ++(ushort3 a) => a + One;
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ushort3 abs(this ushort3 a)
+    public static ushort3 abs([This] ushort3 a)
     {
         return new(a.x.abs(), a.y.abs(), a.z.abs());
     }
 
     [MethodImpl(256 | 512)]
-    public static ushort3 sign(this ushort3 a)
+    public static ushort3 sign([This] ushort3 a)
     {
         return new(a.x.sign(), a.y.sign(), a.z.sign());
     }
 
     [MethodImpl(256 | 512)]
-    public static ushort3 min(this ushort3 a, ushort3 b)
+    public static ushort3 min([This] ushort3 a, ushort3 b)
     {
         return new(a.x.min(b.x), a.y.min(b.y), a.z.min(b.z));
     }
 
     [MethodImpl(256 | 512)]
-    public static ushort3 max(this ushort3 a, ushort3 b)
+    public static ushort3 max([This] ushort3 a, ushort3 b)
     {
         return new(a.x.max(b.x), a.y.max(b.y), a.z.max(b.z));
     }
 
     [MethodImpl(256 | 512)]
-    public static ushort3 clamp(this ushort3 v, ushort3 min, ushort3 max)
+    public static ushort3 clamp([This] ushort3 v, ushort3 min, ushort3 max)
     {
         return new(v.x.clamp(min.x, max.x), v.y.clamp(min.y, max.y), v.z.clamp(min.z, max.z));
     }
 
     [MethodImpl(256 | 512)]
-    public static ushort3 clamp(this ushort3 v, ushort min, ushort max) => v.clamp(new ushort3(min), new ushort3(max));
+    public static ushort3 clamp([This] ushort3 v, ushort min, ushort max) => v.clamp(new ushort3(min), new ushort3(max));
 
     [MethodImpl(256 | 512)]
-    public static ushort3 lerp(this ushort3 t, ushort3 start, ushort3 end)
+    public static ushort3 lerp(ushort3 start, ushort3 end, [This] ushort3 t)
     {
         return start + t * (end - start);
     }
 
     [MethodImpl(256 | 512)]
-    public static ushort3 lerp(this ushort t, ushort3 start, ushort3 end)
+    public static ushort3 lerp(ushort3 start, ushort3 end, [This] ushort t)
     {
         return start + t * (end - start);
     }
 
     [MethodImpl(256 | 512)]
-    public static ushort3 lerp(this ushort3 t, ushort start, ushort end)
+    public static ushort3 lerp(ushort start, ushort end, [This] ushort3 t)
     {
         return start + t * (ushort)(end - start);
     }
 
     [MethodImpl(256 | 512)]
-    public static ushort3 unlerp(this ushort3 a, ushort3 start, ushort3 end) => (a - start) / (end - start);
+    public static ushort3 unlerp([This] ushort3 a, ushort3 start, ushort3 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static ushort3 unlerp(this ushort a, ushort3 start, ushort3 end) => (a - start) / (end - start);
+    public static ushort3 unlerp([This] ushort a, ushort3 start, ushort3 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static ushort3 unlerp(this ushort3 a, ushort start, ushort end) => (a - start) / (ushort)(end - start);
+    public static ushort3 unlerp([This] ushort3 a, ushort start, ushort end) => (a - start) / (ushort)(end - start);
 
     [MethodImpl(256 | 512)]
-    public static ushort3 remap(this ushort3 a, ushort3 srcStart, ushort3 srcEnd, ushort3 dstStart, ushort3 dstEnd) => 
+    public static ushort3 remap([This] ushort3 a, ushort3 srcStart, ushort3 srcEnd, ushort3 dstStart, ushort3 dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static ushort3 remap(this ushort3 a, ushort srcStart, ushort srcEnd, ushort dstStart, ushort dstEnd) => 
+    public static ushort3 remap([This] ushort3 a, ushort srcStart, ushort srcEnd, ushort dstStart, ushort dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static ushort dot(this ushort3 a, ushort3 b)
+    public static ushort dot([This] ushort3 a, ushort3 b)
     {
         return (ushort)(a.x * b.x + a.y * b.y + a.z * b.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static ushort3 cross(this ushort3 a, ushort3 b) => (a * b.yzx - a.yzx * b).yzx;
+    public static ushort3 cross([This] ushort3 a, ushort3 b) => (a * b.yzx - a.yzx * b).yzx;
 
     [MethodImpl(256 | 512)]
-    public static ushort lengthsq(this ushort3 a)
+    public static ushort lengthsq([This] ushort3 a)
     {
-        return a.dot(a);
+        return (ushort)(a.x * a.x + a.y * a.y + a.z * a.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static ushort distancesq(this ushort3 a, ushort3 b) => lengthsq(b - a);
+    public static ushort distancesq([This] ushort3 a, ushort3 b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static ushort3 square(this ushort3 a) => a * a;
+    public static ushort3 square([This] ushort3 a) => a * a;
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -3475,7 +3180,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static ushort3 fma(this ushort3 a, ushort3 b, ushort3 c)
+    public static ushort3 fma([This] ushort3 a, ushort3 b, ushort3 c)
     {
         return new(a.x.fma(b.x, c.x), a.y.fma(b.y, c.y), a.z.fma(b.z, c.z));
     }
@@ -3488,7 +3193,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static ushort3 fms(this ushort3 a, ushort3 b, ushort3 c)
+    public static ushort3 fms([This] ushort3 a, ushort3 b, ushort3 c)
     {
         return new(a.x.fms(b.x, c.x), a.y.fms(b.y, c.y), a.z.fms(b.z, c.z));
     }
@@ -3501,7 +3206,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static ushort3 fnma(this ushort3 a, ushort3 b, ushort3 c)
+    public static ushort3 fnma([This] ushort3 a, ushort3 b, ushort3 c)
     {
         return new(a.x.fnma(b.x, c.x), a.y.fnma(b.y, c.y), a.z.fnma(b.z, c.z));
     }
@@ -3514,7 +3219,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static ushort3 fsm(this ushort3 c, ushort3 a, ushort3 b) => fnma(a, b, c);
+    public static ushort3 fsm([This] ushort3 c, ushort3 a, ushort3 b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -3524,7 +3229,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static ushort3 fam(this ushort3 c, ushort3 a, ushort3 b) => fma(a, b, c);
+    public static ushort3 fam([This] ushort3 c, ushort3 a, ushort3 b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -3534,22 +3239,22 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static ushort3 mad(this ushort3 a, ushort3 b, ushort3 c) => fma(a, b, c);
+    public static ushort3 mad([This] ushort3 a, ushort3 b, ushort3 c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static ushort csum(this ushort3 a)
+    public static ushort csum([This] ushort3 a)
     {
         return (ushort)(a.x + a.y + a.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static ushort cmin(this ushort3 a)
+    public static ushort cmin([This] ushort3 a)
     {
         return a.x.min(a.y).min(a.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static ushort cmax(this ushort3 a)
+    public static ushort cmax([This] ushort3 a)
     {
         return a.x.max(a.y).max(a.z);
     }
@@ -3643,93 +3348,94 @@ public partial struct ushort4
     public static ushort4 operator ++(ushort4 a) => a + One;
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ushort4 abs(this ushort4 a)
+    public static ushort4 abs([This] ushort4 a)
     {
         return new(a.x.abs(), a.y.abs(), a.z.abs(), a.w.abs());
     }
 
     [MethodImpl(256 | 512)]
-    public static ushort4 sign(this ushort4 a)
+    public static ushort4 sign([This] ushort4 a)
     {
         return new(a.x.sign(), a.y.sign(), a.z.sign(), a.w.sign());
     }
 
     [MethodImpl(256 | 512)]
-    public static ushort4 min(this ushort4 a, ushort4 b)
+    public static ushort4 min([This] ushort4 a, ushort4 b)
     {
         return new(a.x.min(b.x), a.y.min(b.y), a.z.min(b.z), a.w.min(b.w));
     }
 
     [MethodImpl(256 | 512)]
-    public static ushort4 max(this ushort4 a, ushort4 b)
+    public static ushort4 max([This] ushort4 a, ushort4 b)
     {
         return new(a.x.max(b.x), a.y.max(b.y), a.z.max(b.z), a.w.max(b.w));
     }
 
     [MethodImpl(256 | 512)]
-    public static ushort4 clamp(this ushort4 v, ushort4 min, ushort4 max)
+    public static ushort4 clamp([This] ushort4 v, ushort4 min, ushort4 max)
     {
         return new(v.x.clamp(min.x, max.x), v.y.clamp(min.y, max.y), v.z.clamp(min.z, max.z), v.w.clamp(min.w, max.w));
     }
 
     [MethodImpl(256 | 512)]
-    public static ushort4 clamp(this ushort4 v, ushort min, ushort max) => v.clamp(new ushort4(min), new ushort4(max));
+    public static ushort4 clamp([This] ushort4 v, ushort min, ushort max) => v.clamp(new ushort4(min), new ushort4(max));
 
     [MethodImpl(256 | 512)]
-    public static ushort4 lerp(this ushort4 t, ushort4 start, ushort4 end)
+    public static ushort4 lerp(ushort4 start, ushort4 end, [This] ushort4 t)
     {
         return start + t * (end - start);
     }
 
     [MethodImpl(256 | 512)]
-    public static ushort4 lerp(this ushort t, ushort4 start, ushort4 end)
+    public static ushort4 lerp(ushort4 start, ushort4 end, [This] ushort t)
     {
         return start + t * (end - start);
     }
 
     [MethodImpl(256 | 512)]
-    public static ushort4 lerp(this ushort4 t, ushort start, ushort end)
+    public static ushort4 lerp(ushort start, ushort end, [This] ushort4 t)
     {
         return start + t * (ushort)(end - start);
     }
 
     [MethodImpl(256 | 512)]
-    public static ushort4 unlerp(this ushort4 a, ushort4 start, ushort4 end) => (a - start) / (end - start);
+    public static ushort4 unlerp([This] ushort4 a, ushort4 start, ushort4 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static ushort4 unlerp(this ushort a, ushort4 start, ushort4 end) => (a - start) / (end - start);
+    public static ushort4 unlerp([This] ushort a, ushort4 start, ushort4 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static ushort4 unlerp(this ushort4 a, ushort start, ushort end) => (a - start) / (ushort)(end - start);
+    public static ushort4 unlerp([This] ushort4 a, ushort start, ushort end) => (a - start) / (ushort)(end - start);
 
     [MethodImpl(256 | 512)]
-    public static ushort4 remap(this ushort4 a, ushort4 srcStart, ushort4 srcEnd, ushort4 dstStart, ushort4 dstEnd) => 
+    public static ushort4 remap([This] ushort4 a, ushort4 srcStart, ushort4 srcEnd, ushort4 dstStart, ushort4 dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static ushort4 remap(this ushort4 a, ushort srcStart, ushort srcEnd, ushort dstStart, ushort dstEnd) => 
+    public static ushort4 remap([This] ushort4 a, ushort srcStart, ushort srcEnd, ushort dstStart, ushort dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static ushort dot(this ushort4 a, ushort4 b)
+    public static ushort dot([This] ushort4 a, ushort4 b)
     {
         return (ushort)(a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static ushort lengthsq(this ushort4 a)
+    public static ushort lengthsq([This] ushort4 a)
     {
-        return a.dot(a);
+        return (ushort)(a.x * a.x + a.y * a.y + a.z * a.z + a.w * a.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static ushort distancesq(this ushort4 a, ushort4 b) => lengthsq(b - a);
+    public static ushort distancesq([This] ushort4 a, ushort4 b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static ushort4 square(this ushort4 a) => a * a;
+    public static ushort4 square([This] ushort4 a) => a * a;
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -3739,7 +3445,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static ushort4 fma(this ushort4 a, ushort4 b, ushort4 c)
+    public static ushort4 fma([This] ushort4 a, ushort4 b, ushort4 c)
     {
         return new(a.x.fma(b.x, c.x), a.y.fma(b.y, c.y), a.z.fma(b.z, c.z), a.w.fma(b.w, c.w));
     }
@@ -3752,7 +3458,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static ushort4 fms(this ushort4 a, ushort4 b, ushort4 c)
+    public static ushort4 fms([This] ushort4 a, ushort4 b, ushort4 c)
     {
         return new(a.x.fms(b.x, c.x), a.y.fms(b.y, c.y), a.z.fms(b.z, c.z), a.w.fms(b.w, c.w));
     }
@@ -3765,7 +3471,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static ushort4 fnma(this ushort4 a, ushort4 b, ushort4 c)
+    public static ushort4 fnma([This] ushort4 a, ushort4 b, ushort4 c)
     {
         return new(a.x.fnma(b.x, c.x), a.y.fnma(b.y, c.y), a.z.fnma(b.z, c.z), a.w.fnma(b.w, c.w));
     }
@@ -3778,7 +3484,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static ushort4 fsm(this ushort4 c, ushort4 a, ushort4 b) => fnma(a, b, c);
+    public static ushort4 fsm([This] ushort4 c, ushort4 a, ushort4 b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -3788,7 +3494,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static ushort4 fam(this ushort4 c, ushort4 a, ushort4 b) => fma(a, b, c);
+    public static ushort4 fam([This] ushort4 c, ushort4 a, ushort4 b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -3798,22 +3504,22 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static ushort4 mad(this ushort4 a, ushort4 b, ushort4 c) => fma(a, b, c);
+    public static ushort4 mad([This] ushort4 a, ushort4 b, ushort4 c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static ushort csum(this ushort4 a)
+    public static ushort csum([This] ushort4 a)
     {
         return (ushort)(a.x + a.y + a.z + a.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static ushort cmin(this ushort4 a)
+    public static ushort cmin([This] ushort4 a)
     {
         return a.x.min(a.y).min(a.z).min(a.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static ushort cmax(this ushort4 a)
+    public static ushort cmax([This] ushort4 a)
     {
         return a.x.max(a.y).max(a.z).max(a.w);
     }
@@ -3830,21 +3536,17 @@ public partial struct int2
     [MethodImpl(256 | 512)]
     public static int2 operator -(int2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(-a.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(-a.vector);
         return new((-a.x), (-a.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static int2 operator +(int2 a, int2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector + b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(a.vector + b.vector);
         return new((int)(a.x + b.x), (int)(a.y + b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -3856,11 +3558,9 @@ public partial struct int2
     [MethodImpl(256 | 512)]
     public static int2 operator -(int2 a, int2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector - b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(a.vector - b.vector);
         return new((int)(a.x - b.x), (int)(a.y - b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -3872,51 +3572,41 @@ public partial struct int2
     [MethodImpl(256 | 512)]
     public static int2 operator *(int2 a, int2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector * b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(a.vector * b.vector);
         return new((int)(a.x * b.x), (int)(a.y * b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static int2 operator *(int a, int2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a * b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(a * b.vector);
         return new((int)(a * b.x), (int)(a * b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static int2 operator *(int2 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector * b);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(a.vector * b);
         return new((int)(a.x * b), (int)(a.y * b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static int2 operator /(int2 a, int2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new((a.vector / b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new((a.vector / b.vector));
         return new((int)(a.x / b.x), (int)(a.y / b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static int2 operator /(int2 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new((a.vector / b));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new((a.vector / b));
         return new((int)(a.x / b), (int)(a.y / b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -3944,136 +3634,114 @@ public partial struct int2
     public static int2 operator ++(int2 a) => a + One;
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static int2 abs(this int2 a)
+    public static int2 abs([This] int2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector64.Abs(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(Vector64.Abs(a.vector));
         return new(a.x.abs(), a.y.abs());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static int2 sign(this int2 a)
+    public static int2 sign([This] int2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.SignInt(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(simd.SignInt(a.vector));
         return new(a.x.sign(), a.y.sign());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static int2 min(this int2 a, int2 b)
+    public static int2 min([This] int2 a, int2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector64.Min(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(Vector64.Min(a.vector, b.vector));
         return new(a.x.min(b.x), a.y.min(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static int2 max(this int2 a, int2 b)
+    public static int2 max([This] int2 a, int2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector64.Max(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(Vector64.Max(a.vector, b.vector));
         return new(a.x.max(b.x), a.y.max(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static int2 clamp(this int2 v, int2 min, int2 max)
+    public static int2 clamp([This] int2 v, int2 min, int2 max)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector64.Max(min.vector, Vector64.Min(max.vector, v.vector)));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(Vector64.Max(min.vector, Vector64.Min(max.vector, v.vector)));
         return new(v.x.clamp(min.x, max.x), v.y.clamp(min.y, max.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static int2 clamp(this int2 v, int min, int max) => v.clamp(new int2(min), new int2(max));
+    public static int2 clamp([This] int2 v, int min, int max) => v.clamp(new int2(min), new int2(max));
 
     [MethodImpl(256 | 512)]
-    public static int2 lerp(this int2 t, int2 start, int2 end)
+    public static int2 lerp(int2 start, int2 end, [This] int2 t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(t, end - start, start);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return fma(t, end - start, start);
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static int2 lerp(this int t, int2 start, int2 end)
+    public static int2 lerp(int2 start, int2 end, [This] int t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(new(t), end - start, start);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return fma(new(t), end - start, start);
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static int2 lerp(this int2 t, int start, int end)
+    public static int2 lerp(int start, int end, [This] int2 t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(t, (end - start), new(start));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return fma(t, (end - start), new(start));
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static int2 unlerp(this int2 a, int2 start, int2 end) => (a - start) / (end - start);
+    public static int2 unlerp([This] int2 a, int2 start, int2 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static int2 unlerp(this int a, int2 start, int2 end) => (a - start) / (end - start);
+    public static int2 unlerp([This] int a, int2 start, int2 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static int2 unlerp(this int2 a, int start, int end) => (a - start) / (end - start);
+    public static int2 unlerp([This] int2 a, int start, int end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static int2 remap(this int2 a, int2 srcStart, int2 srcEnd, int2 dstStart, int2 dstEnd) => 
+    public static int2 remap([This] int2 a, int2 srcStart, int2 srcEnd, int2 dstStart, int2 dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static int2 remap(this int2 a, int srcStart, int srcEnd, int dstStart, int dstEnd) => 
+    public static int2 remap([This] int2 a, int srcStart, int srcEnd, int dstStart, int dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static int dot(this int2 a, int2 b)
+    public static int dot([This] int2 a, int2 b)
     {
-        #if NET8_0_OR_GREATER
-        return Vector64.Dot(a.vector, b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.Dot(a.vector, b.vector);
         return (int)(a.x * b.x + a.y * b.y);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static int lengthsq(this int2 a)
+    public static int lengthsq([This] int2 a)
     {
-        #if NET8_0_OR_GREATER
-        return Vector64.Dot(a.vector, a.vector);
-        #else // NET8_0_OR_GREATER
-        return a.dot(a);
-        #endif // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.Dot(a.vector, a.vector);
+        return (int)(a.x * a.x + a.y * a.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static int distancesq(this int2 a, int2 b) => lengthsq(b - a);
+    public static int distancesq([This] int2 a, int2 b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static int2 square(this int2 a) => a * a;
+    public static int2 square([This] int2 a) => a * a;
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -4083,7 +3751,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static int2 fma(this int2 a, int2 b, int2 c)
+    public static int2 fma([This] int2 a, int2 b, int2 c)
     {
         return new(a.x.fma(b.x, c.x), a.y.fma(b.y, c.y));
     }
@@ -4096,7 +3764,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static int2 fms(this int2 a, int2 b, int2 c)
+    public static int2 fms([This] int2 a, int2 b, int2 c)
     {
         return new(a.x.fms(b.x, c.x), a.y.fms(b.y, c.y));
     }
@@ -4109,7 +3777,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static int2 fnma(this int2 a, int2 b, int2 c)
+    public static int2 fnma([This] int2 a, int2 b, int2 c)
     {
         return new(a.x.fnma(b.x, c.x), a.y.fnma(b.y, c.y));
     }
@@ -4122,7 +3790,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static int2 fsm(this int2 c, int2 a, int2 b) => fnma(a, b, c);
+    public static int2 fsm([This] int2 c, int2 a, int2 b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -4132,7 +3800,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static int2 fam(this int2 c, int2 a, int2 b) => fma(a, b, c);
+    public static int2 fam([This] int2 c, int2 a, int2 b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -4142,26 +3810,24 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static int2 mad(this int2 a, int2 b, int2 c) => fma(a, b, c);
+    public static int2 mad([This] int2 a, int2 b, int2 c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static int csum(this int2 a)
+    public static int csum([This] int2 a)
     {
-        #if NET8_0_OR_GREATER
-        return Vector64.Sum(a.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.Sum(a.vector);
         return (a.x + a.y);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static int cmin(this int2 a)
+    public static int cmin([This] int2 a)
     {
         return a.x.min(a.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static int cmax(this int2 a)
+    public static int cmax([This] int2 a)
     {
         return a.x.max(a.y);
     }
@@ -4178,21 +3844,17 @@ public partial struct int3
     [MethodImpl(256 | 512)]
     public static int3 operator -(int3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(-a.vector & Vector128.Create(-1, -1, -1, 0).AsInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(-a.vector & Vector128.Create(-1, -1, -1, 0).AsInt32());
         return new((-a.x), (-a.y), (-a.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static int3 operator +(int3 a, int3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector + b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector + b.vector);
         return new((int)(a.x + b.x), (int)(a.y + b.y), (int)(a.z + b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -4204,11 +3866,9 @@ public partial struct int3
     [MethodImpl(256 | 512)]
     public static int3 operator -(int3 a, int3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector - b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector - b.vector);
         return new((int)(a.x - b.x), (int)(a.y - b.y), (int)(a.z - b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -4220,51 +3880,41 @@ public partial struct int3
     [MethodImpl(256 | 512)]
     public static int3 operator *(int3 a, int3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector * b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector * b.vector);
         return new((int)(a.x * b.x), (int)(a.y * b.y), (int)(a.z * b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static int3 operator *(int a, int3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a * b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a * b.vector);
         return new((int)(a * b.x), (int)(a * b.y), (int)(a * b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static int3 operator *(int3 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector * b);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector * b);
         return new((int)(a.x * b), (int)(a.y * b), (int)(a.z * b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static int3 operator /(int3 a, int3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new((a.vector / b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new((a.vector / b.vector));
         return new((int)(a.x / b.x), (int)(a.y / b.y), (int)(a.z / b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static int3 operator /(int3 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new((a.vector / b));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new((a.vector / b));
         return new((int)(a.x / b), (int)(a.y / b), (int)(a.z / b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -4292,139 +3942,117 @@ public partial struct int3
     public static int3 operator ++(int3 a) => a + One;
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static int3 abs(this int3 a)
+    public static int3 abs([This] int3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Abs(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Abs(a.vector));
         return new(a.x.abs(), a.y.abs(), a.z.abs());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static int3 sign(this int3 a)
+    public static int3 sign([This] int3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.SignInt(a.vector) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.SignInt(a.vector) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         return new(a.x.sign(), a.y.sign(), a.z.sign());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static int3 min(this int3 a, int3 b)
+    public static int3 min([This] int3 a, int3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Min(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Min(a.vector, b.vector));
         return new(a.x.min(b.x), a.y.min(b.y), a.z.min(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static int3 max(this int3 a, int3 b)
+    public static int3 max([This] int3 a, int3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Max(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Max(a.vector, b.vector));
         return new(a.x.max(b.x), a.y.max(b.y), a.z.max(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static int3 clamp(this int3 v, int3 min, int3 max)
+    public static int3 clamp([This] int3 v, int3 min, int3 max)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Max(min.vector, Vector128.Min(max.vector, v.vector)));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Max(min.vector, Vector128.Min(max.vector, v.vector)));
         return new(v.x.clamp(min.x, max.x), v.y.clamp(min.y, max.y), v.z.clamp(min.z, max.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static int3 clamp(this int3 v, int min, int max) => v.clamp(new int3(min), new int3(max));
+    public static int3 clamp([This] int3 v, int min, int max) => v.clamp(new int3(min), new int3(max));
 
     [MethodImpl(256 | 512)]
-    public static int3 lerp(this int3 t, int3 start, int3 end)
+    public static int3 lerp(int3 start, int3 end, [This] int3 t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(t, end - start, start);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return fma(t, end - start, start);
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static int3 lerp(this int t, int3 start, int3 end)
+    public static int3 lerp(int3 start, int3 end, [This] int t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(new(t), end - start, start);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return fma(new(t), end - start, start);
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static int3 lerp(this int3 t, int start, int end)
+    public static int3 lerp(int start, int end, [This] int3 t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(t, (end - start), new(start));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return fma(t, (end - start), new(start));
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static int3 unlerp(this int3 a, int3 start, int3 end) => (a - start) / (end - start);
+    public static int3 unlerp([This] int3 a, int3 start, int3 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static int3 unlerp(this int a, int3 start, int3 end) => (a - start) / (end - start);
+    public static int3 unlerp([This] int a, int3 start, int3 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static int3 unlerp(this int3 a, int start, int end) => (a - start) / (end - start);
+    public static int3 unlerp([This] int3 a, int start, int end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static int3 remap(this int3 a, int3 srcStart, int3 srcEnd, int3 dstStart, int3 dstEnd) => 
+    public static int3 remap([This] int3 a, int3 srcStart, int3 srcEnd, int3 dstStart, int3 dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static int3 remap(this int3 a, int srcStart, int srcEnd, int dstStart, int dstEnd) => 
+    public static int3 remap([This] int3 a, int srcStart, int srcEnd, int dstStart, int dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static int dot(this int3 a, int3 b)
+    public static int dot([This] int3 a, int3 b)
     {
-        #if NET8_0_OR_GREATER
-        return Vector128.Dot(a.vector, b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.Dot(a.vector, b.vector);
         return (int)(a.x * b.x + a.y * b.y + a.z * b.z);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static int3 cross(this int3 a, int3 b) => (a * b.yzx - a.yzx * b).yzx;
+    public static int3 cross([This] int3 a, int3 b) => (a * b.yzx - a.yzx * b).yzx;
 
     [MethodImpl(256 | 512)]
-    public static int lengthsq(this int3 a)
+    public static int lengthsq([This] int3 a)
     {
-        #if NET8_0_OR_GREATER
-        return Vector128.Dot(a.vector, a.vector);
-        #else // NET8_0_OR_GREATER
-        return a.dot(a);
-        #endif // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.Dot(a.vector, a.vector);
+        return (int)(a.x * a.x + a.y * a.y + a.z * a.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static int distancesq(this int3 a, int3 b) => lengthsq(b - a);
+    public static int distancesq([This] int3 a, int3 b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static int3 square(this int3 a) => a * a;
+    public static int3 square([This] int3 a) => a * a;
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -4434,7 +4062,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static int3 fma(this int3 a, int3 b, int3 c)
+    public static int3 fma([This] int3 a, int3 b, int3 c)
     {
         return new(a.x.fma(b.x, c.x), a.y.fma(b.y, c.y), a.z.fma(b.z, c.z));
     }
@@ -4447,7 +4075,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static int3 fms(this int3 a, int3 b, int3 c)
+    public static int3 fms([This] int3 a, int3 b, int3 c)
     {
         return new(a.x.fms(b.x, c.x), a.y.fms(b.y, c.y), a.z.fms(b.z, c.z));
     }
@@ -4460,7 +4088,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static int3 fnma(this int3 a, int3 b, int3 c)
+    public static int3 fnma([This] int3 a, int3 b, int3 c)
     {
         return new(a.x.fnma(b.x, c.x), a.y.fnma(b.y, c.y), a.z.fnma(b.z, c.z));
     }
@@ -4473,7 +4101,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static int3 fsm(this int3 c, int3 a, int3 b) => fnma(a, b, c);
+    public static int3 fsm([This] int3 c, int3 a, int3 b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -4483,7 +4111,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static int3 fam(this int3 c, int3 a, int3 b) => fma(a, b, c);
+    public static int3 fam([This] int3 c, int3 a, int3 b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -4493,26 +4121,24 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static int3 mad(this int3 a, int3 b, int3 c) => fma(a, b, c);
+    public static int3 mad([This] int3 a, int3 b, int3 c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static int csum(this int3 a)
+    public static int csum([This] int3 a)
     {
-        #if NET8_0_OR_GREATER
-        return Vector128.Sum(a.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.Sum(a.vector);
         return (a.x + a.y + a.z);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static int cmin(this int3 a)
+    public static int cmin([This] int3 a)
     {
         return a.x.min(a.y).min(a.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static int cmax(this int3 a)
+    public static int cmax([This] int3 a)
     {
         return a.x.max(a.y).max(a.z);
     }
@@ -4529,21 +4155,17 @@ public partial struct int4
     [MethodImpl(256 | 512)]
     public static int4 operator -(int4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(-a.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(-a.vector);
         return new((-a.x), (-a.y), (-a.z), (-a.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static int4 operator +(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector + b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector + b.vector);
         return new((int)(a.x + b.x), (int)(a.y + b.y), (int)(a.z + b.z), (int)(a.w + b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -4555,11 +4177,9 @@ public partial struct int4
     [MethodImpl(256 | 512)]
     public static int4 operator -(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector - b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector - b.vector);
         return new((int)(a.x - b.x), (int)(a.y - b.y), (int)(a.z - b.z), (int)(a.w - b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -4571,51 +4191,41 @@ public partial struct int4
     [MethodImpl(256 | 512)]
     public static int4 operator *(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector * b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector * b.vector);
         return new((int)(a.x * b.x), (int)(a.y * b.y), (int)(a.z * b.z), (int)(a.w * b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static int4 operator *(int a, int4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a * b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a * b.vector);
         return new((int)(a * b.x), (int)(a * b.y), (int)(a * b.z), (int)(a * b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static int4 operator *(int4 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector * b);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector * b);
         return new((int)(a.x * b), (int)(a.y * b), (int)(a.z * b), (int)(a.w * b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static int4 operator /(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new((a.vector / b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new((a.vector / b.vector));
         return new((int)(a.x / b.x), (int)(a.y / b.y), (int)(a.z / b.z), (int)(a.w / b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static int4 operator /(int4 a, int b)
     {
-        #if NET8_0_OR_GREATER
-        return new((a.vector / b));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new((a.vector / b));
         return new((int)(a.x / b), (int)(a.y / b), (int)(a.z / b), (int)(a.w / b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -4643,136 +4253,114 @@ public partial struct int4
     public static int4 operator ++(int4 a) => a + One;
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static int4 abs(this int4 a)
+    public static int4 abs([This] int4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Abs(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Abs(a.vector));
         return new(a.x.abs(), a.y.abs(), a.z.abs(), a.w.abs());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static int4 sign(this int4 a)
+    public static int4 sign([This] int4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.SignInt(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.SignInt(a.vector));
         return new(a.x.sign(), a.y.sign(), a.z.sign(), a.w.sign());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static int4 min(this int4 a, int4 b)
+    public static int4 min([This] int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Min(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Min(a.vector, b.vector));
         return new(a.x.min(b.x), a.y.min(b.y), a.z.min(b.z), a.w.min(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static int4 max(this int4 a, int4 b)
+    public static int4 max([This] int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Max(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Max(a.vector, b.vector));
         return new(a.x.max(b.x), a.y.max(b.y), a.z.max(b.z), a.w.max(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static int4 clamp(this int4 v, int4 min, int4 max)
+    public static int4 clamp([This] int4 v, int4 min, int4 max)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Max(min.vector, Vector128.Min(max.vector, v.vector)));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Max(min.vector, Vector128.Min(max.vector, v.vector)));
         return new(v.x.clamp(min.x, max.x), v.y.clamp(min.y, max.y), v.z.clamp(min.z, max.z), v.w.clamp(min.w, max.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static int4 clamp(this int4 v, int min, int max) => v.clamp(new int4(min), new int4(max));
+    public static int4 clamp([This] int4 v, int min, int max) => v.clamp(new int4(min), new int4(max));
 
     [MethodImpl(256 | 512)]
-    public static int4 lerp(this int4 t, int4 start, int4 end)
+    public static int4 lerp(int4 start, int4 end, [This] int4 t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(t, end - start, start);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return fma(t, end - start, start);
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static int4 lerp(this int t, int4 start, int4 end)
+    public static int4 lerp(int4 start, int4 end, [This] int t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(new(t), end - start, start);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return fma(new(t), end - start, start);
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static int4 lerp(this int4 t, int start, int end)
+    public static int4 lerp(int start, int end, [This] int4 t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(t, (end - start), new(start));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return fma(t, (end - start), new(start));
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static int4 unlerp(this int4 a, int4 start, int4 end) => (a - start) / (end - start);
+    public static int4 unlerp([This] int4 a, int4 start, int4 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static int4 unlerp(this int a, int4 start, int4 end) => (a - start) / (end - start);
+    public static int4 unlerp([This] int a, int4 start, int4 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static int4 unlerp(this int4 a, int start, int end) => (a - start) / (end - start);
+    public static int4 unlerp([This] int4 a, int start, int end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static int4 remap(this int4 a, int4 srcStart, int4 srcEnd, int4 dstStart, int4 dstEnd) => 
+    public static int4 remap([This] int4 a, int4 srcStart, int4 srcEnd, int4 dstStart, int4 dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static int4 remap(this int4 a, int srcStart, int srcEnd, int dstStart, int dstEnd) => 
+    public static int4 remap([This] int4 a, int srcStart, int srcEnd, int dstStart, int dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static int dot(this int4 a, int4 b)
+    public static int dot([This] int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
-        return Vector128.Dot(a.vector, b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.Dot(a.vector, b.vector);
         return (int)(a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static int lengthsq(this int4 a)
+    public static int lengthsq([This] int4 a)
     {
-        #if NET8_0_OR_GREATER
-        return Vector128.Dot(a.vector, a.vector);
-        #else // NET8_0_OR_GREATER
-        return a.dot(a);
-        #endif // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.Dot(a.vector, a.vector);
+        return (int)(a.x * a.x + a.y * a.y + a.z * a.z + a.w * a.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static int distancesq(this int4 a, int4 b) => lengthsq(b - a);
+    public static int distancesq([This] int4 a, int4 b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static int4 square(this int4 a) => a * a;
+    public static int4 square([This] int4 a) => a * a;
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -4782,7 +4370,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static int4 fma(this int4 a, int4 b, int4 c)
+    public static int4 fma([This] int4 a, int4 b, int4 c)
     {
         return new(a.x.fma(b.x, c.x), a.y.fma(b.y, c.y), a.z.fma(b.z, c.z), a.w.fma(b.w, c.w));
     }
@@ -4795,7 +4383,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static int4 fms(this int4 a, int4 b, int4 c)
+    public static int4 fms([This] int4 a, int4 b, int4 c)
     {
         return new(a.x.fms(b.x, c.x), a.y.fms(b.y, c.y), a.z.fms(b.z, c.z), a.w.fms(b.w, c.w));
     }
@@ -4808,7 +4396,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static int4 fnma(this int4 a, int4 b, int4 c)
+    public static int4 fnma([This] int4 a, int4 b, int4 c)
     {
         return new(a.x.fnma(b.x, c.x), a.y.fnma(b.y, c.y), a.z.fnma(b.z, c.z), a.w.fnma(b.w, c.w));
     }
@@ -4821,7 +4409,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static int4 fsm(this int4 c, int4 a, int4 b) => fnma(a, b, c);
+    public static int4 fsm([This] int4 c, int4 a, int4 b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -4831,7 +4419,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static int4 fam(this int4 c, int4 a, int4 b) => fma(a, b, c);
+    public static int4 fam([This] int4 c, int4 a, int4 b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -4841,26 +4429,24 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static int4 mad(this int4 a, int4 b, int4 c) => fma(a, b, c);
+    public static int4 mad([This] int4 a, int4 b, int4 c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static int csum(this int4 a)
+    public static int csum([This] int4 a)
     {
-        #if NET8_0_OR_GREATER
-        return Vector128.Sum(a.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.Sum(a.vector);
         return (a.x + a.y + a.z + a.w);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static int cmin(this int4 a)
+    public static int cmin([This] int4 a)
     {
         return a.x.min(a.y).min(a.z).min(a.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static int cmax(this int4 a)
+    public static int cmax([This] int4 a)
     {
         return a.x.max(a.y).max(a.z).max(a.w);
     }
@@ -4878,11 +4464,9 @@ public partial struct uint2
     [MethodImpl(256 | 512)]
     public static uint2 operator +(uint2 a, uint2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector + b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(a.vector + b.vector);
         return new((uint)(a.x + b.x), (uint)(a.y + b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -4894,11 +4478,9 @@ public partial struct uint2
     [MethodImpl(256 | 512)]
     public static uint2 operator -(uint2 a, uint2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector - b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(a.vector - b.vector);
         return new((uint)(a.x - b.x), (uint)(a.y - b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -4910,51 +4492,41 @@ public partial struct uint2
     [MethodImpl(256 | 512)]
     public static uint2 operator *(uint2 a, uint2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector * b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(a.vector * b.vector);
         return new((uint)(a.x * b.x), (uint)(a.y * b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static uint2 operator *(uint a, uint2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a * b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(a * b.vector);
         return new((uint)(a * b.x), (uint)(a * b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static uint2 operator *(uint2 a, uint b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector * b);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(a.vector * b);
         return new((uint)(a.x * b), (uint)(a.y * b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static uint2 operator /(uint2 a, uint2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new((a.vector / b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new((a.vector / b.vector));
         return new((uint)(a.x / b.x), (uint)(a.y / b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static uint2 operator /(uint2 a, uint b)
     {
-        #if NET8_0_OR_GREATER
-        return new((a.vector / b));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new((a.vector / b));
         return new((uint)(a.x / b), (uint)(a.y / b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -4982,136 +4554,114 @@ public partial struct uint2
     public static uint2 operator ++(uint2 a) => a + One;
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static uint2 abs(this uint2 a)
+    public static uint2 abs([This] uint2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector64.Abs(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(Vector64.Abs(a.vector));
         return new(a.x.abs(), a.y.abs());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static uint2 sign(this uint2 a)
+    public static uint2 sign([This] uint2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.SignUInt(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(simd.SignUInt(a.vector));
         return new(a.x.sign(), a.y.sign());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static uint2 min(this uint2 a, uint2 b)
+    public static uint2 min([This] uint2 a, uint2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector64.Min(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(Vector64.Min(a.vector, b.vector));
         return new(a.x.min(b.x), a.y.min(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static uint2 max(this uint2 a, uint2 b)
+    public static uint2 max([This] uint2 a, uint2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector64.Max(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(Vector64.Max(a.vector, b.vector));
         return new(a.x.max(b.x), a.y.max(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static uint2 clamp(this uint2 v, uint2 min, uint2 max)
+    public static uint2 clamp([This] uint2 v, uint2 min, uint2 max)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector64.Max(min.vector, Vector64.Min(max.vector, v.vector)));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(Vector64.Max(min.vector, Vector64.Min(max.vector, v.vector)));
         return new(v.x.clamp(min.x, max.x), v.y.clamp(min.y, max.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static uint2 clamp(this uint2 v, uint min, uint max) => v.clamp(new uint2(min), new uint2(max));
+    public static uint2 clamp([This] uint2 v, uint min, uint max) => v.clamp(new uint2(min), new uint2(max));
 
     [MethodImpl(256 | 512)]
-    public static uint2 lerp(this uint2 t, uint2 start, uint2 end)
+    public static uint2 lerp(uint2 start, uint2 end, [This] uint2 t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(t, end - start, start);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return fma(t, end - start, start);
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static uint2 lerp(this uint t, uint2 start, uint2 end)
+    public static uint2 lerp(uint2 start, uint2 end, [This] uint t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(new(t), end - start, start);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return fma(new(t), end - start, start);
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static uint2 lerp(this uint2 t, uint start, uint end)
+    public static uint2 lerp(uint start, uint end, [This] uint2 t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(t, (end - start), new(start));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return fma(t, (end - start), new(start));
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static uint2 unlerp(this uint2 a, uint2 start, uint2 end) => (a - start) / (end - start);
+    public static uint2 unlerp([This] uint2 a, uint2 start, uint2 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static uint2 unlerp(this uint a, uint2 start, uint2 end) => (a - start) / (end - start);
+    public static uint2 unlerp([This] uint a, uint2 start, uint2 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static uint2 unlerp(this uint2 a, uint start, uint end) => (a - start) / (end - start);
+    public static uint2 unlerp([This] uint2 a, uint start, uint end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static uint2 remap(this uint2 a, uint2 srcStart, uint2 srcEnd, uint2 dstStart, uint2 dstEnd) => 
+    public static uint2 remap([This] uint2 a, uint2 srcStart, uint2 srcEnd, uint2 dstStart, uint2 dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static uint2 remap(this uint2 a, uint srcStart, uint srcEnd, uint dstStart, uint dstEnd) => 
+    public static uint2 remap([This] uint2 a, uint srcStart, uint srcEnd, uint dstStart, uint dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static uint dot(this uint2 a, uint2 b)
+    public static uint dot([This] uint2 a, uint2 b)
     {
-        #if NET8_0_OR_GREATER
-        return Vector64.Dot(a.vector, b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.Dot(a.vector, b.vector);
         return (uint)(a.x * b.x + a.y * b.y);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static uint lengthsq(this uint2 a)
+    public static uint lengthsq([This] uint2 a)
     {
-        #if NET8_0_OR_GREATER
-        return Vector64.Dot(a.vector, a.vector);
-        #else // NET8_0_OR_GREATER
-        return a.dot(a);
-        #endif // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.Dot(a.vector, a.vector);
+        return (uint)(a.x * a.x + a.y * a.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static uint distancesq(this uint2 a, uint2 b) => lengthsq(b - a);
+    public static uint distancesq([This] uint2 a, uint2 b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static uint2 square(this uint2 a) => a * a;
+    public static uint2 square([This] uint2 a) => a * a;
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -5121,7 +4671,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static uint2 fma(this uint2 a, uint2 b, uint2 c)
+    public static uint2 fma([This] uint2 a, uint2 b, uint2 c)
     {
         return new(a.x.fma(b.x, c.x), a.y.fma(b.y, c.y));
     }
@@ -5134,7 +4684,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static uint2 fms(this uint2 a, uint2 b, uint2 c)
+    public static uint2 fms([This] uint2 a, uint2 b, uint2 c)
     {
         return new(a.x.fms(b.x, c.x), a.y.fms(b.y, c.y));
     }
@@ -5147,7 +4697,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static uint2 fnma(this uint2 a, uint2 b, uint2 c)
+    public static uint2 fnma([This] uint2 a, uint2 b, uint2 c)
     {
         return new(a.x.fnma(b.x, c.x), a.y.fnma(b.y, c.y));
     }
@@ -5160,7 +4710,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static uint2 fsm(this uint2 c, uint2 a, uint2 b) => fnma(a, b, c);
+    public static uint2 fsm([This] uint2 c, uint2 a, uint2 b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -5170,7 +4720,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static uint2 fam(this uint2 c, uint2 a, uint2 b) => fma(a, b, c);
+    public static uint2 fam([This] uint2 c, uint2 a, uint2 b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -5180,26 +4730,24 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static uint2 mad(this uint2 a, uint2 b, uint2 c) => fma(a, b, c);
+    public static uint2 mad([This] uint2 a, uint2 b, uint2 c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static uint csum(this uint2 a)
+    public static uint csum([This] uint2 a)
     {
-        #if NET8_0_OR_GREATER
-        return Vector64.Sum(a.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.Sum(a.vector);
         return (a.x + a.y);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static uint cmin(this uint2 a)
+    public static uint cmin([This] uint2 a)
     {
         return a.x.min(a.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static uint cmax(this uint2 a)
+    public static uint cmax([This] uint2 a)
     {
         return a.x.max(a.y);
     }
@@ -5217,11 +4765,9 @@ public partial struct uint3
     [MethodImpl(256 | 512)]
     public static uint3 operator +(uint3 a, uint3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector + b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector + b.vector);
         return new((uint)(a.x + b.x), (uint)(a.y + b.y), (uint)(a.z + b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -5233,11 +4779,9 @@ public partial struct uint3
     [MethodImpl(256 | 512)]
     public static uint3 operator -(uint3 a, uint3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector - b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector - b.vector);
         return new((uint)(a.x - b.x), (uint)(a.y - b.y), (uint)(a.z - b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -5249,51 +4793,41 @@ public partial struct uint3
     [MethodImpl(256 | 512)]
     public static uint3 operator *(uint3 a, uint3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector * b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector * b.vector);
         return new((uint)(a.x * b.x), (uint)(a.y * b.y), (uint)(a.z * b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static uint3 operator *(uint a, uint3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a * b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a * b.vector);
         return new((uint)(a * b.x), (uint)(a * b.y), (uint)(a * b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static uint3 operator *(uint3 a, uint b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector * b);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector * b);
         return new((uint)(a.x * b), (uint)(a.y * b), (uint)(a.z * b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static uint3 operator /(uint3 a, uint3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new((a.vector / b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new((a.vector / b.vector));
         return new((uint)(a.x / b.x), (uint)(a.y / b.y), (uint)(a.z / b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static uint3 operator /(uint3 a, uint b)
     {
-        #if NET8_0_OR_GREATER
-        return new((a.vector / b));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new((a.vector / b));
         return new((uint)(a.x / b), (uint)(a.y / b), (uint)(a.z / b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -5321,139 +4855,117 @@ public partial struct uint3
     public static uint3 operator ++(uint3 a) => a + One;
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static uint3 abs(this uint3 a)
+    public static uint3 abs([This] uint3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Abs(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Abs(a.vector));
         return new(a.x.abs(), a.y.abs(), a.z.abs());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static uint3 sign(this uint3 a)
+    public static uint3 sign([This] uint3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.SignUInt(a.vector) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.SignUInt(a.vector) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         return new(a.x.sign(), a.y.sign(), a.z.sign());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static uint3 min(this uint3 a, uint3 b)
+    public static uint3 min([This] uint3 a, uint3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Min(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Min(a.vector, b.vector));
         return new(a.x.min(b.x), a.y.min(b.y), a.z.min(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static uint3 max(this uint3 a, uint3 b)
+    public static uint3 max([This] uint3 a, uint3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Max(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Max(a.vector, b.vector));
         return new(a.x.max(b.x), a.y.max(b.y), a.z.max(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static uint3 clamp(this uint3 v, uint3 min, uint3 max)
+    public static uint3 clamp([This] uint3 v, uint3 min, uint3 max)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Max(min.vector, Vector128.Min(max.vector, v.vector)));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Max(min.vector, Vector128.Min(max.vector, v.vector)));
         return new(v.x.clamp(min.x, max.x), v.y.clamp(min.y, max.y), v.z.clamp(min.z, max.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static uint3 clamp(this uint3 v, uint min, uint max) => v.clamp(new uint3(min), new uint3(max));
+    public static uint3 clamp([This] uint3 v, uint min, uint max) => v.clamp(new uint3(min), new uint3(max));
 
     [MethodImpl(256 | 512)]
-    public static uint3 lerp(this uint3 t, uint3 start, uint3 end)
+    public static uint3 lerp(uint3 start, uint3 end, [This] uint3 t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(t, end - start, start);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return fma(t, end - start, start);
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static uint3 lerp(this uint t, uint3 start, uint3 end)
+    public static uint3 lerp(uint3 start, uint3 end, [This] uint t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(new(t), end - start, start);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return fma(new(t), end - start, start);
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static uint3 lerp(this uint3 t, uint start, uint end)
+    public static uint3 lerp(uint start, uint end, [This] uint3 t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(t, (end - start), new(start));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return fma(t, (end - start), new(start));
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static uint3 unlerp(this uint3 a, uint3 start, uint3 end) => (a - start) / (end - start);
+    public static uint3 unlerp([This] uint3 a, uint3 start, uint3 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static uint3 unlerp(this uint a, uint3 start, uint3 end) => (a - start) / (end - start);
+    public static uint3 unlerp([This] uint a, uint3 start, uint3 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static uint3 unlerp(this uint3 a, uint start, uint end) => (a - start) / (end - start);
+    public static uint3 unlerp([This] uint3 a, uint start, uint end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static uint3 remap(this uint3 a, uint3 srcStart, uint3 srcEnd, uint3 dstStart, uint3 dstEnd) => 
+    public static uint3 remap([This] uint3 a, uint3 srcStart, uint3 srcEnd, uint3 dstStart, uint3 dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static uint3 remap(this uint3 a, uint srcStart, uint srcEnd, uint dstStart, uint dstEnd) => 
+    public static uint3 remap([This] uint3 a, uint srcStart, uint srcEnd, uint dstStart, uint dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static uint dot(this uint3 a, uint3 b)
+    public static uint dot([This] uint3 a, uint3 b)
     {
-        #if NET8_0_OR_GREATER
-        return Vector128.Dot(a.vector, b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.Dot(a.vector, b.vector);
         return (uint)(a.x * b.x + a.y * b.y + a.z * b.z);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static uint3 cross(this uint3 a, uint3 b) => (a * b.yzx - a.yzx * b).yzx;
+    public static uint3 cross([This] uint3 a, uint3 b) => (a * b.yzx - a.yzx * b).yzx;
 
     [MethodImpl(256 | 512)]
-    public static uint lengthsq(this uint3 a)
+    public static uint lengthsq([This] uint3 a)
     {
-        #if NET8_0_OR_GREATER
-        return Vector128.Dot(a.vector, a.vector);
-        #else // NET8_0_OR_GREATER
-        return a.dot(a);
-        #endif // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.Dot(a.vector, a.vector);
+        return (uint)(a.x * a.x + a.y * a.y + a.z * a.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static uint distancesq(this uint3 a, uint3 b) => lengthsq(b - a);
+    public static uint distancesq([This] uint3 a, uint3 b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static uint3 square(this uint3 a) => a * a;
+    public static uint3 square([This] uint3 a) => a * a;
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -5463,7 +4975,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static uint3 fma(this uint3 a, uint3 b, uint3 c)
+    public static uint3 fma([This] uint3 a, uint3 b, uint3 c)
     {
         return new(a.x.fma(b.x, c.x), a.y.fma(b.y, c.y), a.z.fma(b.z, c.z));
     }
@@ -5476,7 +4988,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static uint3 fms(this uint3 a, uint3 b, uint3 c)
+    public static uint3 fms([This] uint3 a, uint3 b, uint3 c)
     {
         return new(a.x.fms(b.x, c.x), a.y.fms(b.y, c.y), a.z.fms(b.z, c.z));
     }
@@ -5489,7 +5001,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static uint3 fnma(this uint3 a, uint3 b, uint3 c)
+    public static uint3 fnma([This] uint3 a, uint3 b, uint3 c)
     {
         return new(a.x.fnma(b.x, c.x), a.y.fnma(b.y, c.y), a.z.fnma(b.z, c.z));
     }
@@ -5502,7 +5014,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static uint3 fsm(this uint3 c, uint3 a, uint3 b) => fnma(a, b, c);
+    public static uint3 fsm([This] uint3 c, uint3 a, uint3 b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -5512,7 +5024,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static uint3 fam(this uint3 c, uint3 a, uint3 b) => fma(a, b, c);
+    public static uint3 fam([This] uint3 c, uint3 a, uint3 b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -5522,26 +5034,24 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static uint3 mad(this uint3 a, uint3 b, uint3 c) => fma(a, b, c);
+    public static uint3 mad([This] uint3 a, uint3 b, uint3 c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static uint csum(this uint3 a)
+    public static uint csum([This] uint3 a)
     {
-        #if NET8_0_OR_GREATER
-        return Vector128.Sum(a.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.Sum(a.vector);
         return (a.x + a.y + a.z);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static uint cmin(this uint3 a)
+    public static uint cmin([This] uint3 a)
     {
         return a.x.min(a.y).min(a.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static uint cmax(this uint3 a)
+    public static uint cmax([This] uint3 a)
     {
         return a.x.max(a.y).max(a.z);
     }
@@ -5559,11 +5069,9 @@ public partial struct uint4
     [MethodImpl(256 | 512)]
     public static uint4 operator +(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector + b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector + b.vector);
         return new((uint)(a.x + b.x), (uint)(a.y + b.y), (uint)(a.z + b.z), (uint)(a.w + b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -5575,11 +5083,9 @@ public partial struct uint4
     [MethodImpl(256 | 512)]
     public static uint4 operator -(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector - b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector - b.vector);
         return new((uint)(a.x - b.x), (uint)(a.y - b.y), (uint)(a.z - b.z), (uint)(a.w - b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -5591,51 +5097,41 @@ public partial struct uint4
     [MethodImpl(256 | 512)]
     public static uint4 operator *(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector * b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector * b.vector);
         return new((uint)(a.x * b.x), (uint)(a.y * b.y), (uint)(a.z * b.z), (uint)(a.w * b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static uint4 operator *(uint a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a * b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a * b.vector);
         return new((uint)(a * b.x), (uint)(a * b.y), (uint)(a * b.z), (uint)(a * b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static uint4 operator *(uint4 a, uint b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector * b);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector * b);
         return new((uint)(a.x * b), (uint)(a.y * b), (uint)(a.z * b), (uint)(a.w * b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static uint4 operator /(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new((a.vector / b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new((a.vector / b.vector));
         return new((uint)(a.x / b.x), (uint)(a.y / b.y), (uint)(a.z / b.z), (uint)(a.w / b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static uint4 operator /(uint4 a, uint b)
     {
-        #if NET8_0_OR_GREATER
-        return new((a.vector / b));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new((a.vector / b));
         return new((uint)(a.x / b), (uint)(a.y / b), (uint)(a.z / b), (uint)(a.w / b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -5663,136 +5159,114 @@ public partial struct uint4
     public static uint4 operator ++(uint4 a) => a + One;
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static uint4 abs(this uint4 a)
+    public static uint4 abs([This] uint4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Abs(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Abs(a.vector));
         return new(a.x.abs(), a.y.abs(), a.z.abs(), a.w.abs());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static uint4 sign(this uint4 a)
+    public static uint4 sign([This] uint4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.SignUInt(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.SignUInt(a.vector));
         return new(a.x.sign(), a.y.sign(), a.z.sign(), a.w.sign());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static uint4 min(this uint4 a, uint4 b)
+    public static uint4 min([This] uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Min(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Min(a.vector, b.vector));
         return new(a.x.min(b.x), a.y.min(b.y), a.z.min(b.z), a.w.min(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static uint4 max(this uint4 a, uint4 b)
+    public static uint4 max([This] uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Max(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Max(a.vector, b.vector));
         return new(a.x.max(b.x), a.y.max(b.y), a.z.max(b.z), a.w.max(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static uint4 clamp(this uint4 v, uint4 min, uint4 max)
+    public static uint4 clamp([This] uint4 v, uint4 min, uint4 max)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Max(min.vector, Vector128.Min(max.vector, v.vector)));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Max(min.vector, Vector128.Min(max.vector, v.vector)));
         return new(v.x.clamp(min.x, max.x), v.y.clamp(min.y, max.y), v.z.clamp(min.z, max.z), v.w.clamp(min.w, max.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static uint4 clamp(this uint4 v, uint min, uint max) => v.clamp(new uint4(min), new uint4(max));
+    public static uint4 clamp([This] uint4 v, uint min, uint max) => v.clamp(new uint4(min), new uint4(max));
 
     [MethodImpl(256 | 512)]
-    public static uint4 lerp(this uint4 t, uint4 start, uint4 end)
+    public static uint4 lerp(uint4 start, uint4 end, [This] uint4 t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(t, end - start, start);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return fma(t, end - start, start);
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static uint4 lerp(this uint t, uint4 start, uint4 end)
+    public static uint4 lerp(uint4 start, uint4 end, [This] uint t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(new(t), end - start, start);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return fma(new(t), end - start, start);
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static uint4 lerp(this uint4 t, uint start, uint end)
+    public static uint4 lerp(uint start, uint end, [This] uint4 t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(t, (end - start), new(start));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return fma(t, (end - start), new(start));
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static uint4 unlerp(this uint4 a, uint4 start, uint4 end) => (a - start) / (end - start);
+    public static uint4 unlerp([This] uint4 a, uint4 start, uint4 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static uint4 unlerp(this uint a, uint4 start, uint4 end) => (a - start) / (end - start);
+    public static uint4 unlerp([This] uint a, uint4 start, uint4 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static uint4 unlerp(this uint4 a, uint start, uint end) => (a - start) / (end - start);
+    public static uint4 unlerp([This] uint4 a, uint start, uint end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static uint4 remap(this uint4 a, uint4 srcStart, uint4 srcEnd, uint4 dstStart, uint4 dstEnd) => 
+    public static uint4 remap([This] uint4 a, uint4 srcStart, uint4 srcEnd, uint4 dstStart, uint4 dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static uint4 remap(this uint4 a, uint srcStart, uint srcEnd, uint dstStart, uint dstEnd) => 
+    public static uint4 remap([This] uint4 a, uint srcStart, uint srcEnd, uint dstStart, uint dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static uint dot(this uint4 a, uint4 b)
+    public static uint dot([This] uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
-        return Vector128.Dot(a.vector, b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.Dot(a.vector, b.vector);
         return (uint)(a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static uint lengthsq(this uint4 a)
+    public static uint lengthsq([This] uint4 a)
     {
-        #if NET8_0_OR_GREATER
-        return Vector128.Dot(a.vector, a.vector);
-        #else // NET8_0_OR_GREATER
-        return a.dot(a);
-        #endif // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.Dot(a.vector, a.vector);
+        return (uint)(a.x * a.x + a.y * a.y + a.z * a.z + a.w * a.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static uint distancesq(this uint4 a, uint4 b) => lengthsq(b - a);
+    public static uint distancesq([This] uint4 a, uint4 b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static uint4 square(this uint4 a) => a * a;
+    public static uint4 square([This] uint4 a) => a * a;
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -5802,7 +5276,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static uint4 fma(this uint4 a, uint4 b, uint4 c)
+    public static uint4 fma([This] uint4 a, uint4 b, uint4 c)
     {
         return new(a.x.fma(b.x, c.x), a.y.fma(b.y, c.y), a.z.fma(b.z, c.z), a.w.fma(b.w, c.w));
     }
@@ -5815,7 +5289,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static uint4 fms(this uint4 a, uint4 b, uint4 c)
+    public static uint4 fms([This] uint4 a, uint4 b, uint4 c)
     {
         return new(a.x.fms(b.x, c.x), a.y.fms(b.y, c.y), a.z.fms(b.z, c.z), a.w.fms(b.w, c.w));
     }
@@ -5828,7 +5302,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static uint4 fnma(this uint4 a, uint4 b, uint4 c)
+    public static uint4 fnma([This] uint4 a, uint4 b, uint4 c)
     {
         return new(a.x.fnma(b.x, c.x), a.y.fnma(b.y, c.y), a.z.fnma(b.z, c.z), a.w.fnma(b.w, c.w));
     }
@@ -5841,7 +5315,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static uint4 fsm(this uint4 c, uint4 a, uint4 b) => fnma(a, b, c);
+    public static uint4 fsm([This] uint4 c, uint4 a, uint4 b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -5851,7 +5325,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static uint4 fam(this uint4 c, uint4 a, uint4 b) => fma(a, b, c);
+    public static uint4 fam([This] uint4 c, uint4 a, uint4 b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -5861,26 +5335,24 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static uint4 mad(this uint4 a, uint4 b, uint4 c) => fma(a, b, c);
+    public static uint4 mad([This] uint4 a, uint4 b, uint4 c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static uint csum(this uint4 a)
+    public static uint csum([This] uint4 a)
     {
-        #if NET8_0_OR_GREATER
-        return Vector128.Sum(a.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.Sum(a.vector);
         return (a.x + a.y + a.z + a.w);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static uint cmin(this uint4 a)
+    public static uint cmin([This] uint4 a)
     {
         return a.x.min(a.y).min(a.z).min(a.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static uint cmax(this uint4 a)
+    public static uint cmax([This] uint4 a)
     {
         return a.x.max(a.y).max(a.z).max(a.w);
     }
@@ -5897,21 +5369,17 @@ public partial struct long2
     [MethodImpl(256 | 512)]
     public static long2 operator -(long2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(-a.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(-a.vector);
         return new((-a.x), (-a.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static long2 operator +(long2 a, long2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector + b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector + b.vector);
         return new((long)(a.x + b.x), (long)(a.y + b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -5923,11 +5391,9 @@ public partial struct long2
     [MethodImpl(256 | 512)]
     public static long2 operator -(long2 a, long2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector - b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector - b.vector);
         return new((long)(a.x - b.x), (long)(a.y - b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -5939,51 +5405,41 @@ public partial struct long2
     [MethodImpl(256 | 512)]
     public static long2 operator *(long2 a, long2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector * b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector * b.vector);
         return new((long)(a.x * b.x), (long)(a.y * b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static long2 operator *(long a, long2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a * b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a * b.vector);
         return new((long)(a * b.x), (long)(a * b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static long2 operator *(long2 a, long b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector * b);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector * b);
         return new((long)(a.x * b), (long)(a.y * b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static long2 operator /(long2 a, long2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new((a.vector / b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new((a.vector / b.vector));
         return new((long)(a.x / b.x), (long)(a.y / b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static long2 operator /(long2 a, long b)
     {
-        #if NET8_0_OR_GREATER
-        return new((a.vector / b));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new((a.vector / b));
         return new((long)(a.x / b), (long)(a.y / b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -6011,136 +5467,114 @@ public partial struct long2
     public static long2 operator ++(long2 a) => a + One;
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static long2 abs(this long2 a)
+    public static long2 abs([This] long2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Abs(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Abs(a.vector));
         return new(a.x.abs(), a.y.abs());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static long2 sign(this long2 a)
+    public static long2 sign([This] long2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.SignInt(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.SignInt(a.vector));
         return new(a.x.sign(), a.y.sign());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static long2 min(this long2 a, long2 b)
+    public static long2 min([This] long2 a, long2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Min(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Min(a.vector, b.vector));
         return new(a.x.min(b.x), a.y.min(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static long2 max(this long2 a, long2 b)
+    public static long2 max([This] long2 a, long2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Max(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Max(a.vector, b.vector));
         return new(a.x.max(b.x), a.y.max(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static long2 clamp(this long2 v, long2 min, long2 max)
+    public static long2 clamp([This] long2 v, long2 min, long2 max)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Max(min.vector, Vector128.Min(max.vector, v.vector)));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Max(min.vector, Vector128.Min(max.vector, v.vector)));
         return new(v.x.clamp(min.x, max.x), v.y.clamp(min.y, max.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static long2 clamp(this long2 v, long min, long max) => v.clamp(new long2(min), new long2(max));
+    public static long2 clamp([This] long2 v, long min, long max) => v.clamp(new long2(min), new long2(max));
 
     [MethodImpl(256 | 512)]
-    public static long2 lerp(this long2 t, long2 start, long2 end)
+    public static long2 lerp(long2 start, long2 end, [This] long2 t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(t, end - start, start);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return fma(t, end - start, start);
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static long2 lerp(this long t, long2 start, long2 end)
+    public static long2 lerp(long2 start, long2 end, [This] long t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(new(t), end - start, start);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return fma(new(t), end - start, start);
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static long2 lerp(this long2 t, long start, long end)
+    public static long2 lerp(long start, long end, [This] long2 t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(t, (end - start), new(start));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return fma(t, (end - start), new(start));
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static long2 unlerp(this long2 a, long2 start, long2 end) => (a - start) / (end - start);
+    public static long2 unlerp([This] long2 a, long2 start, long2 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static long2 unlerp(this long a, long2 start, long2 end) => (a - start) / (end - start);
+    public static long2 unlerp([This] long a, long2 start, long2 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static long2 unlerp(this long2 a, long start, long end) => (a - start) / (end - start);
+    public static long2 unlerp([This] long2 a, long start, long end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static long2 remap(this long2 a, long2 srcStart, long2 srcEnd, long2 dstStart, long2 dstEnd) => 
+    public static long2 remap([This] long2 a, long2 srcStart, long2 srcEnd, long2 dstStart, long2 dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static long2 remap(this long2 a, long srcStart, long srcEnd, long dstStart, long dstEnd) => 
+    public static long2 remap([This] long2 a, long srcStart, long srcEnd, long dstStart, long dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static long dot(this long2 a, long2 b)
+    public static long dot([This] long2 a, long2 b)
     {
-        #if NET8_0_OR_GREATER
-        return Vector128.Dot(a.vector, b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.Dot(a.vector, b.vector);
         return (long)(a.x * b.x + a.y * b.y);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static long lengthsq(this long2 a)
+    public static long lengthsq([This] long2 a)
     {
-        #if NET8_0_OR_GREATER
-        return Vector128.Dot(a.vector, a.vector);
-        #else // NET8_0_OR_GREATER
-        return a.dot(a);
-        #endif // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.Dot(a.vector, a.vector);
+        return (long)(a.x * a.x + a.y * a.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static long distancesq(this long2 a, long2 b) => lengthsq(b - a);
+    public static long distancesq([This] long2 a, long2 b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static long2 square(this long2 a) => a * a;
+    public static long2 square([This] long2 a) => a * a;
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -6150,7 +5584,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static long2 fma(this long2 a, long2 b, long2 c)
+    public static long2 fma([This] long2 a, long2 b, long2 c)
     {
         return new(a.x.fma(b.x, c.x), a.y.fma(b.y, c.y));
     }
@@ -6163,7 +5597,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static long2 fms(this long2 a, long2 b, long2 c)
+    public static long2 fms([This] long2 a, long2 b, long2 c)
     {
         return new(a.x.fms(b.x, c.x), a.y.fms(b.y, c.y));
     }
@@ -6176,7 +5610,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static long2 fnma(this long2 a, long2 b, long2 c)
+    public static long2 fnma([This] long2 a, long2 b, long2 c)
     {
         return new(a.x.fnma(b.x, c.x), a.y.fnma(b.y, c.y));
     }
@@ -6189,7 +5623,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static long2 fsm(this long2 c, long2 a, long2 b) => fnma(a, b, c);
+    public static long2 fsm([This] long2 c, long2 a, long2 b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -6199,7 +5633,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static long2 fam(this long2 c, long2 a, long2 b) => fma(a, b, c);
+    public static long2 fam([This] long2 c, long2 a, long2 b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -6209,26 +5643,24 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static long2 mad(this long2 a, long2 b, long2 c) => fma(a, b, c);
+    public static long2 mad([This] long2 a, long2 b, long2 c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static long csum(this long2 a)
+    public static long csum([This] long2 a)
     {
-        #if NET8_0_OR_GREATER
-        return Vector128.Sum(a.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.Sum(a.vector);
         return (a.x + a.y);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static long cmin(this long2 a)
+    public static long cmin([This] long2 a)
     {
         return a.x.min(a.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static long cmax(this long2 a)
+    public static long cmax([This] long2 a)
     {
         return a.x.max(a.y);
     }
@@ -6245,21 +5677,17 @@ public partial struct long3
     [MethodImpl(256 | 512)]
     public static long3 operator -(long3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(-a.vector & Vector256.Create(-1, -1, -1, 0).AsInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(-a.vector & Vector256.Create(-1, -1, -1, 0).AsInt64());
         return new((-a.x), (-a.y), (-a.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static long3 operator +(long3 a, long3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector + b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector + b.vector);
         return new((long)(a.x + b.x), (long)(a.y + b.y), (long)(a.z + b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -6271,11 +5699,9 @@ public partial struct long3
     [MethodImpl(256 | 512)]
     public static long3 operator -(long3 a, long3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector - b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector - b.vector);
         return new((long)(a.x - b.x), (long)(a.y - b.y), (long)(a.z - b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -6287,51 +5713,41 @@ public partial struct long3
     [MethodImpl(256 | 512)]
     public static long3 operator *(long3 a, long3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector * b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector * b.vector);
         return new((long)(a.x * b.x), (long)(a.y * b.y), (long)(a.z * b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static long3 operator *(long a, long3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a * b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a * b.vector);
         return new((long)(a * b.x), (long)(a * b.y), (long)(a * b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static long3 operator *(long3 a, long b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector * b);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector * b);
         return new((long)(a.x * b), (long)(a.y * b), (long)(a.z * b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static long3 operator /(long3 a, long3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new((a.vector / b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new((a.vector / b.vector));
         return new((long)(a.x / b.x), (long)(a.y / b.y), (long)(a.z / b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static long3 operator /(long3 a, long b)
     {
-        #if NET8_0_OR_GREATER
-        return new((a.vector / b));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new((a.vector / b));
         return new((long)(a.x / b), (long)(a.y / b), (long)(a.z / b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -6359,139 +5775,117 @@ public partial struct long3
     public static long3 operator ++(long3 a) => a + One;
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static long3 abs(this long3 a)
+    public static long3 abs([This] long3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.Abs(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.Abs(a.vector));
         return new(a.x.abs(), a.y.abs(), a.z.abs());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static long3 sign(this long3 a)
+    public static long3 sign([This] long3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.SignInt(a.vector) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.SignInt(a.vector) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         return new(a.x.sign(), a.y.sign(), a.z.sign());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static long3 min(this long3 a, long3 b)
+    public static long3 min([This] long3 a, long3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.Min(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.Min(a.vector, b.vector));
         return new(a.x.min(b.x), a.y.min(b.y), a.z.min(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static long3 max(this long3 a, long3 b)
+    public static long3 max([This] long3 a, long3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.Max(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.Max(a.vector, b.vector));
         return new(a.x.max(b.x), a.y.max(b.y), a.z.max(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static long3 clamp(this long3 v, long3 min, long3 max)
+    public static long3 clamp([This] long3 v, long3 min, long3 max)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.Max(min.vector, Vector256.Min(max.vector, v.vector)));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.Max(min.vector, Vector256.Min(max.vector, v.vector)));
         return new(v.x.clamp(min.x, max.x), v.y.clamp(min.y, max.y), v.z.clamp(min.z, max.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static long3 clamp(this long3 v, long min, long max) => v.clamp(new long3(min), new long3(max));
+    public static long3 clamp([This] long3 v, long min, long max) => v.clamp(new long3(min), new long3(max));
 
     [MethodImpl(256 | 512)]
-    public static long3 lerp(this long3 t, long3 start, long3 end)
+    public static long3 lerp(long3 start, long3 end, [This] long3 t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(t, end - start, start);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return fma(t, end - start, start);
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static long3 lerp(this long t, long3 start, long3 end)
+    public static long3 lerp(long3 start, long3 end, [This] long t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(new(t), end - start, start);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return fma(new(t), end - start, start);
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static long3 lerp(this long3 t, long start, long end)
+    public static long3 lerp(long start, long end, [This] long3 t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(t, (end - start), new(start));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return fma(t, (end - start), new(start));
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static long3 unlerp(this long3 a, long3 start, long3 end) => (a - start) / (end - start);
+    public static long3 unlerp([This] long3 a, long3 start, long3 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static long3 unlerp(this long a, long3 start, long3 end) => (a - start) / (end - start);
+    public static long3 unlerp([This] long a, long3 start, long3 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static long3 unlerp(this long3 a, long start, long end) => (a - start) / (end - start);
+    public static long3 unlerp([This] long3 a, long start, long end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static long3 remap(this long3 a, long3 srcStart, long3 srcEnd, long3 dstStart, long3 dstEnd) => 
+    public static long3 remap([This] long3 a, long3 srcStart, long3 srcEnd, long3 dstStart, long3 dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static long3 remap(this long3 a, long srcStart, long srcEnd, long dstStart, long dstEnd) => 
+    public static long3 remap([This] long3 a, long srcStart, long srcEnd, long dstStart, long dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static long dot(this long3 a, long3 b)
+    public static long dot([This] long3 a, long3 b)
     {
-        #if NET8_0_OR_GREATER
-        return Vector256.Dot(a.vector, b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.Dot(a.vector, b.vector);
         return (long)(a.x * b.x + a.y * b.y + a.z * b.z);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static long3 cross(this long3 a, long3 b) => (a * b.yzx - a.yzx * b).yzx;
+    public static long3 cross([This] long3 a, long3 b) => (a * b.yzx - a.yzx * b).yzx;
 
     [MethodImpl(256 | 512)]
-    public static long lengthsq(this long3 a)
+    public static long lengthsq([This] long3 a)
     {
-        #if NET8_0_OR_GREATER
-        return Vector256.Dot(a.vector, a.vector);
-        #else // NET8_0_OR_GREATER
-        return a.dot(a);
-        #endif // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.Dot(a.vector, a.vector);
+        return (long)(a.x * a.x + a.y * a.y + a.z * a.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static long distancesq(this long3 a, long3 b) => lengthsq(b - a);
+    public static long distancesq([This] long3 a, long3 b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static long3 square(this long3 a) => a * a;
+    public static long3 square([This] long3 a) => a * a;
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -6501,7 +5895,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static long3 fma(this long3 a, long3 b, long3 c)
+    public static long3 fma([This] long3 a, long3 b, long3 c)
     {
         return new(a.x.fma(b.x, c.x), a.y.fma(b.y, c.y), a.z.fma(b.z, c.z));
     }
@@ -6514,7 +5908,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static long3 fms(this long3 a, long3 b, long3 c)
+    public static long3 fms([This] long3 a, long3 b, long3 c)
     {
         return new(a.x.fms(b.x, c.x), a.y.fms(b.y, c.y), a.z.fms(b.z, c.z));
     }
@@ -6527,7 +5921,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static long3 fnma(this long3 a, long3 b, long3 c)
+    public static long3 fnma([This] long3 a, long3 b, long3 c)
     {
         return new(a.x.fnma(b.x, c.x), a.y.fnma(b.y, c.y), a.z.fnma(b.z, c.z));
     }
@@ -6540,7 +5934,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static long3 fsm(this long3 c, long3 a, long3 b) => fnma(a, b, c);
+    public static long3 fsm([This] long3 c, long3 a, long3 b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -6550,7 +5944,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static long3 fam(this long3 c, long3 a, long3 b) => fma(a, b, c);
+    public static long3 fam([This] long3 c, long3 a, long3 b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -6560,26 +5954,24 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static long3 mad(this long3 a, long3 b, long3 c) => fma(a, b, c);
+    public static long3 mad([This] long3 a, long3 b, long3 c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static long csum(this long3 a)
+    public static long csum([This] long3 a)
     {
-        #if NET8_0_OR_GREATER
-        return Vector256.Sum(a.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.Sum(a.vector);
         return (a.x + a.y + a.z);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static long cmin(this long3 a)
+    public static long cmin([This] long3 a)
     {
         return a.x.min(a.y).min(a.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static long cmax(this long3 a)
+    public static long cmax([This] long3 a)
     {
         return a.x.max(a.y).max(a.z);
     }
@@ -6596,21 +5988,17 @@ public partial struct long4
     [MethodImpl(256 | 512)]
     public static long4 operator -(long4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(-a.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(-a.vector);
         return new((-a.x), (-a.y), (-a.z), (-a.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static long4 operator +(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector + b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector + b.vector);
         return new((long)(a.x + b.x), (long)(a.y + b.y), (long)(a.z + b.z), (long)(a.w + b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -6622,11 +6010,9 @@ public partial struct long4
     [MethodImpl(256 | 512)]
     public static long4 operator -(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector - b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector - b.vector);
         return new((long)(a.x - b.x), (long)(a.y - b.y), (long)(a.z - b.z), (long)(a.w - b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -6638,51 +6024,41 @@ public partial struct long4
     [MethodImpl(256 | 512)]
     public static long4 operator *(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector * b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector * b.vector);
         return new((long)(a.x * b.x), (long)(a.y * b.y), (long)(a.z * b.z), (long)(a.w * b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static long4 operator *(long a, long4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a * b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a * b.vector);
         return new((long)(a * b.x), (long)(a * b.y), (long)(a * b.z), (long)(a * b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static long4 operator *(long4 a, long b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector * b);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector * b);
         return new((long)(a.x * b), (long)(a.y * b), (long)(a.z * b), (long)(a.w * b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static long4 operator /(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new((a.vector / b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new((a.vector / b.vector));
         return new((long)(a.x / b.x), (long)(a.y / b.y), (long)(a.z / b.z), (long)(a.w / b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static long4 operator /(long4 a, long b)
     {
-        #if NET8_0_OR_GREATER
-        return new((a.vector / b));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new((a.vector / b));
         return new((long)(a.x / b), (long)(a.y / b), (long)(a.z / b), (long)(a.w / b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -6710,136 +6086,114 @@ public partial struct long4
     public static long4 operator ++(long4 a) => a + One;
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static long4 abs(this long4 a)
+    public static long4 abs([This] long4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.Abs(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.Abs(a.vector));
         return new(a.x.abs(), a.y.abs(), a.z.abs(), a.w.abs());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static long4 sign(this long4 a)
+    public static long4 sign([This] long4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.SignInt(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.SignInt(a.vector));
         return new(a.x.sign(), a.y.sign(), a.z.sign(), a.w.sign());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static long4 min(this long4 a, long4 b)
+    public static long4 min([This] long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.Min(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.Min(a.vector, b.vector));
         return new(a.x.min(b.x), a.y.min(b.y), a.z.min(b.z), a.w.min(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static long4 max(this long4 a, long4 b)
+    public static long4 max([This] long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.Max(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.Max(a.vector, b.vector));
         return new(a.x.max(b.x), a.y.max(b.y), a.z.max(b.z), a.w.max(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static long4 clamp(this long4 v, long4 min, long4 max)
+    public static long4 clamp([This] long4 v, long4 min, long4 max)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.Max(min.vector, Vector256.Min(max.vector, v.vector)));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.Max(min.vector, Vector256.Min(max.vector, v.vector)));
         return new(v.x.clamp(min.x, max.x), v.y.clamp(min.y, max.y), v.z.clamp(min.z, max.z), v.w.clamp(min.w, max.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static long4 clamp(this long4 v, long min, long max) => v.clamp(new long4(min), new long4(max));
+    public static long4 clamp([This] long4 v, long min, long max) => v.clamp(new long4(min), new long4(max));
 
     [MethodImpl(256 | 512)]
-    public static long4 lerp(this long4 t, long4 start, long4 end)
+    public static long4 lerp(long4 start, long4 end, [This] long4 t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(t, end - start, start);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return fma(t, end - start, start);
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static long4 lerp(this long t, long4 start, long4 end)
+    public static long4 lerp(long4 start, long4 end, [This] long t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(new(t), end - start, start);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return fma(new(t), end - start, start);
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static long4 lerp(this long4 t, long start, long end)
+    public static long4 lerp(long start, long end, [This] long4 t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(t, (end - start), new(start));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return fma(t, (end - start), new(start));
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static long4 unlerp(this long4 a, long4 start, long4 end) => (a - start) / (end - start);
+    public static long4 unlerp([This] long4 a, long4 start, long4 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static long4 unlerp(this long a, long4 start, long4 end) => (a - start) / (end - start);
+    public static long4 unlerp([This] long a, long4 start, long4 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static long4 unlerp(this long4 a, long start, long end) => (a - start) / (end - start);
+    public static long4 unlerp([This] long4 a, long start, long end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static long4 remap(this long4 a, long4 srcStart, long4 srcEnd, long4 dstStart, long4 dstEnd) => 
+    public static long4 remap([This] long4 a, long4 srcStart, long4 srcEnd, long4 dstStart, long4 dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static long4 remap(this long4 a, long srcStart, long srcEnd, long dstStart, long dstEnd) => 
+    public static long4 remap([This] long4 a, long srcStart, long srcEnd, long dstStart, long dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static long dot(this long4 a, long4 b)
+    public static long dot([This] long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
-        return Vector256.Dot(a.vector, b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.Dot(a.vector, b.vector);
         return (long)(a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static long lengthsq(this long4 a)
+    public static long lengthsq([This] long4 a)
     {
-        #if NET8_0_OR_GREATER
-        return Vector256.Dot(a.vector, a.vector);
-        #else // NET8_0_OR_GREATER
-        return a.dot(a);
-        #endif // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.Dot(a.vector, a.vector);
+        return (long)(a.x * a.x + a.y * a.y + a.z * a.z + a.w * a.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static long distancesq(this long4 a, long4 b) => lengthsq(b - a);
+    public static long distancesq([This] long4 a, long4 b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static long4 square(this long4 a) => a * a;
+    public static long4 square([This] long4 a) => a * a;
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -6849,7 +6203,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static long4 fma(this long4 a, long4 b, long4 c)
+    public static long4 fma([This] long4 a, long4 b, long4 c)
     {
         return new(a.x.fma(b.x, c.x), a.y.fma(b.y, c.y), a.z.fma(b.z, c.z), a.w.fma(b.w, c.w));
     }
@@ -6862,7 +6216,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static long4 fms(this long4 a, long4 b, long4 c)
+    public static long4 fms([This] long4 a, long4 b, long4 c)
     {
         return new(a.x.fms(b.x, c.x), a.y.fms(b.y, c.y), a.z.fms(b.z, c.z), a.w.fms(b.w, c.w));
     }
@@ -6875,7 +6229,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static long4 fnma(this long4 a, long4 b, long4 c)
+    public static long4 fnma([This] long4 a, long4 b, long4 c)
     {
         return new(a.x.fnma(b.x, c.x), a.y.fnma(b.y, c.y), a.z.fnma(b.z, c.z), a.w.fnma(b.w, c.w));
     }
@@ -6888,7 +6242,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static long4 fsm(this long4 c, long4 a, long4 b) => fnma(a, b, c);
+    public static long4 fsm([This] long4 c, long4 a, long4 b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -6898,7 +6252,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static long4 fam(this long4 c, long4 a, long4 b) => fma(a, b, c);
+    public static long4 fam([This] long4 c, long4 a, long4 b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -6908,26 +6262,24 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static long4 mad(this long4 a, long4 b, long4 c) => fma(a, b, c);
+    public static long4 mad([This] long4 a, long4 b, long4 c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static long csum(this long4 a)
+    public static long csum([This] long4 a)
     {
-        #if NET8_0_OR_GREATER
-        return Vector256.Sum(a.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.Sum(a.vector);
         return (a.x + a.y + a.z + a.w);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static long cmin(this long4 a)
+    public static long cmin([This] long4 a)
     {
         return a.x.min(a.y).min(a.z).min(a.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static long cmax(this long4 a)
+    public static long cmax([This] long4 a)
     {
         return a.x.max(a.y).max(a.z).max(a.w);
     }
@@ -6945,11 +6297,9 @@ public partial struct ulong2
     [MethodImpl(256 | 512)]
     public static ulong2 operator +(ulong2 a, ulong2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector + b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector + b.vector);
         return new((ulong)(a.x + b.x), (ulong)(a.y + b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -6961,11 +6311,9 @@ public partial struct ulong2
     [MethodImpl(256 | 512)]
     public static ulong2 operator -(ulong2 a, ulong2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector - b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector - b.vector);
         return new((ulong)(a.x - b.x), (ulong)(a.y - b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -6977,51 +6325,41 @@ public partial struct ulong2
     [MethodImpl(256 | 512)]
     public static ulong2 operator *(ulong2 a, ulong2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector * b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector * b.vector);
         return new((ulong)(a.x * b.x), (ulong)(a.y * b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static ulong2 operator *(ulong a, ulong2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a * b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a * b.vector);
         return new((ulong)(a * b.x), (ulong)(a * b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static ulong2 operator *(ulong2 a, ulong b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector * b);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector * b);
         return new((ulong)(a.x * b), (ulong)(a.y * b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static ulong2 operator /(ulong2 a, ulong2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new((a.vector / b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new((a.vector / b.vector));
         return new((ulong)(a.x / b.x), (ulong)(a.y / b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static ulong2 operator /(ulong2 a, ulong b)
     {
-        #if NET8_0_OR_GREATER
-        return new((a.vector / b));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new((a.vector / b));
         return new((ulong)(a.x / b), (ulong)(a.y / b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -7049,136 +6387,114 @@ public partial struct ulong2
     public static ulong2 operator ++(ulong2 a) => a + One;
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ulong2 abs(this ulong2 a)
+    public static ulong2 abs([This] ulong2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Abs(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Abs(a.vector));
         return new(a.x.abs(), a.y.abs());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static ulong2 sign(this ulong2 a)
+    public static ulong2 sign([This] ulong2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.SignUInt(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.SignUInt(a.vector));
         return new(a.x.sign(), a.y.sign());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static ulong2 min(this ulong2 a, ulong2 b)
+    public static ulong2 min([This] ulong2 a, ulong2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Min(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Min(a.vector, b.vector));
         return new(a.x.min(b.x), a.y.min(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static ulong2 max(this ulong2 a, ulong2 b)
+    public static ulong2 max([This] ulong2 a, ulong2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Max(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Max(a.vector, b.vector));
         return new(a.x.max(b.x), a.y.max(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static ulong2 clamp(this ulong2 v, ulong2 min, ulong2 max)
+    public static ulong2 clamp([This] ulong2 v, ulong2 min, ulong2 max)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Max(min.vector, Vector128.Min(max.vector, v.vector)));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Max(min.vector, Vector128.Min(max.vector, v.vector)));
         return new(v.x.clamp(min.x, max.x), v.y.clamp(min.y, max.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static ulong2 clamp(this ulong2 v, ulong min, ulong max) => v.clamp(new ulong2(min), new ulong2(max));
+    public static ulong2 clamp([This] ulong2 v, ulong min, ulong max) => v.clamp(new ulong2(min), new ulong2(max));
 
     [MethodImpl(256 | 512)]
-    public static ulong2 lerp(this ulong2 t, ulong2 start, ulong2 end)
+    public static ulong2 lerp(ulong2 start, ulong2 end, [This] ulong2 t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(t, end - start, start);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return fma(t, end - start, start);
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static ulong2 lerp(this ulong t, ulong2 start, ulong2 end)
+    public static ulong2 lerp(ulong2 start, ulong2 end, [This] ulong t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(new(t), end - start, start);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return fma(new(t), end - start, start);
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static ulong2 lerp(this ulong2 t, ulong start, ulong end)
+    public static ulong2 lerp(ulong start, ulong end, [This] ulong2 t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(t, (end - start), new(start));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return fma(t, (end - start), new(start));
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static ulong2 unlerp(this ulong2 a, ulong2 start, ulong2 end) => (a - start) / (end - start);
+    public static ulong2 unlerp([This] ulong2 a, ulong2 start, ulong2 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static ulong2 unlerp(this ulong a, ulong2 start, ulong2 end) => (a - start) / (end - start);
+    public static ulong2 unlerp([This] ulong a, ulong2 start, ulong2 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static ulong2 unlerp(this ulong2 a, ulong start, ulong end) => (a - start) / (end - start);
+    public static ulong2 unlerp([This] ulong2 a, ulong start, ulong end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static ulong2 remap(this ulong2 a, ulong2 srcStart, ulong2 srcEnd, ulong2 dstStart, ulong2 dstEnd) => 
+    public static ulong2 remap([This] ulong2 a, ulong2 srcStart, ulong2 srcEnd, ulong2 dstStart, ulong2 dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static ulong2 remap(this ulong2 a, ulong srcStart, ulong srcEnd, ulong dstStart, ulong dstEnd) => 
+    public static ulong2 remap([This] ulong2 a, ulong srcStart, ulong srcEnd, ulong dstStart, ulong dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static ulong dot(this ulong2 a, ulong2 b)
+    public static ulong dot([This] ulong2 a, ulong2 b)
     {
-        #if NET8_0_OR_GREATER
-        return Vector128.Dot(a.vector, b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.Dot(a.vector, b.vector);
         return (ulong)(a.x * b.x + a.y * b.y);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static ulong lengthsq(this ulong2 a)
+    public static ulong lengthsq([This] ulong2 a)
     {
-        #if NET8_0_OR_GREATER
-        return Vector128.Dot(a.vector, a.vector);
-        #else // NET8_0_OR_GREATER
-        return a.dot(a);
-        #endif // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.Dot(a.vector, a.vector);
+        return (ulong)(a.x * a.x + a.y * a.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static ulong distancesq(this ulong2 a, ulong2 b) => lengthsq(b - a);
+    public static ulong distancesq([This] ulong2 a, ulong2 b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static ulong2 square(this ulong2 a) => a * a;
+    public static ulong2 square([This] ulong2 a) => a * a;
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -7188,7 +6504,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static ulong2 fma(this ulong2 a, ulong2 b, ulong2 c)
+    public static ulong2 fma([This] ulong2 a, ulong2 b, ulong2 c)
     {
         return new(a.x.fma(b.x, c.x), a.y.fma(b.y, c.y));
     }
@@ -7201,7 +6517,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static ulong2 fms(this ulong2 a, ulong2 b, ulong2 c)
+    public static ulong2 fms([This] ulong2 a, ulong2 b, ulong2 c)
     {
         return new(a.x.fms(b.x, c.x), a.y.fms(b.y, c.y));
     }
@@ -7214,7 +6530,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static ulong2 fnma(this ulong2 a, ulong2 b, ulong2 c)
+    public static ulong2 fnma([This] ulong2 a, ulong2 b, ulong2 c)
     {
         return new(a.x.fnma(b.x, c.x), a.y.fnma(b.y, c.y));
     }
@@ -7227,7 +6543,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static ulong2 fsm(this ulong2 c, ulong2 a, ulong2 b) => fnma(a, b, c);
+    public static ulong2 fsm([This] ulong2 c, ulong2 a, ulong2 b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -7237,7 +6553,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static ulong2 fam(this ulong2 c, ulong2 a, ulong2 b) => fma(a, b, c);
+    public static ulong2 fam([This] ulong2 c, ulong2 a, ulong2 b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -7247,26 +6563,24 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static ulong2 mad(this ulong2 a, ulong2 b, ulong2 c) => fma(a, b, c);
+    public static ulong2 mad([This] ulong2 a, ulong2 b, ulong2 c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static ulong csum(this ulong2 a)
+    public static ulong csum([This] ulong2 a)
     {
-        #if NET8_0_OR_GREATER
-        return Vector128.Sum(a.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.Sum(a.vector);
         return (a.x + a.y);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static ulong cmin(this ulong2 a)
+    public static ulong cmin([This] ulong2 a)
     {
         return a.x.min(a.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static ulong cmax(this ulong2 a)
+    public static ulong cmax([This] ulong2 a)
     {
         return a.x.max(a.y);
     }
@@ -7284,11 +6598,9 @@ public partial struct ulong3
     [MethodImpl(256 | 512)]
     public static ulong3 operator +(ulong3 a, ulong3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector + b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector + b.vector);
         return new((ulong)(a.x + b.x), (ulong)(a.y + b.y), (ulong)(a.z + b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -7300,11 +6612,9 @@ public partial struct ulong3
     [MethodImpl(256 | 512)]
     public static ulong3 operator -(ulong3 a, ulong3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector - b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector - b.vector);
         return new((ulong)(a.x - b.x), (ulong)(a.y - b.y), (ulong)(a.z - b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -7316,51 +6626,41 @@ public partial struct ulong3
     [MethodImpl(256 | 512)]
     public static ulong3 operator *(ulong3 a, ulong3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector * b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector * b.vector);
         return new((ulong)(a.x * b.x), (ulong)(a.y * b.y), (ulong)(a.z * b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static ulong3 operator *(ulong a, ulong3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a * b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a * b.vector);
         return new((ulong)(a * b.x), (ulong)(a * b.y), (ulong)(a * b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static ulong3 operator *(ulong3 a, ulong b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector * b);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector * b);
         return new((ulong)(a.x * b), (ulong)(a.y * b), (ulong)(a.z * b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static ulong3 operator /(ulong3 a, ulong3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new((a.vector / b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new((a.vector / b.vector));
         return new((ulong)(a.x / b.x), (ulong)(a.y / b.y), (ulong)(a.z / b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static ulong3 operator /(ulong3 a, ulong b)
     {
-        #if NET8_0_OR_GREATER
-        return new((a.vector / b));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new((a.vector / b));
         return new((ulong)(a.x / b), (ulong)(a.y / b), (ulong)(a.z / b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -7388,139 +6688,117 @@ public partial struct ulong3
     public static ulong3 operator ++(ulong3 a) => a + One;
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ulong3 abs(this ulong3 a)
+    public static ulong3 abs([This] ulong3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.Abs(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.Abs(a.vector));
         return new(a.x.abs(), a.y.abs(), a.z.abs());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static ulong3 sign(this ulong3 a)
+    public static ulong3 sign([This] ulong3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.SignUInt(a.vector) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.SignUInt(a.vector) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         return new(a.x.sign(), a.y.sign(), a.z.sign());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static ulong3 min(this ulong3 a, ulong3 b)
+    public static ulong3 min([This] ulong3 a, ulong3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.Min(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.Min(a.vector, b.vector));
         return new(a.x.min(b.x), a.y.min(b.y), a.z.min(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static ulong3 max(this ulong3 a, ulong3 b)
+    public static ulong3 max([This] ulong3 a, ulong3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.Max(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.Max(a.vector, b.vector));
         return new(a.x.max(b.x), a.y.max(b.y), a.z.max(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static ulong3 clamp(this ulong3 v, ulong3 min, ulong3 max)
+    public static ulong3 clamp([This] ulong3 v, ulong3 min, ulong3 max)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.Max(min.vector, Vector256.Min(max.vector, v.vector)));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.Max(min.vector, Vector256.Min(max.vector, v.vector)));
         return new(v.x.clamp(min.x, max.x), v.y.clamp(min.y, max.y), v.z.clamp(min.z, max.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static ulong3 clamp(this ulong3 v, ulong min, ulong max) => v.clamp(new ulong3(min), new ulong3(max));
+    public static ulong3 clamp([This] ulong3 v, ulong min, ulong max) => v.clamp(new ulong3(min), new ulong3(max));
 
     [MethodImpl(256 | 512)]
-    public static ulong3 lerp(this ulong3 t, ulong3 start, ulong3 end)
+    public static ulong3 lerp(ulong3 start, ulong3 end, [This] ulong3 t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(t, end - start, start);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return fma(t, end - start, start);
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static ulong3 lerp(this ulong t, ulong3 start, ulong3 end)
+    public static ulong3 lerp(ulong3 start, ulong3 end, [This] ulong t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(new(t), end - start, start);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return fma(new(t), end - start, start);
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static ulong3 lerp(this ulong3 t, ulong start, ulong end)
+    public static ulong3 lerp(ulong start, ulong end, [This] ulong3 t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(t, (end - start), new(start));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return fma(t, (end - start), new(start));
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static ulong3 unlerp(this ulong3 a, ulong3 start, ulong3 end) => (a - start) / (end - start);
+    public static ulong3 unlerp([This] ulong3 a, ulong3 start, ulong3 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static ulong3 unlerp(this ulong a, ulong3 start, ulong3 end) => (a - start) / (end - start);
+    public static ulong3 unlerp([This] ulong a, ulong3 start, ulong3 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static ulong3 unlerp(this ulong3 a, ulong start, ulong end) => (a - start) / (end - start);
+    public static ulong3 unlerp([This] ulong3 a, ulong start, ulong end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static ulong3 remap(this ulong3 a, ulong3 srcStart, ulong3 srcEnd, ulong3 dstStart, ulong3 dstEnd) => 
+    public static ulong3 remap([This] ulong3 a, ulong3 srcStart, ulong3 srcEnd, ulong3 dstStart, ulong3 dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static ulong3 remap(this ulong3 a, ulong srcStart, ulong srcEnd, ulong dstStart, ulong dstEnd) => 
+    public static ulong3 remap([This] ulong3 a, ulong srcStart, ulong srcEnd, ulong dstStart, ulong dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static ulong dot(this ulong3 a, ulong3 b)
+    public static ulong dot([This] ulong3 a, ulong3 b)
     {
-        #if NET8_0_OR_GREATER
-        return Vector256.Dot(a.vector, b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.Dot(a.vector, b.vector);
         return (ulong)(a.x * b.x + a.y * b.y + a.z * b.z);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static ulong3 cross(this ulong3 a, ulong3 b) => (a * b.yzx - a.yzx * b).yzx;
+    public static ulong3 cross([This] ulong3 a, ulong3 b) => (a * b.yzx - a.yzx * b).yzx;
 
     [MethodImpl(256 | 512)]
-    public static ulong lengthsq(this ulong3 a)
+    public static ulong lengthsq([This] ulong3 a)
     {
-        #if NET8_0_OR_GREATER
-        return Vector256.Dot(a.vector, a.vector);
-        #else // NET8_0_OR_GREATER
-        return a.dot(a);
-        #endif // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.Dot(a.vector, a.vector);
+        return (ulong)(a.x * a.x + a.y * a.y + a.z * a.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static ulong distancesq(this ulong3 a, ulong3 b) => lengthsq(b - a);
+    public static ulong distancesq([This] ulong3 a, ulong3 b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static ulong3 square(this ulong3 a) => a * a;
+    public static ulong3 square([This] ulong3 a) => a * a;
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -7530,7 +6808,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static ulong3 fma(this ulong3 a, ulong3 b, ulong3 c)
+    public static ulong3 fma([This] ulong3 a, ulong3 b, ulong3 c)
     {
         return new(a.x.fma(b.x, c.x), a.y.fma(b.y, c.y), a.z.fma(b.z, c.z));
     }
@@ -7543,7 +6821,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static ulong3 fms(this ulong3 a, ulong3 b, ulong3 c)
+    public static ulong3 fms([This] ulong3 a, ulong3 b, ulong3 c)
     {
         return new(a.x.fms(b.x, c.x), a.y.fms(b.y, c.y), a.z.fms(b.z, c.z));
     }
@@ -7556,7 +6834,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static ulong3 fnma(this ulong3 a, ulong3 b, ulong3 c)
+    public static ulong3 fnma([This] ulong3 a, ulong3 b, ulong3 c)
     {
         return new(a.x.fnma(b.x, c.x), a.y.fnma(b.y, c.y), a.z.fnma(b.z, c.z));
     }
@@ -7569,7 +6847,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static ulong3 fsm(this ulong3 c, ulong3 a, ulong3 b) => fnma(a, b, c);
+    public static ulong3 fsm([This] ulong3 c, ulong3 a, ulong3 b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -7579,7 +6857,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static ulong3 fam(this ulong3 c, ulong3 a, ulong3 b) => fma(a, b, c);
+    public static ulong3 fam([This] ulong3 c, ulong3 a, ulong3 b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -7589,26 +6867,24 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static ulong3 mad(this ulong3 a, ulong3 b, ulong3 c) => fma(a, b, c);
+    public static ulong3 mad([This] ulong3 a, ulong3 b, ulong3 c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static ulong csum(this ulong3 a)
+    public static ulong csum([This] ulong3 a)
     {
-        #if NET8_0_OR_GREATER
-        return Vector256.Sum(a.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.Sum(a.vector);
         return (a.x + a.y + a.z);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static ulong cmin(this ulong3 a)
+    public static ulong cmin([This] ulong3 a)
     {
         return a.x.min(a.y).min(a.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static ulong cmax(this ulong3 a)
+    public static ulong cmax([This] ulong3 a)
     {
         return a.x.max(a.y).max(a.z);
     }
@@ -7626,11 +6902,9 @@ public partial struct ulong4
     [MethodImpl(256 | 512)]
     public static ulong4 operator +(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector + b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector + b.vector);
         return new((ulong)(a.x + b.x), (ulong)(a.y + b.y), (ulong)(a.z + b.z), (ulong)(a.w + b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -7642,11 +6916,9 @@ public partial struct ulong4
     [MethodImpl(256 | 512)]
     public static ulong4 operator -(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector - b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector - b.vector);
         return new((ulong)(a.x - b.x), (ulong)(a.y - b.y), (ulong)(a.z - b.z), (ulong)(a.w - b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -7658,51 +6930,41 @@ public partial struct ulong4
     [MethodImpl(256 | 512)]
     public static ulong4 operator *(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector * b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector * b.vector);
         return new((ulong)(a.x * b.x), (ulong)(a.y * b.y), (ulong)(a.z * b.z), (ulong)(a.w * b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static ulong4 operator *(ulong a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a * b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a * b.vector);
         return new((ulong)(a * b.x), (ulong)(a * b.y), (ulong)(a * b.z), (ulong)(a * b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static ulong4 operator *(ulong4 a, ulong b)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector * b);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector * b);
         return new((ulong)(a.x * b), (ulong)(a.y * b), (ulong)(a.z * b), (ulong)(a.w * b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static ulong4 operator /(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new((a.vector / b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new((a.vector / b.vector));
         return new((ulong)(a.x / b.x), (ulong)(a.y / b.y), (ulong)(a.z / b.z), (ulong)(a.w / b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public static ulong4 operator /(ulong4 a, ulong b)
     {
-        #if NET8_0_OR_GREATER
-        return new((a.vector / b));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new((a.vector / b));
         return new((ulong)(a.x / b), (ulong)(a.y / b), (ulong)(a.z / b), (ulong)(a.w / b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -7730,136 +6992,114 @@ public partial struct ulong4
     public static ulong4 operator ++(ulong4 a) => a + One;
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ulong4 abs(this ulong4 a)
+    public static ulong4 abs([This] ulong4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.Abs(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.Abs(a.vector));
         return new(a.x.abs(), a.y.abs(), a.z.abs(), a.w.abs());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static ulong4 sign(this ulong4 a)
+    public static ulong4 sign([This] ulong4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.SignUInt(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.SignUInt(a.vector));
         return new(a.x.sign(), a.y.sign(), a.z.sign(), a.w.sign());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static ulong4 min(this ulong4 a, ulong4 b)
+    public static ulong4 min([This] ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.Min(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.Min(a.vector, b.vector));
         return new(a.x.min(b.x), a.y.min(b.y), a.z.min(b.z), a.w.min(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static ulong4 max(this ulong4 a, ulong4 b)
+    public static ulong4 max([This] ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.Max(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.Max(a.vector, b.vector));
         return new(a.x.max(b.x), a.y.max(b.y), a.z.max(b.z), a.w.max(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static ulong4 clamp(this ulong4 v, ulong4 min, ulong4 max)
+    public static ulong4 clamp([This] ulong4 v, ulong4 min, ulong4 max)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.Max(min.vector, Vector256.Min(max.vector, v.vector)));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.Max(min.vector, Vector256.Min(max.vector, v.vector)));
         return new(v.x.clamp(min.x, max.x), v.y.clamp(min.y, max.y), v.z.clamp(min.z, max.z), v.w.clamp(min.w, max.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static ulong4 clamp(this ulong4 v, ulong min, ulong max) => v.clamp(new ulong4(min), new ulong4(max));
+    public static ulong4 clamp([This] ulong4 v, ulong min, ulong max) => v.clamp(new ulong4(min), new ulong4(max));
 
     [MethodImpl(256 | 512)]
-    public static ulong4 lerp(this ulong4 t, ulong4 start, ulong4 end)
+    public static ulong4 lerp(ulong4 start, ulong4 end, [This] ulong4 t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(t, end - start, start);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return fma(t, end - start, start);
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static ulong4 lerp(this ulong t, ulong4 start, ulong4 end)
+    public static ulong4 lerp(ulong4 start, ulong4 end, [This] ulong t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(new(t), end - start, start);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return fma(new(t), end - start, start);
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static ulong4 lerp(this ulong4 t, ulong start, ulong end)
+    public static ulong4 lerp(ulong start, ulong end, [This] ulong4 t)
     {
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(t, (end - start), new(start));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return fma(t, (end - start), new(start));
         return start + t * (end - start);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static ulong4 unlerp(this ulong4 a, ulong4 start, ulong4 end) => (a - start) / (end - start);
+    public static ulong4 unlerp([This] ulong4 a, ulong4 start, ulong4 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static ulong4 unlerp(this ulong a, ulong4 start, ulong4 end) => (a - start) / (end - start);
+    public static ulong4 unlerp([This] ulong a, ulong4 start, ulong4 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static ulong4 unlerp(this ulong4 a, ulong start, ulong end) => (a - start) / (end - start);
+    public static ulong4 unlerp([This] ulong4 a, ulong start, ulong end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static ulong4 remap(this ulong4 a, ulong4 srcStart, ulong4 srcEnd, ulong4 dstStart, ulong4 dstEnd) => 
+    public static ulong4 remap([This] ulong4 a, ulong4 srcStart, ulong4 srcEnd, ulong4 dstStart, ulong4 dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static ulong4 remap(this ulong4 a, ulong srcStart, ulong srcEnd, ulong dstStart, ulong dstEnd) => 
+    public static ulong4 remap([This] ulong4 a, ulong srcStart, ulong srcEnd, ulong dstStart, ulong dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static ulong dot(this ulong4 a, ulong4 b)
+    public static ulong dot([This] ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
-        return Vector256.Dot(a.vector, b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.Dot(a.vector, b.vector);
         return (ulong)(a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static ulong lengthsq(this ulong4 a)
+    public static ulong lengthsq([This] ulong4 a)
     {
-        #if NET8_0_OR_GREATER
-        return Vector256.Dot(a.vector, a.vector);
-        #else // NET8_0_OR_GREATER
-        return a.dot(a);
-        #endif // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.Dot(a.vector, a.vector);
+        return (ulong)(a.x * a.x + a.y * a.y + a.z * a.z + a.w * a.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static ulong distancesq(this ulong4 a, ulong4 b) => lengthsq(b - a);
+    public static ulong distancesq([This] ulong4 a, ulong4 b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static ulong4 square(this ulong4 a) => a * a;
+    public static ulong4 square([This] ulong4 a) => a * a;
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -7869,7 +7109,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static ulong4 fma(this ulong4 a, ulong4 b, ulong4 c)
+    public static ulong4 fma([This] ulong4 a, ulong4 b, ulong4 c)
     {
         return new(a.x.fma(b.x, c.x), a.y.fma(b.y, c.y), a.z.fma(b.z, c.z), a.w.fma(b.w, c.w));
     }
@@ -7882,7 +7122,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static ulong4 fms(this ulong4 a, ulong4 b, ulong4 c)
+    public static ulong4 fms([This] ulong4 a, ulong4 b, ulong4 c)
     {
         return new(a.x.fms(b.x, c.x), a.y.fms(b.y, c.y), a.z.fms(b.z, c.z), a.w.fms(b.w, c.w));
     }
@@ -7895,7 +7135,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static ulong4 fnma(this ulong4 a, ulong4 b, ulong4 c)
+    public static ulong4 fnma([This] ulong4 a, ulong4 b, ulong4 c)
     {
         return new(a.x.fnma(b.x, c.x), a.y.fnma(b.y, c.y), a.z.fnma(b.z, c.z), a.w.fnma(b.w, c.w));
     }
@@ -7908,7 +7148,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static ulong4 fsm(this ulong4 c, ulong4 a, ulong4 b) => fnma(a, b, c);
+    public static ulong4 fsm([This] ulong4 c, ulong4 a, ulong4 b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -7918,7 +7158,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static ulong4 fam(this ulong4 c, ulong4 a, ulong4 b) => fma(a, b, c);
+    public static ulong4 fam([This] ulong4 c, ulong4 a, ulong4 b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -7928,26 +7168,24 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static ulong4 mad(this ulong4 a, ulong4 b, ulong4 c) => fma(a, b, c);
+    public static ulong4 mad([This] ulong4 a, ulong4 b, ulong4 c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static ulong csum(this ulong4 a)
+    public static ulong csum([This] ulong4 a)
     {
-        #if NET8_0_OR_GREATER
-        return Vector256.Sum(a.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.Sum(a.vector);
         return (a.x + a.y + a.z + a.w);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static ulong cmin(this ulong4 a)
+    public static ulong cmin([This] ulong4 a)
     {
         return a.x.min(a.y).min(a.z).min(a.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static ulong cmax(this ulong4 a)
+    public static ulong cmax([This] ulong4 a)
     {
         return a.x.max(a.y).max(a.z).max(a.w);
     }
@@ -8046,93 +7284,94 @@ public partial struct decimal2
     public static decimal2 operator ++(decimal2 a) => a + One;
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static decimal2 abs(this decimal2 a)
+    public static decimal2 abs([This] decimal2 a)
     {
         return new(a.x.abs(), a.y.abs());
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal2 sign(this decimal2 a)
+    public static decimal2 sign([This] decimal2 a)
     {
         return new(a.x.sign(), a.y.sign());
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal2 min(this decimal2 a, decimal2 b)
+    public static decimal2 min([This] decimal2 a, decimal2 b)
     {
         return new(a.x.min(b.x), a.y.min(b.y));
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal2 max(this decimal2 a, decimal2 b)
+    public static decimal2 max([This] decimal2 a, decimal2 b)
     {
         return new(a.x.max(b.x), a.y.max(b.y));
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal2 clamp(this decimal2 v, decimal2 min, decimal2 max)
+    public static decimal2 clamp([This] decimal2 v, decimal2 min, decimal2 max)
     {
         return new(v.x.clamp(min.x, max.x), v.y.clamp(min.y, max.y));
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal2 clamp(this decimal2 v, decimal min, decimal max) => v.clamp(new decimal2(min), new decimal2(max));
+    public static decimal2 clamp([This] decimal2 v, decimal min, decimal max) => v.clamp(new decimal2(min), new decimal2(max));
 
     [MethodImpl(256 | 512)]
-    public static decimal2 lerp(this decimal2 t, decimal2 start, decimal2 end)
+    public static decimal2 lerp(decimal2 start, decimal2 end, [This] decimal2 t)
     {
         return start + t * (end - start);
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal2 lerp(this decimal t, decimal2 start, decimal2 end)
+    public static decimal2 lerp(decimal2 start, decimal2 end, [This] decimal t)
     {
         return start + t * (end - start);
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal2 lerp(this decimal2 t, decimal start, decimal end)
+    public static decimal2 lerp(decimal start, decimal end, [This] decimal2 t)
     {
         return start + t * (end - start);
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal2 unlerp(this decimal2 a, decimal2 start, decimal2 end) => (a - start) / (end - start);
+    public static decimal2 unlerp([This] decimal2 a, decimal2 start, decimal2 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static decimal2 unlerp(this decimal a, decimal2 start, decimal2 end) => (a - start) / (end - start);
+    public static decimal2 unlerp([This] decimal a, decimal2 start, decimal2 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static decimal2 unlerp(this decimal2 a, decimal start, decimal end) => (a - start) / (end - start);
+    public static decimal2 unlerp([This] decimal2 a, decimal start, decimal end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static decimal2 remap(this decimal2 a, decimal2 srcStart, decimal2 srcEnd, decimal2 dstStart, decimal2 dstEnd) => 
+    public static decimal2 remap([This] decimal2 a, decimal2 srcStart, decimal2 srcEnd, decimal2 dstStart, decimal2 dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static decimal2 remap(this decimal2 a, decimal srcStart, decimal srcEnd, decimal dstStart, decimal dstEnd) => 
+    public static decimal2 remap([This] decimal2 a, decimal srcStart, decimal srcEnd, decimal dstStart, decimal dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static decimal dot(this decimal2 a, decimal2 b)
+    public static decimal dot([This] decimal2 a, decimal2 b)
     {
         return (decimal)(a.x * b.x + a.y * b.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal lengthsq(this decimal2 a)
+    public static decimal lengthsq([This] decimal2 a)
     {
-        return a.dot(a);
+        return (decimal)(a.x * a.x + a.y * a.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal distancesq(this decimal2 a, decimal2 b) => lengthsq(b - a);
+    public static decimal distancesq([This] decimal2 a, decimal2 b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static decimal2 square(this decimal2 a) => a * a;
+    public static decimal2 square([This] decimal2 a) => a * a;
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -8142,7 +7381,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static decimal2 fma(this decimal2 a, decimal2 b, decimal2 c)
+    public static decimal2 fma([This] decimal2 a, decimal2 b, decimal2 c)
     {
         return new(a.x.fma(b.x, c.x), a.y.fma(b.y, c.y));
     }
@@ -8155,7 +7394,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static decimal2 fms(this decimal2 a, decimal2 b, decimal2 c)
+    public static decimal2 fms([This] decimal2 a, decimal2 b, decimal2 c)
     {
         return new(a.x.fms(b.x, c.x), a.y.fms(b.y, c.y));
     }
@@ -8168,7 +7407,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static decimal2 fnma(this decimal2 a, decimal2 b, decimal2 c)
+    public static decimal2 fnma([This] decimal2 a, decimal2 b, decimal2 c)
     {
         return new(a.x.fnma(b.x, c.x), a.y.fnma(b.y, c.y));
     }
@@ -8181,7 +7420,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static decimal2 fsm(this decimal2 c, decimal2 a, decimal2 b) => fnma(a, b, c);
+    public static decimal2 fsm([This] decimal2 c, decimal2 a, decimal2 b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -8191,7 +7430,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static decimal2 fam(this decimal2 c, decimal2 a, decimal2 b) => fma(a, b, c);
+    public static decimal2 fam([This] decimal2 c, decimal2 a, decimal2 b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -8201,22 +7440,22 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static decimal2 mad(this decimal2 a, decimal2 b, decimal2 c) => fma(a, b, c);
+    public static decimal2 mad([This] decimal2 a, decimal2 b, decimal2 c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static decimal csum(this decimal2 a)
+    public static decimal csum([This] decimal2 a)
     {
         return (a.x + a.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal cmin(this decimal2 a)
+    public static decimal cmin([This] decimal2 a)
     {
         return a.x.min(a.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal cmax(this decimal2 a)
+    public static decimal cmax([This] decimal2 a)
     {
         return a.x.max(a.y);
     }
@@ -8315,96 +7554,97 @@ public partial struct decimal3
     public static decimal3 operator ++(decimal3 a) => a + One;
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static decimal3 abs(this decimal3 a)
+    public static decimal3 abs([This] decimal3 a)
     {
         return new(a.x.abs(), a.y.abs(), a.z.abs());
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal3 sign(this decimal3 a)
+    public static decimal3 sign([This] decimal3 a)
     {
         return new(a.x.sign(), a.y.sign(), a.z.sign());
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal3 min(this decimal3 a, decimal3 b)
+    public static decimal3 min([This] decimal3 a, decimal3 b)
     {
         return new(a.x.min(b.x), a.y.min(b.y), a.z.min(b.z));
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal3 max(this decimal3 a, decimal3 b)
+    public static decimal3 max([This] decimal3 a, decimal3 b)
     {
         return new(a.x.max(b.x), a.y.max(b.y), a.z.max(b.z));
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal3 clamp(this decimal3 v, decimal3 min, decimal3 max)
+    public static decimal3 clamp([This] decimal3 v, decimal3 min, decimal3 max)
     {
         return new(v.x.clamp(min.x, max.x), v.y.clamp(min.y, max.y), v.z.clamp(min.z, max.z));
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal3 clamp(this decimal3 v, decimal min, decimal max) => v.clamp(new decimal3(min), new decimal3(max));
+    public static decimal3 clamp([This] decimal3 v, decimal min, decimal max) => v.clamp(new decimal3(min), new decimal3(max));
 
     [MethodImpl(256 | 512)]
-    public static decimal3 lerp(this decimal3 t, decimal3 start, decimal3 end)
+    public static decimal3 lerp(decimal3 start, decimal3 end, [This] decimal3 t)
     {
         return start + t * (end - start);
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal3 lerp(this decimal t, decimal3 start, decimal3 end)
+    public static decimal3 lerp(decimal3 start, decimal3 end, [This] decimal t)
     {
         return start + t * (end - start);
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal3 lerp(this decimal3 t, decimal start, decimal end)
+    public static decimal3 lerp(decimal start, decimal end, [This] decimal3 t)
     {
         return start + t * (end - start);
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal3 unlerp(this decimal3 a, decimal3 start, decimal3 end) => (a - start) / (end - start);
+    public static decimal3 unlerp([This] decimal3 a, decimal3 start, decimal3 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static decimal3 unlerp(this decimal a, decimal3 start, decimal3 end) => (a - start) / (end - start);
+    public static decimal3 unlerp([This] decimal a, decimal3 start, decimal3 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static decimal3 unlerp(this decimal3 a, decimal start, decimal end) => (a - start) / (end - start);
+    public static decimal3 unlerp([This] decimal3 a, decimal start, decimal end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static decimal3 remap(this decimal3 a, decimal3 srcStart, decimal3 srcEnd, decimal3 dstStart, decimal3 dstEnd) => 
+    public static decimal3 remap([This] decimal3 a, decimal3 srcStart, decimal3 srcEnd, decimal3 dstStart, decimal3 dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static decimal3 remap(this decimal3 a, decimal srcStart, decimal srcEnd, decimal dstStart, decimal dstEnd) => 
+    public static decimal3 remap([This] decimal3 a, decimal srcStart, decimal srcEnd, decimal dstStart, decimal dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static decimal dot(this decimal3 a, decimal3 b)
+    public static decimal dot([This] decimal3 a, decimal3 b)
     {
         return (decimal)(a.x * b.x + a.y * b.y + a.z * b.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal3 cross(this decimal3 a, decimal3 b) => (a * b.yzx - a.yzx * b).yzx;
+    public static decimal3 cross([This] decimal3 a, decimal3 b) => (a * b.yzx - a.yzx * b).yzx;
 
     [MethodImpl(256 | 512)]
-    public static decimal lengthsq(this decimal3 a)
+    public static decimal lengthsq([This] decimal3 a)
     {
-        return a.dot(a);
+        return (decimal)(a.x * a.x + a.y * a.y + a.z * a.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal distancesq(this decimal3 a, decimal3 b) => lengthsq(b - a);
+    public static decimal distancesq([This] decimal3 a, decimal3 b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static decimal3 square(this decimal3 a) => a * a;
+    public static decimal3 square([This] decimal3 a) => a * a;
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -8414,7 +7654,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static decimal3 fma(this decimal3 a, decimal3 b, decimal3 c)
+    public static decimal3 fma([This] decimal3 a, decimal3 b, decimal3 c)
     {
         return new(a.x.fma(b.x, c.x), a.y.fma(b.y, c.y), a.z.fma(b.z, c.z));
     }
@@ -8427,7 +7667,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static decimal3 fms(this decimal3 a, decimal3 b, decimal3 c)
+    public static decimal3 fms([This] decimal3 a, decimal3 b, decimal3 c)
     {
         return new(a.x.fms(b.x, c.x), a.y.fms(b.y, c.y), a.z.fms(b.z, c.z));
     }
@@ -8440,7 +7680,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static decimal3 fnma(this decimal3 a, decimal3 b, decimal3 c)
+    public static decimal3 fnma([This] decimal3 a, decimal3 b, decimal3 c)
     {
         return new(a.x.fnma(b.x, c.x), a.y.fnma(b.y, c.y), a.z.fnma(b.z, c.z));
     }
@@ -8453,7 +7693,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static decimal3 fsm(this decimal3 c, decimal3 a, decimal3 b) => fnma(a, b, c);
+    public static decimal3 fsm([This] decimal3 c, decimal3 a, decimal3 b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -8463,7 +7703,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static decimal3 fam(this decimal3 c, decimal3 a, decimal3 b) => fma(a, b, c);
+    public static decimal3 fam([This] decimal3 c, decimal3 a, decimal3 b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -8473,22 +7713,22 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static decimal3 mad(this decimal3 a, decimal3 b, decimal3 c) => fma(a, b, c);
+    public static decimal3 mad([This] decimal3 a, decimal3 b, decimal3 c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static decimal csum(this decimal3 a)
+    public static decimal csum([This] decimal3 a)
     {
         return (a.x + a.y + a.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal cmin(this decimal3 a)
+    public static decimal cmin([This] decimal3 a)
     {
         return a.x.min(a.y).min(a.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal cmax(this decimal3 a)
+    public static decimal cmax([This] decimal3 a)
     {
         return a.x.max(a.y).max(a.z);
     }
@@ -8587,93 +7827,94 @@ public partial struct decimal4
     public static decimal4 operator ++(decimal4 a) => a + One;
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static decimal4 abs(this decimal4 a)
+    public static decimal4 abs([This] decimal4 a)
     {
         return new(a.x.abs(), a.y.abs(), a.z.abs(), a.w.abs());
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal4 sign(this decimal4 a)
+    public static decimal4 sign([This] decimal4 a)
     {
         return new(a.x.sign(), a.y.sign(), a.z.sign(), a.w.sign());
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal4 min(this decimal4 a, decimal4 b)
+    public static decimal4 min([This] decimal4 a, decimal4 b)
     {
         return new(a.x.min(b.x), a.y.min(b.y), a.z.min(b.z), a.w.min(b.w));
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal4 max(this decimal4 a, decimal4 b)
+    public static decimal4 max([This] decimal4 a, decimal4 b)
     {
         return new(a.x.max(b.x), a.y.max(b.y), a.z.max(b.z), a.w.max(b.w));
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal4 clamp(this decimal4 v, decimal4 min, decimal4 max)
+    public static decimal4 clamp([This] decimal4 v, decimal4 min, decimal4 max)
     {
         return new(v.x.clamp(min.x, max.x), v.y.clamp(min.y, max.y), v.z.clamp(min.z, max.z), v.w.clamp(min.w, max.w));
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal4 clamp(this decimal4 v, decimal min, decimal max) => v.clamp(new decimal4(min), new decimal4(max));
+    public static decimal4 clamp([This] decimal4 v, decimal min, decimal max) => v.clamp(new decimal4(min), new decimal4(max));
 
     [MethodImpl(256 | 512)]
-    public static decimal4 lerp(this decimal4 t, decimal4 start, decimal4 end)
+    public static decimal4 lerp(decimal4 start, decimal4 end, [This] decimal4 t)
     {
         return start + t * (end - start);
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal4 lerp(this decimal t, decimal4 start, decimal4 end)
+    public static decimal4 lerp(decimal4 start, decimal4 end, [This] decimal t)
     {
         return start + t * (end - start);
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal4 lerp(this decimal4 t, decimal start, decimal end)
+    public static decimal4 lerp(decimal start, decimal end, [This] decimal4 t)
     {
         return start + t * (end - start);
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal4 unlerp(this decimal4 a, decimal4 start, decimal4 end) => (a - start) / (end - start);
+    public static decimal4 unlerp([This] decimal4 a, decimal4 start, decimal4 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static decimal4 unlerp(this decimal a, decimal4 start, decimal4 end) => (a - start) / (end - start);
+    public static decimal4 unlerp([This] decimal a, decimal4 start, decimal4 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static decimal4 unlerp(this decimal4 a, decimal start, decimal end) => (a - start) / (end - start);
+    public static decimal4 unlerp([This] decimal4 a, decimal start, decimal end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static decimal4 remap(this decimal4 a, decimal4 srcStart, decimal4 srcEnd, decimal4 dstStart, decimal4 dstEnd) => 
+    public static decimal4 remap([This] decimal4 a, decimal4 srcStart, decimal4 srcEnd, decimal4 dstStart, decimal4 dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static decimal4 remap(this decimal4 a, decimal srcStart, decimal srcEnd, decimal dstStart, decimal dstEnd) => 
+    public static decimal4 remap([This] decimal4 a, decimal srcStart, decimal srcEnd, decimal dstStart, decimal dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static decimal dot(this decimal4 a, decimal4 b)
+    public static decimal dot([This] decimal4 a, decimal4 b)
     {
         return (decimal)(a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal lengthsq(this decimal4 a)
+    public static decimal lengthsq([This] decimal4 a)
     {
-        return a.dot(a);
+        return (decimal)(a.x * a.x + a.y * a.y + a.z * a.z + a.w * a.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal distancesq(this decimal4 a, decimal4 b) => lengthsq(b - a);
+    public static decimal distancesq([This] decimal4 a, decimal4 b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static decimal4 square(this decimal4 a) => a * a;
+    public static decimal4 square([This] decimal4 a) => a * a;
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -8683,7 +7924,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static decimal4 fma(this decimal4 a, decimal4 b, decimal4 c)
+    public static decimal4 fma([This] decimal4 a, decimal4 b, decimal4 c)
     {
         return new(a.x.fma(b.x, c.x), a.y.fma(b.y, c.y), a.z.fma(b.z, c.z), a.w.fma(b.w, c.w));
     }
@@ -8696,7 +7937,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static decimal4 fms(this decimal4 a, decimal4 b, decimal4 c)
+    public static decimal4 fms([This] decimal4 a, decimal4 b, decimal4 c)
     {
         return new(a.x.fms(b.x, c.x), a.y.fms(b.y, c.y), a.z.fms(b.z, c.z), a.w.fms(b.w, c.w));
     }
@@ -8709,7 +7950,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static decimal4 fnma(this decimal4 a, decimal4 b, decimal4 c)
+    public static decimal4 fnma([This] decimal4 a, decimal4 b, decimal4 c)
     {
         return new(a.x.fnma(b.x, c.x), a.y.fnma(b.y, c.y), a.z.fnma(b.z, c.z), a.w.fnma(b.w, c.w));
     }
@@ -8722,7 +7963,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static decimal4 fsm(this decimal4 c, decimal4 a, decimal4 b) => fnma(a, b, c);
+    public static decimal4 fsm([This] decimal4 c, decimal4 a, decimal4 b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -8732,7 +7973,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static decimal4 fam(this decimal4 c, decimal4 a, decimal4 b) => fma(a, b, c);
+    public static decimal4 fam([This] decimal4 c, decimal4 a, decimal4 b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -8742,22 +7983,22 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static decimal4 mad(this decimal4 a, decimal4 b, decimal4 c) => fma(a, b, c);
+    public static decimal4 mad([This] decimal4 a, decimal4 b, decimal4 c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static decimal csum(this decimal4 a)
+    public static decimal csum([This] decimal4 a)
     {
         return (a.x + a.y + a.z + a.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal cmin(this decimal4 a)
+    public static decimal cmin([This] decimal4 a)
     {
         return a.x.min(a.y).min(a.z).min(a.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal cmax(this decimal4 a)
+    public static decimal cmax([This] decimal4 a)
     {
         return a.x.max(a.y).max(a.z).max(a.w);
     }
@@ -8856,93 +8097,94 @@ public partial struct half2
     public static half2 operator ++(half2 a) => a + One;
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half2 abs(this half2 a)
+    public static half2 abs([This] half2 a)
     {
         return new(a.x.abs(), a.y.abs());
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 sign(this half2 a)
+    public static half2 sign([This] half2 a)
     {
         return new(a.x.sign(), a.y.sign());
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 min(this half2 a, half2 b)
+    public static half2 min([This] half2 a, half2 b)
     {
         return new(a.x.min(b.x), a.y.min(b.y));
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 max(this half2 a, half2 b)
+    public static half2 max([This] half2 a, half2 b)
     {
         return new(a.x.max(b.x), a.y.max(b.y));
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 clamp(this half2 v, half2 min, half2 max)
+    public static half2 clamp([This] half2 v, half2 min, half2 max)
     {
         return new(v.x.clamp(min.x, max.x), v.y.clamp(min.y, max.y));
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 clamp(this half2 v, half min, half max) => v.clamp(new half2(min), new half2(max));
+    public static half2 clamp([This] half2 v, half min, half max) => v.clamp(new half2(min), new half2(max));
 
     [MethodImpl(256 | 512)]
-    public static half2 lerp(this half2 t, half2 start, half2 end)
+    public static half2 lerp(half2 start, half2 end, [This] half2 t)
     {
         return start + t * (end - start);
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 lerp(this half t, half2 start, half2 end)
+    public static half2 lerp(half2 start, half2 end, [This] half t)
     {
         return start + t * (end - start);
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 lerp(this half2 t, half start, half end)
+    public static half2 lerp(half start, half end, [This] half2 t)
     {
         return start + t * (half)(end - start);
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 unlerp(this half2 a, half2 start, half2 end) => (a - start) / (end - start);
+    public static half2 unlerp([This] half2 a, half2 start, half2 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static half2 unlerp(this half a, half2 start, half2 end) => (a - start) / (end - start);
+    public static half2 unlerp([This] half a, half2 start, half2 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static half2 unlerp(this half2 a, half start, half end) => (a - start) / (half)(end - start);
+    public static half2 unlerp([This] half2 a, half start, half end) => (a - start) / (half)(end - start);
 
     [MethodImpl(256 | 512)]
-    public static half2 remap(this half2 a, half2 srcStart, half2 srcEnd, half2 dstStart, half2 dstEnd) => 
+    public static half2 remap([This] half2 a, half2 srcStart, half2 srcEnd, half2 dstStart, half2 dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static half2 remap(this half2 a, half srcStart, half srcEnd, half dstStart, half dstEnd) => 
+    public static half2 remap([This] half2 a, half srcStart, half srcEnd, half dstStart, half dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static half dot(this half2 a, half2 b)
+    public static half dot([This] half2 a, half2 b)
     {
         return (half)(a.x * b.x + a.y * b.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static half lengthsq(this half2 a)
+    public static half lengthsq([This] half2 a)
     {
-        return a.dot(a);
+        return (half)(a.x * a.x + a.y * a.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static half distancesq(this half2 a, half2 b) => lengthsq(b - a);
+    public static half distancesq([This] half2 a, half2 b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static half2 square(this half2 a) => a * a;
+    public static half2 square([This] half2 a) => a * a;
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -8952,7 +8194,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static half2 fma(this half2 a, half2 b, half2 c)
+    public static half2 fma([This] half2 a, half2 b, half2 c)
     {
         return new(a.x.fma(b.x, c.x), a.y.fma(b.y, c.y));
     }
@@ -8965,7 +8207,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static half2 fms(this half2 a, half2 b, half2 c)
+    public static half2 fms([This] half2 a, half2 b, half2 c)
     {
         return new(a.x.fms(b.x, c.x), a.y.fms(b.y, c.y));
     }
@@ -8978,7 +8220,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static half2 fnma(this half2 a, half2 b, half2 c)
+    public static half2 fnma([This] half2 a, half2 b, half2 c)
     {
         return new(a.x.fnma(b.x, c.x), a.y.fnma(b.y, c.y));
     }
@@ -8991,7 +8233,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static half2 fsm(this half2 c, half2 a, half2 b) => fnma(a, b, c);
+    public static half2 fsm([This] half2 c, half2 a, half2 b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -9001,7 +8243,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static half2 fam(this half2 c, half2 a, half2 b) => fma(a, b, c);
+    public static half2 fam([This] half2 c, half2 a, half2 b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -9011,22 +8253,22 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static half2 mad(this half2 a, half2 b, half2 c) => fma(a, b, c);
+    public static half2 mad([This] half2 a, half2 b, half2 c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static half csum(this half2 a)
+    public static half csum([This] half2 a)
     {
         return (half)(a.x + a.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static half cmin(this half2 a)
+    public static half cmin([This] half2 a)
     {
         return a.x.min(a.y);
     }
 
     [MethodImpl(256 | 512)]
-    public static half cmax(this half2 a)
+    public static half cmax([This] half2 a)
     {
         return a.x.max(a.y);
     }
@@ -9125,96 +8367,97 @@ public partial struct half3
     public static half3 operator ++(half3 a) => a + One;
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half3 abs(this half3 a)
+    public static half3 abs([This] half3 a)
     {
         return new(a.x.abs(), a.y.abs(), a.z.abs());
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 sign(this half3 a)
+    public static half3 sign([This] half3 a)
     {
         return new(a.x.sign(), a.y.sign(), a.z.sign());
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 min(this half3 a, half3 b)
+    public static half3 min([This] half3 a, half3 b)
     {
         return new(a.x.min(b.x), a.y.min(b.y), a.z.min(b.z));
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 max(this half3 a, half3 b)
+    public static half3 max([This] half3 a, half3 b)
     {
         return new(a.x.max(b.x), a.y.max(b.y), a.z.max(b.z));
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 clamp(this half3 v, half3 min, half3 max)
+    public static half3 clamp([This] half3 v, half3 min, half3 max)
     {
         return new(v.x.clamp(min.x, max.x), v.y.clamp(min.y, max.y), v.z.clamp(min.z, max.z));
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 clamp(this half3 v, half min, half max) => v.clamp(new half3(min), new half3(max));
+    public static half3 clamp([This] half3 v, half min, half max) => v.clamp(new half3(min), new half3(max));
 
     [MethodImpl(256 | 512)]
-    public static half3 lerp(this half3 t, half3 start, half3 end)
+    public static half3 lerp(half3 start, half3 end, [This] half3 t)
     {
         return start + t * (end - start);
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 lerp(this half t, half3 start, half3 end)
+    public static half3 lerp(half3 start, half3 end, [This] half t)
     {
         return start + t * (end - start);
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 lerp(this half3 t, half start, half end)
+    public static half3 lerp(half start, half end, [This] half3 t)
     {
         return start + t * (half)(end - start);
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 unlerp(this half3 a, half3 start, half3 end) => (a - start) / (end - start);
+    public static half3 unlerp([This] half3 a, half3 start, half3 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static half3 unlerp(this half a, half3 start, half3 end) => (a - start) / (end - start);
+    public static half3 unlerp([This] half a, half3 start, half3 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static half3 unlerp(this half3 a, half start, half end) => (a - start) / (half)(end - start);
+    public static half3 unlerp([This] half3 a, half start, half end) => (a - start) / (half)(end - start);
 
     [MethodImpl(256 | 512)]
-    public static half3 remap(this half3 a, half3 srcStart, half3 srcEnd, half3 dstStart, half3 dstEnd) => 
+    public static half3 remap([This] half3 a, half3 srcStart, half3 srcEnd, half3 dstStart, half3 dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static half3 remap(this half3 a, half srcStart, half srcEnd, half dstStart, half dstEnd) => 
+    public static half3 remap([This] half3 a, half srcStart, half srcEnd, half dstStart, half dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static half dot(this half3 a, half3 b)
+    public static half dot([This] half3 a, half3 b)
     {
         return (half)(a.x * b.x + a.y * b.y + a.z * b.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 cross(this half3 a, half3 b) => (a * b.yzx - a.yzx * b).yzx;
+    public static half3 cross([This] half3 a, half3 b) => (a * b.yzx - a.yzx * b).yzx;
 
     [MethodImpl(256 | 512)]
-    public static half lengthsq(this half3 a)
+    public static half lengthsq([This] half3 a)
     {
-        return a.dot(a);
+        return (half)(a.x * a.x + a.y * a.y + a.z * a.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static half distancesq(this half3 a, half3 b) => lengthsq(b - a);
+    public static half distancesq([This] half3 a, half3 b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static half3 square(this half3 a) => a * a;
+    public static half3 square([This] half3 a) => a * a;
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -9224,7 +8467,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static half3 fma(this half3 a, half3 b, half3 c)
+    public static half3 fma([This] half3 a, half3 b, half3 c)
     {
         return new(a.x.fma(b.x, c.x), a.y.fma(b.y, c.y), a.z.fma(b.z, c.z));
     }
@@ -9237,7 +8480,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static half3 fms(this half3 a, half3 b, half3 c)
+    public static half3 fms([This] half3 a, half3 b, half3 c)
     {
         return new(a.x.fms(b.x, c.x), a.y.fms(b.y, c.y), a.z.fms(b.z, c.z));
     }
@@ -9250,7 +8493,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static half3 fnma(this half3 a, half3 b, half3 c)
+    public static half3 fnma([This] half3 a, half3 b, half3 c)
     {
         return new(a.x.fnma(b.x, c.x), a.y.fnma(b.y, c.y), a.z.fnma(b.z, c.z));
     }
@@ -9263,7 +8506,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static half3 fsm(this half3 c, half3 a, half3 b) => fnma(a, b, c);
+    public static half3 fsm([This] half3 c, half3 a, half3 b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -9273,7 +8516,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static half3 fam(this half3 c, half3 a, half3 b) => fma(a, b, c);
+    public static half3 fam([This] half3 c, half3 a, half3 b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -9283,22 +8526,22 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static half3 mad(this half3 a, half3 b, half3 c) => fma(a, b, c);
+    public static half3 mad([This] half3 a, half3 b, half3 c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static half csum(this half3 a)
+    public static half csum([This] half3 a)
     {
         return (half)(a.x + a.y + a.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static half cmin(this half3 a)
+    public static half cmin([This] half3 a)
     {
         return a.x.min(a.y).min(a.z);
     }
 
     [MethodImpl(256 | 512)]
-    public static half cmax(this half3 a)
+    public static half cmax([This] half3 a)
     {
         return a.x.max(a.y).max(a.z);
     }
@@ -9397,93 +8640,94 @@ public partial struct half4
     public static half4 operator ++(half4 a) => a + One;
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half4 abs(this half4 a)
+    public static half4 abs([This] half4 a)
     {
         return new(a.x.abs(), a.y.abs(), a.z.abs(), a.w.abs());
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 sign(this half4 a)
+    public static half4 sign([This] half4 a)
     {
         return new(a.x.sign(), a.y.sign(), a.z.sign(), a.w.sign());
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 min(this half4 a, half4 b)
+    public static half4 min([This] half4 a, half4 b)
     {
         return new(a.x.min(b.x), a.y.min(b.y), a.z.min(b.z), a.w.min(b.w));
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 max(this half4 a, half4 b)
+    public static half4 max([This] half4 a, half4 b)
     {
         return new(a.x.max(b.x), a.y.max(b.y), a.z.max(b.z), a.w.max(b.w));
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 clamp(this half4 v, half4 min, half4 max)
+    public static half4 clamp([This] half4 v, half4 min, half4 max)
     {
         return new(v.x.clamp(min.x, max.x), v.y.clamp(min.y, max.y), v.z.clamp(min.z, max.z), v.w.clamp(min.w, max.w));
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 clamp(this half4 v, half min, half max) => v.clamp(new half4(min), new half4(max));
+    public static half4 clamp([This] half4 v, half min, half max) => v.clamp(new half4(min), new half4(max));
 
     [MethodImpl(256 | 512)]
-    public static half4 lerp(this half4 t, half4 start, half4 end)
+    public static half4 lerp(half4 start, half4 end, [This] half4 t)
     {
         return start + t * (end - start);
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 lerp(this half t, half4 start, half4 end)
+    public static half4 lerp(half4 start, half4 end, [This] half t)
     {
         return start + t * (end - start);
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 lerp(this half4 t, half start, half end)
+    public static half4 lerp(half start, half end, [This] half4 t)
     {
         return start + t * (half)(end - start);
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 unlerp(this half4 a, half4 start, half4 end) => (a - start) / (end - start);
+    public static half4 unlerp([This] half4 a, half4 start, half4 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static half4 unlerp(this half a, half4 start, half4 end) => (a - start) / (end - start);
+    public static half4 unlerp([This] half a, half4 start, half4 end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static half4 unlerp(this half4 a, half start, half end) => (a - start) / (half)(end - start);
+    public static half4 unlerp([This] half4 a, half start, half end) => (a - start) / (half)(end - start);
 
     [MethodImpl(256 | 512)]
-    public static half4 remap(this half4 a, half4 srcStart, half4 srcEnd, half4 dstStart, half4 dstEnd) => 
+    public static half4 remap([This] half4 a, half4 srcStart, half4 srcEnd, half4 dstStart, half4 dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static half4 remap(this half4 a, half srcStart, half srcEnd, half dstStart, half dstEnd) => 
+    public static half4 remap([This] half4 a, half srcStart, half srcEnd, half dstStart, half dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static half dot(this half4 a, half4 b)
+    public static half dot([This] half4 a, half4 b)
     {
         return (half)(a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static half lengthsq(this half4 a)
+    public static half lengthsq([This] half4 a)
     {
-        return a.dot(a);
+        return (half)(a.x * a.x + a.y * a.y + a.z * a.z + a.w * a.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static half distancesq(this half4 a, half4 b) => lengthsq(b - a);
+    public static half distancesq([This] half4 a, half4 b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static half4 square(this half4 a) => a * a;
+    public static half4 square([This] half4 a) => a * a;
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -9493,7 +8737,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static half4 fma(this half4 a, half4 b, half4 c)
+    public static half4 fma([This] half4 a, half4 b, half4 c)
     {
         return new(a.x.fma(b.x, c.x), a.y.fma(b.y, c.y), a.z.fma(b.z, c.z), a.w.fma(b.w, c.w));
     }
@@ -9506,7 +8750,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static half4 fms(this half4 a, half4 b, half4 c)
+    public static half4 fms([This] half4 a, half4 b, half4 c)
     {
         return new(a.x.fms(b.x, c.x), a.y.fms(b.y, c.y), a.z.fms(b.z, c.z), a.w.fms(b.w, c.w));
     }
@@ -9519,7 +8763,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static half4 fnma(this half4 a, half4 b, half4 c)
+    public static half4 fnma([This] half4 a, half4 b, half4 c)
     {
         return new(a.x.fnma(b.x, c.x), a.y.fnma(b.y, c.y), a.z.fnma(b.z, c.z), a.w.fnma(b.w, c.w));
     }
@@ -9532,7 +8776,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static half4 fsm(this half4 c, half4 a, half4 b) => fnma(a, b, c);
+    public static half4 fsm([This] half4 c, half4 a, half4 b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -9542,7 +8786,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static half4 fam(this half4 c, half4 a, half4 b) => fma(a, b, c);
+    public static half4 fam([This] half4 c, half4 a, half4 b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -9552,22 +8796,22 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static half4 mad(this half4 a, half4 b, half4 c) => fma(a, b, c);
+    public static half4 mad([This] half4 a, half4 b, half4 c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static half csum(this half4 a)
+    public static half csum([This] half4 a)
     {
         return (half)(a.x + a.y + a.z + a.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static half cmin(this half4 a)
+    public static half cmin([This] half4 a)
     {
         return a.x.min(a.y).min(a.z).min(a.w);
     }
 
     [MethodImpl(256 | 512)]
-    public static half cmax(this half4 a)
+    public static half cmax([This] half4 a)
     {
         return a.x.max(a.y).max(a.z).max(a.w);
     }

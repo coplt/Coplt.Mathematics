@@ -4,7 +4,7 @@ namespace Coplt.Mathematics;
 
 #region float2
 
-public static partial class math
+public static partial class math_ex
 {
     /// <summary>
     /// Replace X component
@@ -33,7 +33,7 @@ public static partial class math
 
 #region double2
 
-public static partial class math
+public static partial class math_ex
 {
     /// <summary>
     /// Replace X component
@@ -62,7 +62,7 @@ public static partial class math
 
 #region short2
 
-public static partial class math
+public static partial class math_ex
 {
     /// <summary>
     /// Replace X component
@@ -91,7 +91,7 @@ public static partial class math
 
 #region ushort2
 
-public static partial class math
+public static partial class math_ex
 {
     /// <summary>
     /// Replace X component
@@ -120,7 +120,7 @@ public static partial class math
 
 #region int2
 
-public static partial class math
+public static partial class math_ex
 {
     /// <summary>
     /// Replace X component
@@ -149,7 +149,7 @@ public static partial class math
 
 #region uint2
 
-public static partial class math
+public static partial class math_ex
 {
     /// <summary>
     /// Replace X component
@@ -178,7 +178,7 @@ public static partial class math
 
 #region long2
 
-public static partial class math
+public static partial class math_ex
 {
     /// <summary>
     /// Replace X component
@@ -207,7 +207,7 @@ public static partial class math
 
 #region ulong2
 
-public static partial class math
+public static partial class math_ex
 {
     /// <summary>
     /// Replace X component
@@ -236,7 +236,7 @@ public static partial class math
 
 #region decimal2
 
-public static partial class math
+public static partial class math_ex
 {
     /// <summary>
     /// Replace X component
@@ -265,7 +265,7 @@ public static partial class math
 
 #region half2
 
-public static partial class math
+public static partial class math_ex
 {
     /// <summary>
     /// Replace X component
@@ -294,7 +294,7 @@ public static partial class math
 
 #region b16v2
 
-public static partial class math
+public static partial class math_ex
 {
     /// <summary>
     /// Replace X component
@@ -323,7 +323,7 @@ public static partial class math
 
 #region b32v2
 
-public static partial class math
+public static partial class math_ex
 {
     /// <summary>
     /// Replace X component
@@ -352,7 +352,7 @@ public static partial class math
 
 #region b64v2
 
-public static partial class math
+public static partial class math_ex
 {
     /// <summary>
     /// Replace X component

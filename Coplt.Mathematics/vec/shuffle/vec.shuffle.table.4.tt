@@ -14,6 +14,7 @@ namespace Coplt.Mathematics;
         var typeName = $"{typ.name}4";
 #>
 
+[Ex]
 public static partial class math
 {
     /// <summary>
@@ -27,24 +28,19 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> shuffle(this <#= typeName #> a, <#= typeName #> b, Shuffle42 lh)
+    public static <#= typeName #> shuffle([This] <#= typeName #> a, <#= typeName #> b, Shuffle42 lh)
     {
 <#
         if (typ.simd)
         {
 #>
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle(a.vector, b.vector, lh));
-        #else // NET8_0_OR_GREATER
 <#
         }
-#>
-        return soft_shuffle.Shuffle<<#= typ.compType #>, <#= typeName #>>(a, b, lh);
-<#
-        if (typ.simd)
+        else
         {
 #>
-        #endif // NET8_0_OR_GREATER
+        return soft_shuffle.Shuffle<<#= typ.compType #>, <#= typeName #>>(a, b, lh);
 <#
         }
 #>

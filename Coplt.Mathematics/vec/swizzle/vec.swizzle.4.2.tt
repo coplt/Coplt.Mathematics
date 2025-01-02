@@ -32,7 +32,7 @@ public partial struct <#= typeName #>
         foreach (var tuple in car_pd_3)
         {
             var (a, b) = tuple;
-            
+
             int[] inv = [0, 0, 0, 0];
             int[] sel = [-1, -1, -1, -1];
             inv[b] = 1;
@@ -47,31 +47,30 @@ public partial struct <#= typeName #>
             for (var t = 0; t < 2; t++)
             {
 #>
-    public <#= retTypeName #> <#= t == 0 ? xyzw : rgba #>
+    public <#= no_overlap || ordered_lower || ordered_upper ? "" : "readonly " #><#= retTypeName #> <#= t == 0 ? xyzw : rgba #>
     {
 <#
                 if (typ.simd)
                 {
-                    WriteLine("#if NET8_0_OR_GREATER");
                     if (ordered_lower)
                     {
 #>
         [MethodImpl(256 | 512)]
-        get => new(vector.GetLower());
+        readonly get => new(vector.GetLower());
 <#
                     }
                     else if (ordered_upper)
                     {
 #>
         [MethodImpl(256 | 512)]
-        get => new(vector.GetUpper());
+        readonly get => new(vector.GetUpper());
 <#
                     }
                     else
                     {
 #>
         [MethodImpl(256 | 512)]
-        get => new(Vector<#= bitSize4 #>.Shuffle(vector, Vector<#= bitSize4 #>.Create(<#= typ.shuffleCast #><#= a #>, <#= b #>, 0, 0)).GetLower());
+        <#= no_overlap ? "readonly " : "" #>get => new(Vector<#= bitSize4 #>.Shuffle(vector, Vector<#= bitSize4 #>.Create(<#= typ.shuffleCast #><#= a #>, <#= b #>, 0, 0)).GetLower());
 <#
                     }
                     if (no_overlap)
@@ -99,20 +98,21 @@ public partial struct <#= typeName #>
 <#
                         }
                     }
-                    WriteLine("#else // NET8_0_OR_GREATER");
                 }
+                else
+                {
 #>
         [MethodImpl(256 | 512)]
-        get => new(<#= Typ.xyzw[a] #>, <#= Typ.xyzw[b] #>);
+        <#= no_overlap ? "readonly " : "" #>get => new(<#= Typ.xyzw[a] #>, <#= Typ.xyzw[b] #>);
 <#
-                if (no_overlap)
-                {
+                    if (no_overlap)
+                    {
 #>
         [MethodImpl(256 | 512)]
         set { <#= Typ.xyzw[a] #> = value.x; <#= Typ.xyzw[b] #> = value.y; }
 <#
+                    }
                 }
-                if (typ.simd) WriteLine("#endif // NET8_0_OR_GREATER");
 #>
     }
 <#

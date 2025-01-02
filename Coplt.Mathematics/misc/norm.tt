@@ -25,10 +25,8 @@ namespace Coplt.Mathematics.Numerics;
 /// </summary>
 [Serializable]
 public readonly partial struct <#= typeName #> : IEquatable<<#= typeName #>>, IComparable<<#= typeName #>>, IComparable
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<<#= typeName #>, <#= typeName #>, bool>
     , IComparisonOperators<<#= typeName #>, <#= typeName #>, bool>
-    #endif
 {
     private readonly <#= innerTypeName #> inner;
 

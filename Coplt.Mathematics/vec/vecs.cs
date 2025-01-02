@@ -48,7 +48,6 @@ public partial struct float2 :
 
     #region fields
 
-    #if NET8_0_OR_GREATER
     internal Vector64<float> vector;
     
     #region Unsafe Inner
@@ -57,9 +56,11 @@ public partial struct float2 :
     public static explicit operator Vector64<float>(float2 self) => self.vector;
 
     [MethodImpl(256 | 512), CpuOnly]
-    public Vector64<float> UnsafeGetInner() => vector;
+    public readonly Vector64<float> UnsafeGetInner() => vector;
     [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
     public ref Vector64<float> UnsafeGetInnerRef() => ref vector;
+    [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
+    public readonly ref readonly Vector64<float> UnsafeGetInnerRefRo() => ref vector;
     [MethodImpl(256 | 512), CpuOnly]
     public void UnsafeSetInner(Vector64<float> vector) => this.vector = vector;
    
@@ -68,46 +69,28 @@ public partial struct float2 :
     public float x
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(0);
+        readonly get => vector.GetElement(0);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(0, value);
     }
     public float y
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(1);
+        readonly get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(1, value);
     }
-    #else // NET8_0_OR_GREATER
-    private float _x;
-    public float x
-    {
-        [MethodImpl(256 | 512)]
-        get => _x;
-        [MethodImpl(256 | 512)]
-        set => _x = value;
-    }
-    private float _y;
-    public float y
-    {
-        [MethodImpl(256 | 512)]
-        get => _y;
-        [MethodImpl(256 | 512)]
-        set => _y = value;
-    }
-    #endif // NET8_0_OR_GREATER
     public float r
     {
         [MethodImpl(256 | 512)]
-        get => x;
+        readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
     public float g
     {
         [MethodImpl(256 | 512)]
-        get => y;
+        readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
@@ -116,22 +99,15 @@ public partial struct float2 :
 
     #region ctors
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512), CpuOnly]
     internal float2(Vector64<float> vector) => this.vector = vector;
     [MethodImpl(256 | 512), CpuOnly]
     public static float2 UnsafeFromInner(Vector64<float> vector) => new(vector);
-    #endif // NET8_0_OR_GREATER
 
     [MethodImpl(256 | 512)]
     public float2(float x, float y)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector64.Create(x, y);
-        #else // NET8_0_OR_GREATER
-        this.x = x;
-        this.y = y;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -146,12 +122,7 @@ public partial struct float2 :
     [MethodImpl(256 | 512)]
     public float2(float value)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector64.Create(value);
-        #else // NET8_0_OR_GREATER
-        x = value;
-        y = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -160,11 +131,7 @@ public partial struct float2 :
     [MethodImpl(256 | 512)]
     internal float2(float value, is_scalar _)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector64.CreateScalar(value);
-        #else // NET8_0_OR_GREATER
-        this.x = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -173,12 +140,7 @@ public partial struct float2 :
     [MethodImpl(256 | 512), CpuOnly]
     public float2(ReadOnlySpan<float> span)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector64.LoadUnsafe(in MemoryMarshal.Cast<float, float>(span)[0]);
-        #else // NET8_0_OR_GREATER
-        this.x = span[0];
-        this.y = span[1];
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -187,12 +149,7 @@ public partial struct float2 :
     [MethodImpl(256 | 512), CpuOnly]
     public unsafe float2(float* ptr)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector64.Load((float*)ptr);
-        #else // NET8_0_OR_GREATER
-        this.x = ptr[0];
-        this.y = ptr[1];
-        #endif // NET8_0_OR_GREATER
     }
 
     #endregion // ctors
@@ -200,7 +157,7 @@ public partial struct float2 :
     #region deconstruct
 
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out float x, out float y)
+    public readonly void Deconstruct(out float x, out float y)
     {
         x = this.x;
         y = this.y;
@@ -213,7 +170,7 @@ public partial struct float2 :
     public float this[int i]
     {
         [MethodImpl(256 | 512)]
-        get => i switch
+        readonly get => i switch
         {
             0 => x,
             1 => y,
@@ -237,6 +194,15 @@ public partial struct float2 :
     }
 
     #endregion // index
+}
+
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static float2 float2(float value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static float2 float2(float x, float y) => new(x, y);
 }
 
 #endregion // float2
@@ -287,7 +253,6 @@ public partial struct float3 :
 
     #region fields
 
-    #if NET8_0_OR_GREATER
     internal Vector128<float> vector;
     
     #region Unsafe Inner
@@ -296,9 +261,11 @@ public partial struct float3 :
     public static explicit operator Vector128<float>(float3 self) => self.vector;
 
     [MethodImpl(256 | 512), CpuOnly]
-    public Vector128<float> UnsafeGetInner() => vector;
+    public readonly Vector128<float> UnsafeGetInner() => vector;
     [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
     public ref Vector128<float> UnsafeGetInnerRef() => ref vector;
+    [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
+    public readonly ref readonly Vector128<float> UnsafeGetInnerRefRo() => ref vector;
     [MethodImpl(256 | 512), CpuOnly]
     public void UnsafeSetInner(Vector128<float> vector) => this.vector = vector;
    
@@ -307,69 +274,42 @@ public partial struct float3 :
     public float x
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(0);
+        readonly get => vector.GetElement(0);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(0, value);
     }
     public float y
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(1);
+        readonly get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(1, value);
     }
     public float z
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(2);
+        readonly get => vector.GetElement(2);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(2, value);
     }
-    #else // NET8_0_OR_GREATER
-    private float _x;
-    public float x
-    {
-        [MethodImpl(256 | 512)]
-        get => _x;
-        [MethodImpl(256 | 512)]
-        set => _x = value;
-    }
-    private float _y;
-    public float y
-    {
-        [MethodImpl(256 | 512)]
-        get => _y;
-        [MethodImpl(256 | 512)]
-        set => _y = value;
-    }
-    private float _z;
-    public float z
-    {
-        [MethodImpl(256 | 512)]
-        get => _z;
-        [MethodImpl(256 | 512)]
-        set => _z = value;
-    }
-    private float _align;
-    #endif // NET8_0_OR_GREATER
     public float r
     {
         [MethodImpl(256 | 512)]
-        get => x;
+        readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
     public float g
     {
         [MethodImpl(256 | 512)]
-        get => y;
+        readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
     public float b
     {
         [MethodImpl(256 | 512)]
-        get => z;
+        readonly get => z;
         [MethodImpl(256 | 512)]
         set => z = value;
     }
@@ -378,23 +318,15 @@ public partial struct float3 :
 
     #region ctors
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512), CpuOnly]
     internal float3(Vector128<float> vector) => this.vector = vector;
     [MethodImpl(256 | 512), CpuOnly]
     public static float3 UnsafeFromInner(Vector128<float> vector) => new(vector);
-    #endif // NET8_0_OR_GREATER
 
     [MethodImpl(256 | 512)]
     public float3(float x, float y, float z)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.Create(x, y, z, default);
-        #else // NET8_0_OR_GREATER
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -409,13 +341,7 @@ public partial struct float3 :
     [MethodImpl(256 | 512)]
     public float3(float value)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.Create(value, value, value, default);
-        #else // NET8_0_OR_GREATER
-        x = value;
-        y = value;
-        z = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -424,11 +350,7 @@ public partial struct float3 :
     [MethodImpl(256 | 512)]
     internal float3(float value, is_scalar _)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.CreateScalar(value);
-        #else // NET8_0_OR_GREATER
-        this.x = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -437,13 +359,7 @@ public partial struct float3 :
     [MethodImpl(256 | 512), CpuOnly]
     public float3(ReadOnlySpan<float> span)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.LoadUnsafe(in MemoryMarshal.Cast<float, float>(span)[0]);
-        #else // NET8_0_OR_GREATER
-        this.x = span[0];
-        this.y = span[1];
-        this.z = span[2];
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -452,13 +368,7 @@ public partial struct float3 :
     [MethodImpl(256 | 512), CpuOnly]
     public unsafe float3(float* ptr)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.Load((float*)ptr);
-        #else // NET8_0_OR_GREATER
-        this.x = ptr[0];
-        this.y = ptr[1];
-        this.z = ptr[2];
-        #endif // NET8_0_OR_GREATER
     }
 
     #endregion // ctors
@@ -466,7 +376,7 @@ public partial struct float3 :
     #region deconstruct
 
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out float x, out float y, out float z)
+    public readonly void Deconstruct(out float x, out float y, out float z)
     {
         x = this.x;
         y = this.y;
@@ -480,7 +390,7 @@ public partial struct float3 :
     public float this[int i]
     {
         [MethodImpl(256 | 512)]
-        get => i switch
+        readonly get => i switch
         {
             0 => x,
             1 => y,
@@ -508,6 +418,15 @@ public partial struct float3 :
     }
 
     #endregion // index
+}
+
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static float3 float3(float value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static float3 float3(float x, float y, float z) => new(x, y, z);
 }
 
 #endregion // float3
@@ -558,7 +477,6 @@ public partial struct float4 :
 
     #region fields
 
-    #if NET8_0_OR_GREATER
     internal Vector128<float> vector;
     
     #region Unsafe Inner
@@ -567,9 +485,11 @@ public partial struct float4 :
     public static explicit operator Vector128<float>(float4 self) => self.vector;
 
     [MethodImpl(256 | 512), CpuOnly]
-    public Vector128<float> UnsafeGetInner() => vector;
+    public readonly Vector128<float> UnsafeGetInner() => vector;
     [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
     public ref Vector128<float> UnsafeGetInnerRef() => ref vector;
+    [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
+    public readonly ref readonly Vector128<float> UnsafeGetInnerRefRo() => ref vector;
     [MethodImpl(256 | 512), CpuOnly]
     public void UnsafeSetInner(Vector128<float> vector) => this.vector = vector;
    
@@ -578,90 +498,56 @@ public partial struct float4 :
     public float x
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(0);
+        readonly get => vector.GetElement(0);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(0, value);
     }
     public float y
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(1);
+        readonly get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(1, value);
     }
     public float z
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(2);
+        readonly get => vector.GetElement(2);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(2, value);
     }
     public float w
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(3);
+        readonly get => vector.GetElement(3);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(3, value);
     }
-    #else // NET8_0_OR_GREATER
-    private float _x;
-    public float x
-    {
-        [MethodImpl(256 | 512)]
-        get => _x;
-        [MethodImpl(256 | 512)]
-        set => _x = value;
-    }
-    private float _y;
-    public float y
-    {
-        [MethodImpl(256 | 512)]
-        get => _y;
-        [MethodImpl(256 | 512)]
-        set => _y = value;
-    }
-    private float _z;
-    public float z
-    {
-        [MethodImpl(256 | 512)]
-        get => _z;
-        [MethodImpl(256 | 512)]
-        set => _z = value;
-    }
-    private float _w;
-    public float w
-    {
-        [MethodImpl(256 | 512)]
-        get => _w;
-        [MethodImpl(256 | 512)]
-        set => _w = value;
-    }
-    #endif // NET8_0_OR_GREATER
     public float r
     {
         [MethodImpl(256 | 512)]
-        get => x;
+        readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
     public float g
     {
         [MethodImpl(256 | 512)]
-        get => y;
+        readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
     public float b
     {
         [MethodImpl(256 | 512)]
-        get => z;
+        readonly get => z;
         [MethodImpl(256 | 512)]
         set => z = value;
     }
     public float a
     {
         [MethodImpl(256 | 512)]
-        get => w;
+        readonly get => w;
         [MethodImpl(256 | 512)]
         set => w = value;
     }
@@ -670,24 +556,15 @@ public partial struct float4 :
 
     #region ctors
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512), CpuOnly]
     internal float4(Vector128<float> vector) => this.vector = vector;
     [MethodImpl(256 | 512), CpuOnly]
     public static float4 UnsafeFromInner(Vector128<float> vector) => new(vector);
-    #endif // NET8_0_OR_GREATER
 
     [MethodImpl(256 | 512)]
     public float4(float x, float y, float z, float w)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.Create(x, y, z, w);
-        #else // NET8_0_OR_GREATER
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        this.w = w;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -702,14 +579,7 @@ public partial struct float4 :
     [MethodImpl(256 | 512)]
     public float4(float value)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.Create(value);
-        #else // NET8_0_OR_GREATER
-        x = value;
-        y = value;
-        z = value;
-        w = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -718,11 +588,7 @@ public partial struct float4 :
     [MethodImpl(256 | 512)]
     internal float4(float value, is_scalar _)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.CreateScalar(value);
-        #else // NET8_0_OR_GREATER
-        this.x = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -731,14 +597,7 @@ public partial struct float4 :
     [MethodImpl(256 | 512), CpuOnly]
     public float4(ReadOnlySpan<float> span)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.LoadUnsafe(in MemoryMarshal.Cast<float, float>(span)[0]);
-        #else // NET8_0_OR_GREATER
-        this.x = span[0];
-        this.y = span[1];
-        this.z = span[2];
-        this.w = span[3];
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -747,14 +606,7 @@ public partial struct float4 :
     [MethodImpl(256 | 512), CpuOnly]
     public unsafe float4(float* ptr)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.Load((float*)ptr);
-        #else // NET8_0_OR_GREATER
-        this.x = ptr[0];
-        this.y = ptr[1];
-        this.z = ptr[2];
-        this.w = ptr[3];
-        #endif // NET8_0_OR_GREATER
     }
 
     #endregion // ctors
@@ -762,7 +614,7 @@ public partial struct float4 :
     #region deconstruct
 
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out float x, out float y, out float z, out float w)
+    public readonly void Deconstruct(out float x, out float y, out float z, out float w)
     {
         x = this.x;
         y = this.y;
@@ -777,7 +629,7 @@ public partial struct float4 :
     public float this[int i]
     {
         [MethodImpl(256 | 512)]
-        get => i switch
+        readonly get => i switch
         {
             0 => x,
             1 => y,
@@ -809,6 +661,15 @@ public partial struct float4 :
     }
 
     #endregion // index
+}
+
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static float4 float4(float value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static float4 float4(float x, float y, float z, float w) => new(x, y, z, w);
 }
 
 #endregion // float4
@@ -859,7 +720,6 @@ public partial struct double2 :
 
     #region fields
 
-    #if NET8_0_OR_GREATER
     internal Vector128<double> vector;
     
     #region Unsafe Inner
@@ -868,9 +728,11 @@ public partial struct double2 :
     public static explicit operator Vector128<double>(double2 self) => self.vector;
 
     [MethodImpl(256 | 512), CpuOnly]
-    public Vector128<double> UnsafeGetInner() => vector;
+    public readonly Vector128<double> UnsafeGetInner() => vector;
     [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
     public ref Vector128<double> UnsafeGetInnerRef() => ref vector;
+    [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
+    public readonly ref readonly Vector128<double> UnsafeGetInnerRefRo() => ref vector;
     [MethodImpl(256 | 512), CpuOnly]
     public void UnsafeSetInner(Vector128<double> vector) => this.vector = vector;
    
@@ -879,46 +741,28 @@ public partial struct double2 :
     public double x
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(0);
+        readonly get => vector.GetElement(0);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(0, value);
     }
     public double y
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(1);
+        readonly get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(1, value);
     }
-    #else // NET8_0_OR_GREATER
-    private double _x;
-    public double x
-    {
-        [MethodImpl(256 | 512)]
-        get => _x;
-        [MethodImpl(256 | 512)]
-        set => _x = value;
-    }
-    private double _y;
-    public double y
-    {
-        [MethodImpl(256 | 512)]
-        get => _y;
-        [MethodImpl(256 | 512)]
-        set => _y = value;
-    }
-    #endif // NET8_0_OR_GREATER
     public double r
     {
         [MethodImpl(256 | 512)]
-        get => x;
+        readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
     public double g
     {
         [MethodImpl(256 | 512)]
-        get => y;
+        readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
@@ -927,22 +771,15 @@ public partial struct double2 :
 
     #region ctors
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512), CpuOnly]
     internal double2(Vector128<double> vector) => this.vector = vector;
     [MethodImpl(256 | 512), CpuOnly]
     public static double2 UnsafeFromInner(Vector128<double> vector) => new(vector);
-    #endif // NET8_0_OR_GREATER
 
     [MethodImpl(256 | 512)]
     public double2(double x, double y)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.Create(x, y);
-        #else // NET8_0_OR_GREATER
-        this.x = x;
-        this.y = y;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -957,12 +794,7 @@ public partial struct double2 :
     [MethodImpl(256 | 512)]
     public double2(double value)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.Create(value);
-        #else // NET8_0_OR_GREATER
-        x = value;
-        y = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -971,11 +803,7 @@ public partial struct double2 :
     [MethodImpl(256 | 512)]
     internal double2(double value, is_scalar _)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.CreateScalar(value);
-        #else // NET8_0_OR_GREATER
-        this.x = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -984,12 +812,7 @@ public partial struct double2 :
     [MethodImpl(256 | 512), CpuOnly]
     public double2(ReadOnlySpan<double> span)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.LoadUnsafe(in MemoryMarshal.Cast<double, double>(span)[0]);
-        #else // NET8_0_OR_GREATER
-        this.x = span[0];
-        this.y = span[1];
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -998,12 +821,7 @@ public partial struct double2 :
     [MethodImpl(256 | 512), CpuOnly]
     public unsafe double2(double* ptr)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.Load((double*)ptr);
-        #else // NET8_0_OR_GREATER
-        this.x = ptr[0];
-        this.y = ptr[1];
-        #endif // NET8_0_OR_GREATER
     }
 
     #endregion // ctors
@@ -1011,7 +829,7 @@ public partial struct double2 :
     #region deconstruct
 
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out double x, out double y)
+    public readonly void Deconstruct(out double x, out double y)
     {
         x = this.x;
         y = this.y;
@@ -1024,7 +842,7 @@ public partial struct double2 :
     public double this[int i]
     {
         [MethodImpl(256 | 512)]
-        get => i switch
+        readonly get => i switch
         {
             0 => x,
             1 => y,
@@ -1048,6 +866,15 @@ public partial struct double2 :
     }
 
     #endregion // index
+}
+
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static double2 double2(double value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static double2 double2(double x, double y) => new(x, y);
 }
 
 #endregion // double2
@@ -1098,7 +925,6 @@ public partial struct double3 :
 
     #region fields
 
-    #if NET8_0_OR_GREATER
     internal Vector256<double> vector;
     
     #region Unsafe Inner
@@ -1107,9 +933,11 @@ public partial struct double3 :
     public static explicit operator Vector256<double>(double3 self) => self.vector;
 
     [MethodImpl(256 | 512), CpuOnly]
-    public Vector256<double> UnsafeGetInner() => vector;
+    public readonly Vector256<double> UnsafeGetInner() => vector;
     [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
     public ref Vector256<double> UnsafeGetInnerRef() => ref vector;
+    [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
+    public readonly ref readonly Vector256<double> UnsafeGetInnerRefRo() => ref vector;
     [MethodImpl(256 | 512), CpuOnly]
     public void UnsafeSetInner(Vector256<double> vector) => this.vector = vector;
    
@@ -1118,69 +946,42 @@ public partial struct double3 :
     public double x
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(0);
+        readonly get => vector.GetElement(0);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(0, value);
     }
     public double y
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(1);
+        readonly get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(1, value);
     }
     public double z
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(2);
+        readonly get => vector.GetElement(2);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(2, value);
     }
-    #else // NET8_0_OR_GREATER
-    private double _x;
-    public double x
-    {
-        [MethodImpl(256 | 512)]
-        get => _x;
-        [MethodImpl(256 | 512)]
-        set => _x = value;
-    }
-    private double _y;
-    public double y
-    {
-        [MethodImpl(256 | 512)]
-        get => _y;
-        [MethodImpl(256 | 512)]
-        set => _y = value;
-    }
-    private double _z;
-    public double z
-    {
-        [MethodImpl(256 | 512)]
-        get => _z;
-        [MethodImpl(256 | 512)]
-        set => _z = value;
-    }
-    private double _align;
-    #endif // NET8_0_OR_GREATER
     public double r
     {
         [MethodImpl(256 | 512)]
-        get => x;
+        readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
     public double g
     {
         [MethodImpl(256 | 512)]
-        get => y;
+        readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
     public double b
     {
         [MethodImpl(256 | 512)]
-        get => z;
+        readonly get => z;
         [MethodImpl(256 | 512)]
         set => z = value;
     }
@@ -1189,23 +990,15 @@ public partial struct double3 :
 
     #region ctors
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512), CpuOnly]
     internal double3(Vector256<double> vector) => this.vector = vector;
     [MethodImpl(256 | 512), CpuOnly]
     public static double3 UnsafeFromInner(Vector256<double> vector) => new(vector);
-    #endif // NET8_0_OR_GREATER
 
     [MethodImpl(256 | 512)]
     public double3(double x, double y, double z)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector256.Create(x, y, z, default);
-        #else // NET8_0_OR_GREATER
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -1220,13 +1013,7 @@ public partial struct double3 :
     [MethodImpl(256 | 512)]
     public double3(double value)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector256.Create(value, value, value, default);
-        #else // NET8_0_OR_GREATER
-        x = value;
-        y = value;
-        z = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -1235,11 +1022,7 @@ public partial struct double3 :
     [MethodImpl(256 | 512)]
     internal double3(double value, is_scalar _)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector256.CreateScalar(value);
-        #else // NET8_0_OR_GREATER
-        this.x = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -1248,13 +1031,7 @@ public partial struct double3 :
     [MethodImpl(256 | 512), CpuOnly]
     public double3(ReadOnlySpan<double> span)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector256.LoadUnsafe(in MemoryMarshal.Cast<double, double>(span)[0]);
-        #else // NET8_0_OR_GREATER
-        this.x = span[0];
-        this.y = span[1];
-        this.z = span[2];
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -1263,13 +1040,7 @@ public partial struct double3 :
     [MethodImpl(256 | 512), CpuOnly]
     public unsafe double3(double* ptr)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector256.Load((double*)ptr);
-        #else // NET8_0_OR_GREATER
-        this.x = ptr[0];
-        this.y = ptr[1];
-        this.z = ptr[2];
-        #endif // NET8_0_OR_GREATER
     }
 
     #endregion // ctors
@@ -1277,7 +1048,7 @@ public partial struct double3 :
     #region deconstruct
 
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out double x, out double y, out double z)
+    public readonly void Deconstruct(out double x, out double y, out double z)
     {
         x = this.x;
         y = this.y;
@@ -1291,7 +1062,7 @@ public partial struct double3 :
     public double this[int i]
     {
         [MethodImpl(256 | 512)]
-        get => i switch
+        readonly get => i switch
         {
             0 => x,
             1 => y,
@@ -1319,6 +1090,15 @@ public partial struct double3 :
     }
 
     #endregion // index
+}
+
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static double3 double3(double value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static double3 double3(double x, double y, double z) => new(x, y, z);
 }
 
 #endregion // double3
@@ -1369,7 +1149,6 @@ public partial struct double4 :
 
     #region fields
 
-    #if NET8_0_OR_GREATER
     internal Vector256<double> vector;
     
     #region Unsafe Inner
@@ -1378,9 +1157,11 @@ public partial struct double4 :
     public static explicit operator Vector256<double>(double4 self) => self.vector;
 
     [MethodImpl(256 | 512), CpuOnly]
-    public Vector256<double> UnsafeGetInner() => vector;
+    public readonly Vector256<double> UnsafeGetInner() => vector;
     [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
     public ref Vector256<double> UnsafeGetInnerRef() => ref vector;
+    [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
+    public readonly ref readonly Vector256<double> UnsafeGetInnerRefRo() => ref vector;
     [MethodImpl(256 | 512), CpuOnly]
     public void UnsafeSetInner(Vector256<double> vector) => this.vector = vector;
    
@@ -1389,90 +1170,56 @@ public partial struct double4 :
     public double x
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(0);
+        readonly get => vector.GetElement(0);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(0, value);
     }
     public double y
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(1);
+        readonly get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(1, value);
     }
     public double z
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(2);
+        readonly get => vector.GetElement(2);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(2, value);
     }
     public double w
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(3);
+        readonly get => vector.GetElement(3);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(3, value);
     }
-    #else // NET8_0_OR_GREATER
-    private double _x;
-    public double x
-    {
-        [MethodImpl(256 | 512)]
-        get => _x;
-        [MethodImpl(256 | 512)]
-        set => _x = value;
-    }
-    private double _y;
-    public double y
-    {
-        [MethodImpl(256 | 512)]
-        get => _y;
-        [MethodImpl(256 | 512)]
-        set => _y = value;
-    }
-    private double _z;
-    public double z
-    {
-        [MethodImpl(256 | 512)]
-        get => _z;
-        [MethodImpl(256 | 512)]
-        set => _z = value;
-    }
-    private double _w;
-    public double w
-    {
-        [MethodImpl(256 | 512)]
-        get => _w;
-        [MethodImpl(256 | 512)]
-        set => _w = value;
-    }
-    #endif // NET8_0_OR_GREATER
     public double r
     {
         [MethodImpl(256 | 512)]
-        get => x;
+        readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
     public double g
     {
         [MethodImpl(256 | 512)]
-        get => y;
+        readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
     public double b
     {
         [MethodImpl(256 | 512)]
-        get => z;
+        readonly get => z;
         [MethodImpl(256 | 512)]
         set => z = value;
     }
     public double a
     {
         [MethodImpl(256 | 512)]
-        get => w;
+        readonly get => w;
         [MethodImpl(256 | 512)]
         set => w = value;
     }
@@ -1481,24 +1228,15 @@ public partial struct double4 :
 
     #region ctors
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512), CpuOnly]
     internal double4(Vector256<double> vector) => this.vector = vector;
     [MethodImpl(256 | 512), CpuOnly]
     public static double4 UnsafeFromInner(Vector256<double> vector) => new(vector);
-    #endif // NET8_0_OR_GREATER
 
     [MethodImpl(256 | 512)]
     public double4(double x, double y, double z, double w)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector256.Create(x, y, z, w);
-        #else // NET8_0_OR_GREATER
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        this.w = w;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -1513,14 +1251,7 @@ public partial struct double4 :
     [MethodImpl(256 | 512)]
     public double4(double value)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector256.Create(value);
-        #else // NET8_0_OR_GREATER
-        x = value;
-        y = value;
-        z = value;
-        w = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -1529,11 +1260,7 @@ public partial struct double4 :
     [MethodImpl(256 | 512)]
     internal double4(double value, is_scalar _)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector256.CreateScalar(value);
-        #else // NET8_0_OR_GREATER
-        this.x = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -1542,14 +1269,7 @@ public partial struct double4 :
     [MethodImpl(256 | 512), CpuOnly]
     public double4(ReadOnlySpan<double> span)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector256.LoadUnsafe(in MemoryMarshal.Cast<double, double>(span)[0]);
-        #else // NET8_0_OR_GREATER
-        this.x = span[0];
-        this.y = span[1];
-        this.z = span[2];
-        this.w = span[3];
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -1558,14 +1278,7 @@ public partial struct double4 :
     [MethodImpl(256 | 512), CpuOnly]
     public unsafe double4(double* ptr)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector256.Load((double*)ptr);
-        #else // NET8_0_OR_GREATER
-        this.x = ptr[0];
-        this.y = ptr[1];
-        this.z = ptr[2];
-        this.w = ptr[3];
-        #endif // NET8_0_OR_GREATER
     }
 
     #endregion // ctors
@@ -1573,7 +1286,7 @@ public partial struct double4 :
     #region deconstruct
 
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out double x, out double y, out double z, out double w)
+    public readonly void Deconstruct(out double x, out double y, out double z, out double w)
     {
         x = this.x;
         y = this.y;
@@ -1588,7 +1301,7 @@ public partial struct double4 :
     public double this[int i]
     {
         [MethodImpl(256 | 512)]
-        get => i switch
+        readonly get => i switch
         {
             0 => x,
             1 => y,
@@ -1620,6 +1333,15 @@ public partial struct double4 :
     }
 
     #endregion // index
+}
+
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static double4 double4(double value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static double4 double4(double x, double y, double z, double w) => new(x, y, z, w);
 }
 
 #endregion // double4
@@ -1674,7 +1396,7 @@ public partial struct short2 :
     public short x
     {
         [MethodImpl(256 | 512)]
-        get => _x;
+        readonly get => _x;
         [MethodImpl(256 | 512)]
         set => _x = value;
     }
@@ -1682,21 +1404,21 @@ public partial struct short2 :
     public short y
     {
         [MethodImpl(256 | 512)]
-        get => _y;
+        readonly get => _y;
         [MethodImpl(256 | 512)]
         set => _y = value;
     }
     public short r
     {
         [MethodImpl(256 | 512)]
-        get => x;
+        readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
     public short g
     {
         [MethodImpl(256 | 512)]
-        get => y;
+        readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
@@ -1763,7 +1485,7 @@ public partial struct short2 :
     #region deconstruct
 
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out short x, out short y)
+    public readonly void Deconstruct(out short x, out short y)
     {
         x = this.x;
         y = this.y;
@@ -1776,7 +1498,7 @@ public partial struct short2 :
     public short this[int i]
     {
         [MethodImpl(256 | 512)]
-        get => i switch
+        readonly get => i switch
         {
             0 => x,
             1 => y,
@@ -1800,6 +1522,15 @@ public partial struct short2 :
     }
 
     #endregion // index
+}
+
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static short2 short2(short value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static short2 short2(short x, short y) => new(x, y);
 }
 
 #endregion // short2
@@ -1854,7 +1585,7 @@ public partial struct short3 :
     public short x
     {
         [MethodImpl(256 | 512)]
-        get => _x;
+        readonly get => _x;
         [MethodImpl(256 | 512)]
         set => _x = value;
     }
@@ -1862,7 +1593,7 @@ public partial struct short3 :
     public short y
     {
         [MethodImpl(256 | 512)]
-        get => _y;
+        readonly get => _y;
         [MethodImpl(256 | 512)]
         set => _y = value;
     }
@@ -1870,7 +1601,7 @@ public partial struct short3 :
     public short z
     {
         [MethodImpl(256 | 512)]
-        get => _z;
+        readonly get => _z;
         [MethodImpl(256 | 512)]
         set => _z = value;
     }
@@ -1878,21 +1609,21 @@ public partial struct short3 :
     public short r
     {
         [MethodImpl(256 | 512)]
-        get => x;
+        readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
     public short g
     {
         [MethodImpl(256 | 512)]
-        get => y;
+        readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
     public short b
     {
         [MethodImpl(256 | 512)]
-        get => z;
+        readonly get => z;
         [MethodImpl(256 | 512)]
         set => z = value;
     }
@@ -1963,7 +1694,7 @@ public partial struct short3 :
     #region deconstruct
 
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out short x, out short y, out short z)
+    public readonly void Deconstruct(out short x, out short y, out short z)
     {
         x = this.x;
         y = this.y;
@@ -1977,7 +1708,7 @@ public partial struct short3 :
     public short this[int i]
     {
         [MethodImpl(256 | 512)]
-        get => i switch
+        readonly get => i switch
         {
             0 => x,
             1 => y,
@@ -2005,6 +1736,15 @@ public partial struct short3 :
     }
 
     #endregion // index
+}
+
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static short3 short3(short value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static short3 short3(short x, short y, short z) => new(x, y, z);
 }
 
 #endregion // short3
@@ -2059,7 +1799,7 @@ public partial struct short4 :
     public short x
     {
         [MethodImpl(256 | 512)]
-        get => _x;
+        readonly get => _x;
         [MethodImpl(256 | 512)]
         set => _x = value;
     }
@@ -2067,7 +1807,7 @@ public partial struct short4 :
     public short y
     {
         [MethodImpl(256 | 512)]
-        get => _y;
+        readonly get => _y;
         [MethodImpl(256 | 512)]
         set => _y = value;
     }
@@ -2075,7 +1815,7 @@ public partial struct short4 :
     public short z
     {
         [MethodImpl(256 | 512)]
-        get => _z;
+        readonly get => _z;
         [MethodImpl(256 | 512)]
         set => _z = value;
     }
@@ -2083,35 +1823,35 @@ public partial struct short4 :
     public short w
     {
         [MethodImpl(256 | 512)]
-        get => _w;
+        readonly get => _w;
         [MethodImpl(256 | 512)]
         set => _w = value;
     }
     public short r
     {
         [MethodImpl(256 | 512)]
-        get => x;
+        readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
     public short g
     {
         [MethodImpl(256 | 512)]
-        get => y;
+        readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
     public short b
     {
         [MethodImpl(256 | 512)]
-        get => z;
+        readonly get => z;
         [MethodImpl(256 | 512)]
         set => z = value;
     }
     public short a
     {
         [MethodImpl(256 | 512)]
-        get => w;
+        readonly get => w;
         [MethodImpl(256 | 512)]
         set => w = value;
     }
@@ -2186,7 +1926,7 @@ public partial struct short4 :
     #region deconstruct
 
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out short x, out short y, out short z, out short w)
+    public readonly void Deconstruct(out short x, out short y, out short z, out short w)
     {
         x = this.x;
         y = this.y;
@@ -2201,7 +1941,7 @@ public partial struct short4 :
     public short this[int i]
     {
         [MethodImpl(256 | 512)]
-        get => i switch
+        readonly get => i switch
         {
             0 => x,
             1 => y,
@@ -2233,6 +1973,15 @@ public partial struct short4 :
     }
 
     #endregion // index
+}
+
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static short4 short4(short value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static short4 short4(short x, short y, short z, short w) => new(x, y, z, w);
 }
 
 #endregion // short4
@@ -2287,7 +2036,7 @@ public partial struct ushort2 :
     public ushort x
     {
         [MethodImpl(256 | 512)]
-        get => _x;
+        readonly get => _x;
         [MethodImpl(256 | 512)]
         set => _x = value;
     }
@@ -2295,21 +2044,21 @@ public partial struct ushort2 :
     public ushort y
     {
         [MethodImpl(256 | 512)]
-        get => _y;
+        readonly get => _y;
         [MethodImpl(256 | 512)]
         set => _y = value;
     }
     public ushort r
     {
         [MethodImpl(256 | 512)]
-        get => x;
+        readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
     public ushort g
     {
         [MethodImpl(256 | 512)]
-        get => y;
+        readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
@@ -2376,7 +2125,7 @@ public partial struct ushort2 :
     #region deconstruct
 
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out ushort x, out ushort y)
+    public readonly void Deconstruct(out ushort x, out ushort y)
     {
         x = this.x;
         y = this.y;
@@ -2389,7 +2138,7 @@ public partial struct ushort2 :
     public ushort this[int i]
     {
         [MethodImpl(256 | 512)]
-        get => i switch
+        readonly get => i switch
         {
             0 => x,
             1 => y,
@@ -2413,6 +2162,15 @@ public partial struct ushort2 :
     }
 
     #endregion // index
+}
+
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static ushort2 ushort2(ushort value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static ushort2 ushort2(ushort x, ushort y) => new(x, y);
 }
 
 #endregion // ushort2
@@ -2467,7 +2225,7 @@ public partial struct ushort3 :
     public ushort x
     {
         [MethodImpl(256 | 512)]
-        get => _x;
+        readonly get => _x;
         [MethodImpl(256 | 512)]
         set => _x = value;
     }
@@ -2475,7 +2233,7 @@ public partial struct ushort3 :
     public ushort y
     {
         [MethodImpl(256 | 512)]
-        get => _y;
+        readonly get => _y;
         [MethodImpl(256 | 512)]
         set => _y = value;
     }
@@ -2483,7 +2241,7 @@ public partial struct ushort3 :
     public ushort z
     {
         [MethodImpl(256 | 512)]
-        get => _z;
+        readonly get => _z;
         [MethodImpl(256 | 512)]
         set => _z = value;
     }
@@ -2491,21 +2249,21 @@ public partial struct ushort3 :
     public ushort r
     {
         [MethodImpl(256 | 512)]
-        get => x;
+        readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
     public ushort g
     {
         [MethodImpl(256 | 512)]
-        get => y;
+        readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
     public ushort b
     {
         [MethodImpl(256 | 512)]
-        get => z;
+        readonly get => z;
         [MethodImpl(256 | 512)]
         set => z = value;
     }
@@ -2576,7 +2334,7 @@ public partial struct ushort3 :
     #region deconstruct
 
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out ushort x, out ushort y, out ushort z)
+    public readonly void Deconstruct(out ushort x, out ushort y, out ushort z)
     {
         x = this.x;
         y = this.y;
@@ -2590,7 +2348,7 @@ public partial struct ushort3 :
     public ushort this[int i]
     {
         [MethodImpl(256 | 512)]
-        get => i switch
+        readonly get => i switch
         {
             0 => x,
             1 => y,
@@ -2618,6 +2376,15 @@ public partial struct ushort3 :
     }
 
     #endregion // index
+}
+
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static ushort3 ushort3(ushort value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static ushort3 ushort3(ushort x, ushort y, ushort z) => new(x, y, z);
 }
 
 #endregion // ushort3
@@ -2672,7 +2439,7 @@ public partial struct ushort4 :
     public ushort x
     {
         [MethodImpl(256 | 512)]
-        get => _x;
+        readonly get => _x;
         [MethodImpl(256 | 512)]
         set => _x = value;
     }
@@ -2680,7 +2447,7 @@ public partial struct ushort4 :
     public ushort y
     {
         [MethodImpl(256 | 512)]
-        get => _y;
+        readonly get => _y;
         [MethodImpl(256 | 512)]
         set => _y = value;
     }
@@ -2688,7 +2455,7 @@ public partial struct ushort4 :
     public ushort z
     {
         [MethodImpl(256 | 512)]
-        get => _z;
+        readonly get => _z;
         [MethodImpl(256 | 512)]
         set => _z = value;
     }
@@ -2696,35 +2463,35 @@ public partial struct ushort4 :
     public ushort w
     {
         [MethodImpl(256 | 512)]
-        get => _w;
+        readonly get => _w;
         [MethodImpl(256 | 512)]
         set => _w = value;
     }
     public ushort r
     {
         [MethodImpl(256 | 512)]
-        get => x;
+        readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
     public ushort g
     {
         [MethodImpl(256 | 512)]
-        get => y;
+        readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
     public ushort b
     {
         [MethodImpl(256 | 512)]
-        get => z;
+        readonly get => z;
         [MethodImpl(256 | 512)]
         set => z = value;
     }
     public ushort a
     {
         [MethodImpl(256 | 512)]
-        get => w;
+        readonly get => w;
         [MethodImpl(256 | 512)]
         set => w = value;
     }
@@ -2799,7 +2566,7 @@ public partial struct ushort4 :
     #region deconstruct
 
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out ushort x, out ushort y, out ushort z, out ushort w)
+    public readonly void Deconstruct(out ushort x, out ushort y, out ushort z, out ushort w)
     {
         x = this.x;
         y = this.y;
@@ -2814,7 +2581,7 @@ public partial struct ushort4 :
     public ushort this[int i]
     {
         [MethodImpl(256 | 512)]
-        get => i switch
+        readonly get => i switch
         {
             0 => x,
             1 => y,
@@ -2846,6 +2613,15 @@ public partial struct ushort4 :
     }
 
     #endregion // index
+}
+
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static ushort4 ushort4(ushort value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static ushort4 ushort4(ushort x, ushort y, ushort z, ushort w) => new(x, y, z, w);
 }
 
 #endregion // ushort4
@@ -2896,7 +2672,6 @@ public partial struct int2 :
 
     #region fields
 
-    #if NET8_0_OR_GREATER
     internal Vector64<int> vector;
     
     #region Unsafe Inner
@@ -2905,9 +2680,11 @@ public partial struct int2 :
     public static explicit operator Vector64<int>(int2 self) => self.vector;
 
     [MethodImpl(256 | 512), CpuOnly]
-    public Vector64<int> UnsafeGetInner() => vector;
+    public readonly Vector64<int> UnsafeGetInner() => vector;
     [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
     public ref Vector64<int> UnsafeGetInnerRef() => ref vector;
+    [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
+    public readonly ref readonly Vector64<int> UnsafeGetInnerRefRo() => ref vector;
     [MethodImpl(256 | 512), CpuOnly]
     public void UnsafeSetInner(Vector64<int> vector) => this.vector = vector;
    
@@ -2916,46 +2693,28 @@ public partial struct int2 :
     public int x
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(0);
+        readonly get => vector.GetElement(0);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(0, value);
     }
     public int y
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(1);
+        readonly get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(1, value);
     }
-    #else // NET8_0_OR_GREATER
-    private int _x;
-    public int x
-    {
-        [MethodImpl(256 | 512)]
-        get => _x;
-        [MethodImpl(256 | 512)]
-        set => _x = value;
-    }
-    private int _y;
-    public int y
-    {
-        [MethodImpl(256 | 512)]
-        get => _y;
-        [MethodImpl(256 | 512)]
-        set => _y = value;
-    }
-    #endif // NET8_0_OR_GREATER
     public int r
     {
         [MethodImpl(256 | 512)]
-        get => x;
+        readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
     public int g
     {
         [MethodImpl(256 | 512)]
-        get => y;
+        readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
@@ -2964,22 +2723,15 @@ public partial struct int2 :
 
     #region ctors
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512), CpuOnly]
     internal int2(Vector64<int> vector) => this.vector = vector;
     [MethodImpl(256 | 512), CpuOnly]
     public static int2 UnsafeFromInner(Vector64<int> vector) => new(vector);
-    #endif // NET8_0_OR_GREATER
 
     [MethodImpl(256 | 512)]
     public int2(int x, int y)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector64.Create(x, y);
-        #else // NET8_0_OR_GREATER
-        this.x = x;
-        this.y = y;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -2994,12 +2746,7 @@ public partial struct int2 :
     [MethodImpl(256 | 512)]
     public int2(int value)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector64.Create(value);
-        #else // NET8_0_OR_GREATER
-        x = value;
-        y = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -3008,11 +2755,7 @@ public partial struct int2 :
     [MethodImpl(256 | 512)]
     internal int2(int value, is_scalar _)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector64.CreateScalar(value);
-        #else // NET8_0_OR_GREATER
-        this.x = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -3021,12 +2764,7 @@ public partial struct int2 :
     [MethodImpl(256 | 512), CpuOnly]
     public int2(ReadOnlySpan<int> span)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector64.LoadUnsafe(in MemoryMarshal.Cast<int, int>(span)[0]);
-        #else // NET8_0_OR_GREATER
-        this.x = span[0];
-        this.y = span[1];
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -3035,12 +2773,7 @@ public partial struct int2 :
     [MethodImpl(256 | 512), CpuOnly]
     public unsafe int2(int* ptr)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector64.Load((int*)ptr);
-        #else // NET8_0_OR_GREATER
-        this.x = ptr[0];
-        this.y = ptr[1];
-        #endif // NET8_0_OR_GREATER
     }
 
     #endregion // ctors
@@ -3048,7 +2781,7 @@ public partial struct int2 :
     #region deconstruct
 
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out int x, out int y)
+    public readonly void Deconstruct(out int x, out int y)
     {
         x = this.x;
         y = this.y;
@@ -3061,7 +2794,7 @@ public partial struct int2 :
     public int this[int i]
     {
         [MethodImpl(256 | 512)]
-        get => i switch
+        readonly get => i switch
         {
             0 => x,
             1 => y,
@@ -3085,6 +2818,15 @@ public partial struct int2 :
     }
 
     #endregion // index
+}
+
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static int2 int2(int value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static int2 int2(int x, int y) => new(x, y);
 }
 
 #endregion // int2
@@ -3135,7 +2877,6 @@ public partial struct int3 :
 
     #region fields
 
-    #if NET8_0_OR_GREATER
     internal Vector128<int> vector;
     
     #region Unsafe Inner
@@ -3144,9 +2885,11 @@ public partial struct int3 :
     public static explicit operator Vector128<int>(int3 self) => self.vector;
 
     [MethodImpl(256 | 512), CpuOnly]
-    public Vector128<int> UnsafeGetInner() => vector;
+    public readonly Vector128<int> UnsafeGetInner() => vector;
     [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
     public ref Vector128<int> UnsafeGetInnerRef() => ref vector;
+    [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
+    public readonly ref readonly Vector128<int> UnsafeGetInnerRefRo() => ref vector;
     [MethodImpl(256 | 512), CpuOnly]
     public void UnsafeSetInner(Vector128<int> vector) => this.vector = vector;
    
@@ -3155,69 +2898,42 @@ public partial struct int3 :
     public int x
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(0);
+        readonly get => vector.GetElement(0);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(0, value);
     }
     public int y
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(1);
+        readonly get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(1, value);
     }
     public int z
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(2);
+        readonly get => vector.GetElement(2);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(2, value);
     }
-    #else // NET8_0_OR_GREATER
-    private int _x;
-    public int x
-    {
-        [MethodImpl(256 | 512)]
-        get => _x;
-        [MethodImpl(256 | 512)]
-        set => _x = value;
-    }
-    private int _y;
-    public int y
-    {
-        [MethodImpl(256 | 512)]
-        get => _y;
-        [MethodImpl(256 | 512)]
-        set => _y = value;
-    }
-    private int _z;
-    public int z
-    {
-        [MethodImpl(256 | 512)]
-        get => _z;
-        [MethodImpl(256 | 512)]
-        set => _z = value;
-    }
-    private int _align;
-    #endif // NET8_0_OR_GREATER
     public int r
     {
         [MethodImpl(256 | 512)]
-        get => x;
+        readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
     public int g
     {
         [MethodImpl(256 | 512)]
-        get => y;
+        readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
     public int b
     {
         [MethodImpl(256 | 512)]
-        get => z;
+        readonly get => z;
         [MethodImpl(256 | 512)]
         set => z = value;
     }
@@ -3226,23 +2942,15 @@ public partial struct int3 :
 
     #region ctors
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512), CpuOnly]
     internal int3(Vector128<int> vector) => this.vector = vector;
     [MethodImpl(256 | 512), CpuOnly]
     public static int3 UnsafeFromInner(Vector128<int> vector) => new(vector);
-    #endif // NET8_0_OR_GREATER
 
     [MethodImpl(256 | 512)]
     public int3(int x, int y, int z)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.Create(x, y, z, default);
-        #else // NET8_0_OR_GREATER
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -3257,13 +2965,7 @@ public partial struct int3 :
     [MethodImpl(256 | 512)]
     public int3(int value)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.Create(value, value, value, default);
-        #else // NET8_0_OR_GREATER
-        x = value;
-        y = value;
-        z = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -3272,11 +2974,7 @@ public partial struct int3 :
     [MethodImpl(256 | 512)]
     internal int3(int value, is_scalar _)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.CreateScalar(value);
-        #else // NET8_0_OR_GREATER
-        this.x = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -3285,13 +2983,7 @@ public partial struct int3 :
     [MethodImpl(256 | 512), CpuOnly]
     public int3(ReadOnlySpan<int> span)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.LoadUnsafe(in MemoryMarshal.Cast<int, int>(span)[0]);
-        #else // NET8_0_OR_GREATER
-        this.x = span[0];
-        this.y = span[1];
-        this.z = span[2];
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -3300,13 +2992,7 @@ public partial struct int3 :
     [MethodImpl(256 | 512), CpuOnly]
     public unsafe int3(int* ptr)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.Load((int*)ptr);
-        #else // NET8_0_OR_GREATER
-        this.x = ptr[0];
-        this.y = ptr[1];
-        this.z = ptr[2];
-        #endif // NET8_0_OR_GREATER
     }
 
     #endregion // ctors
@@ -3314,7 +3000,7 @@ public partial struct int3 :
     #region deconstruct
 
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out int x, out int y, out int z)
+    public readonly void Deconstruct(out int x, out int y, out int z)
     {
         x = this.x;
         y = this.y;
@@ -3328,7 +3014,7 @@ public partial struct int3 :
     public int this[int i]
     {
         [MethodImpl(256 | 512)]
-        get => i switch
+        readonly get => i switch
         {
             0 => x,
             1 => y,
@@ -3356,6 +3042,15 @@ public partial struct int3 :
     }
 
     #endregion // index
+}
+
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static int3 int3(int value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static int3 int3(int x, int y, int z) => new(x, y, z);
 }
 
 #endregion // int3
@@ -3406,7 +3101,6 @@ public partial struct int4 :
 
     #region fields
 
-    #if NET8_0_OR_GREATER
     internal Vector128<int> vector;
     
     #region Unsafe Inner
@@ -3415,9 +3109,11 @@ public partial struct int4 :
     public static explicit operator Vector128<int>(int4 self) => self.vector;
 
     [MethodImpl(256 | 512), CpuOnly]
-    public Vector128<int> UnsafeGetInner() => vector;
+    public readonly Vector128<int> UnsafeGetInner() => vector;
     [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
     public ref Vector128<int> UnsafeGetInnerRef() => ref vector;
+    [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
+    public readonly ref readonly Vector128<int> UnsafeGetInnerRefRo() => ref vector;
     [MethodImpl(256 | 512), CpuOnly]
     public void UnsafeSetInner(Vector128<int> vector) => this.vector = vector;
    
@@ -3426,90 +3122,56 @@ public partial struct int4 :
     public int x
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(0);
+        readonly get => vector.GetElement(0);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(0, value);
     }
     public int y
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(1);
+        readonly get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(1, value);
     }
     public int z
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(2);
+        readonly get => vector.GetElement(2);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(2, value);
     }
     public int w
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(3);
+        readonly get => vector.GetElement(3);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(3, value);
     }
-    #else // NET8_0_OR_GREATER
-    private int _x;
-    public int x
-    {
-        [MethodImpl(256 | 512)]
-        get => _x;
-        [MethodImpl(256 | 512)]
-        set => _x = value;
-    }
-    private int _y;
-    public int y
-    {
-        [MethodImpl(256 | 512)]
-        get => _y;
-        [MethodImpl(256 | 512)]
-        set => _y = value;
-    }
-    private int _z;
-    public int z
-    {
-        [MethodImpl(256 | 512)]
-        get => _z;
-        [MethodImpl(256 | 512)]
-        set => _z = value;
-    }
-    private int _w;
-    public int w
-    {
-        [MethodImpl(256 | 512)]
-        get => _w;
-        [MethodImpl(256 | 512)]
-        set => _w = value;
-    }
-    #endif // NET8_0_OR_GREATER
     public int r
     {
         [MethodImpl(256 | 512)]
-        get => x;
+        readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
     public int g
     {
         [MethodImpl(256 | 512)]
-        get => y;
+        readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
     public int b
     {
         [MethodImpl(256 | 512)]
-        get => z;
+        readonly get => z;
         [MethodImpl(256 | 512)]
         set => z = value;
     }
     public int a
     {
         [MethodImpl(256 | 512)]
-        get => w;
+        readonly get => w;
         [MethodImpl(256 | 512)]
         set => w = value;
     }
@@ -3518,24 +3180,15 @@ public partial struct int4 :
 
     #region ctors
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512), CpuOnly]
     internal int4(Vector128<int> vector) => this.vector = vector;
     [MethodImpl(256 | 512), CpuOnly]
     public static int4 UnsafeFromInner(Vector128<int> vector) => new(vector);
-    #endif // NET8_0_OR_GREATER
 
     [MethodImpl(256 | 512)]
     public int4(int x, int y, int z, int w)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.Create(x, y, z, w);
-        #else // NET8_0_OR_GREATER
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        this.w = w;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -3550,14 +3203,7 @@ public partial struct int4 :
     [MethodImpl(256 | 512)]
     public int4(int value)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.Create(value);
-        #else // NET8_0_OR_GREATER
-        x = value;
-        y = value;
-        z = value;
-        w = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -3566,11 +3212,7 @@ public partial struct int4 :
     [MethodImpl(256 | 512)]
     internal int4(int value, is_scalar _)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.CreateScalar(value);
-        #else // NET8_0_OR_GREATER
-        this.x = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -3579,14 +3221,7 @@ public partial struct int4 :
     [MethodImpl(256 | 512), CpuOnly]
     public int4(ReadOnlySpan<int> span)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.LoadUnsafe(in MemoryMarshal.Cast<int, int>(span)[0]);
-        #else // NET8_0_OR_GREATER
-        this.x = span[0];
-        this.y = span[1];
-        this.z = span[2];
-        this.w = span[3];
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -3595,14 +3230,7 @@ public partial struct int4 :
     [MethodImpl(256 | 512), CpuOnly]
     public unsafe int4(int* ptr)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.Load((int*)ptr);
-        #else // NET8_0_OR_GREATER
-        this.x = ptr[0];
-        this.y = ptr[1];
-        this.z = ptr[2];
-        this.w = ptr[3];
-        #endif // NET8_0_OR_GREATER
     }
 
     #endregion // ctors
@@ -3610,7 +3238,7 @@ public partial struct int4 :
     #region deconstruct
 
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out int x, out int y, out int z, out int w)
+    public readonly void Deconstruct(out int x, out int y, out int z, out int w)
     {
         x = this.x;
         y = this.y;
@@ -3625,7 +3253,7 @@ public partial struct int4 :
     public int this[int i]
     {
         [MethodImpl(256 | 512)]
-        get => i switch
+        readonly get => i switch
         {
             0 => x,
             1 => y,
@@ -3657,6 +3285,15 @@ public partial struct int4 :
     }
 
     #endregion // index
+}
+
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static int4 int4(int value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static int4 int4(int x, int y, int z, int w) => new(x, y, z, w);
 }
 
 #endregion // int4
@@ -3707,7 +3344,6 @@ public partial struct uint2 :
 
     #region fields
 
-    #if NET8_0_OR_GREATER
     internal Vector64<uint> vector;
     
     #region Unsafe Inner
@@ -3716,9 +3352,11 @@ public partial struct uint2 :
     public static explicit operator Vector64<uint>(uint2 self) => self.vector;
 
     [MethodImpl(256 | 512), CpuOnly]
-    public Vector64<uint> UnsafeGetInner() => vector;
+    public readonly Vector64<uint> UnsafeGetInner() => vector;
     [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
     public ref Vector64<uint> UnsafeGetInnerRef() => ref vector;
+    [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
+    public readonly ref readonly Vector64<uint> UnsafeGetInnerRefRo() => ref vector;
     [MethodImpl(256 | 512), CpuOnly]
     public void UnsafeSetInner(Vector64<uint> vector) => this.vector = vector;
    
@@ -3727,46 +3365,28 @@ public partial struct uint2 :
     public uint x
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(0);
+        readonly get => vector.GetElement(0);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(0, value);
     }
     public uint y
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(1);
+        readonly get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(1, value);
     }
-    #else // NET8_0_OR_GREATER
-    private uint _x;
-    public uint x
-    {
-        [MethodImpl(256 | 512)]
-        get => _x;
-        [MethodImpl(256 | 512)]
-        set => _x = value;
-    }
-    private uint _y;
-    public uint y
-    {
-        [MethodImpl(256 | 512)]
-        get => _y;
-        [MethodImpl(256 | 512)]
-        set => _y = value;
-    }
-    #endif // NET8_0_OR_GREATER
     public uint r
     {
         [MethodImpl(256 | 512)]
-        get => x;
+        readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
     public uint g
     {
         [MethodImpl(256 | 512)]
-        get => y;
+        readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
@@ -3775,22 +3395,15 @@ public partial struct uint2 :
 
     #region ctors
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512), CpuOnly]
     internal uint2(Vector64<uint> vector) => this.vector = vector;
     [MethodImpl(256 | 512), CpuOnly]
     public static uint2 UnsafeFromInner(Vector64<uint> vector) => new(vector);
-    #endif // NET8_0_OR_GREATER
 
     [MethodImpl(256 | 512)]
     public uint2(uint x, uint y)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector64.Create(x, y);
-        #else // NET8_0_OR_GREATER
-        this.x = x;
-        this.y = y;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -3805,12 +3418,7 @@ public partial struct uint2 :
     [MethodImpl(256 | 512)]
     public uint2(uint value)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector64.Create((uint)value);
-        #else // NET8_0_OR_GREATER
-        x = value;
-        y = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -3819,11 +3427,7 @@ public partial struct uint2 :
     [MethodImpl(256 | 512)]
     internal uint2(uint value, is_scalar _)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector64.CreateScalar(value);
-        #else // NET8_0_OR_GREATER
-        this.x = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -3832,12 +3436,7 @@ public partial struct uint2 :
     [MethodImpl(256 | 512), CpuOnly]
     public uint2(ReadOnlySpan<uint> span)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector64.LoadUnsafe(in MemoryMarshal.Cast<uint, uint>(span)[0]);
-        #else // NET8_0_OR_GREATER
-        this.x = span[0];
-        this.y = span[1];
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -3846,12 +3445,7 @@ public partial struct uint2 :
     [MethodImpl(256 | 512), CpuOnly]
     public unsafe uint2(uint* ptr)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector64.Load((uint*)ptr);
-        #else // NET8_0_OR_GREATER
-        this.x = ptr[0];
-        this.y = ptr[1];
-        #endif // NET8_0_OR_GREATER
     }
 
     #endregion // ctors
@@ -3859,7 +3453,7 @@ public partial struct uint2 :
     #region deconstruct
 
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out uint x, out uint y)
+    public readonly void Deconstruct(out uint x, out uint y)
     {
         x = this.x;
         y = this.y;
@@ -3872,7 +3466,7 @@ public partial struct uint2 :
     public uint this[int i]
     {
         [MethodImpl(256 | 512)]
-        get => i switch
+        readonly get => i switch
         {
             0 => x,
             1 => y,
@@ -3896,6 +3490,15 @@ public partial struct uint2 :
     }
 
     #endregion // index
+}
+
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static uint2 uint2(uint value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static uint2 uint2(uint x, uint y) => new(x, y);
 }
 
 #endregion // uint2
@@ -3946,7 +3549,6 @@ public partial struct uint3 :
 
     #region fields
 
-    #if NET8_0_OR_GREATER
     internal Vector128<uint> vector;
     
     #region Unsafe Inner
@@ -3955,9 +3557,11 @@ public partial struct uint3 :
     public static explicit operator Vector128<uint>(uint3 self) => self.vector;
 
     [MethodImpl(256 | 512), CpuOnly]
-    public Vector128<uint> UnsafeGetInner() => vector;
+    public readonly Vector128<uint> UnsafeGetInner() => vector;
     [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
     public ref Vector128<uint> UnsafeGetInnerRef() => ref vector;
+    [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
+    public readonly ref readonly Vector128<uint> UnsafeGetInnerRefRo() => ref vector;
     [MethodImpl(256 | 512), CpuOnly]
     public void UnsafeSetInner(Vector128<uint> vector) => this.vector = vector;
    
@@ -3966,69 +3570,42 @@ public partial struct uint3 :
     public uint x
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(0);
+        readonly get => vector.GetElement(0);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(0, value);
     }
     public uint y
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(1);
+        readonly get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(1, value);
     }
     public uint z
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(2);
+        readonly get => vector.GetElement(2);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(2, value);
     }
-    #else // NET8_0_OR_GREATER
-    private uint _x;
-    public uint x
-    {
-        [MethodImpl(256 | 512)]
-        get => _x;
-        [MethodImpl(256 | 512)]
-        set => _x = value;
-    }
-    private uint _y;
-    public uint y
-    {
-        [MethodImpl(256 | 512)]
-        get => _y;
-        [MethodImpl(256 | 512)]
-        set => _y = value;
-    }
-    private uint _z;
-    public uint z
-    {
-        [MethodImpl(256 | 512)]
-        get => _z;
-        [MethodImpl(256 | 512)]
-        set => _z = value;
-    }
-    private uint _align;
-    #endif // NET8_0_OR_GREATER
     public uint r
     {
         [MethodImpl(256 | 512)]
-        get => x;
+        readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
     public uint g
     {
         [MethodImpl(256 | 512)]
-        get => y;
+        readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
     public uint b
     {
         [MethodImpl(256 | 512)]
-        get => z;
+        readonly get => z;
         [MethodImpl(256 | 512)]
         set => z = value;
     }
@@ -4037,23 +3614,15 @@ public partial struct uint3 :
 
     #region ctors
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512), CpuOnly]
     internal uint3(Vector128<uint> vector) => this.vector = vector;
     [MethodImpl(256 | 512), CpuOnly]
     public static uint3 UnsafeFromInner(Vector128<uint> vector) => new(vector);
-    #endif // NET8_0_OR_GREATER
 
     [MethodImpl(256 | 512)]
     public uint3(uint x, uint y, uint z)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.Create(x, y, z, default);
-        #else // NET8_0_OR_GREATER
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -4068,13 +3637,7 @@ public partial struct uint3 :
     [MethodImpl(256 | 512)]
     public uint3(uint value)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.Create((uint)value, value, value, default);
-        #else // NET8_0_OR_GREATER
-        x = value;
-        y = value;
-        z = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -4083,11 +3646,7 @@ public partial struct uint3 :
     [MethodImpl(256 | 512)]
     internal uint3(uint value, is_scalar _)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.CreateScalar(value);
-        #else // NET8_0_OR_GREATER
-        this.x = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -4096,13 +3655,7 @@ public partial struct uint3 :
     [MethodImpl(256 | 512), CpuOnly]
     public uint3(ReadOnlySpan<uint> span)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.LoadUnsafe(in MemoryMarshal.Cast<uint, uint>(span)[0]);
-        #else // NET8_0_OR_GREATER
-        this.x = span[0];
-        this.y = span[1];
-        this.z = span[2];
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -4111,13 +3664,7 @@ public partial struct uint3 :
     [MethodImpl(256 | 512), CpuOnly]
     public unsafe uint3(uint* ptr)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.Load((uint*)ptr);
-        #else // NET8_0_OR_GREATER
-        this.x = ptr[0];
-        this.y = ptr[1];
-        this.z = ptr[2];
-        #endif // NET8_0_OR_GREATER
     }
 
     #endregion // ctors
@@ -4125,7 +3672,7 @@ public partial struct uint3 :
     #region deconstruct
 
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out uint x, out uint y, out uint z)
+    public readonly void Deconstruct(out uint x, out uint y, out uint z)
     {
         x = this.x;
         y = this.y;
@@ -4139,7 +3686,7 @@ public partial struct uint3 :
     public uint this[int i]
     {
         [MethodImpl(256 | 512)]
-        get => i switch
+        readonly get => i switch
         {
             0 => x,
             1 => y,
@@ -4167,6 +3714,15 @@ public partial struct uint3 :
     }
 
     #endregion // index
+}
+
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static uint3 uint3(uint value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static uint3 uint3(uint x, uint y, uint z) => new(x, y, z);
 }
 
 #endregion // uint3
@@ -4217,7 +3773,6 @@ public partial struct uint4 :
 
     #region fields
 
-    #if NET8_0_OR_GREATER
     internal Vector128<uint> vector;
     
     #region Unsafe Inner
@@ -4226,9 +3781,11 @@ public partial struct uint4 :
     public static explicit operator Vector128<uint>(uint4 self) => self.vector;
 
     [MethodImpl(256 | 512), CpuOnly]
-    public Vector128<uint> UnsafeGetInner() => vector;
+    public readonly Vector128<uint> UnsafeGetInner() => vector;
     [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
     public ref Vector128<uint> UnsafeGetInnerRef() => ref vector;
+    [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
+    public readonly ref readonly Vector128<uint> UnsafeGetInnerRefRo() => ref vector;
     [MethodImpl(256 | 512), CpuOnly]
     public void UnsafeSetInner(Vector128<uint> vector) => this.vector = vector;
    
@@ -4237,90 +3794,56 @@ public partial struct uint4 :
     public uint x
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(0);
+        readonly get => vector.GetElement(0);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(0, value);
     }
     public uint y
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(1);
+        readonly get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(1, value);
     }
     public uint z
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(2);
+        readonly get => vector.GetElement(2);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(2, value);
     }
     public uint w
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(3);
+        readonly get => vector.GetElement(3);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(3, value);
     }
-    #else // NET8_0_OR_GREATER
-    private uint _x;
-    public uint x
-    {
-        [MethodImpl(256 | 512)]
-        get => _x;
-        [MethodImpl(256 | 512)]
-        set => _x = value;
-    }
-    private uint _y;
-    public uint y
-    {
-        [MethodImpl(256 | 512)]
-        get => _y;
-        [MethodImpl(256 | 512)]
-        set => _y = value;
-    }
-    private uint _z;
-    public uint z
-    {
-        [MethodImpl(256 | 512)]
-        get => _z;
-        [MethodImpl(256 | 512)]
-        set => _z = value;
-    }
-    private uint _w;
-    public uint w
-    {
-        [MethodImpl(256 | 512)]
-        get => _w;
-        [MethodImpl(256 | 512)]
-        set => _w = value;
-    }
-    #endif // NET8_0_OR_GREATER
     public uint r
     {
         [MethodImpl(256 | 512)]
-        get => x;
+        readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
     public uint g
     {
         [MethodImpl(256 | 512)]
-        get => y;
+        readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
     public uint b
     {
         [MethodImpl(256 | 512)]
-        get => z;
+        readonly get => z;
         [MethodImpl(256 | 512)]
         set => z = value;
     }
     public uint a
     {
         [MethodImpl(256 | 512)]
-        get => w;
+        readonly get => w;
         [MethodImpl(256 | 512)]
         set => w = value;
     }
@@ -4329,24 +3852,15 @@ public partial struct uint4 :
 
     #region ctors
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512), CpuOnly]
     internal uint4(Vector128<uint> vector) => this.vector = vector;
     [MethodImpl(256 | 512), CpuOnly]
     public static uint4 UnsafeFromInner(Vector128<uint> vector) => new(vector);
-    #endif // NET8_0_OR_GREATER
 
     [MethodImpl(256 | 512)]
     public uint4(uint x, uint y, uint z, uint w)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.Create(x, y, z, w);
-        #else // NET8_0_OR_GREATER
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        this.w = w;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -4361,14 +3875,7 @@ public partial struct uint4 :
     [MethodImpl(256 | 512)]
     public uint4(uint value)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.Create((uint)value);
-        #else // NET8_0_OR_GREATER
-        x = value;
-        y = value;
-        z = value;
-        w = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -4377,11 +3884,7 @@ public partial struct uint4 :
     [MethodImpl(256 | 512)]
     internal uint4(uint value, is_scalar _)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.CreateScalar(value);
-        #else // NET8_0_OR_GREATER
-        this.x = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -4390,14 +3893,7 @@ public partial struct uint4 :
     [MethodImpl(256 | 512), CpuOnly]
     public uint4(ReadOnlySpan<uint> span)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.LoadUnsafe(in MemoryMarshal.Cast<uint, uint>(span)[0]);
-        #else // NET8_0_OR_GREATER
-        this.x = span[0];
-        this.y = span[1];
-        this.z = span[2];
-        this.w = span[3];
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -4406,14 +3902,7 @@ public partial struct uint4 :
     [MethodImpl(256 | 512), CpuOnly]
     public unsafe uint4(uint* ptr)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.Load((uint*)ptr);
-        #else // NET8_0_OR_GREATER
-        this.x = ptr[0];
-        this.y = ptr[1];
-        this.z = ptr[2];
-        this.w = ptr[3];
-        #endif // NET8_0_OR_GREATER
     }
 
     #endregion // ctors
@@ -4421,7 +3910,7 @@ public partial struct uint4 :
     #region deconstruct
 
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out uint x, out uint y, out uint z, out uint w)
+    public readonly void Deconstruct(out uint x, out uint y, out uint z, out uint w)
     {
         x = this.x;
         y = this.y;
@@ -4436,7 +3925,7 @@ public partial struct uint4 :
     public uint this[int i]
     {
         [MethodImpl(256 | 512)]
-        get => i switch
+        readonly get => i switch
         {
             0 => x,
             1 => y,
@@ -4468,6 +3957,15 @@ public partial struct uint4 :
     }
 
     #endregion // index
+}
+
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static uint4 uint4(uint value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static uint4 uint4(uint x, uint y, uint z, uint w) => new(x, y, z, w);
 }
 
 #endregion // uint4
@@ -4518,7 +4016,6 @@ public partial struct long2 :
 
     #region fields
 
-    #if NET8_0_OR_GREATER
     internal Vector128<long> vector;
     
     #region Unsafe Inner
@@ -4527,9 +4024,11 @@ public partial struct long2 :
     public static explicit operator Vector128<long>(long2 self) => self.vector;
 
     [MethodImpl(256 | 512), CpuOnly]
-    public Vector128<long> UnsafeGetInner() => vector;
+    public readonly Vector128<long> UnsafeGetInner() => vector;
     [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
     public ref Vector128<long> UnsafeGetInnerRef() => ref vector;
+    [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
+    public readonly ref readonly Vector128<long> UnsafeGetInnerRefRo() => ref vector;
     [MethodImpl(256 | 512), CpuOnly]
     public void UnsafeSetInner(Vector128<long> vector) => this.vector = vector;
    
@@ -4538,46 +4037,28 @@ public partial struct long2 :
     public long x
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(0);
+        readonly get => vector.GetElement(0);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(0, value);
     }
     public long y
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(1);
+        readonly get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(1, value);
     }
-    #else // NET8_0_OR_GREATER
-    private long _x;
-    public long x
-    {
-        [MethodImpl(256 | 512)]
-        get => _x;
-        [MethodImpl(256 | 512)]
-        set => _x = value;
-    }
-    private long _y;
-    public long y
-    {
-        [MethodImpl(256 | 512)]
-        get => _y;
-        [MethodImpl(256 | 512)]
-        set => _y = value;
-    }
-    #endif // NET8_0_OR_GREATER
     public long r
     {
         [MethodImpl(256 | 512)]
-        get => x;
+        readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
     public long g
     {
         [MethodImpl(256 | 512)]
-        get => y;
+        readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
@@ -4586,22 +4067,15 @@ public partial struct long2 :
 
     #region ctors
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512), CpuOnly]
     internal long2(Vector128<long> vector) => this.vector = vector;
     [MethodImpl(256 | 512), CpuOnly]
     public static long2 UnsafeFromInner(Vector128<long> vector) => new(vector);
-    #endif // NET8_0_OR_GREATER
 
     [MethodImpl(256 | 512)]
     public long2(long x, long y)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.Create(x, y);
-        #else // NET8_0_OR_GREATER
-        this.x = x;
-        this.y = y;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -4616,12 +4090,7 @@ public partial struct long2 :
     [MethodImpl(256 | 512)]
     public long2(long value)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.Create(value);
-        #else // NET8_0_OR_GREATER
-        x = value;
-        y = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -4630,11 +4099,7 @@ public partial struct long2 :
     [MethodImpl(256 | 512)]
     internal long2(long value, is_scalar _)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.CreateScalar(value);
-        #else // NET8_0_OR_GREATER
-        this.x = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -4643,12 +4108,7 @@ public partial struct long2 :
     [MethodImpl(256 | 512), CpuOnly]
     public long2(ReadOnlySpan<long> span)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.LoadUnsafe(in MemoryMarshal.Cast<long, long>(span)[0]);
-        #else // NET8_0_OR_GREATER
-        this.x = span[0];
-        this.y = span[1];
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -4657,12 +4117,7 @@ public partial struct long2 :
     [MethodImpl(256 | 512), CpuOnly]
     public unsafe long2(long* ptr)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.Load((long*)ptr);
-        #else // NET8_0_OR_GREATER
-        this.x = ptr[0];
-        this.y = ptr[1];
-        #endif // NET8_0_OR_GREATER
     }
 
     #endregion // ctors
@@ -4670,7 +4125,7 @@ public partial struct long2 :
     #region deconstruct
 
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out long x, out long y)
+    public readonly void Deconstruct(out long x, out long y)
     {
         x = this.x;
         y = this.y;
@@ -4683,7 +4138,7 @@ public partial struct long2 :
     public long this[int i]
     {
         [MethodImpl(256 | 512)]
-        get => i switch
+        readonly get => i switch
         {
             0 => x,
             1 => y,
@@ -4707,6 +4162,15 @@ public partial struct long2 :
     }
 
     #endregion // index
+}
+
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static long2 long2(long value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static long2 long2(long x, long y) => new(x, y);
 }
 
 #endregion // long2
@@ -4757,7 +4221,6 @@ public partial struct long3 :
 
     #region fields
 
-    #if NET8_0_OR_GREATER
     internal Vector256<long> vector;
     
     #region Unsafe Inner
@@ -4766,9 +4229,11 @@ public partial struct long3 :
     public static explicit operator Vector256<long>(long3 self) => self.vector;
 
     [MethodImpl(256 | 512), CpuOnly]
-    public Vector256<long> UnsafeGetInner() => vector;
+    public readonly Vector256<long> UnsafeGetInner() => vector;
     [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
     public ref Vector256<long> UnsafeGetInnerRef() => ref vector;
+    [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
+    public readonly ref readonly Vector256<long> UnsafeGetInnerRefRo() => ref vector;
     [MethodImpl(256 | 512), CpuOnly]
     public void UnsafeSetInner(Vector256<long> vector) => this.vector = vector;
    
@@ -4777,69 +4242,42 @@ public partial struct long3 :
     public long x
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(0);
+        readonly get => vector.GetElement(0);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(0, value);
     }
     public long y
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(1);
+        readonly get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(1, value);
     }
     public long z
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(2);
+        readonly get => vector.GetElement(2);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(2, value);
     }
-    #else // NET8_0_OR_GREATER
-    private long _x;
-    public long x
-    {
-        [MethodImpl(256 | 512)]
-        get => _x;
-        [MethodImpl(256 | 512)]
-        set => _x = value;
-    }
-    private long _y;
-    public long y
-    {
-        [MethodImpl(256 | 512)]
-        get => _y;
-        [MethodImpl(256 | 512)]
-        set => _y = value;
-    }
-    private long _z;
-    public long z
-    {
-        [MethodImpl(256 | 512)]
-        get => _z;
-        [MethodImpl(256 | 512)]
-        set => _z = value;
-    }
-    private long _align;
-    #endif // NET8_0_OR_GREATER
     public long r
     {
         [MethodImpl(256 | 512)]
-        get => x;
+        readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
     public long g
     {
         [MethodImpl(256 | 512)]
-        get => y;
+        readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
     public long b
     {
         [MethodImpl(256 | 512)]
-        get => z;
+        readonly get => z;
         [MethodImpl(256 | 512)]
         set => z = value;
     }
@@ -4848,23 +4286,15 @@ public partial struct long3 :
 
     #region ctors
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512), CpuOnly]
     internal long3(Vector256<long> vector) => this.vector = vector;
     [MethodImpl(256 | 512), CpuOnly]
     public static long3 UnsafeFromInner(Vector256<long> vector) => new(vector);
-    #endif // NET8_0_OR_GREATER
 
     [MethodImpl(256 | 512)]
     public long3(long x, long y, long z)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector256.Create(x, y, z, default);
-        #else // NET8_0_OR_GREATER
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -4879,13 +4309,7 @@ public partial struct long3 :
     [MethodImpl(256 | 512)]
     public long3(long value)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector256.Create(value, value, value, default);
-        #else // NET8_0_OR_GREATER
-        x = value;
-        y = value;
-        z = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -4894,11 +4318,7 @@ public partial struct long3 :
     [MethodImpl(256 | 512)]
     internal long3(long value, is_scalar _)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector256.CreateScalar(value);
-        #else // NET8_0_OR_GREATER
-        this.x = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -4907,13 +4327,7 @@ public partial struct long3 :
     [MethodImpl(256 | 512), CpuOnly]
     public long3(ReadOnlySpan<long> span)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector256.LoadUnsafe(in MemoryMarshal.Cast<long, long>(span)[0]);
-        #else // NET8_0_OR_GREATER
-        this.x = span[0];
-        this.y = span[1];
-        this.z = span[2];
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -4922,13 +4336,7 @@ public partial struct long3 :
     [MethodImpl(256 | 512), CpuOnly]
     public unsafe long3(long* ptr)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector256.Load((long*)ptr);
-        #else // NET8_0_OR_GREATER
-        this.x = ptr[0];
-        this.y = ptr[1];
-        this.z = ptr[2];
-        #endif // NET8_0_OR_GREATER
     }
 
     #endregion // ctors
@@ -4936,7 +4344,7 @@ public partial struct long3 :
     #region deconstruct
 
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out long x, out long y, out long z)
+    public readonly void Deconstruct(out long x, out long y, out long z)
     {
         x = this.x;
         y = this.y;
@@ -4950,7 +4358,7 @@ public partial struct long3 :
     public long this[int i]
     {
         [MethodImpl(256 | 512)]
-        get => i switch
+        readonly get => i switch
         {
             0 => x,
             1 => y,
@@ -4978,6 +4386,15 @@ public partial struct long3 :
     }
 
     #endregion // index
+}
+
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static long3 long3(long value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static long3 long3(long x, long y, long z) => new(x, y, z);
 }
 
 #endregion // long3
@@ -5028,7 +4445,6 @@ public partial struct long4 :
 
     #region fields
 
-    #if NET8_0_OR_GREATER
     internal Vector256<long> vector;
     
     #region Unsafe Inner
@@ -5037,9 +4453,11 @@ public partial struct long4 :
     public static explicit operator Vector256<long>(long4 self) => self.vector;
 
     [MethodImpl(256 | 512), CpuOnly]
-    public Vector256<long> UnsafeGetInner() => vector;
+    public readonly Vector256<long> UnsafeGetInner() => vector;
     [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
     public ref Vector256<long> UnsafeGetInnerRef() => ref vector;
+    [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
+    public readonly ref readonly Vector256<long> UnsafeGetInnerRefRo() => ref vector;
     [MethodImpl(256 | 512), CpuOnly]
     public void UnsafeSetInner(Vector256<long> vector) => this.vector = vector;
    
@@ -5048,90 +4466,56 @@ public partial struct long4 :
     public long x
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(0);
+        readonly get => vector.GetElement(0);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(0, value);
     }
     public long y
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(1);
+        readonly get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(1, value);
     }
     public long z
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(2);
+        readonly get => vector.GetElement(2);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(2, value);
     }
     public long w
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(3);
+        readonly get => vector.GetElement(3);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(3, value);
     }
-    #else // NET8_0_OR_GREATER
-    private long _x;
-    public long x
-    {
-        [MethodImpl(256 | 512)]
-        get => _x;
-        [MethodImpl(256 | 512)]
-        set => _x = value;
-    }
-    private long _y;
-    public long y
-    {
-        [MethodImpl(256 | 512)]
-        get => _y;
-        [MethodImpl(256 | 512)]
-        set => _y = value;
-    }
-    private long _z;
-    public long z
-    {
-        [MethodImpl(256 | 512)]
-        get => _z;
-        [MethodImpl(256 | 512)]
-        set => _z = value;
-    }
-    private long _w;
-    public long w
-    {
-        [MethodImpl(256 | 512)]
-        get => _w;
-        [MethodImpl(256 | 512)]
-        set => _w = value;
-    }
-    #endif // NET8_0_OR_GREATER
     public long r
     {
         [MethodImpl(256 | 512)]
-        get => x;
+        readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
     public long g
     {
         [MethodImpl(256 | 512)]
-        get => y;
+        readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
     public long b
     {
         [MethodImpl(256 | 512)]
-        get => z;
+        readonly get => z;
         [MethodImpl(256 | 512)]
         set => z = value;
     }
     public long a
     {
         [MethodImpl(256 | 512)]
-        get => w;
+        readonly get => w;
         [MethodImpl(256 | 512)]
         set => w = value;
     }
@@ -5140,24 +4524,15 @@ public partial struct long4 :
 
     #region ctors
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512), CpuOnly]
     internal long4(Vector256<long> vector) => this.vector = vector;
     [MethodImpl(256 | 512), CpuOnly]
     public static long4 UnsafeFromInner(Vector256<long> vector) => new(vector);
-    #endif // NET8_0_OR_GREATER
 
     [MethodImpl(256 | 512)]
     public long4(long x, long y, long z, long w)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector256.Create(x, y, z, w);
-        #else // NET8_0_OR_GREATER
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        this.w = w;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -5172,14 +4547,7 @@ public partial struct long4 :
     [MethodImpl(256 | 512)]
     public long4(long value)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector256.Create(value);
-        #else // NET8_0_OR_GREATER
-        x = value;
-        y = value;
-        z = value;
-        w = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -5188,11 +4556,7 @@ public partial struct long4 :
     [MethodImpl(256 | 512)]
     internal long4(long value, is_scalar _)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector256.CreateScalar(value);
-        #else // NET8_0_OR_GREATER
-        this.x = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -5201,14 +4565,7 @@ public partial struct long4 :
     [MethodImpl(256 | 512), CpuOnly]
     public long4(ReadOnlySpan<long> span)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector256.LoadUnsafe(in MemoryMarshal.Cast<long, long>(span)[0]);
-        #else // NET8_0_OR_GREATER
-        this.x = span[0];
-        this.y = span[1];
-        this.z = span[2];
-        this.w = span[3];
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -5217,14 +4574,7 @@ public partial struct long4 :
     [MethodImpl(256 | 512), CpuOnly]
     public unsafe long4(long* ptr)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector256.Load((long*)ptr);
-        #else // NET8_0_OR_GREATER
-        this.x = ptr[0];
-        this.y = ptr[1];
-        this.z = ptr[2];
-        this.w = ptr[3];
-        #endif // NET8_0_OR_GREATER
     }
 
     #endregion // ctors
@@ -5232,7 +4582,7 @@ public partial struct long4 :
     #region deconstruct
 
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out long x, out long y, out long z, out long w)
+    public readonly void Deconstruct(out long x, out long y, out long z, out long w)
     {
         x = this.x;
         y = this.y;
@@ -5247,7 +4597,7 @@ public partial struct long4 :
     public long this[int i]
     {
         [MethodImpl(256 | 512)]
-        get => i switch
+        readonly get => i switch
         {
             0 => x,
             1 => y,
@@ -5279,6 +4629,15 @@ public partial struct long4 :
     }
 
     #endregion // index
+}
+
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static long4 long4(long value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static long4 long4(long x, long y, long z, long w) => new(x, y, z, w);
 }
 
 #endregion // long4
@@ -5329,7 +4688,6 @@ public partial struct ulong2 :
 
     #region fields
 
-    #if NET8_0_OR_GREATER
     internal Vector128<ulong> vector;
     
     #region Unsafe Inner
@@ -5338,9 +4696,11 @@ public partial struct ulong2 :
     public static explicit operator Vector128<ulong>(ulong2 self) => self.vector;
 
     [MethodImpl(256 | 512), CpuOnly]
-    public Vector128<ulong> UnsafeGetInner() => vector;
+    public readonly Vector128<ulong> UnsafeGetInner() => vector;
     [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
     public ref Vector128<ulong> UnsafeGetInnerRef() => ref vector;
+    [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
+    public readonly ref readonly Vector128<ulong> UnsafeGetInnerRefRo() => ref vector;
     [MethodImpl(256 | 512), CpuOnly]
     public void UnsafeSetInner(Vector128<ulong> vector) => this.vector = vector;
    
@@ -5349,46 +4709,28 @@ public partial struct ulong2 :
     public ulong x
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(0);
+        readonly get => vector.GetElement(0);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(0, value);
     }
     public ulong y
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(1);
+        readonly get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(1, value);
     }
-    #else // NET8_0_OR_GREATER
-    private ulong _x;
-    public ulong x
-    {
-        [MethodImpl(256 | 512)]
-        get => _x;
-        [MethodImpl(256 | 512)]
-        set => _x = value;
-    }
-    private ulong _y;
-    public ulong y
-    {
-        [MethodImpl(256 | 512)]
-        get => _y;
-        [MethodImpl(256 | 512)]
-        set => _y = value;
-    }
-    #endif // NET8_0_OR_GREATER
     public ulong r
     {
         [MethodImpl(256 | 512)]
-        get => x;
+        readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
     public ulong g
     {
         [MethodImpl(256 | 512)]
-        get => y;
+        readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
@@ -5397,22 +4739,15 @@ public partial struct ulong2 :
 
     #region ctors
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512), CpuOnly]
     internal ulong2(Vector128<ulong> vector) => this.vector = vector;
     [MethodImpl(256 | 512), CpuOnly]
     public static ulong2 UnsafeFromInner(Vector128<ulong> vector) => new(vector);
-    #endif // NET8_0_OR_GREATER
 
     [MethodImpl(256 | 512)]
     public ulong2(ulong x, ulong y)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.Create(x, y);
-        #else // NET8_0_OR_GREATER
-        this.x = x;
-        this.y = y;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -5427,12 +4762,7 @@ public partial struct ulong2 :
     [MethodImpl(256 | 512)]
     public ulong2(ulong value)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.Create((ulong)value);
-        #else // NET8_0_OR_GREATER
-        x = value;
-        y = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -5441,11 +4771,7 @@ public partial struct ulong2 :
     [MethodImpl(256 | 512)]
     internal ulong2(ulong value, is_scalar _)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.CreateScalar(value);
-        #else // NET8_0_OR_GREATER
-        this.x = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -5454,12 +4780,7 @@ public partial struct ulong2 :
     [MethodImpl(256 | 512), CpuOnly]
     public ulong2(ReadOnlySpan<ulong> span)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.LoadUnsafe(in MemoryMarshal.Cast<ulong, ulong>(span)[0]);
-        #else // NET8_0_OR_GREATER
-        this.x = span[0];
-        this.y = span[1];
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -5468,12 +4789,7 @@ public partial struct ulong2 :
     [MethodImpl(256 | 512), CpuOnly]
     public unsafe ulong2(ulong* ptr)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.Load((ulong*)ptr);
-        #else // NET8_0_OR_GREATER
-        this.x = ptr[0];
-        this.y = ptr[1];
-        #endif // NET8_0_OR_GREATER
     }
 
     #endregion // ctors
@@ -5481,7 +4797,7 @@ public partial struct ulong2 :
     #region deconstruct
 
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out ulong x, out ulong y)
+    public readonly void Deconstruct(out ulong x, out ulong y)
     {
         x = this.x;
         y = this.y;
@@ -5494,7 +4810,7 @@ public partial struct ulong2 :
     public ulong this[int i]
     {
         [MethodImpl(256 | 512)]
-        get => i switch
+        readonly get => i switch
         {
             0 => x,
             1 => y,
@@ -5518,6 +4834,15 @@ public partial struct ulong2 :
     }
 
     #endregion // index
+}
+
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static ulong2 ulong2(ulong value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2 ulong2(ulong x, ulong y) => new(x, y);
 }
 
 #endregion // ulong2
@@ -5568,7 +4893,6 @@ public partial struct ulong3 :
 
     #region fields
 
-    #if NET8_0_OR_GREATER
     internal Vector256<ulong> vector;
     
     #region Unsafe Inner
@@ -5577,9 +4901,11 @@ public partial struct ulong3 :
     public static explicit operator Vector256<ulong>(ulong3 self) => self.vector;
 
     [MethodImpl(256 | 512), CpuOnly]
-    public Vector256<ulong> UnsafeGetInner() => vector;
+    public readonly Vector256<ulong> UnsafeGetInner() => vector;
     [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
     public ref Vector256<ulong> UnsafeGetInnerRef() => ref vector;
+    [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
+    public readonly ref readonly Vector256<ulong> UnsafeGetInnerRefRo() => ref vector;
     [MethodImpl(256 | 512), CpuOnly]
     public void UnsafeSetInner(Vector256<ulong> vector) => this.vector = vector;
    
@@ -5588,69 +4914,42 @@ public partial struct ulong3 :
     public ulong x
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(0);
+        readonly get => vector.GetElement(0);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(0, value);
     }
     public ulong y
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(1);
+        readonly get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(1, value);
     }
     public ulong z
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(2);
+        readonly get => vector.GetElement(2);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(2, value);
     }
-    #else // NET8_0_OR_GREATER
-    private ulong _x;
-    public ulong x
-    {
-        [MethodImpl(256 | 512)]
-        get => _x;
-        [MethodImpl(256 | 512)]
-        set => _x = value;
-    }
-    private ulong _y;
-    public ulong y
-    {
-        [MethodImpl(256 | 512)]
-        get => _y;
-        [MethodImpl(256 | 512)]
-        set => _y = value;
-    }
-    private ulong _z;
-    public ulong z
-    {
-        [MethodImpl(256 | 512)]
-        get => _z;
-        [MethodImpl(256 | 512)]
-        set => _z = value;
-    }
-    private ulong _align;
-    #endif // NET8_0_OR_GREATER
     public ulong r
     {
         [MethodImpl(256 | 512)]
-        get => x;
+        readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
     public ulong g
     {
         [MethodImpl(256 | 512)]
-        get => y;
+        readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
     public ulong b
     {
         [MethodImpl(256 | 512)]
-        get => z;
+        readonly get => z;
         [MethodImpl(256 | 512)]
         set => z = value;
     }
@@ -5659,23 +4958,15 @@ public partial struct ulong3 :
 
     #region ctors
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512), CpuOnly]
     internal ulong3(Vector256<ulong> vector) => this.vector = vector;
     [MethodImpl(256 | 512), CpuOnly]
     public static ulong3 UnsafeFromInner(Vector256<ulong> vector) => new(vector);
-    #endif // NET8_0_OR_GREATER
 
     [MethodImpl(256 | 512)]
     public ulong3(ulong x, ulong y, ulong z)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector256.Create(x, y, z, default);
-        #else // NET8_0_OR_GREATER
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -5690,13 +4981,7 @@ public partial struct ulong3 :
     [MethodImpl(256 | 512)]
     public ulong3(ulong value)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector256.Create((ulong)value, value, value, default);
-        #else // NET8_0_OR_GREATER
-        x = value;
-        y = value;
-        z = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -5705,11 +4990,7 @@ public partial struct ulong3 :
     [MethodImpl(256 | 512)]
     internal ulong3(ulong value, is_scalar _)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector256.CreateScalar(value);
-        #else // NET8_0_OR_GREATER
-        this.x = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -5718,13 +4999,7 @@ public partial struct ulong3 :
     [MethodImpl(256 | 512), CpuOnly]
     public ulong3(ReadOnlySpan<ulong> span)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector256.LoadUnsafe(in MemoryMarshal.Cast<ulong, ulong>(span)[0]);
-        #else // NET8_0_OR_GREATER
-        this.x = span[0];
-        this.y = span[1];
-        this.z = span[2];
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -5733,13 +5008,7 @@ public partial struct ulong3 :
     [MethodImpl(256 | 512), CpuOnly]
     public unsafe ulong3(ulong* ptr)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector256.Load((ulong*)ptr);
-        #else // NET8_0_OR_GREATER
-        this.x = ptr[0];
-        this.y = ptr[1];
-        this.z = ptr[2];
-        #endif // NET8_0_OR_GREATER
     }
 
     #endregion // ctors
@@ -5747,7 +5016,7 @@ public partial struct ulong3 :
     #region deconstruct
 
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out ulong x, out ulong y, out ulong z)
+    public readonly void Deconstruct(out ulong x, out ulong y, out ulong z)
     {
         x = this.x;
         y = this.y;
@@ -5761,7 +5030,7 @@ public partial struct ulong3 :
     public ulong this[int i]
     {
         [MethodImpl(256 | 512)]
-        get => i switch
+        readonly get => i switch
         {
             0 => x,
             1 => y,
@@ -5789,6 +5058,15 @@ public partial struct ulong3 :
     }
 
     #endregion // index
+}
+
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static ulong3 ulong3(ulong value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3 ulong3(ulong x, ulong y, ulong z) => new(x, y, z);
 }
 
 #endregion // ulong3
@@ -5839,7 +5117,6 @@ public partial struct ulong4 :
 
     #region fields
 
-    #if NET8_0_OR_GREATER
     internal Vector256<ulong> vector;
     
     #region Unsafe Inner
@@ -5848,9 +5125,11 @@ public partial struct ulong4 :
     public static explicit operator Vector256<ulong>(ulong4 self) => self.vector;
 
     [MethodImpl(256 | 512), CpuOnly]
-    public Vector256<ulong> UnsafeGetInner() => vector;
+    public readonly Vector256<ulong> UnsafeGetInner() => vector;
     [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
     public ref Vector256<ulong> UnsafeGetInnerRef() => ref vector;
+    [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
+    public readonly ref readonly Vector256<ulong> UnsafeGetInnerRefRo() => ref vector;
     [MethodImpl(256 | 512), CpuOnly]
     public void UnsafeSetInner(Vector256<ulong> vector) => this.vector = vector;
    
@@ -5859,90 +5138,56 @@ public partial struct ulong4 :
     public ulong x
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(0);
+        readonly get => vector.GetElement(0);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(0, value);
     }
     public ulong y
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(1);
+        readonly get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(1, value);
     }
     public ulong z
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(2);
+        readonly get => vector.GetElement(2);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(2, value);
     }
     public ulong w
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(3);
+        readonly get => vector.GetElement(3);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(3, value);
     }
-    #else // NET8_0_OR_GREATER
-    private ulong _x;
-    public ulong x
-    {
-        [MethodImpl(256 | 512)]
-        get => _x;
-        [MethodImpl(256 | 512)]
-        set => _x = value;
-    }
-    private ulong _y;
-    public ulong y
-    {
-        [MethodImpl(256 | 512)]
-        get => _y;
-        [MethodImpl(256 | 512)]
-        set => _y = value;
-    }
-    private ulong _z;
-    public ulong z
-    {
-        [MethodImpl(256 | 512)]
-        get => _z;
-        [MethodImpl(256 | 512)]
-        set => _z = value;
-    }
-    private ulong _w;
-    public ulong w
-    {
-        [MethodImpl(256 | 512)]
-        get => _w;
-        [MethodImpl(256 | 512)]
-        set => _w = value;
-    }
-    #endif // NET8_0_OR_GREATER
     public ulong r
     {
         [MethodImpl(256 | 512)]
-        get => x;
+        readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
     public ulong g
     {
         [MethodImpl(256 | 512)]
-        get => y;
+        readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
     public ulong b
     {
         [MethodImpl(256 | 512)]
-        get => z;
+        readonly get => z;
         [MethodImpl(256 | 512)]
         set => z = value;
     }
     public ulong a
     {
         [MethodImpl(256 | 512)]
-        get => w;
+        readonly get => w;
         [MethodImpl(256 | 512)]
         set => w = value;
     }
@@ -5951,24 +5196,15 @@ public partial struct ulong4 :
 
     #region ctors
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512), CpuOnly]
     internal ulong4(Vector256<ulong> vector) => this.vector = vector;
     [MethodImpl(256 | 512), CpuOnly]
     public static ulong4 UnsafeFromInner(Vector256<ulong> vector) => new(vector);
-    #endif // NET8_0_OR_GREATER
 
     [MethodImpl(256 | 512)]
     public ulong4(ulong x, ulong y, ulong z, ulong w)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector256.Create(x, y, z, w);
-        #else // NET8_0_OR_GREATER
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        this.w = w;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -5983,14 +5219,7 @@ public partial struct ulong4 :
     [MethodImpl(256 | 512)]
     public ulong4(ulong value)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector256.Create((ulong)value);
-        #else // NET8_0_OR_GREATER
-        x = value;
-        y = value;
-        z = value;
-        w = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -5999,11 +5228,7 @@ public partial struct ulong4 :
     [MethodImpl(256 | 512)]
     internal ulong4(ulong value, is_scalar _)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector256.CreateScalar(value);
-        #else // NET8_0_OR_GREATER
-        this.x = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -6012,14 +5237,7 @@ public partial struct ulong4 :
     [MethodImpl(256 | 512), CpuOnly]
     public ulong4(ReadOnlySpan<ulong> span)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector256.LoadUnsafe(in MemoryMarshal.Cast<ulong, ulong>(span)[0]);
-        #else // NET8_0_OR_GREATER
-        this.x = span[0];
-        this.y = span[1];
-        this.z = span[2];
-        this.w = span[3];
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -6028,14 +5246,7 @@ public partial struct ulong4 :
     [MethodImpl(256 | 512), CpuOnly]
     public unsafe ulong4(ulong* ptr)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector256.Load((ulong*)ptr);
-        #else // NET8_0_OR_GREATER
-        this.x = ptr[0];
-        this.y = ptr[1];
-        this.z = ptr[2];
-        this.w = ptr[3];
-        #endif // NET8_0_OR_GREATER
     }
 
     #endregion // ctors
@@ -6043,7 +5254,7 @@ public partial struct ulong4 :
     #region deconstruct
 
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out ulong x, out ulong y, out ulong z, out ulong w)
+    public readonly void Deconstruct(out ulong x, out ulong y, out ulong z, out ulong w)
     {
         x = this.x;
         y = this.y;
@@ -6058,7 +5269,7 @@ public partial struct ulong4 :
     public ulong this[int i]
     {
         [MethodImpl(256 | 512)]
-        get => i switch
+        readonly get => i switch
         {
             0 => x,
             1 => y,
@@ -6090,6 +5301,15 @@ public partial struct ulong4 :
     }
 
     #endregion // index
+}
+
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static ulong4 ulong4(ulong value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4 ulong4(ulong x, ulong y, ulong z, ulong w) => new(x, y, z, w);
 }
 
 #endregion // ulong4
@@ -6144,7 +5364,7 @@ public partial struct decimal2 :
     public decimal x
     {
         [MethodImpl(256 | 512)]
-        get => _x;
+        readonly get => _x;
         [MethodImpl(256 | 512)]
         set => _x = value;
     }
@@ -6152,21 +5372,21 @@ public partial struct decimal2 :
     public decimal y
     {
         [MethodImpl(256 | 512)]
-        get => _y;
+        readonly get => _y;
         [MethodImpl(256 | 512)]
         set => _y = value;
     }
     public decimal r
     {
         [MethodImpl(256 | 512)]
-        get => x;
+        readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
     public decimal g
     {
         [MethodImpl(256 | 512)]
-        get => y;
+        readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
@@ -6233,7 +5453,7 @@ public partial struct decimal2 :
     #region deconstruct
 
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out decimal x, out decimal y)
+    public readonly void Deconstruct(out decimal x, out decimal y)
     {
         x = this.x;
         y = this.y;
@@ -6246,7 +5466,7 @@ public partial struct decimal2 :
     public decimal this[int i]
     {
         [MethodImpl(256 | 512)]
-        get => i switch
+        readonly get => i switch
         {
             0 => x,
             1 => y,
@@ -6270,6 +5490,15 @@ public partial struct decimal2 :
     }
 
     #endregion // index
+}
+
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static decimal2 decimal2(decimal value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static decimal2 decimal2(decimal x, decimal y) => new(x, y);
 }
 
 #endregion // decimal2
@@ -6324,7 +5553,7 @@ public partial struct decimal3 :
     public decimal x
     {
         [MethodImpl(256 | 512)]
-        get => _x;
+        readonly get => _x;
         [MethodImpl(256 | 512)]
         set => _x = value;
     }
@@ -6332,7 +5561,7 @@ public partial struct decimal3 :
     public decimal y
     {
         [MethodImpl(256 | 512)]
-        get => _y;
+        readonly get => _y;
         [MethodImpl(256 | 512)]
         set => _y = value;
     }
@@ -6340,7 +5569,7 @@ public partial struct decimal3 :
     public decimal z
     {
         [MethodImpl(256 | 512)]
-        get => _z;
+        readonly get => _z;
         [MethodImpl(256 | 512)]
         set => _z = value;
     }
@@ -6348,21 +5577,21 @@ public partial struct decimal3 :
     public decimal r
     {
         [MethodImpl(256 | 512)]
-        get => x;
+        readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
     public decimal g
     {
         [MethodImpl(256 | 512)]
-        get => y;
+        readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
     public decimal b
     {
         [MethodImpl(256 | 512)]
-        get => z;
+        readonly get => z;
         [MethodImpl(256 | 512)]
         set => z = value;
     }
@@ -6433,7 +5662,7 @@ public partial struct decimal3 :
     #region deconstruct
 
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out decimal x, out decimal y, out decimal z)
+    public readonly void Deconstruct(out decimal x, out decimal y, out decimal z)
     {
         x = this.x;
         y = this.y;
@@ -6447,7 +5676,7 @@ public partial struct decimal3 :
     public decimal this[int i]
     {
         [MethodImpl(256 | 512)]
-        get => i switch
+        readonly get => i switch
         {
             0 => x,
             1 => y,
@@ -6475,6 +5704,15 @@ public partial struct decimal3 :
     }
 
     #endregion // index
+}
+
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static decimal3 decimal3(decimal value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static decimal3 decimal3(decimal x, decimal y, decimal z) => new(x, y, z);
 }
 
 #endregion // decimal3
@@ -6529,7 +5767,7 @@ public partial struct decimal4 :
     public decimal x
     {
         [MethodImpl(256 | 512)]
-        get => _x;
+        readonly get => _x;
         [MethodImpl(256 | 512)]
         set => _x = value;
     }
@@ -6537,7 +5775,7 @@ public partial struct decimal4 :
     public decimal y
     {
         [MethodImpl(256 | 512)]
-        get => _y;
+        readonly get => _y;
         [MethodImpl(256 | 512)]
         set => _y = value;
     }
@@ -6545,7 +5783,7 @@ public partial struct decimal4 :
     public decimal z
     {
         [MethodImpl(256 | 512)]
-        get => _z;
+        readonly get => _z;
         [MethodImpl(256 | 512)]
         set => _z = value;
     }
@@ -6553,35 +5791,35 @@ public partial struct decimal4 :
     public decimal w
     {
         [MethodImpl(256 | 512)]
-        get => _w;
+        readonly get => _w;
         [MethodImpl(256 | 512)]
         set => _w = value;
     }
     public decimal r
     {
         [MethodImpl(256 | 512)]
-        get => x;
+        readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
     public decimal g
     {
         [MethodImpl(256 | 512)]
-        get => y;
+        readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
     public decimal b
     {
         [MethodImpl(256 | 512)]
-        get => z;
+        readonly get => z;
         [MethodImpl(256 | 512)]
         set => z = value;
     }
     public decimal a
     {
         [MethodImpl(256 | 512)]
-        get => w;
+        readonly get => w;
         [MethodImpl(256 | 512)]
         set => w = value;
     }
@@ -6656,7 +5894,7 @@ public partial struct decimal4 :
     #region deconstruct
 
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out decimal x, out decimal y, out decimal z, out decimal w)
+    public readonly void Deconstruct(out decimal x, out decimal y, out decimal z, out decimal w)
     {
         x = this.x;
         y = this.y;
@@ -6671,7 +5909,7 @@ public partial struct decimal4 :
     public decimal this[int i]
     {
         [MethodImpl(256 | 512)]
-        get => i switch
+        readonly get => i switch
         {
             0 => x,
             1 => y,
@@ -6703,6 +5941,15 @@ public partial struct decimal4 :
     }
 
     #endregion // index
+}
+
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static decimal4 decimal4(decimal value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static decimal4 decimal4(decimal x, decimal y, decimal z, decimal w) => new(x, y, z, w);
 }
 
 #endregion // decimal4
@@ -6757,7 +6004,7 @@ public partial struct half2 :
     public half x
     {
         [MethodImpl(256 | 512)]
-        get => _x;
+        readonly get => _x;
         [MethodImpl(256 | 512)]
         set => _x = value;
     }
@@ -6765,21 +6012,21 @@ public partial struct half2 :
     public half y
     {
         [MethodImpl(256 | 512)]
-        get => _y;
+        readonly get => _y;
         [MethodImpl(256 | 512)]
         set => _y = value;
     }
     public half r
     {
         [MethodImpl(256 | 512)]
-        get => x;
+        readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
     public half g
     {
         [MethodImpl(256 | 512)]
-        get => y;
+        readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
@@ -6846,7 +6093,7 @@ public partial struct half2 :
     #region deconstruct
 
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out half x, out half y)
+    public readonly void Deconstruct(out half x, out half y)
     {
         x = this.x;
         y = this.y;
@@ -6859,7 +6106,7 @@ public partial struct half2 :
     public half this[int i]
     {
         [MethodImpl(256 | 512)]
-        get => i switch
+        readonly get => i switch
         {
             0 => x,
             1 => y,
@@ -6883,6 +6130,15 @@ public partial struct half2 :
     }
 
     #endregion // index
+}
+
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static half2 half2(half value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static half2 half2(half x, half y) => new(x, y);
 }
 
 #endregion // half2
@@ -6937,7 +6193,7 @@ public partial struct half3 :
     public half x
     {
         [MethodImpl(256 | 512)]
-        get => _x;
+        readonly get => _x;
         [MethodImpl(256 | 512)]
         set => _x = value;
     }
@@ -6945,7 +6201,7 @@ public partial struct half3 :
     public half y
     {
         [MethodImpl(256 | 512)]
-        get => _y;
+        readonly get => _y;
         [MethodImpl(256 | 512)]
         set => _y = value;
     }
@@ -6953,7 +6209,7 @@ public partial struct half3 :
     public half z
     {
         [MethodImpl(256 | 512)]
-        get => _z;
+        readonly get => _z;
         [MethodImpl(256 | 512)]
         set => _z = value;
     }
@@ -6961,21 +6217,21 @@ public partial struct half3 :
     public half r
     {
         [MethodImpl(256 | 512)]
-        get => x;
+        readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
     public half g
     {
         [MethodImpl(256 | 512)]
-        get => y;
+        readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
     public half b
     {
         [MethodImpl(256 | 512)]
-        get => z;
+        readonly get => z;
         [MethodImpl(256 | 512)]
         set => z = value;
     }
@@ -7046,7 +6302,7 @@ public partial struct half3 :
     #region deconstruct
 
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out half x, out half y, out half z)
+    public readonly void Deconstruct(out half x, out half y, out half z)
     {
         x = this.x;
         y = this.y;
@@ -7060,7 +6316,7 @@ public partial struct half3 :
     public half this[int i]
     {
         [MethodImpl(256 | 512)]
-        get => i switch
+        readonly get => i switch
         {
             0 => x,
             1 => y,
@@ -7088,6 +6344,15 @@ public partial struct half3 :
     }
 
     #endregion // index
+}
+
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static half3 half3(half value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static half3 half3(half x, half y, half z) => new(x, y, z);
 }
 
 #endregion // half3
@@ -7142,7 +6407,7 @@ public partial struct half4 :
     public half x
     {
         [MethodImpl(256 | 512)]
-        get => _x;
+        readonly get => _x;
         [MethodImpl(256 | 512)]
         set => _x = value;
     }
@@ -7150,7 +6415,7 @@ public partial struct half4 :
     public half y
     {
         [MethodImpl(256 | 512)]
-        get => _y;
+        readonly get => _y;
         [MethodImpl(256 | 512)]
         set => _y = value;
     }
@@ -7158,7 +6423,7 @@ public partial struct half4 :
     public half z
     {
         [MethodImpl(256 | 512)]
-        get => _z;
+        readonly get => _z;
         [MethodImpl(256 | 512)]
         set => _z = value;
     }
@@ -7166,35 +6431,35 @@ public partial struct half4 :
     public half w
     {
         [MethodImpl(256 | 512)]
-        get => _w;
+        readonly get => _w;
         [MethodImpl(256 | 512)]
         set => _w = value;
     }
     public half r
     {
         [MethodImpl(256 | 512)]
-        get => x;
+        readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
     public half g
     {
         [MethodImpl(256 | 512)]
-        get => y;
+        readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
     public half b
     {
         [MethodImpl(256 | 512)]
-        get => z;
+        readonly get => z;
         [MethodImpl(256 | 512)]
         set => z = value;
     }
     public half a
     {
         [MethodImpl(256 | 512)]
-        get => w;
+        readonly get => w;
         [MethodImpl(256 | 512)]
         set => w = value;
     }
@@ -7269,7 +6534,7 @@ public partial struct half4 :
     #region deconstruct
 
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out half x, out half y, out half z, out half w)
+    public readonly void Deconstruct(out half x, out half y, out half z, out half w)
     {
         x = this.x;
         y = this.y;
@@ -7284,7 +6549,7 @@ public partial struct half4 :
     public half this[int i]
     {
         [MethodImpl(256 | 512)]
-        get => i switch
+        readonly get => i switch
         {
             0 => x,
             1 => y,
@@ -7316,6 +6581,15 @@ public partial struct half4 :
     }
 
     #endregion // index
+}
+
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static half4 half4(half value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static half4 half4(half x, half y, half z, half w) => new(x, y, z, w);
 }
 
 #endregion // half4
@@ -7370,7 +6644,7 @@ public partial struct b16v2 :
     public b16 x
     {
         [MethodImpl(256 | 512)]
-        get => _x;
+        readonly get => _x;
         [MethodImpl(256 | 512)]
         set => _x = value;
     }
@@ -7378,21 +6652,21 @@ public partial struct b16v2 :
     public b16 y
     {
         [MethodImpl(256 | 512)]
-        get => _y;
+        readonly get => _y;
         [MethodImpl(256 | 512)]
         set => _y = value;
     }
     public b16 r
     {
         [MethodImpl(256 | 512)]
-        get => x;
+        readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
     public b16 g
     {
         [MethodImpl(256 | 512)]
-        get => y;
+        readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
@@ -7459,7 +6733,7 @@ public partial struct b16v2 :
     #region deconstruct
 
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out b16 x, out b16 y)
+    public readonly void Deconstruct(out b16 x, out b16 y)
     {
         x = this.x;
         y = this.y;
@@ -7472,7 +6746,7 @@ public partial struct b16v2 :
     public b16 this[int i]
     {
         [MethodImpl(256 | 512)]
-        get => i switch
+        readonly get => i switch
         {
             0 => x,
             1 => y,
@@ -7496,6 +6770,15 @@ public partial struct b16v2 :
     }
 
     #endregion // index
+}
+
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static b16v2 b16v2(b16 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static b16v2 b16v2(b16 x, b16 y) => new(x, y);
 }
 
 #endregion // b16v2
@@ -7550,7 +6833,7 @@ public partial struct b16v3 :
     public b16 x
     {
         [MethodImpl(256 | 512)]
-        get => _x;
+        readonly get => _x;
         [MethodImpl(256 | 512)]
         set => _x = value;
     }
@@ -7558,7 +6841,7 @@ public partial struct b16v3 :
     public b16 y
     {
         [MethodImpl(256 | 512)]
-        get => _y;
+        readonly get => _y;
         [MethodImpl(256 | 512)]
         set => _y = value;
     }
@@ -7566,7 +6849,7 @@ public partial struct b16v3 :
     public b16 z
     {
         [MethodImpl(256 | 512)]
-        get => _z;
+        readonly get => _z;
         [MethodImpl(256 | 512)]
         set => _z = value;
     }
@@ -7574,21 +6857,21 @@ public partial struct b16v3 :
     public b16 r
     {
         [MethodImpl(256 | 512)]
-        get => x;
+        readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
     public b16 g
     {
         [MethodImpl(256 | 512)]
-        get => y;
+        readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
     public b16 b
     {
         [MethodImpl(256 | 512)]
-        get => z;
+        readonly get => z;
         [MethodImpl(256 | 512)]
         set => z = value;
     }
@@ -7659,7 +6942,7 @@ public partial struct b16v3 :
     #region deconstruct
 
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out b16 x, out b16 y, out b16 z)
+    public readonly void Deconstruct(out b16 x, out b16 y, out b16 z)
     {
         x = this.x;
         y = this.y;
@@ -7673,7 +6956,7 @@ public partial struct b16v3 :
     public b16 this[int i]
     {
         [MethodImpl(256 | 512)]
-        get => i switch
+        readonly get => i switch
         {
             0 => x,
             1 => y,
@@ -7701,6 +6984,15 @@ public partial struct b16v3 :
     }
 
     #endregion // index
+}
+
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static b16v3 b16v3(b16 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static b16v3 b16v3(b16 x, b16 y, b16 z) => new(x, y, z);
 }
 
 #endregion // b16v3
@@ -7755,7 +7047,7 @@ public partial struct b16v4 :
     public b16 x
     {
         [MethodImpl(256 | 512)]
-        get => _x;
+        readonly get => _x;
         [MethodImpl(256 | 512)]
         set => _x = value;
     }
@@ -7763,7 +7055,7 @@ public partial struct b16v4 :
     public b16 y
     {
         [MethodImpl(256 | 512)]
-        get => _y;
+        readonly get => _y;
         [MethodImpl(256 | 512)]
         set => _y = value;
     }
@@ -7771,7 +7063,7 @@ public partial struct b16v4 :
     public b16 z
     {
         [MethodImpl(256 | 512)]
-        get => _z;
+        readonly get => _z;
         [MethodImpl(256 | 512)]
         set => _z = value;
     }
@@ -7779,35 +7071,35 @@ public partial struct b16v4 :
     public b16 w
     {
         [MethodImpl(256 | 512)]
-        get => _w;
+        readonly get => _w;
         [MethodImpl(256 | 512)]
         set => _w = value;
     }
     public b16 r
     {
         [MethodImpl(256 | 512)]
-        get => x;
+        readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
     public b16 g
     {
         [MethodImpl(256 | 512)]
-        get => y;
+        readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
     public b16 b
     {
         [MethodImpl(256 | 512)]
-        get => z;
+        readonly get => z;
         [MethodImpl(256 | 512)]
         set => z = value;
     }
     public b16 a
     {
         [MethodImpl(256 | 512)]
-        get => w;
+        readonly get => w;
         [MethodImpl(256 | 512)]
         set => w = value;
     }
@@ -7882,7 +7174,7 @@ public partial struct b16v4 :
     #region deconstruct
 
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out b16 x, out b16 y, out b16 z, out b16 w)
+    public readonly void Deconstruct(out b16 x, out b16 y, out b16 z, out b16 w)
     {
         x = this.x;
         y = this.y;
@@ -7897,7 +7189,7 @@ public partial struct b16v4 :
     public b16 this[int i]
     {
         [MethodImpl(256 | 512)]
-        get => i switch
+        readonly get => i switch
         {
             0 => x,
             1 => y,
@@ -7929,6 +7221,15 @@ public partial struct b16v4 :
     }
 
     #endregion // index
+}
+
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static b16v4 b16v4(b16 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static b16v4 b16v4(b16 x, b16 y, b16 z, b16 w) => new(x, y, z, w);
 }
 
 #endregion // b16v4
@@ -7979,7 +7280,6 @@ public partial struct b32v2 :
 
     #region fields
 
-    #if NET8_0_OR_GREATER
     internal Vector64<uint> vector;
     
     #region Unsafe Inner
@@ -7988,9 +7288,11 @@ public partial struct b32v2 :
     public static explicit operator Vector64<uint>(b32v2 self) => self.vector;
 
     [MethodImpl(256 | 512), CpuOnly]
-    public Vector64<uint> UnsafeGetInner() => vector;
+    public readonly Vector64<uint> UnsafeGetInner() => vector;
     [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
     public ref Vector64<uint> UnsafeGetInnerRef() => ref vector;
+    [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
+    public readonly ref readonly Vector64<uint> UnsafeGetInnerRefRo() => ref vector;
     [MethodImpl(256 | 512), CpuOnly]
     public void UnsafeSetInner(Vector64<uint> vector) => this.vector = vector;
    
@@ -7999,46 +7301,28 @@ public partial struct b32v2 :
     public b32 x
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(0);
+        readonly get => vector.GetElement(0);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(0, value);
     }
     public b32 y
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(1);
+        readonly get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(1, value);
     }
-    #else // NET8_0_OR_GREATER
-    private b32 _x;
-    public b32 x
-    {
-        [MethodImpl(256 | 512)]
-        get => _x;
-        [MethodImpl(256 | 512)]
-        set => _x = value;
-    }
-    private b32 _y;
-    public b32 y
-    {
-        [MethodImpl(256 | 512)]
-        get => _y;
-        [MethodImpl(256 | 512)]
-        set => _y = value;
-    }
-    #endif // NET8_0_OR_GREATER
     public b32 r
     {
         [MethodImpl(256 | 512)]
-        get => x;
+        readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
     public b32 g
     {
         [MethodImpl(256 | 512)]
-        get => y;
+        readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
@@ -8047,22 +7331,15 @@ public partial struct b32v2 :
 
     #region ctors
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512), CpuOnly]
     internal b32v2(Vector64<uint> vector) => this.vector = vector;
     [MethodImpl(256 | 512), CpuOnly]
     public static b32v2 UnsafeFromInner(Vector64<uint> vector) => new(vector);
-    #endif // NET8_0_OR_GREATER
 
     [MethodImpl(256 | 512)]
     public b32v2(b32 x, b32 y)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector64.Create(x, y);
-        #else // NET8_0_OR_GREATER
-        this.x = x;
-        this.y = y;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -8077,12 +7354,7 @@ public partial struct b32v2 :
     [MethodImpl(256 | 512)]
     public b32v2(b32 value)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector64.Create((uint)value);
-        #else // NET8_0_OR_GREATER
-        x = value;
-        y = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -8091,11 +7363,7 @@ public partial struct b32v2 :
     [MethodImpl(256 | 512)]
     internal b32v2(b32 value, is_scalar _)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector64.CreateScalar((uint)value);
-        #else // NET8_0_OR_GREATER
-        this.x = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -8104,12 +7372,7 @@ public partial struct b32v2 :
     [MethodImpl(256 | 512), CpuOnly]
     public b32v2(ReadOnlySpan<b32> span)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector64.LoadUnsafe(in MemoryMarshal.Cast<b32, uint>(span)[0]);
-        #else // NET8_0_OR_GREATER
-        this.x = span[0];
-        this.y = span[1];
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -8118,12 +7381,7 @@ public partial struct b32v2 :
     [MethodImpl(256 | 512), CpuOnly]
     public unsafe b32v2(b32* ptr)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector64.Load((uint*)ptr);
-        #else // NET8_0_OR_GREATER
-        this.x = ptr[0];
-        this.y = ptr[1];
-        #endif // NET8_0_OR_GREATER
     }
 
     #endregion // ctors
@@ -8131,7 +7389,7 @@ public partial struct b32v2 :
     #region deconstruct
 
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out b32 x, out b32 y)
+    public readonly void Deconstruct(out b32 x, out b32 y)
     {
         x = this.x;
         y = this.y;
@@ -8144,7 +7402,7 @@ public partial struct b32v2 :
     public b32 this[int i]
     {
         [MethodImpl(256 | 512)]
-        get => i switch
+        readonly get => i switch
         {
             0 => x,
             1 => y,
@@ -8168,6 +7426,15 @@ public partial struct b32v2 :
     }
 
     #endregion // index
+}
+
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static b32v2 b32v2(b32 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2 b32v2(b32 x, b32 y) => new(x, y);
 }
 
 #endregion // b32v2
@@ -8218,7 +7485,6 @@ public partial struct b32v3 :
 
     #region fields
 
-    #if NET8_0_OR_GREATER
     internal Vector128<uint> vector;
     
     #region Unsafe Inner
@@ -8227,9 +7493,11 @@ public partial struct b32v3 :
     public static explicit operator Vector128<uint>(b32v3 self) => self.vector;
 
     [MethodImpl(256 | 512), CpuOnly]
-    public Vector128<uint> UnsafeGetInner() => vector;
+    public readonly Vector128<uint> UnsafeGetInner() => vector;
     [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
     public ref Vector128<uint> UnsafeGetInnerRef() => ref vector;
+    [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
+    public readonly ref readonly Vector128<uint> UnsafeGetInnerRefRo() => ref vector;
     [MethodImpl(256 | 512), CpuOnly]
     public void UnsafeSetInner(Vector128<uint> vector) => this.vector = vector;
    
@@ -8238,69 +7506,42 @@ public partial struct b32v3 :
     public b32 x
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(0);
+        readonly get => vector.GetElement(0);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(0, value);
     }
     public b32 y
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(1);
+        readonly get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(1, value);
     }
     public b32 z
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(2);
+        readonly get => vector.GetElement(2);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(2, value);
     }
-    #else // NET8_0_OR_GREATER
-    private b32 _x;
-    public b32 x
-    {
-        [MethodImpl(256 | 512)]
-        get => _x;
-        [MethodImpl(256 | 512)]
-        set => _x = value;
-    }
-    private b32 _y;
-    public b32 y
-    {
-        [MethodImpl(256 | 512)]
-        get => _y;
-        [MethodImpl(256 | 512)]
-        set => _y = value;
-    }
-    private b32 _z;
-    public b32 z
-    {
-        [MethodImpl(256 | 512)]
-        get => _z;
-        [MethodImpl(256 | 512)]
-        set => _z = value;
-    }
-    private b32 _align;
-    #endif // NET8_0_OR_GREATER
     public b32 r
     {
         [MethodImpl(256 | 512)]
-        get => x;
+        readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
     public b32 g
     {
         [MethodImpl(256 | 512)]
-        get => y;
+        readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
     public b32 b
     {
         [MethodImpl(256 | 512)]
-        get => z;
+        readonly get => z;
         [MethodImpl(256 | 512)]
         set => z = value;
     }
@@ -8309,23 +7550,15 @@ public partial struct b32v3 :
 
     #region ctors
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512), CpuOnly]
     internal b32v3(Vector128<uint> vector) => this.vector = vector;
     [MethodImpl(256 | 512), CpuOnly]
     public static b32v3 UnsafeFromInner(Vector128<uint> vector) => new(vector);
-    #endif // NET8_0_OR_GREATER
 
     [MethodImpl(256 | 512)]
     public b32v3(b32 x, b32 y, b32 z)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.Create(x, y, z, default);
-        #else // NET8_0_OR_GREATER
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -8340,13 +7573,7 @@ public partial struct b32v3 :
     [MethodImpl(256 | 512)]
     public b32v3(b32 value)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.Create((uint)value, value, value, default);
-        #else // NET8_0_OR_GREATER
-        x = value;
-        y = value;
-        z = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -8355,11 +7582,7 @@ public partial struct b32v3 :
     [MethodImpl(256 | 512)]
     internal b32v3(b32 value, is_scalar _)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.CreateScalar((uint)value);
-        #else // NET8_0_OR_GREATER
-        this.x = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -8368,13 +7591,7 @@ public partial struct b32v3 :
     [MethodImpl(256 | 512), CpuOnly]
     public b32v3(ReadOnlySpan<b32> span)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.LoadUnsafe(in MemoryMarshal.Cast<b32, uint>(span)[0]);
-        #else // NET8_0_OR_GREATER
-        this.x = span[0];
-        this.y = span[1];
-        this.z = span[2];
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -8383,13 +7600,7 @@ public partial struct b32v3 :
     [MethodImpl(256 | 512), CpuOnly]
     public unsafe b32v3(b32* ptr)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.Load((uint*)ptr);
-        #else // NET8_0_OR_GREATER
-        this.x = ptr[0];
-        this.y = ptr[1];
-        this.z = ptr[2];
-        #endif // NET8_0_OR_GREATER
     }
 
     #endregion // ctors
@@ -8397,7 +7608,7 @@ public partial struct b32v3 :
     #region deconstruct
 
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out b32 x, out b32 y, out b32 z)
+    public readonly void Deconstruct(out b32 x, out b32 y, out b32 z)
     {
         x = this.x;
         y = this.y;
@@ -8411,7 +7622,7 @@ public partial struct b32v3 :
     public b32 this[int i]
     {
         [MethodImpl(256 | 512)]
-        get => i switch
+        readonly get => i switch
         {
             0 => x,
             1 => y,
@@ -8439,6 +7650,15 @@ public partial struct b32v3 :
     }
 
     #endregion // index
+}
+
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static b32v3 b32v3(b32 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3 b32v3(b32 x, b32 y, b32 z) => new(x, y, z);
 }
 
 #endregion // b32v3
@@ -8489,7 +7709,6 @@ public partial struct b32v4 :
 
     #region fields
 
-    #if NET8_0_OR_GREATER
     internal Vector128<uint> vector;
     
     #region Unsafe Inner
@@ -8498,9 +7717,11 @@ public partial struct b32v4 :
     public static explicit operator Vector128<uint>(b32v4 self) => self.vector;
 
     [MethodImpl(256 | 512), CpuOnly]
-    public Vector128<uint> UnsafeGetInner() => vector;
+    public readonly Vector128<uint> UnsafeGetInner() => vector;
     [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
     public ref Vector128<uint> UnsafeGetInnerRef() => ref vector;
+    [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
+    public readonly ref readonly Vector128<uint> UnsafeGetInnerRefRo() => ref vector;
     [MethodImpl(256 | 512), CpuOnly]
     public void UnsafeSetInner(Vector128<uint> vector) => this.vector = vector;
    
@@ -8509,90 +7730,56 @@ public partial struct b32v4 :
     public b32 x
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(0);
+        readonly get => vector.GetElement(0);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(0, value);
     }
     public b32 y
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(1);
+        readonly get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(1, value);
     }
     public b32 z
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(2);
+        readonly get => vector.GetElement(2);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(2, value);
     }
     public b32 w
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(3);
+        readonly get => vector.GetElement(3);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(3, value);
     }
-    #else // NET8_0_OR_GREATER
-    private b32 _x;
-    public b32 x
-    {
-        [MethodImpl(256 | 512)]
-        get => _x;
-        [MethodImpl(256 | 512)]
-        set => _x = value;
-    }
-    private b32 _y;
-    public b32 y
-    {
-        [MethodImpl(256 | 512)]
-        get => _y;
-        [MethodImpl(256 | 512)]
-        set => _y = value;
-    }
-    private b32 _z;
-    public b32 z
-    {
-        [MethodImpl(256 | 512)]
-        get => _z;
-        [MethodImpl(256 | 512)]
-        set => _z = value;
-    }
-    private b32 _w;
-    public b32 w
-    {
-        [MethodImpl(256 | 512)]
-        get => _w;
-        [MethodImpl(256 | 512)]
-        set => _w = value;
-    }
-    #endif // NET8_0_OR_GREATER
     public b32 r
     {
         [MethodImpl(256 | 512)]
-        get => x;
+        readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
     public b32 g
     {
         [MethodImpl(256 | 512)]
-        get => y;
+        readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
     public b32 b
     {
         [MethodImpl(256 | 512)]
-        get => z;
+        readonly get => z;
         [MethodImpl(256 | 512)]
         set => z = value;
     }
     public b32 a
     {
         [MethodImpl(256 | 512)]
-        get => w;
+        readonly get => w;
         [MethodImpl(256 | 512)]
         set => w = value;
     }
@@ -8601,24 +7788,15 @@ public partial struct b32v4 :
 
     #region ctors
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512), CpuOnly]
     internal b32v4(Vector128<uint> vector) => this.vector = vector;
     [MethodImpl(256 | 512), CpuOnly]
     public static b32v4 UnsafeFromInner(Vector128<uint> vector) => new(vector);
-    #endif // NET8_0_OR_GREATER
 
     [MethodImpl(256 | 512)]
     public b32v4(b32 x, b32 y, b32 z, b32 w)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.Create(x, y, z, w);
-        #else // NET8_0_OR_GREATER
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        this.w = w;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -8633,14 +7811,7 @@ public partial struct b32v4 :
     [MethodImpl(256 | 512)]
     public b32v4(b32 value)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.Create((uint)value);
-        #else // NET8_0_OR_GREATER
-        x = value;
-        y = value;
-        z = value;
-        w = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -8649,11 +7820,7 @@ public partial struct b32v4 :
     [MethodImpl(256 | 512)]
     internal b32v4(b32 value, is_scalar _)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.CreateScalar((uint)value);
-        #else // NET8_0_OR_GREATER
-        this.x = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -8662,14 +7829,7 @@ public partial struct b32v4 :
     [MethodImpl(256 | 512), CpuOnly]
     public b32v4(ReadOnlySpan<b32> span)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.LoadUnsafe(in MemoryMarshal.Cast<b32, uint>(span)[0]);
-        #else // NET8_0_OR_GREATER
-        this.x = span[0];
-        this.y = span[1];
-        this.z = span[2];
-        this.w = span[3];
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -8678,14 +7838,7 @@ public partial struct b32v4 :
     [MethodImpl(256 | 512), CpuOnly]
     public unsafe b32v4(b32* ptr)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.Load((uint*)ptr);
-        #else // NET8_0_OR_GREATER
-        this.x = ptr[0];
-        this.y = ptr[1];
-        this.z = ptr[2];
-        this.w = ptr[3];
-        #endif // NET8_0_OR_GREATER
     }
 
     #endregion // ctors
@@ -8693,7 +7846,7 @@ public partial struct b32v4 :
     #region deconstruct
 
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out b32 x, out b32 y, out b32 z, out b32 w)
+    public readonly void Deconstruct(out b32 x, out b32 y, out b32 z, out b32 w)
     {
         x = this.x;
         y = this.y;
@@ -8708,7 +7861,7 @@ public partial struct b32v4 :
     public b32 this[int i]
     {
         [MethodImpl(256 | 512)]
-        get => i switch
+        readonly get => i switch
         {
             0 => x,
             1 => y,
@@ -8740,6 +7893,15 @@ public partial struct b32v4 :
     }
 
     #endregion // index
+}
+
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static b32v4 b32v4(b32 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4 b32v4(b32 x, b32 y, b32 z, b32 w) => new(x, y, z, w);
 }
 
 #endregion // b32v4
@@ -8790,7 +7952,6 @@ public partial struct b64v2 :
 
     #region fields
 
-    #if NET8_0_OR_GREATER
     internal Vector128<ulong> vector;
     
     #region Unsafe Inner
@@ -8799,9 +7960,11 @@ public partial struct b64v2 :
     public static explicit operator Vector128<ulong>(b64v2 self) => self.vector;
 
     [MethodImpl(256 | 512), CpuOnly]
-    public Vector128<ulong> UnsafeGetInner() => vector;
+    public readonly Vector128<ulong> UnsafeGetInner() => vector;
     [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
     public ref Vector128<ulong> UnsafeGetInnerRef() => ref vector;
+    [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
+    public readonly ref readonly Vector128<ulong> UnsafeGetInnerRefRo() => ref vector;
     [MethodImpl(256 | 512), CpuOnly]
     public void UnsafeSetInner(Vector128<ulong> vector) => this.vector = vector;
    
@@ -8810,46 +7973,28 @@ public partial struct b64v2 :
     public b64 x
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(0);
+        readonly get => vector.GetElement(0);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(0, value);
     }
     public b64 y
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(1);
+        readonly get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(1, value);
     }
-    #else // NET8_0_OR_GREATER
-    private b64 _x;
-    public b64 x
-    {
-        [MethodImpl(256 | 512)]
-        get => _x;
-        [MethodImpl(256 | 512)]
-        set => _x = value;
-    }
-    private b64 _y;
-    public b64 y
-    {
-        [MethodImpl(256 | 512)]
-        get => _y;
-        [MethodImpl(256 | 512)]
-        set => _y = value;
-    }
-    #endif // NET8_0_OR_GREATER
     public b64 r
     {
         [MethodImpl(256 | 512)]
-        get => x;
+        readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
     public b64 g
     {
         [MethodImpl(256 | 512)]
-        get => y;
+        readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
@@ -8858,22 +8003,15 @@ public partial struct b64v2 :
 
     #region ctors
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512), CpuOnly]
     internal b64v2(Vector128<ulong> vector) => this.vector = vector;
     [MethodImpl(256 | 512), CpuOnly]
     public static b64v2 UnsafeFromInner(Vector128<ulong> vector) => new(vector);
-    #endif // NET8_0_OR_GREATER
 
     [MethodImpl(256 | 512)]
     public b64v2(b64 x, b64 y)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.Create(x, y);
-        #else // NET8_0_OR_GREATER
-        this.x = x;
-        this.y = y;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -8888,12 +8026,7 @@ public partial struct b64v2 :
     [MethodImpl(256 | 512)]
     public b64v2(b64 value)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.Create((ulong)value);
-        #else // NET8_0_OR_GREATER
-        x = value;
-        y = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -8902,11 +8035,7 @@ public partial struct b64v2 :
     [MethodImpl(256 | 512)]
     internal b64v2(b64 value, is_scalar _)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.CreateScalar((ulong)value);
-        #else // NET8_0_OR_GREATER
-        this.x = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -8915,12 +8044,7 @@ public partial struct b64v2 :
     [MethodImpl(256 | 512), CpuOnly]
     public b64v2(ReadOnlySpan<b64> span)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.LoadUnsafe(in MemoryMarshal.Cast<b64, ulong>(span)[0]);
-        #else // NET8_0_OR_GREATER
-        this.x = span[0];
-        this.y = span[1];
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -8929,12 +8053,7 @@ public partial struct b64v2 :
     [MethodImpl(256 | 512), CpuOnly]
     public unsafe b64v2(b64* ptr)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector128.Load((ulong*)ptr);
-        #else // NET8_0_OR_GREATER
-        this.x = ptr[0];
-        this.y = ptr[1];
-        #endif // NET8_0_OR_GREATER
     }
 
     #endregion // ctors
@@ -8942,7 +8061,7 @@ public partial struct b64v2 :
     #region deconstruct
 
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out b64 x, out b64 y)
+    public readonly void Deconstruct(out b64 x, out b64 y)
     {
         x = this.x;
         y = this.y;
@@ -8955,7 +8074,7 @@ public partial struct b64v2 :
     public b64 this[int i]
     {
         [MethodImpl(256 | 512)]
-        get => i switch
+        readonly get => i switch
         {
             0 => x,
             1 => y,
@@ -8979,6 +8098,15 @@ public partial struct b64v2 :
     }
 
     #endregion // index
+}
+
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static b64v2 b64v2(b64 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2 b64v2(b64 x, b64 y) => new(x, y);
 }
 
 #endregion // b64v2
@@ -9029,7 +8157,6 @@ public partial struct b64v3 :
 
     #region fields
 
-    #if NET8_0_OR_GREATER
     internal Vector256<ulong> vector;
     
     #region Unsafe Inner
@@ -9038,9 +8165,11 @@ public partial struct b64v3 :
     public static explicit operator Vector256<ulong>(b64v3 self) => self.vector;
 
     [MethodImpl(256 | 512), CpuOnly]
-    public Vector256<ulong> UnsafeGetInner() => vector;
+    public readonly Vector256<ulong> UnsafeGetInner() => vector;
     [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
     public ref Vector256<ulong> UnsafeGetInnerRef() => ref vector;
+    [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
+    public readonly ref readonly Vector256<ulong> UnsafeGetInnerRefRo() => ref vector;
     [MethodImpl(256 | 512), CpuOnly]
     public void UnsafeSetInner(Vector256<ulong> vector) => this.vector = vector;
    
@@ -9049,69 +8178,42 @@ public partial struct b64v3 :
     public b64 x
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(0);
+        readonly get => vector.GetElement(0);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(0, value);
     }
     public b64 y
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(1);
+        readonly get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(1, value);
     }
     public b64 z
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(2);
+        readonly get => vector.GetElement(2);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(2, value);
     }
-    #else // NET8_0_OR_GREATER
-    private b64 _x;
-    public b64 x
-    {
-        [MethodImpl(256 | 512)]
-        get => _x;
-        [MethodImpl(256 | 512)]
-        set => _x = value;
-    }
-    private b64 _y;
-    public b64 y
-    {
-        [MethodImpl(256 | 512)]
-        get => _y;
-        [MethodImpl(256 | 512)]
-        set => _y = value;
-    }
-    private b64 _z;
-    public b64 z
-    {
-        [MethodImpl(256 | 512)]
-        get => _z;
-        [MethodImpl(256 | 512)]
-        set => _z = value;
-    }
-    private b64 _align;
-    #endif // NET8_0_OR_GREATER
     public b64 r
     {
         [MethodImpl(256 | 512)]
-        get => x;
+        readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
     public b64 g
     {
         [MethodImpl(256 | 512)]
-        get => y;
+        readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
     public b64 b
     {
         [MethodImpl(256 | 512)]
-        get => z;
+        readonly get => z;
         [MethodImpl(256 | 512)]
         set => z = value;
     }
@@ -9120,23 +8222,15 @@ public partial struct b64v3 :
 
     #region ctors
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512), CpuOnly]
     internal b64v3(Vector256<ulong> vector) => this.vector = vector;
     [MethodImpl(256 | 512), CpuOnly]
     public static b64v3 UnsafeFromInner(Vector256<ulong> vector) => new(vector);
-    #endif // NET8_0_OR_GREATER
 
     [MethodImpl(256 | 512)]
     public b64v3(b64 x, b64 y, b64 z)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector256.Create(x, y, z, default);
-        #else // NET8_0_OR_GREATER
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -9151,13 +8245,7 @@ public partial struct b64v3 :
     [MethodImpl(256 | 512)]
     public b64v3(b64 value)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector256.Create((ulong)value, value, value, default);
-        #else // NET8_0_OR_GREATER
-        x = value;
-        y = value;
-        z = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -9166,11 +8254,7 @@ public partial struct b64v3 :
     [MethodImpl(256 | 512)]
     internal b64v3(b64 value, is_scalar _)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector256.CreateScalar((ulong)value);
-        #else // NET8_0_OR_GREATER
-        this.x = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -9179,13 +8263,7 @@ public partial struct b64v3 :
     [MethodImpl(256 | 512), CpuOnly]
     public b64v3(ReadOnlySpan<b64> span)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector256.LoadUnsafe(in MemoryMarshal.Cast<b64, ulong>(span)[0]);
-        #else // NET8_0_OR_GREATER
-        this.x = span[0];
-        this.y = span[1];
-        this.z = span[2];
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -9194,13 +8272,7 @@ public partial struct b64v3 :
     [MethodImpl(256 | 512), CpuOnly]
     public unsafe b64v3(b64* ptr)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector256.Load((ulong*)ptr);
-        #else // NET8_0_OR_GREATER
-        this.x = ptr[0];
-        this.y = ptr[1];
-        this.z = ptr[2];
-        #endif // NET8_0_OR_GREATER
     }
 
     #endregion // ctors
@@ -9208,7 +8280,7 @@ public partial struct b64v3 :
     #region deconstruct
 
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out b64 x, out b64 y, out b64 z)
+    public readonly void Deconstruct(out b64 x, out b64 y, out b64 z)
     {
         x = this.x;
         y = this.y;
@@ -9222,7 +8294,7 @@ public partial struct b64v3 :
     public b64 this[int i]
     {
         [MethodImpl(256 | 512)]
-        get => i switch
+        readonly get => i switch
         {
             0 => x,
             1 => y,
@@ -9250,6 +8322,15 @@ public partial struct b64v3 :
     }
 
     #endregion // index
+}
+
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static b64v3 b64v3(b64 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3 b64v3(b64 x, b64 y, b64 z) => new(x, y, z);
 }
 
 #endregion // b64v3
@@ -9300,7 +8381,6 @@ public partial struct b64v4 :
 
     #region fields
 
-    #if NET8_0_OR_GREATER
     internal Vector256<ulong> vector;
     
     #region Unsafe Inner
@@ -9309,9 +8389,11 @@ public partial struct b64v4 :
     public static explicit operator Vector256<ulong>(b64v4 self) => self.vector;
 
     [MethodImpl(256 | 512), CpuOnly]
-    public Vector256<ulong> UnsafeGetInner() => vector;
+    public readonly Vector256<ulong> UnsafeGetInner() => vector;
     [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
     public ref Vector256<ulong> UnsafeGetInnerRef() => ref vector;
+    [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
+    public readonly ref readonly Vector256<ulong> UnsafeGetInnerRefRo() => ref vector;
     [MethodImpl(256 | 512), CpuOnly]
     public void UnsafeSetInner(Vector256<ulong> vector) => this.vector = vector;
    
@@ -9320,90 +8402,56 @@ public partial struct b64v4 :
     public b64 x
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(0);
+        readonly get => vector.GetElement(0);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(0, value);
     }
     public b64 y
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(1);
+        readonly get => vector.GetElement(1);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(1, value);
     }
     public b64 z
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(2);
+        readonly get => vector.GetElement(2);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(2, value);
     }
     public b64 w
     {
         [MethodImpl(256 | 512)]
-        get => vector.GetElement(3);
+        readonly get => vector.GetElement(3);
         [MethodImpl(256 | 512)]
         set => vector = vector.WithElement(3, value);
     }
-    #else // NET8_0_OR_GREATER
-    private b64 _x;
-    public b64 x
-    {
-        [MethodImpl(256 | 512)]
-        get => _x;
-        [MethodImpl(256 | 512)]
-        set => _x = value;
-    }
-    private b64 _y;
-    public b64 y
-    {
-        [MethodImpl(256 | 512)]
-        get => _y;
-        [MethodImpl(256 | 512)]
-        set => _y = value;
-    }
-    private b64 _z;
-    public b64 z
-    {
-        [MethodImpl(256 | 512)]
-        get => _z;
-        [MethodImpl(256 | 512)]
-        set => _z = value;
-    }
-    private b64 _w;
-    public b64 w
-    {
-        [MethodImpl(256 | 512)]
-        get => _w;
-        [MethodImpl(256 | 512)]
-        set => _w = value;
-    }
-    #endif // NET8_0_OR_GREATER
     public b64 r
     {
         [MethodImpl(256 | 512)]
-        get => x;
+        readonly get => x;
         [MethodImpl(256 | 512)]
         set => x = value;
     }
     public b64 g
     {
         [MethodImpl(256 | 512)]
-        get => y;
+        readonly get => y;
         [MethodImpl(256 | 512)]
         set => y = value;
     }
     public b64 b
     {
         [MethodImpl(256 | 512)]
-        get => z;
+        readonly get => z;
         [MethodImpl(256 | 512)]
         set => z = value;
     }
     public b64 a
     {
         [MethodImpl(256 | 512)]
-        get => w;
+        readonly get => w;
         [MethodImpl(256 | 512)]
         set => w = value;
     }
@@ -9412,24 +8460,15 @@ public partial struct b64v4 :
 
     #region ctors
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512), CpuOnly]
     internal b64v4(Vector256<ulong> vector) => this.vector = vector;
     [MethodImpl(256 | 512), CpuOnly]
     public static b64v4 UnsafeFromInner(Vector256<ulong> vector) => new(vector);
-    #endif // NET8_0_OR_GREATER
 
     [MethodImpl(256 | 512)]
     public b64v4(b64 x, b64 y, b64 z, b64 w)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector256.Create(x, y, z, w);
-        #else // NET8_0_OR_GREATER
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        this.w = w;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -9444,14 +8483,7 @@ public partial struct b64v4 :
     [MethodImpl(256 | 512)]
     public b64v4(b64 value)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector256.Create((ulong)value);
-        #else // NET8_0_OR_GREATER
-        x = value;
-        y = value;
-        z = value;
-        w = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
@@ -9460,11 +8492,7 @@ public partial struct b64v4 :
     [MethodImpl(256 | 512)]
     internal b64v4(b64 value, is_scalar _)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector256.CreateScalar((ulong)value);
-        #else // NET8_0_OR_GREATER
-        this.x = value;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -9473,14 +8501,7 @@ public partial struct b64v4 :
     [MethodImpl(256 | 512), CpuOnly]
     public b64v4(ReadOnlySpan<b64> span)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector256.LoadUnsafe(in MemoryMarshal.Cast<b64, ulong>(span)[0]);
-        #else // NET8_0_OR_GREATER
-        this.x = span[0];
-        this.y = span[1];
-        this.z = span[2];
-        this.w = span[3];
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512), CpuOnly]
@@ -9489,14 +8510,7 @@ public partial struct b64v4 :
     [MethodImpl(256 | 512), CpuOnly]
     public unsafe b64v4(b64* ptr)
     {
-        #if NET8_0_OR_GREATER
         vector = Vector256.Load((ulong*)ptr);
-        #else // NET8_0_OR_GREATER
-        this.x = ptr[0];
-        this.y = ptr[1];
-        this.z = ptr[2];
-        this.w = ptr[3];
-        #endif // NET8_0_OR_GREATER
     }
 
     #endregion // ctors
@@ -9504,7 +8518,7 @@ public partial struct b64v4 :
     #region deconstruct
 
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out b64 x, out b64 y, out b64 z, out b64 w)
+    public readonly void Deconstruct(out b64 x, out b64 y, out b64 z, out b64 w)
     {
         x = this.x;
         y = this.y;
@@ -9519,7 +8533,7 @@ public partial struct b64v4 :
     public b64 this[int i]
     {
         [MethodImpl(256 | 512)]
-        get => i switch
+        readonly get => i switch
         {
             0 => x,
             1 => y,
@@ -9551,6 +8565,15 @@ public partial struct b64v4 :
     }
 
     #endregion // index
+}
+
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static b64v4 b64v4(b64 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4 b64v4(b64 x, b64 y, b64 z, b64 w) => new(x, y, z, w);
 }
 
 #endregion // b64v4

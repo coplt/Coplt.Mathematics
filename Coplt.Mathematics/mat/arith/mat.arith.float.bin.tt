@@ -34,86 +34,87 @@ public partial struct <#= typeName #>
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static <#= bTypeName #> isNaN(this <#= typeName #> a) => 
+    public static <#= bTypeName #> isNaN([This] <#= typeName #> a) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.isNaN()")) #>);
 
     [MethodImpl(256 | 512)]
-    public static <#= bTypeName #> isFinite(this <#= typeName #> a) => 
+    public static <#= bTypeName #> isFinite([This] <#= typeName #> a) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.isFinite()")) #>);
 
     [MethodImpl(256 | 512)]
-    public static <#= bTypeName #> isInf(this <#= typeName #> a) => 
+    public static <#= bTypeName #> isInf([This] <#= typeName #> a) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.isInf()")) #>);
 
     [MethodImpl(256 | 512)]
-    public static <#= bTypeName #> isPosInf(this <#= typeName #> a) => 
+    public static <#= bTypeName #> isPosInf([This] <#= typeName #> a) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.isPosInf()")) #>);
 
     [MethodImpl(256 | 512)]
-    public static <#= bTypeName #> isNegInf(this <#= typeName #> a) => 
+    public static <#= bTypeName #> isNegInf([This] <#= typeName #> a) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.isNegInf()")) #>);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> log(this <#= typeName #> a) => 
+    public static <#= typeName #> log([This] <#= typeName #> a) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.log()")) #>);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> log2(this <#= typeName #> a) => 
+    public static <#= typeName #> log2([This] <#= typeName #> a) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.log2()")) #>);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> log(this <#= typeName #> a, <#= typeName #> b) => 
+    public static <#= typeName #> log([This] <#= typeName #> a, <#= typeName #> b) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.log(b.c{i})")) #>);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> log10(this <#= typeName #> a) => 
+    public static <#= typeName #> log10([This] <#= typeName #> a) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.log10()")) #>);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> exp(this <#= typeName #> a) => 
+    public static <#= typeName #> exp([This] <#= typeName #> a) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.exp()")) #>);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> exp2(this <#= typeName #> a) => 
+    public static <#= typeName #> exp2([This] <#= typeName #> a) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.exp2()")) #>);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> exp10(this <#= typeName #> a) => 
+    public static <#= typeName #> exp10([This] <#= typeName #> a) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.exp10()")) #>);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> pow(this <#= typeName #> a, <#= typeName #> b) => 
+    public static <#= typeName #> pow([This] <#= typeName #> a, <#= typeName #> b) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.pow(b.c{i})")) #>);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> pow(this <#= typeName #> a, <#= vecTypeName #> b) => 
+    public static <#= typeName #> pow([This] <#= typeName #> a, <#= vecTypeName #> b) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.pow(b)")) #>);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> pow(this <#= typeName #> a, <#= typ.simdComp #> b) => 
+    public static <#= typeName #> pow([This] <#= typeName #> a, <#= typ.simdComp #> b) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.pow(b)")) #>);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> sqrt(this <#= typeName #> a) => 
+    public static <#= typeName #> sqrt([This] <#= typeName #> a) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.sqrt()")) #>);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> rsqrt(this <#= typeName #> a) => 
+    public static <#= typeName #> rsqrt([This] <#= typeName #> a) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.rsqrt()")) #>);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> sin(this <#= typeName #> a) => 
+    public static <#= typeName #> sin([This] <#= typeName #> a) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.sin()")) #>);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> cos(this <#= typeName #> a) => 
+    public static <#= typeName #> cos([This] <#= typeName #> a) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.cos()")) #>);
 
     [MethodImpl(256 | 512)]
-    public static (<#= typeName #> sin, <#= typeName #> cos) sincos(this <#= typeName #> a)
+    public static (<#= typeName #> sin, <#= typeName #> cos) sincos([This] <#= typeName #> a)
     {
         <#=
                     string.Join(";\n        ", Enumerable.Range(0, m).Select(i => $"a.c{i}.sincos(out var s{i}, out var c{i})")) #>;
@@ -124,7 +125,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static void sincos(this <#= typeName #> a, out <#= typeName #> sin, out <#= typeName #> cos)
+    public static void sincos([This] <#= typeName #> a, out <#= typeName #> sin, out <#= typeName #> cos)
     {
         <#=
                     string.Join(";\n        ", Enumerable.Range(0, m).Select(i => $"a.c{i}.sincos(out var s{i}, out var c{i})")) #>;
@@ -133,48 +134,52 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> tan(this <#= typeName #> a) => 
+    public static <#= typeName #> tan([This] <#= typeName #> a) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.tan()")) #>);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> asin(this <#= typeName #> a) => 
+    public static <#= typeName #> asin([This] <#= typeName #> a) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.asin()")) #>);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> acos(this <#= typeName #> a) => 
+    public static <#= typeName #> acos([This] <#= typeName #> a) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.acos()")) #>);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> atan(this <#= typeName #> a) => 
+    public static <#= typeName #> atan([This] <#= typeName #> a) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.atan()")) #>);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> atan2(this <#= typeName #> a, <#= typeName #> b) => 
+    public static <#= typeName #> atan2([This] <#= typeName #> a, <#= typeName #> b) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.atan2(b.c{i})")) #>);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> sinh(this <#= typeName #> a) => 
+    public static <#= typeName #> sinh([This] <#= typeName #> a) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.sinh()")) #>);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> cosh(this <#= typeName #> a) => 
+    public static <#= typeName #> cosh([This] <#= typeName #> a) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.cosh()")) #>);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> tanh(this <#= typeName #> a) => 
+    public static <#= typeName #> tanh([This] <#= typeName #> a) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.tanh()")) #>);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> asinh(this <#= typeName #> a) => 
+    public static <#= typeName #> asinh([This] <#= typeName #> a) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.asinh()")) #>);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> acosh(this <#= typeName #> a) => 
+    public static <#= typeName #> acosh([This] <#= typeName #> a) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.acosh()")) #>);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> atanh(this <#= typeName #> a) => 
+    public static <#= typeName #> atanh([This] <#= typeName #> a) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.atanh()")) #>);
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> step(<#= typeName #> threshold, [This] <#= typeName #> a) =>
+        new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.step(threshold.c{i})")) #>);
 }
 
 #endregion // <#= typeName #>

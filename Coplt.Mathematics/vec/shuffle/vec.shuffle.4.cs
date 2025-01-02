@@ -17,11 +17,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xx_xx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xx_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -35,11 +31,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xx_xy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xx_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53,11 +45,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xx_xz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xx_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -71,11 +59,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xx_xw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xx_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -89,11 +73,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xx_yx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xx_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -107,11 +87,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xx_yy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xx_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -125,11 +101,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xx_yz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xx_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -143,11 +115,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xx_yw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xx_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -161,11 +129,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xx_zx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xx_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -179,11 +143,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xx_zy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xx_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -197,11 +157,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xx_zz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xx_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -215,11 +171,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xx_zw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xx_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -233,11 +185,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xx_wx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xx_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -251,11 +199,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xx_wy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xx_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -269,11 +213,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xx_wz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xx_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -287,11 +227,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xx_ww(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xx_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -305,11 +241,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xy_xx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xy_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -323,11 +255,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xy_xy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xy_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -341,11 +269,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xy_xz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xy_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -359,11 +283,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xy_xw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xy_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -377,11 +297,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xy_yx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xy_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -395,11 +311,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xy_yy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xy_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -413,11 +325,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xy_yz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xy_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -431,11 +339,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xy_yw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xy_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -449,11 +353,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xy_zx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xy_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -467,11 +367,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xy_zy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xy_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -485,11 +381,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xy_zz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xy_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -503,11 +395,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xy_zw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xy_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -521,11 +409,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xy_wx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xy_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -539,11 +423,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xy_wy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xy_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -557,11 +437,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xy_wz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xy_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -575,11 +451,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xy_ww(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xy_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -593,11 +465,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xz_xx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xz_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -611,11 +479,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xz_xy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xz_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -629,11 +493,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xz_xz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xz_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -647,11 +507,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xz_xw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xz_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -665,11 +521,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xz_yx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xz_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -683,11 +535,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xz_yy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xz_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -701,11 +549,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xz_yz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xz_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -719,11 +563,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xz_yw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xz_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -737,11 +577,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xz_zx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xz_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -755,11 +591,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xz_zy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xz_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -773,11 +605,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xz_zz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xz_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -791,11 +619,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xz_zw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xz_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -809,11 +633,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xz_wx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xz_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -827,11 +647,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xz_wy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xz_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -845,11 +661,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xz_wz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xz_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -863,11 +675,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xz_ww(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xz_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -881,11 +689,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xw_xx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xw_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -899,11 +703,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xw_xy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xw_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -917,11 +717,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xw_xz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xw_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -935,11 +731,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xw_xw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xw_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -953,11 +745,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xw_yx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xw_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -971,11 +759,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xw_yy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xw_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -989,11 +773,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xw_yz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xw_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1007,11 +787,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xw_yw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xw_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1025,11 +801,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xw_zx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xw_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1043,11 +815,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xw_zy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xw_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1061,11 +829,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xw_zz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xw_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1079,11 +843,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xw_zw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xw_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1097,11 +857,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xw_wx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xw_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1115,11 +871,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xw_wy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xw_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1133,11 +885,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xw_wz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xw_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1151,11 +899,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_xw_ww(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.xw_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1169,11 +913,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yx_xx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yx_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1187,11 +927,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yx_xy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yx_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1205,11 +941,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yx_xz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yx_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1223,11 +955,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yx_xw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yx_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1241,11 +969,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yx_yx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yx_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1259,11 +983,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yx_yy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yx_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1277,11 +997,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yx_yz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yx_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1295,11 +1011,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yx_yw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yx_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1313,11 +1025,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yx_zx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yx_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1331,11 +1039,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yx_zy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yx_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1349,11 +1053,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yx_zz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yx_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1367,11 +1067,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yx_zw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yx_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1385,11 +1081,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yx_wx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yx_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1403,11 +1095,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yx_wy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yx_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1421,11 +1109,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yx_wz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yx_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1439,11 +1123,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yx_ww(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yx_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1457,11 +1137,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yy_xx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yy_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1475,11 +1151,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yy_xy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yy_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1493,11 +1165,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yy_xz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yy_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1511,11 +1179,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yy_xw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yy_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1529,11 +1193,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yy_yx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yy_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1547,11 +1207,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yy_yy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yy_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1565,11 +1221,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yy_yz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yy_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1583,11 +1235,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yy_yw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yy_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1601,11 +1249,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yy_zx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yy_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1619,11 +1263,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yy_zy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yy_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1637,11 +1277,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yy_zz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yy_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1655,11 +1291,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yy_zw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yy_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1673,11 +1305,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yy_wx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yy_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1691,11 +1319,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yy_wy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yy_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1709,11 +1333,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yy_wz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yy_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1727,11 +1347,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yy_ww(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yy_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1745,11 +1361,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yz_xx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yz_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1763,11 +1375,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yz_xy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yz_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1781,11 +1389,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yz_xz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yz_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1799,11 +1403,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yz_xw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yz_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1817,11 +1417,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yz_yx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yz_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1835,11 +1431,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yz_yy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yz_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1853,11 +1445,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yz_yz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yz_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1871,11 +1459,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yz_yw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yz_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1889,11 +1473,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yz_zx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yz_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1907,11 +1487,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yz_zy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yz_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1925,11 +1501,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yz_zz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yz_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1943,11 +1515,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yz_zw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yz_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1961,11 +1529,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yz_wx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yz_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1979,11 +1543,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yz_wy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yz_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -1997,11 +1557,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yz_wz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yz_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2015,11 +1571,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yz_ww(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yz_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2033,11 +1585,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yw_xx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yw_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2051,11 +1599,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yw_xy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yw_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2069,11 +1613,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yw_xz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yw_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2087,11 +1627,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yw_xw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yw_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2105,11 +1641,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yw_yx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yw_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2123,11 +1655,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yw_yy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yw_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2141,11 +1669,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yw_yz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yw_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2159,11 +1683,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yw_yw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yw_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2177,11 +1697,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yw_zx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yw_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2195,11 +1711,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yw_zy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yw_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2213,11 +1725,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yw_zz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yw_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2231,11 +1739,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yw_zw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yw_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2249,11 +1753,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yw_wx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yw_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2267,11 +1767,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yw_wy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yw_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2285,11 +1781,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yw_wz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yw_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2303,11 +1795,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_yw_ww(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.yw_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2321,11 +1809,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zx_xx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zx_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2339,11 +1823,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zx_xy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zx_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2357,11 +1837,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zx_xz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zx_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2375,11 +1851,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zx_xw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zx_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2393,11 +1865,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zx_yx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zx_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2411,11 +1879,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zx_yy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zx_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2429,11 +1893,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zx_yz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zx_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2447,11 +1907,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zx_yw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zx_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2465,11 +1921,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zx_zx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zx_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2483,11 +1935,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zx_zy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zx_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2501,11 +1949,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zx_zz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zx_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2519,11 +1963,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zx_zw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zx_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2537,11 +1977,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zx_wx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zx_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2555,11 +1991,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zx_wy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zx_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2573,11 +2005,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zx_wz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zx_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2591,11 +2019,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zx_ww(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zx_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2609,11 +2033,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zy_xx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zy_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2627,11 +2047,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zy_xy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zy_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2645,11 +2061,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zy_xz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zy_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2663,11 +2075,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zy_xw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zy_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2681,11 +2089,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zy_yx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zy_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2699,11 +2103,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zy_yy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zy_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2717,11 +2117,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zy_yz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zy_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2735,11 +2131,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zy_yw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zy_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2753,11 +2145,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zy_zx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zy_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2771,11 +2159,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zy_zy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zy_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2789,11 +2173,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zy_zz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zy_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2807,11 +2187,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zy_zw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zy_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2825,11 +2201,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zy_wx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zy_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2843,11 +2215,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zy_wy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zy_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2861,11 +2229,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zy_wz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zy_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2879,11 +2243,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zy_ww(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zy_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2897,11 +2257,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zz_xx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zz_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2915,11 +2271,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zz_xy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zz_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2933,11 +2285,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zz_xz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zz_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2951,11 +2299,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zz_xw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zz_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2969,11 +2313,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zz_yx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zz_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -2987,11 +2327,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zz_yy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zz_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3005,11 +2341,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zz_yz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zz_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3023,11 +2355,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zz_yw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zz_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3041,11 +2369,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zz_zx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zz_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3059,11 +2383,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zz_zy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zz_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3077,11 +2397,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zz_zz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zz_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3095,11 +2411,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zz_zw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zz_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3113,11 +2425,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zz_wx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zz_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3131,11 +2439,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zz_wy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zz_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3149,11 +2453,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zz_wz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zz_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3167,11 +2467,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zz_ww(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zz_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3185,11 +2481,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zw_xx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zw_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3203,11 +2495,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zw_xy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zw_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3221,11 +2509,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zw_xz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zw_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3239,11 +2523,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zw_xw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zw_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3257,11 +2537,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zw_yx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zw_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3275,11 +2551,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zw_yy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zw_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3293,11 +2565,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zw_yz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zw_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3311,11 +2579,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zw_yw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zw_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3329,11 +2593,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zw_zx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zw_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3347,11 +2607,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zw_zy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zw_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3365,11 +2621,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zw_zz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zw_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3383,11 +2635,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zw_zw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zw_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3401,11 +2649,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zw_wx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zw_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3419,11 +2663,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zw_wy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zw_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3437,11 +2677,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zw_wz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zw_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3455,11 +2691,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_zw_ww(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.zw_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3473,11 +2705,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wx_xx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wx_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3491,11 +2719,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wx_xy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wx_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3509,11 +2733,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wx_xz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wx_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3527,11 +2747,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wx_xw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wx_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3545,11 +2761,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wx_yx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wx_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3563,11 +2775,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wx_yy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wx_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3581,11 +2789,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wx_yz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wx_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3599,11 +2803,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wx_yw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wx_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3617,11 +2817,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wx_zx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wx_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3635,11 +2831,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wx_zy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wx_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3653,11 +2845,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wx_zz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wx_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3671,11 +2859,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wx_zw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wx_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3689,11 +2873,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wx_wx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wx_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3707,11 +2887,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wx_wy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wx_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3725,11 +2901,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wx_wz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wx_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3743,11 +2915,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wx_ww(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wx_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3761,11 +2929,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wy_xx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wy_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3779,11 +2943,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wy_xy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wy_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3797,11 +2957,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wy_xz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wy_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3815,11 +2971,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wy_xw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wy_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3833,11 +2985,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wy_yx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wy_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3851,11 +2999,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wy_yy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wy_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3869,11 +3013,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wy_yz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wy_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3887,11 +3027,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wy_yw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wy_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3905,11 +3041,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wy_zx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wy_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3923,11 +3055,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wy_zy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wy_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3941,11 +3069,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wy_zz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wy_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3959,11 +3083,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wy_zw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wy_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3977,11 +3097,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wy_wx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wy_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -3995,11 +3111,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wy_wy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wy_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4013,11 +3125,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wy_wz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wy_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4031,11 +3139,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wy_ww(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wy_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4049,11 +3153,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wz_xx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wz_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4067,11 +3167,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wz_xy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wz_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4085,11 +3181,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wz_xz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wz_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4103,11 +3195,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wz_xw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wz_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4121,11 +3209,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wz_yx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wz_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4139,11 +3223,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wz_yy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wz_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4157,11 +3237,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wz_yz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wz_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4175,11 +3251,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wz_yw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wz_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4193,11 +3265,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wz_zx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wz_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4211,11 +3279,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wz_zy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wz_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4229,11 +3293,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wz_zz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wz_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4247,11 +3307,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wz_zw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wz_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4265,11 +3321,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wz_wx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wz_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4283,11 +3335,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wz_wy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wz_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4301,11 +3349,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wz_wz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wz_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4319,11 +3363,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_wz_ww(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.wz_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4337,11 +3377,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_ww_xx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.ww_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4355,11 +3391,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_ww_xy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.ww_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4373,11 +3405,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_ww_xz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.ww_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4391,11 +3419,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_ww_xw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.ww_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4409,11 +3433,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_ww_yx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.ww_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4427,11 +3447,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_ww_yy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.ww_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4445,11 +3461,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_ww_yz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.ww_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4463,11 +3475,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_ww_yw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.ww_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4481,11 +3489,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_ww_zx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.ww_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4499,11 +3503,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_ww_zy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.ww_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4517,11 +3517,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_ww_zz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.ww_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4535,11 +3531,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_ww_zw(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.ww_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4553,11 +3545,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_ww_wx(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.ww_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4571,11 +3559,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_ww_wy(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.ww_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4589,11 +3573,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_ww_wz(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.ww_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4607,11 +3587,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 shuffle_ww_ww(float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, Shuffle42.ww_ww);
-        #endif // NET8_0_OR_GREATER
     }
     #endregion // float4
     #region double4
@@ -4627,11 +3603,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xx_xx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xx_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4645,11 +3617,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xx_xy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xx_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4663,11 +3631,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xx_xz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xx_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4681,11 +3645,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xx_xw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xx_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4699,11 +3659,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xx_yx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xx_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4717,11 +3673,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xx_yy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xx_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4735,11 +3687,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xx_yz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xx_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4753,11 +3701,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xx_yw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xx_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4771,11 +3715,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xx_zx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xx_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4789,11 +3729,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xx_zy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xx_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4807,11 +3743,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xx_zz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xx_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4825,11 +3757,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xx_zw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xx_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4843,11 +3771,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xx_wx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xx_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4861,11 +3785,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xx_wy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xx_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4879,11 +3799,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xx_wz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xx_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4897,11 +3813,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xx_ww(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xx_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4915,11 +3827,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xy_xx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xy_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4933,11 +3841,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xy_xy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xy_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4951,11 +3855,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xy_xz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xy_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4969,11 +3869,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xy_xw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xy_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -4987,11 +3883,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xy_yx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xy_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5005,11 +3897,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xy_yy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xy_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5023,11 +3911,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xy_yz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xy_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5041,11 +3925,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xy_yw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xy_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5059,11 +3939,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xy_zx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xy_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5077,11 +3953,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xy_zy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xy_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5095,11 +3967,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xy_zz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xy_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5113,11 +3981,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xy_zw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xy_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5131,11 +3995,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xy_wx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xy_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5149,11 +4009,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xy_wy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xy_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5167,11 +4023,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xy_wz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xy_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5185,11 +4037,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xy_ww(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xy_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5203,11 +4051,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xz_xx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xz_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5221,11 +4065,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xz_xy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xz_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5239,11 +4079,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xz_xz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xz_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5257,11 +4093,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xz_xw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xz_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5275,11 +4107,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xz_yx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xz_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5293,11 +4121,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xz_yy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xz_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5311,11 +4135,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xz_yz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xz_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5329,11 +4149,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xz_yw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xz_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5347,11 +4163,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xz_zx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xz_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5365,11 +4177,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xz_zy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xz_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5383,11 +4191,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xz_zz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xz_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5401,11 +4205,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xz_zw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xz_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5419,11 +4219,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xz_wx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xz_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5437,11 +4233,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xz_wy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xz_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5455,11 +4247,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xz_wz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xz_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5473,11 +4261,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xz_ww(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xz_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5491,11 +4275,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xw_xx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xw_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5509,11 +4289,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xw_xy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xw_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5527,11 +4303,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xw_xz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xw_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5545,11 +4317,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xw_xw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xw_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5563,11 +4331,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xw_yx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xw_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5581,11 +4345,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xw_yy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xw_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5599,11 +4359,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xw_yz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xw_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5617,11 +4373,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xw_yw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xw_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5635,11 +4387,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xw_zx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xw_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5653,11 +4401,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xw_zy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xw_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5671,11 +4415,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xw_zz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xw_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5689,11 +4429,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xw_zw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xw_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5707,11 +4443,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xw_wx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xw_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5725,11 +4457,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xw_wy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xw_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5743,11 +4471,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xw_wz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xw_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5761,11 +4485,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_xw_ww(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.xw_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5779,11 +4499,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yx_xx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yx_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5797,11 +4513,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yx_xy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yx_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5815,11 +4527,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yx_xz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yx_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5833,11 +4541,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yx_xw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yx_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5851,11 +4555,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yx_yx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yx_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5869,11 +4569,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yx_yy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yx_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5887,11 +4583,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yx_yz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yx_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5905,11 +4597,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yx_yw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yx_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5923,11 +4611,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yx_zx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yx_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5941,11 +4625,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yx_zy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yx_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5959,11 +4639,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yx_zz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yx_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5977,11 +4653,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yx_zw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yx_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -5995,11 +4667,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yx_wx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yx_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6013,11 +4681,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yx_wy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yx_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6031,11 +4695,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yx_wz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yx_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6049,11 +4709,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yx_ww(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yx_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6067,11 +4723,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yy_xx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yy_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6085,11 +4737,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yy_xy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yy_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6103,11 +4751,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yy_xz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yy_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6121,11 +4765,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yy_xw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yy_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6139,11 +4779,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yy_yx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yy_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6157,11 +4793,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yy_yy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yy_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6175,11 +4807,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yy_yz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yy_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6193,11 +4821,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yy_yw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yy_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6211,11 +4835,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yy_zx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yy_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6229,11 +4849,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yy_zy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yy_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6247,11 +4863,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yy_zz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yy_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6265,11 +4877,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yy_zw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yy_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6283,11 +4891,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yy_wx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yy_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6301,11 +4905,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yy_wy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yy_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6319,11 +4919,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yy_wz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yy_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6337,11 +4933,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yy_ww(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yy_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6355,11 +4947,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yz_xx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yz_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6373,11 +4961,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yz_xy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yz_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6391,11 +4975,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yz_xz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yz_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6409,11 +4989,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yz_xw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yz_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6427,11 +5003,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yz_yx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yz_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6445,11 +5017,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yz_yy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yz_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6463,11 +5031,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yz_yz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yz_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6481,11 +5045,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yz_yw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yz_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6499,11 +5059,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yz_zx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yz_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6517,11 +5073,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yz_zy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yz_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6535,11 +5087,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yz_zz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yz_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6553,11 +5101,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yz_zw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yz_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6571,11 +5115,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yz_wx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yz_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6589,11 +5129,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yz_wy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yz_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6607,11 +5143,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yz_wz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yz_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6625,11 +5157,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yz_ww(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yz_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6643,11 +5171,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yw_xx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yw_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6661,11 +5185,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yw_xy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yw_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6679,11 +5199,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yw_xz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yw_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6697,11 +5213,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yw_xw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yw_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6715,11 +5227,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yw_yx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yw_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6733,11 +5241,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yw_yy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yw_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6751,11 +5255,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yw_yz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yw_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6769,11 +5269,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yw_yw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yw_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6787,11 +5283,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yw_zx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yw_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6805,11 +5297,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yw_zy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yw_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6823,11 +5311,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yw_zz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yw_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6841,11 +5325,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yw_zw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yw_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6859,11 +5339,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yw_wx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yw_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6877,11 +5353,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yw_wy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yw_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6895,11 +5367,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yw_wz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yw_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6913,11 +5381,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_yw_ww(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.yw_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6931,11 +5395,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zx_xx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zx_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6949,11 +5409,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zx_xy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zx_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6967,11 +5423,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zx_xz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zx_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -6985,11 +5437,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zx_xw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zx_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7003,11 +5451,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zx_yx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zx_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7021,11 +5465,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zx_yy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zx_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7039,11 +5479,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zx_yz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zx_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7057,11 +5493,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zx_yw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zx_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7075,11 +5507,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zx_zx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zx_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7093,11 +5521,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zx_zy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zx_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7111,11 +5535,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zx_zz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zx_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7129,11 +5549,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zx_zw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zx_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7147,11 +5563,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zx_wx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zx_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7165,11 +5577,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zx_wy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zx_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7183,11 +5591,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zx_wz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zx_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7201,11 +5605,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zx_ww(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zx_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7219,11 +5619,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zy_xx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zy_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7237,11 +5633,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zy_xy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zy_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7255,11 +5647,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zy_xz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zy_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7273,11 +5661,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zy_xw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zy_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7291,11 +5675,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zy_yx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zy_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7309,11 +5689,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zy_yy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zy_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7327,11 +5703,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zy_yz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zy_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7345,11 +5717,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zy_yw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zy_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7363,11 +5731,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zy_zx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zy_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7381,11 +5745,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zy_zy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zy_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7399,11 +5759,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zy_zz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zy_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7417,11 +5773,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zy_zw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zy_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7435,11 +5787,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zy_wx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zy_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7453,11 +5801,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zy_wy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zy_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7471,11 +5815,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zy_wz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zy_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7489,11 +5829,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zy_ww(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zy_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7507,11 +5843,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zz_xx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zz_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7525,11 +5857,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zz_xy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zz_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7543,11 +5871,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zz_xz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zz_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7561,11 +5885,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zz_xw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zz_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7579,11 +5899,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zz_yx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zz_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7597,11 +5913,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zz_yy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zz_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7615,11 +5927,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zz_yz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zz_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7633,11 +5941,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zz_yw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zz_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7651,11 +5955,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zz_zx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zz_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7669,11 +5969,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zz_zy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zz_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7687,11 +5983,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zz_zz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zz_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7705,11 +5997,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zz_zw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zz_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7723,11 +6011,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zz_wx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zz_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7741,11 +6025,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zz_wy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zz_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7759,11 +6039,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zz_wz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zz_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7777,11 +6053,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zz_ww(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zz_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7795,11 +6067,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zw_xx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zw_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7813,11 +6081,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zw_xy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zw_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7831,11 +6095,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zw_xz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zw_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7849,11 +6109,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zw_xw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zw_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7867,11 +6123,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zw_yx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zw_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7885,11 +6137,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zw_yy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zw_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7903,11 +6151,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zw_yz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zw_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7921,11 +6165,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zw_yw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zw_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7939,11 +6179,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zw_zx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zw_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7957,11 +6193,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zw_zy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zw_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7975,11 +6207,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zw_zz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zw_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -7993,11 +6221,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zw_zw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zw_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8011,11 +6235,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zw_wx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zw_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8029,11 +6249,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zw_wy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zw_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8047,11 +6263,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zw_wz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zw_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8065,11 +6277,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_zw_ww(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.zw_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8083,11 +6291,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wx_xx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wx_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8101,11 +6305,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wx_xy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wx_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8119,11 +6319,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wx_xz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wx_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8137,11 +6333,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wx_xw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wx_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8155,11 +6347,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wx_yx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wx_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8173,11 +6361,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wx_yy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wx_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8191,11 +6375,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wx_yz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wx_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8209,11 +6389,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wx_yw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wx_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8227,11 +6403,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wx_zx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wx_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8245,11 +6417,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wx_zy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wx_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8263,11 +6431,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wx_zz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wx_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8281,11 +6445,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wx_zw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wx_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8299,11 +6459,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wx_wx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wx_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8317,11 +6473,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wx_wy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wx_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8335,11 +6487,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wx_wz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wx_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8353,11 +6501,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wx_ww(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wx_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8371,11 +6515,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wy_xx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wy_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8389,11 +6529,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wy_xy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wy_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8407,11 +6543,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wy_xz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wy_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8425,11 +6557,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wy_xw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wy_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8443,11 +6571,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wy_yx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wy_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8461,11 +6585,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wy_yy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wy_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8479,11 +6599,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wy_yz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wy_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8497,11 +6613,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wy_yw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wy_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8515,11 +6627,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wy_zx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wy_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8533,11 +6641,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wy_zy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wy_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8551,11 +6655,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wy_zz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wy_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8569,11 +6669,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wy_zw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wy_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8587,11 +6683,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wy_wx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wy_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8605,11 +6697,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wy_wy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wy_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8623,11 +6711,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wy_wz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wy_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8641,11 +6725,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wy_ww(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wy_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8659,11 +6739,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wz_xx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wz_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8677,11 +6753,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wz_xy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wz_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8695,11 +6767,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wz_xz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wz_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8713,11 +6781,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wz_xw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wz_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8731,11 +6795,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wz_yx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wz_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8749,11 +6809,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wz_yy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wz_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8767,11 +6823,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wz_yz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wz_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8785,11 +6837,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wz_yw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wz_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8803,11 +6851,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wz_zx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wz_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8821,11 +6865,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wz_zy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wz_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8839,11 +6879,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wz_zz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wz_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8857,11 +6893,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wz_zw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wz_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8875,11 +6907,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wz_wx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wz_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8893,11 +6921,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wz_wy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wz_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8911,11 +6935,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wz_wz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wz_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8929,11 +6949,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_wz_ww(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.wz_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8947,11 +6963,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_ww_xx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.ww_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8965,11 +6977,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_ww_xy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.ww_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -8983,11 +6991,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_ww_xz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.ww_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -9001,11 +7005,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_ww_xw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.ww_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -9019,11 +7019,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_ww_yx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.ww_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -9037,11 +7033,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_ww_yy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.ww_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -9055,11 +7047,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_ww_yz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.ww_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -9073,11 +7061,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_ww_yw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.ww_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -9091,11 +7075,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_ww_zx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.ww_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -9109,11 +7089,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_ww_zy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.ww_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -9127,11 +7103,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_ww_zz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.ww_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -9145,11 +7117,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_ww_zw(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.ww_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -9163,11 +7131,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_ww_wx(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.ww_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -9181,11 +7145,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_ww_wy(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.ww_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -9199,11 +7159,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_ww_wz(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.ww_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -9217,11 +7173,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 shuffle_ww_ww(double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, Shuffle42.ww_ww);
-        #endif // NET8_0_OR_GREATER
     }
     #endregion // double4
     #region short4
@@ -16409,11 +14361,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xx_xx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xx_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -16427,11 +14375,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xx_xy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xx_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -16445,11 +14389,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xx_xz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xx_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -16463,11 +14403,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xx_xw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xx_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -16481,11 +14417,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xx_yx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xx_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -16499,11 +14431,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xx_yy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xx_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -16517,11 +14445,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xx_yz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xx_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -16535,11 +14459,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xx_yw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xx_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -16553,11 +14473,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xx_zx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xx_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -16571,11 +14487,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xx_zy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xx_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -16589,11 +14501,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xx_zz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xx_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -16607,11 +14515,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xx_zw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xx_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -16625,11 +14529,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xx_wx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xx_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -16643,11 +14543,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xx_wy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xx_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -16661,11 +14557,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xx_wz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xx_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -16679,11 +14571,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xx_ww(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xx_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -16697,11 +14585,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xy_xx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xy_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -16715,11 +14599,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xy_xy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xy_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -16733,11 +14613,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xy_xz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xy_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -16751,11 +14627,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xy_xw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xy_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -16769,11 +14641,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xy_yx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xy_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -16787,11 +14655,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xy_yy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xy_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -16805,11 +14669,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xy_yz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xy_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -16823,11 +14683,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xy_yw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xy_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -16841,11 +14697,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xy_zx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xy_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -16859,11 +14711,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xy_zy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xy_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -16877,11 +14725,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xy_zz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xy_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -16895,11 +14739,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xy_zw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xy_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -16913,11 +14753,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xy_wx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xy_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -16931,11 +14767,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xy_wy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xy_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -16949,11 +14781,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xy_wz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xy_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -16967,11 +14795,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xy_ww(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xy_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -16985,11 +14809,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xz_xx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xz_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17003,11 +14823,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xz_xy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xz_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17021,11 +14837,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xz_xz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xz_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17039,11 +14851,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xz_xw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xz_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17057,11 +14865,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xz_yx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xz_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17075,11 +14879,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xz_yy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xz_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17093,11 +14893,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xz_yz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xz_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17111,11 +14907,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xz_yw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xz_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17129,11 +14921,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xz_zx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xz_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17147,11 +14935,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xz_zy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xz_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17165,11 +14949,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xz_zz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xz_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17183,11 +14963,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xz_zw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xz_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17201,11 +14977,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xz_wx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xz_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17219,11 +14991,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xz_wy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xz_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17237,11 +15005,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xz_wz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xz_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17255,11 +15019,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xz_ww(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xz_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17273,11 +15033,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xw_xx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xw_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17291,11 +15047,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xw_xy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xw_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17309,11 +15061,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xw_xz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xw_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17327,11 +15075,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xw_xw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xw_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17345,11 +15089,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xw_yx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xw_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17363,11 +15103,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xw_yy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xw_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17381,11 +15117,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xw_yz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xw_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17399,11 +15131,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xw_yw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xw_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17417,11 +15145,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xw_zx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xw_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17435,11 +15159,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xw_zy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xw_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17453,11 +15173,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xw_zz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xw_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17471,11 +15187,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xw_zw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xw_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17489,11 +15201,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xw_wx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xw_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17507,11 +15215,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xw_wy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xw_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17525,11 +15229,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xw_wz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xw_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17543,11 +15243,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_xw_ww(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.xw_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17561,11 +15257,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yx_xx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yx_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17579,11 +15271,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yx_xy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yx_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17597,11 +15285,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yx_xz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yx_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17615,11 +15299,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yx_xw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yx_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17633,11 +15313,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yx_yx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yx_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17651,11 +15327,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yx_yy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yx_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17669,11 +15341,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yx_yz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yx_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17687,11 +15355,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yx_yw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yx_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17705,11 +15369,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yx_zx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yx_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17723,11 +15383,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yx_zy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yx_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17741,11 +15397,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yx_zz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yx_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17759,11 +15411,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yx_zw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yx_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17777,11 +15425,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yx_wx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yx_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17795,11 +15439,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yx_wy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yx_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17813,11 +15453,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yx_wz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yx_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17831,11 +15467,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yx_ww(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yx_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17849,11 +15481,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yy_xx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yy_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17867,11 +15495,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yy_xy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yy_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17885,11 +15509,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yy_xz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yy_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17903,11 +15523,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yy_xw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yy_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17921,11 +15537,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yy_yx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yy_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17939,11 +15551,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yy_yy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yy_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17957,11 +15565,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yy_yz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yy_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17975,11 +15579,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yy_yw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yy_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -17993,11 +15593,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yy_zx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yy_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18011,11 +15607,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yy_zy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yy_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18029,11 +15621,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yy_zz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yy_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18047,11 +15635,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yy_zw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yy_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18065,11 +15649,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yy_wx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yy_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18083,11 +15663,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yy_wy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yy_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18101,11 +15677,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yy_wz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yy_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18119,11 +15691,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yy_ww(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yy_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18137,11 +15705,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yz_xx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yz_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18155,11 +15719,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yz_xy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yz_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18173,11 +15733,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yz_xz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yz_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18191,11 +15747,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yz_xw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yz_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18209,11 +15761,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yz_yx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yz_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18227,11 +15775,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yz_yy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yz_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18245,11 +15789,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yz_yz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yz_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18263,11 +15803,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yz_yw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yz_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18281,11 +15817,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yz_zx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yz_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18299,11 +15831,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yz_zy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yz_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18317,11 +15845,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yz_zz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yz_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18335,11 +15859,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yz_zw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yz_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18353,11 +15873,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yz_wx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yz_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18371,11 +15887,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yz_wy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yz_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18389,11 +15901,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yz_wz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yz_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18407,11 +15915,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yz_ww(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yz_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18425,11 +15929,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yw_xx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yw_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18443,11 +15943,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yw_xy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yw_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18461,11 +15957,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yw_xz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yw_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18479,11 +15971,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yw_xw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yw_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18497,11 +15985,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yw_yx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yw_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18515,11 +15999,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yw_yy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yw_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18533,11 +16013,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yw_yz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yw_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18551,11 +16027,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yw_yw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yw_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18569,11 +16041,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yw_zx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yw_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18587,11 +16055,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yw_zy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yw_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18605,11 +16069,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yw_zz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yw_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18623,11 +16083,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yw_zw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yw_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18641,11 +16097,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yw_wx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yw_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18659,11 +16111,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yw_wy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yw_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18677,11 +16125,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yw_wz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yw_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18695,11 +16139,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_yw_ww(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.yw_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18713,11 +16153,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zx_xx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zx_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18731,11 +16167,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zx_xy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zx_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18749,11 +16181,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zx_xz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zx_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18767,11 +16195,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zx_xw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zx_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18785,11 +16209,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zx_yx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zx_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18803,11 +16223,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zx_yy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zx_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18821,11 +16237,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zx_yz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zx_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18839,11 +16251,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zx_yw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zx_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18857,11 +16265,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zx_zx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zx_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18875,11 +16279,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zx_zy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zx_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18893,11 +16293,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zx_zz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zx_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18911,11 +16307,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zx_zw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zx_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18929,11 +16321,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zx_wx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zx_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18947,11 +16335,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zx_wy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zx_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18965,11 +16349,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zx_wz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zx_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -18983,11 +16363,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zx_ww(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zx_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19001,11 +16377,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zy_xx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zy_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19019,11 +16391,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zy_xy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zy_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19037,11 +16405,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zy_xz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zy_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19055,11 +16419,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zy_xw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zy_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19073,11 +16433,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zy_yx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zy_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19091,11 +16447,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zy_yy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zy_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19109,11 +16461,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zy_yz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zy_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19127,11 +16475,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zy_yw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zy_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19145,11 +16489,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zy_zx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zy_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19163,11 +16503,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zy_zy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zy_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19181,11 +16517,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zy_zz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zy_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19199,11 +16531,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zy_zw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zy_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19217,11 +16545,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zy_wx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zy_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19235,11 +16559,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zy_wy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zy_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19253,11 +16573,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zy_wz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zy_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19271,11 +16587,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zy_ww(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zy_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19289,11 +16601,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zz_xx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zz_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19307,11 +16615,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zz_xy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zz_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19325,11 +16629,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zz_xz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zz_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19343,11 +16643,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zz_xw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zz_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19361,11 +16657,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zz_yx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zz_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19379,11 +16671,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zz_yy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zz_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19397,11 +16685,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zz_yz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zz_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19415,11 +16699,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zz_yw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zz_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19433,11 +16713,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zz_zx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zz_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19451,11 +16727,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zz_zy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zz_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19469,11 +16741,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zz_zz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zz_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19487,11 +16755,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zz_zw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zz_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19505,11 +16769,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zz_wx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zz_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19523,11 +16783,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zz_wy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zz_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19541,11 +16797,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zz_wz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zz_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19559,11 +16811,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zz_ww(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zz_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19577,11 +16825,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zw_xx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zw_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19595,11 +16839,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zw_xy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zw_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19613,11 +16853,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zw_xz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zw_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19631,11 +16867,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zw_xw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zw_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19649,11 +16881,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zw_yx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zw_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19667,11 +16895,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zw_yy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zw_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19685,11 +16909,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zw_yz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zw_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19703,11 +16923,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zw_yw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zw_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19721,11 +16937,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zw_zx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zw_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19739,11 +16951,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zw_zy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zw_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19757,11 +16965,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zw_zz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zw_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19775,11 +16979,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zw_zw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zw_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19793,11 +16993,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zw_wx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zw_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19811,11 +17007,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zw_wy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zw_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19829,11 +17021,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zw_wz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zw_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19847,11 +17035,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_zw_ww(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.zw_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19865,11 +17049,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wx_xx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wx_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19883,11 +17063,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wx_xy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wx_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19901,11 +17077,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wx_xz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wx_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19919,11 +17091,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wx_xw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wx_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19937,11 +17105,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wx_yx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wx_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19955,11 +17119,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wx_yy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wx_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19973,11 +17133,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wx_yz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wx_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -19991,11 +17147,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wx_yw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wx_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20009,11 +17161,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wx_zx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wx_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20027,11 +17175,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wx_zy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wx_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20045,11 +17189,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wx_zz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wx_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20063,11 +17203,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wx_zw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wx_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20081,11 +17217,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wx_wx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wx_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20099,11 +17231,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wx_wy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wx_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20117,11 +17245,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wx_wz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wx_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20135,11 +17259,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wx_ww(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wx_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20153,11 +17273,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wy_xx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wy_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20171,11 +17287,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wy_xy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wy_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20189,11 +17301,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wy_xz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wy_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20207,11 +17315,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wy_xw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wy_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20225,11 +17329,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wy_yx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wy_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20243,11 +17343,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wy_yy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wy_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20261,11 +17357,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wy_yz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wy_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20279,11 +17371,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wy_yw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wy_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20297,11 +17385,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wy_zx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wy_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20315,11 +17399,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wy_zy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wy_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20333,11 +17413,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wy_zz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wy_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20351,11 +17427,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wy_zw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wy_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20369,11 +17441,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wy_wx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wy_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20387,11 +17455,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wy_wy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wy_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20405,11 +17469,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wy_wz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wy_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20423,11 +17483,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wy_ww(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wy_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20441,11 +17497,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wz_xx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wz_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20459,11 +17511,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wz_xy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wz_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20477,11 +17525,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wz_xz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wz_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20495,11 +17539,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wz_xw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wz_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20513,11 +17553,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wz_yx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wz_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20531,11 +17567,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wz_yy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wz_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20549,11 +17581,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wz_yz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wz_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20567,11 +17595,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wz_yw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wz_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20585,11 +17609,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wz_zx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wz_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20603,11 +17623,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wz_zy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wz_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20621,11 +17637,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wz_zz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wz_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20639,11 +17651,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wz_zw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wz_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20657,11 +17665,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wz_wx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wz_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20675,11 +17679,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wz_wy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wz_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20693,11 +17693,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wz_wz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wz_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20711,11 +17707,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_wz_ww(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.wz_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20729,11 +17721,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_ww_xx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.ww_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20747,11 +17735,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_ww_xy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.ww_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20765,11 +17749,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_ww_xz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.ww_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20783,11 +17763,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_ww_xw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.ww_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20801,11 +17777,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_ww_yx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.ww_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20819,11 +17791,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_ww_yy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.ww_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20837,11 +17805,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_ww_yz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.ww_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20855,11 +17819,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_ww_yw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.ww_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20873,11 +17833,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_ww_zx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.ww_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20891,11 +17847,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_ww_zy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.ww_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20909,11 +17861,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_ww_zz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.ww_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20927,11 +17875,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_ww_zw(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.ww_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20945,11 +17889,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_ww_wx(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.ww_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20963,11 +17903,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_ww_wy(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.ww_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20981,11 +17917,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_ww_wz(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.ww_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -20999,11 +17931,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 shuffle_ww_ww(int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, Shuffle42.ww_ww);
-        #endif // NET8_0_OR_GREATER
     }
     #endregion // int4
     #region uint4
@@ -21019,11 +17947,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xx_xx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xx_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21037,11 +17961,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xx_xy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xx_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21055,11 +17975,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xx_xz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xx_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21073,11 +17989,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xx_xw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xx_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21091,11 +18003,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xx_yx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xx_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21109,11 +18017,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xx_yy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xx_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21127,11 +18031,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xx_yz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xx_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21145,11 +18045,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xx_yw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xx_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21163,11 +18059,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xx_zx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xx_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21181,11 +18073,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xx_zy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xx_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21199,11 +18087,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xx_zz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xx_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21217,11 +18101,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xx_zw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xx_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21235,11 +18115,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xx_wx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xx_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21253,11 +18129,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xx_wy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xx_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21271,11 +18143,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xx_wz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xx_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21289,11 +18157,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xx_ww(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xx_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21307,11 +18171,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xy_xx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xy_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21325,11 +18185,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xy_xy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xy_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21343,11 +18199,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xy_xz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xy_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21361,11 +18213,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xy_xw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xy_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21379,11 +18227,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xy_yx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xy_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21397,11 +18241,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xy_yy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xy_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21415,11 +18255,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xy_yz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xy_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21433,11 +18269,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xy_yw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xy_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21451,11 +18283,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xy_zx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xy_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21469,11 +18297,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xy_zy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xy_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21487,11 +18311,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xy_zz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xy_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21505,11 +18325,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xy_zw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xy_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21523,11 +18339,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xy_wx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xy_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21541,11 +18353,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xy_wy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xy_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21559,11 +18367,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xy_wz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xy_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21577,11 +18381,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xy_ww(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xy_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21595,11 +18395,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xz_xx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xz_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21613,11 +18409,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xz_xy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xz_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21631,11 +18423,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xz_xz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xz_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21649,11 +18437,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xz_xw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xz_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21667,11 +18451,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xz_yx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xz_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21685,11 +18465,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xz_yy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xz_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21703,11 +18479,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xz_yz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xz_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21721,11 +18493,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xz_yw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xz_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21739,11 +18507,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xz_zx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xz_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21757,11 +18521,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xz_zy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xz_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21775,11 +18535,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xz_zz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xz_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21793,11 +18549,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xz_zw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xz_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21811,11 +18563,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xz_wx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xz_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21829,11 +18577,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xz_wy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xz_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21847,11 +18591,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xz_wz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xz_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21865,11 +18605,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xz_ww(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xz_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21883,11 +18619,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xw_xx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xw_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21901,11 +18633,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xw_xy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xw_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21919,11 +18647,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xw_xz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xw_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21937,11 +18661,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xw_xw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xw_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21955,11 +18675,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xw_yx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xw_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21973,11 +18689,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xw_yy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xw_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -21991,11 +18703,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xw_yz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xw_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22009,11 +18717,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xw_yw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xw_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22027,11 +18731,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xw_zx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xw_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22045,11 +18745,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xw_zy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xw_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22063,11 +18759,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xw_zz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xw_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22081,11 +18773,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xw_zw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xw_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22099,11 +18787,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xw_wx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xw_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22117,11 +18801,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xw_wy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xw_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22135,11 +18815,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xw_wz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xw_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22153,11 +18829,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_xw_ww(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.xw_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22171,11 +18843,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yx_xx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yx_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22189,11 +18857,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yx_xy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yx_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22207,11 +18871,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yx_xz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yx_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22225,11 +18885,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yx_xw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yx_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22243,11 +18899,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yx_yx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yx_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22261,11 +18913,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yx_yy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yx_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22279,11 +18927,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yx_yz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yx_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22297,11 +18941,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yx_yw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yx_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22315,11 +18955,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yx_zx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yx_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22333,11 +18969,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yx_zy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yx_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22351,11 +18983,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yx_zz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yx_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22369,11 +18997,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yx_zw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yx_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22387,11 +19011,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yx_wx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yx_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22405,11 +19025,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yx_wy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yx_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22423,11 +19039,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yx_wz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yx_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22441,11 +19053,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yx_ww(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yx_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22459,11 +19067,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yy_xx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yy_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22477,11 +19081,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yy_xy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yy_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22495,11 +19095,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yy_xz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yy_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22513,11 +19109,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yy_xw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yy_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22531,11 +19123,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yy_yx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yy_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22549,11 +19137,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yy_yy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yy_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22567,11 +19151,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yy_yz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yy_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22585,11 +19165,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yy_yw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yy_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22603,11 +19179,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yy_zx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yy_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22621,11 +19193,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yy_zy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yy_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22639,11 +19207,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yy_zz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yy_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22657,11 +19221,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yy_zw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yy_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22675,11 +19235,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yy_wx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yy_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22693,11 +19249,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yy_wy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yy_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22711,11 +19263,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yy_wz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yy_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22729,11 +19277,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yy_ww(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yy_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22747,11 +19291,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yz_xx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yz_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22765,11 +19305,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yz_xy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yz_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22783,11 +19319,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yz_xz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yz_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22801,11 +19333,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yz_xw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yz_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22819,11 +19347,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yz_yx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yz_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22837,11 +19361,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yz_yy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yz_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22855,11 +19375,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yz_yz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yz_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22873,11 +19389,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yz_yw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yz_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22891,11 +19403,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yz_zx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yz_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22909,11 +19417,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yz_zy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yz_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22927,11 +19431,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yz_zz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yz_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22945,11 +19445,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yz_zw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yz_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22963,11 +19459,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yz_wx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yz_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22981,11 +19473,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yz_wy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yz_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -22999,11 +19487,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yz_wz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yz_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23017,11 +19501,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yz_ww(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yz_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23035,11 +19515,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yw_xx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yw_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23053,11 +19529,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yw_xy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yw_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23071,11 +19543,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yw_xz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yw_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23089,11 +19557,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yw_xw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yw_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23107,11 +19571,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yw_yx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yw_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23125,11 +19585,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yw_yy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yw_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23143,11 +19599,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yw_yz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yw_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23161,11 +19613,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yw_yw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yw_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23179,11 +19627,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yw_zx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yw_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23197,11 +19641,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yw_zy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yw_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23215,11 +19655,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yw_zz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yw_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23233,11 +19669,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yw_zw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yw_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23251,11 +19683,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yw_wx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yw_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23269,11 +19697,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yw_wy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yw_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23287,11 +19711,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yw_wz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yw_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23305,11 +19725,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_yw_ww(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.yw_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23323,11 +19739,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zx_xx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zx_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23341,11 +19753,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zx_xy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zx_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23359,11 +19767,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zx_xz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zx_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23377,11 +19781,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zx_xw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zx_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23395,11 +19795,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zx_yx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zx_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23413,11 +19809,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zx_yy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zx_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23431,11 +19823,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zx_yz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zx_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23449,11 +19837,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zx_yw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zx_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23467,11 +19851,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zx_zx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zx_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23485,11 +19865,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zx_zy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zx_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23503,11 +19879,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zx_zz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zx_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23521,11 +19893,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zx_zw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zx_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23539,11 +19907,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zx_wx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zx_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23557,11 +19921,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zx_wy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zx_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23575,11 +19935,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zx_wz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zx_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23593,11 +19949,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zx_ww(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zx_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23611,11 +19963,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zy_xx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zy_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23629,11 +19977,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zy_xy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zy_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23647,11 +19991,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zy_xz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zy_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23665,11 +20005,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zy_xw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zy_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23683,11 +20019,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zy_yx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zy_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23701,11 +20033,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zy_yy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zy_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23719,11 +20047,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zy_yz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zy_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23737,11 +20061,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zy_yw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zy_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23755,11 +20075,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zy_zx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zy_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23773,11 +20089,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zy_zy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zy_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23791,11 +20103,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zy_zz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zy_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23809,11 +20117,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zy_zw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zy_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23827,11 +20131,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zy_wx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zy_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23845,11 +20145,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zy_wy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zy_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23863,11 +20159,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zy_wz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zy_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23881,11 +20173,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zy_ww(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zy_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23899,11 +20187,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zz_xx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zz_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23917,11 +20201,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zz_xy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zz_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23935,11 +20215,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zz_xz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zz_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23953,11 +20229,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zz_xw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zz_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23971,11 +20243,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zz_yx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zz_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -23989,11 +20257,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zz_yy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zz_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24007,11 +20271,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zz_yz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zz_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24025,11 +20285,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zz_yw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zz_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24043,11 +20299,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zz_zx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zz_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24061,11 +20313,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zz_zy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zz_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24079,11 +20327,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zz_zz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zz_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24097,11 +20341,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zz_zw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zz_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24115,11 +20355,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zz_wx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zz_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24133,11 +20369,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zz_wy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zz_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24151,11 +20383,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zz_wz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zz_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24169,11 +20397,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zz_ww(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zz_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24187,11 +20411,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zw_xx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zw_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24205,11 +20425,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zw_xy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zw_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24223,11 +20439,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zw_xz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zw_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24241,11 +20453,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zw_xw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zw_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24259,11 +20467,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zw_yx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zw_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24277,11 +20481,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zw_yy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zw_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24295,11 +20495,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zw_yz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zw_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24313,11 +20509,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zw_yw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zw_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24331,11 +20523,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zw_zx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zw_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24349,11 +20537,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zw_zy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zw_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24367,11 +20551,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zw_zz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zw_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24385,11 +20565,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zw_zw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zw_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24403,11 +20579,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zw_wx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zw_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24421,11 +20593,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zw_wy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zw_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24439,11 +20607,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zw_wz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zw_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24457,11 +20621,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_zw_ww(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.zw_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24475,11 +20635,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wx_xx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wx_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24493,11 +20649,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wx_xy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wx_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24511,11 +20663,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wx_xz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wx_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24529,11 +20677,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wx_xw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wx_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24547,11 +20691,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wx_yx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wx_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24565,11 +20705,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wx_yy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wx_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24583,11 +20719,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wx_yz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wx_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24601,11 +20733,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wx_yw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wx_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24619,11 +20747,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wx_zx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wx_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24637,11 +20761,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wx_zy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wx_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24655,11 +20775,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wx_zz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wx_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24673,11 +20789,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wx_zw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wx_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24691,11 +20803,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wx_wx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wx_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24709,11 +20817,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wx_wy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wx_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24727,11 +20831,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wx_wz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wx_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24745,11 +20845,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wx_ww(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wx_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24763,11 +20859,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wy_xx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wy_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24781,11 +20873,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wy_xy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wy_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24799,11 +20887,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wy_xz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wy_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24817,11 +20901,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wy_xw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wy_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24835,11 +20915,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wy_yx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wy_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24853,11 +20929,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wy_yy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wy_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24871,11 +20943,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wy_yz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wy_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24889,11 +20957,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wy_yw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wy_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24907,11 +20971,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wy_zx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wy_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24925,11 +20985,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wy_zy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wy_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24943,11 +20999,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wy_zz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wy_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24961,11 +21013,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wy_zw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wy_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24979,11 +21027,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wy_wx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wy_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -24997,11 +21041,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wy_wy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wy_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25015,11 +21055,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wy_wz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wy_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25033,11 +21069,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wy_ww(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wy_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25051,11 +21083,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wz_xx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wz_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25069,11 +21097,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wz_xy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wz_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25087,11 +21111,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wz_xz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wz_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25105,11 +21125,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wz_xw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wz_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25123,11 +21139,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wz_yx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wz_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25141,11 +21153,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wz_yy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wz_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25159,11 +21167,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wz_yz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wz_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25177,11 +21181,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wz_yw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wz_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25195,11 +21195,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wz_zx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wz_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25213,11 +21209,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wz_zy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wz_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25231,11 +21223,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wz_zz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wz_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25249,11 +21237,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wz_zw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wz_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25267,11 +21251,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wz_wx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wz_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25285,11 +21265,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wz_wy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wz_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25303,11 +21279,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wz_wz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wz_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25321,11 +21293,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_wz_ww(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.wz_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25339,11 +21307,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_ww_xx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.ww_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25357,11 +21321,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_ww_xy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.ww_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25375,11 +21335,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_ww_xz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.ww_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25393,11 +21349,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_ww_xw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.ww_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25411,11 +21363,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_ww_yx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.ww_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25429,11 +21377,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_ww_yy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.ww_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25447,11 +21391,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_ww_yz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.ww_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25465,11 +21405,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_ww_yw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.ww_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25483,11 +21419,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_ww_zx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.ww_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25501,11 +21433,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_ww_zy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.ww_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25519,11 +21447,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_ww_zz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.ww_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25537,11 +21461,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_ww_zw(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.ww_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25555,11 +21475,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_ww_wx(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.ww_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25573,11 +21489,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_ww_wy(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.ww_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25591,11 +21503,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_ww_wz(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.ww_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25609,11 +21517,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 shuffle_ww_ww(uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, Shuffle42.ww_ww);
-        #endif // NET8_0_OR_GREATER
     }
     #endregion // uint4
     #region long4
@@ -25629,11 +21533,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xx_xx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xx_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25647,11 +21547,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xx_xy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xx_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25665,11 +21561,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xx_xz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xx_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25683,11 +21575,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xx_xw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xx_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25701,11 +21589,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xx_yx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xx_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25719,11 +21603,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xx_yy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xx_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25737,11 +21617,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xx_yz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xx_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25755,11 +21631,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xx_yw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xx_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25773,11 +21645,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xx_zx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xx_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25791,11 +21659,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xx_zy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xx_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25809,11 +21673,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xx_zz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xx_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25827,11 +21687,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xx_zw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xx_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25845,11 +21701,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xx_wx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xx_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25863,11 +21715,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xx_wy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xx_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25881,11 +21729,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xx_wz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xx_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25899,11 +21743,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xx_ww(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xx_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25917,11 +21757,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xy_xx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xy_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25935,11 +21771,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xy_xy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xy_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25953,11 +21785,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xy_xz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xy_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25971,11 +21799,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xy_xw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xy_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -25989,11 +21813,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xy_yx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xy_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26007,11 +21827,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xy_yy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xy_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26025,11 +21841,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xy_yz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xy_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26043,11 +21855,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xy_yw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xy_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26061,11 +21869,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xy_zx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xy_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26079,11 +21883,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xy_zy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xy_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26097,11 +21897,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xy_zz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xy_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26115,11 +21911,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xy_zw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xy_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26133,11 +21925,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xy_wx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xy_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26151,11 +21939,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xy_wy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xy_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26169,11 +21953,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xy_wz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xy_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26187,11 +21967,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xy_ww(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xy_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26205,11 +21981,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xz_xx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xz_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26223,11 +21995,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xz_xy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xz_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26241,11 +22009,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xz_xz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xz_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26259,11 +22023,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xz_xw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xz_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26277,11 +22037,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xz_yx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xz_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26295,11 +22051,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xz_yy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xz_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26313,11 +22065,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xz_yz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xz_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26331,11 +22079,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xz_yw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xz_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26349,11 +22093,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xz_zx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xz_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26367,11 +22107,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xz_zy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xz_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26385,11 +22121,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xz_zz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xz_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26403,11 +22135,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xz_zw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xz_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26421,11 +22149,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xz_wx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xz_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26439,11 +22163,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xz_wy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xz_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26457,11 +22177,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xz_wz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xz_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26475,11 +22191,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xz_ww(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xz_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26493,11 +22205,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xw_xx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xw_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26511,11 +22219,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xw_xy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xw_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26529,11 +22233,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xw_xz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xw_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26547,11 +22247,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xw_xw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xw_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26565,11 +22261,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xw_yx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xw_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26583,11 +22275,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xw_yy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xw_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26601,11 +22289,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xw_yz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xw_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26619,11 +22303,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xw_yw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xw_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26637,11 +22317,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xw_zx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xw_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26655,11 +22331,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xw_zy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xw_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26673,11 +22345,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xw_zz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xw_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26691,11 +22359,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xw_zw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xw_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26709,11 +22373,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xw_wx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xw_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26727,11 +22387,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xw_wy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xw_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26745,11 +22401,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xw_wz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xw_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26763,11 +22415,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_xw_ww(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.xw_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26781,11 +22429,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yx_xx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yx_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26799,11 +22443,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yx_xy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yx_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26817,11 +22457,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yx_xz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yx_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26835,11 +22471,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yx_xw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yx_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26853,11 +22485,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yx_yx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yx_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26871,11 +22499,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yx_yy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yx_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26889,11 +22513,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yx_yz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yx_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26907,11 +22527,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yx_yw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yx_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26925,11 +22541,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yx_zx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yx_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26943,11 +22555,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yx_zy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yx_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26961,11 +22569,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yx_zz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yx_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26979,11 +22583,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yx_zw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yx_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -26997,11 +22597,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yx_wx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yx_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27015,11 +22611,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yx_wy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yx_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27033,11 +22625,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yx_wz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yx_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27051,11 +22639,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yx_ww(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yx_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27069,11 +22653,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yy_xx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yy_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27087,11 +22667,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yy_xy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yy_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27105,11 +22681,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yy_xz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yy_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27123,11 +22695,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yy_xw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yy_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27141,11 +22709,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yy_yx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yy_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27159,11 +22723,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yy_yy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yy_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27177,11 +22737,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yy_yz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yy_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27195,11 +22751,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yy_yw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yy_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27213,11 +22765,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yy_zx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yy_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27231,11 +22779,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yy_zy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yy_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27249,11 +22793,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yy_zz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yy_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27267,11 +22807,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yy_zw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yy_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27285,11 +22821,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yy_wx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yy_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27303,11 +22835,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yy_wy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yy_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27321,11 +22849,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yy_wz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yy_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27339,11 +22863,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yy_ww(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yy_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27357,11 +22877,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yz_xx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yz_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27375,11 +22891,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yz_xy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yz_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27393,11 +22905,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yz_xz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yz_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27411,11 +22919,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yz_xw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yz_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27429,11 +22933,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yz_yx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yz_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27447,11 +22947,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yz_yy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yz_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27465,11 +22961,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yz_yz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yz_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27483,11 +22975,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yz_yw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yz_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27501,11 +22989,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yz_zx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yz_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27519,11 +23003,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yz_zy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yz_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27537,11 +23017,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yz_zz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yz_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27555,11 +23031,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yz_zw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yz_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27573,11 +23045,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yz_wx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yz_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27591,11 +23059,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yz_wy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yz_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27609,11 +23073,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yz_wz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yz_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27627,11 +23087,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yz_ww(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yz_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27645,11 +23101,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yw_xx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yw_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27663,11 +23115,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yw_xy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yw_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27681,11 +23129,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yw_xz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yw_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27699,11 +23143,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yw_xw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yw_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27717,11 +23157,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yw_yx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yw_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27735,11 +23171,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yw_yy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yw_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27753,11 +23185,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yw_yz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yw_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27771,11 +23199,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yw_yw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yw_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27789,11 +23213,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yw_zx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yw_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27807,11 +23227,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yw_zy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yw_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27825,11 +23241,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yw_zz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yw_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27843,11 +23255,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yw_zw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yw_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27861,11 +23269,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yw_wx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yw_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27879,11 +23283,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yw_wy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yw_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27897,11 +23297,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yw_wz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yw_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27915,11 +23311,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_yw_ww(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.yw_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27933,11 +23325,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zx_xx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zx_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27951,11 +23339,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zx_xy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zx_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27969,11 +23353,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zx_xz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zx_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -27987,11 +23367,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zx_xw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zx_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28005,11 +23381,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zx_yx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zx_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28023,11 +23395,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zx_yy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zx_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28041,11 +23409,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zx_yz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zx_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28059,11 +23423,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zx_yw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zx_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28077,11 +23437,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zx_zx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zx_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28095,11 +23451,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zx_zy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zx_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28113,11 +23465,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zx_zz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zx_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28131,11 +23479,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zx_zw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zx_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28149,11 +23493,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zx_wx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zx_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28167,11 +23507,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zx_wy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zx_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28185,11 +23521,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zx_wz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zx_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28203,11 +23535,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zx_ww(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zx_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28221,11 +23549,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zy_xx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zy_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28239,11 +23563,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zy_xy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zy_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28257,11 +23577,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zy_xz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zy_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28275,11 +23591,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zy_xw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zy_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28293,11 +23605,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zy_yx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zy_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28311,11 +23619,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zy_yy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zy_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28329,11 +23633,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zy_yz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zy_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28347,11 +23647,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zy_yw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zy_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28365,11 +23661,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zy_zx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zy_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28383,11 +23675,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zy_zy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zy_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28401,11 +23689,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zy_zz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zy_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28419,11 +23703,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zy_zw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zy_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28437,11 +23717,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zy_wx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zy_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28455,11 +23731,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zy_wy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zy_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28473,11 +23745,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zy_wz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zy_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28491,11 +23759,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zy_ww(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zy_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28509,11 +23773,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zz_xx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zz_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28527,11 +23787,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zz_xy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zz_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28545,11 +23801,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zz_xz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zz_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28563,11 +23815,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zz_xw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zz_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28581,11 +23829,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zz_yx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zz_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28599,11 +23843,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zz_yy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zz_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28617,11 +23857,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zz_yz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zz_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28635,11 +23871,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zz_yw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zz_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28653,11 +23885,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zz_zx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zz_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28671,11 +23899,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zz_zy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zz_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28689,11 +23913,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zz_zz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zz_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28707,11 +23927,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zz_zw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zz_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28725,11 +23941,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zz_wx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zz_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28743,11 +23955,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zz_wy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zz_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28761,11 +23969,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zz_wz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zz_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28779,11 +23983,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zz_ww(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zz_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28797,11 +23997,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zw_xx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zw_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28815,11 +24011,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zw_xy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zw_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28833,11 +24025,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zw_xz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zw_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28851,11 +24039,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zw_xw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zw_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28869,11 +24053,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zw_yx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zw_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28887,11 +24067,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zw_yy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zw_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28905,11 +24081,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zw_yz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zw_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28923,11 +24095,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zw_yw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zw_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28941,11 +24109,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zw_zx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zw_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28959,11 +24123,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zw_zy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zw_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28977,11 +24137,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zw_zz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zw_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -28995,11 +24151,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zw_zw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zw_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29013,11 +24165,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zw_wx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zw_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29031,11 +24179,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zw_wy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zw_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29049,11 +24193,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zw_wz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zw_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29067,11 +24207,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_zw_ww(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.zw_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29085,11 +24221,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wx_xx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wx_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29103,11 +24235,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wx_xy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wx_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29121,11 +24249,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wx_xz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wx_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29139,11 +24263,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wx_xw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wx_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29157,11 +24277,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wx_yx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wx_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29175,11 +24291,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wx_yy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wx_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29193,11 +24305,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wx_yz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wx_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29211,11 +24319,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wx_yw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wx_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29229,11 +24333,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wx_zx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wx_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29247,11 +24347,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wx_zy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wx_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29265,11 +24361,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wx_zz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wx_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29283,11 +24375,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wx_zw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wx_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29301,11 +24389,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wx_wx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wx_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29319,11 +24403,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wx_wy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wx_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29337,11 +24417,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wx_wz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wx_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29355,11 +24431,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wx_ww(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wx_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29373,11 +24445,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wy_xx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wy_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29391,11 +24459,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wy_xy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wy_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29409,11 +24473,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wy_xz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wy_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29427,11 +24487,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wy_xw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wy_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29445,11 +24501,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wy_yx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wy_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29463,11 +24515,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wy_yy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wy_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29481,11 +24529,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wy_yz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wy_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29499,11 +24543,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wy_yw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wy_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29517,11 +24557,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wy_zx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wy_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29535,11 +24571,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wy_zy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wy_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29553,11 +24585,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wy_zz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wy_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29571,11 +24599,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wy_zw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wy_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29589,11 +24613,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wy_wx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wy_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29607,11 +24627,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wy_wy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wy_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29625,11 +24641,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wy_wz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wy_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29643,11 +24655,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wy_ww(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wy_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29661,11 +24669,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wz_xx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wz_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29679,11 +24683,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wz_xy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wz_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29697,11 +24697,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wz_xz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wz_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29715,11 +24711,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wz_xw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wz_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29733,11 +24725,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wz_yx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wz_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29751,11 +24739,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wz_yy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wz_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29769,11 +24753,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wz_yz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wz_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29787,11 +24767,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wz_yw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wz_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29805,11 +24781,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wz_zx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wz_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29823,11 +24795,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wz_zy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wz_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29841,11 +24809,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wz_zz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wz_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29859,11 +24823,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wz_zw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wz_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29877,11 +24837,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wz_wx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wz_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29895,11 +24851,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wz_wy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wz_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29913,11 +24865,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wz_wz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wz_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29931,11 +24879,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_wz_ww(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.wz_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29949,11 +24893,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_ww_xx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.ww_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29967,11 +24907,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_ww_xy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.ww_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -29985,11 +24921,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_ww_xz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.ww_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30003,11 +24935,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_ww_xw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.ww_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30021,11 +24949,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_ww_yx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.ww_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30039,11 +24963,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_ww_yy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.ww_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30057,11 +24977,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_ww_yz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.ww_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30075,11 +24991,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_ww_yw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.ww_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30093,11 +25005,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_ww_zx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.ww_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30111,11 +25019,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_ww_zy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.ww_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30129,11 +25033,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_ww_zz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.ww_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30147,11 +25047,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_ww_zw(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.ww_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30165,11 +25061,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_ww_wx(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.ww_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30183,11 +25075,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_ww_wy(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.ww_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30201,11 +25089,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_ww_wz(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.ww_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30219,11 +25103,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 shuffle_ww_ww(long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, Shuffle42.ww_ww);
-        #endif // NET8_0_OR_GREATER
     }
     #endregion // long4
     #region ulong4
@@ -30239,11 +25119,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xx_xx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xx_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30257,11 +25133,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xx_xy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xx_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30275,11 +25147,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xx_xz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xx_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30293,11 +25161,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xx_xw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xx_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30311,11 +25175,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xx_yx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xx_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30329,11 +25189,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xx_yy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xx_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30347,11 +25203,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xx_yz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xx_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30365,11 +25217,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xx_yw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xx_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30383,11 +25231,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xx_zx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xx_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30401,11 +25245,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xx_zy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xx_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30419,11 +25259,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xx_zz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xx_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30437,11 +25273,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xx_zw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xx_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30455,11 +25287,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xx_wx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xx_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30473,11 +25301,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xx_wy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xx_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30491,11 +25315,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xx_wz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xx_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30509,11 +25329,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xx_ww(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xx_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30527,11 +25343,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xy_xx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xy_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30545,11 +25357,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xy_xy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xy_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30563,11 +25371,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xy_xz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xy_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30581,11 +25385,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xy_xw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xy_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30599,11 +25399,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xy_yx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xy_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30617,11 +25413,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xy_yy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xy_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30635,11 +25427,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xy_yz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xy_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30653,11 +25441,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xy_yw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xy_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30671,11 +25455,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xy_zx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xy_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30689,11 +25469,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xy_zy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xy_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30707,11 +25483,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xy_zz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xy_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30725,11 +25497,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xy_zw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xy_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30743,11 +25511,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xy_wx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xy_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30761,11 +25525,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xy_wy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xy_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30779,11 +25539,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xy_wz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xy_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30797,11 +25553,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xy_ww(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xy_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30815,11 +25567,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xz_xx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xz_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30833,11 +25581,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xz_xy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xz_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30851,11 +25595,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xz_xz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xz_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30869,11 +25609,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xz_xw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xz_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30887,11 +25623,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xz_yx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xz_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30905,11 +25637,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xz_yy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xz_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30923,11 +25651,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xz_yz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xz_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30941,11 +25665,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xz_yw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xz_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30959,11 +25679,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xz_zx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xz_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30977,11 +25693,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xz_zy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xz_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -30995,11 +25707,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xz_zz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xz_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31013,11 +25721,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xz_zw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xz_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31031,11 +25735,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xz_wx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xz_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31049,11 +25749,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xz_wy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xz_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31067,11 +25763,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xz_wz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xz_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31085,11 +25777,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xz_ww(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xz_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31103,11 +25791,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xw_xx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xw_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31121,11 +25805,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xw_xy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xw_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31139,11 +25819,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xw_xz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xw_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31157,11 +25833,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xw_xw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xw_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31175,11 +25847,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xw_yx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xw_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31193,11 +25861,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xw_yy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xw_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31211,11 +25875,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xw_yz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xw_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31229,11 +25889,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xw_yw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xw_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31247,11 +25903,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xw_zx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xw_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31265,11 +25917,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xw_zy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xw_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31283,11 +25931,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xw_zz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xw_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31301,11 +25945,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xw_zw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xw_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31319,11 +25959,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xw_wx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xw_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31337,11 +25973,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xw_wy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xw_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31355,11 +25987,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xw_wz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xw_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31373,11 +26001,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_xw_ww(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.xw_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31391,11 +26015,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yx_xx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yx_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31409,11 +26029,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yx_xy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yx_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31427,11 +26043,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yx_xz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yx_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31445,11 +26057,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yx_xw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yx_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31463,11 +26071,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yx_yx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yx_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31481,11 +26085,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yx_yy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yx_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31499,11 +26099,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yx_yz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yx_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31517,11 +26113,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yx_yw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yx_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31535,11 +26127,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yx_zx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yx_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31553,11 +26141,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yx_zy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yx_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31571,11 +26155,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yx_zz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yx_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31589,11 +26169,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yx_zw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yx_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31607,11 +26183,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yx_wx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yx_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31625,11 +26197,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yx_wy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yx_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31643,11 +26211,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yx_wz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yx_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31661,11 +26225,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yx_ww(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yx_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31679,11 +26239,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yy_xx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yy_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31697,11 +26253,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yy_xy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yy_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31715,11 +26267,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yy_xz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yy_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31733,11 +26281,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yy_xw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yy_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31751,11 +26295,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yy_yx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yy_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31769,11 +26309,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yy_yy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yy_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31787,11 +26323,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yy_yz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yy_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31805,11 +26337,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yy_yw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yy_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31823,11 +26351,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yy_zx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yy_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31841,11 +26365,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yy_zy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yy_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31859,11 +26379,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yy_zz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yy_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31877,11 +26393,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yy_zw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yy_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31895,11 +26407,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yy_wx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yy_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31913,11 +26421,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yy_wy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yy_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31931,11 +26435,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yy_wz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yy_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31949,11 +26449,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yy_ww(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yy_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31967,11 +26463,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yz_xx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yz_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31985,11 +26477,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yz_xy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yz_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32003,11 +26491,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yz_xz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yz_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32021,11 +26505,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yz_xw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yz_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32039,11 +26519,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yz_yx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yz_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32057,11 +26533,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yz_yy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yz_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32075,11 +26547,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yz_yz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yz_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32093,11 +26561,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yz_yw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yz_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32111,11 +26575,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yz_zx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yz_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32129,11 +26589,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yz_zy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yz_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32147,11 +26603,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yz_zz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yz_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32165,11 +26617,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yz_zw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yz_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32183,11 +26631,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yz_wx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yz_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32201,11 +26645,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yz_wy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yz_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32219,11 +26659,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yz_wz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yz_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32237,11 +26673,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yz_ww(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yz_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32255,11 +26687,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yw_xx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yw_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32273,11 +26701,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yw_xy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yw_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32291,11 +26715,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yw_xz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yw_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32309,11 +26729,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yw_xw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yw_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32327,11 +26743,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yw_yx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yw_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32345,11 +26757,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yw_yy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yw_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32363,11 +26771,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yw_yz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yw_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32381,11 +26785,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yw_yw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yw_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32399,11 +26799,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yw_zx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yw_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32417,11 +26813,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yw_zy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yw_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32435,11 +26827,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yw_zz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yw_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32453,11 +26841,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yw_zw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yw_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32471,11 +26855,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yw_wx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yw_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32489,11 +26869,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yw_wy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yw_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32507,11 +26883,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yw_wz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yw_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32525,11 +26897,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_yw_ww(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.yw_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32543,11 +26911,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zx_xx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zx_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32561,11 +26925,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zx_xy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zx_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32579,11 +26939,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zx_xz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zx_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32597,11 +26953,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zx_xw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zx_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32615,11 +26967,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zx_yx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zx_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32633,11 +26981,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zx_yy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zx_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32651,11 +26995,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zx_yz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zx_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32669,11 +27009,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zx_yw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zx_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32687,11 +27023,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zx_zx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zx_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32705,11 +27037,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zx_zy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zx_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32723,11 +27051,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zx_zz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zx_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32741,11 +27065,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zx_zw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zx_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32759,11 +27079,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zx_wx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zx_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32777,11 +27093,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zx_wy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zx_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32795,11 +27107,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zx_wz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zx_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32813,11 +27121,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zx_ww(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zx_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32831,11 +27135,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zy_xx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zy_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32849,11 +27149,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zy_xy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zy_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32867,11 +27163,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zy_xz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zy_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32885,11 +27177,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zy_xw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zy_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32903,11 +27191,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zy_yx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zy_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32921,11 +27205,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zy_yy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zy_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32939,11 +27219,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zy_yz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zy_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32957,11 +27233,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zy_yw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zy_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32975,11 +27247,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zy_zx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zy_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -32993,11 +27261,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zy_zy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zy_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33011,11 +27275,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zy_zz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zy_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33029,11 +27289,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zy_zw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zy_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33047,11 +27303,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zy_wx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zy_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33065,11 +27317,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zy_wy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zy_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33083,11 +27331,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zy_wz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zy_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33101,11 +27345,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zy_ww(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zy_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33119,11 +27359,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zz_xx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zz_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33137,11 +27373,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zz_xy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zz_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33155,11 +27387,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zz_xz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zz_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33173,11 +27401,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zz_xw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zz_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33191,11 +27415,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zz_yx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zz_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33209,11 +27429,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zz_yy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zz_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33227,11 +27443,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zz_yz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zz_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33245,11 +27457,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zz_yw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zz_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33263,11 +27471,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zz_zx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zz_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33281,11 +27485,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zz_zy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zz_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33299,11 +27499,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zz_zz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zz_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33317,11 +27513,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zz_zw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zz_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33335,11 +27527,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zz_wx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zz_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33353,11 +27541,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zz_wy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zz_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33371,11 +27555,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zz_wz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zz_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33389,11 +27569,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zz_ww(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zz_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33407,11 +27583,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zw_xx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zw_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33425,11 +27597,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zw_xy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zw_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33443,11 +27611,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zw_xz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zw_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33461,11 +27625,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zw_xw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zw_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33479,11 +27639,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zw_yx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zw_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33497,11 +27653,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zw_yy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zw_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33515,11 +27667,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zw_yz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zw_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33533,11 +27681,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zw_yw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zw_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33551,11 +27695,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zw_zx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zw_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33569,11 +27709,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zw_zy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zw_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33587,11 +27723,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zw_zz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zw_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33605,11 +27737,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zw_zw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zw_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33623,11 +27751,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zw_wx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zw_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33641,11 +27765,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zw_wy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zw_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33659,11 +27779,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zw_wz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zw_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33677,11 +27793,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_zw_ww(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.zw_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33695,11 +27807,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wx_xx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wx_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33713,11 +27821,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wx_xy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wx_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33731,11 +27835,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wx_xz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wx_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33749,11 +27849,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wx_xw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wx_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33767,11 +27863,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wx_yx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wx_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33785,11 +27877,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wx_yy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wx_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33803,11 +27891,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wx_yz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wx_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33821,11 +27905,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wx_yw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wx_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33839,11 +27919,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wx_zx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wx_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33857,11 +27933,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wx_zy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wx_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33875,11 +27947,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wx_zz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wx_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33893,11 +27961,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wx_zw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wx_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33911,11 +27975,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wx_wx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wx_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33929,11 +27989,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wx_wy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wx_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33947,11 +28003,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wx_wz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wx_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33965,11 +28017,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wx_ww(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wx_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -33983,11 +28031,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wy_xx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wy_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34001,11 +28045,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wy_xy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wy_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34019,11 +28059,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wy_xz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wy_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34037,11 +28073,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wy_xw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wy_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34055,11 +28087,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wy_yx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wy_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34073,11 +28101,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wy_yy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wy_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34091,11 +28115,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wy_yz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wy_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34109,11 +28129,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wy_yw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wy_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34127,11 +28143,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wy_zx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wy_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34145,11 +28157,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wy_zy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wy_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34163,11 +28171,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wy_zz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wy_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34181,11 +28185,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wy_zw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wy_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34199,11 +28199,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wy_wx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wy_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34217,11 +28213,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wy_wy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wy_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34235,11 +28227,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wy_wz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wy_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34253,11 +28241,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wy_ww(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wy_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34271,11 +28255,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wz_xx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wz_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34289,11 +28269,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wz_xy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wz_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34307,11 +28283,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wz_xz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wz_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34325,11 +28297,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wz_xw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wz_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34343,11 +28311,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wz_yx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wz_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34361,11 +28325,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wz_yy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wz_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34379,11 +28339,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wz_yz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wz_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34397,11 +28353,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wz_yw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wz_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34415,11 +28367,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wz_zx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wz_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34433,11 +28381,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wz_zy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wz_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34451,11 +28395,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wz_zz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wz_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34469,11 +28409,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wz_zw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wz_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34487,11 +28423,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wz_wx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wz_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34505,11 +28437,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wz_wy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wz_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34523,11 +28451,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wz_wz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wz_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34541,11 +28465,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_wz_ww(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.wz_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34559,11 +28479,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_ww_xx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.ww_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34577,11 +28493,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_ww_xy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.ww_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34595,11 +28507,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_ww_xz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.ww_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34613,11 +28521,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_ww_xw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.ww_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34631,11 +28535,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_ww_yx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.ww_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34649,11 +28549,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_ww_yy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.ww_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34667,11 +28563,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_ww_yz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.ww_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34685,11 +28577,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_ww_yw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.ww_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34703,11 +28591,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_ww_zx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.ww_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34721,11 +28605,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_ww_zy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.ww_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34739,11 +28619,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_ww_zz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.ww_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34757,11 +28633,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_ww_zw(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.ww_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34775,11 +28647,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_ww_wx(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.ww_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34793,11 +28661,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_ww_wy(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.ww_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34811,11 +28675,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_ww_wz(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.ww_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -34829,11 +28689,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 shuffle_ww_ww(ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, Shuffle42.ww_ww);
-        #endif // NET8_0_OR_GREATER
     }
     #endregion // ulong4
     #region decimal4
@@ -45607,11 +39463,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xx_xx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xx_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -45625,11 +39477,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xx_xy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xx_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -45643,11 +39491,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xx_xz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xx_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -45661,11 +39505,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xx_xw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xx_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -45679,11 +39519,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xx_yx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xx_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -45697,11 +39533,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xx_yy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xx_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -45715,11 +39547,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xx_yz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xx_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -45733,11 +39561,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xx_yw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xx_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -45751,11 +39575,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xx_zx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xx_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -45769,11 +39589,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xx_zy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xx_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -45787,11 +39603,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xx_zz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xx_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -45805,11 +39617,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xx_zw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xx_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -45823,11 +39631,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xx_wx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xx_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -45841,11 +39645,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xx_wy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xx_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -45859,11 +39659,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xx_wz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xx_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -45877,11 +39673,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xx_ww(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xx_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -45895,11 +39687,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xy_xx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xy_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -45913,11 +39701,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xy_xy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xy_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -45931,11 +39715,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xy_xz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xy_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -45949,11 +39729,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xy_xw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xy_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -45967,11 +39743,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xy_yx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xy_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -45985,11 +39757,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xy_yy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xy_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46003,11 +39771,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xy_yz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xy_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46021,11 +39785,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xy_yw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xy_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46039,11 +39799,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xy_zx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xy_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46057,11 +39813,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xy_zy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xy_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46075,11 +39827,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xy_zz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xy_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46093,11 +39841,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xy_zw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xy_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46111,11 +39855,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xy_wx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xy_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46129,11 +39869,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xy_wy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xy_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46147,11 +39883,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xy_wz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xy_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46165,11 +39897,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xy_ww(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xy_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46183,11 +39911,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xz_xx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xz_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46201,11 +39925,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xz_xy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xz_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46219,11 +39939,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xz_xz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xz_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46237,11 +39953,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xz_xw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xz_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46255,11 +39967,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xz_yx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xz_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46273,11 +39981,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xz_yy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xz_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46291,11 +39995,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xz_yz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xz_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46309,11 +40009,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xz_yw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xz_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46327,11 +40023,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xz_zx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xz_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46345,11 +40037,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xz_zy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xz_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46363,11 +40051,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xz_zz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xz_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46381,11 +40065,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xz_zw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xz_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46399,11 +40079,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xz_wx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xz_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46417,11 +40093,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xz_wy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xz_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46435,11 +40107,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xz_wz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xz_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46453,11 +40121,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xz_ww(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xz_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46471,11 +40135,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xw_xx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xw_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46489,11 +40149,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xw_xy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xw_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46507,11 +40163,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xw_xz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xw_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46525,11 +40177,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xw_xw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xw_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46543,11 +40191,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xw_yx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xw_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46561,11 +40205,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xw_yy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xw_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46579,11 +40219,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xw_yz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xw_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46597,11 +40233,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xw_yw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xw_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46615,11 +40247,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xw_zx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xw_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46633,11 +40261,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xw_zy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xw_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46651,11 +40275,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xw_zz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xw_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46669,11 +40289,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xw_zw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xw_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46687,11 +40303,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xw_wx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xw_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46705,11 +40317,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xw_wy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xw_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46723,11 +40331,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xw_wz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xw_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46741,11 +40345,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_xw_ww(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.xw_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46759,11 +40359,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yx_xx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yx_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46777,11 +40373,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yx_xy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yx_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46795,11 +40387,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yx_xz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yx_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46813,11 +40401,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yx_xw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yx_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46831,11 +40415,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yx_yx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yx_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46849,11 +40429,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yx_yy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yx_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46867,11 +40443,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yx_yz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yx_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46885,11 +40457,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yx_yw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yx_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46903,11 +40471,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yx_zx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yx_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46921,11 +40485,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yx_zy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yx_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46939,11 +40499,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yx_zz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yx_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46957,11 +40513,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yx_zw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yx_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46975,11 +40527,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yx_wx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yx_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -46993,11 +40541,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yx_wy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yx_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47011,11 +40555,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yx_wz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yx_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47029,11 +40569,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yx_ww(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yx_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47047,11 +40583,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yy_xx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yy_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47065,11 +40597,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yy_xy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yy_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47083,11 +40611,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yy_xz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yy_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47101,11 +40625,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yy_xw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yy_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47119,11 +40639,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yy_yx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yy_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47137,11 +40653,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yy_yy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yy_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47155,11 +40667,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yy_yz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yy_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47173,11 +40681,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yy_yw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yy_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47191,11 +40695,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yy_zx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yy_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47209,11 +40709,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yy_zy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yy_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47227,11 +40723,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yy_zz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yy_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47245,11 +40737,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yy_zw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yy_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47263,11 +40751,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yy_wx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yy_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47281,11 +40765,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yy_wy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yy_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47299,11 +40779,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yy_wz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yy_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47317,11 +40793,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yy_ww(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yy_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47335,11 +40807,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yz_xx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yz_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47353,11 +40821,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yz_xy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yz_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47371,11 +40835,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yz_xz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yz_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47389,11 +40849,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yz_xw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yz_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47407,11 +40863,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yz_yx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yz_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47425,11 +40877,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yz_yy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yz_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47443,11 +40891,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yz_yz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yz_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47461,11 +40905,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yz_yw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yz_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47479,11 +40919,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yz_zx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yz_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47497,11 +40933,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yz_zy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yz_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47515,11 +40947,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yz_zz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yz_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47533,11 +40961,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yz_zw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yz_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47551,11 +40975,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yz_wx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yz_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47569,11 +40989,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yz_wy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yz_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47587,11 +41003,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yz_wz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yz_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47605,11 +41017,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yz_ww(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yz_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47623,11 +41031,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yw_xx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yw_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47641,11 +41045,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yw_xy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yw_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47659,11 +41059,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yw_xz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yw_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47677,11 +41073,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yw_xw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yw_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47695,11 +41087,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yw_yx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yw_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47713,11 +41101,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yw_yy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yw_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47731,11 +41115,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yw_yz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yw_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47749,11 +41129,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yw_yw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yw_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47767,11 +41143,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yw_zx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yw_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47785,11 +41157,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yw_zy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yw_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47803,11 +41171,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yw_zz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yw_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47821,11 +41185,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yw_zw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yw_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47839,11 +41199,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yw_wx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yw_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47857,11 +41213,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yw_wy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yw_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47875,11 +41227,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yw_wz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yw_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47893,11 +41241,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_yw_ww(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.yw_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47911,11 +41255,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zx_xx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zx_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47929,11 +41269,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zx_xy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zx_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47947,11 +41283,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zx_xz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zx_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47965,11 +41297,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zx_xw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zx_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -47983,11 +41311,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zx_yx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zx_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48001,11 +41325,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zx_yy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zx_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48019,11 +41339,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zx_yz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zx_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48037,11 +41353,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zx_yw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zx_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48055,11 +41367,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zx_zx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zx_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48073,11 +41381,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zx_zy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zx_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48091,11 +41395,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zx_zz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zx_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48109,11 +41409,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zx_zw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zx_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48127,11 +41423,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zx_wx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zx_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48145,11 +41437,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zx_wy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zx_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48163,11 +41451,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zx_wz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zx_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48181,11 +41465,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zx_ww(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zx_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48199,11 +41479,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zy_xx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zy_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48217,11 +41493,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zy_xy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zy_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48235,11 +41507,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zy_xz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zy_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48253,11 +41521,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zy_xw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zy_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48271,11 +41535,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zy_yx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zy_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48289,11 +41549,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zy_yy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zy_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48307,11 +41563,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zy_yz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zy_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48325,11 +41577,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zy_yw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zy_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48343,11 +41591,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zy_zx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zy_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48361,11 +41605,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zy_zy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zy_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48379,11 +41619,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zy_zz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zy_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48397,11 +41633,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zy_zw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zy_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48415,11 +41647,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zy_wx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zy_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48433,11 +41661,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zy_wy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zy_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48451,11 +41675,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zy_wz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zy_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48469,11 +41689,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zy_ww(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zy_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48487,11 +41703,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zz_xx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zz_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48505,11 +41717,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zz_xy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zz_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48523,11 +41731,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zz_xz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zz_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48541,11 +41745,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zz_xw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zz_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48559,11 +41759,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zz_yx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zz_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48577,11 +41773,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zz_yy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zz_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48595,11 +41787,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zz_yz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zz_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48613,11 +41801,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zz_yw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zz_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48631,11 +41815,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zz_zx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zz_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48649,11 +41829,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zz_zy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zz_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48667,11 +41843,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zz_zz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zz_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48685,11 +41857,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zz_zw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zz_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48703,11 +41871,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zz_wx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zz_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48721,11 +41885,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zz_wy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zz_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48739,11 +41899,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zz_wz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zz_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48757,11 +41913,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zz_ww(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zz_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48775,11 +41927,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zw_xx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zw_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48793,11 +41941,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zw_xy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zw_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48811,11 +41955,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zw_xz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zw_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48829,11 +41969,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zw_xw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zw_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48847,11 +41983,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zw_yx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zw_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48865,11 +41997,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zw_yy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zw_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48883,11 +42011,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zw_yz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zw_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48901,11 +42025,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zw_yw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zw_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48919,11 +42039,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zw_zx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zw_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48937,11 +42053,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zw_zy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zw_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48955,11 +42067,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zw_zz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zw_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48973,11 +42081,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zw_zw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zw_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -48991,11 +42095,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zw_wx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zw_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49009,11 +42109,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zw_wy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zw_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49027,11 +42123,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zw_wz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zw_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49045,11 +42137,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_zw_ww(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.zw_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49063,11 +42151,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wx_xx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wx_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49081,11 +42165,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wx_xy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wx_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49099,11 +42179,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wx_xz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wx_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49117,11 +42193,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wx_xw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wx_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49135,11 +42207,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wx_yx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wx_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49153,11 +42221,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wx_yy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wx_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49171,11 +42235,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wx_yz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wx_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49189,11 +42249,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wx_yw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wx_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49207,11 +42263,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wx_zx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wx_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49225,11 +42277,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wx_zy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wx_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49243,11 +42291,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wx_zz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wx_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49261,11 +42305,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wx_zw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wx_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49279,11 +42319,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wx_wx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wx_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49297,11 +42333,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wx_wy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wx_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49315,11 +42347,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wx_wz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wx_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49333,11 +42361,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wx_ww(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wx_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49351,11 +42375,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wy_xx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wy_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49369,11 +42389,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wy_xy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wy_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49387,11 +42403,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wy_xz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wy_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49405,11 +42417,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wy_xw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wy_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49423,11 +42431,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wy_yx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wy_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49441,11 +42445,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wy_yy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wy_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49459,11 +42459,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wy_yz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wy_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49477,11 +42473,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wy_yw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wy_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49495,11 +42487,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wy_zx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wy_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49513,11 +42501,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wy_zy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wy_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49531,11 +42515,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wy_zz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wy_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49549,11 +42529,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wy_zw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wy_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49567,11 +42543,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wy_wx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wy_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49585,11 +42557,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wy_wy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wy_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49603,11 +42571,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wy_wz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wy_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49621,11 +42585,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wy_ww(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wy_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49639,11 +42599,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wz_xx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wz_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49657,11 +42613,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wz_xy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wz_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49675,11 +42627,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wz_xz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wz_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49693,11 +42641,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wz_xw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wz_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49711,11 +42655,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wz_yx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wz_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49729,11 +42669,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wz_yy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wz_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49747,11 +42683,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wz_yz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wz_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49765,11 +42697,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wz_yw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wz_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49783,11 +42711,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wz_zx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wz_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49801,11 +42725,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wz_zy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wz_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49819,11 +42739,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wz_zz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wz_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49837,11 +42753,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wz_zw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wz_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49855,11 +42767,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wz_wx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wz_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49873,11 +42781,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wz_wy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wz_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49891,11 +42795,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wz_wz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wz_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49909,11 +42809,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_wz_ww(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.wz_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49927,11 +42823,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_ww_xx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.ww_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49945,11 +42837,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_ww_xy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.ww_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49963,11 +42851,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_ww_xz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.ww_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49981,11 +42865,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_ww_xw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.ww_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -49999,11 +42879,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_ww_yx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.ww_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50017,11 +42893,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_ww_yy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.ww_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50035,11 +42907,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_ww_yz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.ww_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50053,11 +42921,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_ww_yw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.ww_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50071,11 +42935,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_ww_zx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.ww_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50089,11 +42949,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_ww_zy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.ww_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50107,11 +42963,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_ww_zz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.ww_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50125,11 +42977,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_ww_zw(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.ww_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50143,11 +42991,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_ww_wx(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.ww_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50161,11 +43005,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_ww_wy(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.ww_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50179,11 +43019,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_ww_wz(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.ww_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50197,11 +43033,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b32v4 shuffle_ww_ww(b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, Shuffle42.ww_ww);
-        #endif // NET8_0_OR_GREATER
     }
     #endregion // b32v4
     #region b64v4
@@ -50217,11 +43049,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xx_xx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xx_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50235,11 +43063,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xx_xy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xx_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50253,11 +43077,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xx_xz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xx_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50271,11 +43091,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xx_xw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xx_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50289,11 +43105,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xx_yx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xx_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50307,11 +43119,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xx_yy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xx_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50325,11 +43133,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xx_yz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xx_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50343,11 +43147,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xx_yw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xx_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50361,11 +43161,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xx_zx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xx_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50379,11 +43175,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xx_zy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xx_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50397,11 +43189,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xx_zz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xx_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50415,11 +43203,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xx_zw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xx_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50433,11 +43217,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xx_wx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xx_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50451,11 +43231,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xx_wy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xx_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50469,11 +43245,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xx_wz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xx_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50487,11 +43259,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xx_ww(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xx_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xx_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50505,11 +43273,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xy_xx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xy_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50523,11 +43287,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xy_xy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xy_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50541,11 +43301,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xy_xz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xy_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50559,11 +43315,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xy_xw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xy_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50577,11 +43329,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xy_yx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xy_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50595,11 +43343,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xy_yy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xy_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50613,11 +43357,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xy_yz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xy_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50631,11 +43371,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xy_yw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xy_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50649,11 +43385,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xy_zx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xy_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50667,11 +43399,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xy_zy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xy_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50685,11 +43413,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xy_zz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xy_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50703,11 +43427,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xy_zw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xy_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50721,11 +43441,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xy_wx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xy_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50739,11 +43455,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xy_wy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xy_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50757,11 +43469,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xy_wz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xy_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50775,11 +43483,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xy_ww(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xy_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xy_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50793,11 +43497,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xz_xx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xz_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50811,11 +43511,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xz_xy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xz_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50829,11 +43525,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xz_xz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xz_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50847,11 +43539,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xz_xw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xz_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50865,11 +43553,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xz_yx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xz_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50883,11 +43567,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xz_yy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xz_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50901,11 +43581,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xz_yz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xz_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50919,11 +43595,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xz_yw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xz_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50937,11 +43609,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xz_zx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xz_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50955,11 +43623,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xz_zy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xz_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50973,11 +43637,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xz_zz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xz_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -50991,11 +43651,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xz_zw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xz_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51009,11 +43665,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xz_wx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xz_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51027,11 +43679,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xz_wy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xz_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51045,11 +43693,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xz_wz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xz_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51063,11 +43707,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xz_ww(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xz_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xz_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51081,11 +43721,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xw_xx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xw_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51099,11 +43735,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xw_xy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xw_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51117,11 +43749,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xw_xz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xw_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51135,11 +43763,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xw_xw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xw_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51153,11 +43777,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xw_yx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xw_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51171,11 +43791,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xw_yy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xw_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51189,11 +43805,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xw_yz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xw_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51207,11 +43819,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xw_yw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xw_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51225,11 +43833,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xw_zx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xw_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51243,11 +43847,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xw_zy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xw_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51261,11 +43861,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xw_zz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xw_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51279,11 +43875,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xw_zw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xw_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51297,11 +43889,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xw_wx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xw_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51315,11 +43903,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xw_wy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xw_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51333,11 +43917,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xw_wz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xw_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51351,11 +43931,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_xw_ww(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_xw_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.xw_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51369,11 +43945,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yx_xx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yx_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51387,11 +43959,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yx_xy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yx_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51405,11 +43973,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yx_xz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yx_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51423,11 +43987,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yx_xw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yx_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51441,11 +44001,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yx_yx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yx_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51459,11 +44015,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yx_yy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yx_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51477,11 +44029,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yx_yz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yx_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51495,11 +44043,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yx_yw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yx_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51513,11 +44057,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yx_zx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yx_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51531,11 +44071,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yx_zy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yx_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51549,11 +44085,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yx_zz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yx_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51567,11 +44099,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yx_zw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yx_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51585,11 +44113,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yx_wx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yx_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51603,11 +44127,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yx_wy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yx_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51621,11 +44141,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yx_wz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yx_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51639,11 +44155,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yx_ww(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yx_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yx_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51657,11 +44169,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yy_xx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yy_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51675,11 +44183,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yy_xy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yy_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51693,11 +44197,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yy_xz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yy_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51711,11 +44211,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yy_xw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yy_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51729,11 +44225,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yy_yx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yy_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51747,11 +44239,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yy_yy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yy_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51765,11 +44253,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yy_yz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yy_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51783,11 +44267,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yy_yw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yy_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51801,11 +44281,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yy_zx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yy_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51819,11 +44295,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yy_zy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yy_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51837,11 +44309,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yy_zz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yy_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51855,11 +44323,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yy_zw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yy_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51873,11 +44337,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yy_wx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yy_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51891,11 +44351,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yy_wy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yy_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51909,11 +44365,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yy_wz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yy_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51927,11 +44379,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yy_ww(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yy_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yy_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51945,11 +44393,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yz_xx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yz_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51963,11 +44407,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yz_xy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yz_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51981,11 +44421,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yz_xz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yz_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -51999,11 +44435,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yz_xw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yz_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52017,11 +44449,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yz_yx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yz_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52035,11 +44463,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yz_yy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yz_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52053,11 +44477,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yz_yz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yz_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52071,11 +44491,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yz_yw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yz_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52089,11 +44505,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yz_zx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yz_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52107,11 +44519,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yz_zy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yz_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52125,11 +44533,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yz_zz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yz_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52143,11 +44547,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yz_zw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yz_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52161,11 +44561,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yz_wx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yz_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52179,11 +44575,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yz_wy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yz_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52197,11 +44589,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yz_wz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yz_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52215,11 +44603,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yz_ww(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yz_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yz_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52233,11 +44617,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yw_xx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yw_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52251,11 +44631,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yw_xy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yw_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52269,11 +44645,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yw_xz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yw_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52287,11 +44659,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yw_xw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yw_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52305,11 +44673,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yw_yx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yw_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52323,11 +44687,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yw_yy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yw_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52341,11 +44701,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yw_yz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yw_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52359,11 +44715,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yw_yw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yw_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52377,11 +44729,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yw_zx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yw_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52395,11 +44743,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yw_zy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yw_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52413,11 +44757,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yw_zz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yw_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52431,11 +44771,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yw_zw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yw_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52449,11 +44785,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yw_wx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yw_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52467,11 +44799,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yw_wy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yw_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52485,11 +44813,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yw_wz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yw_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52503,11 +44827,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_yw_ww(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_yw_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.yw_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52521,11 +44841,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zx_xx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zx_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52539,11 +44855,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zx_xy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zx_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52557,11 +44869,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zx_xz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zx_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52575,11 +44883,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zx_xw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zx_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52593,11 +44897,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zx_yx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zx_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52611,11 +44911,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zx_yy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zx_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52629,11 +44925,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zx_yz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zx_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52647,11 +44939,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zx_yw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zx_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52665,11 +44953,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zx_zx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zx_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52683,11 +44967,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zx_zy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zx_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52701,11 +44981,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zx_zz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zx_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52719,11 +44995,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zx_zw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zx_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52737,11 +45009,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zx_wx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zx_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52755,11 +45023,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zx_wy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zx_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52773,11 +45037,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zx_wz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zx_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52791,11 +45051,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zx_ww(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zx_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zx_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52809,11 +45065,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zy_xx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zy_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52827,11 +45079,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zy_xy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zy_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52845,11 +45093,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zy_xz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zy_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52863,11 +45107,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zy_xw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zy_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52881,11 +45121,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zy_yx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zy_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52899,11 +45135,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zy_yy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zy_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52917,11 +45149,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zy_yz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zy_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52935,11 +45163,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zy_yw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zy_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52953,11 +45177,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zy_zx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zy_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52971,11 +45191,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zy_zy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zy_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -52989,11 +45205,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zy_zz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zy_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53007,11 +45219,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zy_zw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zy_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53025,11 +45233,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zy_wx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zy_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53043,11 +45247,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zy_wy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zy_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53061,11 +45261,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zy_wz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zy_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53079,11 +45275,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zy_ww(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zy_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zy_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53097,11 +45289,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zz_xx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zz_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53115,11 +45303,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zz_xy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zz_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53133,11 +45317,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zz_xz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zz_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53151,11 +45331,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zz_xw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zz_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53169,11 +45345,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zz_yx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zz_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53187,11 +45359,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zz_yy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zz_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53205,11 +45373,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zz_yz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zz_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53223,11 +45387,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zz_yw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zz_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53241,11 +45401,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zz_zx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zz_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53259,11 +45415,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zz_zy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zz_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53277,11 +45429,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zz_zz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zz_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53295,11 +45443,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zz_zw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zz_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53313,11 +45457,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zz_wx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zz_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53331,11 +45471,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zz_wy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zz_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53349,11 +45485,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zz_wz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zz_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53367,11 +45499,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zz_ww(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zz_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zz_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53385,11 +45513,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zw_xx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zw_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53403,11 +45527,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zw_xy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zw_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53421,11 +45541,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zw_xz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zw_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53439,11 +45555,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zw_xw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zw_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53457,11 +45569,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zw_yx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zw_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53475,11 +45583,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zw_yy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zw_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53493,11 +45597,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zw_yz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zw_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53511,11 +45611,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zw_yw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zw_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53529,11 +45625,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zw_zx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zw_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53547,11 +45639,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zw_zy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zw_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53565,11 +45653,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zw_zz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zw_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53583,11 +45667,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zw_zw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zw_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53601,11 +45681,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zw_wx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zw_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53619,11 +45695,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zw_wy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zw_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53637,11 +45709,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zw_wz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zw_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53655,11 +45723,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_zw_ww(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_zw_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.zw_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53673,11 +45737,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wx_xx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wx_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53691,11 +45751,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wx_xy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wx_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53709,11 +45765,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wx_xz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wx_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53727,11 +45779,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wx_xw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wx_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53745,11 +45793,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wx_yx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wx_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53763,11 +45807,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wx_yy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wx_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53781,11 +45821,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wx_yz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wx_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53799,11 +45835,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wx_yw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wx_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53817,11 +45849,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wx_zx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wx_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53835,11 +45863,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wx_zy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wx_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53853,11 +45877,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wx_zz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wx_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53871,11 +45891,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wx_zw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wx_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53889,11 +45905,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wx_wx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wx_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53907,11 +45919,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wx_wy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wx_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53925,11 +45933,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wx_wz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wx_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53943,11 +45947,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wx_ww(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wx_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wx_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53961,11 +45961,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wy_xx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wy_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53979,11 +45975,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wy_xy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wy_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -53997,11 +45989,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wy_xz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wy_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -54015,11 +46003,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wy_xw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wy_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -54033,11 +46017,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wy_yx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wy_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -54051,11 +46031,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wy_yy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wy_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -54069,11 +46045,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wy_yz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wy_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -54087,11 +46059,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wy_yw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wy_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -54105,11 +46073,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wy_zx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wy_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -54123,11 +46087,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wy_zy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wy_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -54141,11 +46101,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wy_zz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wy_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -54159,11 +46115,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wy_zw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wy_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -54177,11 +46129,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wy_wx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wy_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -54195,11 +46143,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wy_wy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wy_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -54213,11 +46157,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wy_wz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wy_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -54231,11 +46171,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wy_ww(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wy_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wy_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -54249,11 +46185,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wz_xx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wz_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -54267,11 +46199,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wz_xy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wz_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -54285,11 +46213,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wz_xz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wz_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -54303,11 +46227,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wz_xw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wz_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -54321,11 +46241,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wz_yx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wz_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -54339,11 +46255,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wz_yy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wz_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -54357,11 +46269,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wz_yz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wz_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -54375,11 +46283,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wz_yw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wz_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -54393,11 +46297,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wz_zx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wz_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -54411,11 +46311,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wz_zy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wz_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -54429,11 +46325,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wz_zz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wz_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -54447,11 +46339,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wz_zw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wz_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -54465,11 +46353,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wz_wx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wz_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -54483,11 +46367,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wz_wy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wz_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -54501,11 +46381,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wz_wz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wz_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -54519,11 +46395,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_wz_ww(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_wz_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.wz_ww);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -54537,11 +46409,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_ww_xx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_xx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.ww_xx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -54555,11 +46423,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_ww_xy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_xy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.ww_xy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -54573,11 +46437,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_ww_xz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_xz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.ww_xz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -54591,11 +46451,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_ww_xw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_xw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.ww_xw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -54609,11 +46465,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_ww_yx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_yx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.ww_yx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -54627,11 +46479,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_ww_yy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_yy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.ww_yy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -54645,11 +46493,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_ww_yz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_yz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.ww_yz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -54663,11 +46507,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_ww_yw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_yw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.ww_yw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -54681,11 +46521,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_ww_zx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_zx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.ww_zx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -54699,11 +46535,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_ww_zy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_zy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.ww_zy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -54717,11 +46549,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_ww_zz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_zz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.ww_zz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -54735,11 +46563,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_ww_zw(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_zw(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.ww_zw);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -54753,11 +46577,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_ww_wx(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_wx(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.ww_wx);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -54771,11 +46591,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_ww_wy(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_wy(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.ww_wy);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -54789,11 +46605,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_ww_wz(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_wz(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.ww_wz);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -54807,11 +46619,7 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static b64v4 shuffle_ww_ww(b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle_ww_ww(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, Shuffle42.ww_ww);
-        #endif // NET8_0_OR_GREATER
     }
     #endregion // b64v4
 }

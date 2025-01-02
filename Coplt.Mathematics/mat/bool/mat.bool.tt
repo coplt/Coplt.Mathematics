@@ -39,17 +39,18 @@ public partial struct <#= typeName #>
     public static <#= typeName #> operator !(<#= typeName #> self) => new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"!self.c{i}")) #>);
 }
 
+[Ex]
 public static partial class math
 {
 
     [MethodImpl(256 | 512)]
-    public static bool all(this <#= typeName #> v) => <#= string.Join(" && ", Enumerable.Range(0, m).Select(i => $"all(v.c{i})")) #>;
+    public static bool all([This] <#= typeName #> v) => <#= string.Join(" && ", Enumerable.Range(0, m).Select(i => $"all(v.c{i})")) #>;
 
     [MethodImpl(256 | 512)]
-    public static bool any(this <#= typeName #> v) => <#= string.Join(" || ", Enumerable.Range(0, m).Select(i => $"any(v.c{i})")) #>;
+    public static bool any([This] <#= typeName #> v) => <#= string.Join(" || ", Enumerable.Range(0, m).Select(i => $"any(v.c{i})")) #>;
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse(this <#= typeName #> v) => <#= string.Join(" && ", Enumerable.Range(0, m).Select(i => $"allFalse(v.c{i})")) #>;
+    public static bool allFalse([This] <#= typeName #> v) => <#= string.Join(" && ", Enumerable.Range(0, m).Select(i => $"allFalse(v.c{i})")) #>;
 }
 
 #endregion // <#= typeName #>

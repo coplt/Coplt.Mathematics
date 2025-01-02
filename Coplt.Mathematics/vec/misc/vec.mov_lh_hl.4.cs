@@ -2,6 +2,7 @@
 
 namespace Coplt.Mathematics;
 
+[Ex]
 public static partial class math
 {
     /// <summary>
@@ -13,13 +14,11 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4 movelh(this float4 a, float4 b)
+    public static float4 movelh([This] float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.MoveLowToHigh(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.MoveLowToHigh(a.vector, b.vector));
         return new(a.x, a.y, b.x, b.y);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31,16 +30,15 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4 movehl(this float4 a, float4 b)
+    public static float4 movehl([This] float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.MoveHighToLow(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.MoveHighToLow(a.vector, b.vector));
         return new(b.z, b.w, a.z, a.w);
-        #endif // NET8_0_OR_GREATER
     }
 }
 
+[Ex]
 public static partial class math
 {
     /// <summary>
@@ -52,13 +50,11 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4 movelh(this double4 a, double4 b)
+    public static double4 movelh([This] double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.MoveLowToHigh(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.MoveLowToHigh(a.vector, b.vector));
         return new(a.x, a.y, b.x, b.y);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -70,16 +66,15 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4 movehl(this double4 a, double4 b)
+    public static double4 movehl([This] double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.MoveHighToLow(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.MoveHighToLow(a.vector, b.vector));
         return new(b.z, b.w, a.z, a.w);
-        #endif // NET8_0_OR_GREATER
     }
 }
 
+[Ex]
 public static partial class math
 {
     /// <summary>
@@ -91,7 +86,7 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static short4 movelh(this short4 a, short4 b)
+    public static short4 movelh([This] short4 a, short4 b)
     {
         return new(a.x, a.y, b.x, b.y);
     }
@@ -105,12 +100,13 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static short4 movehl(this short4 a, short4 b)
+    public static short4 movehl([This] short4 a, short4 b)
     {
         return new(b.z, b.w, a.z, a.w);
     }
 }
 
+[Ex]
 public static partial class math
 {
     /// <summary>
@@ -122,7 +118,7 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static ushort4 movelh(this ushort4 a, ushort4 b)
+    public static ushort4 movelh([This] ushort4 a, ushort4 b)
     {
         return new(a.x, a.y, b.x, b.y);
     }
@@ -136,12 +132,13 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static ushort4 movehl(this ushort4 a, ushort4 b)
+    public static ushort4 movehl([This] ushort4 a, ushort4 b)
     {
         return new(b.z, b.w, a.z, a.w);
     }
 }
 
+[Ex]
 public static partial class math
 {
     /// <summary>
@@ -153,13 +150,11 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4 movelh(this int4 a, int4 b)
+    public static int4 movelh([This] int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.MoveLowToHigh(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.MoveLowToHigh(a.vector, b.vector));
         return new(a.x, a.y, b.x, b.y);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -171,16 +166,15 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4 movehl(this int4 a, int4 b)
+    public static int4 movehl([This] int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.MoveHighToLow(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.MoveHighToLow(a.vector, b.vector));
         return new(b.z, b.w, a.z, a.w);
-        #endif // NET8_0_OR_GREATER
     }
 }
 
+[Ex]
 public static partial class math
 {
     /// <summary>
@@ -192,13 +186,11 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static uint4 movelh(this uint4 a, uint4 b)
+    public static uint4 movelh([This] uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.MoveLowToHigh(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.MoveLowToHigh(a.vector, b.vector));
         return new(a.x, a.y, b.x, b.y);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -210,16 +202,15 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static uint4 movehl(this uint4 a, uint4 b)
+    public static uint4 movehl([This] uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.MoveHighToLow(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.MoveHighToLow(a.vector, b.vector));
         return new(b.z, b.w, a.z, a.w);
-        #endif // NET8_0_OR_GREATER
     }
 }
 
+[Ex]
 public static partial class math
 {
     /// <summary>
@@ -231,13 +222,11 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static long4 movelh(this long4 a, long4 b)
+    public static long4 movelh([This] long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.MoveLowToHigh(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.MoveLowToHigh(a.vector, b.vector));
         return new(a.x, a.y, b.x, b.y);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -249,16 +238,15 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static long4 movehl(this long4 a, long4 b)
+    public static long4 movehl([This] long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.MoveHighToLow(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.MoveHighToLow(a.vector, b.vector));
         return new(b.z, b.w, a.z, a.w);
-        #endif // NET8_0_OR_GREATER
     }
 }
 
+[Ex]
 public static partial class math
 {
     /// <summary>
@@ -270,13 +258,11 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static ulong4 movelh(this ulong4 a, ulong4 b)
+    public static ulong4 movelh([This] ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.MoveLowToHigh(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.MoveLowToHigh(a.vector, b.vector));
         return new(a.x, a.y, b.x, b.y);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -288,16 +274,15 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static ulong4 movehl(this ulong4 a, ulong4 b)
+    public static ulong4 movehl([This] ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.MoveHighToLow(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.MoveHighToLow(a.vector, b.vector));
         return new(b.z, b.w, a.z, a.w);
-        #endif // NET8_0_OR_GREATER
     }
 }
 
+[Ex]
 public static partial class math
 {
     /// <summary>
@@ -309,7 +294,7 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static decimal4 movelh(this decimal4 a, decimal4 b)
+    public static decimal4 movelh([This] decimal4 a, decimal4 b)
     {
         return new(a.x, a.y, b.x, b.y);
     }
@@ -323,12 +308,13 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static decimal4 movehl(this decimal4 a, decimal4 b)
+    public static decimal4 movehl([This] decimal4 a, decimal4 b)
     {
         return new(b.z, b.w, a.z, a.w);
     }
 }
 
+[Ex]
 public static partial class math
 {
     /// <summary>
@@ -340,7 +326,7 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static half4 movelh(this half4 a, half4 b)
+    public static half4 movelh([This] half4 a, half4 b)
     {
         return new(a.x, a.y, b.x, b.y);
     }
@@ -354,12 +340,13 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static half4 movehl(this half4 a, half4 b)
+    public static half4 movehl([This] half4 a, half4 b)
     {
         return new(b.z, b.w, a.z, a.w);
     }
 }
 
+[Ex]
 public static partial class math
 {
     /// <summary>
@@ -371,7 +358,7 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static b16v4 movelh(this b16v4 a, b16v4 b)
+    public static b16v4 movelh([This] b16v4 a, b16v4 b)
     {
         return new(a.x, a.y, b.x, b.y);
     }
@@ -385,12 +372,13 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static b16v4 movehl(this b16v4 a, b16v4 b)
+    public static b16v4 movehl([This] b16v4 a, b16v4 b)
     {
         return new(b.z, b.w, a.z, a.w);
     }
 }
 
+[Ex]
 public static partial class math
 {
     /// <summary>
@@ -402,13 +390,11 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static b32v4 movelh(this b32v4 a, b32v4 b)
+    public static b32v4 movelh([This] b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.MoveLowToHigh(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.MoveLowToHigh(a.vector, b.vector));
         return new(a.x, a.y, b.x, b.y);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -420,16 +406,15 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static b32v4 movehl(this b32v4 a, b32v4 b)
+    public static b32v4 movehl([This] b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.MoveHighToLow(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.MoveHighToLow(a.vector, b.vector));
         return new(b.z, b.w, a.z, a.w);
-        #endif // NET8_0_OR_GREATER
     }
 }
 
+[Ex]
 public static partial class math
 {
     /// <summary>
@@ -441,13 +426,11 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static b64v4 movelh(this b64v4 a, b64v4 b)
+    public static b64v4 movelh([This] b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.MoveLowToHigh(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.MoveLowToHigh(a.vector, b.vector));
         return new(a.x, a.y, b.x, b.y);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -459,12 +442,10 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static b64v4 movehl(this b64v4 a, b64v4 b)
+    public static b64v4 movehl([This] b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.MoveHighToLow(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.MoveHighToLow(a.vector, b.vector));
         return new(b.z, b.w, a.z, a.w);
-        #endif // NET8_0_OR_GREATER
     }
 }

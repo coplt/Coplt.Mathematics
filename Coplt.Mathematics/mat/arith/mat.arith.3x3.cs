@@ -292,6 +292,7 @@ public partial struct float3x3
     public static explicit operator float3x3(float4x4 m4x4) => new(m4x4);
 }
 
+[Ex]
 public static partial class math
 {
 
@@ -299,7 +300,7 @@ public static partial class math
     /// <param name="m">Matrix to invert</param>
     /// <returns>The inverted matrix</returns>
     [MethodImpl(256 | 512)]
-    public static float3x3 inverse(this float3x3 m)
+    public static float3x3 inverse([This] float3x3 m)
     {
         var (c0, c1, c2) = m;
         // var t0 = new float3(c1.x, c2.x, c0.x);
@@ -322,7 +323,7 @@ public static partial class math
     /// <param name="m">Matrix to use when computing determinant</param>
     /// <returns>The determinant of the matrix</returns>
     [MethodImpl(256 | 512)]
-    public static float determinant(this float3x3 m)
+    public static float determinant([This] float3x3 m)
     {
         var (c0, c1, c2) = m;
 
@@ -632,6 +633,7 @@ public partial struct double3x3
     public static explicit operator double3x3(double4x4 m4x4) => new(m4x4);
 }
 
+[Ex]
 public static partial class math
 {
 
@@ -639,7 +641,7 @@ public static partial class math
     /// <param name="m">Matrix to invert</param>
     /// <returns>The inverted matrix</returns>
     [MethodImpl(256 | 512)]
-    public static double3x3 inverse(this double3x3 m)
+    public static double3x3 inverse([This] double3x3 m)
     {
         var (c0, c1, c2) = m;
         // var t0 = new double3(c1.x, c2.x, c0.x);
@@ -662,7 +664,7 @@ public static partial class math
     /// <param name="m">Matrix to use when computing determinant</param>
     /// <returns>The determinant of the matrix</returns>
     [MethodImpl(256 | 512)]
-    public static double determinant(this double3x3 m)
+    public static double determinant([This] double3x3 m)
     {
         var (c0, c1, c2) = m;
 
@@ -739,6 +741,7 @@ public partial struct short3x3
     public static explicit operator short3x3(short4x4 m4x4) => new(m4x4);
 }
 
+[Ex]
 public static partial class math
 {
 }
@@ -802,6 +805,7 @@ public partial struct ushort3x3
     public static explicit operator ushort3x3(ushort4x4 m4x4) => new(m4x4);
 }
 
+[Ex]
 public static partial class math
 {
 }
@@ -865,6 +869,7 @@ public partial struct int3x3
     public static explicit operator int3x3(int4x4 m4x4) => new(m4x4);
 }
 
+[Ex]
 public static partial class math
 {
 }
@@ -928,6 +933,7 @@ public partial struct uint3x3
     public static explicit operator uint3x3(uint4x4 m4x4) => new(m4x4);
 }
 
+[Ex]
 public static partial class math
 {
 }
@@ -991,6 +997,7 @@ public partial struct long3x3
     public static explicit operator long3x3(long4x4 m4x4) => new(m4x4);
 }
 
+[Ex]
 public static partial class math
 {
 }
@@ -1054,6 +1061,7 @@ public partial struct ulong3x3
     public static explicit operator ulong3x3(ulong4x4 m4x4) => new(m4x4);
 }
 
+[Ex]
 public static partial class math
 {
 }
@@ -1117,6 +1125,7 @@ public partial struct decimal3x3
     public static explicit operator decimal3x3(decimal4x4 m4x4) => new(m4x4);
 }
 
+[Ex]
 public static partial class math
 {
 
@@ -1124,7 +1133,7 @@ public static partial class math
     /// <param name="m">Matrix to invert</param>
     /// <returns>The inverted matrix</returns>
     [MethodImpl(256 | 512)]
-    public static decimal3x3 inverse(this decimal3x3 m)
+    public static decimal3x3 inverse([This] decimal3x3 m)
     {
         var (c0, c1, c2) = m;
         // var t0 = new decimal3(c1.x, c2.x, c0.x);
@@ -1147,7 +1156,7 @@ public static partial class math
     /// <param name="m">Matrix to use when computing determinant</param>
     /// <returns>The determinant of the matrix</returns>
     [MethodImpl(256 | 512)]
-    public static decimal determinant(this decimal3x3 m)
+    public static decimal determinant([This] decimal3x3 m)
     {
         var (c0, c1, c2) = m;
 
@@ -1457,6 +1466,7 @@ public partial struct half3x3
     public static explicit operator half3x3(half4x4 m4x4) => new(m4x4);
 }
 
+[Ex]
 public static partial class math
 {
 
@@ -1464,7 +1474,7 @@ public static partial class math
     /// <param name="m">Matrix to invert</param>
     /// <returns>The inverted matrix</returns>
     [MethodImpl(256 | 512)]
-    public static half3x3 inverse(this half3x3 m)
+    public static half3x3 inverse([This] half3x3 m)
     {
         var (c0, c1, c2) = m;
         // var t0 = new half3(c1.x, c2.x, c0.x);
@@ -1487,7 +1497,7 @@ public static partial class math
     /// <param name="m">Matrix to use when computing determinant</param>
     /// <returns>The determinant of the matrix</returns>
     [MethodImpl(256 | 512)]
-    public static half determinant(this half3x3 m)
+    public static half determinant([This] half3x3 m)
     {
         var (c0, c1, c2) = m;
 

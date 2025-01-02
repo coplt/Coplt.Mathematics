@@ -2,6 +2,7 @@
 
 namespace Coplt.Mathematics;
 
+[Ex]
 public static partial class math
 {
     /// <summary>
@@ -15,16 +16,13 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4 shuffle(this float4 a, float4 b, Shuffle42 lh)
+    public static float4 shuffle([This] float4 a, float4 b, Shuffle42 lh)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle(a.vector, b.vector, lh));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<float, float4>(a, b, lh);
-        #endif // NET8_0_OR_GREATER
     }
 }
 
+[Ex]
 public static partial class math
 {
     /// <summary>
@@ -38,16 +36,13 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4 shuffle(this double4 a, double4 b, Shuffle42 lh)
+    public static double4 shuffle([This] double4 a, double4 b, Shuffle42 lh)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle(a.vector, b.vector, lh));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<double, double4>(a, b, lh);
-        #endif // NET8_0_OR_GREATER
     }
 }
 
+[Ex]
 public static partial class math
 {
     /// <summary>
@@ -61,12 +56,13 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static short4 shuffle(this short4 a, short4 b, Shuffle42 lh)
+    public static short4 shuffle([This] short4 a, short4 b, Shuffle42 lh)
     {
         return soft_shuffle.Shuffle<short, short4>(a, b, lh);
     }
 }
 
+[Ex]
 public static partial class math
 {
     /// <summary>
@@ -80,12 +76,13 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static ushort4 shuffle(this ushort4 a, ushort4 b, Shuffle42 lh)
+    public static ushort4 shuffle([This] ushort4 a, ushort4 b, Shuffle42 lh)
     {
         return soft_shuffle.Shuffle<ushort, ushort4>(a, b, lh);
     }
 }
 
+[Ex]
 public static partial class math
 {
     /// <summary>
@@ -99,16 +96,13 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4 shuffle(this int4 a, int4 b, Shuffle42 lh)
+    public static int4 shuffle([This] int4 a, int4 b, Shuffle42 lh)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle(a.vector, b.vector, lh));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<int, int4>(a, b, lh);
-        #endif // NET8_0_OR_GREATER
     }
 }
 
+[Ex]
 public static partial class math
 {
     /// <summary>
@@ -122,16 +116,13 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static uint4 shuffle(this uint4 a, uint4 b, Shuffle42 lh)
+    public static uint4 shuffle([This] uint4 a, uint4 b, Shuffle42 lh)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle(a.vector, b.vector, lh));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<uint, uint4>(a, b, lh);
-        #endif // NET8_0_OR_GREATER
     }
 }
 
+[Ex]
 public static partial class math
 {
     /// <summary>
@@ -145,16 +136,13 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static long4 shuffle(this long4 a, long4 b, Shuffle42 lh)
+    public static long4 shuffle([This] long4 a, long4 b, Shuffle42 lh)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle(a.vector, b.vector, lh));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<long, long4>(a, b, lh);
-        #endif // NET8_0_OR_GREATER
     }
 }
 
+[Ex]
 public static partial class math
 {
     /// <summary>
@@ -168,16 +156,13 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static ulong4 shuffle(this ulong4 a, ulong4 b, Shuffle42 lh)
+    public static ulong4 shuffle([This] ulong4 a, ulong4 b, Shuffle42 lh)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle(a.vector, b.vector, lh));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<ulong, ulong4>(a, b, lh);
-        #endif // NET8_0_OR_GREATER
     }
 }
 
+[Ex]
 public static partial class math
 {
     /// <summary>
@@ -191,12 +176,13 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static decimal4 shuffle(this decimal4 a, decimal4 b, Shuffle42 lh)
+    public static decimal4 shuffle([This] decimal4 a, decimal4 b, Shuffle42 lh)
     {
         return soft_shuffle.Shuffle<decimal, decimal4>(a, b, lh);
     }
 }
 
+[Ex]
 public static partial class math
 {
     /// <summary>
@@ -210,12 +196,13 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static half4 shuffle(this half4 a, half4 b, Shuffle42 lh)
+    public static half4 shuffle([This] half4 a, half4 b, Shuffle42 lh)
     {
         return soft_shuffle.Shuffle<half, half4>(a, b, lh);
     }
 }
 
+[Ex]
 public static partial class math
 {
     /// <summary>
@@ -229,12 +216,13 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static b16v4 shuffle(this b16v4 a, b16v4 b, Shuffle42 lh)
+    public static b16v4 shuffle([This] b16v4 a, b16v4 b, Shuffle42 lh)
     {
         return soft_shuffle.Shuffle<b16, b16v4>(a, b, lh);
     }
 }
 
+[Ex]
 public static partial class math
 {
     /// <summary>
@@ -248,16 +236,13 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static b32v4 shuffle(this b32v4 a, b32v4 b, Shuffle42 lh)
+    public static b32v4 shuffle([This] b32v4 a, b32v4 b, Shuffle42 lh)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle(a.vector, b.vector, lh));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b32, b32v4>(a, b, lh);
-        #endif // NET8_0_OR_GREATER
     }
 }
 
+[Ex]
 public static partial class math
 {
     /// <summary>
@@ -271,12 +256,8 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static b64v4 shuffle(this b64v4 a, b64v4 b, Shuffle42 lh)
+    public static b64v4 shuffle([This] b64v4 a, b64v4 b, Shuffle42 lh)
     {
-        #if NET8_0_OR_GREATER
         return new(simd_shuffle.Shuffle(a.vector, b.vector, lh));
-        #else // NET8_0_OR_GREATER
-        return soft_shuffle.Shuffle<b64, b64v4>(a, b, lh);
-        #endif // NET8_0_OR_GREATER
     }
 }

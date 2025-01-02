@@ -4,10 +4,11 @@ namespace Coplt.Mathematics;
 
 #region float2x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float2x2 transpose(this float2x2 mat)
+    public static float2x2 transpose([This] float2x2 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x),
@@ -20,20 +21,21 @@ public static partial class math
 
 #region float2x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float3x2 transpose(this float2x3 mat)
+    public static float3x2 transpose([This] float2x3 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose2x4To4x2(mat.c0.vector, mat.c1.vector, mat.c2.vector, default);
-        return new(new(r.c0), new(r.c1));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose2x4To4x2(mat.c0.vector, mat.c1.vector, mat.c2.vector, default);
+            return new(new(r.c0), new(r.c1));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -41,20 +43,21 @@ public static partial class math
 
 #region float2x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float4x2 transpose(this float2x4 mat)
+    public static float4x2 transpose([This] float2x4 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose2x4To4x2(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
-        return new(new(r.c0), new(r.c1));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose2x4To4x2(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
+            return new(new(r.c0), new(r.c1));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -62,21 +65,22 @@ public static partial class math
 
 #region float3x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float2x3 transpose(this float3x2 mat)
+    public static float2x3 transpose([This] float3x2 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose4x2To2x4(mat.c0.vector, mat.c1.vector);
-        return new(new(r.c0), new(r.c1), new(r.c2));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose4x2To2x4(mat.c0.vector, mat.c1.vector);
+            return new(new(r.c0), new(r.c1), new(r.c2));
+        }
         return new(
             new(mat.c0.x, mat.c1.x),
             new(mat.c0.y, mat.c1.y),
             new(mat.c0.z, mat.c1.z)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -84,21 +88,22 @@ public static partial class math
 
 #region float3x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float3x3 transpose(this float3x3 mat)
+    public static float3x3 transpose([This] float3x3 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose3x3(mat.c0.vector, mat.c1.vector, mat.c2.vector);
-        return new(new(r.c0), new(r.c1), new(r.c2));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose3x3(mat.c0.vector, mat.c1.vector, mat.c2.vector);
+            return new(new(r.c0), new(r.c1), new(r.c2));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y),
             new(mat.c0.z, mat.c1.z, mat.c2.z)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -106,21 +111,22 @@ public static partial class math
 
 #region float3x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float4x3 transpose(this float3x4 mat)
+    public static float4x3 transpose([This] float3x4 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
-        return new(new(r.c0), new(r.c1), new(r.c2));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
+            return new(new(r.c0), new(r.c1), new(r.c2));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
             new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -128,22 +134,23 @@ public static partial class math
 
 #region float4x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float2x4 transpose(this float4x2 mat)
+    public static float2x4 transpose([This] float4x2 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose4x2To2x4(mat.c0.vector, mat.c1.vector);
-        return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose4x2To2x4(mat.c0.vector, mat.c1.vector);
+            return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
+        }
         return new(
             new(mat.c0.x, mat.c1.x),
             new(mat.c0.y, mat.c1.y),
             new(mat.c0.z, mat.c1.z),
             new(mat.c0.w, mat.c1.w)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -151,22 +158,23 @@ public static partial class math
 
 #region float4x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float3x4 transpose(this float4x3 mat)
+    public static float3x4 transpose([This] float4x3 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, default);
-        return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, default);
+            return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y),
             new(mat.c0.z, mat.c1.z, mat.c2.z),
             new(mat.c0.w, mat.c1.w, mat.c2.w)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -174,22 +182,23 @@ public static partial class math
 
 #region float4x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float4x4 transpose(this float4x4 mat)
+    public static float4x4 transpose([This] float4x4 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
-        return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
+            return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
             new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z),
             new(mat.c0.w, mat.c1.w, mat.c2.w, mat.c3.w)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -197,10 +206,11 @@ public static partial class math
 
 #region double2x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double2x2 transpose(this double2x2 mat)
+    public static double2x2 transpose([This] double2x2 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x),
@@ -213,20 +223,21 @@ public static partial class math
 
 #region double2x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double3x2 transpose(this double2x3 mat)
+    public static double3x2 transpose([This] double2x3 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose2x4To4x2(mat.c0.vector, mat.c1.vector, mat.c2.vector, default);
-        return new(new(r.c0), new(r.c1));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose2x4To4x2(mat.c0.vector, mat.c1.vector, mat.c2.vector, default);
+            return new(new(r.c0), new(r.c1));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -234,20 +245,21 @@ public static partial class math
 
 #region double2x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double4x2 transpose(this double2x4 mat)
+    public static double4x2 transpose([This] double2x4 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose2x4To4x2(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
-        return new(new(r.c0), new(r.c1));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose2x4To4x2(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
+            return new(new(r.c0), new(r.c1));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -255,21 +267,22 @@ public static partial class math
 
 #region double3x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double2x3 transpose(this double3x2 mat)
+    public static double2x3 transpose([This] double3x2 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose4x2To2x4(mat.c0.vector, mat.c1.vector);
-        return new(new(r.c0), new(r.c1), new(r.c2));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose4x2To2x4(mat.c0.vector, mat.c1.vector);
+            return new(new(r.c0), new(r.c1), new(r.c2));
+        }
         return new(
             new(mat.c0.x, mat.c1.x),
             new(mat.c0.y, mat.c1.y),
             new(mat.c0.z, mat.c1.z)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -277,21 +290,22 @@ public static partial class math
 
 #region double3x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double3x3 transpose(this double3x3 mat)
+    public static double3x3 transpose([This] double3x3 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose3x3(mat.c0.vector, mat.c1.vector, mat.c2.vector);
-        return new(new(r.c0), new(r.c1), new(r.c2));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose3x3(mat.c0.vector, mat.c1.vector, mat.c2.vector);
+            return new(new(r.c0), new(r.c1), new(r.c2));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y),
             new(mat.c0.z, mat.c1.z, mat.c2.z)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -299,21 +313,22 @@ public static partial class math
 
 #region double3x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double4x3 transpose(this double3x4 mat)
+    public static double4x3 transpose([This] double3x4 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
-        return new(new(r.c0), new(r.c1), new(r.c2));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
+            return new(new(r.c0), new(r.c1), new(r.c2));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
             new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -321,22 +336,23 @@ public static partial class math
 
 #region double4x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double2x4 transpose(this double4x2 mat)
+    public static double2x4 transpose([This] double4x2 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose4x2To2x4(mat.c0.vector, mat.c1.vector);
-        return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose4x2To2x4(mat.c0.vector, mat.c1.vector);
+            return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
+        }
         return new(
             new(mat.c0.x, mat.c1.x),
             new(mat.c0.y, mat.c1.y),
             new(mat.c0.z, mat.c1.z),
             new(mat.c0.w, mat.c1.w)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -344,22 +360,23 @@ public static partial class math
 
 #region double4x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double3x4 transpose(this double4x3 mat)
+    public static double3x4 transpose([This] double4x3 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, default);
-        return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, default);
+            return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y),
             new(mat.c0.z, mat.c1.z, mat.c2.z),
             new(mat.c0.w, mat.c1.w, mat.c2.w)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -367,22 +384,23 @@ public static partial class math
 
 #region double4x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double4x4 transpose(this double4x4 mat)
+    public static double4x4 transpose([This] double4x4 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
-        return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
+            return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
             new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z),
             new(mat.c0.w, mat.c1.w, mat.c2.w, mat.c3.w)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -390,10 +408,11 @@ public static partial class math
 
 #region short2x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static short2x2 transpose(this short2x2 mat)
+    public static short2x2 transpose([This] short2x2 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x),
@@ -406,10 +425,11 @@ public static partial class math
 
 #region short2x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static short3x2 transpose(this short2x3 mat)
+    public static short3x2 transpose([This] short2x3 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
@@ -422,10 +442,11 @@ public static partial class math
 
 #region short2x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static short4x2 transpose(this short2x4 mat)
+    public static short4x2 transpose([This] short2x4 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
@@ -438,10 +459,11 @@ public static partial class math
 
 #region short3x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static short2x3 transpose(this short3x2 mat)
+    public static short2x3 transpose([This] short3x2 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x),
@@ -455,10 +477,11 @@ public static partial class math
 
 #region short3x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static short3x3 transpose(this short3x3 mat)
+    public static short3x3 transpose([This] short3x3 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
@@ -472,10 +495,11 @@ public static partial class math
 
 #region short3x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static short4x3 transpose(this short3x4 mat)
+    public static short4x3 transpose([This] short3x4 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
@@ -489,10 +513,11 @@ public static partial class math
 
 #region short4x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static short2x4 transpose(this short4x2 mat)
+    public static short2x4 transpose([This] short4x2 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x),
@@ -507,10 +532,11 @@ public static partial class math
 
 #region short4x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static short3x4 transpose(this short4x3 mat)
+    public static short3x4 transpose([This] short4x3 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
@@ -525,10 +551,11 @@ public static partial class math
 
 #region short4x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static short4x4 transpose(this short4x4 mat)
+    public static short4x4 transpose([This] short4x4 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
@@ -543,10 +570,11 @@ public static partial class math
 
 #region ushort2x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ushort2x2 transpose(this ushort2x2 mat)
+    public static ushort2x2 transpose([This] ushort2x2 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x),
@@ -559,10 +587,11 @@ public static partial class math
 
 #region ushort2x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ushort3x2 transpose(this ushort2x3 mat)
+    public static ushort3x2 transpose([This] ushort2x3 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
@@ -575,10 +604,11 @@ public static partial class math
 
 #region ushort2x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ushort4x2 transpose(this ushort2x4 mat)
+    public static ushort4x2 transpose([This] ushort2x4 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
@@ -591,10 +621,11 @@ public static partial class math
 
 #region ushort3x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ushort2x3 transpose(this ushort3x2 mat)
+    public static ushort2x3 transpose([This] ushort3x2 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x),
@@ -608,10 +639,11 @@ public static partial class math
 
 #region ushort3x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ushort3x3 transpose(this ushort3x3 mat)
+    public static ushort3x3 transpose([This] ushort3x3 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
@@ -625,10 +657,11 @@ public static partial class math
 
 #region ushort3x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ushort4x3 transpose(this ushort3x4 mat)
+    public static ushort4x3 transpose([This] ushort3x4 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
@@ -642,10 +675,11 @@ public static partial class math
 
 #region ushort4x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ushort2x4 transpose(this ushort4x2 mat)
+    public static ushort2x4 transpose([This] ushort4x2 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x),
@@ -660,10 +694,11 @@ public static partial class math
 
 #region ushort4x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ushort3x4 transpose(this ushort4x3 mat)
+    public static ushort3x4 transpose([This] ushort4x3 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
@@ -678,10 +713,11 @@ public static partial class math
 
 #region ushort4x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ushort4x4 transpose(this ushort4x4 mat)
+    public static ushort4x4 transpose([This] ushort4x4 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
@@ -696,10 +732,11 @@ public static partial class math
 
 #region int2x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static int2x2 transpose(this int2x2 mat)
+    public static int2x2 transpose([This] int2x2 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x),
@@ -712,20 +749,21 @@ public static partial class math
 
 #region int2x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static int3x2 transpose(this int2x3 mat)
+    public static int3x2 transpose([This] int2x3 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose2x4To4x2(mat.c0.vector, mat.c1.vector, mat.c2.vector, default);
-        return new(new(r.c0), new(r.c1));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose2x4To4x2(mat.c0.vector, mat.c1.vector, mat.c2.vector, default);
+            return new(new(r.c0), new(r.c1));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -733,20 +771,21 @@ public static partial class math
 
 #region int2x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static int4x2 transpose(this int2x4 mat)
+    public static int4x2 transpose([This] int2x4 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose2x4To4x2(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
-        return new(new(r.c0), new(r.c1));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose2x4To4x2(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
+            return new(new(r.c0), new(r.c1));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -754,21 +793,22 @@ public static partial class math
 
 #region int3x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static int2x3 transpose(this int3x2 mat)
+    public static int2x3 transpose([This] int3x2 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose4x2To2x4(mat.c0.vector, mat.c1.vector);
-        return new(new(r.c0), new(r.c1), new(r.c2));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose4x2To2x4(mat.c0.vector, mat.c1.vector);
+            return new(new(r.c0), new(r.c1), new(r.c2));
+        }
         return new(
             new(mat.c0.x, mat.c1.x),
             new(mat.c0.y, mat.c1.y),
             new(mat.c0.z, mat.c1.z)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -776,21 +816,22 @@ public static partial class math
 
 #region int3x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static int3x3 transpose(this int3x3 mat)
+    public static int3x3 transpose([This] int3x3 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose3x3(mat.c0.vector, mat.c1.vector, mat.c2.vector);
-        return new(new(r.c0), new(r.c1), new(r.c2));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose3x3(mat.c0.vector, mat.c1.vector, mat.c2.vector);
+            return new(new(r.c0), new(r.c1), new(r.c2));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y),
             new(mat.c0.z, mat.c1.z, mat.c2.z)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -798,21 +839,22 @@ public static partial class math
 
 #region int3x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static int4x3 transpose(this int3x4 mat)
+    public static int4x3 transpose([This] int3x4 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
-        return new(new(r.c0), new(r.c1), new(r.c2));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
+            return new(new(r.c0), new(r.c1), new(r.c2));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
             new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -820,22 +862,23 @@ public static partial class math
 
 #region int4x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static int2x4 transpose(this int4x2 mat)
+    public static int2x4 transpose([This] int4x2 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose4x2To2x4(mat.c0.vector, mat.c1.vector);
-        return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose4x2To2x4(mat.c0.vector, mat.c1.vector);
+            return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
+        }
         return new(
             new(mat.c0.x, mat.c1.x),
             new(mat.c0.y, mat.c1.y),
             new(mat.c0.z, mat.c1.z),
             new(mat.c0.w, mat.c1.w)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -843,22 +886,23 @@ public static partial class math
 
 #region int4x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static int3x4 transpose(this int4x3 mat)
+    public static int3x4 transpose([This] int4x3 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, default);
-        return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, default);
+            return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y),
             new(mat.c0.z, mat.c1.z, mat.c2.z),
             new(mat.c0.w, mat.c1.w, mat.c2.w)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -866,22 +910,23 @@ public static partial class math
 
 #region int4x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static int4x4 transpose(this int4x4 mat)
+    public static int4x4 transpose([This] int4x4 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
-        return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
+            return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
             new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z),
             new(mat.c0.w, mat.c1.w, mat.c2.w, mat.c3.w)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -889,10 +934,11 @@ public static partial class math
 
 #region uint2x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static uint2x2 transpose(this uint2x2 mat)
+    public static uint2x2 transpose([This] uint2x2 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x),
@@ -905,20 +951,21 @@ public static partial class math
 
 #region uint2x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static uint3x2 transpose(this uint2x3 mat)
+    public static uint3x2 transpose([This] uint2x3 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose2x4To4x2(mat.c0.vector, mat.c1.vector, mat.c2.vector, default);
-        return new(new(r.c0), new(r.c1));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose2x4To4x2(mat.c0.vector, mat.c1.vector, mat.c2.vector, default);
+            return new(new(r.c0), new(r.c1));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -926,20 +973,21 @@ public static partial class math
 
 #region uint2x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static uint4x2 transpose(this uint2x4 mat)
+    public static uint4x2 transpose([This] uint2x4 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose2x4To4x2(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
-        return new(new(r.c0), new(r.c1));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose2x4To4x2(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
+            return new(new(r.c0), new(r.c1));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -947,21 +995,22 @@ public static partial class math
 
 #region uint3x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static uint2x3 transpose(this uint3x2 mat)
+    public static uint2x3 transpose([This] uint3x2 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose4x2To2x4(mat.c0.vector, mat.c1.vector);
-        return new(new(r.c0), new(r.c1), new(r.c2));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose4x2To2x4(mat.c0.vector, mat.c1.vector);
+            return new(new(r.c0), new(r.c1), new(r.c2));
+        }
         return new(
             new(mat.c0.x, mat.c1.x),
             new(mat.c0.y, mat.c1.y),
             new(mat.c0.z, mat.c1.z)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -969,21 +1018,22 @@ public static partial class math
 
 #region uint3x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static uint3x3 transpose(this uint3x3 mat)
+    public static uint3x3 transpose([This] uint3x3 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose3x3(mat.c0.vector, mat.c1.vector, mat.c2.vector);
-        return new(new(r.c0), new(r.c1), new(r.c2));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose3x3(mat.c0.vector, mat.c1.vector, mat.c2.vector);
+            return new(new(r.c0), new(r.c1), new(r.c2));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y),
             new(mat.c0.z, mat.c1.z, mat.c2.z)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -991,21 +1041,22 @@ public static partial class math
 
 #region uint3x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static uint4x3 transpose(this uint3x4 mat)
+    public static uint4x3 transpose([This] uint3x4 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
-        return new(new(r.c0), new(r.c1), new(r.c2));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
+            return new(new(r.c0), new(r.c1), new(r.c2));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
             new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -1013,22 +1064,23 @@ public static partial class math
 
 #region uint4x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static uint2x4 transpose(this uint4x2 mat)
+    public static uint2x4 transpose([This] uint4x2 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose4x2To2x4(mat.c0.vector, mat.c1.vector);
-        return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose4x2To2x4(mat.c0.vector, mat.c1.vector);
+            return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
+        }
         return new(
             new(mat.c0.x, mat.c1.x),
             new(mat.c0.y, mat.c1.y),
             new(mat.c0.z, mat.c1.z),
             new(mat.c0.w, mat.c1.w)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -1036,22 +1088,23 @@ public static partial class math
 
 #region uint4x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static uint3x4 transpose(this uint4x3 mat)
+    public static uint3x4 transpose([This] uint4x3 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, default);
-        return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, default);
+            return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y),
             new(mat.c0.z, mat.c1.z, mat.c2.z),
             new(mat.c0.w, mat.c1.w, mat.c2.w)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -1059,22 +1112,23 @@ public static partial class math
 
 #region uint4x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static uint4x4 transpose(this uint4x4 mat)
+    public static uint4x4 transpose([This] uint4x4 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
-        return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
+            return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
             new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z),
             new(mat.c0.w, mat.c1.w, mat.c2.w, mat.c3.w)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -1082,10 +1136,11 @@ public static partial class math
 
 #region long2x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static long2x2 transpose(this long2x2 mat)
+    public static long2x2 transpose([This] long2x2 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x),
@@ -1098,20 +1153,21 @@ public static partial class math
 
 #region long2x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static long3x2 transpose(this long2x3 mat)
+    public static long3x2 transpose([This] long2x3 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose2x4To4x2(mat.c0.vector, mat.c1.vector, mat.c2.vector, default);
-        return new(new(r.c0), new(r.c1));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose2x4To4x2(mat.c0.vector, mat.c1.vector, mat.c2.vector, default);
+            return new(new(r.c0), new(r.c1));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -1119,20 +1175,21 @@ public static partial class math
 
 #region long2x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static long4x2 transpose(this long2x4 mat)
+    public static long4x2 transpose([This] long2x4 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose2x4To4x2(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
-        return new(new(r.c0), new(r.c1));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose2x4To4x2(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
+            return new(new(r.c0), new(r.c1));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -1140,21 +1197,22 @@ public static partial class math
 
 #region long3x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static long2x3 transpose(this long3x2 mat)
+    public static long2x3 transpose([This] long3x2 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose4x2To2x4(mat.c0.vector, mat.c1.vector);
-        return new(new(r.c0), new(r.c1), new(r.c2));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose4x2To2x4(mat.c0.vector, mat.c1.vector);
+            return new(new(r.c0), new(r.c1), new(r.c2));
+        }
         return new(
             new(mat.c0.x, mat.c1.x),
             new(mat.c0.y, mat.c1.y),
             new(mat.c0.z, mat.c1.z)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -1162,21 +1220,22 @@ public static partial class math
 
 #region long3x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static long3x3 transpose(this long3x3 mat)
+    public static long3x3 transpose([This] long3x3 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose3x3(mat.c0.vector, mat.c1.vector, mat.c2.vector);
-        return new(new(r.c0), new(r.c1), new(r.c2));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose3x3(mat.c0.vector, mat.c1.vector, mat.c2.vector);
+            return new(new(r.c0), new(r.c1), new(r.c2));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y),
             new(mat.c0.z, mat.c1.z, mat.c2.z)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -1184,21 +1243,22 @@ public static partial class math
 
 #region long3x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static long4x3 transpose(this long3x4 mat)
+    public static long4x3 transpose([This] long3x4 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
-        return new(new(r.c0), new(r.c1), new(r.c2));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
+            return new(new(r.c0), new(r.c1), new(r.c2));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
             new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -1206,22 +1266,23 @@ public static partial class math
 
 #region long4x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static long2x4 transpose(this long4x2 mat)
+    public static long2x4 transpose([This] long4x2 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose4x2To2x4(mat.c0.vector, mat.c1.vector);
-        return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose4x2To2x4(mat.c0.vector, mat.c1.vector);
+            return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
+        }
         return new(
             new(mat.c0.x, mat.c1.x),
             new(mat.c0.y, mat.c1.y),
             new(mat.c0.z, mat.c1.z),
             new(mat.c0.w, mat.c1.w)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -1229,22 +1290,23 @@ public static partial class math
 
 #region long4x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static long3x4 transpose(this long4x3 mat)
+    public static long3x4 transpose([This] long4x3 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, default);
-        return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, default);
+            return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y),
             new(mat.c0.z, mat.c1.z, mat.c2.z),
             new(mat.c0.w, mat.c1.w, mat.c2.w)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -1252,22 +1314,23 @@ public static partial class math
 
 #region long4x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static long4x4 transpose(this long4x4 mat)
+    public static long4x4 transpose([This] long4x4 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
-        return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
+            return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
             new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z),
             new(mat.c0.w, mat.c1.w, mat.c2.w, mat.c3.w)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -1275,10 +1338,11 @@ public static partial class math
 
 #region ulong2x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ulong2x2 transpose(this ulong2x2 mat)
+    public static ulong2x2 transpose([This] ulong2x2 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x),
@@ -1291,20 +1355,21 @@ public static partial class math
 
 #region ulong2x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ulong3x2 transpose(this ulong2x3 mat)
+    public static ulong3x2 transpose([This] ulong2x3 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose2x4To4x2(mat.c0.vector, mat.c1.vector, mat.c2.vector, default);
-        return new(new(r.c0), new(r.c1));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose2x4To4x2(mat.c0.vector, mat.c1.vector, mat.c2.vector, default);
+            return new(new(r.c0), new(r.c1));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -1312,20 +1377,21 @@ public static partial class math
 
 #region ulong2x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ulong4x2 transpose(this ulong2x4 mat)
+    public static ulong4x2 transpose([This] ulong2x4 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose2x4To4x2(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
-        return new(new(r.c0), new(r.c1));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose2x4To4x2(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
+            return new(new(r.c0), new(r.c1));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -1333,21 +1399,22 @@ public static partial class math
 
 #region ulong3x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ulong2x3 transpose(this ulong3x2 mat)
+    public static ulong2x3 transpose([This] ulong3x2 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose4x2To2x4(mat.c0.vector, mat.c1.vector);
-        return new(new(r.c0), new(r.c1), new(r.c2));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose4x2To2x4(mat.c0.vector, mat.c1.vector);
+            return new(new(r.c0), new(r.c1), new(r.c2));
+        }
         return new(
             new(mat.c0.x, mat.c1.x),
             new(mat.c0.y, mat.c1.y),
             new(mat.c0.z, mat.c1.z)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -1355,21 +1422,22 @@ public static partial class math
 
 #region ulong3x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ulong3x3 transpose(this ulong3x3 mat)
+    public static ulong3x3 transpose([This] ulong3x3 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose3x3(mat.c0.vector, mat.c1.vector, mat.c2.vector);
-        return new(new(r.c0), new(r.c1), new(r.c2));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose3x3(mat.c0.vector, mat.c1.vector, mat.c2.vector);
+            return new(new(r.c0), new(r.c1), new(r.c2));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y),
             new(mat.c0.z, mat.c1.z, mat.c2.z)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -1377,21 +1445,22 @@ public static partial class math
 
 #region ulong3x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ulong4x3 transpose(this ulong3x4 mat)
+    public static ulong4x3 transpose([This] ulong3x4 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
-        return new(new(r.c0), new(r.c1), new(r.c2));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
+            return new(new(r.c0), new(r.c1), new(r.c2));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
             new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -1399,22 +1468,23 @@ public static partial class math
 
 #region ulong4x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ulong2x4 transpose(this ulong4x2 mat)
+    public static ulong2x4 transpose([This] ulong4x2 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose4x2To2x4(mat.c0.vector, mat.c1.vector);
-        return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose4x2To2x4(mat.c0.vector, mat.c1.vector);
+            return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
+        }
         return new(
             new(mat.c0.x, mat.c1.x),
             new(mat.c0.y, mat.c1.y),
             new(mat.c0.z, mat.c1.z),
             new(mat.c0.w, mat.c1.w)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -1422,22 +1492,23 @@ public static partial class math
 
 #region ulong4x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ulong3x4 transpose(this ulong4x3 mat)
+    public static ulong3x4 transpose([This] ulong4x3 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, default);
-        return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, default);
+            return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y),
             new(mat.c0.z, mat.c1.z, mat.c2.z),
             new(mat.c0.w, mat.c1.w, mat.c2.w)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -1445,22 +1516,23 @@ public static partial class math
 
 #region ulong4x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ulong4x4 transpose(this ulong4x4 mat)
+    public static ulong4x4 transpose([This] ulong4x4 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
-        return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
+            return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
             new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z),
             new(mat.c0.w, mat.c1.w, mat.c2.w, mat.c3.w)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -1468,10 +1540,11 @@ public static partial class math
 
 #region decimal2x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static decimal2x2 transpose(this decimal2x2 mat)
+    public static decimal2x2 transpose([This] decimal2x2 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x),
@@ -1484,10 +1557,11 @@ public static partial class math
 
 #region decimal2x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static decimal3x2 transpose(this decimal2x3 mat)
+    public static decimal3x2 transpose([This] decimal2x3 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
@@ -1500,10 +1574,11 @@ public static partial class math
 
 #region decimal2x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static decimal4x2 transpose(this decimal2x4 mat)
+    public static decimal4x2 transpose([This] decimal2x4 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
@@ -1516,10 +1591,11 @@ public static partial class math
 
 #region decimal3x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static decimal2x3 transpose(this decimal3x2 mat)
+    public static decimal2x3 transpose([This] decimal3x2 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x),
@@ -1533,10 +1609,11 @@ public static partial class math
 
 #region decimal3x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static decimal3x3 transpose(this decimal3x3 mat)
+    public static decimal3x3 transpose([This] decimal3x3 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
@@ -1550,10 +1627,11 @@ public static partial class math
 
 #region decimal3x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static decimal4x3 transpose(this decimal3x4 mat)
+    public static decimal4x3 transpose([This] decimal3x4 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
@@ -1567,10 +1645,11 @@ public static partial class math
 
 #region decimal4x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static decimal2x4 transpose(this decimal4x2 mat)
+    public static decimal2x4 transpose([This] decimal4x2 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x),
@@ -1585,10 +1664,11 @@ public static partial class math
 
 #region decimal4x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static decimal3x4 transpose(this decimal4x3 mat)
+    public static decimal3x4 transpose([This] decimal4x3 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
@@ -1603,10 +1683,11 @@ public static partial class math
 
 #region decimal4x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static decimal4x4 transpose(this decimal4x4 mat)
+    public static decimal4x4 transpose([This] decimal4x4 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
@@ -1621,10 +1702,11 @@ public static partial class math
 
 #region half2x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half2x2 transpose(this half2x2 mat)
+    public static half2x2 transpose([This] half2x2 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x),
@@ -1637,10 +1719,11 @@ public static partial class math
 
 #region half2x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half3x2 transpose(this half2x3 mat)
+    public static half3x2 transpose([This] half2x3 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
@@ -1653,10 +1736,11 @@ public static partial class math
 
 #region half2x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half4x2 transpose(this half2x4 mat)
+    public static half4x2 transpose([This] half2x4 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
@@ -1669,10 +1753,11 @@ public static partial class math
 
 #region half3x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half2x3 transpose(this half3x2 mat)
+    public static half2x3 transpose([This] half3x2 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x),
@@ -1686,10 +1771,11 @@ public static partial class math
 
 #region half3x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half3x3 transpose(this half3x3 mat)
+    public static half3x3 transpose([This] half3x3 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
@@ -1703,10 +1789,11 @@ public static partial class math
 
 #region half3x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half4x3 transpose(this half3x4 mat)
+    public static half4x3 transpose([This] half3x4 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
@@ -1720,10 +1807,11 @@ public static partial class math
 
 #region half4x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half2x4 transpose(this half4x2 mat)
+    public static half2x4 transpose([This] half4x2 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x),
@@ -1738,10 +1826,11 @@ public static partial class math
 
 #region half4x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half3x4 transpose(this half4x3 mat)
+    public static half3x4 transpose([This] half4x3 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
@@ -1756,10 +1845,11 @@ public static partial class math
 
 #region half4x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half4x4 transpose(this half4x4 mat)
+    public static half4x4 transpose([This] half4x4 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
@@ -1774,10 +1864,11 @@ public static partial class math
 
 #region b16m2x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m2x2 transpose(this b16m2x2 mat)
+    public static b16m2x2 transpose([This] b16m2x2 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x),
@@ -1790,10 +1881,11 @@ public static partial class math
 
 #region b16m2x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m3x2 transpose(this b16m2x3 mat)
+    public static b16m3x2 transpose([This] b16m2x3 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
@@ -1806,10 +1898,11 @@ public static partial class math
 
 #region b16m2x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m4x2 transpose(this b16m2x4 mat)
+    public static b16m4x2 transpose([This] b16m2x4 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
@@ -1822,10 +1915,11 @@ public static partial class math
 
 #region b16m3x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m2x3 transpose(this b16m3x2 mat)
+    public static b16m2x3 transpose([This] b16m3x2 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x),
@@ -1839,10 +1933,11 @@ public static partial class math
 
 #region b16m3x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m3x3 transpose(this b16m3x3 mat)
+    public static b16m3x3 transpose([This] b16m3x3 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
@@ -1856,10 +1951,11 @@ public static partial class math
 
 #region b16m3x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m4x3 transpose(this b16m3x4 mat)
+    public static b16m4x3 transpose([This] b16m3x4 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
@@ -1873,10 +1969,11 @@ public static partial class math
 
 #region b16m4x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m2x4 transpose(this b16m4x2 mat)
+    public static b16m2x4 transpose([This] b16m4x2 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x),
@@ -1891,10 +1988,11 @@ public static partial class math
 
 #region b16m4x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m3x4 transpose(this b16m4x3 mat)
+    public static b16m3x4 transpose([This] b16m4x3 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
@@ -1909,10 +2007,11 @@ public static partial class math
 
 #region b16m4x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m4x4 transpose(this b16m4x4 mat)
+    public static b16m4x4 transpose([This] b16m4x4 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
@@ -1927,10 +2026,11 @@ public static partial class math
 
 #region b32m2x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m2x2 transpose(this b32m2x2 mat)
+    public static b32m2x2 transpose([This] b32m2x2 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x),
@@ -1943,20 +2043,21 @@ public static partial class math
 
 #region b32m2x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m3x2 transpose(this b32m2x3 mat)
+    public static b32m3x2 transpose([This] b32m2x3 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose2x4To4x2(mat.c0.vector, mat.c1.vector, mat.c2.vector, default);
-        return new(new(r.c0), new(r.c1));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose2x4To4x2(mat.c0.vector, mat.c1.vector, mat.c2.vector, default);
+            return new(new(r.c0), new(r.c1));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -1964,20 +2065,21 @@ public static partial class math
 
 #region b32m2x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m4x2 transpose(this b32m2x4 mat)
+    public static b32m4x2 transpose([This] b32m2x4 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose2x4To4x2(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
-        return new(new(r.c0), new(r.c1));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose2x4To4x2(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
+            return new(new(r.c0), new(r.c1));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -1985,21 +2087,22 @@ public static partial class math
 
 #region b32m3x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m2x3 transpose(this b32m3x2 mat)
+    public static b32m2x3 transpose([This] b32m3x2 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose4x2To2x4(mat.c0.vector, mat.c1.vector);
-        return new(new(r.c0), new(r.c1), new(r.c2));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose4x2To2x4(mat.c0.vector, mat.c1.vector);
+            return new(new(r.c0), new(r.c1), new(r.c2));
+        }
         return new(
             new(mat.c0.x, mat.c1.x),
             new(mat.c0.y, mat.c1.y),
             new(mat.c0.z, mat.c1.z)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -2007,21 +2110,22 @@ public static partial class math
 
 #region b32m3x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m3x3 transpose(this b32m3x3 mat)
+    public static b32m3x3 transpose([This] b32m3x3 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose3x3(mat.c0.vector, mat.c1.vector, mat.c2.vector);
-        return new(new(r.c0), new(r.c1), new(r.c2));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose3x3(mat.c0.vector, mat.c1.vector, mat.c2.vector);
+            return new(new(r.c0), new(r.c1), new(r.c2));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y),
             new(mat.c0.z, mat.c1.z, mat.c2.z)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -2029,21 +2133,22 @@ public static partial class math
 
 #region b32m3x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m4x3 transpose(this b32m3x4 mat)
+    public static b32m4x3 transpose([This] b32m3x4 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
-        return new(new(r.c0), new(r.c1), new(r.c2));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
+            return new(new(r.c0), new(r.c1), new(r.c2));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
             new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -2051,22 +2156,23 @@ public static partial class math
 
 #region b32m4x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m2x4 transpose(this b32m4x2 mat)
+    public static b32m2x4 transpose([This] b32m4x2 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose4x2To2x4(mat.c0.vector, mat.c1.vector);
-        return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose4x2To2x4(mat.c0.vector, mat.c1.vector);
+            return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
+        }
         return new(
             new(mat.c0.x, mat.c1.x),
             new(mat.c0.y, mat.c1.y),
             new(mat.c0.z, mat.c1.z),
             new(mat.c0.w, mat.c1.w)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -2074,22 +2180,23 @@ public static partial class math
 
 #region b32m4x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m3x4 transpose(this b32m4x3 mat)
+    public static b32m3x4 transpose([This] b32m4x3 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, default);
-        return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, default);
+            return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y),
             new(mat.c0.z, mat.c1.z, mat.c2.z),
             new(mat.c0.w, mat.c1.w, mat.c2.w)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -2097,22 +2204,23 @@ public static partial class math
 
 #region b32m4x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m4x4 transpose(this b32m4x4 mat)
+    public static b32m4x4 transpose([This] b32m4x4 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
-        return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
+            return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
             new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z),
             new(mat.c0.w, mat.c1.w, mat.c2.w, mat.c3.w)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -2120,10 +2228,11 @@ public static partial class math
 
 #region b64m2x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m2x2 transpose(this b64m2x2 mat)
+    public static b64m2x2 transpose([This] b64m2x2 mat)
     {
         return new(
             new(mat.c0.x, mat.c1.x),
@@ -2136,20 +2245,21 @@ public static partial class math
 
 #region b64m2x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m3x2 transpose(this b64m2x3 mat)
+    public static b64m3x2 transpose([This] b64m2x3 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose2x4To4x2(mat.c0.vector, mat.c1.vector, mat.c2.vector, default);
-        return new(new(r.c0), new(r.c1));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose2x4To4x2(mat.c0.vector, mat.c1.vector, mat.c2.vector, default);
+            return new(new(r.c0), new(r.c1));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -2157,20 +2267,21 @@ public static partial class math
 
 #region b64m2x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m4x2 transpose(this b64m2x4 mat)
+    public static b64m4x2 transpose([This] b64m2x4 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose2x4To4x2(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
-        return new(new(r.c0), new(r.c1));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose2x4To4x2(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
+            return new(new(r.c0), new(r.c1));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -2178,21 +2289,22 @@ public static partial class math
 
 #region b64m3x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m2x3 transpose(this b64m3x2 mat)
+    public static b64m2x3 transpose([This] b64m3x2 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose4x2To2x4(mat.c0.vector, mat.c1.vector);
-        return new(new(r.c0), new(r.c1), new(r.c2));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose4x2To2x4(mat.c0.vector, mat.c1.vector);
+            return new(new(r.c0), new(r.c1), new(r.c2));
+        }
         return new(
             new(mat.c0.x, mat.c1.x),
             new(mat.c0.y, mat.c1.y),
             new(mat.c0.z, mat.c1.z)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -2200,21 +2312,22 @@ public static partial class math
 
 #region b64m3x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m3x3 transpose(this b64m3x3 mat)
+    public static b64m3x3 transpose([This] b64m3x3 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose3x3(mat.c0.vector, mat.c1.vector, mat.c2.vector);
-        return new(new(r.c0), new(r.c1), new(r.c2));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose3x3(mat.c0.vector, mat.c1.vector, mat.c2.vector);
+            return new(new(r.c0), new(r.c1), new(r.c2));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y),
             new(mat.c0.z, mat.c1.z, mat.c2.z)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -2222,21 +2335,22 @@ public static partial class math
 
 #region b64m3x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m4x3 transpose(this b64m3x4 mat)
+    public static b64m4x3 transpose([This] b64m3x4 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
-        return new(new(r.c0), new(r.c1), new(r.c2));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
+            return new(new(r.c0), new(r.c1), new(r.c2));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
             new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -2244,22 +2358,23 @@ public static partial class math
 
 #region b64m4x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m2x4 transpose(this b64m4x2 mat)
+    public static b64m2x4 transpose([This] b64m4x2 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose4x2To2x4(mat.c0.vector, mat.c1.vector);
-        return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose4x2To2x4(mat.c0.vector, mat.c1.vector);
+            return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
+        }
         return new(
             new(mat.c0.x, mat.c1.x),
             new(mat.c0.y, mat.c1.y),
             new(mat.c0.z, mat.c1.z),
             new(mat.c0.w, mat.c1.w)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -2267,22 +2382,23 @@ public static partial class math
 
 #region b64m4x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m3x4 transpose(this b64m4x3 mat)
+    public static b64m3x4 transpose([This] b64m4x3 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, default);
-        return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, default);
+            return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y),
             new(mat.c0.z, mat.c1.z, mat.c2.z),
             new(mat.c0.w, mat.c1.w, mat.c2.w)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -2290,22 +2406,23 @@ public static partial class math
 
 #region b64m4x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m4x4 transpose(this b64m4x4 mat)
+    public static b64m4x4 transpose([This] b64m4x4 mat)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
-        return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var r = simd_matrix.Transpose4x4(mat.c0.vector, mat.c1.vector, mat.c2.vector, mat.c3.vector);
+            return new(new(r.c0), new(r.c1), new(r.c2), new(r.c3));
+        }
         return new(
             new(mat.c0.x, mat.c1.x, mat.c2.x, mat.c3.x),
             new(mat.c0.y, mat.c1.y, mat.c2.y, mat.c3.y),
             new(mat.c0.z, mat.c1.z, mat.c2.z, mat.c3.z),
             new(mat.c0.w, mat.c1.w, mat.c2.w, mat.c3.w)
         );
-        #endif // NET8_0_OR_GREATER
     }
 }
 

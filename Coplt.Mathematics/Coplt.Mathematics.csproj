@@ -10,10 +10,10 @@
         <RunPostBuildEvent>Always</RunPostBuildEvent>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Version>0.8.0</Version>
-        <Description>hlsl-style linear algebra library</Description>
-        <PackageProjectUrl>https://github.com/2A5F/Coplt.Shader</PackageProjectUrl>
-        <RepositoryUrl>https://github.com/2A5F/Coplt.Shader</RepositoryUrl>
+        <Version>0.9.0</Version>
+        <Description>HLSL-style linear algebra math library with full simd support</Description>
+        <PackageProjectUrl>https://github.com/coplt/Coplt.Mathematics</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/coplt/Coplt.Mathematics</RepositoryUrl>
         <PackageReadmeFile>Readme.md</PackageReadmeFile>
         <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -32,6 +32,10 @@
 
     <ItemGroup>
         <TextTemplate Include="**\*.tt"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\SourceGenerator\SourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false"/>
     </ItemGroup>
 
     <!--    Inputs="@(TextTemplate)" Outputs="@(TextTemplate->'%(RelativeDir)%(Filename).cs')"-->

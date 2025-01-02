@@ -29,7 +29,7 @@ namespace Coplt.Mathematics.Geometries
         public float3 normal
         {
             [MethodImpl(256 | 512)]
-            get => normal_and_distance.xyz;
+            readonly get => normal_and_distance.xyz;
             [MethodImpl(256 | 512)]
             set => normal_and_distance.xyz = value;
         }
@@ -44,7 +44,7 @@ namespace Coplt.Mathematics.Geometries
         public float distance
         {
             [MethodImpl(256 | 512)]
-            get => normal_and_distance.w;
+            readonly get => normal_and_distance.w;
             [MethodImpl(256 | 512)]
             set => normal_and_distance.w = value;
         }
@@ -52,7 +52,7 @@ namespace Coplt.Mathematics.Geometries
         /// <summary>
         /// Flips the plane so the normal points in the opposite direction.
         /// </summary>
-        public plane flipped
+        public readonly plane flipped
         {
             [MethodImpl(256 | 512)]
             get => new() { normal_and_distance = -normal_and_distance };
@@ -184,7 +184,7 @@ namespace Coplt.Mathematics.Geometries
         /// <param name="point">Point to find the signed distance with.</param>
         /// <returns>Signed distance of the point from the plane.</returns>
         [MethodImpl(256 | 512)]
-        public float distance_to_point(float3 point) => normal_and_distance.dot(new float4(point, 1.0f));
+        public readonly float distance_to_point(float3 point) => normal_and_distance.dot(new float4(point, 1.0f));
 
         /// <summary>
         /// Projects the given point onto the plane.
@@ -196,7 +196,7 @@ namespace Coplt.Mathematics.Geometries
         /// <param name="point">Point to project onto the plane.</param>
         /// <returns>Projected point that's inside the plane.</returns>
         [MethodImpl(256 | 512)]
-        public float3 projection(float3 point) => point - normal * distance_to_point(point);
+        public readonly float3 projection(float3 point) => point - normal * distance_to_point(point);
 
         /// <summary>
         /// Ray cast to the plane
@@ -205,7 +205,7 @@ namespace Coplt.Mathematics.Geometries
         /// <param name="distance">Intersection distance</param>
         /// <returns>Is intersect</returns>
         [MethodImpl(256 | 512)]
-        public bool ray_cast(ray ray, out float distance)
+        public readonly bool ray_cast(ray ray, out float distance)
         {
             var normal = this.normal;
             var de_nom = normal.dot(ray.direction);
@@ -221,7 +221,7 @@ namespace Coplt.Mathematics.Geometries
         /// <param name="point">Intersection</param>
         /// <returns>Is intersect</returns>
         [MethodImpl(256 | 512)]
-        public bool ray_cast(ray ray, out float distance, out float3 point)
+        public readonly bool ray_cast(ray ray, out float distance, out float3 point)
         {
             var normal = this.normal;
             var de_nom = normal.dot(ray.direction);
@@ -237,7 +237,7 @@ namespace Coplt.Mathematics.Geometries
         /// <param name="point">The point to project onto the plane.</param>
         /// <returns>A point on the plane that is closest to point.</returns>
         [MethodImpl(256 | 512)]
-        public float3 closest_point(float3 point)
+        public readonly float3 closest_point(float3 point)
         {
             var normal = this.normal;
             return point - normal * (normal.dot(point) + distance);
@@ -247,11 +247,12 @@ namespace Coplt.Mathematics.Geometries
 
 namespace Coplt.Mathematics
 {
+    [Ex]
     public static partial class math
     {
         /// <summary>
         /// Normalizes the plane represented by the given plane coefficients.
         /// </summary>
-        public static plane normalize(this plane plane) => new(plane.normalize(plane.normal_and_distance));
+        public static plane normalize([This] plane plane) => new(plane.normalize(plane.normal_and_distance));
     }
 }

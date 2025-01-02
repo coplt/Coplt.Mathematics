@@ -6,12 +6,10 @@ public interface IVectorBitops;
 
 public interface IVector 
 {
-    #if NET8_0_OR_GREATER
     public static abstract bool IsSimdAccelerated { get; }
     public static abstract int Length { get; }
     public static abstract int SizeByte { get; }
     public static abstract int SizeBit { get; }
-    #endif
 }
 
 public interface IVector2 : IVector;
@@ -61,15 +59,12 @@ public interface IVector4<T> : IVector<T>, IVector4, IVector4Components<T>
 
 public interface IVectorSelf<Self> where Self : IVectorSelf<Self>, IVector
 {
-#if NET8_0_OR_GREATER
     public static abstract Self Zero { [MethodImpl(256 | 512)] get; }
     public static abstract Self One { [MethodImpl(256 | 512)] get; }
-#endif
 }
 
 public interface IVectorSelf<T, Self> where Self : IVectorSelf<T, Self>, IVectorSelf<Self>, IVector<T>
 {
-#if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
     public static abstract Self Scalar(T value);
 
@@ -80,18 +75,15 @@ public interface IVectorSelf<T, Self> where Self : IVectorSelf<T, Self>, IVector
     [MethodImpl(256 | 512)]
     public static abstract unsafe Self Load(T* span);
     #pragma warning restore CS8500
-#endif
 }
 
 public interface IMatrixBitops;
 
 public interface IMatrix
 {
-    #if NET8_0_OR_GREATER
     public static abstract bool IsSimdAccelerated { [MethodImpl(256 | 512)] get; }
     public static abstract int Length { [MethodImpl(256 | 512)] get; }
     public static abstract int2 Size { [MethodImpl(256 | 512)] get; }
-    #endif
 }
 
 public interface IMatrix<T> : IMatrix;
@@ -117,9 +109,7 @@ public interface IMatrix4x4<T> : IMatrix<T>, IMatrix4x4;
 
 public interface IMatrixSelf<Self> where Self : IMatrixSelf<Self>
 {
-#if NET8_0_OR_GREATER
     public static abstract Self Zero { [MethodImpl(256 | 512)] get; }
     public static abstract Self One { [MethodImpl(256 | 512)] get; }
     public static abstract Self Identity { [MethodImpl(256 | 512)] get; }
-#endif
 }

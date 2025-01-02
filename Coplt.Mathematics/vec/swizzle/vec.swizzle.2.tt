@@ -8,9 +8,9 @@ namespace Coplt.Mathematics;
 <#
     int[] a01 = [0,1];
     var car_pd_2 = (
-            from a in a01.AsParallel().AsOrdered()
-            from b in a01.AsParallel().AsOrdered()
-            select (a, b)
+        from a in a01.AsParallel().AsOrdered()
+        from b in a01.AsParallel().AsOrdered()
+        select (a, b)
         ).ToList();
     foreach (var typ in Typ.Typs)
     {
@@ -34,14 +34,14 @@ public partial struct <#= typeName #>
             for (var t = 0; t < 2; t++)
             {
 #>
-    public <#= typeName #> <#= t == 0 ? xyzw : rgba #>
+    public <#= no_overlap ? "" : "readonly " #><#= typeName #> <#= t == 0 ? xyzw : rgba #>
     {
 <#
                 if (ordered)
                 {
 #>
         [MethodImpl(256 | 512)]
-        get => this;
+        <#= no_overlap ? "readonly " : "" #>get => this;
         [MethodImpl(256 | 512)]
         set => this = value;
 <#
@@ -50,18 +50,24 @@ public partial struct <#= typeName #>
                 {
                     if (typ.simd)
                     {
-                        WriteLine("#if NET8_0_OR_GREATER");
 #>
         [MethodImpl(256 | 512)]
-        get => new(Vector<#= bitSize2 #>.Shuffle(vector, Vector<#= bitSize2 #>.Create(<#= typ.shuffleCast #><#= a #>, <#= b #>)));
+        <#= no_overlap ? "readonly " : "" #>get
+        {
+            if (Vector<#= bitSize2 #>.IsHardwareAccelerated)
+                return new(Vector<#= bitSize2 #>.Shuffle(vector, Vector<#= bitSize2 #>.Create(<#= typ.shuffleCast #><#= a #>, <#= b #>)));
+            else 
+                return new(<#= Typ.xyzw[a] #>, <#= Typ.xyzw[b] #>);
+        }
 <#
-                        WriteLine("#else // NET8_0_OR_GREATER");
                     }
+                    else
+                    {
 #>
         [MethodImpl(256 | 512)]
-        get => new(<#= Typ.xyzw[a] #>, <#= Typ.xyzw[b] #>);
+        <#= no_overlap ? "readonly " : "" #>get => new(<#= Typ.xyzw[a] #>, <#= Typ.xyzw[b] #>);
 <#
-                    if (typ.simd) WriteLine("#endif // NET8_0_OR_GREATER");
+                    }
                     if (no_overlap)
                     {
 #>

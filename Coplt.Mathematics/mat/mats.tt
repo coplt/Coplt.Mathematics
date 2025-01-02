@@ -99,7 +99,7 @@ public partial struct <#= typeName #> :
     public <#= typ.compType #> m<#= i #><#= j #>
     {
         [MethodImpl(256 | 512)]
-        get => c<#= j #>.<#= Typ.xyzw[i] #>;
+        readonly get => c<#= j #>.<#= Typ.xyzw[i] #>;
         [MethodImpl(256 | 512)]
         set => c<#= j #>.<#= Typ.xyzw[i] #> = value;
     }
@@ -238,7 +238,7 @@ public partial struct <#= typeName #> :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"out {vecTypeName} c{i}")) #>)
+    public readonly void Deconstruct(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"out {vecTypeName} c{i}")) #>)
     {
 <#
                 for (int i = 0; i < m; i++)
@@ -251,7 +251,7 @@ public partial struct <#= typeName #> :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         <#=
                     string.Join(",\n        ", Enumerable.Range(0, n).Select(j => string.Join(", ", Enumerable.Range(0, m).Select(i => $"out {typ.compType} m{j}{i}")))) #>
     )
@@ -273,7 +273,7 @@ public partial struct <#= typeName #> :
     public <#= vecTypeName #> this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
 <#
                 for (var j = 0; j < m; j++)
@@ -309,7 +309,7 @@ public partial struct <#= typeName #> :
     public <#= typ.compType #> this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
 <#
                 for (var j = 0; j < m; j++)

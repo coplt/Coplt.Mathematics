@@ -35,26 +35,17 @@ public partial struct <#= typeName #>
                 if (typ.simd)
                 {
 #>
-        #if NET8_0_OR_GREATER
-        return new(-a.vector<#
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return new(-a.vector<#
                     if (i == 3)
                     {
 #> & Vector<#= bitSize #>.Create(-1, -1, -1, 0).As<#= typ.Type #>()<#
                     }
 #>);
-        #else // NET8_0_OR_GREATER
 <#
                 }
 #>
         return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"{typ.arithCast}(-a.{Typ.xyzw[n]})")) #>);
-<#
-                if (typ.simd)
-                {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-                }
-#>
     }
 <#
             }
@@ -67,22 +58,13 @@ public partial struct <#= typeName #>
             if (typ.simd)
             {
 #>
-        #if NET8_0_OR_GREATER
-        return new(a.vector + b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return new(a.vector + b.vector);
 <#
             }
 #>
         return new(<#=
                 string.Join(", ", Enumerable.Range(0, i).Select(n => $"({typ.compType})(a.{Typ.xyzw[n]} + b.{Typ.xyzw[n]})")) #>);
-<#
-            if (typ.simd)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-            }
-#>
     }
 
     [MethodImpl(256 | 512)]
@@ -98,22 +80,13 @@ public partial struct <#= typeName #>
             if (typ.simd)
             {
 #>
-        #if NET8_0_OR_GREATER
-        return new(a.vector - b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return new(a.vector - b.vector);
 <#
             }
 #>
         return new(<#=
                 string.Join(", ", Enumerable.Range(0, i).Select(n => $"({typ.compType})(a.{Typ.xyzw[n]} - b.{Typ.xyzw[n]})")) #>);
-<#
-            if (typ.simd)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-            }
-#>
     }
 
     [MethodImpl(256 | 512)]
@@ -129,22 +102,13 @@ public partial struct <#= typeName #>
             if (typ.simd)
             {
 #>
-        #if NET8_0_OR_GREATER
-        return new(a.vector * b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return new(a.vector * b.vector);
 <#
             }
 #>
         return new(<#=
                 string.Join(", ", Enumerable.Range(0, i).Select(n => $"({typ.compType})(a.{Typ.xyzw[n]} * b.{Typ.xyzw[n]})")) #>);
-<#
-            if (typ.simd)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-            }
-#>
     }
 
     [MethodImpl(256 | 512)]
@@ -154,21 +118,12 @@ public partial struct <#= typeName #>
             if (typ.simd)
             {
 #>
-        #if NET8_0_OR_GREATER
-        return new(a * b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return new(a * b.vector);
 <#
             }
 #>
         return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"({typ.compType})(a * b.{Typ.xyzw[n]})")) #>);
-<#
-            if (typ.simd)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-            }
-#>
     }
 
     [MethodImpl(256 | 512)]
@@ -178,21 +133,12 @@ public partial struct <#= typeName #>
             if (typ.simd)
             {
 #>
-        #if NET8_0_OR_GREATER
-        return new(a.vector * b);
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return new(a.vector * b);
 <#
             }
 #>
         return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"({typ.compType})(a.{Typ.xyzw[n]} * b)")) #>);
-<#
-            if (typ.simd)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-            }
-#>
     }
 
     [MethodImpl(256 | 512)]
@@ -202,27 +148,18 @@ public partial struct <#= typeName #>
             if (typ.simd)
             {
 #>
-        #if NET8_0_OR_GREATER
-        return new((a.vector / b.vector)<#
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return new((a.vector / b.vector)<#
                 if (i == 3 && typ.f)
                 {
 #> & Vector<#= bitSize #>.Create(-1, -1, -1, 0).As<#= typ.Type #>()<#
                 }
 #>);
-        #else // NET8_0_OR_GREATER
 <#
             }
 #>
         return new(<#=
                 string.Join(", ", Enumerable.Range(0, i).Select(n => $"({typ.compType})(a.{Typ.xyzw[n]} / b.{Typ.xyzw[n]})")) #>);
-<#
-            if (typ.simd)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-            }
-#>
     }
 
     [MethodImpl(256 | 512)]
@@ -232,26 +169,17 @@ public partial struct <#= typeName #>
             if (typ.simd)
             {
 #>
-        #if NET8_0_OR_GREATER
-        return new((a.vector / b)<#
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return new((a.vector / b)<#
                 if (i == 3 && typ.f)
                 {
 #> & Vector<#= bitSize #>.Create(-1, -1, -1, 0).As<#= typ.Type #>()<#
                 }
 #>);
-        #else // NET8_0_OR_GREATER
 <#
             }
 #>
         return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"({typ.compType})(a.{Typ.xyzw[n]} / b)")) #>);
-<#
-            if (typ.simd)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-            }
-#>
     }
 
     [MethodImpl(256 | 512)]
@@ -264,27 +192,18 @@ public partial struct <#= typeName #>
             if (typ.simd && typ.f)
             {
 #>
-        #if NET8_0_OR_GREATER
-        return new(simd.Rem(a.vector, b.vector)<#
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return new(simd.Rem(a.vector, b.vector)<#
                 if (i == 3 && typ.f)
                 {
 #> & Vector<#= bitSize #>.Create(-1, -1, -1, 0).As<#= typ.Type #>()<#
                 }
 #>);
-        #else // NET8_0_OR_GREATER
 <#
             }
 #>
         return new(<#=
                 string.Join(", ", Enumerable.Range(0, i).Select(n => $"({typ.compType})(a.{Typ.xyzw[n]} % b.{Typ.xyzw[n]})")) #>);
-<#
-            if (typ.simd && typ.f)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-            }
-#>
     }
 
     [MethodImpl(256 | 512)]
@@ -294,27 +213,18 @@ public partial struct <#= typeName #>
             if (typ.simd && typ.f)
             {
 #>
-        #if NET8_0_OR_GREATER
-        return new(simd.Rem(a.vector, b)<#
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return new(simd.Rem(a.vector, b)<#
                 if (i == 3 && typ.f)
                 {
 #> & Vector<#= bitSize #>.Create(-1, -1, -1, 0).As<#= typ.Type #>()<#
                 }
 #>);
-        #else // NET8_0_OR_GREATER
 <#
             }
 #>
         return new(<#=
                 string.Join(", ", Enumerable.Range(0, i).Select(n => $"({typ.compType})(a.{Typ.xyzw[n]} % b)")) #>);
-<#
-            if (typ.simd && typ.f)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-            }
-#>
     }
 
     [MethodImpl(256 | 512)]
@@ -327,41 +237,33 @@ public partial struct <#= typeName #>
     public static <#= typeName #> operator ++(<#= typeName #> a) => a + One;
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> abs(this <#= typeName #> a)
+    public static <#= typeName #> abs([This] <#= typeName #> a)
     {
 <#
             if (typ.simd)
             {
 #>
-        #if NET8_0_OR_GREATER
-        return new(Vector<#= bitSize #>.Abs(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return new(Vector<#= bitSize #>.Abs(a.vector));
 <#
             }
 #>
         return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.abs()")) #>);
-<#
-            if (typ.simd)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-            }
-#>
     }
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> sign(this <#= typeName #> a)
+    public static <#= typeName #> sign([This] <#= typeName #> a)
     {
 <#
             if (typ.simd && (typ.f || typ.i))
             {
 #>
-        #if NET8_0_OR_GREATER
-        return new(<#
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return new(<#
                 if (typ.f)
                 {
 #>simd.SignFloat(a.vector)<#
@@ -380,211 +282,136 @@ public static partial class math
 #> & Vector<#= bitSize #>.Create(-1, -1, -1, 0).As<#= typ.Type #>()<#
                 }
 #>);
-        #else // NET8_0_OR_GREATER
 <#
             }
 #>
         return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.sign()")) #>);
-<#
-            if (typ.simd)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-            }
-#>
     }
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> min(this <#= typeName #> a, <#= typeName #> b)
+    public static <#= typeName #> min([This] <#= typeName #> a, <#= typeName #> b)
     {
 <#
             if (typ.simd)
             {
 #>
-        #if NET8_0_OR_GREATER
-        return new(Vector<#= bitSize #>.Min(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return new(Vector<#= bitSize #>.Min(a.vector, b.vector));
 <#
             }
 #>
         return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.min(b.{Typ.xyzw[n]})")) #>);
-<#
-            if (typ.simd)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-            }
-#>
     }
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> max(this <#= typeName #> a, <#= typeName #> b)
+    public static <#= typeName #> max([This] <#= typeName #> a, <#= typeName #> b)
     {
 <#
             if (typ.simd)
             {
 #>
-        #if NET8_0_OR_GREATER
-        return new(Vector<#= bitSize #>.Max(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return new(Vector<#= bitSize #>.Max(a.vector, b.vector));
 <#
             }
 #>
         return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.max(b.{Typ.xyzw[n]})")) #>);
-<#
-            if (typ.simd)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-            }
-#>
     }
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> clamp(this <#= typeName #> v, <#= typeName #> min, <#= typeName #> max)
+    public static <#= typeName #> clamp([This] <#= typeName #> v, <#= typeName #> min, <#= typeName #> max)
     {
 <#
             if (typ.simd)
             {
 #>
-        #if NET8_0_OR_GREATER
-        return new(Vector<#= bitSize #>.Max(min.vector, Vector<#= bitSize #>.Min(max.vector, v.vector)));
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return new(Vector<#= bitSize #>.Max(min.vector, Vector<#= bitSize #>.Min(max.vector, v.vector)));
 <#
             }
 #>
         return new(<#=
                 string.Join(", ", Enumerable.Range(0, i).Select(n => $"v.{Typ.xyzw[n]}.clamp(min.{Typ.xyzw[n]}, max.{Typ.xyzw[n]})")) #>);
-<#
-            if (typ.simd)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-            }
-#>
     }
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> clamp(this <#= typeName #> v, <#= typ.simdComp #> min, <#= typ.simdComp #> max) => v.clamp(new <#= typeName #>(min), new <#= typeName #>(max));
+    public static <#= typeName #> clamp([This] <#= typeName #> v, <#= typ.simdComp #> min, <#= typ.simdComp #> max) => v.clamp(new <#= typeName #>(min), new <#= typeName #>(max));
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> lerp(this <#= typeName #> t, <#= typeName #> start, <#= typeName #> end)
+    public static <#= typeName #> lerp(<#= typeName #> start, <#= typeName #> end, [This] <#= typeName #> t)
     {
 <#
             if (typ.simd)
             {
 #>
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(t, end - start, start);
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return fma(t, end - start, start);
 <#
             }
 #>
         return start + t * (end - start);
-<#
-            if (typ.simd)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-            }
-#>
     }
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> lerp(this <#= typ.simdComp #> t, <#= typeName #> start, <#= typeName #> end)
+    public static <#= typeName #> lerp(<#= typeName #> start, <#= typeName #> end, [This] <#= typ.simdComp #> t)
     {
 <#
             if (typ.simd)
             {
 #>
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(new(t), end - start, start);
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return fma(new(t), end - start, start);
 <#
             }
 #>
         return start + t * (end - start);
-<#
-            if (typ.simd)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-            }
-#>
     }
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> lerp(this <#= typeName #> t, <#= typ.simdComp #> start, <#= typ.simdComp #> end)
+    public static <#= typeName #> lerp(<#= typ.simdComp #> start, <#= typ.simdComp #> end, [This] <#= typeName #> t)
     {
 <#
             if (typ.simd)
             {
 #>
-        #if NET8_0_OR_GREATER
-        // start + t * (end - start)
-        return fma(t, <#= typ.arithCast #>(end - start), new(start));
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return fma(t, <#= typ.arithCast #>(end - start), new(start));
 <#
             }
 #>
         return start + t * <#= typ.arithCast #>(end - start);
-<#
-            if (typ.simd)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-            }
-#>
     }
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> unlerp(this <#= typeName #> a, <#= typeName #> start, <#= typeName #> end) => (a - start) / (end - start);
+    public static <#= typeName #> unlerp([This] <#= typeName #> a, <#= typeName #> start, <#= typeName #> end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> unlerp(this <#= typ.simdComp #> a, <#= typeName #> start, <#= typeName #> end) => (a - start) / (end - start);
+    public static <#= typeName #> unlerp([This] <#= typ.simdComp #> a, <#= typeName #> start, <#= typeName #> end) => (a - start) / (end - start);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> unlerp(this <#= typeName #> a, <#= typ.simdComp #> start, <#= typ.simdComp #> end) => (a - start) / <#= typ.arithCast #>(end - start);
+    public static <#= typeName #> unlerp([This] <#= typeName #> a, <#= typ.simdComp #> start, <#= typ.simdComp #> end) => (a - start) / <#= typ.arithCast #>(end - start);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> remap(this <#= typeName #> a, <#= typeName #> srcStart, <#= typeName #> srcEnd, <#= typeName #> dstStart, <#= typeName #> dstEnd) => 
+    public static <#= typeName #> remap([This] <#= typeName #> a, <#= typeName #> srcStart, <#= typeName #> srcEnd, <#= typeName #> dstStart, <#= typeName #> dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> remap(this <#= typeName #> a, <#= typ.simdComp #> srcStart, <#= typ.simdComp #> srcEnd, <#= typ.simdComp #> dstStart, <#= typ.simdComp #> dstEnd) => 
+    public static <#= typeName #> remap([This] <#= typeName #> a, <#= typ.simdComp #> srcStart, <#= typ.simdComp #> srcEnd, <#= typ.simdComp #> dstStart, <#= typ.simdComp #> dstEnd) => 
         a.unlerp(srcStart, srcEnd).lerp(dstStart, dstEnd);
 
     [MethodImpl(256 | 512)]
-    public static <#= typ.simdComp #> dot(this <#= typeName #> a, <#= typeName #> b)
+    public static <#= typ.simdComp #> dot([This] <#= typeName #> a, <#= typeName #> b)
     {
 <#
             if (typ.simd)
             {
 #>
-        #if NET8_0_OR_GREATER
-        return Vector<#= bitSize #>.Dot(a.vector, b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return Vector<#= bitSize #>.Dot(a.vector, b.vector);
 <#
             }
 #>
         return (<#= typ.simdComp #>)(<#= string.Join(" + ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]} * b.{Typ.xyzw[n]}")) #>);
-<#
-            if (typ.simd)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-            }
-#>
     }
 <#
             if (i == 3)
@@ -592,40 +419,31 @@ public static partial class math
 #>
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> cross(this <#= typeName #> a, <#= typeName #> b) => (a * b.yzx - a.yzx * b).yzx;
+    public static <#= typeName #> cross([This] <#= typeName #> a, <#= typeName #> b) => (a * b.yzx - a.yzx * b).yzx;
 <#
             }
 #>
 
     [MethodImpl(256 | 512)]
-    public static <#= typ.simdComp #> lengthsq(this <#= typeName #> a)
+    public static <#= typ.simdComp #> lengthsq([This] <#= typeName #> a)
     {
 <#
             if (typ.simd)
             {
 #>
-        #if NET8_0_OR_GREATER
-        return Vector<#= bitSize #>.Dot(a.vector, a.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return Vector<#= bitSize #>.Dot(a.vector, a.vector);
 <#
             }
 #>
-        return a.dot(a);
-<#
-            if (typ.simd)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-            }
-#>
+        return (<#= typ.simdComp #>)(<#= string.Join(" + ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]} * a.{Typ.xyzw[n]}")) #>);
     }
 
     [MethodImpl(256 | 512)]
-    public static <#= typ.simdComp #> distancesq(this <#= typeName #> a, <#= typeName #> b) => lengthsq(b - a);
+    public static <#= typ.simdComp #> distancesq([This] <#= typeName #> a, <#= typeName #> b) => lengthsq(b - a);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> square(this <#= typeName #> a) => a * a;
+    public static <#= typeName #> square([This] <#= typeName #> a) => a * a;
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -635,28 +453,19 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> fma(this <#= typeName #> a, <#= typeName #> b, <#= typeName #> c)
+    public static <#= typeName #> fma([This] <#= typeName #> a, <#= typeName #> b, <#= typeName #> c)
     {
 <#
             if (typ.simd && typ.f && typ.bin)
             {
 #>
-        #if NET8_0_OR_GREATER
-        return new(simd.Fma(a.vector, b.vector, c.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return new(simd.Fma(a.vector, b.vector, c.vector));
 <#
             }
 #>
         return new(<#=
                 string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.fma(b.{Typ.xyzw[n]}, c.{Typ.xyzw[n]})")) #>);
-<#
-            if (typ.simd && typ.f && typ.bin)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-            }
-#>
     }
 
     /// <summary>
@@ -667,28 +476,19 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Subtrahend c</param>
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> fms(this <#= typeName #> a, <#= typeName #> b, <#= typeName #> c)
+    public static <#= typeName #> fms([This] <#= typeName #> a, <#= typeName #> b, <#= typeName #> c)
     {
 <#
             if (typ.simd && typ.f && typ.bin)
             {
 #>
-        #if NET8_0_OR_GREATER
-        return new(simd.Fms(a.vector, b.vector, c.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return new(simd.Fms(a.vector, b.vector, c.vector));
 <#
             }
 #>
         return new(<#=
                 string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.fms(b.{Typ.xyzw[n]}, c.{Typ.xyzw[n]})")) #>);
-<#
-            if (typ.simd && typ.f && typ.bin)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-            }
-#>
     }
 
     /// <summary>
@@ -699,28 +499,19 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> fnma(this <#= typeName #> a, <#= typeName #> b, <#= typeName #> c)
+    public static <#= typeName #> fnma([This] <#= typeName #> a, <#= typeName #> b, <#= typeName #> c)
     {
 <#
             if (typ.simd && typ.f && typ.bin)
             {
 #>
-        #if NET8_0_OR_GREATER
-        return new(simd.Fnma(a.vector, b.vector, c.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return new(simd.Fnma(a.vector, b.vector, c.vector));
 <#
             }
 #>
         return new(<#=
                 string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.fnma(b.{Typ.xyzw[n]}, c.{Typ.xyzw[n]})")) #>);
-<#
-            if (typ.simd && typ.f && typ.bin)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-            }
-#>
     }
 
     /// <summary>
@@ -731,7 +522,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Minuend c</param>
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> fsm(this <#= typeName #> c, <#= typeName #> a, <#= typeName #> b) => fnma(a, b, c);
+    public static <#= typeName #> fsm([This] <#= typeName #> c, <#= typeName #> a, <#= typeName #> b) => fnma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -741,7 +532,7 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> fam(this <#= typeName #> c, <#= typeName #> a, <#= typeName #> b) => fma(a, b, c);
+    public static <#= typeName #> fam([This] <#= typeName #> c, <#= typeName #> a, <#= typeName #> b) => fma(a, b, c);
 
     /// <summary>
     /// Fusion Addition and Multiplication
@@ -751,40 +542,31 @@ public static partial class math
     /// <param name="b">Multiplier b</param>
     /// <param name="c">Addend c</param>
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> mad(this <#= typeName #> a, <#= typeName #> b, <#= typeName #> c) => fma(a, b, c);
+    public static <#= typeName #> mad([This] <#= typeName #> a, <#= typeName #> b, <#= typeName #> c) => fma(a, b, c);
 
     [MethodImpl(256 | 512)]
-    public static <#= typ.compType #> csum(this <#= typeName #> a)
+    public static <#= typ.compType #> csum([This] <#= typeName #> a)
     {
 <#
             if (typ.simd)
             {
 #>
-        #if NET8_0_OR_GREATER
-        return Vector<#= bitSize #>.Sum(a.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return Vector<#= bitSize #>.Sum(a.vector);
 <#
             }
 #>
         return <#= typ.arithCast #>(<#= string.Join(" + ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}")) #>);
-<#
-            if (typ.simd)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-            }
-#>
     }
 
     [MethodImpl(256 | 512)]
-    public static <#= typ.compType #> cmin(this <#= typeName #> a)
+    public static <#= typ.compType #> cmin([This] <#= typeName #> a)
     {
         return a.x<#= string.Join("", Enumerable.Range(1, i - 1).Select(n => $".min(a.{Typ.xyzw[n]})")) #>;
     }
 
     [MethodImpl(256 | 512)]
-    public static <#= typ.compType #> cmax(this <#= typeName #> a)
+    public static <#= typ.compType #> cmax([This] <#= typeName #> a)
     {
         return a.x<#= string.Join("", Enumerable.Range(1, i - 1).Select(n => $".max(a.{Typ.xyzw[n]})")) #>;
     }

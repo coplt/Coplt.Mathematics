@@ -1,6 +1,6 @@
 ﻿namespace Coplt.Mathematics;
 
-public static partial class math
+public static partial class math_ex
 {
     [MethodImpl(512)]
     public static float3 ToEulerAngles(this quaternion q, RotationOrder order = RotationOrder.Default)

@@ -17,7 +17,7 @@ namespace Coplt.Mathematics;
 
 #region <#= typeName #>
 
-public static partial class math
+public static partial class math_ex
 {
     /// <summary>
     /// Replace X component

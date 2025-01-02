@@ -8,7 +8,7 @@ public partial struct quaternion
 {
     public float4 value;
 
-    public override string ToString() => $"{nameof(quaternion)}({value.x}, {value.y}, {value.z}, {value.w})";
+    public readonly override string ToString() => $"{nameof(quaternion)}({value.x}, {value.y}, {value.z}, {value.w})";
 
     public static quaternion Identity
     {
@@ -285,36 +285,37 @@ public partial struct quaternion
     }
 }
 
+[Ex]
 public static partial class math
 {
     /// <summary>Returns the conjugate of a quaternion value</summary>
     /// <param name="q">The quaternion to conjugate</param>
     /// <returns>The conjugate of the input quaternion</returns>
     [MethodImpl(256 | 512)]
-    public static quaternion conjugate(this quaternion q) => 
+    public static quaternion conjugate([This] quaternion q) => 
         new(q.value * new float4(-1.0f, -1.0f, -1.0f, 1.0f));
 
     /// <summary>Returns the inverse of a quaternion value</summary>
     /// <param name="q">The quaternion to invert</param>
     /// <returns>The quaternion inverse of the input quaternion</returns>
     [MethodImpl(256 | 512)]
-    public static quaternion inverse(this quaternion q) => 
+    public static quaternion inverse([This] quaternion q) => 
         new(q.dot(q).rcp() * q.value *  new float4(-1.0f, -1.0f, -1.0f, 1.0f));
 
     [MethodImpl(256 | 512)]
-    public static float dot(this quaternion a, quaternion b) => a.value.dot(b.value);
+    public static float dot([This] quaternion a, quaternion b) => a.value.dot(b.value);
 
     [MethodImpl(256 | 512)]
-    public static float length(this quaternion q) => q.lengthsq().sqrt();
+    public static float length([This] quaternion q) => q.lengthsq().sqrt();
 
     [MethodImpl(256 | 512)]
-    public static float lengthsq(this quaternion q) => q.dot(q);
+    public static float lengthsq([This] quaternion q) => q.dot(q);
 
     [MethodImpl(256 | 512)]
-    public static quaternion normalize(this quaternion q) => new(q.dot(q).rsqrt() * q.value);
+    public static quaternion normalize([This] quaternion q) => new(q.dot(q).rsqrt() * q.value);
 
     [MethodImpl(256 | 512)]
-    public static quaternion normalizesafe(this quaternion q)
+    public static quaternion normalizeSafe([This] quaternion q)
     {
         var len = q.lengthsq();
         if (len > MinNormal<float>()) return quaternion.Identity;
@@ -322,7 +323,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static quaternion normalizesafe(this quaternion q, quaternion defaultValue)
+    public static quaternion normalizeSafe([This] quaternion q, quaternion defaultValue)
     {
         var len = q.lengthsq();
         if (len > MinNormal<float>()) return defaultValue;
@@ -330,7 +331,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static quaternion unitexp(this quaternion q)
+    public static quaternion unitExp([This] quaternion q)
     {
         var v_rcp_len = q.value.xyz.lengthsq().rsqrt();
         var v_len = v_rcp_len.rcp();
@@ -339,7 +340,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static quaternion exp(this quaternion q)
+    public static quaternion exp([This] quaternion q)
     {
         var v_rcp_len = q.value.xyz.lengthsq().rsqrt();
         var v_len = v_rcp_len.rcp();
@@ -348,7 +349,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static quaternion unitlog(this quaternion q)
+    public static quaternion unitLog([This] quaternion q)
     {
         var w = q.value.w.clamp(-1.0f, 1.0f);
         var s = (acos(w) * rsqrt(1.0f - w*w));
@@ -356,7 +357,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static quaternion log(this quaternion q)
+    public static quaternion log([This] quaternion q)
     {
         var v_len_sq = q.value.xyz.lengthsq();
         var q_len_sq = v_len_sq + q.value.w * q.value.w;
@@ -366,27 +367,27 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static quaternion mul(this quaternion a, quaternion b) => new(
+    public static quaternion mul([This] quaternion a, quaternion b) => new(
         a.value.wwww * b.value + (a.value.xyzx * b.value.wwwx + a.value.yzxy * b.value.zxyy) 
         * new float4(1.0f, 1.0f, 1.0f, -1.0f) - a.value.zxyz * b.value.yzxz
     );
 
     [MethodImpl(256 | 512)]
-    public static float3 mul(this quaternion q, float3 v)
+    public static float3 mul([This] quaternion q, float3 v)
     {
         var t = 2.0f * q.value.xyz.cross(v);
         return v + q.value.w * t + q.value.xyz.cross(t);
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 rotate(this quaternion q, float3 v) => mul(q, v);
+    public static float3 rotate([This] quaternion q, float3 v) => mul(q, v);
 
     [MethodImpl(256 | 512)]
-    public static quaternion nlerp(this float t, quaternion q1, quaternion q2) => 
+    public static quaternion nlerp([This] float t, quaternion q1, quaternion q2) => 
         normalize(q1.value + t * (chgsign(q2.value, dot(q1, q2)) - q1.value));
     
     [MethodImpl(256 | 512)]
-    public static quaternion slerp(this float t, quaternion q1, quaternion q2)
+    public static quaternion slerp([This] float t, quaternion q1, quaternion q2)
     {
         var dt = dot(q1, q2);
         if (dt < 0.0f)
@@ -411,14 +412,14 @@ public static partial class math
     }
     
     [MethodImpl(256 | 512)]
-    public static float angle(this quaternion q1, quaternion q2)
+    public static float angle([This] quaternion q1, quaternion q2)
     {
         var diff = q1.conjugate().mul(q2).normalize().value.xyz.length().asin();
         return (diff + diff);
     }
     
     [MethodImpl(256 | 512)]
-    public static quaternion rotation(this float3x3 m)
+    public static quaternion rotation([This] float3x3 m)
     {
         var det = m.determinant();
         if (math.abs(1f - det) < svd.k_EpsilonDeterminant_float)
@@ -435,7 +436,7 @@ public static partial class math
     }
     
     [MethodImpl(256 | 512)]
-    public static float3x3 adj(this float3x3 m, out float det)
+    public static float3x3 adj([This] float3x3 m, out float det)
     {
         float3x3 adjT;
         adjT.c0 = m.c1.cross(m.c2);
@@ -447,14 +448,14 @@ public static partial class math
     }
     
     [MethodImpl(256 | 512)]
-    public static bool adj(this float3x3 m, out float3x3 i)
+    public static bool adj([This] float3x3 m, out float3x3 i)
     {
         var epsilon = 1e-30f;
         return m.adj(out i, epsilon);
     }
 
     [MethodImpl(256 | 512)]
-    public static bool adj(this float3x3 m, out float3x3 i, float epsilon)
+    public static bool adj([This] float3x3 m, out float3x3 i, float epsilon)
     {
         i = adj(m, out float det);
         var c = det.abs() > epsilon;
@@ -630,7 +631,7 @@ public partial struct quaternion_d
 {
     public double4 value;
 
-    public override string ToString() => $"{nameof(quaternion_d)}({value.x}, {value.y}, {value.z}, {value.w})";
+    public readonly override string ToString() => $"{nameof(quaternion_d)}({value.x}, {value.y}, {value.z}, {value.w})";
 
     public static quaternion_d Identity
     {
@@ -907,36 +908,37 @@ public partial struct quaternion_d
     }
 }
 
+[Ex]
 public static partial class math
 {
     /// <summary>Returns the conjugate of a quaternion value</summary>
     /// <param name="q">The quaternion to conjugate</param>
     /// <returns>The conjugate of the input quaternion</returns>
     [MethodImpl(256 | 512)]
-    public static quaternion_d conjugate(this quaternion_d q) => 
+    public static quaternion_d conjugate([This] quaternion_d q) => 
         new(q.value * new double4(-1.0, -1.0, -1.0, 1.0));
 
     /// <summary>Returns the inverse of a quaternion value</summary>
     /// <param name="q">The quaternion to invert</param>
     /// <returns>The quaternion inverse of the input quaternion</returns>
     [MethodImpl(256 | 512)]
-    public static quaternion_d inverse(this quaternion_d q) => 
+    public static quaternion_d inverse([This] quaternion_d q) => 
         new(q.dot(q).rcp() * q.value *  new double4(-1.0, -1.0, -1.0, 1.0));
 
     [MethodImpl(256 | 512)]
-    public static double dot(this quaternion_d a, quaternion_d b) => a.value.dot(b.value);
+    public static double dot([This] quaternion_d a, quaternion_d b) => a.value.dot(b.value);
 
     [MethodImpl(256 | 512)]
-    public static double length(this quaternion_d q) => q.lengthsq().sqrt();
+    public static double length([This] quaternion_d q) => q.lengthsq().sqrt();
 
     [MethodImpl(256 | 512)]
-    public static double lengthsq(this quaternion_d q) => q.dot(q);
+    public static double lengthsq([This] quaternion_d q) => q.dot(q);
 
     [MethodImpl(256 | 512)]
-    public static quaternion_d normalize(this quaternion_d q) => new(q.dot(q).rsqrt() * q.value);
+    public static quaternion_d normalize([This] quaternion_d q) => new(q.dot(q).rsqrt() * q.value);
 
     [MethodImpl(256 | 512)]
-    public static quaternion_d normalizesafe(this quaternion_d q)
+    public static quaternion_d normalizeSafe([This] quaternion_d q)
     {
         var len = q.lengthsq();
         if (len > MinNormal<double>()) return quaternion_d.Identity;
@@ -944,7 +946,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static quaternion_d normalizesafe(this quaternion_d q, quaternion_d defaultValue)
+    public static quaternion_d normalizeSafe([This] quaternion_d q, quaternion_d defaultValue)
     {
         var len = q.lengthsq();
         if (len > MinNormal<double>()) return defaultValue;
@@ -952,7 +954,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static quaternion_d unitexp(this quaternion_d q)
+    public static quaternion_d unitExp([This] quaternion_d q)
     {
         var v_rcp_len = q.value.xyz.lengthsq().rsqrt();
         var v_len = v_rcp_len.rcp();
@@ -961,7 +963,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static quaternion_d exp(this quaternion_d q)
+    public static quaternion_d exp([This] quaternion_d q)
     {
         var v_rcp_len = q.value.xyz.lengthsq().rsqrt();
         var v_len = v_rcp_len.rcp();
@@ -970,7 +972,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static quaternion_d unitlog(this quaternion_d q)
+    public static quaternion_d unitLog([This] quaternion_d q)
     {
         var w = q.value.w.clamp(-1.0, 1.0);
         var s = (acos(w) * rsqrt(1.0 - w*w));
@@ -978,7 +980,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static quaternion_d log(this quaternion_d q)
+    public static quaternion_d log([This] quaternion_d q)
     {
         var v_len_sq = q.value.xyz.lengthsq();
         var q_len_sq = v_len_sq + q.value.w * q.value.w;
@@ -988,27 +990,27 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static quaternion_d mul(this quaternion_d a, quaternion_d b) => new(
+    public static quaternion_d mul([This] quaternion_d a, quaternion_d b) => new(
         a.value.wwww * b.value + (a.value.xyzx * b.value.wwwx + a.value.yzxy * b.value.zxyy) 
         * new double4(1.0, 1.0, 1.0, -1.0) - a.value.zxyz * b.value.yzxz
     );
 
     [MethodImpl(256 | 512)]
-    public static double3 mul(this quaternion_d q, double3 v)
+    public static double3 mul([This] quaternion_d q, double3 v)
     {
         var t = 2.0 * q.value.xyz.cross(v);
         return v + q.value.w * t + q.value.xyz.cross(t);
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 rotate(this quaternion_d q, double3 v) => mul(q, v);
+    public static double3 rotate([This] quaternion_d q, double3 v) => mul(q, v);
 
     [MethodImpl(256 | 512)]
-    public static quaternion_d nlerp(this double t, quaternion_d q1, quaternion_d q2) => 
+    public static quaternion_d nlerp([This] double t, quaternion_d q1, quaternion_d q2) => 
         normalize(q1.value + t * (chgsign(q2.value, dot(q1, q2)) - q1.value));
     
     [MethodImpl(256 | 512)]
-    public static quaternion_d slerp(this double t, quaternion_d q1, quaternion_d q2)
+    public static quaternion_d slerp([This] double t, quaternion_d q1, quaternion_d q2)
     {
         var dt = dot(q1, q2);
         if (dt < 0.0)
@@ -1033,14 +1035,14 @@ public static partial class math
     }
     
     [MethodImpl(256 | 512)]
-    public static double angle(this quaternion_d q1, quaternion_d q2)
+    public static double angle([This] quaternion_d q1, quaternion_d q2)
     {
         var diff = q1.conjugate().mul(q2).normalize().value.xyz.length().asin();
         return (diff + diff);
     }
     
     [MethodImpl(256 | 512)]
-    public static quaternion_d rotation(this double3x3 m)
+    public static quaternion_d rotation([This] double3x3 m)
     {
         var det = m.determinant();
         if (math.abs(1 - det) < svd.k_EpsilonDeterminant_double)
@@ -1057,7 +1059,7 @@ public static partial class math
     }
     
     [MethodImpl(256 | 512)]
-    public static double3x3 adj(this double3x3 m, out double det)
+    public static double3x3 adj([This] double3x3 m, out double det)
     {
         double3x3 adjT;
         adjT.c0 = m.c1.cross(m.c2);
@@ -1069,14 +1071,14 @@ public static partial class math
     }
     
     [MethodImpl(256 | 512)]
-    public static bool adj(this double3x3 m, out double3x3 i)
+    public static bool adj([This] double3x3 m, out double3x3 i)
     {
         var epsilon = 1e-300;
         return m.adj(out i, epsilon);
     }
 
     [MethodImpl(256 | 512)]
-    public static bool adj(this double3x3 m, out double3x3 i, double epsilon)
+    public static bool adj([This] double3x3 m, out double3x3 i, double epsilon)
     {
         i = adj(m, out double det);
         var c = det.abs() > epsilon;
@@ -1252,7 +1254,7 @@ public partial struct quaternion_h
 {
     public half4 value;
 
-    public override string ToString() => $"{nameof(quaternion_h)}({value.x}, {value.y}, {value.z}, {value.w})";
+    public readonly override string ToString() => $"{nameof(quaternion_h)}({value.x}, {value.y}, {value.z}, {value.w})";
 
     public static quaternion_h Identity
     {
@@ -1529,36 +1531,37 @@ public partial struct quaternion_h
     }
 }
 
+[Ex]
 public static partial class math
 {
     /// <summary>Returns the conjugate of a quaternion value</summary>
     /// <param name="q">The quaternion to conjugate</param>
     /// <returns>The conjugate of the input quaternion</returns>
     [MethodImpl(256 | 512)]
-    public static quaternion_h conjugate(this quaternion_h q) => 
+    public static quaternion_h conjugate([This] quaternion_h q) => 
         new(q.value * new half4(-1.0f.half(), -1.0f.half(), -1.0f.half(), 1.0f.half()));
 
     /// <summary>Returns the inverse of a quaternion value</summary>
     /// <param name="q">The quaternion to invert</param>
     /// <returns>The quaternion inverse of the input quaternion</returns>
     [MethodImpl(256 | 512)]
-    public static quaternion_h inverse(this quaternion_h q) => 
+    public static quaternion_h inverse([This] quaternion_h q) => 
         new(q.dot(q).rcp() * q.value *  new half4(-1.0f.half(), -1.0f.half(), -1.0f.half(), 1.0f.half()));
 
     [MethodImpl(256 | 512)]
-    public static half dot(this quaternion_h a, quaternion_h b) => a.value.dot(b.value);
+    public static half dot([This] quaternion_h a, quaternion_h b) => a.value.dot(b.value);
 
     [MethodImpl(256 | 512)]
-    public static half length(this quaternion_h q) => q.lengthsq().sqrt();
+    public static half length([This] quaternion_h q) => q.lengthsq().sqrt();
 
     [MethodImpl(256 | 512)]
-    public static half lengthsq(this quaternion_h q) => q.dot(q);
+    public static half lengthsq([This] quaternion_h q) => q.dot(q);
 
     [MethodImpl(256 | 512)]
-    public static quaternion_h normalize(this quaternion_h q) => new(q.dot(q).rsqrt() * q.value);
+    public static quaternion_h normalize([This] quaternion_h q) => new(q.dot(q).rsqrt() * q.value);
 
     [MethodImpl(256 | 512)]
-    public static quaternion_h normalizesafe(this quaternion_h q)
+    public static quaternion_h normalizeSafe([This] quaternion_h q)
     {
         var len = q.lengthsq();
         if (len > MinNormal<half>()) return quaternion_h.Identity;
@@ -1566,7 +1569,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static quaternion_h normalizesafe(this quaternion_h q, quaternion_h defaultValue)
+    public static quaternion_h normalizeSafe([This] quaternion_h q, quaternion_h defaultValue)
     {
         var len = q.lengthsq();
         if (len > MinNormal<half>()) return defaultValue;
@@ -1574,7 +1577,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static quaternion_h unitexp(this quaternion_h q)
+    public static quaternion_h unitExp([This] quaternion_h q)
     {
         var v_rcp_len = q.value.xyz.lengthsq().rsqrt();
         var v_len = v_rcp_len.rcp();
@@ -1583,7 +1586,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static quaternion_h exp(this quaternion_h q)
+    public static quaternion_h exp([This] quaternion_h q)
     {
         var v_rcp_len = q.value.xyz.lengthsq().rsqrt();
         var v_len = v_rcp_len.rcp();
@@ -1592,7 +1595,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static quaternion_h unitlog(this quaternion_h q)
+    public static quaternion_h unitLog([This] quaternion_h q)
     {
         var w = q.value.w.clamp(-1.0f.half(), 1.0f.half());
         var s = (half)(acos(w) * rsqrt(1.0f.half() - w*w));
@@ -1600,7 +1603,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static quaternion_h log(this quaternion_h q)
+    public static quaternion_h log([This] quaternion_h q)
     {
         var v_len_sq = q.value.xyz.lengthsq();
         var q_len_sq = v_len_sq + q.value.w * q.value.w;
@@ -1610,27 +1613,27 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static quaternion_h mul(this quaternion_h a, quaternion_h b) => new(
+    public static quaternion_h mul([This] quaternion_h a, quaternion_h b) => new(
         a.value.wwww * b.value + (a.value.xyzx * b.value.wwwx + a.value.yzxy * b.value.zxyy) 
         * new half4(1.0f.half(), 1.0f.half(), 1.0f.half(), -1.0f.half()) - a.value.zxyz * b.value.yzxz
     );
 
     [MethodImpl(256 | 512)]
-    public static half3 mul(this quaternion_h q, half3 v)
+    public static half3 mul([This] quaternion_h q, half3 v)
     {
         var t = (half)2.0f * q.value.xyz.cross(v);
         return v + q.value.w * t + q.value.xyz.cross(t);
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 rotate(this quaternion_h q, half3 v) => mul(q, v);
+    public static half3 rotate([This] quaternion_h q, half3 v) => mul(q, v);
 
     [MethodImpl(256 | 512)]
-    public static quaternion_h nlerp(this half t, quaternion_h q1, quaternion_h q2) => 
+    public static quaternion_h nlerp([This] half t, quaternion_h q1, quaternion_h q2) => 
         normalize(q1.value + t * (chgsign(q2.value, dot(q1, q2)) - q1.value));
     
     [MethodImpl(256 | 512)]
-    public static quaternion_h slerp(this half t, quaternion_h q1, quaternion_h q2)
+    public static quaternion_h slerp([This] half t, quaternion_h q1, quaternion_h q2)
     {
         var dt = dot(q1, q2);
         if (dt < 0.0f.half())
@@ -1655,14 +1658,14 @@ public static partial class math
     }
     
     [MethodImpl(256 | 512)]
-    public static half angle(this quaternion_h q1, quaternion_h q2)
+    public static half angle([This] quaternion_h q1, quaternion_h q2)
     {
         var diff = q1.conjugate().mul(q2).normalize().value.xyz.length().asin();
         return (half)(diff + diff);
     }
     
     [MethodImpl(256 | 512)]
-    public static quaternion_h rotation(this half3x3 m)
+    public static quaternion_h rotation([This] half3x3 m)
     {
         var det = m.determinant();
         if (math.abs(1f.half() - det) < svd.k_EpsilonDeterminant_half)
@@ -1679,7 +1682,7 @@ public static partial class math
     }
     
     [MethodImpl(256 | 512)]
-    public static half3x3 adj(this half3x3 m, out half det)
+    public static half3x3 adj([This] half3x3 m, out half det)
     {
         half3x3 adjT;
         adjT.c0 = m.c1.cross(m.c2);
@@ -1691,14 +1694,14 @@ public static partial class math
     }
     
     [MethodImpl(256 | 512)]
-    public static bool adj(this half3x3 m, out half3x3 i)
+    public static bool adj([This] half3x3 m, out half3x3 i)
     {
         var epsilon = 1e-5f.half();
         return m.adj(out i, epsilon);
     }
 
     [MethodImpl(256 | 512)]
-    public static bool adj(this half3x3 m, out half3x3 i, half epsilon)
+    public static bool adj([This] half3x3 m, out half3x3 i, half epsilon)
     {
         i = adj(m, out half det);
         var c = det.abs() > epsilon;

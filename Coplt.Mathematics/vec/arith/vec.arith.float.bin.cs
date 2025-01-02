@@ -4,172 +4,147 @@ namespace Coplt.Mathematics;
 
 #region float2
 
+[Ex]
 public static partial class math
 {
     #pragma warning disable CS1718
     // ReSharper disable once EqualExpressionComparison
     [MethodImpl(256 | 512)]
-    public static b32v2 isNaN(this float2 a) => a != a;
+    public static b32v2 isNaN([This] float2 a) => a != a;
     #pragma warning restore CS1718
 
     [MethodImpl(256 | 512)]
-    public static b32v2 isFinite(this float2 a) => abs(a) < float.PositiveInfinity;
+    public static b32v2 isFinite([This] float2 a) => abs(a) < float.PositiveInfinity;
 
     [MethodImpl(256 | 512)]
-    public static b32v2 isInf(this float2 a)
+    public static b32v2 isInf([This] float2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.IsInfinity(a.vector).AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(simd.IsInfinity(a.vector).AsUInt32());
         return new(a.x.isInf(), a.y.isInf());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2 isPosInf(this float2 a)
+    public static b32v2 isPosInf([This] float2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector64.Equals(a.vector, Vector64.Create(float.PositiveInfinity)).AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(Vector64.Equals(a.vector, Vector64.Create(float.PositiveInfinity)).AsUInt32());
         return new(a.x.isPosInf(), a.y.isPosInf());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2 isNegInf(this float2 a)
+    public static b32v2 isNegInf([This] float2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector64.Equals(a.vector, Vector64.Create(float.NegativeInfinity)).AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(Vector64.Equals(a.vector, Vector64.Create(float.NegativeInfinity)).AsUInt32());
         return new(a.x.isNegInf(), a.y.isNegInf());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 log(this float2 a)
+    public static float2 log([This] float2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Log(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(simd.Log(a.vector));
         return new(a.x.log(), a.y.log());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 log2(this float2 a)
+    public static float2 log2([This] float2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Log2(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(simd.Log2(a.vector));
         return new(a.x.log2(), a.y.log2());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 log(this float2 a, float2 b)
+    public static float2 log([This] float2 a, float2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Log(a.vector) / simd.Log(b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(simd.Log(a.vector) / simd.Log(b.vector));
         return new(a.x.log(b.x), a.y.log(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 log10(this float2 a)
+    public static float2 log10([This] float2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Log10(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(simd.Log10(a.vector));
         return new(a.x.log10(), a.y.log10());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 exp(this float2 a)
+    public static float2 exp([This] float2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Exp(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(simd.Exp(a.vector));
         return new(a.x.exp(), a.y.exp());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 exp2(this float2 a)
+    public static float2 exp2([This] float2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Exp2(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(simd.Exp2(a.vector));
         return new(a.x.exp2(), a.y.exp2());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 exp10(this float2 a)
+    public static float2 exp10([This] float2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Exp10(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(simd.Exp10(a.vector));
         return new(a.x.exp10(), a.y.exp10());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 pow(this float2 a, float2 b)
+    public static float2 pow([This] float2 a, float2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Pow(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(simd.Pow(a.vector, b.vector));
         return new(a.x.pow(b.x), a.y.pow(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 pow(this float2 a, float b)
+    public static float2 pow([This] float2 a, float b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Pow(a.vector, b));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(simd.Pow(a.vector, b));
         return new(a.x.pow(b), a.y.pow(b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 sqrt(this float2 a)
+    public static float2 sqrt([This] float2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector64.Sqrt(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(Vector64.Sqrt(a.vector));
         return new(a.x.sqrt(), a.y.sqrt());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 rsqrt(this float2 a) => float2.One / sqrt(a);
+    public static float2 rsqrt([This] float2 a) => float2.One / sqrt(a);
 
     [MethodImpl(256 | 512)]
-    public static float length(this float2 a) => dot(a, a).sqrt();
+    public static float length([This] float2 a) => dot(a, a).sqrt();
 
     [MethodImpl(256 | 512)]
-    public static float distance(this float2 a, float2 b) => length(b - a);
+    public static float distance([This] float2 a, float2 b) => length(b - a);
 
     [MethodImpl(256 | 512)]
-    public static float2 normalize(this float2 a) => a * dot(a, a).rsqrt();
+    public static float2 normalize([This] float2 a) => a * dot(a, a).rsqrt();
 
     [MethodImpl(256 | 512)]
-    public static float2 normalizeSafe(this float2 a, float2 defaultvalue = default)
+    public static float2 normalizeSafe([This] float2 a, float2 defaultValue = default)
     {
         var len = dot(a, a);
-        return select(len > 1.175494351e-38f, a * rsqrt(len), defaultvalue);
+        return select(len > 1.175494351e-38f, a * rsqrt(len), defaultValue);
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 step(this float2 a, float2 threshold) =>
+    public static float2 step(float2 threshold, [This] float2 a) =>
         select(a >= threshold, float2.One, default);
 
     [MethodImpl(256 | 512)]
-    public static float2 refract(this float2 i, float2 n, float indexOfRefraction)
+    public static float2 refract(float2 i, float2 n, [This] float indexOfRefraction)
     {
         var ni = dot(n, i);
         var k = (float)(1.0f - indexOfRefraction * indexOfRefraction * (1.0f - ni * ni));
@@ -177,179 +152,152 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 projectSafe(this float2 a, float2 onto, float2 defaultValue = default) 
+    public static float2 projectSafe([This] float2 a, float2 onto, float2 defaultValue = default) 
     {
         var proj = project(a, onto);
         return select(all(isFinite(proj)), proj, defaultValue);
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 faceForward(this float2 n, float2 i, float2 ng) =>
+    public static float2 faceForward([This] float2 n, float2 i, float2 ng) =>
         select(dot(ng, i) >= 0.0f, -n, n);
 
     [MethodImpl(256 | 512)]
-    public static float2 sin(this float2 a)
+    public static float2 sin([This] float2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Sin(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(simd.Sin(a.vector));
         return new(a.x.sin(), a.y.sin());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 cos(this float2 a)
+    public static float2 cos([This] float2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Cos(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(simd.Cos(a.vector));
         return new(a.x.cos(), a.y.cos());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static (float2 sin, float2 cos) sincos(this float2 a)
+    public static (float2 sin, float2 cos) sincos([This] float2 a)
     {
-        #if NET8_0_OR_GREATER
-        var (sin, cos) = simd.SinCos(a.vector);
-        return (new(sin), new(cos));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+        {
+            var (sin, cos) = simd.SinCos(a.vector);
+            return (new(sin), new(cos));
+        }
         a.x.sincos(out var sin0, out var cos0);
         a.y.sincos(out var sin1, out var cos1);
         return (
             new(sin0, sin1),
             new(cos0, cos1)
         );
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static void sincos(this float2 a, out float2 sin, out float2 cos)
+    public static void sincos([This] float2 a, out float2 sin, out float2 cos)
     {
-        #if NET8_0_OR_GREATER
-        var (v_sin, v_cos) = simd.SinCos(a.vector);
-        sin = new(v_sin);
-        cos = new(v_cos);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+        {
+            (sin.vector, cos.vector) = simd.SinCos(a.vector);
+            return;
+        }
         a.x.sincos(out var sin0, out var cos0);
         a.y.sincos(out var sin1, out var cos1);
         sin = new(sin0, sin1);
         cos = new(cos0, cos1);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 tan(this float2 a)
+    public static float2 tan([This] float2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Tan(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(simd.Tan(a.vector));
         return new(a.x.tan(), a.y.tan());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 asin(this float2 a)
+    public static float2 asin([This] float2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Asin(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(simd.Asin(a.vector));
         return new(a.x.asin(), a.y.asin());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 acos(this float2 a)
+    public static float2 acos([This] float2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Acos(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(simd.Acos(a.vector));
         return new(a.x.acos(), a.y.acos());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 atan(this float2 a)
+    public static float2 atan([This] float2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Atan(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(simd.Atan(a.vector));
         return new(a.x.atan(), a.y.atan());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 atan2(this float2 a, float2 b)
+    public static float2 atan2([This] float2 a, float2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Atan2(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(simd.Atan2(a.vector, b.vector));
         return new(a.x.atan2(b.x), a.y.atan2(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 sinh(this float2 a)
+    public static float2 sinh([This] float2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Sinh(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(simd.Sinh(a.vector));
         return new(a.x.sinh(), a.y.sinh());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 cosh(this float2 a)
+    public static float2 cosh([This] float2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Cosh(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(simd.Cosh(a.vector));
         return new(a.x.cosh(), a.y.cosh());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 tanh(this float2 a)
+    public static float2 tanh([This] float2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Tanh(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(simd.Tanh(a.vector));
         return new(a.x.tanh(), a.y.tanh());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 asinh(this float2 a)
+    public static float2 asinh([This] float2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Asinh(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(simd.Asinh(a.vector));
         return new(a.x.asinh(), a.y.asinh());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 acosh(this float2 a)
+    public static float2 acosh([This] float2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Acosh(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(simd.Acosh(a.vector));
         return new(a.x.acosh(), a.y.acosh());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 atanh(this float2 a)
+    public static float2 atanh([This] float2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Atanh(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(simd.Atanh(a.vector));
         return new(a.x.atanh(), a.y.atanh());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 chgsign(this float2 a, float2 b)
+    public static float2 chgsign([This] float2 a, float2 b)
     {
         var sig = new uint2(0x8000_0000).asf();
         return (b & sig) ^ a;
@@ -360,172 +308,147 @@ public static partial class math
 
 #region float3
 
+[Ex]
 public static partial class math
 {
     #pragma warning disable CS1718
     // ReSharper disable once EqualExpressionComparison
     [MethodImpl(256 | 512)]
-    public static b32v3 isNaN(this float3 a) => a != a;
+    public static b32v3 isNaN([This] float3 a) => a != a;
     #pragma warning restore CS1718
 
     [MethodImpl(256 | 512)]
-    public static b32v3 isFinite(this float3 a) => abs(a) < float.PositiveInfinity;
+    public static b32v3 isFinite([This] float3 a) => abs(a) < float.PositiveInfinity;
 
     [MethodImpl(256 | 512)]
-    public static b32v3 isInf(this float3 a)
+    public static b32v3 isInf([This] float3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.IsInfinity(a.vector).AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.IsInfinity(a.vector).AsUInt32());
         return new(a.x.isInf(), a.y.isInf(), a.z.isInf());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3 isPosInf(this float3 a)
+    public static b32v3 isPosInf([This] float3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Equals(a.vector, Vector128.Create(float.PositiveInfinity)).AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Equals(a.vector, Vector128.Create(float.PositiveInfinity)).AsUInt32());
         return new(a.x.isPosInf(), a.y.isPosInf(), a.z.isPosInf());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3 isNegInf(this float3 a)
+    public static b32v3 isNegInf([This] float3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Equals(a.vector, Vector128.Create(float.NegativeInfinity)).AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Equals(a.vector, Vector128.Create(float.NegativeInfinity)).AsUInt32());
         return new(a.x.isNegInf(), a.y.isNegInf(), a.z.isNegInf());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 log(this float3 a)
+    public static float3 log([This] float3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Log(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Log(a.vector));
         return new(a.x.log(), a.y.log(), a.z.log());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 log2(this float3 a)
+    public static float3 log2([This] float3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Log2(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Log2(a.vector));
         return new(a.x.log2(), a.y.log2(), a.z.log2());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 log(this float3 a, float3 b)
+    public static float3 log([This] float3 a, float3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Log(a.vector) / simd.Log(b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Log(a.vector) / simd.Log(b.vector));
         return new(a.x.log(b.x), a.y.log(b.y), a.z.log(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 log10(this float3 a)
+    public static float3 log10([This] float3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Log10(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Log10(a.vector));
         return new(a.x.log10(), a.y.log10(), a.z.log10());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 exp(this float3 a)
+    public static float3 exp([This] float3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Exp(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Exp(a.vector));
         return new(a.x.exp(), a.y.exp(), a.z.exp());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 exp2(this float3 a)
+    public static float3 exp2([This] float3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Exp2(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Exp2(a.vector));
         return new(a.x.exp2(), a.y.exp2(), a.z.exp2());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 exp10(this float3 a)
+    public static float3 exp10([This] float3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Exp10(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Exp10(a.vector));
         return new(a.x.exp10(), a.y.exp10(), a.z.exp10());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 pow(this float3 a, float3 b)
+    public static float3 pow([This] float3 a, float3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Pow(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Pow(a.vector, b.vector));
         return new(a.x.pow(b.x), a.y.pow(b.y), a.z.pow(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 pow(this float3 a, float b)
+    public static float3 pow([This] float3 a, float b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Pow(a.vector, b));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Pow(a.vector, b));
         return new(a.x.pow(b), a.y.pow(b), a.z.pow(b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 sqrt(this float3 a)
+    public static float3 sqrt([This] float3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Sqrt(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Sqrt(a.vector));
         return new(a.x.sqrt(), a.y.sqrt(), a.z.sqrt());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 rsqrt(this float3 a) => float3.One / sqrt(a);
+    public static float3 rsqrt([This] float3 a) => float3.One / sqrt(a);
 
     [MethodImpl(256 | 512)]
-    public static float length(this float3 a) => dot(a, a).sqrt();
+    public static float length([This] float3 a) => dot(a, a).sqrt();
 
     [MethodImpl(256 | 512)]
-    public static float distance(this float3 a, float3 b) => length(b - a);
+    public static float distance([This] float3 a, float3 b) => length(b - a);
 
     [MethodImpl(256 | 512)]
-    public static float3 normalize(this float3 a) => a * dot(a, a).rsqrt();
+    public static float3 normalize([This] float3 a) => a * dot(a, a).rsqrt();
 
     [MethodImpl(256 | 512)]
-    public static float3 normalizeSafe(this float3 a, float3 defaultvalue = default)
+    public static float3 normalizeSafe([This] float3 a, float3 defaultValue = default)
     {
         var len = dot(a, a);
-        return select(len > 1.175494351e-38f, a * rsqrt(len), defaultvalue);
+        return select(len > 1.175494351e-38f, a * rsqrt(len), defaultValue);
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 step(this float3 a, float3 threshold) =>
+    public static float3 step(float3 threshold, [This] float3 a) =>
         select(a >= threshold, float3.One, default);
 
     [MethodImpl(256 | 512)]
-    public static float3 refract(this float3 i, float3 n, float indexOfRefraction)
+    public static float3 refract(float3 i, float3 n, [This] float indexOfRefraction)
     {
         var ni = dot(n, i);
         var k = (float)(1.0f - indexOfRefraction * indexOfRefraction * (1.0f - ni * ni));
@@ -533,43 +456,40 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 projectSafe(this float3 a, float3 onto, float3 defaultValue = default) 
+    public static float3 projectSafe([This] float3 a, float3 onto, float3 defaultValue = default) 
     {
         var proj = project(a, onto);
         return select(all(isFinite(proj)), proj, defaultValue);
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 faceForward(this float3 n, float3 i, float3 ng) =>
+    public static float3 faceForward([This] float3 n, float3 i, float3 ng) =>
         select(dot(ng, i) >= 0.0f, -n, n);
 
     [MethodImpl(256 | 512)]
-    public static float3 sin(this float3 a)
+    public static float3 sin([This] float3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Sin(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Sin(a.vector));
         return new(a.x.sin(), a.y.sin(), a.z.sin());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 cos(this float3 a)
+    public static float3 cos([This] float3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Cos(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Cos(a.vector));
         return new(a.x.cos(), a.y.cos(), a.z.cos());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static (float3 sin, float3 cos) sincos(this float3 a)
+    public static (float3 sin, float3 cos) sincos([This] float3 a)
     {
-        #if NET8_0_OR_GREATER
-        var (sin, cos) = simd.SinCos(a.vector);
-        return (new(sin), new(cos));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var (sin, cos) = simd.SinCos(a.vector);
+            return (new(sin), new(cos));
+        }
         a.x.sincos(out var sin0, out var cos0);
         a.y.sincos(out var sin1, out var cos1);
         a.z.sincos(out var sin2, out var cos2);
@@ -577,137 +497,113 @@ public static partial class math
             new(sin0, sin1, sin2),
             new(cos0, cos1, cos2)
         );
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static void sincos(this float3 a, out float3 sin, out float3 cos)
+    public static void sincos([This] float3 a, out float3 sin, out float3 cos)
     {
-        #if NET8_0_OR_GREATER
-        var (v_sin, v_cos) = simd.SinCos(a.vector);
-        sin = new(v_sin);
-        cos = new(v_cos);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            (sin.vector, cos.vector) = simd.SinCos(a.vector);
+            return;
+        }
         a.x.sincos(out var sin0, out var cos0);
         a.y.sincos(out var sin1, out var cos1);
         a.z.sincos(out var sin2, out var cos2);
         sin = new(sin0, sin1, sin2);
         cos = new(cos0, cos1, cos2);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 tan(this float3 a)
+    public static float3 tan([This] float3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Tan(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Tan(a.vector));
         return new(a.x.tan(), a.y.tan(), a.z.tan());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 asin(this float3 a)
+    public static float3 asin([This] float3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Asin(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Asin(a.vector));
         return new(a.x.asin(), a.y.asin(), a.z.asin());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 acos(this float3 a)
+    public static float3 acos([This] float3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Acos(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Acos(a.vector));
         return new(a.x.acos(), a.y.acos(), a.z.acos());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 atan(this float3 a)
+    public static float3 atan([This] float3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Atan(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Atan(a.vector));
         return new(a.x.atan(), a.y.atan(), a.z.atan());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 atan2(this float3 a, float3 b)
+    public static float3 atan2([This] float3 a, float3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Atan2(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Atan2(a.vector, b.vector));
         return new(a.x.atan2(b.x), a.y.atan2(b.y), a.z.atan2(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 sinh(this float3 a)
+    public static float3 sinh([This] float3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Sinh(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Sinh(a.vector));
         return new(a.x.sinh(), a.y.sinh(), a.z.sinh());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 cosh(this float3 a)
+    public static float3 cosh([This] float3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Cosh(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Cosh(a.vector));
         return new(a.x.cosh(), a.y.cosh(), a.z.cosh());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 tanh(this float3 a)
+    public static float3 tanh([This] float3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Tanh(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Tanh(a.vector));
         return new(a.x.tanh(), a.y.tanh(), a.z.tanh());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 asinh(this float3 a)
+    public static float3 asinh([This] float3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Asinh(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Asinh(a.vector));
         return new(a.x.asinh(), a.y.asinh(), a.z.asinh());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 acosh(this float3 a)
+    public static float3 acosh([This] float3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Acosh(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Acosh(a.vector));
         return new(a.x.acosh(), a.y.acosh(), a.z.acosh());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 atanh(this float3 a)
+    public static float3 atanh([This] float3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Atanh(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Atanh(a.vector));
         return new(a.x.atanh(), a.y.atanh(), a.z.atanh());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 chgsign(this float3 a, float3 b)
+    public static float3 chgsign([This] float3 a, float3 b)
     {
         var sig = new uint3(0x8000_0000).asf();
         return (b & sig) ^ a;
@@ -718,172 +614,147 @@ public static partial class math
 
 #region float4
 
+[Ex]
 public static partial class math
 {
     #pragma warning disable CS1718
     // ReSharper disable once EqualExpressionComparison
     [MethodImpl(256 | 512)]
-    public static b32v4 isNaN(this float4 a) => a != a;
+    public static b32v4 isNaN([This] float4 a) => a != a;
     #pragma warning restore CS1718
 
     [MethodImpl(256 | 512)]
-    public static b32v4 isFinite(this float4 a) => abs(a) < float.PositiveInfinity;
+    public static b32v4 isFinite([This] float4 a) => abs(a) < float.PositiveInfinity;
 
     [MethodImpl(256 | 512)]
-    public static b32v4 isInf(this float4 a)
+    public static b32v4 isInf([This] float4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.IsInfinity(a.vector).AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.IsInfinity(a.vector).AsUInt32());
         return new(a.x.isInf(), a.y.isInf(), a.z.isInf(), a.w.isInf());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4 isPosInf(this float4 a)
+    public static b32v4 isPosInf([This] float4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Equals(a.vector, Vector128.Create(float.PositiveInfinity)).AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Equals(a.vector, Vector128.Create(float.PositiveInfinity)).AsUInt32());
         return new(a.x.isPosInf(), a.y.isPosInf(), a.z.isPosInf(), a.w.isPosInf());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4 isNegInf(this float4 a)
+    public static b32v4 isNegInf([This] float4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Equals(a.vector, Vector128.Create(float.NegativeInfinity)).AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Equals(a.vector, Vector128.Create(float.NegativeInfinity)).AsUInt32());
         return new(a.x.isNegInf(), a.y.isNegInf(), a.z.isNegInf(), a.w.isNegInf());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 log(this float4 a)
+    public static float4 log([This] float4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Log(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Log(a.vector));
         return new(a.x.log(), a.y.log(), a.z.log(), a.w.log());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 log2(this float4 a)
+    public static float4 log2([This] float4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Log2(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Log2(a.vector));
         return new(a.x.log2(), a.y.log2(), a.z.log2(), a.w.log2());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 log(this float4 a, float4 b)
+    public static float4 log([This] float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Log(a.vector) / simd.Log(b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Log(a.vector) / simd.Log(b.vector));
         return new(a.x.log(b.x), a.y.log(b.y), a.z.log(b.z), a.w.log(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 log10(this float4 a)
+    public static float4 log10([This] float4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Log10(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Log10(a.vector));
         return new(a.x.log10(), a.y.log10(), a.z.log10(), a.w.log10());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 exp(this float4 a)
+    public static float4 exp([This] float4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Exp(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Exp(a.vector));
         return new(a.x.exp(), a.y.exp(), a.z.exp(), a.w.exp());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 exp2(this float4 a)
+    public static float4 exp2([This] float4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Exp2(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Exp2(a.vector));
         return new(a.x.exp2(), a.y.exp2(), a.z.exp2(), a.w.exp2());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 exp10(this float4 a)
+    public static float4 exp10([This] float4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Exp10(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Exp10(a.vector));
         return new(a.x.exp10(), a.y.exp10(), a.z.exp10(), a.w.exp10());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 pow(this float4 a, float4 b)
+    public static float4 pow([This] float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Pow(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Pow(a.vector, b.vector));
         return new(a.x.pow(b.x), a.y.pow(b.y), a.z.pow(b.z), a.w.pow(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 pow(this float4 a, float b)
+    public static float4 pow([This] float4 a, float b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Pow(a.vector, b));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Pow(a.vector, b));
         return new(a.x.pow(b), a.y.pow(b), a.z.pow(b), a.w.pow(b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 sqrt(this float4 a)
+    public static float4 sqrt([This] float4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Sqrt(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Sqrt(a.vector));
         return new(a.x.sqrt(), a.y.sqrt(), a.z.sqrt(), a.w.sqrt());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 rsqrt(this float4 a) => float4.One / sqrt(a);
+    public static float4 rsqrt([This] float4 a) => float4.One / sqrt(a);
 
     [MethodImpl(256 | 512)]
-    public static float length(this float4 a) => dot(a, a).sqrt();
+    public static float length([This] float4 a) => dot(a, a).sqrt();
 
     [MethodImpl(256 | 512)]
-    public static float distance(this float4 a, float4 b) => length(b - a);
+    public static float distance([This] float4 a, float4 b) => length(b - a);
 
     [MethodImpl(256 | 512)]
-    public static float4 normalize(this float4 a) => a * dot(a, a).rsqrt();
+    public static float4 normalize([This] float4 a) => a * dot(a, a).rsqrt();
 
     [MethodImpl(256 | 512)]
-    public static float4 normalizeSafe(this float4 a, float4 defaultvalue = default)
+    public static float4 normalizeSafe([This] float4 a, float4 defaultValue = default)
     {
         var len = dot(a, a);
-        return select(len > 1.175494351e-38f, a * rsqrt(len), defaultvalue);
+        return select(len > 1.175494351e-38f, a * rsqrt(len), defaultValue);
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 step(this float4 a, float4 threshold) =>
+    public static float4 step(float4 threshold, [This] float4 a) =>
         select(a >= threshold, float4.One, default);
 
     [MethodImpl(256 | 512)]
-    public static float4 refract(this float4 i, float4 n, float indexOfRefraction)
+    public static float4 refract(float4 i, float4 n, [This] float indexOfRefraction)
     {
         var ni = dot(n, i);
         var k = (float)(1.0f - indexOfRefraction * indexOfRefraction * (1.0f - ni * ni));
@@ -891,43 +762,40 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 projectSafe(this float4 a, float4 onto, float4 defaultValue = default) 
+    public static float4 projectSafe([This] float4 a, float4 onto, float4 defaultValue = default) 
     {
         var proj = project(a, onto);
         return select(all(isFinite(proj)), proj, defaultValue);
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 faceForward(this float4 n, float4 i, float4 ng) =>
+    public static float4 faceForward([This] float4 n, float4 i, float4 ng) =>
         select(dot(ng, i) >= 0.0f, -n, n);
 
     [MethodImpl(256 | 512)]
-    public static float4 sin(this float4 a)
+    public static float4 sin([This] float4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Sin(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Sin(a.vector));
         return new(a.x.sin(), a.y.sin(), a.z.sin(), a.w.sin());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 cos(this float4 a)
+    public static float4 cos([This] float4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Cos(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Cos(a.vector));
         return new(a.x.cos(), a.y.cos(), a.z.cos(), a.w.cos());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static (float4 sin, float4 cos) sincos(this float4 a)
+    public static (float4 sin, float4 cos) sincos([This] float4 a)
     {
-        #if NET8_0_OR_GREATER
-        var (sin, cos) = simd.SinCos(a.vector);
-        return (new(sin), new(cos));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var (sin, cos) = simd.SinCos(a.vector);
+            return (new(sin), new(cos));
+        }
         a.x.sincos(out var sin0, out var cos0);
         a.y.sincos(out var sin1, out var cos1);
         a.z.sincos(out var sin2, out var cos2);
@@ -936,138 +804,114 @@ public static partial class math
             new(sin0, sin1, sin2, sin3),
             new(cos0, cos1, cos2, cos3)
         );
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static void sincos(this float4 a, out float4 sin, out float4 cos)
+    public static void sincos([This] float4 a, out float4 sin, out float4 cos)
     {
-        #if NET8_0_OR_GREATER
-        var (v_sin, v_cos) = simd.SinCos(a.vector);
-        sin = new(v_sin);
-        cos = new(v_cos);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            (sin.vector, cos.vector) = simd.SinCos(a.vector);
+            return;
+        }
         a.x.sincos(out var sin0, out var cos0);
         a.y.sincos(out var sin1, out var cos1);
         a.z.sincos(out var sin2, out var cos2);
         a.w.sincos(out var sin3, out var cos3);
         sin = new(sin0, sin1, sin2, sin3);
         cos = new(cos0, cos1, cos2, cos3);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 tan(this float4 a)
+    public static float4 tan([This] float4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Tan(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Tan(a.vector));
         return new(a.x.tan(), a.y.tan(), a.z.tan(), a.w.tan());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 asin(this float4 a)
+    public static float4 asin([This] float4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Asin(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Asin(a.vector));
         return new(a.x.asin(), a.y.asin(), a.z.asin(), a.w.asin());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 acos(this float4 a)
+    public static float4 acos([This] float4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Acos(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Acos(a.vector));
         return new(a.x.acos(), a.y.acos(), a.z.acos(), a.w.acos());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 atan(this float4 a)
+    public static float4 atan([This] float4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Atan(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Atan(a.vector));
         return new(a.x.atan(), a.y.atan(), a.z.atan(), a.w.atan());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 atan2(this float4 a, float4 b)
+    public static float4 atan2([This] float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Atan2(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Atan2(a.vector, b.vector));
         return new(a.x.atan2(b.x), a.y.atan2(b.y), a.z.atan2(b.z), a.w.atan2(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 sinh(this float4 a)
+    public static float4 sinh([This] float4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Sinh(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Sinh(a.vector));
         return new(a.x.sinh(), a.y.sinh(), a.z.sinh(), a.w.sinh());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 cosh(this float4 a)
+    public static float4 cosh([This] float4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Cosh(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Cosh(a.vector));
         return new(a.x.cosh(), a.y.cosh(), a.z.cosh(), a.w.cosh());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 tanh(this float4 a)
+    public static float4 tanh([This] float4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Tanh(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Tanh(a.vector));
         return new(a.x.tanh(), a.y.tanh(), a.z.tanh(), a.w.tanh());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 asinh(this float4 a)
+    public static float4 asinh([This] float4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Asinh(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Asinh(a.vector));
         return new(a.x.asinh(), a.y.asinh(), a.z.asinh(), a.w.asinh());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 acosh(this float4 a)
+    public static float4 acosh([This] float4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Acosh(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Acosh(a.vector));
         return new(a.x.acosh(), a.y.acosh(), a.z.acosh(), a.w.acosh());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 atanh(this float4 a)
+    public static float4 atanh([This] float4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Atanh(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Atanh(a.vector));
         return new(a.x.atanh(), a.y.atanh(), a.z.atanh(), a.w.atanh());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 chgsign(this float4 a, float4 b)
+    public static float4 chgsign([This] float4 a, float4 b)
     {
         var sig = new uint4(0x8000_0000).asf();
         return (b & sig) ^ a;
@@ -1078,172 +922,147 @@ public static partial class math
 
 #region double2
 
+[Ex]
 public static partial class math
 {
     #pragma warning disable CS1718
     // ReSharper disable once EqualExpressionComparison
     [MethodImpl(256 | 512)]
-    public static b64v2 isNaN(this double2 a) => a != a;
+    public static b64v2 isNaN([This] double2 a) => a != a;
     #pragma warning restore CS1718
 
     [MethodImpl(256 | 512)]
-    public static b64v2 isFinite(this double2 a) => abs(a) < double.PositiveInfinity;
+    public static b64v2 isFinite([This] double2 a) => abs(a) < double.PositiveInfinity;
 
     [MethodImpl(256 | 512)]
-    public static b64v2 isInf(this double2 a)
+    public static b64v2 isInf([This] double2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.IsInfinity(a.vector).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.IsInfinity(a.vector).AsUInt64());
         return new(a.x.isInf(), a.y.isInf());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2 isPosInf(this double2 a)
+    public static b64v2 isPosInf([This] double2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Equals(a.vector, Vector128.Create(double.PositiveInfinity)).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Equals(a.vector, Vector128.Create(double.PositiveInfinity)).AsUInt64());
         return new(a.x.isPosInf(), a.y.isPosInf());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2 isNegInf(this double2 a)
+    public static b64v2 isNegInf([This] double2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Equals(a.vector, Vector128.Create(double.NegativeInfinity)).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Equals(a.vector, Vector128.Create(double.NegativeInfinity)).AsUInt64());
         return new(a.x.isNegInf(), a.y.isNegInf());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 log(this double2 a)
+    public static double2 log([This] double2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Log(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Log(a.vector));
         return new(a.x.log(), a.y.log());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 log2(this double2 a)
+    public static double2 log2([This] double2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Log2(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Log2(a.vector));
         return new(a.x.log2(), a.y.log2());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 log(this double2 a, double2 b)
+    public static double2 log([This] double2 a, double2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Log(a.vector) / simd.Log(b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Log(a.vector) / simd.Log(b.vector));
         return new(a.x.log(b.x), a.y.log(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 log10(this double2 a)
+    public static double2 log10([This] double2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Log10(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Log10(a.vector));
         return new(a.x.log10(), a.y.log10());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 exp(this double2 a)
+    public static double2 exp([This] double2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Exp(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Exp(a.vector));
         return new(a.x.exp(), a.y.exp());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 exp2(this double2 a)
+    public static double2 exp2([This] double2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Exp2(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Exp2(a.vector));
         return new(a.x.exp2(), a.y.exp2());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 exp10(this double2 a)
+    public static double2 exp10([This] double2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Exp10(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Exp10(a.vector));
         return new(a.x.exp10(), a.y.exp10());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 pow(this double2 a, double2 b)
+    public static double2 pow([This] double2 a, double2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Pow(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Pow(a.vector, b.vector));
         return new(a.x.pow(b.x), a.y.pow(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 pow(this double2 a, double b)
+    public static double2 pow([This] double2 a, double b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Pow(a.vector, b));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Pow(a.vector, b));
         return new(a.x.pow(b), a.y.pow(b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 sqrt(this double2 a)
+    public static double2 sqrt([This] double2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Sqrt(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Sqrt(a.vector));
         return new(a.x.sqrt(), a.y.sqrt());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 rsqrt(this double2 a) => double2.One / sqrt(a);
+    public static double2 rsqrt([This] double2 a) => double2.One / sqrt(a);
 
     [MethodImpl(256 | 512)]
-    public static double length(this double2 a) => dot(a, a).sqrt();
+    public static double length([This] double2 a) => dot(a, a).sqrt();
 
     [MethodImpl(256 | 512)]
-    public static double distance(this double2 a, double2 b) => length(b - a);
+    public static double distance([This] double2 a, double2 b) => length(b - a);
 
     [MethodImpl(256 | 512)]
-    public static double2 normalize(this double2 a) => a * dot(a, a).rsqrt();
+    public static double2 normalize([This] double2 a) => a * dot(a, a).rsqrt();
 
     [MethodImpl(256 | 512)]
-    public static double2 normalizeSafe(this double2 a, double2 defaultvalue = default)
+    public static double2 normalizeSafe([This] double2 a, double2 defaultValue = default)
     {
         var len = dot(a, a);
-        return select(len > 1.175494351e-38, a * rsqrt(len), defaultvalue);
+        return select(len > 1.175494351e-38, a * rsqrt(len), defaultValue);
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 step(this double2 a, double2 threshold) =>
+    public static double2 step(double2 threshold, [This] double2 a) =>
         select(a >= threshold, double2.One, default);
 
     [MethodImpl(256 | 512)]
-    public static double2 refract(this double2 i, double2 n, double indexOfRefraction)
+    public static double2 refract(double2 i, double2 n, [This] double indexOfRefraction)
     {
         var ni = dot(n, i);
         var k = (double)(1.0 - indexOfRefraction * indexOfRefraction * (1.0 - ni * ni));
@@ -1251,179 +1070,152 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 projectSafe(this double2 a, double2 onto, double2 defaultValue = default) 
+    public static double2 projectSafe([This] double2 a, double2 onto, double2 defaultValue = default) 
     {
         var proj = project(a, onto);
         return select(all(isFinite(proj)), proj, defaultValue);
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 faceForward(this double2 n, double2 i, double2 ng) =>
+    public static double2 faceForward([This] double2 n, double2 i, double2 ng) =>
         select(dot(ng, i) >= 0.0, -n, n);
 
     [MethodImpl(256 | 512)]
-    public static double2 sin(this double2 a)
+    public static double2 sin([This] double2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Sin(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Sin(a.vector));
         return new(a.x.sin(), a.y.sin());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 cos(this double2 a)
+    public static double2 cos([This] double2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Cos(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Cos(a.vector));
         return new(a.x.cos(), a.y.cos());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static (double2 sin, double2 cos) sincos(this double2 a)
+    public static (double2 sin, double2 cos) sincos([This] double2 a)
     {
-        #if NET8_0_OR_GREATER
-        var (sin, cos) = simd.SinCos(a.vector);
-        return (new(sin), new(cos));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var (sin, cos) = simd.SinCos(a.vector);
+            return (new(sin), new(cos));
+        }
         a.x.sincos(out var sin0, out var cos0);
         a.y.sincos(out var sin1, out var cos1);
         return (
             new(sin0, sin1),
             new(cos0, cos1)
         );
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static void sincos(this double2 a, out double2 sin, out double2 cos)
+    public static void sincos([This] double2 a, out double2 sin, out double2 cos)
     {
-        #if NET8_0_OR_GREATER
-        var (v_sin, v_cos) = simd.SinCos(a.vector);
-        sin = new(v_sin);
-        cos = new(v_cos);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            (sin.vector, cos.vector) = simd.SinCos(a.vector);
+            return;
+        }
         a.x.sincos(out var sin0, out var cos0);
         a.y.sincos(out var sin1, out var cos1);
         sin = new(sin0, sin1);
         cos = new(cos0, cos1);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 tan(this double2 a)
+    public static double2 tan([This] double2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Tan(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Tan(a.vector));
         return new(a.x.tan(), a.y.tan());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 asin(this double2 a)
+    public static double2 asin([This] double2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Asin(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Asin(a.vector));
         return new(a.x.asin(), a.y.asin());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 acos(this double2 a)
+    public static double2 acos([This] double2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Acos(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Acos(a.vector));
         return new(a.x.acos(), a.y.acos());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 atan(this double2 a)
+    public static double2 atan([This] double2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Atan(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Atan(a.vector));
         return new(a.x.atan(), a.y.atan());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 atan2(this double2 a, double2 b)
+    public static double2 atan2([This] double2 a, double2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Atan2(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Atan2(a.vector, b.vector));
         return new(a.x.atan2(b.x), a.y.atan2(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 sinh(this double2 a)
+    public static double2 sinh([This] double2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Sinh(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Sinh(a.vector));
         return new(a.x.sinh(), a.y.sinh());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 cosh(this double2 a)
+    public static double2 cosh([This] double2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Cosh(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Cosh(a.vector));
         return new(a.x.cosh(), a.y.cosh());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 tanh(this double2 a)
+    public static double2 tanh([This] double2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Tanh(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Tanh(a.vector));
         return new(a.x.tanh(), a.y.tanh());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 asinh(this double2 a)
+    public static double2 asinh([This] double2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Asinh(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Asinh(a.vector));
         return new(a.x.asinh(), a.y.asinh());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 acosh(this double2 a)
+    public static double2 acosh([This] double2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Acosh(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Acosh(a.vector));
         return new(a.x.acosh(), a.y.acosh());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 atanh(this double2 a)
+    public static double2 atanh([This] double2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Atanh(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Atanh(a.vector));
         return new(a.x.atanh(), a.y.atanh());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 chgsign(this double2 a, double2 b)
+    public static double2 chgsign([This] double2 a, double2 b)
     {
         var sig = new ulong2(0x8000_0000_0000_0000).asf();
         return (b & sig) ^ a;
@@ -1434,172 +1226,147 @@ public static partial class math
 
 #region double3
 
+[Ex]
 public static partial class math
 {
     #pragma warning disable CS1718
     // ReSharper disable once EqualExpressionComparison
     [MethodImpl(256 | 512)]
-    public static b64v3 isNaN(this double3 a) => a != a;
+    public static b64v3 isNaN([This] double3 a) => a != a;
     #pragma warning restore CS1718
 
     [MethodImpl(256 | 512)]
-    public static b64v3 isFinite(this double3 a) => abs(a) < double.PositiveInfinity;
+    public static b64v3 isFinite([This] double3 a) => abs(a) < double.PositiveInfinity;
 
     [MethodImpl(256 | 512)]
-    public static b64v3 isInf(this double3 a)
+    public static b64v3 isInf([This] double3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.IsInfinity(a.vector).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.IsInfinity(a.vector).AsUInt64());
         return new(a.x.isInf(), a.y.isInf(), a.z.isInf());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v3 isPosInf(this double3 a)
+    public static b64v3 isPosInf([This] double3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.Equals(a.vector, Vector256.Create(double.PositiveInfinity)).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.Equals(a.vector, Vector256.Create(double.PositiveInfinity)).AsUInt64());
         return new(a.x.isPosInf(), a.y.isPosInf(), a.z.isPosInf());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v3 isNegInf(this double3 a)
+    public static b64v3 isNegInf([This] double3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.Equals(a.vector, Vector256.Create(double.NegativeInfinity)).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.Equals(a.vector, Vector256.Create(double.NegativeInfinity)).AsUInt64());
         return new(a.x.isNegInf(), a.y.isNegInf(), a.z.isNegInf());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 log(this double3 a)
+    public static double3 log([This] double3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Log(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Log(a.vector));
         return new(a.x.log(), a.y.log(), a.z.log());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 log2(this double3 a)
+    public static double3 log2([This] double3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Log2(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Log2(a.vector));
         return new(a.x.log2(), a.y.log2(), a.z.log2());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 log(this double3 a, double3 b)
+    public static double3 log([This] double3 a, double3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Log(a.vector) / simd.Log(b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Log(a.vector) / simd.Log(b.vector));
         return new(a.x.log(b.x), a.y.log(b.y), a.z.log(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 log10(this double3 a)
+    public static double3 log10([This] double3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Log10(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Log10(a.vector));
         return new(a.x.log10(), a.y.log10(), a.z.log10());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 exp(this double3 a)
+    public static double3 exp([This] double3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Exp(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Exp(a.vector));
         return new(a.x.exp(), a.y.exp(), a.z.exp());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 exp2(this double3 a)
+    public static double3 exp2([This] double3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Exp2(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Exp2(a.vector));
         return new(a.x.exp2(), a.y.exp2(), a.z.exp2());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 exp10(this double3 a)
+    public static double3 exp10([This] double3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Exp10(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Exp10(a.vector));
         return new(a.x.exp10(), a.y.exp10(), a.z.exp10());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 pow(this double3 a, double3 b)
+    public static double3 pow([This] double3 a, double3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Pow(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Pow(a.vector, b.vector));
         return new(a.x.pow(b.x), a.y.pow(b.y), a.z.pow(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 pow(this double3 a, double b)
+    public static double3 pow([This] double3 a, double b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Pow(a.vector, b));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Pow(a.vector, b));
         return new(a.x.pow(b), a.y.pow(b), a.z.pow(b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 sqrt(this double3 a)
+    public static double3 sqrt([This] double3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.Sqrt(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.Sqrt(a.vector));
         return new(a.x.sqrt(), a.y.sqrt(), a.z.sqrt());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 rsqrt(this double3 a) => double3.One / sqrt(a);
+    public static double3 rsqrt([This] double3 a) => double3.One / sqrt(a);
 
     [MethodImpl(256 | 512)]
-    public static double length(this double3 a) => dot(a, a).sqrt();
+    public static double length([This] double3 a) => dot(a, a).sqrt();
 
     [MethodImpl(256 | 512)]
-    public static double distance(this double3 a, double3 b) => length(b - a);
+    public static double distance([This] double3 a, double3 b) => length(b - a);
 
     [MethodImpl(256 | 512)]
-    public static double3 normalize(this double3 a) => a * dot(a, a).rsqrt();
+    public static double3 normalize([This] double3 a) => a * dot(a, a).rsqrt();
 
     [MethodImpl(256 | 512)]
-    public static double3 normalizeSafe(this double3 a, double3 defaultvalue = default)
+    public static double3 normalizeSafe([This] double3 a, double3 defaultValue = default)
     {
         var len = dot(a, a);
-        return select(len > 1.175494351e-38, a * rsqrt(len), defaultvalue);
+        return select(len > 1.175494351e-38, a * rsqrt(len), defaultValue);
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 step(this double3 a, double3 threshold) =>
+    public static double3 step(double3 threshold, [This] double3 a) =>
         select(a >= threshold, double3.One, default);
 
     [MethodImpl(256 | 512)]
-    public static double3 refract(this double3 i, double3 n, double indexOfRefraction)
+    public static double3 refract(double3 i, double3 n, [This] double indexOfRefraction)
     {
         var ni = dot(n, i);
         var k = (double)(1.0 - indexOfRefraction * indexOfRefraction * (1.0 - ni * ni));
@@ -1607,43 +1374,40 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 projectSafe(this double3 a, double3 onto, double3 defaultValue = default) 
+    public static double3 projectSafe([This] double3 a, double3 onto, double3 defaultValue = default) 
     {
         var proj = project(a, onto);
         return select(all(isFinite(proj)), proj, defaultValue);
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 faceForward(this double3 n, double3 i, double3 ng) =>
+    public static double3 faceForward([This] double3 n, double3 i, double3 ng) =>
         select(dot(ng, i) >= 0.0, -n, n);
 
     [MethodImpl(256 | 512)]
-    public static double3 sin(this double3 a)
+    public static double3 sin([This] double3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Sin(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Sin(a.vector));
         return new(a.x.sin(), a.y.sin(), a.z.sin());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 cos(this double3 a)
+    public static double3 cos([This] double3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Cos(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Cos(a.vector));
         return new(a.x.cos(), a.y.cos(), a.z.cos());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static (double3 sin, double3 cos) sincos(this double3 a)
+    public static (double3 sin, double3 cos) sincos([This] double3 a)
     {
-        #if NET8_0_OR_GREATER
-        var (sin, cos) = simd.SinCos(a.vector);
-        return (new(sin), new(cos));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var (sin, cos) = simd.SinCos(a.vector);
+            return (new(sin), new(cos));
+        }
         a.x.sincos(out var sin0, out var cos0);
         a.y.sincos(out var sin1, out var cos1);
         a.z.sincos(out var sin2, out var cos2);
@@ -1651,137 +1415,113 @@ public static partial class math
             new(sin0, sin1, sin2),
             new(cos0, cos1, cos2)
         );
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static void sincos(this double3 a, out double3 sin, out double3 cos)
+    public static void sincos([This] double3 a, out double3 sin, out double3 cos)
     {
-        #if NET8_0_OR_GREATER
-        var (v_sin, v_cos) = simd.SinCos(a.vector);
-        sin = new(v_sin);
-        cos = new(v_cos);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            (sin.vector, cos.vector) = simd.SinCos(a.vector);
+            return;
+        }
         a.x.sincos(out var sin0, out var cos0);
         a.y.sincos(out var sin1, out var cos1);
         a.z.sincos(out var sin2, out var cos2);
         sin = new(sin0, sin1, sin2);
         cos = new(cos0, cos1, cos2);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 tan(this double3 a)
+    public static double3 tan([This] double3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Tan(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Tan(a.vector));
         return new(a.x.tan(), a.y.tan(), a.z.tan());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 asin(this double3 a)
+    public static double3 asin([This] double3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Asin(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Asin(a.vector));
         return new(a.x.asin(), a.y.asin(), a.z.asin());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 acos(this double3 a)
+    public static double3 acos([This] double3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Acos(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Acos(a.vector));
         return new(a.x.acos(), a.y.acos(), a.z.acos());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 atan(this double3 a)
+    public static double3 atan([This] double3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Atan(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Atan(a.vector));
         return new(a.x.atan(), a.y.atan(), a.z.atan());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 atan2(this double3 a, double3 b)
+    public static double3 atan2([This] double3 a, double3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Atan2(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Atan2(a.vector, b.vector));
         return new(a.x.atan2(b.x), a.y.atan2(b.y), a.z.atan2(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 sinh(this double3 a)
+    public static double3 sinh([This] double3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Sinh(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Sinh(a.vector));
         return new(a.x.sinh(), a.y.sinh(), a.z.sinh());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 cosh(this double3 a)
+    public static double3 cosh([This] double3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Cosh(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Cosh(a.vector));
         return new(a.x.cosh(), a.y.cosh(), a.z.cosh());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 tanh(this double3 a)
+    public static double3 tanh([This] double3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Tanh(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Tanh(a.vector));
         return new(a.x.tanh(), a.y.tanh(), a.z.tanh());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 asinh(this double3 a)
+    public static double3 asinh([This] double3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Asinh(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Asinh(a.vector));
         return new(a.x.asinh(), a.y.asinh(), a.z.asinh());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 acosh(this double3 a)
+    public static double3 acosh([This] double3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Acosh(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Acosh(a.vector));
         return new(a.x.acosh(), a.y.acosh(), a.z.acosh());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 atanh(this double3 a)
+    public static double3 atanh([This] double3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Atanh(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Atanh(a.vector));
         return new(a.x.atanh(), a.y.atanh(), a.z.atanh());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 chgsign(this double3 a, double3 b)
+    public static double3 chgsign([This] double3 a, double3 b)
     {
         var sig = new ulong3(0x8000_0000_0000_0000).asf();
         return (b & sig) ^ a;
@@ -1792,172 +1532,147 @@ public static partial class math
 
 #region double4
 
+[Ex]
 public static partial class math
 {
     #pragma warning disable CS1718
     // ReSharper disable once EqualExpressionComparison
     [MethodImpl(256 | 512)]
-    public static b64v4 isNaN(this double4 a) => a != a;
+    public static b64v4 isNaN([This] double4 a) => a != a;
     #pragma warning restore CS1718
 
     [MethodImpl(256 | 512)]
-    public static b64v4 isFinite(this double4 a) => abs(a) < double.PositiveInfinity;
+    public static b64v4 isFinite([This] double4 a) => abs(a) < double.PositiveInfinity;
 
     [MethodImpl(256 | 512)]
-    public static b64v4 isInf(this double4 a)
+    public static b64v4 isInf([This] double4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.IsInfinity(a.vector).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.IsInfinity(a.vector).AsUInt64());
         return new(a.x.isInf(), a.y.isInf(), a.z.isInf(), a.w.isInf());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v4 isPosInf(this double4 a)
+    public static b64v4 isPosInf([This] double4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.Equals(a.vector, Vector256.Create(double.PositiveInfinity)).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.Equals(a.vector, Vector256.Create(double.PositiveInfinity)).AsUInt64());
         return new(a.x.isPosInf(), a.y.isPosInf(), a.z.isPosInf(), a.w.isPosInf());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v4 isNegInf(this double4 a)
+    public static b64v4 isNegInf([This] double4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.Equals(a.vector, Vector256.Create(double.NegativeInfinity)).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.Equals(a.vector, Vector256.Create(double.NegativeInfinity)).AsUInt64());
         return new(a.x.isNegInf(), a.y.isNegInf(), a.z.isNegInf(), a.w.isNegInf());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 log(this double4 a)
+    public static double4 log([This] double4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Log(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Log(a.vector));
         return new(a.x.log(), a.y.log(), a.z.log(), a.w.log());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 log2(this double4 a)
+    public static double4 log2([This] double4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Log2(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Log2(a.vector));
         return new(a.x.log2(), a.y.log2(), a.z.log2(), a.w.log2());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 log(this double4 a, double4 b)
+    public static double4 log([This] double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Log(a.vector) / simd.Log(b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Log(a.vector) / simd.Log(b.vector));
         return new(a.x.log(b.x), a.y.log(b.y), a.z.log(b.z), a.w.log(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 log10(this double4 a)
+    public static double4 log10([This] double4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Log10(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Log10(a.vector));
         return new(a.x.log10(), a.y.log10(), a.z.log10(), a.w.log10());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 exp(this double4 a)
+    public static double4 exp([This] double4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Exp(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Exp(a.vector));
         return new(a.x.exp(), a.y.exp(), a.z.exp(), a.w.exp());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 exp2(this double4 a)
+    public static double4 exp2([This] double4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Exp2(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Exp2(a.vector));
         return new(a.x.exp2(), a.y.exp2(), a.z.exp2(), a.w.exp2());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 exp10(this double4 a)
+    public static double4 exp10([This] double4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Exp10(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Exp10(a.vector));
         return new(a.x.exp10(), a.y.exp10(), a.z.exp10(), a.w.exp10());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 pow(this double4 a, double4 b)
+    public static double4 pow([This] double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Pow(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Pow(a.vector, b.vector));
         return new(a.x.pow(b.x), a.y.pow(b.y), a.z.pow(b.z), a.w.pow(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 pow(this double4 a, double b)
+    public static double4 pow([This] double4 a, double b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Pow(a.vector, b));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Pow(a.vector, b));
         return new(a.x.pow(b), a.y.pow(b), a.z.pow(b), a.w.pow(b));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 sqrt(this double4 a)
+    public static double4 sqrt([This] double4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.Sqrt(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.Sqrt(a.vector));
         return new(a.x.sqrt(), a.y.sqrt(), a.z.sqrt(), a.w.sqrt());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 rsqrt(this double4 a) => double4.One / sqrt(a);
+    public static double4 rsqrt([This] double4 a) => double4.One / sqrt(a);
 
     [MethodImpl(256 | 512)]
-    public static double length(this double4 a) => dot(a, a).sqrt();
+    public static double length([This] double4 a) => dot(a, a).sqrt();
 
     [MethodImpl(256 | 512)]
-    public static double distance(this double4 a, double4 b) => length(b - a);
+    public static double distance([This] double4 a, double4 b) => length(b - a);
 
     [MethodImpl(256 | 512)]
-    public static double4 normalize(this double4 a) => a * dot(a, a).rsqrt();
+    public static double4 normalize([This] double4 a) => a * dot(a, a).rsqrt();
 
     [MethodImpl(256 | 512)]
-    public static double4 normalizeSafe(this double4 a, double4 defaultvalue = default)
+    public static double4 normalizeSafe([This] double4 a, double4 defaultValue = default)
     {
         var len = dot(a, a);
-        return select(len > 1.175494351e-38, a * rsqrt(len), defaultvalue);
+        return select(len > 1.175494351e-38, a * rsqrt(len), defaultValue);
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 step(this double4 a, double4 threshold) =>
+    public static double4 step(double4 threshold, [This] double4 a) =>
         select(a >= threshold, double4.One, default);
 
     [MethodImpl(256 | 512)]
-    public static double4 refract(this double4 i, double4 n, double indexOfRefraction)
+    public static double4 refract(double4 i, double4 n, [This] double indexOfRefraction)
     {
         var ni = dot(n, i);
         var k = (double)(1.0 - indexOfRefraction * indexOfRefraction * (1.0 - ni * ni));
@@ -1965,43 +1680,40 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 projectSafe(this double4 a, double4 onto, double4 defaultValue = default) 
+    public static double4 projectSafe([This] double4 a, double4 onto, double4 defaultValue = default) 
     {
         var proj = project(a, onto);
         return select(all(isFinite(proj)), proj, defaultValue);
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 faceForward(this double4 n, double4 i, double4 ng) =>
+    public static double4 faceForward([This] double4 n, double4 i, double4 ng) =>
         select(dot(ng, i) >= 0.0, -n, n);
 
     [MethodImpl(256 | 512)]
-    public static double4 sin(this double4 a)
+    public static double4 sin([This] double4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Sin(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Sin(a.vector));
         return new(a.x.sin(), a.y.sin(), a.z.sin(), a.w.sin());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 cos(this double4 a)
+    public static double4 cos([This] double4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Cos(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Cos(a.vector));
         return new(a.x.cos(), a.y.cos(), a.z.cos(), a.w.cos());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static (double4 sin, double4 cos) sincos(this double4 a)
+    public static (double4 sin, double4 cos) sincos([This] double4 a)
     {
-        #if NET8_0_OR_GREATER
-        var (sin, cos) = simd.SinCos(a.vector);
-        return (new(sin), new(cos));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var (sin, cos) = simd.SinCos(a.vector);
+            return (new(sin), new(cos));
+        }
         a.x.sincos(out var sin0, out var cos0);
         a.y.sincos(out var sin1, out var cos1);
         a.z.sincos(out var sin2, out var cos2);
@@ -2010,138 +1722,114 @@ public static partial class math
             new(sin0, sin1, sin2, sin3),
             new(cos0, cos1, cos2, cos3)
         );
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static void sincos(this double4 a, out double4 sin, out double4 cos)
+    public static void sincos([This] double4 a, out double4 sin, out double4 cos)
     {
-        #if NET8_0_OR_GREATER
-        var (v_sin, v_cos) = simd.SinCos(a.vector);
-        sin = new(v_sin);
-        cos = new(v_cos);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            (sin.vector, cos.vector) = simd.SinCos(a.vector);
+            return;
+        }
         a.x.sincos(out var sin0, out var cos0);
         a.y.sincos(out var sin1, out var cos1);
         a.z.sincos(out var sin2, out var cos2);
         a.w.sincos(out var sin3, out var cos3);
         sin = new(sin0, sin1, sin2, sin3);
         cos = new(cos0, cos1, cos2, cos3);
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 tan(this double4 a)
+    public static double4 tan([This] double4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Tan(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Tan(a.vector));
         return new(a.x.tan(), a.y.tan(), a.z.tan(), a.w.tan());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 asin(this double4 a)
+    public static double4 asin([This] double4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Asin(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Asin(a.vector));
         return new(a.x.asin(), a.y.asin(), a.z.asin(), a.w.asin());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 acos(this double4 a)
+    public static double4 acos([This] double4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Acos(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Acos(a.vector));
         return new(a.x.acos(), a.y.acos(), a.z.acos(), a.w.acos());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 atan(this double4 a)
+    public static double4 atan([This] double4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Atan(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Atan(a.vector));
         return new(a.x.atan(), a.y.atan(), a.z.atan(), a.w.atan());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 atan2(this double4 a, double4 b)
+    public static double4 atan2([This] double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Atan2(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Atan2(a.vector, b.vector));
         return new(a.x.atan2(b.x), a.y.atan2(b.y), a.z.atan2(b.z), a.w.atan2(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 sinh(this double4 a)
+    public static double4 sinh([This] double4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Sinh(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Sinh(a.vector));
         return new(a.x.sinh(), a.y.sinh(), a.z.sinh(), a.w.sinh());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 cosh(this double4 a)
+    public static double4 cosh([This] double4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Cosh(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Cosh(a.vector));
         return new(a.x.cosh(), a.y.cosh(), a.z.cosh(), a.w.cosh());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 tanh(this double4 a)
+    public static double4 tanh([This] double4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Tanh(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Tanh(a.vector));
         return new(a.x.tanh(), a.y.tanh(), a.z.tanh(), a.w.tanh());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 asinh(this double4 a)
+    public static double4 asinh([This] double4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Asinh(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Asinh(a.vector));
         return new(a.x.asinh(), a.y.asinh(), a.z.asinh(), a.w.asinh());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 acosh(this double4 a)
+    public static double4 acosh([This] double4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Acosh(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Acosh(a.vector));
         return new(a.x.acosh(), a.y.acosh(), a.z.acosh(), a.w.acosh());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 atanh(this double4 a)
+    public static double4 atanh([This] double4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Atanh(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Atanh(a.vector));
         return new(a.x.atanh(), a.y.atanh(), a.z.atanh(), a.w.atanh());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 chgsign(this double4 a, double4 b)
+    public static double4 chgsign([This] double4 a, double4 b)
     {
         var sig = new ulong4(0x8000_0000_0000_0000).asf();
         return (b & sig) ^ a;
@@ -2152,120 +1840,121 @@ public static partial class math
 
 #region half2
 
+[Ex]
 public static partial class math
 {
     #pragma warning disable CS1718
     // ReSharper disable once EqualExpressionComparison
     [MethodImpl(256 | 512)]
-    public static b16v2 isNaN(this half2 a) => a != a;
+    public static b16v2 isNaN([This] half2 a) => a != a;
     #pragma warning restore CS1718
 
     [MethodImpl(256 | 512)]
-    public static b16v2 isFinite(this half2 a) => abs(a) < half.PositiveInfinity;
+    public static b16v2 isFinite([This] half2 a) => abs(a) < half.PositiveInfinity;
 
     [MethodImpl(256 | 512)]
-    public static b16v2 isInf(this half2 a)
+    public static b16v2 isInf([This] half2 a)
     {
         return new(a.x.isInf(), a.y.isInf());
     }
 
     [MethodImpl(256 | 512)]
-    public static b16v2 isPosInf(this half2 a)
+    public static b16v2 isPosInf([This] half2 a)
     {
         return new(a.x.isPosInf(), a.y.isPosInf());
     }
 
     [MethodImpl(256 | 512)]
-    public static b16v2 isNegInf(this half2 a)
+    public static b16v2 isNegInf([This] half2 a)
     {
         return new(a.x.isNegInf(), a.y.isNegInf());
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 log(this half2 a)
+    public static half2 log([This] half2 a)
     {
         return new(a.x.log(), a.y.log());
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 log2(this half2 a)
+    public static half2 log2([This] half2 a)
     {
         return new(a.x.log2(), a.y.log2());
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 log(this half2 a, half2 b)
+    public static half2 log([This] half2 a, half2 b)
     {
         return new(a.x.log(b.x), a.y.log(b.y));
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 log10(this half2 a)
+    public static half2 log10([This] half2 a)
     {
         return new(a.x.log10(), a.y.log10());
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 exp(this half2 a)
+    public static half2 exp([This] half2 a)
     {
         return new(a.x.exp(), a.y.exp());
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 exp2(this half2 a)
+    public static half2 exp2([This] half2 a)
     {
         return new(a.x.exp2(), a.y.exp2());
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 exp10(this half2 a)
+    public static half2 exp10([This] half2 a)
     {
         return new(a.x.exp10(), a.y.exp10());
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 pow(this half2 a, half2 b)
+    public static half2 pow([This] half2 a, half2 b)
     {
         return new(a.x.pow(b.x), a.y.pow(b.y));
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 pow(this half2 a, half b)
+    public static half2 pow([This] half2 a, half b)
     {
         return new(a.x.pow(b), a.y.pow(b));
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 sqrt(this half2 a)
+    public static half2 sqrt([This] half2 a)
     {
         return new(a.x.sqrt(), a.y.sqrt());
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 rsqrt(this half2 a) => half2.One / sqrt(a);
+    public static half2 rsqrt([This] half2 a) => half2.One / sqrt(a);
 
     [MethodImpl(256 | 512)]
-    public static half length(this half2 a) => dot(a, a).sqrt();
+    public static half length([This] half2 a) => dot(a, a).sqrt();
 
     [MethodImpl(256 | 512)]
-    public static half distance(this half2 a, half2 b) => length(b - a);
+    public static half distance([This] half2 a, half2 b) => length(b - a);
 
     [MethodImpl(256 | 512)]
-    public static half2 normalize(this half2 a) => a * dot(a, a).rsqrt();
+    public static half2 normalize([This] half2 a) => a * dot(a, a).rsqrt();
 
     [MethodImpl(256 | 512)]
-    public static half2 normalizeSafe(this half2 a, half2 defaultvalue = default)
+    public static half2 normalizeSafe([This] half2 a, half2 defaultValue = default)
     {
         var len = dot(a, a);
-        return select(len > 1.175494351e-38f.half(), a * rsqrt(len), defaultvalue);
+        return select(len > 1.175494351e-38f.half(), a * rsqrt(len), defaultValue);
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 step(this half2 a, half2 threshold) =>
+    public static half2 step(half2 threshold, [This] half2 a) =>
         select(a >= threshold, half2.One, default);
 
     [MethodImpl(256 | 512)]
-    public static half2 refract(this half2 i, half2 n, half indexOfRefraction)
+    public static half2 refract(half2 i, half2 n, [This] half indexOfRefraction)
     {
         var ni = dot(n, i);
         var k = (half)(1.0f.half() - indexOfRefraction * indexOfRefraction * (1.0f.half() - ni * ni));
@@ -2273,30 +1962,30 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 projectSafe(this half2 a, half2 onto, half2 defaultValue = default) 
+    public static half2 projectSafe([This] half2 a, half2 onto, half2 defaultValue = default) 
     {
         var proj = project(a, onto);
         return select(all(isFinite(proj)), proj, defaultValue);
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 faceForward(this half2 n, half2 i, half2 ng) =>
+    public static half2 faceForward([This] half2 n, half2 i, half2 ng) =>
         select(dot(ng, i) >= 0.0f.half(), -n, n);
 
     [MethodImpl(256 | 512)]
-    public static half2 sin(this half2 a)
+    public static half2 sin([This] half2 a)
     {
         return new(a.x.sin(), a.y.sin());
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 cos(this half2 a)
+    public static half2 cos([This] half2 a)
     {
         return new(a.x.cos(), a.y.cos());
     }
 
     [MethodImpl(256 | 512)]
-    public static (half2 sin, half2 cos) sincos(this half2 a)
+    public static (half2 sin, half2 cos) sincos([This] half2 a)
     {
         a.x.sincos(out var sin0, out var cos0);
         a.y.sincos(out var sin1, out var cos1);
@@ -2307,7 +1996,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static void sincos(this half2 a, out half2 sin, out half2 cos)
+    public static void sincos([This] half2 a, out half2 sin, out half2 cos)
     {
         a.x.sincos(out var sin0, out var cos0);
         a.y.sincos(out var sin1, out var cos1);
@@ -2316,73 +2005,73 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 tan(this half2 a)
+    public static half2 tan([This] half2 a)
     {
         return new(a.x.tan(), a.y.tan());
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 asin(this half2 a)
+    public static half2 asin([This] half2 a)
     {
         return new(a.x.asin(), a.y.asin());
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 acos(this half2 a)
+    public static half2 acos([This] half2 a)
     {
         return new(a.x.acos(), a.y.acos());
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 atan(this half2 a)
+    public static half2 atan([This] half2 a)
     {
         return new(a.x.atan(), a.y.atan());
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 atan2(this half2 a, half2 b)
+    public static half2 atan2([This] half2 a, half2 b)
     {
         return new(a.x.atan2(b.x), a.y.atan2(b.y));
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 sinh(this half2 a)
+    public static half2 sinh([This] half2 a)
     {
         return new(a.x.sinh(), a.y.sinh());
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 cosh(this half2 a)
+    public static half2 cosh([This] half2 a)
     {
         return new(a.x.cosh(), a.y.cosh());
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 tanh(this half2 a)
+    public static half2 tanh([This] half2 a)
     {
         return new(a.x.tanh(), a.y.tanh());
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 asinh(this half2 a)
+    public static half2 asinh([This] half2 a)
     {
         return new(a.x.asinh(), a.y.asinh());
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 acosh(this half2 a)
+    public static half2 acosh([This] half2 a)
     {
         return new(a.x.acosh(), a.y.acosh());
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 atanh(this half2 a)
+    public static half2 atanh([This] half2 a)
     {
         return new(a.x.atanh(), a.y.atanh());
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 chgsign(this half2 a, half2 b)
+    public static half2 chgsign([This] half2 a, half2 b)
     {
         var sig = new ushort2(0x8000).asf();
         return (b & sig) ^ a;
@@ -2393,120 +2082,121 @@ public static partial class math
 
 #region half3
 
+[Ex]
 public static partial class math
 {
     #pragma warning disable CS1718
     // ReSharper disable once EqualExpressionComparison
     [MethodImpl(256 | 512)]
-    public static b16v3 isNaN(this half3 a) => a != a;
+    public static b16v3 isNaN([This] half3 a) => a != a;
     #pragma warning restore CS1718
 
     [MethodImpl(256 | 512)]
-    public static b16v3 isFinite(this half3 a) => abs(a) < half.PositiveInfinity;
+    public static b16v3 isFinite([This] half3 a) => abs(a) < half.PositiveInfinity;
 
     [MethodImpl(256 | 512)]
-    public static b16v3 isInf(this half3 a)
+    public static b16v3 isInf([This] half3 a)
     {
         return new(a.x.isInf(), a.y.isInf(), a.z.isInf());
     }
 
     [MethodImpl(256 | 512)]
-    public static b16v3 isPosInf(this half3 a)
+    public static b16v3 isPosInf([This] half3 a)
     {
         return new(a.x.isPosInf(), a.y.isPosInf(), a.z.isPosInf());
     }
 
     [MethodImpl(256 | 512)]
-    public static b16v3 isNegInf(this half3 a)
+    public static b16v3 isNegInf([This] half3 a)
     {
         return new(a.x.isNegInf(), a.y.isNegInf(), a.z.isNegInf());
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 log(this half3 a)
+    public static half3 log([This] half3 a)
     {
         return new(a.x.log(), a.y.log(), a.z.log());
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 log2(this half3 a)
+    public static half3 log2([This] half3 a)
     {
         return new(a.x.log2(), a.y.log2(), a.z.log2());
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 log(this half3 a, half3 b)
+    public static half3 log([This] half3 a, half3 b)
     {
         return new(a.x.log(b.x), a.y.log(b.y), a.z.log(b.z));
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 log10(this half3 a)
+    public static half3 log10([This] half3 a)
     {
         return new(a.x.log10(), a.y.log10(), a.z.log10());
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 exp(this half3 a)
+    public static half3 exp([This] half3 a)
     {
         return new(a.x.exp(), a.y.exp(), a.z.exp());
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 exp2(this half3 a)
+    public static half3 exp2([This] half3 a)
     {
         return new(a.x.exp2(), a.y.exp2(), a.z.exp2());
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 exp10(this half3 a)
+    public static half3 exp10([This] half3 a)
     {
         return new(a.x.exp10(), a.y.exp10(), a.z.exp10());
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 pow(this half3 a, half3 b)
+    public static half3 pow([This] half3 a, half3 b)
     {
         return new(a.x.pow(b.x), a.y.pow(b.y), a.z.pow(b.z));
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 pow(this half3 a, half b)
+    public static half3 pow([This] half3 a, half b)
     {
         return new(a.x.pow(b), a.y.pow(b), a.z.pow(b));
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 sqrt(this half3 a)
+    public static half3 sqrt([This] half3 a)
     {
         return new(a.x.sqrt(), a.y.sqrt(), a.z.sqrt());
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 rsqrt(this half3 a) => half3.One / sqrt(a);
+    public static half3 rsqrt([This] half3 a) => half3.One / sqrt(a);
 
     [MethodImpl(256 | 512)]
-    public static half length(this half3 a) => dot(a, a).sqrt();
+    public static half length([This] half3 a) => dot(a, a).sqrt();
 
     [MethodImpl(256 | 512)]
-    public static half distance(this half3 a, half3 b) => length(b - a);
+    public static half distance([This] half3 a, half3 b) => length(b - a);
 
     [MethodImpl(256 | 512)]
-    public static half3 normalize(this half3 a) => a * dot(a, a).rsqrt();
+    public static half3 normalize([This] half3 a) => a * dot(a, a).rsqrt();
 
     [MethodImpl(256 | 512)]
-    public static half3 normalizeSafe(this half3 a, half3 defaultvalue = default)
+    public static half3 normalizeSafe([This] half3 a, half3 defaultValue = default)
     {
         var len = dot(a, a);
-        return select(len > 1.175494351e-38f.half(), a * rsqrt(len), defaultvalue);
+        return select(len > 1.175494351e-38f.half(), a * rsqrt(len), defaultValue);
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 step(this half3 a, half3 threshold) =>
+    public static half3 step(half3 threshold, [This] half3 a) =>
         select(a >= threshold, half3.One, default);
 
     [MethodImpl(256 | 512)]
-    public static half3 refract(this half3 i, half3 n, half indexOfRefraction)
+    public static half3 refract(half3 i, half3 n, [This] half indexOfRefraction)
     {
         var ni = dot(n, i);
         var k = (half)(1.0f.half() - indexOfRefraction * indexOfRefraction * (1.0f.half() - ni * ni));
@@ -2514,30 +2204,30 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 projectSafe(this half3 a, half3 onto, half3 defaultValue = default) 
+    public static half3 projectSafe([This] half3 a, half3 onto, half3 defaultValue = default) 
     {
         var proj = project(a, onto);
         return select(all(isFinite(proj)), proj, defaultValue);
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 faceForward(this half3 n, half3 i, half3 ng) =>
+    public static half3 faceForward([This] half3 n, half3 i, half3 ng) =>
         select(dot(ng, i) >= 0.0f.half(), -n, n);
 
     [MethodImpl(256 | 512)]
-    public static half3 sin(this half3 a)
+    public static half3 sin([This] half3 a)
     {
         return new(a.x.sin(), a.y.sin(), a.z.sin());
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 cos(this half3 a)
+    public static half3 cos([This] half3 a)
     {
         return new(a.x.cos(), a.y.cos(), a.z.cos());
     }
 
     [MethodImpl(256 | 512)]
-    public static (half3 sin, half3 cos) sincos(this half3 a)
+    public static (half3 sin, half3 cos) sincos([This] half3 a)
     {
         a.x.sincos(out var sin0, out var cos0);
         a.y.sincos(out var sin1, out var cos1);
@@ -2549,7 +2239,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static void sincos(this half3 a, out half3 sin, out half3 cos)
+    public static void sincos([This] half3 a, out half3 sin, out half3 cos)
     {
         a.x.sincos(out var sin0, out var cos0);
         a.y.sincos(out var sin1, out var cos1);
@@ -2559,73 +2249,73 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 tan(this half3 a)
+    public static half3 tan([This] half3 a)
     {
         return new(a.x.tan(), a.y.tan(), a.z.tan());
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 asin(this half3 a)
+    public static half3 asin([This] half3 a)
     {
         return new(a.x.asin(), a.y.asin(), a.z.asin());
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 acos(this half3 a)
+    public static half3 acos([This] half3 a)
     {
         return new(a.x.acos(), a.y.acos(), a.z.acos());
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 atan(this half3 a)
+    public static half3 atan([This] half3 a)
     {
         return new(a.x.atan(), a.y.atan(), a.z.atan());
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 atan2(this half3 a, half3 b)
+    public static half3 atan2([This] half3 a, half3 b)
     {
         return new(a.x.atan2(b.x), a.y.atan2(b.y), a.z.atan2(b.z));
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 sinh(this half3 a)
+    public static half3 sinh([This] half3 a)
     {
         return new(a.x.sinh(), a.y.sinh(), a.z.sinh());
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 cosh(this half3 a)
+    public static half3 cosh([This] half3 a)
     {
         return new(a.x.cosh(), a.y.cosh(), a.z.cosh());
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 tanh(this half3 a)
+    public static half3 tanh([This] half3 a)
     {
         return new(a.x.tanh(), a.y.tanh(), a.z.tanh());
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 asinh(this half3 a)
+    public static half3 asinh([This] half3 a)
     {
         return new(a.x.asinh(), a.y.asinh(), a.z.asinh());
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 acosh(this half3 a)
+    public static half3 acosh([This] half3 a)
     {
         return new(a.x.acosh(), a.y.acosh(), a.z.acosh());
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 atanh(this half3 a)
+    public static half3 atanh([This] half3 a)
     {
         return new(a.x.atanh(), a.y.atanh(), a.z.atanh());
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 chgsign(this half3 a, half3 b)
+    public static half3 chgsign([This] half3 a, half3 b)
     {
         var sig = new ushort3(0x8000).asf();
         return (b & sig) ^ a;
@@ -2636,120 +2326,121 @@ public static partial class math
 
 #region half4
 
+[Ex]
 public static partial class math
 {
     #pragma warning disable CS1718
     // ReSharper disable once EqualExpressionComparison
     [MethodImpl(256 | 512)]
-    public static b16v4 isNaN(this half4 a) => a != a;
+    public static b16v4 isNaN([This] half4 a) => a != a;
     #pragma warning restore CS1718
 
     [MethodImpl(256 | 512)]
-    public static b16v4 isFinite(this half4 a) => abs(a) < half.PositiveInfinity;
+    public static b16v4 isFinite([This] half4 a) => abs(a) < half.PositiveInfinity;
 
     [MethodImpl(256 | 512)]
-    public static b16v4 isInf(this half4 a)
+    public static b16v4 isInf([This] half4 a)
     {
         return new(a.x.isInf(), a.y.isInf(), a.z.isInf(), a.w.isInf());
     }
 
     [MethodImpl(256 | 512)]
-    public static b16v4 isPosInf(this half4 a)
+    public static b16v4 isPosInf([This] half4 a)
     {
         return new(a.x.isPosInf(), a.y.isPosInf(), a.z.isPosInf(), a.w.isPosInf());
     }
 
     [MethodImpl(256 | 512)]
-    public static b16v4 isNegInf(this half4 a)
+    public static b16v4 isNegInf([This] half4 a)
     {
         return new(a.x.isNegInf(), a.y.isNegInf(), a.z.isNegInf(), a.w.isNegInf());
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 log(this half4 a)
+    public static half4 log([This] half4 a)
     {
         return new(a.x.log(), a.y.log(), a.z.log(), a.w.log());
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 log2(this half4 a)
+    public static half4 log2([This] half4 a)
     {
         return new(a.x.log2(), a.y.log2(), a.z.log2(), a.w.log2());
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 log(this half4 a, half4 b)
+    public static half4 log([This] half4 a, half4 b)
     {
         return new(a.x.log(b.x), a.y.log(b.y), a.z.log(b.z), a.w.log(b.w));
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 log10(this half4 a)
+    public static half4 log10([This] half4 a)
     {
         return new(a.x.log10(), a.y.log10(), a.z.log10(), a.w.log10());
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 exp(this half4 a)
+    public static half4 exp([This] half4 a)
     {
         return new(a.x.exp(), a.y.exp(), a.z.exp(), a.w.exp());
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 exp2(this half4 a)
+    public static half4 exp2([This] half4 a)
     {
         return new(a.x.exp2(), a.y.exp2(), a.z.exp2(), a.w.exp2());
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 exp10(this half4 a)
+    public static half4 exp10([This] half4 a)
     {
         return new(a.x.exp10(), a.y.exp10(), a.z.exp10(), a.w.exp10());
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 pow(this half4 a, half4 b)
+    public static half4 pow([This] half4 a, half4 b)
     {
         return new(a.x.pow(b.x), a.y.pow(b.y), a.z.pow(b.z), a.w.pow(b.w));
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 pow(this half4 a, half b)
+    public static half4 pow([This] half4 a, half b)
     {
         return new(a.x.pow(b), a.y.pow(b), a.z.pow(b), a.w.pow(b));
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 sqrt(this half4 a)
+    public static half4 sqrt([This] half4 a)
     {
         return new(a.x.sqrt(), a.y.sqrt(), a.z.sqrt(), a.w.sqrt());
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 rsqrt(this half4 a) => half4.One / sqrt(a);
+    public static half4 rsqrt([This] half4 a) => half4.One / sqrt(a);
 
     [MethodImpl(256 | 512)]
-    public static half length(this half4 a) => dot(a, a).sqrt();
+    public static half length([This] half4 a) => dot(a, a).sqrt();
 
     [MethodImpl(256 | 512)]
-    public static half distance(this half4 a, half4 b) => length(b - a);
+    public static half distance([This] half4 a, half4 b) => length(b - a);
 
     [MethodImpl(256 | 512)]
-    public static half4 normalize(this half4 a) => a * dot(a, a).rsqrt();
+    public static half4 normalize([This] half4 a) => a * dot(a, a).rsqrt();
 
     [MethodImpl(256 | 512)]
-    public static half4 normalizeSafe(this half4 a, half4 defaultvalue = default)
+    public static half4 normalizeSafe([This] half4 a, half4 defaultValue = default)
     {
         var len = dot(a, a);
-        return select(len > 1.175494351e-38f.half(), a * rsqrt(len), defaultvalue);
+        return select(len > 1.175494351e-38f.half(), a * rsqrt(len), defaultValue);
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 step(this half4 a, half4 threshold) =>
+    public static half4 step(half4 threshold, [This] half4 a) =>
         select(a >= threshold, half4.One, default);
 
     [MethodImpl(256 | 512)]
-    public static half4 refract(this half4 i, half4 n, half indexOfRefraction)
+    public static half4 refract(half4 i, half4 n, [This] half indexOfRefraction)
     {
         var ni = dot(n, i);
         var k = (half)(1.0f.half() - indexOfRefraction * indexOfRefraction * (1.0f.half() - ni * ni));
@@ -2757,30 +2448,30 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 projectSafe(this half4 a, half4 onto, half4 defaultValue = default) 
+    public static half4 projectSafe([This] half4 a, half4 onto, half4 defaultValue = default) 
     {
         var proj = project(a, onto);
         return select(all(isFinite(proj)), proj, defaultValue);
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 faceForward(this half4 n, half4 i, half4 ng) =>
+    public static half4 faceForward([This] half4 n, half4 i, half4 ng) =>
         select(dot(ng, i) >= 0.0f.half(), -n, n);
 
     [MethodImpl(256 | 512)]
-    public static half4 sin(this half4 a)
+    public static half4 sin([This] half4 a)
     {
         return new(a.x.sin(), a.y.sin(), a.z.sin(), a.w.sin());
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 cos(this half4 a)
+    public static half4 cos([This] half4 a)
     {
         return new(a.x.cos(), a.y.cos(), a.z.cos(), a.w.cos());
     }
 
     [MethodImpl(256 | 512)]
-    public static (half4 sin, half4 cos) sincos(this half4 a)
+    public static (half4 sin, half4 cos) sincos([This] half4 a)
     {
         a.x.sincos(out var sin0, out var cos0);
         a.y.sincos(out var sin1, out var cos1);
@@ -2793,7 +2484,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static void sincos(this half4 a, out half4 sin, out half4 cos)
+    public static void sincos([This] half4 a, out half4 sin, out half4 cos)
     {
         a.x.sincos(out var sin0, out var cos0);
         a.y.sincos(out var sin1, out var cos1);
@@ -2804,73 +2495,73 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 tan(this half4 a)
+    public static half4 tan([This] half4 a)
     {
         return new(a.x.tan(), a.y.tan(), a.z.tan(), a.w.tan());
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 asin(this half4 a)
+    public static half4 asin([This] half4 a)
     {
         return new(a.x.asin(), a.y.asin(), a.z.asin(), a.w.asin());
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 acos(this half4 a)
+    public static half4 acos([This] half4 a)
     {
         return new(a.x.acos(), a.y.acos(), a.z.acos(), a.w.acos());
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 atan(this half4 a)
+    public static half4 atan([This] half4 a)
     {
         return new(a.x.atan(), a.y.atan(), a.z.atan(), a.w.atan());
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 atan2(this half4 a, half4 b)
+    public static half4 atan2([This] half4 a, half4 b)
     {
         return new(a.x.atan2(b.x), a.y.atan2(b.y), a.z.atan2(b.z), a.w.atan2(b.w));
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 sinh(this half4 a)
+    public static half4 sinh([This] half4 a)
     {
         return new(a.x.sinh(), a.y.sinh(), a.z.sinh(), a.w.sinh());
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 cosh(this half4 a)
+    public static half4 cosh([This] half4 a)
     {
         return new(a.x.cosh(), a.y.cosh(), a.z.cosh(), a.w.cosh());
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 tanh(this half4 a)
+    public static half4 tanh([This] half4 a)
     {
         return new(a.x.tanh(), a.y.tanh(), a.z.tanh(), a.w.tanh());
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 asinh(this half4 a)
+    public static half4 asinh([This] half4 a)
     {
         return new(a.x.asinh(), a.y.asinh(), a.z.asinh(), a.w.asinh());
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 acosh(this half4 a)
+    public static half4 acosh([This] half4 a)
     {
         return new(a.x.acosh(), a.y.acosh(), a.z.acosh(), a.w.acosh());
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 atanh(this half4 a)
+    public static half4 atanh([This] half4 a)
     {
         return new(a.x.atanh(), a.y.atanh(), a.z.atanh(), a.w.atanh());
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 chgsign(this half4 a, half4 b)
+    public static half4 chgsign([This] half4 a, half4 b)
     {
         var sig = new ushort4(0x8000).asf();
         return (b & sig) ^ a;

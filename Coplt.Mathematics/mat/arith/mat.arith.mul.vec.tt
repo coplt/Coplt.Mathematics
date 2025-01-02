@@ -46,17 +46,18 @@ public partial struct <#= typeName #>
         => new(<#= string.Join(", ", Enumerable.Range(0, m).Select(c => $"b.c{c} * a")) #>);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static <#= vecTypeName #> mul(this <#= typeName #> a, <#= vecTypeNameM #> b)
+    public static <#= vecTypeName #> mul([This] <#= typeName #> a, <#= vecTypeNameM #> b)
         => <#= Enumerable.Range(0, m)
                    .Select(c => $"a.c{c} * b.{string.Join("", Enumerable.Repeat(Typ.xyzw[c], n))}")
                    .Aggregate((a, b) => $"fma({b.Replace(" * ", ", ")}, {a})") #>; // <#=
                     string.Join(" + ", Enumerable.Range(0, m).Select(c => $"a.c{c} * b.{string.Join("", Enumerable.Repeat(Typ.xyzw[c], n))}")) #>
 
     [MethodImpl(256 | 512)]
-    public static <#= vecTypeNameM #> mul(this <#= vecTypeName #> a, <#= typeName #> b)
+    public static <#= vecTypeNameM #> mul([This] <#= vecTypeName #> a, <#= typeName #> b)
         => new(<#= string.Join(", ", Enumerable.Range(0, m).Select(c => $"dot(a, b.c{c})")) #>);
 }
 

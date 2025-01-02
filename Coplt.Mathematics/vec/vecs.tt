@@ -15,7 +15,7 @@ namespace Coplt.Mathematics;
             WriteLine($"    public {typ.compType} {comp}");
             WriteLine($"    {{");
             WriteLine($"        [MethodImpl(256 | 512)]");
-            WriteLine($"        get => _{comp};");
+            WriteLine($"        readonly get => _{comp};");
             WriteLine($"        [MethodImpl(256 | 512)]");
             WriteLine($"        set => _{comp} = value;");
             WriteLine($"    }}");
@@ -34,7 +34,7 @@ namespace Coplt.Mathematics;
             WriteLine($"    public {typ.compType} {comp}");
             WriteLine($"    {{");
             WriteLine($"        [MethodImpl(256 | 512)]");
-            WriteLine($"        get => vector.GetElement({c});");
+            WriteLine($"        readonly get => vector.GetElement({c});");
             WriteLine($"        [MethodImpl(256 | 512)]");
             WriteLine($"        set => vector = vector.WithElement({c}, value);");
             WriteLine($"    }}");
@@ -50,7 +50,7 @@ namespace Coplt.Mathematics;
             WriteLine($"    public {typ.compType} {rgba}");
             WriteLine($"    {{");
             WriteLine($"        [MethodImpl(256 | 512)]");
-            WriteLine($"        get => {xyzw};");
+            WriteLine($"        readonly get => {xyzw};");
             WriteLine($"        [MethodImpl(256 | 512)]");
             WriteLine($"        set => {xyzw} = value;");
             WriteLine($"    }}");
@@ -155,7 +155,6 @@ public partial struct <#= typeName #> :
 <#
             if (typ.simd)
             {
-                WriteLine($"    #if NET8_0_OR_GREATER");
 #>
     internal Vector<#= bitSize #><<#= typ.simdComp #>> vector;
     
@@ -165,9 +164,11 @@ public partial struct <#= typeName #> :
     public static explicit operator Vector<#= bitSize #><<#= typ.simdComp #>>(<#= typeName #> self) => self.vector;
 
     [MethodImpl(256 | 512), CpuOnly]
-    public Vector<#= bitSize #><<#= typ.simdComp #>> UnsafeGetInner() => vector;
+    public readonly Vector<#= bitSize #><<#= typ.simdComp #>> UnsafeGetInner() => vector;
     [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
     public ref Vector<#= bitSize #><<#= typ.simdComp #>> UnsafeGetInnerRef() => ref vector;
+    [MethodImpl(256 | 512), UnscopedRef, CpuOnly]
+    public readonly ref readonly Vector<#= bitSize #><<#= typ.simdComp #>> UnsafeGetInnerRefRo() => ref vector;
     [MethodImpl(256 | 512), CpuOnly]
     public void UnsafeSetInner(Vector<#= bitSize #><<#= typ.simdComp #>> vector) => this.vector = vector;
    
@@ -175,10 +176,11 @@ public partial struct <#= typeName #> :
 
 <#
                 SimdComps(typ, i);
-                WriteLine($"    #else // NET8_0_OR_GREATER");
             }
-            NoSimdComps(typ, i);
-            if (typ.simd) WriteLine($"    #endif // NET8_0_OR_GREATER");
+            else
+            {
+                NoSimdComps(typ, i);
+            }
             ColorComps(typ, i);
 #>
 
@@ -189,14 +191,12 @@ public partial struct <#= typeName #> :
 <#
             if (typ.simd)
             {
-                WriteLine($"    #if NET8_0_OR_GREATER");
 #>
     [MethodImpl(256 | 512), CpuOnly]
     internal <#= typeName #>(Vector<#= bitSize #><<#= typ.simdComp #>> vector) => this.vector = vector;
     [MethodImpl(256 | 512), CpuOnly]
     public static <#= typeName #> UnsafeFromInner(Vector<#= bitSize #><<#= typ.simdComp #>> vector) => new(vector);
 <#
-                WriteLine($"    #endif // NET8_0_OR_GREATER");
             }
 #>
 
@@ -206,12 +206,12 @@ public partial struct <#= typeName #> :
 <#
             if (typ.simd)
             {
-                WriteLine($"        #if NET8_0_OR_GREATER");
                 SimdCtor(i, bitSize);
-                WriteLine($"        #else // NET8_0_OR_GREATER");
             }
-            NoSimdCtor(i);
-            if (typ.simd) WriteLine($"        #endif // NET8_0_OR_GREATER");
+            else
+            {
+                NoSimdCtor(i);
+            }
 #>
     }
 
@@ -230,12 +230,12 @@ public partial struct <#= typeName #> :
 <#
             if (typ.simd)
             {
-                WriteLine($"        #if NET8_0_OR_GREATER");
                 SimdCtorSame(i, bitSize, typ.shuffleCast);
-                WriteLine($"        #else // NET8_0_OR_GREATER");
             }
-            NoSimdCtorSame(i);
-            if (typ.simd) WriteLine($"        #endif // NET8_0_OR_GREATER");
+            else
+            {
+                NoSimdCtorSame(i);
+            }
 #>
     }
 
@@ -249,18 +249,13 @@ public partial struct <#= typeName #> :
             if (typ.simd)
             {
 #>
-        #if NET8_0_OR_GREATER
         vector = Vector<#= bitSize #>.CreateScalar(<#= typ.bol ? $"({typ.simdComp})" : "" #>value);
-        #else // NET8_0_OR_GREATER
 <#
             }
-#>
-        this.x = value;
-<#
-            if (typ.simd)
+            else
             {
 #>
-        #endif // NET8_0_OR_GREATER
+        this.x = value;
 <#
             }
 #>
@@ -276,22 +271,17 @@ public partial struct <#= typeName #> :
             if (typ.simd)
             {
 #>
-        #if NET8_0_OR_GREATER
         vector = Vector<#= bitSize #>.LoadUnsafe(in MemoryMarshal.Cast<<#= typ.compType #>, <#= typ.simdComp #>>(span)[0]);
-        #else // NET8_0_OR_GREATER
 <#
             }
-            for (var n = 0; n < i; n++)
+            else
             {
+                for (var n = 0; n < i; n++)
+                {
 #>
         this.<#= Typ.xyzw[n] #> = span[<#= n #>];
 <#
-            }
-            if (typ.simd)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
+                }
             }
 #>
     }
@@ -306,22 +296,17 @@ public partial struct <#= typeName #> :
             if (typ.simd)
             {
 #>
-        #if NET8_0_OR_GREATER
         vector = Vector<#= bitSize #>.Load((<#= typ.simdComp #>*)ptr);
-        #else // NET8_0_OR_GREATER
 <#
             }
-            for (var n = 0; n < i; n++)
+            else
             {
+                for (var n = 0; n < i; n++)
+                {
 #>
         this.<#= Typ.xyzw[n] #> = ptr[<#= n #>];
 <#
-            }
-            if (typ.simd)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
+                }
             }
 #>
     }
@@ -331,7 +316,7 @@ public partial struct <#= typeName #> :
     #region deconstruct
 
     [MethodImpl(256 | 512)]
-    public void Deconstruct(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"out {typ.compType} {Typ.xyzw[n]}")) #>)
+    public readonly void Deconstruct(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"out {typ.compType} {Typ.xyzw[n]}")) #>)
     {
 <#
             for (var n = 0; n < i; n++)
@@ -350,7 +335,7 @@ public partial struct <#= typeName #> :
     public <#= typ.compType #> this[int i]
     {
         [MethodImpl(256 | 512)]
-        get => i switch
+        readonly get => i switch
         {
 <#
             for (var j = 0; j < i; j++)
@@ -384,6 +369,15 @@ public partial struct <#= typeName #> :
     }
 
     #endregion // index
+}
+
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> <#= typeName #>(<#= typ.compType #> value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> <#= typeName #>(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"{typ.compType} {Typ.xyzw[n]}")) #>) => new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"{Typ.xyzw[n]}")) #>);
 }
 
 #endregion // <#= typeName #>

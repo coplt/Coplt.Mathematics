@@ -27,10 +27,11 @@ namespace Coplt.Mathematics;
 
 #region <#= typeName #>
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> select(this <#= bTypeName #> c, <#= typeName #> t, <#= typeName #> f) =>
+    public static <#= typeName #> select([This] <#= bTypeName #> c, <#= typeName #> t, <#= typeName #> f) =>
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"select(c.c{i}, t.c{i}, f.c{i})")) #>);
 }
 

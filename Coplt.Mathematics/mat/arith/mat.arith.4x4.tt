@@ -31,29 +31,9 @@ public partial struct <#= typeName #>
     [MethodImpl(256 | 512)]
     public <#= typeName #>(<#= typeName3x3 #> rotation, <#= vecTypeName3 #> translation)
     {
-<#
-        if (typ.simd)
-        {
-#>
-        #if NET8_0_OR_GREATER
-        c0 = new(rotation.c0.vector);
-        c1 = new(rotation.c1.vector);
-        c2 = new(rotation.c2.vector);
-        #else // NET8_0_OR_GREATER
-<#
-        }
-#>
-        c0 = new(rotation.c0, default);
-        c1 = new(rotation.c1, default);
-        c2 = new(rotation.c2, default);
-<#
-        if (typ.simd)
-        {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-        }
-#>
+        c0 = as4(rotation.c0);
+        c1 = as4(rotation.c1);
+        c2 = as4(rotation.c2);
         c3 = new(translation, <#= typ.one #>);
     }
 <#
@@ -841,15 +821,16 @@ public partial struct <#= typeName #>
     );
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static <#= typ.name #>3 rotate(this <#= typeName #> a, <#= typ.name #>3 b) 
+    public static <#= typ.name #>3 rotate([This] <#= typeName #> a, <#= typ.name #>3 b) 
         => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz * a.c2)).xyz;
         // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z).xyz;
 
     [MethodImpl(256 | 512)]
-    public static <#= typ.name #>3 transform(this <#= typeName #> a, <#= typ.name #>3 b) 
+    public static <#= typ.name #>3 transform([This] <#= typeName #> a, <#= typ.name #>3 b) 
         => b.xxxx.fma(a.c0, b.yyyy.fma(a.c1, b.zzzz.fma(a.c2, a.c3))).xyz;
         // (a.c0 * b.x + a.c1 * b.y + a.c2 * b.z + a.c3).xyz;
 <#
@@ -858,7 +839,7 @@ public static partial class math
 #>
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> inverse(this <#= typeName #> m)
+    public static <#= typeName #> inverse([This] <#= typeName #> m)
     {
         var (c0, c1, c2, c3) = m;
 
@@ -928,7 +909,7 @@ public static partial class math
     /// <param name="m">Matrix to invert</param>
     /// <returns>The inverted matrix</returns>
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> fastinverse(this <#= typeName #> m)
+    public static <#= typeName #> fastinverse([This] <#= typeName #> m)
     {
         var (c0, c1, c2, pos) = m;
 
@@ -952,7 +933,7 @@ public static partial class math
     /// <param name="m">Matrix to use when computing determinant</param>
     /// <returns>The determinant of the matrix</returns>
     [MethodImpl(256 | 512)]
-    public static <#= typ.compType #> determinant(this <#= typeName #> m)
+    public static <#= typ.compType #> determinant([This] <#= typeName #> m)
     {
         var (c0, c1, c2, c3) = m;
 

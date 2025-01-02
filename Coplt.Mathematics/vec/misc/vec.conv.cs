@@ -9,40 +9,40 @@ public partial struct float2
     [MethodImpl(256 | 512)]
     public static explicit operator uint2(float2 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector64.ConvertToUInt32(self.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+        {
+            return new(Vector64.ConvertToUInt32(self.vector));
+        }
         return new((uint)self.x, (uint)self.y);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator int2(float2 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector64.ConvertToInt32(self.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+        {
+            return new(Vector64.ConvertToInt32(self.vector));
+        }
         return new((int)self.x, (int)self.y);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator ulong2(float2 self)
     {
-        #if NET8_0_OR_GREATER
-        var (a, b) = Vector64.Widen(self.vector);
-        return new(Vector128.ConvertToUInt64(Vector128.Create(a, b)));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+        {
+            var (a, b) = Vector64.Widen(self.vector);
+            return new(Vector128.ConvertToUInt64(Vector128.Create(a, b)));
+        }
         return new((ulong)self.x, (ulong)self.y);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator long2(float2 self)
     {
-        #if NET8_0_OR_GREATER
-        var (a, b) = Vector64.Widen(self.vector);
-        return new(Vector128.ConvertToInt64(Vector128.Create(a, b)));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+        {
+            var (a, b) = Vector64.Widen(self.vector);
+            return new(Vector128.ConvertToInt64(Vector128.Create(a, b)));
+        }
         return new((long)self.x, (long)self.y);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator decimal2(float2 self)
@@ -57,12 +57,12 @@ public partial struct float2
     [MethodImpl(256 | 512)]
     public static implicit operator double2(float2 self)
     {
-        #if NET8_0_OR_GREATER
-        var (a, b) = Vector64.Widen(self.vector);
-        return new(Vector128.Create(a, b));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+        {
+            var (a, b) = Vector64.Widen(self.vector);
+            return new(Vector128.Create(a, b));
+        }
         return new((double)self.x, (double)self.y);
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -75,40 +75,40 @@ public partial struct float3
     [MethodImpl(256 | 512)]
     public static explicit operator uint3(float3 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.ConvertToUInt32(self.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            return new(Vector128.ConvertToUInt32(self.vector));
+        }
         return new((uint)self.x, (uint)self.y, (uint)self.z);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator int3(float3 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.ConvertToInt32(self.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            return new(Vector128.ConvertToInt32(self.vector));
+        }
         return new((int)self.x, (int)self.y, (int)self.z);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator ulong3(float3 self)
     {
-        #if NET8_0_OR_GREATER
-        var (a, b) = Vector128.Widen(self.vector);
-        return new(Vector256.ConvertToUInt64(Vector256.Create(a, b)));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var (a, b) = Vector128.Widen(self.vector);
+            return new(Vector256.ConvertToUInt64(Vector256.Create(a, b)));
+        }
         return new((ulong)self.x, (ulong)self.y, (ulong)self.z);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator long3(float3 self)
     {
-        #if NET8_0_OR_GREATER
-        var (a, b) = Vector128.Widen(self.vector);
-        return new(Vector256.ConvertToInt64(Vector256.Create(a, b)));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var (a, b) = Vector128.Widen(self.vector);
+            return new(Vector256.ConvertToInt64(Vector256.Create(a, b)));
+        }
         return new((long)self.x, (long)self.y, (long)self.z);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator decimal3(float3 self)
@@ -123,12 +123,12 @@ public partial struct float3
     [MethodImpl(256 | 512)]
     public static implicit operator double3(float3 self)
     {
-        #if NET8_0_OR_GREATER
-        var (a, b) = Vector128.Widen(self.vector);
-        return new(Vector256.Create(a, b));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var (a, b) = Vector128.Widen(self.vector);
+            return new(Vector256.Create(a, b));
+        }
         return new((double)self.x, (double)self.y, (double)self.z);
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -141,40 +141,40 @@ public partial struct float4
     [MethodImpl(256 | 512)]
     public static explicit operator uint4(float4 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.ConvertToUInt32(self.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            return new(Vector128.ConvertToUInt32(self.vector));
+        }
         return new((uint)self.x, (uint)self.y, (uint)self.z, (uint)self.w);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator int4(float4 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.ConvertToInt32(self.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            return new(Vector128.ConvertToInt32(self.vector));
+        }
         return new((int)self.x, (int)self.y, (int)self.z, (int)self.w);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator ulong4(float4 self)
     {
-        #if NET8_0_OR_GREATER
-        var (a, b) = Vector128.Widen(self.vector);
-        return new(Vector256.ConvertToUInt64(Vector256.Create(a, b)));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var (a, b) = Vector128.Widen(self.vector);
+            return new(Vector256.ConvertToUInt64(Vector256.Create(a, b)));
+        }
         return new((ulong)self.x, (ulong)self.y, (ulong)self.z, (ulong)self.w);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator long4(float4 self)
     {
-        #if NET8_0_OR_GREATER
-        var (a, b) = Vector128.Widen(self.vector);
-        return new(Vector256.ConvertToInt64(Vector256.Create(a, b)));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var (a, b) = Vector128.Widen(self.vector);
+            return new(Vector256.ConvertToInt64(Vector256.Create(a, b)));
+        }
         return new((long)self.x, (long)self.y, (long)self.z, (long)self.w);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator decimal4(float4 self)
@@ -189,12 +189,12 @@ public partial struct float4
     [MethodImpl(256 | 512)]
     public static implicit operator double4(float4 self)
     {
-        #if NET8_0_OR_GREATER
-        var (a, b) = Vector128.Widen(self.vector);
-        return new(Vector256.Create(a, b));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var (a, b) = Vector128.Widen(self.vector);
+            return new(Vector256.Create(a, b));
+        }
         return new((double)self.x, (double)self.y, (double)self.z, (double)self.w);
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -207,50 +207,50 @@ public partial struct double2
     [MethodImpl(256 | 512)]
     public static explicit operator uint2(double2 self)
     {
-        #if NET8_0_OR_GREATER
-        var v = Vector64.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(Vector64.ConvertToUInt32(v));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var v = Vector64.Narrow(self.vector.GetLower(), self.vector.GetUpper());
+            return new(Vector64.ConvertToUInt32(v));
+        }
         return new((uint)self.x, (uint)self.y);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator int2(double2 self)
     {
-        #if NET8_0_OR_GREATER
-        var v = Vector64.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(Vector64.ConvertToInt32(v));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var v = Vector64.Narrow(self.vector.GetLower(), self.vector.GetUpper());
+            return new(Vector64.ConvertToInt32(v));
+        }
         return new((int)self.x, (int)self.y);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator ulong2(double2 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.ConvertToUInt64(self.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            return new(Vector128.ConvertToUInt64(self.vector));
+        }
         return new((ulong)self.x, (ulong)self.y);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator long2(double2 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.ConvertToInt64(self.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            return new(Vector128.ConvertToInt64(self.vector));
+        }
         return new((long)self.x, (long)self.y);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator float2(double2 self)
     {
-        #if NET8_0_OR_GREATER
-        var v = Vector64.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(v);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var v = Vector64.Narrow(self.vector.GetLower(), self.vector.GetUpper());
+            return new(v);
+        }
         return new((float)self.x, (float)self.y);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator decimal2(double2 self)
@@ -273,50 +273,50 @@ public partial struct double3
     [MethodImpl(256 | 512)]
     public static explicit operator uint3(double3 self)
     {
-        #if NET8_0_OR_GREATER
-        var v = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(Vector128.ConvertToUInt32(v));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var v = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
+            return new(Vector128.ConvertToUInt32(v));
+        }
         return new((uint)self.x, (uint)self.y, (uint)self.z);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator int3(double3 self)
     {
-        #if NET8_0_OR_GREATER
-        var v = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(Vector128.ConvertToInt32(v));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var v = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
+            return new(Vector128.ConvertToInt32(v));
+        }
         return new((int)self.x, (int)self.y, (int)self.z);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator ulong3(double3 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.ConvertToUInt64(self.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            return new(Vector256.ConvertToUInt64(self.vector));
+        }
         return new((ulong)self.x, (ulong)self.y, (ulong)self.z);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator long3(double3 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.ConvertToInt64(self.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            return new(Vector256.ConvertToInt64(self.vector));
+        }
         return new((long)self.x, (long)self.y, (long)self.z);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator float3(double3 self)
     {
-        #if NET8_0_OR_GREATER
-        var v = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(v);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var v = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
+            return new(v);
+        }
         return new((float)self.x, (float)self.y, (float)self.z);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator decimal3(double3 self)
@@ -339,50 +339,50 @@ public partial struct double4
     [MethodImpl(256 | 512)]
     public static explicit operator uint4(double4 self)
     {
-        #if NET8_0_OR_GREATER
-        var v = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(Vector128.ConvertToUInt32(v));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var v = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
+            return new(Vector128.ConvertToUInt32(v));
+        }
         return new((uint)self.x, (uint)self.y, (uint)self.z, (uint)self.w);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator int4(double4 self)
     {
-        #if NET8_0_OR_GREATER
-        var v = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(Vector128.ConvertToInt32(v));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var v = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
+            return new(Vector128.ConvertToInt32(v));
+        }
         return new((int)self.x, (int)self.y, (int)self.z, (int)self.w);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator ulong4(double4 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.ConvertToUInt64(self.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            return new(Vector256.ConvertToUInt64(self.vector));
+        }
         return new((ulong)self.x, (ulong)self.y, (ulong)self.z, (ulong)self.w);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator long4(double4 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.ConvertToInt64(self.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            return new(Vector256.ConvertToInt64(self.vector));
+        }
         return new((long)self.x, (long)self.y, (long)self.z, (long)self.w);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator float4(double4 self)
     {
-        #if NET8_0_OR_GREATER
-        var v = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(v);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var v = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
+            return new(v);
+        }
         return new((float)self.x, (float)self.y, (float)self.z, (float)self.w);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator decimal4(double4 self)
@@ -405,21 +405,21 @@ public partial struct int2
     [MethodImpl(256 | 512)]
     public static explicit operator uint2(int2 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(self.vector.AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+        {
+            return new(self.vector.AsUInt32());
+        }
         return new((uint)self.x, (uint)self.y);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator ulong2(int2 self)
     {
-        #if NET8_0_OR_GREATER
-        var (a, b) = Vector64.Widen(self.vector);
-        return new(Vector128.Create(a, b).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+        {
+            var (a, b) = Vector64.Widen(self.vector);
+            return new(Vector128.Create(a, b).AsUInt64());
+        }
         return new((ulong)self.x, (ulong)self.y);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator half2(int2 self)
@@ -429,31 +429,31 @@ public partial struct int2
     [MethodImpl(256 | 512)]
     public static implicit operator long2(int2 self)
     {
-        #if NET8_0_OR_GREATER
-        var (a, b) = Vector64.Widen(self.vector);
-        return new(Vector128.Create(a, b).AsInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+        {
+            var (a, b) = Vector64.Widen(self.vector);
+            return new(Vector128.Create(a, b).AsInt64());
+        }
         return new((long)self.x, (long)self.y);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static implicit operator float2(int2 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector64.ConvertToSingle(self.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+        {
+            return new(Vector64.ConvertToSingle(self.vector));
+        }
         return new((float)self.x, (float)self.y);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static implicit operator double2(int2 self)
     {
-        #if NET8_0_OR_GREATER
-        var (a, b) = Vector64.Widen(self.vector);
-        return new(Vector128.ConvertToDouble(Vector128.Create(a, b)));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+        {
+            var (a, b) = Vector64.Widen(self.vector);
+            return new(Vector128.ConvertToDouble(Vector128.Create(a, b)));
+        }
         return new((double)self.x, (double)self.y);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static implicit operator decimal2(int2 self)
@@ -471,21 +471,21 @@ public partial struct int3
     [MethodImpl(256 | 512)]
     public static explicit operator uint3(int3 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(self.vector.AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            return new(self.vector.AsUInt32());
+        }
         return new((uint)self.x, (uint)self.y, (uint)self.z);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator ulong3(int3 self)
     {
-        #if NET8_0_OR_GREATER
-        var (a, b) = Vector128.Widen(self.vector);
-        return new(Vector256.Create(a, b).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var (a, b) = Vector128.Widen(self.vector);
+            return new(Vector256.Create(a, b).AsUInt64());
+        }
         return new((ulong)self.x, (ulong)self.y, (ulong)self.z);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator half3(int3 self)
@@ -495,31 +495,31 @@ public partial struct int3
     [MethodImpl(256 | 512)]
     public static implicit operator long3(int3 self)
     {
-        #if NET8_0_OR_GREATER
-        var (a, b) = Vector128.Widen(self.vector);
-        return new(Vector256.Create(a, b).AsInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var (a, b) = Vector128.Widen(self.vector);
+            return new(Vector256.Create(a, b).AsInt64());
+        }
         return new((long)self.x, (long)self.y, (long)self.z);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static implicit operator float3(int3 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.ConvertToSingle(self.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            return new(Vector128.ConvertToSingle(self.vector));
+        }
         return new((float)self.x, (float)self.y, (float)self.z);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static implicit operator double3(int3 self)
     {
-        #if NET8_0_OR_GREATER
-        var (a, b) = Vector128.Widen(self.vector);
-        return new(Vector256.ConvertToDouble(Vector256.Create(a, b)));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var (a, b) = Vector128.Widen(self.vector);
+            return new(Vector256.ConvertToDouble(Vector256.Create(a, b)));
+        }
         return new((double)self.x, (double)self.y, (double)self.z);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static implicit operator decimal3(int3 self)
@@ -537,21 +537,21 @@ public partial struct int4
     [MethodImpl(256 | 512)]
     public static explicit operator uint4(int4 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(self.vector.AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            return new(self.vector.AsUInt32());
+        }
         return new((uint)self.x, (uint)self.y, (uint)self.z, (uint)self.w);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator ulong4(int4 self)
     {
-        #if NET8_0_OR_GREATER
-        var (a, b) = Vector128.Widen(self.vector);
-        return new(Vector256.Create(a, b).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var (a, b) = Vector128.Widen(self.vector);
+            return new(Vector256.Create(a, b).AsUInt64());
+        }
         return new((ulong)self.x, (ulong)self.y, (ulong)self.z, (ulong)self.w);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator half4(int4 self)
@@ -561,31 +561,31 @@ public partial struct int4
     [MethodImpl(256 | 512)]
     public static implicit operator long4(int4 self)
     {
-        #if NET8_0_OR_GREATER
-        var (a, b) = Vector128.Widen(self.vector);
-        return new(Vector256.Create(a, b).AsInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var (a, b) = Vector128.Widen(self.vector);
+            return new(Vector256.Create(a, b).AsInt64());
+        }
         return new((long)self.x, (long)self.y, (long)self.z, (long)self.w);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static implicit operator float4(int4 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.ConvertToSingle(self.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            return new(Vector128.ConvertToSingle(self.vector));
+        }
         return new((float)self.x, (float)self.y, (float)self.z, (float)self.w);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static implicit operator double4(int4 self)
     {
-        #if NET8_0_OR_GREATER
-        var (a, b) = Vector128.Widen(self.vector);
-        return new(Vector256.ConvertToDouble(Vector256.Create(a, b)));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var (a, b) = Vector128.Widen(self.vector);
+            return new(Vector256.ConvertToDouble(Vector256.Create(a, b)));
+        }
         return new((double)self.x, (double)self.y, (double)self.z, (double)self.w);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static implicit operator decimal4(int4 self)
@@ -603,11 +603,11 @@ public partial struct uint2
     [MethodImpl(256 | 512)]
     public static explicit operator int2(uint2 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(self.vector.AsInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+        {
+            return new(self.vector.AsInt32());
+        }
         return new((int)self.x, (int)self.y);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator half2(uint2 self)
@@ -617,41 +617,41 @@ public partial struct uint2
     [MethodImpl(256 | 512)]
     public static implicit operator long2(uint2 self)
     {
-        #if NET8_0_OR_GREATER
-        var (a, b) = Vector64.Widen(self.vector);
-        return new(Vector128.Create(a, b).AsInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+        {
+            var (a, b) = Vector64.Widen(self.vector);
+            return new(Vector128.Create(a, b).AsInt64());
+        }
         return new((long)self.x, (long)self.y);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static implicit operator ulong2(uint2 self)
     {
-        #if NET8_0_OR_GREATER
-        var (a, b) = Vector64.Widen(self.vector);
-        return new(Vector128.Create(a, b).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+        {
+            var (a, b) = Vector64.Widen(self.vector);
+            return new(Vector128.Create(a, b).AsUInt64());
+        }
         return new((ulong)self.x, (ulong)self.y);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static implicit operator float2(uint2 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector64.ConvertToSingle(self.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+        {
+            return new(Vector64.ConvertToSingle(self.vector));
+        }
         return new((float)self.x, (float)self.y);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static implicit operator double2(uint2 self)
     {
-        #if NET8_0_OR_GREATER
-        var (a, b) = Vector64.Widen(self.vector);
-        return new(Vector128.ConvertToDouble(Vector128.Create(a, b)));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+        {
+            var (a, b) = Vector64.Widen(self.vector);
+            return new(Vector128.ConvertToDouble(Vector128.Create(a, b)));
+        }
         return new((double)self.x, (double)self.y);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static implicit operator decimal2(uint2 self)
@@ -669,11 +669,11 @@ public partial struct uint3
     [MethodImpl(256 | 512)]
     public static explicit operator int3(uint3 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(self.vector.AsInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            return new(self.vector.AsInt32());
+        }
         return new((int)self.x, (int)self.y, (int)self.z);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator half3(uint3 self)
@@ -683,41 +683,41 @@ public partial struct uint3
     [MethodImpl(256 | 512)]
     public static implicit operator long3(uint3 self)
     {
-        #if NET8_0_OR_GREATER
-        var (a, b) = Vector128.Widen(self.vector);
-        return new(Vector256.Create(a, b).AsInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var (a, b) = Vector128.Widen(self.vector);
+            return new(Vector256.Create(a, b).AsInt64());
+        }
         return new((long)self.x, (long)self.y, (long)self.z);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static implicit operator ulong3(uint3 self)
     {
-        #if NET8_0_OR_GREATER
-        var (a, b) = Vector128.Widen(self.vector);
-        return new(Vector256.Create(a, b).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var (a, b) = Vector128.Widen(self.vector);
+            return new(Vector256.Create(a, b).AsUInt64());
+        }
         return new((ulong)self.x, (ulong)self.y, (ulong)self.z);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static implicit operator float3(uint3 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.ConvertToSingle(self.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            return new(Vector128.ConvertToSingle(self.vector));
+        }
         return new((float)self.x, (float)self.y, (float)self.z);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static implicit operator double3(uint3 self)
     {
-        #if NET8_0_OR_GREATER
-        var (a, b) = Vector128.Widen(self.vector);
-        return new(Vector256.ConvertToDouble(Vector256.Create(a, b)));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var (a, b) = Vector128.Widen(self.vector);
+            return new(Vector256.ConvertToDouble(Vector256.Create(a, b)));
+        }
         return new((double)self.x, (double)self.y, (double)self.z);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static implicit operator decimal3(uint3 self)
@@ -735,11 +735,11 @@ public partial struct uint4
     [MethodImpl(256 | 512)]
     public static explicit operator int4(uint4 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(self.vector.AsInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            return new(self.vector.AsInt32());
+        }
         return new((int)self.x, (int)self.y, (int)self.z, (int)self.w);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator half4(uint4 self)
@@ -749,41 +749,41 @@ public partial struct uint4
     [MethodImpl(256 | 512)]
     public static implicit operator long4(uint4 self)
     {
-        #if NET8_0_OR_GREATER
-        var (a, b) = Vector128.Widen(self.vector);
-        return new(Vector256.Create(a, b).AsInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var (a, b) = Vector128.Widen(self.vector);
+            return new(Vector256.Create(a, b).AsInt64());
+        }
         return new((long)self.x, (long)self.y, (long)self.z, (long)self.w);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static implicit operator ulong4(uint4 self)
     {
-        #if NET8_0_OR_GREATER
-        var (a, b) = Vector128.Widen(self.vector);
-        return new(Vector256.Create(a, b).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var (a, b) = Vector128.Widen(self.vector);
+            return new(Vector256.Create(a, b).AsUInt64());
+        }
         return new((ulong)self.x, (ulong)self.y, (ulong)self.z, (ulong)self.w);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static implicit operator float4(uint4 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.ConvertToSingle(self.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            return new(Vector128.ConvertToSingle(self.vector));
+        }
         return new((float)self.x, (float)self.y, (float)self.z, (float)self.w);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static implicit operator double4(uint4 self)
     {
-        #if NET8_0_OR_GREATER
-        var (a, b) = Vector128.Widen(self.vector);
-        return new(Vector256.ConvertToDouble(Vector256.Create(a, b)));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var (a, b) = Vector128.Widen(self.vector);
+            return new(Vector256.ConvertToDouble(Vector256.Create(a, b)));
+        }
         return new((double)self.x, (double)self.y, (double)self.z, (double)self.w);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static implicit operator decimal4(uint4 self)
@@ -801,31 +801,31 @@ public partial struct long2
     [MethodImpl(256 | 512)]
     public static explicit operator uint2(long2 self)
     {
-        #if NET8_0_OR_GREATER
-        var v = Vector64.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(v.AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var v = Vector64.Narrow(self.vector.GetLower(), self.vector.GetUpper());
+            return new(v.AsUInt32());
+        }
         return new((uint)self.x, (uint)self.y);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator int2(long2 self)
     {
-        #if NET8_0_OR_GREATER
-        var v = Vector64.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(v.AsInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var v = Vector64.Narrow(self.vector.GetLower(), self.vector.GetUpper());
+            return new(v.AsInt32());
+        }
         return new((int)self.x, (int)self.y);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator ulong2(long2 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(self.vector.AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            return new(self.vector.AsUInt64());
+        }
         return new((ulong)self.x, (ulong)self.y);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator half2(long2 self)
@@ -835,11 +835,11 @@ public partial struct long2
     [MethodImpl(256 | 512)]
     public static implicit operator double2(long2 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.ConvertToDouble(self.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            return new(Vector128.ConvertToDouble(self.vector));
+        }
         return new((double)self.x, (double)self.y);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static implicit operator decimal2(long2 self)
@@ -857,31 +857,31 @@ public partial struct long3
     [MethodImpl(256 | 512)]
     public static explicit operator uint3(long3 self)
     {
-        #if NET8_0_OR_GREATER
-        var v = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(v.AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var v = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
+            return new(v.AsUInt32());
+        }
         return new((uint)self.x, (uint)self.y, (uint)self.z);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator int3(long3 self)
     {
-        #if NET8_0_OR_GREATER
-        var v = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(v.AsInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var v = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
+            return new(v.AsInt32());
+        }
         return new((int)self.x, (int)self.y, (int)self.z);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator ulong3(long3 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(self.vector.AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            return new(self.vector.AsUInt64());
+        }
         return new((ulong)self.x, (ulong)self.y, (ulong)self.z);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator half3(long3 self)
@@ -891,11 +891,11 @@ public partial struct long3
     [MethodImpl(256 | 512)]
     public static implicit operator double3(long3 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.ConvertToDouble(self.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            return new(Vector256.ConvertToDouble(self.vector));
+        }
         return new((double)self.x, (double)self.y, (double)self.z);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static implicit operator decimal3(long3 self)
@@ -913,31 +913,31 @@ public partial struct long4
     [MethodImpl(256 | 512)]
     public static explicit operator uint4(long4 self)
     {
-        #if NET8_0_OR_GREATER
-        var v = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(v.AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var v = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
+            return new(v.AsUInt32());
+        }
         return new((uint)self.x, (uint)self.y, (uint)self.z, (uint)self.w);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator int4(long4 self)
     {
-        #if NET8_0_OR_GREATER
-        var v = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(v.AsInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var v = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
+            return new(v.AsInt32());
+        }
         return new((int)self.x, (int)self.y, (int)self.z, (int)self.w);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator ulong4(long4 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(self.vector.AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            return new(self.vector.AsUInt64());
+        }
         return new((ulong)self.x, (ulong)self.y, (ulong)self.z, (ulong)self.w);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator half4(long4 self)
@@ -947,11 +947,11 @@ public partial struct long4
     [MethodImpl(256 | 512)]
     public static implicit operator double4(long4 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.ConvertToDouble(self.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            return new(Vector256.ConvertToDouble(self.vector));
+        }
         return new((double)self.x, (double)self.y, (double)self.z, (double)self.w);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static implicit operator decimal4(long4 self)
@@ -969,31 +969,31 @@ public partial struct ulong2
     [MethodImpl(256 | 512)]
     public static explicit operator uint2(ulong2 self)
     {
-        #if NET8_0_OR_GREATER
-        var v = Vector64.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(v.AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var v = Vector64.Narrow(self.vector.GetLower(), self.vector.GetUpper());
+            return new(v.AsUInt32());
+        }
         return new((uint)self.x, (uint)self.y);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator int2(ulong2 self)
     {
-        #if NET8_0_OR_GREATER
-        var v = Vector64.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(v.AsInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var v = Vector64.Narrow(self.vector.GetLower(), self.vector.GetUpper());
+            return new(v.AsInt32());
+        }
         return new((int)self.x, (int)self.y);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator long2(ulong2 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(self.vector.AsInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            return new(self.vector.AsInt64());
+        }
         return new((long)self.x, (long)self.y);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator half2(ulong2 self)
@@ -1003,11 +1003,11 @@ public partial struct ulong2
     [MethodImpl(256 | 512)]
     public static implicit operator double2(ulong2 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.ConvertToDouble(self.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            return new(Vector128.ConvertToDouble(self.vector));
+        }
         return new((double)self.x, (double)self.y);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static implicit operator decimal2(ulong2 self)
@@ -1025,31 +1025,31 @@ public partial struct ulong3
     [MethodImpl(256 | 512)]
     public static explicit operator uint3(ulong3 self)
     {
-        #if NET8_0_OR_GREATER
-        var v = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(v.AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var v = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
+            return new(v.AsUInt32());
+        }
         return new((uint)self.x, (uint)self.y, (uint)self.z);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator int3(ulong3 self)
     {
-        #if NET8_0_OR_GREATER
-        var v = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(v.AsInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var v = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
+            return new(v.AsInt32());
+        }
         return new((int)self.x, (int)self.y, (int)self.z);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator long3(ulong3 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(self.vector.AsInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            return new(self.vector.AsInt64());
+        }
         return new((long)self.x, (long)self.y, (long)self.z);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator half3(ulong3 self)
@@ -1059,11 +1059,11 @@ public partial struct ulong3
     [MethodImpl(256 | 512)]
     public static implicit operator double3(ulong3 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.ConvertToDouble(self.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            return new(Vector256.ConvertToDouble(self.vector));
+        }
         return new((double)self.x, (double)self.y, (double)self.z);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static implicit operator decimal3(ulong3 self)
@@ -1081,31 +1081,31 @@ public partial struct ulong4
     [MethodImpl(256 | 512)]
     public static explicit operator uint4(ulong4 self)
     {
-        #if NET8_0_OR_GREATER
-        var v = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(v.AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var v = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
+            return new(v.AsUInt32());
+        }
         return new((uint)self.x, (uint)self.y, (uint)self.z, (uint)self.w);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator int4(ulong4 self)
     {
-        #if NET8_0_OR_GREATER
-        var v = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(v.AsInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var v = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
+            return new(v.AsInt32());
+        }
         return new((int)self.x, (int)self.y, (int)self.z, (int)self.w);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator long4(ulong4 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(self.vector.AsInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            return new(self.vector.AsInt64());
+        }
         return new((long)self.x, (long)self.y, (long)self.z, (long)self.w);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator half4(ulong4 self)
@@ -1115,11 +1115,11 @@ public partial struct ulong4
     [MethodImpl(256 | 512)]
     public static implicit operator double4(ulong4 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.ConvertToDouble(self.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            return new(Vector256.ConvertToDouble(self.vector));
+        }
         return new((double)self.x, (double)self.y, (double)self.z, (double)self.w);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static implicit operator decimal4(ulong4 self)
@@ -1539,59 +1539,59 @@ public partial struct b32v2
     [MethodImpl(256 | 512)]
     public static explicit operator uint2(b32v2 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(self.vector.AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+        {
+            return new(self.vector.AsUInt32());
+        }
         return new((uint)self.x, (uint)self.y);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator int2(b32v2 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(self.vector.AsInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+        {
+            return new(self.vector.AsInt32());
+        }
         return new((int)self.x, (int)self.y);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator ulong2(b32v2 self)
     {
-        #if NET8_0_OR_GREATER
-        var (a, b) = Vector64.Widen(self.vector);
-        return new(Vector128.Create(a, b).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+        {
+            var (a, b) = Vector64.Widen(self.vector);
+            return new(Vector128.Create(a, b).AsUInt64());
+        }
         return new((ulong)self.x, (ulong)self.y);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator long2(b32v2 self)
     {
-        #if NET8_0_OR_GREATER
-        var (a, b) = Vector64.Widen(self.vector);
-        return new(Vector128.Create(a, b).AsInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+        {
+            var (a, b) = Vector64.Widen(self.vector);
+            return new(Vector128.Create(a, b).AsInt64());
+        }
         return new((long)self.x, (long)self.y);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator float2(b32v2 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector64.ConvertToSingle(self.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+        {
+            return new(Vector64.ConvertToSingle(self.vector));
+        }
         return new((float)self.x, (float)self.y);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator double2(b32v2 self)
     {
-        #if NET8_0_OR_GREATER
-        var (a, b) = Vector64.Widen(self.vector);
-        return new(Vector128.ConvertToDouble(Vector128.Create(a, b)));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+        {
+            var (a, b) = Vector64.Widen(self.vector);
+            return new(Vector128.ConvertToDouble(Vector128.Create(a, b)));
+        }
         return new((double)self.x, (double)self.y);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator decimal2(b32v2 self)
@@ -1611,12 +1611,12 @@ public partial struct b32v2
     [MethodImpl(256 | 512)]
     public static explicit operator b64v2(b32v2 self)
     {
-        #if NET8_0_OR_GREATER
-        var (a, b) = Vector64.Widen(self.vector);
-        return new(Vector128.Create(a, b).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+        {
+            var (a, b) = Vector64.Widen(self.vector);
+            return new(Vector128.Create(a, b).AsUInt64());
+        }
         return new((b64v)self.x, (b64v)self.y);
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -1629,59 +1629,59 @@ public partial struct b32v3
     [MethodImpl(256 | 512)]
     public static explicit operator uint3(b32v3 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(self.vector.AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            return new(self.vector.AsUInt32());
+        }
         return new((uint)self.x, (uint)self.y, (uint)self.z);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator int3(b32v3 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(self.vector.AsInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            return new(self.vector.AsInt32());
+        }
         return new((int)self.x, (int)self.y, (int)self.z);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator ulong3(b32v3 self)
     {
-        #if NET8_0_OR_GREATER
-        var (a, b) = Vector128.Widen(self.vector);
-        return new(Vector256.Create(a, b).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var (a, b) = Vector128.Widen(self.vector);
+            return new(Vector256.Create(a, b).AsUInt64());
+        }
         return new((ulong)self.x, (ulong)self.y, (ulong)self.z);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator long3(b32v3 self)
     {
-        #if NET8_0_OR_GREATER
-        var (a, b) = Vector128.Widen(self.vector);
-        return new(Vector256.Create(a, b).AsInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var (a, b) = Vector128.Widen(self.vector);
+            return new(Vector256.Create(a, b).AsInt64());
+        }
         return new((long)self.x, (long)self.y, (long)self.z);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator float3(b32v3 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.ConvertToSingle(self.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            return new(Vector128.ConvertToSingle(self.vector));
+        }
         return new((float)self.x, (float)self.y, (float)self.z);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator double3(b32v3 self)
     {
-        #if NET8_0_OR_GREATER
-        var (a, b) = Vector128.Widen(self.vector);
-        return new(Vector256.ConvertToDouble(Vector256.Create(a, b)));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var (a, b) = Vector128.Widen(self.vector);
+            return new(Vector256.ConvertToDouble(Vector256.Create(a, b)));
+        }
         return new((double)self.x, (double)self.y, (double)self.z);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator decimal3(b32v3 self)
@@ -1701,12 +1701,12 @@ public partial struct b32v3
     [MethodImpl(256 | 512)]
     public static explicit operator b64v3(b32v3 self)
     {
-        #if NET8_0_OR_GREATER
-        var (a, b) = Vector128.Widen(self.vector);
-        return new(Vector256.Create(a, b).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var (a, b) = Vector128.Widen(self.vector);
+            return new(Vector256.Create(a, b).AsUInt64());
+        }
         return new((b64v)self.x, (b64v)self.y, (b64v)self.z);
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -1719,59 +1719,59 @@ public partial struct b32v4
     [MethodImpl(256 | 512)]
     public static explicit operator uint4(b32v4 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(self.vector.AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            return new(self.vector.AsUInt32());
+        }
         return new((uint)self.x, (uint)self.y, (uint)self.z, (uint)self.w);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator int4(b32v4 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(self.vector.AsInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            return new(self.vector.AsInt32());
+        }
         return new((int)self.x, (int)self.y, (int)self.z, (int)self.w);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator ulong4(b32v4 self)
     {
-        #if NET8_0_OR_GREATER
-        var (a, b) = Vector128.Widen(self.vector);
-        return new(Vector256.Create(a, b).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var (a, b) = Vector128.Widen(self.vector);
+            return new(Vector256.Create(a, b).AsUInt64());
+        }
         return new((ulong)self.x, (ulong)self.y, (ulong)self.z, (ulong)self.w);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator long4(b32v4 self)
     {
-        #if NET8_0_OR_GREATER
-        var (a, b) = Vector128.Widen(self.vector);
-        return new(Vector256.Create(a, b).AsInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var (a, b) = Vector128.Widen(self.vector);
+            return new(Vector256.Create(a, b).AsInt64());
+        }
         return new((long)self.x, (long)self.y, (long)self.z, (long)self.w);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator float4(b32v4 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.ConvertToSingle(self.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            return new(Vector128.ConvertToSingle(self.vector));
+        }
         return new((float)self.x, (float)self.y, (float)self.z, (float)self.w);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator double4(b32v4 self)
     {
-        #if NET8_0_OR_GREATER
-        var (a, b) = Vector128.Widen(self.vector);
-        return new(Vector256.ConvertToDouble(Vector256.Create(a, b)));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var (a, b) = Vector128.Widen(self.vector);
+            return new(Vector256.ConvertToDouble(Vector256.Create(a, b)));
+        }
         return new((double)self.x, (double)self.y, (double)self.z, (double)self.w);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator decimal4(b32v4 self)
@@ -1791,12 +1791,12 @@ public partial struct b32v4
     [MethodImpl(256 | 512)]
     public static explicit operator b64v4(b32v4 self)
     {
-        #if NET8_0_OR_GREATER
-        var (a, b) = Vector128.Widen(self.vector);
-        return new(Vector256.Create(a, b).AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var (a, b) = Vector128.Widen(self.vector);
+            return new(Vector256.Create(a, b).AsUInt64());
+        }
         return new((b64v)self.x, (b64v)self.y, (b64v)self.z, (b64v)self.w);
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -1809,59 +1809,59 @@ public partial struct b64v2
     [MethodImpl(256 | 512)]
     public static explicit operator uint2(b64v2 self)
     {
-        #if NET8_0_OR_GREATER
-        var v = Vector64.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(v.AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var v = Vector64.Narrow(self.vector.GetLower(), self.vector.GetUpper());
+            return new(v.AsUInt32());
+        }
         return new((uint)self.x, (uint)self.y);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator int2(b64v2 self)
     {
-        #if NET8_0_OR_GREATER
-        var v = Vector64.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(v.AsInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var v = Vector64.Narrow(self.vector.GetLower(), self.vector.GetUpper());
+            return new(v.AsInt32());
+        }
         return new((int)self.x, (int)self.y);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator ulong2(b64v2 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(self.vector.AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            return new(self.vector.AsUInt64());
+        }
         return new((ulong)self.x, (ulong)self.y);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator long2(b64v2 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(self.vector.AsInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            return new(self.vector.AsInt64());
+        }
         return new((long)self.x, (long)self.y);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator float2(b64v2 self)
     {
-        #if NET8_0_OR_GREATER
-        var v = Vector64.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(Vector64.ConvertToSingle(v));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var v = Vector64.Narrow(self.vector.GetLower(), self.vector.GetUpper());
+            return new(Vector64.ConvertToSingle(v));
+        }
         return new((float)self.x, (float)self.y);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator double2(b64v2 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.ConvertToDouble(self.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            return new(Vector128.ConvertToDouble(self.vector));
+        }
         return new((double)self.x, (double)self.y);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator decimal2(b64v2 self)
@@ -1881,12 +1881,12 @@ public partial struct b64v2
     [MethodImpl(256 | 512)]
     public static explicit operator b32v2(b64v2 self)
     {
-        #if NET8_0_OR_GREATER
-        var v = Vector64.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(v.AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var v = Vector64.Narrow(self.vector.GetLower(), self.vector.GetUpper());
+            return new(v.AsUInt32());
+        }
         return new((b32v)self.x, (b32v)self.y);
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -1899,59 +1899,59 @@ public partial struct b64v3
     [MethodImpl(256 | 512)]
     public static explicit operator uint3(b64v3 self)
     {
-        #if NET8_0_OR_GREATER
-        var v = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(v.AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var v = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
+            return new(v.AsUInt32());
+        }
         return new((uint)self.x, (uint)self.y, (uint)self.z);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator int3(b64v3 self)
     {
-        #if NET8_0_OR_GREATER
-        var v = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(v.AsInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var v = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
+            return new(v.AsInt32());
+        }
         return new((int)self.x, (int)self.y, (int)self.z);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator ulong3(b64v3 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(self.vector.AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            return new(self.vector.AsUInt64());
+        }
         return new((ulong)self.x, (ulong)self.y, (ulong)self.z);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator long3(b64v3 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(self.vector.AsInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            return new(self.vector.AsInt64());
+        }
         return new((long)self.x, (long)self.y, (long)self.z);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator float3(b64v3 self)
     {
-        #if NET8_0_OR_GREATER
-        var v = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(Vector128.ConvertToSingle(v));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var v = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
+            return new(Vector128.ConvertToSingle(v));
+        }
         return new((float)self.x, (float)self.y, (float)self.z);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator double3(b64v3 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.ConvertToDouble(self.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            return new(Vector256.ConvertToDouble(self.vector));
+        }
         return new((double)self.x, (double)self.y, (double)self.z);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator decimal3(b64v3 self)
@@ -1971,12 +1971,12 @@ public partial struct b64v3
     [MethodImpl(256 | 512)]
     public static explicit operator b32v3(b64v3 self)
     {
-        #if NET8_0_OR_GREATER
-        var v = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(v.AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var v = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
+            return new(v.AsUInt32());
+        }
         return new((b32v)self.x, (b32v)self.y, (b32v)self.z);
-        #endif // NET8_0_OR_GREATER
     }
 }
 
@@ -1989,59 +1989,59 @@ public partial struct b64v4
     [MethodImpl(256 | 512)]
     public static explicit operator uint4(b64v4 self)
     {
-        #if NET8_0_OR_GREATER
-        var v = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(v.AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var v = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
+            return new(v.AsUInt32());
+        }
         return new((uint)self.x, (uint)self.y, (uint)self.z, (uint)self.w);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator int4(b64v4 self)
     {
-        #if NET8_0_OR_GREATER
-        var v = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(v.AsInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var v = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
+            return new(v.AsInt32());
+        }
         return new((int)self.x, (int)self.y, (int)self.z, (int)self.w);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator ulong4(b64v4 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(self.vector.AsUInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            return new(self.vector.AsUInt64());
+        }
         return new((ulong)self.x, (ulong)self.y, (ulong)self.z, (ulong)self.w);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator long4(b64v4 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(self.vector.AsInt64());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            return new(self.vector.AsInt64());
+        }
         return new((long)self.x, (long)self.y, (long)self.z, (long)self.w);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator float4(b64v4 self)
     {
-        #if NET8_0_OR_GREATER
-        var v = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(Vector128.ConvertToSingle(v));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var v = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
+            return new(Vector128.ConvertToSingle(v));
+        }
         return new((float)self.x, (float)self.y, (float)self.z, (float)self.w);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator double4(b64v4 self)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.ConvertToDouble(self.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            return new(Vector256.ConvertToDouble(self.vector));
+        }
         return new((double)self.x, (double)self.y, (double)self.z, (double)self.w);
-        #endif // NET8_0_OR_GREATER
     }
     [MethodImpl(256 | 512)]
     public static explicit operator decimal4(b64v4 self)
@@ -2061,12 +2061,12 @@ public partial struct b64v4
     [MethodImpl(256 | 512)]
     public static explicit operator b32v4(b64v4 self)
     {
-        #if NET8_0_OR_GREATER
-        var v = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
-        return new(v.AsUInt32());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var v = Vector128.Narrow(self.vector.GetLower(), self.vector.GetUpper());
+            return new(v.AsUInt32());
+        }
         return new((b32v)self.x, (b32v)self.y, (b32v)self.z, (b32v)self.w);
-        #endif // NET8_0_OR_GREATER
     }
 }
 

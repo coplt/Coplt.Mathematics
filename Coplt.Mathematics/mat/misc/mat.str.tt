@@ -32,10 +32,8 @@ namespace Coplt.Mathematics;
 #region <#= typeName #>
 
 public partial struct <#= typeName #> : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"<#= typeName #>(<#= format #>)";
@@ -80,7 +78,6 @@ public partial struct <#= typeName #> : IFormattable
                 {
 #>
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -113,7 +110,6 @@ public partial struct <#= typeName #> : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 <#
                 }
 #>

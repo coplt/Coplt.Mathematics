@@ -8,10 +8,11 @@ public partial struct short2x2
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m2x2 isPow2(this short2x2 a) => 
+    public static b16m2x2 isPow2([This] short2x2 a) => 
         new(a.c0.isPow2(), a.c1.isPow2());
 }
 
@@ -23,10 +24,11 @@ public partial struct short2x3
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m2x3 isPow2(this short2x3 a) => 
+    public static b16m2x3 isPow2([This] short2x3 a) => 
         new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
 }
 
@@ -38,10 +40,11 @@ public partial struct short2x4
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m2x4 isPow2(this short2x4 a) => 
+    public static b16m2x4 isPow2([This] short2x4 a) => 
         new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
 }
 
@@ -53,10 +56,11 @@ public partial struct short3x2
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m3x2 isPow2(this short3x2 a) => 
+    public static b16m3x2 isPow2([This] short3x2 a) => 
         new(a.c0.isPow2(), a.c1.isPow2());
 }
 
@@ -68,10 +72,11 @@ public partial struct short3x3
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m3x3 isPow2(this short3x3 a) => 
+    public static b16m3x3 isPow2([This] short3x3 a) => 
         new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
 }
 
@@ -83,10 +88,11 @@ public partial struct short3x4
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m3x4 isPow2(this short3x4 a) => 
+    public static b16m3x4 isPow2([This] short3x4 a) => 
         new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
 }
 
@@ -98,10 +104,11 @@ public partial struct short4x2
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m4x2 isPow2(this short4x2 a) => 
+    public static b16m4x2 isPow2([This] short4x2 a) => 
         new(a.c0.isPow2(), a.c1.isPow2());
 }
 
@@ -113,10 +120,11 @@ public partial struct short4x3
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m4x3 isPow2(this short4x3 a) => 
+    public static b16m4x3 isPow2([This] short4x3 a) => 
         new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
 }
 
@@ -128,10 +136,11 @@ public partial struct short4x4
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m4x4 isPow2(this short4x4 a) => 
+    public static b16m4x4 isPow2([This] short4x4 a) => 
         new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
 }
 
@@ -143,14 +152,15 @@ public partial struct ushort2x2
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m2x2 isPow2(this ushort2x2 a) => 
+    public static b16m2x2 isPow2([This] ushort2x2 a) => 
         new(a.c0.isPow2(), a.c1.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static ushort2x2 up2pow2(this ushort2x2 a) => 
+    public static ushort2x2 up2pow2([This] ushort2x2 a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2());
 }
 
@@ -162,14 +172,15 @@ public partial struct ushort2x3
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m2x3 isPow2(this ushort2x3 a) => 
+    public static b16m2x3 isPow2([This] ushort2x3 a) => 
         new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static ushort2x3 up2pow2(this ushort2x3 a) => 
+    public static ushort2x3 up2pow2([This] ushort2x3 a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
 }
 
@@ -181,14 +192,15 @@ public partial struct ushort2x4
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m2x4 isPow2(this ushort2x4 a) => 
+    public static b16m2x4 isPow2([This] ushort2x4 a) => 
         new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static ushort2x4 up2pow2(this ushort2x4 a) => 
+    public static ushort2x4 up2pow2([This] ushort2x4 a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
 }
 
@@ -200,14 +212,15 @@ public partial struct ushort3x2
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m3x2 isPow2(this ushort3x2 a) => 
+    public static b16m3x2 isPow2([This] ushort3x2 a) => 
         new(a.c0.isPow2(), a.c1.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static ushort3x2 up2pow2(this ushort3x2 a) => 
+    public static ushort3x2 up2pow2([This] ushort3x2 a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2());
 }
 
@@ -219,14 +232,15 @@ public partial struct ushort3x3
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m3x3 isPow2(this ushort3x3 a) => 
+    public static b16m3x3 isPow2([This] ushort3x3 a) => 
         new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static ushort3x3 up2pow2(this ushort3x3 a) => 
+    public static ushort3x3 up2pow2([This] ushort3x3 a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
 }
 
@@ -238,14 +252,15 @@ public partial struct ushort3x4
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m3x4 isPow2(this ushort3x4 a) => 
+    public static b16m3x4 isPow2([This] ushort3x4 a) => 
         new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static ushort3x4 up2pow2(this ushort3x4 a) => 
+    public static ushort3x4 up2pow2([This] ushort3x4 a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
 }
 
@@ -257,14 +272,15 @@ public partial struct ushort4x2
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m4x2 isPow2(this ushort4x2 a) => 
+    public static b16m4x2 isPow2([This] ushort4x2 a) => 
         new(a.c0.isPow2(), a.c1.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static ushort4x2 up2pow2(this ushort4x2 a) => 
+    public static ushort4x2 up2pow2([This] ushort4x2 a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2());
 }
 
@@ -276,14 +292,15 @@ public partial struct ushort4x3
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m4x3 isPow2(this ushort4x3 a) => 
+    public static b16m4x3 isPow2([This] ushort4x3 a) => 
         new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static ushort4x3 up2pow2(this ushort4x3 a) => 
+    public static ushort4x3 up2pow2([This] ushort4x3 a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
 }
 
@@ -295,14 +312,15 @@ public partial struct ushort4x4
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m4x4 isPow2(this ushort4x4 a) => 
+    public static b16m4x4 isPow2([This] ushort4x4 a) => 
         new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static ushort4x4 up2pow2(this ushort4x4 a) => 
+    public static ushort4x4 up2pow2([This] ushort4x4 a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
 }
 
@@ -314,10 +332,11 @@ public partial struct int2x2
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m2x2 isPow2(this int2x2 a) => 
+    public static b32m2x2 isPow2([This] int2x2 a) => 
         new(a.c0.isPow2(), a.c1.isPow2());
 }
 
@@ -329,10 +348,11 @@ public partial struct int2x3
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m2x3 isPow2(this int2x3 a) => 
+    public static b32m2x3 isPow2([This] int2x3 a) => 
         new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
 }
 
@@ -344,10 +364,11 @@ public partial struct int2x4
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m2x4 isPow2(this int2x4 a) => 
+    public static b32m2x4 isPow2([This] int2x4 a) => 
         new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
 }
 
@@ -359,10 +380,11 @@ public partial struct int3x2
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m3x2 isPow2(this int3x2 a) => 
+    public static b32m3x2 isPow2([This] int3x2 a) => 
         new(a.c0.isPow2(), a.c1.isPow2());
 }
 
@@ -374,10 +396,11 @@ public partial struct int3x3
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m3x3 isPow2(this int3x3 a) => 
+    public static b32m3x3 isPow2([This] int3x3 a) => 
         new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
 }
 
@@ -389,10 +412,11 @@ public partial struct int3x4
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m3x4 isPow2(this int3x4 a) => 
+    public static b32m3x4 isPow2([This] int3x4 a) => 
         new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
 }
 
@@ -404,10 +428,11 @@ public partial struct int4x2
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m4x2 isPow2(this int4x2 a) => 
+    public static b32m4x2 isPow2([This] int4x2 a) => 
         new(a.c0.isPow2(), a.c1.isPow2());
 }
 
@@ -419,10 +444,11 @@ public partial struct int4x3
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m4x3 isPow2(this int4x3 a) => 
+    public static b32m4x3 isPow2([This] int4x3 a) => 
         new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
 }
 
@@ -434,10 +460,11 @@ public partial struct int4x4
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m4x4 isPow2(this int4x4 a) => 
+    public static b32m4x4 isPow2([This] int4x4 a) => 
         new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
 }
 
@@ -449,14 +476,15 @@ public partial struct uint2x2
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m2x2 isPow2(this uint2x2 a) => 
+    public static b32m2x2 isPow2([This] uint2x2 a) => 
         new(a.c0.isPow2(), a.c1.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static uint2x2 up2pow2(this uint2x2 a) => 
+    public static uint2x2 up2pow2([This] uint2x2 a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2());
 }
 
@@ -468,14 +496,15 @@ public partial struct uint2x3
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m2x3 isPow2(this uint2x3 a) => 
+    public static b32m2x3 isPow2([This] uint2x3 a) => 
         new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static uint2x3 up2pow2(this uint2x3 a) => 
+    public static uint2x3 up2pow2([This] uint2x3 a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
 }
 
@@ -487,14 +516,15 @@ public partial struct uint2x4
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m2x4 isPow2(this uint2x4 a) => 
+    public static b32m2x4 isPow2([This] uint2x4 a) => 
         new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static uint2x4 up2pow2(this uint2x4 a) => 
+    public static uint2x4 up2pow2([This] uint2x4 a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
 }
 
@@ -506,14 +536,15 @@ public partial struct uint3x2
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m3x2 isPow2(this uint3x2 a) => 
+    public static b32m3x2 isPow2([This] uint3x2 a) => 
         new(a.c0.isPow2(), a.c1.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static uint3x2 up2pow2(this uint3x2 a) => 
+    public static uint3x2 up2pow2([This] uint3x2 a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2());
 }
 
@@ -525,14 +556,15 @@ public partial struct uint3x3
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m3x3 isPow2(this uint3x3 a) => 
+    public static b32m3x3 isPow2([This] uint3x3 a) => 
         new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static uint3x3 up2pow2(this uint3x3 a) => 
+    public static uint3x3 up2pow2([This] uint3x3 a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
 }
 
@@ -544,14 +576,15 @@ public partial struct uint3x4
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m3x4 isPow2(this uint3x4 a) => 
+    public static b32m3x4 isPow2([This] uint3x4 a) => 
         new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static uint3x4 up2pow2(this uint3x4 a) => 
+    public static uint3x4 up2pow2([This] uint3x4 a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
 }
 
@@ -563,14 +596,15 @@ public partial struct uint4x2
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m4x2 isPow2(this uint4x2 a) => 
+    public static b32m4x2 isPow2([This] uint4x2 a) => 
         new(a.c0.isPow2(), a.c1.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static uint4x2 up2pow2(this uint4x2 a) => 
+    public static uint4x2 up2pow2([This] uint4x2 a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2());
 }
 
@@ -582,14 +616,15 @@ public partial struct uint4x3
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m4x3 isPow2(this uint4x3 a) => 
+    public static b32m4x3 isPow2([This] uint4x3 a) => 
         new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static uint4x3 up2pow2(this uint4x3 a) => 
+    public static uint4x3 up2pow2([This] uint4x3 a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
 }
 
@@ -601,14 +636,15 @@ public partial struct uint4x4
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m4x4 isPow2(this uint4x4 a) => 
+    public static b32m4x4 isPow2([This] uint4x4 a) => 
         new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static uint4x4 up2pow2(this uint4x4 a) => 
+    public static uint4x4 up2pow2([This] uint4x4 a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
 }
 
@@ -620,10 +656,11 @@ public partial struct long2x2
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m2x2 isPow2(this long2x2 a) => 
+    public static b64m2x2 isPow2([This] long2x2 a) => 
         new(a.c0.isPow2(), a.c1.isPow2());
 }
 
@@ -635,10 +672,11 @@ public partial struct long2x3
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m2x3 isPow2(this long2x3 a) => 
+    public static b64m2x3 isPow2([This] long2x3 a) => 
         new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
 }
 
@@ -650,10 +688,11 @@ public partial struct long2x4
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m2x4 isPow2(this long2x4 a) => 
+    public static b64m2x4 isPow2([This] long2x4 a) => 
         new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
 }
 
@@ -665,10 +704,11 @@ public partial struct long3x2
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m3x2 isPow2(this long3x2 a) => 
+    public static b64m3x2 isPow2([This] long3x2 a) => 
         new(a.c0.isPow2(), a.c1.isPow2());
 }
 
@@ -680,10 +720,11 @@ public partial struct long3x3
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m3x3 isPow2(this long3x3 a) => 
+    public static b64m3x3 isPow2([This] long3x3 a) => 
         new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
 }
 
@@ -695,10 +736,11 @@ public partial struct long3x4
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m3x4 isPow2(this long3x4 a) => 
+    public static b64m3x4 isPow2([This] long3x4 a) => 
         new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
 }
 
@@ -710,10 +752,11 @@ public partial struct long4x2
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m4x2 isPow2(this long4x2 a) => 
+    public static b64m4x2 isPow2([This] long4x2 a) => 
         new(a.c0.isPow2(), a.c1.isPow2());
 }
 
@@ -725,10 +768,11 @@ public partial struct long4x3
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m4x3 isPow2(this long4x3 a) => 
+    public static b64m4x3 isPow2([This] long4x3 a) => 
         new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
 }
 
@@ -740,10 +784,11 @@ public partial struct long4x4
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m4x4 isPow2(this long4x4 a) => 
+    public static b64m4x4 isPow2([This] long4x4 a) => 
         new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
 }
 
@@ -755,14 +800,15 @@ public partial struct ulong2x2
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m2x2 isPow2(this ulong2x2 a) => 
+    public static b64m2x2 isPow2([This] ulong2x2 a) => 
         new(a.c0.isPow2(), a.c1.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static ulong2x2 up2pow2(this ulong2x2 a) => 
+    public static ulong2x2 up2pow2([This] ulong2x2 a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2());
 }
 
@@ -774,14 +820,15 @@ public partial struct ulong2x3
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m2x3 isPow2(this ulong2x3 a) => 
+    public static b64m2x3 isPow2([This] ulong2x3 a) => 
         new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static ulong2x3 up2pow2(this ulong2x3 a) => 
+    public static ulong2x3 up2pow2([This] ulong2x3 a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
 }
 
@@ -793,14 +840,15 @@ public partial struct ulong2x4
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m2x4 isPow2(this ulong2x4 a) => 
+    public static b64m2x4 isPow2([This] ulong2x4 a) => 
         new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static ulong2x4 up2pow2(this ulong2x4 a) => 
+    public static ulong2x4 up2pow2([This] ulong2x4 a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
 }
 
@@ -812,14 +860,15 @@ public partial struct ulong3x2
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m3x2 isPow2(this ulong3x2 a) => 
+    public static b64m3x2 isPow2([This] ulong3x2 a) => 
         new(a.c0.isPow2(), a.c1.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static ulong3x2 up2pow2(this ulong3x2 a) => 
+    public static ulong3x2 up2pow2([This] ulong3x2 a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2());
 }
 
@@ -831,14 +880,15 @@ public partial struct ulong3x3
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m3x3 isPow2(this ulong3x3 a) => 
+    public static b64m3x3 isPow2([This] ulong3x3 a) => 
         new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static ulong3x3 up2pow2(this ulong3x3 a) => 
+    public static ulong3x3 up2pow2([This] ulong3x3 a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
 }
 
@@ -850,14 +900,15 @@ public partial struct ulong3x4
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m3x4 isPow2(this ulong3x4 a) => 
+    public static b64m3x4 isPow2([This] ulong3x4 a) => 
         new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static ulong3x4 up2pow2(this ulong3x4 a) => 
+    public static ulong3x4 up2pow2([This] ulong3x4 a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
 }
 
@@ -869,14 +920,15 @@ public partial struct ulong4x2
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m4x2 isPow2(this ulong4x2 a) => 
+    public static b64m4x2 isPow2([This] ulong4x2 a) => 
         new(a.c0.isPow2(), a.c1.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static ulong4x2 up2pow2(this ulong4x2 a) => 
+    public static ulong4x2 up2pow2([This] ulong4x2 a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2());
 }
 
@@ -888,14 +940,15 @@ public partial struct ulong4x3
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m4x3 isPow2(this ulong4x3 a) => 
+    public static b64m4x3 isPow2([This] ulong4x3 a) => 
         new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static ulong4x3 up2pow2(this ulong4x3 a) => 
+    public static ulong4x3 up2pow2([This] ulong4x3 a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2());
 }
 
@@ -907,14 +960,15 @@ public partial struct ulong4x4
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m4x4 isPow2(this ulong4x4 a) => 
+    public static b64m4x4 isPow2([This] ulong4x4 a) => 
         new(a.c0.isPow2(), a.c1.isPow2(), a.c2.isPow2(), a.c3.isPow2());
 
     [MethodImpl(256 | 512)]
-    public static ulong4x4 up2pow2(this ulong4x4 a) => 
+    public static ulong4x4 up2pow2([This] ulong4x4 a) => 
         new(a.c0.up2pow2(), a.c1.up2pow2(), a.c2.up2pow2(), a.c3.up2pow2());
 }
 

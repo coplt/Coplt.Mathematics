@@ -6,1669 +6,933 @@ namespace Coplt.Mathematics;
 
 public partial struct float4 
 {
-    public float3 xxx
+    public readonly float3 xxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 rrr
+    public readonly float3 rrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 xxy
+    public readonly float3 xxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 rrg
+    public readonly float3 rrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 xxz
+    public readonly float3 xxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 rrb
+    public readonly float3 rrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 xxw
+    public readonly float3 xxw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, w);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 rra
+    public readonly float3 rra
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, w);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 xyx
+    public readonly float3 xyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 rgr
+    public readonly float3 rgr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 xyy
+    public readonly float3 xyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 rgg
+    public readonly float3 rgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-#endif // NET8_0_OR_GREATER
     }
     public float3 xyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(vector & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(vector & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsSingle(), 
             vector,
             value.vector
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public float3 rgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(vector & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(vector & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsSingle(), 
             vector,
             value.vector
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public float3 xyw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(0, 1, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public float3 rga
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(0, 1, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public float3 xzx
+    public readonly float3 xzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 rbr
+    public readonly float3 rbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x);
-#endif // NET8_0_OR_GREATER
     }
     public float3 xzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(0, 2, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public float3 rbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(0, 2, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public float3 xzz
+    public readonly float3 xzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 rbb
+    public readonly float3 rbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z);
-#endif // NET8_0_OR_GREATER
     }
     public float3 xzw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(0, 0, 1, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public float3 rba
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(0, 0, 1, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public float3 xwx
+    public readonly float3 xwx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(0, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, x);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 rar
+    public readonly float3 rar
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(0, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, x);
-#endif // NET8_0_OR_GREATER
     }
     public float3 xwy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(0, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(0, 2, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public float3 rag
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(0, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(0, 2, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public float3 xwz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(0, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(0, 0, 2, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public float3 rab
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(0, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(0, 0, 2, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public float3 xww
+    public readonly float3 xww
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(0, 3, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 raa
+    public readonly float3 raa
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(0, 3, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 yxx
+    public readonly float3 yxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 grr
+    public readonly float3 grr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 yxy
+    public readonly float3 yxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 grg
+    public readonly float3 grg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-#endif // NET8_0_OR_GREATER
     }
     public float3 yxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(1, 0, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public float3 grb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(1, 0, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public float3 yxw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(1, 0, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public float3 gra
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(1, 0, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public float3 yyx
+    public readonly float3 yyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 ggr
+    public readonly float3 ggr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 yyy
+    public readonly float3 yyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 ggg
+    public readonly float3 ggg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 yyz
+    public readonly float3 yyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 ggb
+    public readonly float3 ggb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 yyw
+    public readonly float3 yyw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, w);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 gga
+    public readonly float3 gga
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, w);
-#endif // NET8_0_OR_GREATER
     }
     public float3 yzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(2, 0, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public float3 gbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(2, 0, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public float3 yzy
+    public readonly float3 yzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 gbg
+    public readonly float3 gbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 yzz
+    public readonly float3 yzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 gbb
+    public readonly float3 gbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z);
-#endif // NET8_0_OR_GREATER
     }
     public float3 yzw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(0, 0, 1, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public float3 gba
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(0, 0, 1, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public float3 ywx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(1, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(2, 0, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public float3 gar
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(1, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(2, 0, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public float3 ywy
+    public readonly float3 ywy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(1, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, y);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 gag
+    public readonly float3 gag
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(1, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, y);
-#endif // NET8_0_OR_GREATER
     }
     public float3 ywz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(1, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(0, 0, 2, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public float3 gab
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(1, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(0, 0, 2, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public float3 yww
+    public readonly float3 yww
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(1, 3, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 gaa
+    public readonly float3 gaa
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(1, 3, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 zxx
+    public readonly float3 zxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 brr
+    public readonly float3 brr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x);
-#endif // NET8_0_OR_GREATER
     }
     public float3 zxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(1, 2, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public float3 brg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(1, 2, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public float3 zxz
+    public readonly float3 zxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 brb
+    public readonly float3 brb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z);
-#endif // NET8_0_OR_GREATER
     }
     public float3 zxw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(1, 0, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public float3 bra
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(1, 0, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public float3 zyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(2, 1, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public float3 bgr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(2, 1, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public float3 zyy
+    public readonly float3 zyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 bgg
+    public readonly float3 bgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 zyz
+    public readonly float3 zyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 bgb
+    public readonly float3 bgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z);
-#endif // NET8_0_OR_GREATER
     }
     public float3 zyw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(0, 1, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public float3 bga
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(0, 1, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public float3 zzx
+    public readonly float3 zzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 bbr
+    public readonly float3 bbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 zzy
+    public readonly float3 zzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 bbg
+    public readonly float3 bbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 zzz
+    public readonly float3 zzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 bbb
+    public readonly float3 bbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 zzw
+    public readonly float3 zzw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, w);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 bba
+    public readonly float3 bba
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, w);
-#endif // NET8_0_OR_GREATER
     }
     public float3 zwx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(2, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(2, 0, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public float3 bar
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(2, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(2, 0, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public float3 zwy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(2, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(0, 2, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public float3 bag
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(2, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(0, 2, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public float3 zwz
+    public readonly float3 zwz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(2, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, z);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 bab
+    public readonly float3 bab
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(2, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, z);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 zww
+    public readonly float3 zww
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(2, 3, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 baa
+    public readonly float3 baa
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(2, 3, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 wxx
+    public readonly float3 wxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(3, 0, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 arr
+    public readonly float3 arr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(3, 0, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, x);
-#endif // NET8_0_OR_GREATER
     }
     public float3 wxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(3, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(3, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(1, 2, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public float3 arg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(3, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(3, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(1, 2, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public float3 wxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(3, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(3, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(1, 0, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public float3 arb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(3, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(3, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(1, 0, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public float3 wxw
+    public readonly float3 wxw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(3, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, w);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 ara
+    public readonly float3 ara
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(3, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, w);
-#endif // NET8_0_OR_GREATER
     }
     public float3 wyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(3, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(3, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(2, 1, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public float3 agr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(3, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(3, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(2, 1, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public float3 wyy
+    public readonly float3 wyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(3, 1, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 agg
+    public readonly float3 agg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(3, 1, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, y);
-#endif // NET8_0_OR_GREATER
     }
     public float3 wyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(3, 1, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(3, 1, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(0, 1, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public float3 agb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(3, 1, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(3, 1, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(0, 1, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public float3 wyw
+    public readonly float3 wyw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(3, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, w);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 aga
+    public readonly float3 aga
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(3, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, w);
-#endif // NET8_0_OR_GREATER
     }
     public float3 wzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(3, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(3, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(2, 0, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public float3 abr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(3, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(3, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(2, 0, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public float3 wzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(3, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(3, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(0, 2, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public float3 abg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(3, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(3, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsSingle(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(0, 2, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public float3 wzz
+    public readonly float3 wzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(3, 2, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 abb
+    public readonly float3 abb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(3, 2, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 wzw
+    public readonly float3 wzw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(3, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, w);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 aba
+    public readonly float3 aba
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(3, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, w);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 wwx
+    public readonly float3 wwx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(3, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, x);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 aar
+    public readonly float3 aar
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(3, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, x);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 wwy
+    public readonly float3 wwy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(3, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, y);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 aag
+    public readonly float3 aag
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(3, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, y);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 wwz
+    public readonly float3 wwz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(3, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, z);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 aab
+    public readonly float3 aab
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(3, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, z);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 www
+    public readonly float3 www
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(3, 3, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public float3 aaa
+    public readonly float3 aaa
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(3, 3, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, w);
-#endif // NET8_0_OR_GREATER
     }
 }
 
@@ -1678,1669 +942,933 @@ public partial struct float4
 
 public partial struct double4 
 {
-    public double3 xxx
+    public readonly double3 xxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 rrr
+    public readonly double3 rrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 xxy
+    public readonly double3 xxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 rrg
+    public readonly double3 rrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 xxz
+    public readonly double3 xxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 rrb
+    public readonly double3 rrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 xxw
+    public readonly double3 xxw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, w);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 rra
+    public readonly double3 rra
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, w);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 xyx
+    public readonly double3 xyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 rgr
+    public readonly double3 rgr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 xyy
+    public readonly double3 xyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 rgg
+    public readonly double3 rgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-#endif // NET8_0_OR_GREATER
     }
     public double3 xyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(vector & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(vector & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsDouble(), 
             vector,
             value.vector
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public double3 rgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(vector & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(vector & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsDouble(), 
             vector,
             value.vector
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public double3 xyw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(0, 1, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public double3 rga
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(0, 1, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public double3 xzx
+    public readonly double3 xzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 rbr
+    public readonly double3 rbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x);
-#endif // NET8_0_OR_GREATER
     }
     public double3 xzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(0, 2, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public double3 rbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(0, 2, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public double3 xzz
+    public readonly double3 xzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 rbb
+    public readonly double3 rbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z);
-#endif // NET8_0_OR_GREATER
     }
     public double3 xzw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(0, 0, 1, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public double3 rba
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(0, 0, 1, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public double3 xwx
+    public readonly double3 xwx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(0, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, x);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 rar
+    public readonly double3 rar
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(0, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, x);
-#endif // NET8_0_OR_GREATER
     }
     public double3 xwy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(0, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(0, 2, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public double3 rag
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(0, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(0, 2, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public double3 xwz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(0, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(0, 0, 2, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public double3 rab
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(0, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(0, 0, 2, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public double3 xww
+    public readonly double3 xww
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(0, 3, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 raa
+    public readonly double3 raa
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(0, 3, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 yxx
+    public readonly double3 yxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 grr
+    public readonly double3 grr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 yxy
+    public readonly double3 yxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 grg
+    public readonly double3 grg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-#endif // NET8_0_OR_GREATER
     }
     public double3 yxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(1, 0, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public double3 grb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(1, 0, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public double3 yxw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(1, 0, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public double3 gra
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(1, 0, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public double3 yyx
+    public readonly double3 yyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 ggr
+    public readonly double3 ggr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 yyy
+    public readonly double3 yyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 ggg
+    public readonly double3 ggg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 yyz
+    public readonly double3 yyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 ggb
+    public readonly double3 ggb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 yyw
+    public readonly double3 yyw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, w);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 gga
+    public readonly double3 gga
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, w);
-#endif // NET8_0_OR_GREATER
     }
     public double3 yzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(2, 0, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public double3 gbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(2, 0, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public double3 yzy
+    public readonly double3 yzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 gbg
+    public readonly double3 gbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 yzz
+    public readonly double3 yzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 gbb
+    public readonly double3 gbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z);
-#endif // NET8_0_OR_GREATER
     }
     public double3 yzw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(0, 0, 1, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public double3 gba
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(0, 0, 1, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public double3 ywx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(1, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(2, 0, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public double3 gar
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(1, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(2, 0, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public double3 ywy
+    public readonly double3 ywy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(1, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, y);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 gag
+    public readonly double3 gag
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(1, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, y);
-#endif // NET8_0_OR_GREATER
     }
     public double3 ywz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(1, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(0, 0, 2, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public double3 gab
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(1, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(0, 0, 2, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public double3 yww
+    public readonly double3 yww
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(1, 3, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 gaa
+    public readonly double3 gaa
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(1, 3, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 zxx
+    public readonly double3 zxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 brr
+    public readonly double3 brr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x);
-#endif // NET8_0_OR_GREATER
     }
     public double3 zxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(1, 2, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public double3 brg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(1, 2, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public double3 zxz
+    public readonly double3 zxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 brb
+    public readonly double3 brb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z);
-#endif // NET8_0_OR_GREATER
     }
     public double3 zxw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(1, 0, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public double3 bra
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(1, 0, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public double3 zyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(2, 1, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public double3 bgr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(2, 1, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public double3 zyy
+    public readonly double3 zyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 bgg
+    public readonly double3 bgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 zyz
+    public readonly double3 zyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 bgb
+    public readonly double3 bgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z);
-#endif // NET8_0_OR_GREATER
     }
     public double3 zyw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(0, 1, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public double3 bga
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(0, 1, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public double3 zzx
+    public readonly double3 zzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 bbr
+    public readonly double3 bbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 zzy
+    public readonly double3 zzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 bbg
+    public readonly double3 bbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 zzz
+    public readonly double3 zzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 bbb
+    public readonly double3 bbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 zzw
+    public readonly double3 zzw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, w);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 bba
+    public readonly double3 bba
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, w);
-#endif // NET8_0_OR_GREATER
     }
     public double3 zwx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(2, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(2, 0, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public double3 bar
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(2, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(2, 0, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public double3 zwy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(2, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(0, 2, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public double3 bag
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(2, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(0, 2, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public double3 zwz
+    public readonly double3 zwz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(2, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, z);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 bab
+    public readonly double3 bab
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(2, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, z);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 zww
+    public readonly double3 zww
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(2, 3, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 baa
+    public readonly double3 baa
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(2, 3, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 wxx
+    public readonly double3 wxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(3, 0, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 arr
+    public readonly double3 arr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(3, 0, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, x);
-#endif // NET8_0_OR_GREATER
     }
     public double3 wxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(3, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(3, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(1, 2, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public double3 arg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(3, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(3, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(1, 2, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public double3 wxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(3, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(3, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(1, 0, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public double3 arb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(3, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(3, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(1, 0, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public double3 wxw
+    public readonly double3 wxw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(3, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, w);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 ara
+    public readonly double3 ara
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(3, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, w);
-#endif // NET8_0_OR_GREATER
     }
     public double3 wyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(3, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(3, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(2, 1, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public double3 agr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(3, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(3, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(2, 1, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public double3 wyy
+    public readonly double3 wyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(3, 1, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 agg
+    public readonly double3 agg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(3, 1, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, y);
-#endif // NET8_0_OR_GREATER
     }
     public double3 wyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(3, 1, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(3, 1, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(0, 1, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public double3 agb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(3, 1, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(3, 1, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(0, 1, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public double3 wyw
+    public readonly double3 wyw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(3, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, w);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 aga
+    public readonly double3 aga
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(3, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, w);
-#endif // NET8_0_OR_GREATER
     }
     public double3 wzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(3, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(3, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(2, 0, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public double3 abr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(3, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(3, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(2, 0, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public double3 wzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(3, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(3, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(0, 2, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public double3 abg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(3, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(3, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsDouble(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(0, 2, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public double3 wzz
+    public readonly double3 wzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(3, 2, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 abb
+    public readonly double3 abb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(3, 2, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 wzw
+    public readonly double3 wzw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(3, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, w);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 aba
+    public readonly double3 aba
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(3, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, w);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 wwx
+    public readonly double3 wwx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(3, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, x);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 aar
+    public readonly double3 aar
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(3, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, x);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 wwy
+    public readonly double3 wwy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(3, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, y);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 aag
+    public readonly double3 aag
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(3, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, y);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 wwz
+    public readonly double3 wwz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(3, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, z);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 aab
+    public readonly double3 aab
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(3, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, z);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 www
+    public readonly double3 www
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(3, 3, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public double3 aaa
+    public readonly double3 aaa
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(3, 3, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, w);
-#endif // NET8_0_OR_GREATER
     }
 }
 
@@ -3350,62 +1878,62 @@ public partial struct double4
 
 public partial struct short4 
 {
-    public short3 xxx
+    public readonly short3 xxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x);
     }
-    public short3 rrr
+    public readonly short3 rrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x);
     }
-    public short3 xxy
+    public readonly short3 xxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y);
     }
-    public short3 rrg
+    public readonly short3 rrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y);
     }
-    public short3 xxz
+    public readonly short3 xxz
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z);
     }
-    public short3 rrb
+    public readonly short3 rrb
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z);
     }
-    public short3 xxw
+    public readonly short3 xxw
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, w);
     }
-    public short3 rra
+    public readonly short3 rra
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, w);
     }
-    public short3 xyx
+    public readonly short3 xyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x);
     }
-    public short3 rgr
+    public readonly short3 rgr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x);
     }
-    public short3 xyy
+    public readonly short3 xyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y);
     }
-    public short3 rgg
+    public readonly short3 rgg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y);
@@ -3413,37 +1941,37 @@ public partial struct short4
     public short3 xyz
     {
         [MethodImpl(256 | 512)]
-        get => new(x, y, z);
+        readonly get => new(x, y, z);
         [MethodImpl(256 | 512)]
         set { x = value.x; y = value.y; z = value.z; }
     }
     public short3 rgb
     {
         [MethodImpl(256 | 512)]
-        get => new(x, y, z);
+        readonly get => new(x, y, z);
         [MethodImpl(256 | 512)]
         set { x = value.x; y = value.y; z = value.z; }
     }
     public short3 xyw
     {
         [MethodImpl(256 | 512)]
-        get => new(x, y, w);
+        readonly get => new(x, y, w);
         [MethodImpl(256 | 512)]
         set { x = value.x; y = value.y; w = value.z; }
     }
     public short3 rga
     {
         [MethodImpl(256 | 512)]
-        get => new(x, y, w);
+        readonly get => new(x, y, w);
         [MethodImpl(256 | 512)]
         set { x = value.x; y = value.y; w = value.z; }
     }
-    public short3 xzx
+    public readonly short3 xzx
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x);
     }
-    public short3 rbr
+    public readonly short3 rbr
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x);
@@ -3451,23 +1979,23 @@ public partial struct short4
     public short3 xzy
     {
         [MethodImpl(256 | 512)]
-        get => new(x, z, y);
+        readonly get => new(x, z, y);
         [MethodImpl(256 | 512)]
         set { x = value.x; z = value.y; y = value.z; }
     }
     public short3 rbg
     {
         [MethodImpl(256 | 512)]
-        get => new(x, z, y);
+        readonly get => new(x, z, y);
         [MethodImpl(256 | 512)]
         set { x = value.x; z = value.y; y = value.z; }
     }
-    public short3 xzz
+    public readonly short3 xzz
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z);
     }
-    public short3 rbb
+    public readonly short3 rbb
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z);
@@ -3475,23 +2003,23 @@ public partial struct short4
     public short3 xzw
     {
         [MethodImpl(256 | 512)]
-        get => new(x, z, w);
+        readonly get => new(x, z, w);
         [MethodImpl(256 | 512)]
         set { x = value.x; z = value.y; w = value.z; }
     }
     public short3 rba
     {
         [MethodImpl(256 | 512)]
-        get => new(x, z, w);
+        readonly get => new(x, z, w);
         [MethodImpl(256 | 512)]
         set { x = value.x; z = value.y; w = value.z; }
     }
-    public short3 xwx
+    public readonly short3 xwx
     {
         [MethodImpl(256 | 512)]
         get => new(x, w, x);
     }
-    public short3 rar
+    public readonly short3 rar
     {
         [MethodImpl(256 | 512)]
         get => new(x, w, x);
@@ -3499,57 +2027,57 @@ public partial struct short4
     public short3 xwy
     {
         [MethodImpl(256 | 512)]
-        get => new(x, w, y);
+        readonly get => new(x, w, y);
         [MethodImpl(256 | 512)]
         set { x = value.x; w = value.y; y = value.z; }
     }
     public short3 rag
     {
         [MethodImpl(256 | 512)]
-        get => new(x, w, y);
+        readonly get => new(x, w, y);
         [MethodImpl(256 | 512)]
         set { x = value.x; w = value.y; y = value.z; }
     }
     public short3 xwz
     {
         [MethodImpl(256 | 512)]
-        get => new(x, w, z);
+        readonly get => new(x, w, z);
         [MethodImpl(256 | 512)]
         set { x = value.x; w = value.y; z = value.z; }
     }
     public short3 rab
     {
         [MethodImpl(256 | 512)]
-        get => new(x, w, z);
+        readonly get => new(x, w, z);
         [MethodImpl(256 | 512)]
         set { x = value.x; w = value.y; z = value.z; }
     }
-    public short3 xww
+    public readonly short3 xww
     {
         [MethodImpl(256 | 512)]
         get => new(x, w, w);
     }
-    public short3 raa
+    public readonly short3 raa
     {
         [MethodImpl(256 | 512)]
         get => new(x, w, w);
     }
-    public short3 yxx
+    public readonly short3 yxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x);
     }
-    public short3 grr
+    public readonly short3 grr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x);
     }
-    public short3 yxy
+    public readonly short3 yxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y);
     }
-    public short3 grg
+    public readonly short3 grg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y);
@@ -3557,67 +2085,67 @@ public partial struct short4
     public short3 yxz
     {
         [MethodImpl(256 | 512)]
-        get => new(y, x, z);
+        readonly get => new(y, x, z);
         [MethodImpl(256 | 512)]
         set { y = value.x; x = value.y; z = value.z; }
     }
     public short3 grb
     {
         [MethodImpl(256 | 512)]
-        get => new(y, x, z);
+        readonly get => new(y, x, z);
         [MethodImpl(256 | 512)]
         set { y = value.x; x = value.y; z = value.z; }
     }
     public short3 yxw
     {
         [MethodImpl(256 | 512)]
-        get => new(y, x, w);
+        readonly get => new(y, x, w);
         [MethodImpl(256 | 512)]
         set { y = value.x; x = value.y; w = value.z; }
     }
     public short3 gra
     {
         [MethodImpl(256 | 512)]
-        get => new(y, x, w);
+        readonly get => new(y, x, w);
         [MethodImpl(256 | 512)]
         set { y = value.x; x = value.y; w = value.z; }
     }
-    public short3 yyx
+    public readonly short3 yyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x);
     }
-    public short3 ggr
+    public readonly short3 ggr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x);
     }
-    public short3 yyy
+    public readonly short3 yyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y);
     }
-    public short3 ggg
+    public readonly short3 ggg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y);
     }
-    public short3 yyz
+    public readonly short3 yyz
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z);
     }
-    public short3 ggb
+    public readonly short3 ggb
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z);
     }
-    public short3 yyw
+    public readonly short3 yyw
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, w);
     }
-    public short3 gga
+    public readonly short3 gga
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, w);
@@ -3625,33 +2153,33 @@ public partial struct short4
     public short3 yzx
     {
         [MethodImpl(256 | 512)]
-        get => new(y, z, x);
+        readonly get => new(y, z, x);
         [MethodImpl(256 | 512)]
         set { y = value.x; z = value.y; x = value.z; }
     }
     public short3 gbr
     {
         [MethodImpl(256 | 512)]
-        get => new(y, z, x);
+        readonly get => new(y, z, x);
         [MethodImpl(256 | 512)]
         set { y = value.x; z = value.y; x = value.z; }
     }
-    public short3 yzy
+    public readonly short3 yzy
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y);
     }
-    public short3 gbg
+    public readonly short3 gbg
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y);
     }
-    public short3 yzz
+    public readonly short3 yzz
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z);
     }
-    public short3 gbb
+    public readonly short3 gbb
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z);
@@ -3659,37 +2187,37 @@ public partial struct short4
     public short3 yzw
     {
         [MethodImpl(256 | 512)]
-        get => new(y, z, w);
+        readonly get => new(y, z, w);
         [MethodImpl(256 | 512)]
         set { y = value.x; z = value.y; w = value.z; }
     }
     public short3 gba
     {
         [MethodImpl(256 | 512)]
-        get => new(y, z, w);
+        readonly get => new(y, z, w);
         [MethodImpl(256 | 512)]
         set { y = value.x; z = value.y; w = value.z; }
     }
     public short3 ywx
     {
         [MethodImpl(256 | 512)]
-        get => new(y, w, x);
+        readonly get => new(y, w, x);
         [MethodImpl(256 | 512)]
         set { y = value.x; w = value.y; x = value.z; }
     }
     public short3 gar
     {
         [MethodImpl(256 | 512)]
-        get => new(y, w, x);
+        readonly get => new(y, w, x);
         [MethodImpl(256 | 512)]
         set { y = value.x; w = value.y; x = value.z; }
     }
-    public short3 ywy
+    public readonly short3 ywy
     {
         [MethodImpl(256 | 512)]
         get => new(y, w, y);
     }
-    public short3 gag
+    public readonly short3 gag
     {
         [MethodImpl(256 | 512)]
         get => new(y, w, y);
@@ -3697,33 +2225,33 @@ public partial struct short4
     public short3 ywz
     {
         [MethodImpl(256 | 512)]
-        get => new(y, w, z);
+        readonly get => new(y, w, z);
         [MethodImpl(256 | 512)]
         set { y = value.x; w = value.y; z = value.z; }
     }
     public short3 gab
     {
         [MethodImpl(256 | 512)]
-        get => new(y, w, z);
+        readonly get => new(y, w, z);
         [MethodImpl(256 | 512)]
         set { y = value.x; w = value.y; z = value.z; }
     }
-    public short3 yww
+    public readonly short3 yww
     {
         [MethodImpl(256 | 512)]
         get => new(y, w, w);
     }
-    public short3 gaa
+    public readonly short3 gaa
     {
         [MethodImpl(256 | 512)]
         get => new(y, w, w);
     }
-    public short3 zxx
+    public readonly short3 zxx
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x);
     }
-    public short3 brr
+    public readonly short3 brr
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x);
@@ -3731,23 +2259,23 @@ public partial struct short4
     public short3 zxy
     {
         [MethodImpl(256 | 512)]
-        get => new(z, x, y);
+        readonly get => new(z, x, y);
         [MethodImpl(256 | 512)]
         set { z = value.x; x = value.y; y = value.z; }
     }
     public short3 brg
     {
         [MethodImpl(256 | 512)]
-        get => new(z, x, y);
+        readonly get => new(z, x, y);
         [MethodImpl(256 | 512)]
         set { z = value.x; x = value.y; y = value.z; }
     }
-    public short3 zxz
+    public readonly short3 zxz
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z);
     }
-    public short3 brb
+    public readonly short3 brb
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z);
@@ -3755,47 +2283,47 @@ public partial struct short4
     public short3 zxw
     {
         [MethodImpl(256 | 512)]
-        get => new(z, x, w);
+        readonly get => new(z, x, w);
         [MethodImpl(256 | 512)]
         set { z = value.x; x = value.y; w = value.z; }
     }
     public short3 bra
     {
         [MethodImpl(256 | 512)]
-        get => new(z, x, w);
+        readonly get => new(z, x, w);
         [MethodImpl(256 | 512)]
         set { z = value.x; x = value.y; w = value.z; }
     }
     public short3 zyx
     {
         [MethodImpl(256 | 512)]
-        get => new(z, y, x);
+        readonly get => new(z, y, x);
         [MethodImpl(256 | 512)]
         set { z = value.x; y = value.y; x = value.z; }
     }
     public short3 bgr
     {
         [MethodImpl(256 | 512)]
-        get => new(z, y, x);
+        readonly get => new(z, y, x);
         [MethodImpl(256 | 512)]
         set { z = value.x; y = value.y; x = value.z; }
     }
-    public short3 zyy
+    public readonly short3 zyy
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y);
     }
-    public short3 bgg
+    public readonly short3 bgg
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y);
     }
-    public short3 zyz
+    public readonly short3 zyz
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z);
     }
-    public short3 bgb
+    public readonly short3 bgb
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z);
@@ -3803,53 +2331,53 @@ public partial struct short4
     public short3 zyw
     {
         [MethodImpl(256 | 512)]
-        get => new(z, y, w);
+        readonly get => new(z, y, w);
         [MethodImpl(256 | 512)]
         set { z = value.x; y = value.y; w = value.z; }
     }
     public short3 bga
     {
         [MethodImpl(256 | 512)]
-        get => new(z, y, w);
+        readonly get => new(z, y, w);
         [MethodImpl(256 | 512)]
         set { z = value.x; y = value.y; w = value.z; }
     }
-    public short3 zzx
+    public readonly short3 zzx
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x);
     }
-    public short3 bbr
+    public readonly short3 bbr
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x);
     }
-    public short3 zzy
+    public readonly short3 zzy
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y);
     }
-    public short3 bbg
+    public readonly short3 bbg
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y);
     }
-    public short3 zzz
+    public readonly short3 zzz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z);
     }
-    public short3 bbb
+    public readonly short3 bbb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z);
     }
-    public short3 zzw
+    public readonly short3 zzw
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, w);
     }
-    public short3 bba
+    public readonly short3 bba
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, w);
@@ -3857,57 +2385,57 @@ public partial struct short4
     public short3 zwx
     {
         [MethodImpl(256 | 512)]
-        get => new(z, w, x);
+        readonly get => new(z, w, x);
         [MethodImpl(256 | 512)]
         set { z = value.x; w = value.y; x = value.z; }
     }
     public short3 bar
     {
         [MethodImpl(256 | 512)]
-        get => new(z, w, x);
+        readonly get => new(z, w, x);
         [MethodImpl(256 | 512)]
         set { z = value.x; w = value.y; x = value.z; }
     }
     public short3 zwy
     {
         [MethodImpl(256 | 512)]
-        get => new(z, w, y);
+        readonly get => new(z, w, y);
         [MethodImpl(256 | 512)]
         set { z = value.x; w = value.y; y = value.z; }
     }
     public short3 bag
     {
         [MethodImpl(256 | 512)]
-        get => new(z, w, y);
+        readonly get => new(z, w, y);
         [MethodImpl(256 | 512)]
         set { z = value.x; w = value.y; y = value.z; }
     }
-    public short3 zwz
+    public readonly short3 zwz
     {
         [MethodImpl(256 | 512)]
         get => new(z, w, z);
     }
-    public short3 bab
+    public readonly short3 bab
     {
         [MethodImpl(256 | 512)]
         get => new(z, w, z);
     }
-    public short3 zww
+    public readonly short3 zww
     {
         [MethodImpl(256 | 512)]
         get => new(z, w, w);
     }
-    public short3 baa
+    public readonly short3 baa
     {
         [MethodImpl(256 | 512)]
         get => new(z, w, w);
     }
-    public short3 wxx
+    public readonly short3 wxx
     {
         [MethodImpl(256 | 512)]
         get => new(w, x, x);
     }
-    public short3 arr
+    public readonly short3 arr
     {
         [MethodImpl(256 | 512)]
         get => new(w, x, x);
@@ -3915,37 +2443,37 @@ public partial struct short4
     public short3 wxy
     {
         [MethodImpl(256 | 512)]
-        get => new(w, x, y);
+        readonly get => new(w, x, y);
         [MethodImpl(256 | 512)]
         set { w = value.x; x = value.y; y = value.z; }
     }
     public short3 arg
     {
         [MethodImpl(256 | 512)]
-        get => new(w, x, y);
+        readonly get => new(w, x, y);
         [MethodImpl(256 | 512)]
         set { w = value.x; x = value.y; y = value.z; }
     }
     public short3 wxz
     {
         [MethodImpl(256 | 512)]
-        get => new(w, x, z);
+        readonly get => new(w, x, z);
         [MethodImpl(256 | 512)]
         set { w = value.x; x = value.y; z = value.z; }
     }
     public short3 arb
     {
         [MethodImpl(256 | 512)]
-        get => new(w, x, z);
+        readonly get => new(w, x, z);
         [MethodImpl(256 | 512)]
         set { w = value.x; x = value.y; z = value.z; }
     }
-    public short3 wxw
+    public readonly short3 wxw
     {
         [MethodImpl(256 | 512)]
         get => new(w, x, w);
     }
-    public short3 ara
+    public readonly short3 ara
     {
         [MethodImpl(256 | 512)]
         get => new(w, x, w);
@@ -3953,23 +2481,23 @@ public partial struct short4
     public short3 wyx
     {
         [MethodImpl(256 | 512)]
-        get => new(w, y, x);
+        readonly get => new(w, y, x);
         [MethodImpl(256 | 512)]
         set { w = value.x; y = value.y; x = value.z; }
     }
     public short3 agr
     {
         [MethodImpl(256 | 512)]
-        get => new(w, y, x);
+        readonly get => new(w, y, x);
         [MethodImpl(256 | 512)]
         set { w = value.x; y = value.y; x = value.z; }
     }
-    public short3 wyy
+    public readonly short3 wyy
     {
         [MethodImpl(256 | 512)]
         get => new(w, y, y);
     }
-    public short3 agg
+    public readonly short3 agg
     {
         [MethodImpl(256 | 512)]
         get => new(w, y, y);
@@ -3977,23 +2505,23 @@ public partial struct short4
     public short3 wyz
     {
         [MethodImpl(256 | 512)]
-        get => new(w, y, z);
+        readonly get => new(w, y, z);
         [MethodImpl(256 | 512)]
         set { w = value.x; y = value.y; z = value.z; }
     }
     public short3 agb
     {
         [MethodImpl(256 | 512)]
-        get => new(w, y, z);
+        readonly get => new(w, y, z);
         [MethodImpl(256 | 512)]
         set { w = value.x; y = value.y; z = value.z; }
     }
-    public short3 wyw
+    public readonly short3 wyw
     {
         [MethodImpl(256 | 512)]
         get => new(w, y, w);
     }
-    public short3 aga
+    public readonly short3 aga
     {
         [MethodImpl(256 | 512)]
         get => new(w, y, w);
@@ -4001,87 +2529,87 @@ public partial struct short4
     public short3 wzx
     {
         [MethodImpl(256 | 512)]
-        get => new(w, z, x);
+        readonly get => new(w, z, x);
         [MethodImpl(256 | 512)]
         set { w = value.x; z = value.y; x = value.z; }
     }
     public short3 abr
     {
         [MethodImpl(256 | 512)]
-        get => new(w, z, x);
+        readonly get => new(w, z, x);
         [MethodImpl(256 | 512)]
         set { w = value.x; z = value.y; x = value.z; }
     }
     public short3 wzy
     {
         [MethodImpl(256 | 512)]
-        get => new(w, z, y);
+        readonly get => new(w, z, y);
         [MethodImpl(256 | 512)]
         set { w = value.x; z = value.y; y = value.z; }
     }
     public short3 abg
     {
         [MethodImpl(256 | 512)]
-        get => new(w, z, y);
+        readonly get => new(w, z, y);
         [MethodImpl(256 | 512)]
         set { w = value.x; z = value.y; y = value.z; }
     }
-    public short3 wzz
+    public readonly short3 wzz
     {
         [MethodImpl(256 | 512)]
         get => new(w, z, z);
     }
-    public short3 abb
+    public readonly short3 abb
     {
         [MethodImpl(256 | 512)]
         get => new(w, z, z);
     }
-    public short3 wzw
+    public readonly short3 wzw
     {
         [MethodImpl(256 | 512)]
         get => new(w, z, w);
     }
-    public short3 aba
+    public readonly short3 aba
     {
         [MethodImpl(256 | 512)]
         get => new(w, z, w);
     }
-    public short3 wwx
+    public readonly short3 wwx
     {
         [MethodImpl(256 | 512)]
         get => new(w, w, x);
     }
-    public short3 aar
+    public readonly short3 aar
     {
         [MethodImpl(256 | 512)]
         get => new(w, w, x);
     }
-    public short3 wwy
+    public readonly short3 wwy
     {
         [MethodImpl(256 | 512)]
         get => new(w, w, y);
     }
-    public short3 aag
+    public readonly short3 aag
     {
         [MethodImpl(256 | 512)]
         get => new(w, w, y);
     }
-    public short3 wwz
+    public readonly short3 wwz
     {
         [MethodImpl(256 | 512)]
         get => new(w, w, z);
     }
-    public short3 aab
+    public readonly short3 aab
     {
         [MethodImpl(256 | 512)]
         get => new(w, w, z);
     }
-    public short3 www
+    public readonly short3 www
     {
         [MethodImpl(256 | 512)]
         get => new(w, w, w);
     }
-    public short3 aaa
+    public readonly short3 aaa
     {
         [MethodImpl(256 | 512)]
         get => new(w, w, w);
@@ -4094,62 +2622,62 @@ public partial struct short4
 
 public partial struct ushort4 
 {
-    public ushort3 xxx
+    public readonly ushort3 xxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x);
     }
-    public ushort3 rrr
+    public readonly ushort3 rrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x);
     }
-    public ushort3 xxy
+    public readonly ushort3 xxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y);
     }
-    public ushort3 rrg
+    public readonly ushort3 rrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y);
     }
-    public ushort3 xxz
+    public readonly ushort3 xxz
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z);
     }
-    public ushort3 rrb
+    public readonly ushort3 rrb
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z);
     }
-    public ushort3 xxw
+    public readonly ushort3 xxw
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, w);
     }
-    public ushort3 rra
+    public readonly ushort3 rra
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, w);
     }
-    public ushort3 xyx
+    public readonly ushort3 xyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x);
     }
-    public ushort3 rgr
+    public readonly ushort3 rgr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x);
     }
-    public ushort3 xyy
+    public readonly ushort3 xyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y);
     }
-    public ushort3 rgg
+    public readonly ushort3 rgg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y);
@@ -4157,37 +2685,37 @@ public partial struct ushort4
     public ushort3 xyz
     {
         [MethodImpl(256 | 512)]
-        get => new(x, y, z);
+        readonly get => new(x, y, z);
         [MethodImpl(256 | 512)]
         set { x = value.x; y = value.y; z = value.z; }
     }
     public ushort3 rgb
     {
         [MethodImpl(256 | 512)]
-        get => new(x, y, z);
+        readonly get => new(x, y, z);
         [MethodImpl(256 | 512)]
         set { x = value.x; y = value.y; z = value.z; }
     }
     public ushort3 xyw
     {
         [MethodImpl(256 | 512)]
-        get => new(x, y, w);
+        readonly get => new(x, y, w);
         [MethodImpl(256 | 512)]
         set { x = value.x; y = value.y; w = value.z; }
     }
     public ushort3 rga
     {
         [MethodImpl(256 | 512)]
-        get => new(x, y, w);
+        readonly get => new(x, y, w);
         [MethodImpl(256 | 512)]
         set { x = value.x; y = value.y; w = value.z; }
     }
-    public ushort3 xzx
+    public readonly ushort3 xzx
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x);
     }
-    public ushort3 rbr
+    public readonly ushort3 rbr
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x);
@@ -4195,23 +2723,23 @@ public partial struct ushort4
     public ushort3 xzy
     {
         [MethodImpl(256 | 512)]
-        get => new(x, z, y);
+        readonly get => new(x, z, y);
         [MethodImpl(256 | 512)]
         set { x = value.x; z = value.y; y = value.z; }
     }
     public ushort3 rbg
     {
         [MethodImpl(256 | 512)]
-        get => new(x, z, y);
+        readonly get => new(x, z, y);
         [MethodImpl(256 | 512)]
         set { x = value.x; z = value.y; y = value.z; }
     }
-    public ushort3 xzz
+    public readonly ushort3 xzz
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z);
     }
-    public ushort3 rbb
+    public readonly ushort3 rbb
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z);
@@ -4219,23 +2747,23 @@ public partial struct ushort4
     public ushort3 xzw
     {
         [MethodImpl(256 | 512)]
-        get => new(x, z, w);
+        readonly get => new(x, z, w);
         [MethodImpl(256 | 512)]
         set { x = value.x; z = value.y; w = value.z; }
     }
     public ushort3 rba
     {
         [MethodImpl(256 | 512)]
-        get => new(x, z, w);
+        readonly get => new(x, z, w);
         [MethodImpl(256 | 512)]
         set { x = value.x; z = value.y; w = value.z; }
     }
-    public ushort3 xwx
+    public readonly ushort3 xwx
     {
         [MethodImpl(256 | 512)]
         get => new(x, w, x);
     }
-    public ushort3 rar
+    public readonly ushort3 rar
     {
         [MethodImpl(256 | 512)]
         get => new(x, w, x);
@@ -4243,57 +2771,57 @@ public partial struct ushort4
     public ushort3 xwy
     {
         [MethodImpl(256 | 512)]
-        get => new(x, w, y);
+        readonly get => new(x, w, y);
         [MethodImpl(256 | 512)]
         set { x = value.x; w = value.y; y = value.z; }
     }
     public ushort3 rag
     {
         [MethodImpl(256 | 512)]
-        get => new(x, w, y);
+        readonly get => new(x, w, y);
         [MethodImpl(256 | 512)]
         set { x = value.x; w = value.y; y = value.z; }
     }
     public ushort3 xwz
     {
         [MethodImpl(256 | 512)]
-        get => new(x, w, z);
+        readonly get => new(x, w, z);
         [MethodImpl(256 | 512)]
         set { x = value.x; w = value.y; z = value.z; }
     }
     public ushort3 rab
     {
         [MethodImpl(256 | 512)]
-        get => new(x, w, z);
+        readonly get => new(x, w, z);
         [MethodImpl(256 | 512)]
         set { x = value.x; w = value.y; z = value.z; }
     }
-    public ushort3 xww
+    public readonly ushort3 xww
     {
         [MethodImpl(256 | 512)]
         get => new(x, w, w);
     }
-    public ushort3 raa
+    public readonly ushort3 raa
     {
         [MethodImpl(256 | 512)]
         get => new(x, w, w);
     }
-    public ushort3 yxx
+    public readonly ushort3 yxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x);
     }
-    public ushort3 grr
+    public readonly ushort3 grr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x);
     }
-    public ushort3 yxy
+    public readonly ushort3 yxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y);
     }
-    public ushort3 grg
+    public readonly ushort3 grg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y);
@@ -4301,67 +2829,67 @@ public partial struct ushort4
     public ushort3 yxz
     {
         [MethodImpl(256 | 512)]
-        get => new(y, x, z);
+        readonly get => new(y, x, z);
         [MethodImpl(256 | 512)]
         set { y = value.x; x = value.y; z = value.z; }
     }
     public ushort3 grb
     {
         [MethodImpl(256 | 512)]
-        get => new(y, x, z);
+        readonly get => new(y, x, z);
         [MethodImpl(256 | 512)]
         set { y = value.x; x = value.y; z = value.z; }
     }
     public ushort3 yxw
     {
         [MethodImpl(256 | 512)]
-        get => new(y, x, w);
+        readonly get => new(y, x, w);
         [MethodImpl(256 | 512)]
         set { y = value.x; x = value.y; w = value.z; }
     }
     public ushort3 gra
     {
         [MethodImpl(256 | 512)]
-        get => new(y, x, w);
+        readonly get => new(y, x, w);
         [MethodImpl(256 | 512)]
         set { y = value.x; x = value.y; w = value.z; }
     }
-    public ushort3 yyx
+    public readonly ushort3 yyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x);
     }
-    public ushort3 ggr
+    public readonly ushort3 ggr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x);
     }
-    public ushort3 yyy
+    public readonly ushort3 yyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y);
     }
-    public ushort3 ggg
+    public readonly ushort3 ggg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y);
     }
-    public ushort3 yyz
+    public readonly ushort3 yyz
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z);
     }
-    public ushort3 ggb
+    public readonly ushort3 ggb
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z);
     }
-    public ushort3 yyw
+    public readonly ushort3 yyw
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, w);
     }
-    public ushort3 gga
+    public readonly ushort3 gga
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, w);
@@ -4369,33 +2897,33 @@ public partial struct ushort4
     public ushort3 yzx
     {
         [MethodImpl(256 | 512)]
-        get => new(y, z, x);
+        readonly get => new(y, z, x);
         [MethodImpl(256 | 512)]
         set { y = value.x; z = value.y; x = value.z; }
     }
     public ushort3 gbr
     {
         [MethodImpl(256 | 512)]
-        get => new(y, z, x);
+        readonly get => new(y, z, x);
         [MethodImpl(256 | 512)]
         set { y = value.x; z = value.y; x = value.z; }
     }
-    public ushort3 yzy
+    public readonly ushort3 yzy
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y);
     }
-    public ushort3 gbg
+    public readonly ushort3 gbg
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y);
     }
-    public ushort3 yzz
+    public readonly ushort3 yzz
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z);
     }
-    public ushort3 gbb
+    public readonly ushort3 gbb
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z);
@@ -4403,37 +2931,37 @@ public partial struct ushort4
     public ushort3 yzw
     {
         [MethodImpl(256 | 512)]
-        get => new(y, z, w);
+        readonly get => new(y, z, w);
         [MethodImpl(256 | 512)]
         set { y = value.x; z = value.y; w = value.z; }
     }
     public ushort3 gba
     {
         [MethodImpl(256 | 512)]
-        get => new(y, z, w);
+        readonly get => new(y, z, w);
         [MethodImpl(256 | 512)]
         set { y = value.x; z = value.y; w = value.z; }
     }
     public ushort3 ywx
     {
         [MethodImpl(256 | 512)]
-        get => new(y, w, x);
+        readonly get => new(y, w, x);
         [MethodImpl(256 | 512)]
         set { y = value.x; w = value.y; x = value.z; }
     }
     public ushort3 gar
     {
         [MethodImpl(256 | 512)]
-        get => new(y, w, x);
+        readonly get => new(y, w, x);
         [MethodImpl(256 | 512)]
         set { y = value.x; w = value.y; x = value.z; }
     }
-    public ushort3 ywy
+    public readonly ushort3 ywy
     {
         [MethodImpl(256 | 512)]
         get => new(y, w, y);
     }
-    public ushort3 gag
+    public readonly ushort3 gag
     {
         [MethodImpl(256 | 512)]
         get => new(y, w, y);
@@ -4441,33 +2969,33 @@ public partial struct ushort4
     public ushort3 ywz
     {
         [MethodImpl(256 | 512)]
-        get => new(y, w, z);
+        readonly get => new(y, w, z);
         [MethodImpl(256 | 512)]
         set { y = value.x; w = value.y; z = value.z; }
     }
     public ushort3 gab
     {
         [MethodImpl(256 | 512)]
-        get => new(y, w, z);
+        readonly get => new(y, w, z);
         [MethodImpl(256 | 512)]
         set { y = value.x; w = value.y; z = value.z; }
     }
-    public ushort3 yww
+    public readonly ushort3 yww
     {
         [MethodImpl(256 | 512)]
         get => new(y, w, w);
     }
-    public ushort3 gaa
+    public readonly ushort3 gaa
     {
         [MethodImpl(256 | 512)]
         get => new(y, w, w);
     }
-    public ushort3 zxx
+    public readonly ushort3 zxx
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x);
     }
-    public ushort3 brr
+    public readonly ushort3 brr
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x);
@@ -4475,23 +3003,23 @@ public partial struct ushort4
     public ushort3 zxy
     {
         [MethodImpl(256 | 512)]
-        get => new(z, x, y);
+        readonly get => new(z, x, y);
         [MethodImpl(256 | 512)]
         set { z = value.x; x = value.y; y = value.z; }
     }
     public ushort3 brg
     {
         [MethodImpl(256 | 512)]
-        get => new(z, x, y);
+        readonly get => new(z, x, y);
         [MethodImpl(256 | 512)]
         set { z = value.x; x = value.y; y = value.z; }
     }
-    public ushort3 zxz
+    public readonly ushort3 zxz
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z);
     }
-    public ushort3 brb
+    public readonly ushort3 brb
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z);
@@ -4499,47 +3027,47 @@ public partial struct ushort4
     public ushort3 zxw
     {
         [MethodImpl(256 | 512)]
-        get => new(z, x, w);
+        readonly get => new(z, x, w);
         [MethodImpl(256 | 512)]
         set { z = value.x; x = value.y; w = value.z; }
     }
     public ushort3 bra
     {
         [MethodImpl(256 | 512)]
-        get => new(z, x, w);
+        readonly get => new(z, x, w);
         [MethodImpl(256 | 512)]
         set { z = value.x; x = value.y; w = value.z; }
     }
     public ushort3 zyx
     {
         [MethodImpl(256 | 512)]
-        get => new(z, y, x);
+        readonly get => new(z, y, x);
         [MethodImpl(256 | 512)]
         set { z = value.x; y = value.y; x = value.z; }
     }
     public ushort3 bgr
     {
         [MethodImpl(256 | 512)]
-        get => new(z, y, x);
+        readonly get => new(z, y, x);
         [MethodImpl(256 | 512)]
         set { z = value.x; y = value.y; x = value.z; }
     }
-    public ushort3 zyy
+    public readonly ushort3 zyy
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y);
     }
-    public ushort3 bgg
+    public readonly ushort3 bgg
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y);
     }
-    public ushort3 zyz
+    public readonly ushort3 zyz
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z);
     }
-    public ushort3 bgb
+    public readonly ushort3 bgb
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z);
@@ -4547,53 +3075,53 @@ public partial struct ushort4
     public ushort3 zyw
     {
         [MethodImpl(256 | 512)]
-        get => new(z, y, w);
+        readonly get => new(z, y, w);
         [MethodImpl(256 | 512)]
         set { z = value.x; y = value.y; w = value.z; }
     }
     public ushort3 bga
     {
         [MethodImpl(256 | 512)]
-        get => new(z, y, w);
+        readonly get => new(z, y, w);
         [MethodImpl(256 | 512)]
         set { z = value.x; y = value.y; w = value.z; }
     }
-    public ushort3 zzx
+    public readonly ushort3 zzx
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x);
     }
-    public ushort3 bbr
+    public readonly ushort3 bbr
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x);
     }
-    public ushort3 zzy
+    public readonly ushort3 zzy
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y);
     }
-    public ushort3 bbg
+    public readonly ushort3 bbg
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y);
     }
-    public ushort3 zzz
+    public readonly ushort3 zzz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z);
     }
-    public ushort3 bbb
+    public readonly ushort3 bbb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z);
     }
-    public ushort3 zzw
+    public readonly ushort3 zzw
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, w);
     }
-    public ushort3 bba
+    public readonly ushort3 bba
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, w);
@@ -4601,57 +3129,57 @@ public partial struct ushort4
     public ushort3 zwx
     {
         [MethodImpl(256 | 512)]
-        get => new(z, w, x);
+        readonly get => new(z, w, x);
         [MethodImpl(256 | 512)]
         set { z = value.x; w = value.y; x = value.z; }
     }
     public ushort3 bar
     {
         [MethodImpl(256 | 512)]
-        get => new(z, w, x);
+        readonly get => new(z, w, x);
         [MethodImpl(256 | 512)]
         set { z = value.x; w = value.y; x = value.z; }
     }
     public ushort3 zwy
     {
         [MethodImpl(256 | 512)]
-        get => new(z, w, y);
+        readonly get => new(z, w, y);
         [MethodImpl(256 | 512)]
         set { z = value.x; w = value.y; y = value.z; }
     }
     public ushort3 bag
     {
         [MethodImpl(256 | 512)]
-        get => new(z, w, y);
+        readonly get => new(z, w, y);
         [MethodImpl(256 | 512)]
         set { z = value.x; w = value.y; y = value.z; }
     }
-    public ushort3 zwz
+    public readonly ushort3 zwz
     {
         [MethodImpl(256 | 512)]
         get => new(z, w, z);
     }
-    public ushort3 bab
+    public readonly ushort3 bab
     {
         [MethodImpl(256 | 512)]
         get => new(z, w, z);
     }
-    public ushort3 zww
+    public readonly ushort3 zww
     {
         [MethodImpl(256 | 512)]
         get => new(z, w, w);
     }
-    public ushort3 baa
+    public readonly ushort3 baa
     {
         [MethodImpl(256 | 512)]
         get => new(z, w, w);
     }
-    public ushort3 wxx
+    public readonly ushort3 wxx
     {
         [MethodImpl(256 | 512)]
         get => new(w, x, x);
     }
-    public ushort3 arr
+    public readonly ushort3 arr
     {
         [MethodImpl(256 | 512)]
         get => new(w, x, x);
@@ -4659,37 +3187,37 @@ public partial struct ushort4
     public ushort3 wxy
     {
         [MethodImpl(256 | 512)]
-        get => new(w, x, y);
+        readonly get => new(w, x, y);
         [MethodImpl(256 | 512)]
         set { w = value.x; x = value.y; y = value.z; }
     }
     public ushort3 arg
     {
         [MethodImpl(256 | 512)]
-        get => new(w, x, y);
+        readonly get => new(w, x, y);
         [MethodImpl(256 | 512)]
         set { w = value.x; x = value.y; y = value.z; }
     }
     public ushort3 wxz
     {
         [MethodImpl(256 | 512)]
-        get => new(w, x, z);
+        readonly get => new(w, x, z);
         [MethodImpl(256 | 512)]
         set { w = value.x; x = value.y; z = value.z; }
     }
     public ushort3 arb
     {
         [MethodImpl(256 | 512)]
-        get => new(w, x, z);
+        readonly get => new(w, x, z);
         [MethodImpl(256 | 512)]
         set { w = value.x; x = value.y; z = value.z; }
     }
-    public ushort3 wxw
+    public readonly ushort3 wxw
     {
         [MethodImpl(256 | 512)]
         get => new(w, x, w);
     }
-    public ushort3 ara
+    public readonly ushort3 ara
     {
         [MethodImpl(256 | 512)]
         get => new(w, x, w);
@@ -4697,23 +3225,23 @@ public partial struct ushort4
     public ushort3 wyx
     {
         [MethodImpl(256 | 512)]
-        get => new(w, y, x);
+        readonly get => new(w, y, x);
         [MethodImpl(256 | 512)]
         set { w = value.x; y = value.y; x = value.z; }
     }
     public ushort3 agr
     {
         [MethodImpl(256 | 512)]
-        get => new(w, y, x);
+        readonly get => new(w, y, x);
         [MethodImpl(256 | 512)]
         set { w = value.x; y = value.y; x = value.z; }
     }
-    public ushort3 wyy
+    public readonly ushort3 wyy
     {
         [MethodImpl(256 | 512)]
         get => new(w, y, y);
     }
-    public ushort3 agg
+    public readonly ushort3 agg
     {
         [MethodImpl(256 | 512)]
         get => new(w, y, y);
@@ -4721,23 +3249,23 @@ public partial struct ushort4
     public ushort3 wyz
     {
         [MethodImpl(256 | 512)]
-        get => new(w, y, z);
+        readonly get => new(w, y, z);
         [MethodImpl(256 | 512)]
         set { w = value.x; y = value.y; z = value.z; }
     }
     public ushort3 agb
     {
         [MethodImpl(256 | 512)]
-        get => new(w, y, z);
+        readonly get => new(w, y, z);
         [MethodImpl(256 | 512)]
         set { w = value.x; y = value.y; z = value.z; }
     }
-    public ushort3 wyw
+    public readonly ushort3 wyw
     {
         [MethodImpl(256 | 512)]
         get => new(w, y, w);
     }
-    public ushort3 aga
+    public readonly ushort3 aga
     {
         [MethodImpl(256 | 512)]
         get => new(w, y, w);
@@ -4745,87 +3273,87 @@ public partial struct ushort4
     public ushort3 wzx
     {
         [MethodImpl(256 | 512)]
-        get => new(w, z, x);
+        readonly get => new(w, z, x);
         [MethodImpl(256 | 512)]
         set { w = value.x; z = value.y; x = value.z; }
     }
     public ushort3 abr
     {
         [MethodImpl(256 | 512)]
-        get => new(w, z, x);
+        readonly get => new(w, z, x);
         [MethodImpl(256 | 512)]
         set { w = value.x; z = value.y; x = value.z; }
     }
     public ushort3 wzy
     {
         [MethodImpl(256 | 512)]
-        get => new(w, z, y);
+        readonly get => new(w, z, y);
         [MethodImpl(256 | 512)]
         set { w = value.x; z = value.y; y = value.z; }
     }
     public ushort3 abg
     {
         [MethodImpl(256 | 512)]
-        get => new(w, z, y);
+        readonly get => new(w, z, y);
         [MethodImpl(256 | 512)]
         set { w = value.x; z = value.y; y = value.z; }
     }
-    public ushort3 wzz
+    public readonly ushort3 wzz
     {
         [MethodImpl(256 | 512)]
         get => new(w, z, z);
     }
-    public ushort3 abb
+    public readonly ushort3 abb
     {
         [MethodImpl(256 | 512)]
         get => new(w, z, z);
     }
-    public ushort3 wzw
+    public readonly ushort3 wzw
     {
         [MethodImpl(256 | 512)]
         get => new(w, z, w);
     }
-    public ushort3 aba
+    public readonly ushort3 aba
     {
         [MethodImpl(256 | 512)]
         get => new(w, z, w);
     }
-    public ushort3 wwx
+    public readonly ushort3 wwx
     {
         [MethodImpl(256 | 512)]
         get => new(w, w, x);
     }
-    public ushort3 aar
+    public readonly ushort3 aar
     {
         [MethodImpl(256 | 512)]
         get => new(w, w, x);
     }
-    public ushort3 wwy
+    public readonly ushort3 wwy
     {
         [MethodImpl(256 | 512)]
         get => new(w, w, y);
     }
-    public ushort3 aag
+    public readonly ushort3 aag
     {
         [MethodImpl(256 | 512)]
         get => new(w, w, y);
     }
-    public ushort3 wwz
+    public readonly ushort3 wwz
     {
         [MethodImpl(256 | 512)]
         get => new(w, w, z);
     }
-    public ushort3 aab
+    public readonly ushort3 aab
     {
         [MethodImpl(256 | 512)]
         get => new(w, w, z);
     }
-    public ushort3 www
+    public readonly ushort3 www
     {
         [MethodImpl(256 | 512)]
         get => new(w, w, w);
     }
-    public ushort3 aaa
+    public readonly ushort3 aaa
     {
         [MethodImpl(256 | 512)]
         get => new(w, w, w);
@@ -4838,1669 +3366,933 @@ public partial struct ushort4
 
 public partial struct int4 
 {
-    public int3 xxx
+    public readonly int3 xxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 rrr
+    public readonly int3 rrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 xxy
+    public readonly int3 xxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 rrg
+    public readonly int3 rrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 xxz
+    public readonly int3 xxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 rrb
+    public readonly int3 rrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 xxw
+    public readonly int3 xxw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, w);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 rra
+    public readonly int3 rra
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, w);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 xyx
+    public readonly int3 xyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 rgr
+    public readonly int3 rgr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 xyy
+    public readonly int3 xyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 rgg
+    public readonly int3 rgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-#endif // NET8_0_OR_GREATER
     }
     public int3 xyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(vector & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(vector & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsInt32(), 
             vector,
             value.vector
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public int3 rgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(vector & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(vector & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsInt32(), 
             vector,
             value.vector
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public int3 xyw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(0, 1, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public int3 rga
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(0, 1, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public int3 xzx
+    public readonly int3 xzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 rbr
+    public readonly int3 rbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x);
-#endif // NET8_0_OR_GREATER
     }
     public int3 xzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(0, 2, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public int3 rbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(0, 2, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public int3 xzz
+    public readonly int3 xzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 rbb
+    public readonly int3 rbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z);
-#endif // NET8_0_OR_GREATER
     }
     public int3 xzw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(0, 0, 1, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public int3 rba
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(0, 0, 1, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public int3 xwx
+    public readonly int3 xwx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(0, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, x);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 rar
+    public readonly int3 rar
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(0, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, x);
-#endif // NET8_0_OR_GREATER
     }
     public int3 xwy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(0, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(0, 2, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public int3 rag
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(0, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(0, 2, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public int3 xwz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(0, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(0, 0, 2, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public int3 rab
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(0, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(0, 0, 2, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public int3 xww
+    public readonly int3 xww
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(0, 3, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 raa
+    public readonly int3 raa
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(0, 3, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 yxx
+    public readonly int3 yxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 grr
+    public readonly int3 grr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 yxy
+    public readonly int3 yxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 grg
+    public readonly int3 grg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-#endif // NET8_0_OR_GREATER
     }
     public int3 yxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(1, 0, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public int3 grb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(1, 0, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public int3 yxw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(1, 0, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public int3 gra
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(1, 0, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public int3 yyx
+    public readonly int3 yyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 ggr
+    public readonly int3 ggr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 yyy
+    public readonly int3 yyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 ggg
+    public readonly int3 ggg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 yyz
+    public readonly int3 yyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 ggb
+    public readonly int3 ggb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 yyw
+    public readonly int3 yyw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, w);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 gga
+    public readonly int3 gga
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, w);
-#endif // NET8_0_OR_GREATER
     }
     public int3 yzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(2, 0, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public int3 gbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(2, 0, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public int3 yzy
+    public readonly int3 yzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 gbg
+    public readonly int3 gbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 yzz
+    public readonly int3 yzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 gbb
+    public readonly int3 gbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z);
-#endif // NET8_0_OR_GREATER
     }
     public int3 yzw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(0, 0, 1, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public int3 gba
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(0, 0, 1, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public int3 ywx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(1, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(2, 0, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public int3 gar
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(1, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(2, 0, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public int3 ywy
+    public readonly int3 ywy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(1, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, y);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 gag
+    public readonly int3 gag
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(1, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, y);
-#endif // NET8_0_OR_GREATER
     }
     public int3 ywz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(1, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(0, 0, 2, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public int3 gab
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(1, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(0, 0, 2, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public int3 yww
+    public readonly int3 yww
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(1, 3, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 gaa
+    public readonly int3 gaa
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(1, 3, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 zxx
+    public readonly int3 zxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 brr
+    public readonly int3 brr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x);
-#endif // NET8_0_OR_GREATER
     }
     public int3 zxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(1, 2, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public int3 brg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(1, 2, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public int3 zxz
+    public readonly int3 zxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 brb
+    public readonly int3 brb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z);
-#endif // NET8_0_OR_GREATER
     }
     public int3 zxw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(1, 0, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public int3 bra
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(1, 0, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public int3 zyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(2, 1, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public int3 bgr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(2, 1, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public int3 zyy
+    public readonly int3 zyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 bgg
+    public readonly int3 bgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 zyz
+    public readonly int3 zyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 bgb
+    public readonly int3 bgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z);
-#endif // NET8_0_OR_GREATER
     }
     public int3 zyw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(0, 1, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public int3 bga
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(0, 1, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public int3 zzx
+    public readonly int3 zzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 bbr
+    public readonly int3 bbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 zzy
+    public readonly int3 zzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 bbg
+    public readonly int3 bbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 zzz
+    public readonly int3 zzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 bbb
+    public readonly int3 bbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 zzw
+    public readonly int3 zzw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, w);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 bba
+    public readonly int3 bba
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, w);
-#endif // NET8_0_OR_GREATER
     }
     public int3 zwx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(2, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(2, 0, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public int3 bar
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(2, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(2, 0, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public int3 zwy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(2, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(0, 2, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public int3 bag
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(2, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(0, 2, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public int3 zwz
+    public readonly int3 zwz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(2, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, z);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 bab
+    public readonly int3 bab
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(2, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, z);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 zww
+    public readonly int3 zww
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(2, 3, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 baa
+    public readonly int3 baa
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(2, 3, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 wxx
+    public readonly int3 wxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(3, 0, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 arr
+    public readonly int3 arr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(3, 0, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, x);
-#endif // NET8_0_OR_GREATER
     }
     public int3 wxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(3, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(3, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(1, 2, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public int3 arg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(3, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(3, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(1, 2, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public int3 wxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(3, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(3, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(1, 0, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public int3 arb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(3, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(3, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(1, 0, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public int3 wxw
+    public readonly int3 wxw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(3, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, w);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 ara
+    public readonly int3 ara
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(3, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, w);
-#endif // NET8_0_OR_GREATER
     }
     public int3 wyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(3, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(3, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(2, 1, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public int3 agr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(3, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(3, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(2, 1, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public int3 wyy
+    public readonly int3 wyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(3, 1, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 agg
+    public readonly int3 agg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(3, 1, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, y);
-#endif // NET8_0_OR_GREATER
     }
     public int3 wyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(3, 1, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(3, 1, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(0, 1, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public int3 agb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(3, 1, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(3, 1, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(0, 1, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public int3 wyw
+    public readonly int3 wyw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(3, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, w);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 aga
+    public readonly int3 aga
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(3, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, w);
-#endif // NET8_0_OR_GREATER
     }
     public int3 wzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(3, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(3, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(2, 0, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public int3 abr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(3, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(3, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(2, 0, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public int3 wzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(3, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(3, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(0, 2, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public int3 abg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(3, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create(3, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create(0, 2, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public int3 wzz
+    public readonly int3 wzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(3, 2, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 abb
+    public readonly int3 abb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(3, 2, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 wzw
+    public readonly int3 wzw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(3, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, w);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 aba
+    public readonly int3 aba
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(3, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, w);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 wwx
+    public readonly int3 wwx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(3, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, x);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 aar
+    public readonly int3 aar
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(3, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, x);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 wwy
+    public readonly int3 wwy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(3, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, y);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 aag
+    public readonly int3 aag
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(3, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, y);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 wwz
+    public readonly int3 wwz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(3, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, z);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 aab
+    public readonly int3 aab
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(3, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, z);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 www
+    public readonly int3 www
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(3, 3, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public int3 aaa
+    public readonly int3 aaa
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create(3, 3, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, w);
-#endif // NET8_0_OR_GREATER
     }
 }
 
@@ -6510,1669 +4302,933 @@ public partial struct int4
 
 public partial struct uint4 
 {
-    public uint3 xxx
+    public readonly uint3 xxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 rrr
+    public readonly uint3 rrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 xxy
+    public readonly uint3 xxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 rrg
+    public readonly uint3 rrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 xxz
+    public readonly uint3 xxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 rrb
+    public readonly uint3 rrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 xxw
+    public readonly uint3 xxw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, w);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 rra
+    public readonly uint3 rra
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, w);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 xyx
+    public readonly uint3 xyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 rgr
+    public readonly uint3 rgr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 xyy
+    public readonly uint3 xyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 rgg
+    public readonly uint3 rgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-#endif // NET8_0_OR_GREATER
     }
     public uint3 xyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(vector & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(vector & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsUInt32(), 
             vector,
             value.vector
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public uint3 rgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(vector & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(vector & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsUInt32(), 
             vector,
             value.vector
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public uint3 xyw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)0, 1, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public uint3 rga
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)0, 1, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 xzx
+    public readonly uint3 xzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 rbr
+    public readonly uint3 rbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x);
-#endif // NET8_0_OR_GREATER
     }
     public uint3 xzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)0, 2, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public uint3 rbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)0, 2, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 xzz
+    public readonly uint3 xzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 rbb
+    public readonly uint3 rbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z);
-#endif // NET8_0_OR_GREATER
     }
     public uint3 xzw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)0, 0, 1, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public uint3 rba
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)0, 0, 1, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 xwx
+    public readonly uint3 xwx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, x);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 rar
+    public readonly uint3 rar
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, x);
-#endif // NET8_0_OR_GREATER
     }
     public uint3 xwy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)0, 2, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public uint3 rag
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)0, 2, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public uint3 xwz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)0, 0, 2, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public uint3 rab
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)0, 0, 2, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 xww
+    public readonly uint3 xww
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 3, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 raa
+    public readonly uint3 raa
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 3, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 yxx
+    public readonly uint3 yxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 grr
+    public readonly uint3 grr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 yxy
+    public readonly uint3 yxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 grg
+    public readonly uint3 grg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-#endif // NET8_0_OR_GREATER
     }
     public uint3 yxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)1, 0, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public uint3 grb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)1, 0, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public uint3 yxw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)1, 0, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public uint3 gra
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)1, 0, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 yyx
+    public readonly uint3 yyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 ggr
+    public readonly uint3 ggr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 yyy
+    public readonly uint3 yyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 ggg
+    public readonly uint3 ggg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 yyz
+    public readonly uint3 yyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 ggb
+    public readonly uint3 ggb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 yyw
+    public readonly uint3 yyw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, w);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 gga
+    public readonly uint3 gga
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, w);
-#endif // NET8_0_OR_GREATER
     }
     public uint3 yzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)2, 0, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public uint3 gbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)2, 0, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 yzy
+    public readonly uint3 yzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 gbg
+    public readonly uint3 gbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 yzz
+    public readonly uint3 yzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 gbb
+    public readonly uint3 gbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z);
-#endif // NET8_0_OR_GREATER
     }
     public uint3 yzw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)0, 0, 1, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public uint3 gba
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)0, 0, 1, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public uint3 ywx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)2, 0, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public uint3 gar
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)2, 0, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 ywy
+    public readonly uint3 ywy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, y);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 gag
+    public readonly uint3 gag
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, y);
-#endif // NET8_0_OR_GREATER
     }
     public uint3 ywz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)0, 0, 2, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public uint3 gab
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)0, 0, 2, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 yww
+    public readonly uint3 yww
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 3, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 gaa
+    public readonly uint3 gaa
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 3, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 zxx
+    public readonly uint3 zxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 brr
+    public readonly uint3 brr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x);
-#endif // NET8_0_OR_GREATER
     }
     public uint3 zxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)1, 2, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public uint3 brg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)1, 2, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 zxz
+    public readonly uint3 zxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 brb
+    public readonly uint3 brb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z);
-#endif // NET8_0_OR_GREATER
     }
     public uint3 zxw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)1, 0, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public uint3 bra
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)1, 0, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public uint3 zyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)2, 1, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public uint3 bgr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)2, 1, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 zyy
+    public readonly uint3 zyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 bgg
+    public readonly uint3 bgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 zyz
+    public readonly uint3 zyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 bgb
+    public readonly uint3 bgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z);
-#endif // NET8_0_OR_GREATER
     }
     public uint3 zyw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)0, 1, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public uint3 bga
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)0, 1, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 zzx
+    public readonly uint3 zzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 bbr
+    public readonly uint3 bbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 zzy
+    public readonly uint3 zzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 bbg
+    public readonly uint3 bbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 zzz
+    public readonly uint3 zzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 bbb
+    public readonly uint3 bbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 zzw
+    public readonly uint3 zzw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, w);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 bba
+    public readonly uint3 bba
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, w);
-#endif // NET8_0_OR_GREATER
     }
     public uint3 zwx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)2, 0, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public uint3 bar
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)2, 0, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public uint3 zwy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)0, 2, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public uint3 bag
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)0, 2, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 zwz
+    public readonly uint3 zwz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, z);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 bab
+    public readonly uint3 bab
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, z);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 zww
+    public readonly uint3 zww
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 3, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 baa
+    public readonly uint3 baa
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 3, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 wxx
+    public readonly uint3 wxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 0, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 arr
+    public readonly uint3 arr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 0, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, x);
-#endif // NET8_0_OR_GREATER
     }
     public uint3 wxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)1, 2, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public uint3 arg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)1, 2, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public uint3 wxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)1, 0, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public uint3 arb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)1, 0, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 wxw
+    public readonly uint3 wxw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, w);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 ara
+    public readonly uint3 ara
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, w);
-#endif // NET8_0_OR_GREATER
     }
     public uint3 wyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)2, 1, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public uint3 agr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)2, 1, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 wyy
+    public readonly uint3 wyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 1, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 agg
+    public readonly uint3 agg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 1, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, y);
-#endif // NET8_0_OR_GREATER
     }
     public uint3 wyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 1, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 1, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)0, 1, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public uint3 agb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 1, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 1, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)0, 1, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 wyw
+    public readonly uint3 wyw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, w);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 aga
+    public readonly uint3 aga
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, w);
-#endif // NET8_0_OR_GREATER
     }
     public uint3 wzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)2, 0, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public uint3 abr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)2, 0, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public uint3 wzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)0, 2, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public uint3 abg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)0, 2, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 wzz
+    public readonly uint3 wzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 2, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 abb
+    public readonly uint3 abb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 2, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 wzw
+    public readonly uint3 wzw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, w);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 aba
+    public readonly uint3 aba
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, w);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 wwx
+    public readonly uint3 wwx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, x);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 aar
+    public readonly uint3 aar
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, x);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 wwy
+    public readonly uint3 wwy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, y);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 aag
+    public readonly uint3 aag
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, y);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 wwz
+    public readonly uint3 wwz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, z);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 aab
+    public readonly uint3 aab
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, z);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 www
+    public readonly uint3 www
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 3, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public uint3 aaa
+    public readonly uint3 aaa
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 3, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, w);
-#endif // NET8_0_OR_GREATER
     }
 }
 
@@ -8182,1669 +5238,933 @@ public partial struct uint4
 
 public partial struct long4 
 {
-    public long3 xxx
+    public readonly long3 xxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 rrr
+    public readonly long3 rrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 xxy
+    public readonly long3 xxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 rrg
+    public readonly long3 rrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 xxz
+    public readonly long3 xxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 rrb
+    public readonly long3 rrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 xxw
+    public readonly long3 xxw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, w);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 rra
+    public readonly long3 rra
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, w);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 xyx
+    public readonly long3 xyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 rgr
+    public readonly long3 rgr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 xyy
+    public readonly long3 xyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 rgg
+    public readonly long3 rgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-#endif // NET8_0_OR_GREATER
     }
     public long3 xyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(vector & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(vector & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsInt64(), 
             vector,
             value.vector
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public long3 rgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(vector & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(vector & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsInt64(), 
             vector,
             value.vector
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public long3 xyw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(0, 1, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public long3 rga
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(0, 1, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public long3 xzx
+    public readonly long3 xzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 rbr
+    public readonly long3 rbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x);
-#endif // NET8_0_OR_GREATER
     }
     public long3 xzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(0, 2, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public long3 rbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(0, 2, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public long3 xzz
+    public readonly long3 xzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 rbb
+    public readonly long3 rbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z);
-#endif // NET8_0_OR_GREATER
     }
     public long3 xzw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(0, 0, 1, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public long3 rba
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(0, 0, 1, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public long3 xwx
+    public readonly long3 xwx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(0, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, x);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 rar
+    public readonly long3 rar
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(0, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, x);
-#endif // NET8_0_OR_GREATER
     }
     public long3 xwy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(0, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(0, 2, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public long3 rag
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(0, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(0, 2, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public long3 xwz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(0, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(0, 0, 2, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public long3 rab
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(0, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(0, 0, 2, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public long3 xww
+    public readonly long3 xww
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(0, 3, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 raa
+    public readonly long3 raa
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(0, 3, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 yxx
+    public readonly long3 yxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 grr
+    public readonly long3 grr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 yxy
+    public readonly long3 yxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 grg
+    public readonly long3 grg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-#endif // NET8_0_OR_GREATER
     }
     public long3 yxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(1, 0, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public long3 grb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(1, 0, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public long3 yxw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(1, 0, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public long3 gra
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(1, 0, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public long3 yyx
+    public readonly long3 yyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 ggr
+    public readonly long3 ggr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 yyy
+    public readonly long3 yyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 ggg
+    public readonly long3 ggg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 yyz
+    public readonly long3 yyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 ggb
+    public readonly long3 ggb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 yyw
+    public readonly long3 yyw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, w);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 gga
+    public readonly long3 gga
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, w);
-#endif // NET8_0_OR_GREATER
     }
     public long3 yzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(2, 0, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public long3 gbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(2, 0, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public long3 yzy
+    public readonly long3 yzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 gbg
+    public readonly long3 gbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 yzz
+    public readonly long3 yzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 gbb
+    public readonly long3 gbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z);
-#endif // NET8_0_OR_GREATER
     }
     public long3 yzw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(0, 0, 1, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public long3 gba
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(0, 0, 1, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public long3 ywx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(1, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(2, 0, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public long3 gar
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(1, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(2, 0, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public long3 ywy
+    public readonly long3 ywy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(1, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, y);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 gag
+    public readonly long3 gag
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(1, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, y);
-#endif // NET8_0_OR_GREATER
     }
     public long3 ywz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(1, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(0, 0, 2, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public long3 gab
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(1, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(0, 0, 2, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public long3 yww
+    public readonly long3 yww
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(1, 3, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 gaa
+    public readonly long3 gaa
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(1, 3, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 zxx
+    public readonly long3 zxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 brr
+    public readonly long3 brr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x);
-#endif // NET8_0_OR_GREATER
     }
     public long3 zxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(1, 2, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public long3 brg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(1, 2, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public long3 zxz
+    public readonly long3 zxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 brb
+    public readonly long3 brb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z);
-#endif // NET8_0_OR_GREATER
     }
     public long3 zxw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(1, 0, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public long3 bra
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(1, 0, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public long3 zyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(2, 1, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public long3 bgr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(2, 1, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public long3 zyy
+    public readonly long3 zyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 bgg
+    public readonly long3 bgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 zyz
+    public readonly long3 zyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 bgb
+    public readonly long3 bgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z);
-#endif // NET8_0_OR_GREATER
     }
     public long3 zyw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(0, 1, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public long3 bga
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(0, 1, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public long3 zzx
+    public readonly long3 zzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 bbr
+    public readonly long3 bbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 zzy
+    public readonly long3 zzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 bbg
+    public readonly long3 bbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 zzz
+    public readonly long3 zzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 bbb
+    public readonly long3 bbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 zzw
+    public readonly long3 zzw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, w);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 bba
+    public readonly long3 bba
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, w);
-#endif // NET8_0_OR_GREATER
     }
     public long3 zwx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(2, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(2, 0, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public long3 bar
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(2, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(2, 0, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public long3 zwy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(2, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(0, 2, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public long3 bag
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(2, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(0, 2, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public long3 zwz
+    public readonly long3 zwz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(2, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, z);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 bab
+    public readonly long3 bab
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(2, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, z);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 zww
+    public readonly long3 zww
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(2, 3, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 baa
+    public readonly long3 baa
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(2, 3, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 wxx
+    public readonly long3 wxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(3, 0, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 arr
+    public readonly long3 arr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(3, 0, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, x);
-#endif // NET8_0_OR_GREATER
     }
     public long3 wxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(3, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(3, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(1, 2, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public long3 arg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(3, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(3, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(1, 2, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public long3 wxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(3, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(3, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(1, 0, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public long3 arb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(3, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(3, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(1, 0, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public long3 wxw
+    public readonly long3 wxw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(3, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, w);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 ara
+    public readonly long3 ara
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(3, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, w);
-#endif // NET8_0_OR_GREATER
     }
     public long3 wyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(3, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(3, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(2, 1, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public long3 agr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(3, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(3, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(2, 1, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public long3 wyy
+    public readonly long3 wyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(3, 1, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 agg
+    public readonly long3 agg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(3, 1, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, y);
-#endif // NET8_0_OR_GREATER
     }
     public long3 wyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(3, 1, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(3, 1, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(0, 1, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public long3 agb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(3, 1, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(3, 1, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(0, 1, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public long3 wyw
+    public readonly long3 wyw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(3, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, w);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 aga
+    public readonly long3 aga
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(3, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, w);
-#endif // NET8_0_OR_GREATER
     }
     public long3 wzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(3, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(3, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(2, 0, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public long3 abr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(3, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(3, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(2, 0, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public long3 wzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(3, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(3, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(0, 2, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public long3 abg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(3, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create(3, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create(0, 2, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public long3 wzz
+    public readonly long3 wzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(3, 2, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 abb
+    public readonly long3 abb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(3, 2, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 wzw
+    public readonly long3 wzw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(3, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, w);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 aba
+    public readonly long3 aba
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(3, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, w);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 wwx
+    public readonly long3 wwx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(3, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, x);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 aar
+    public readonly long3 aar
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(3, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, x);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 wwy
+    public readonly long3 wwy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(3, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, y);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 aag
+    public readonly long3 aag
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(3, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, y);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 wwz
+    public readonly long3 wwz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(3, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, z);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 aab
+    public readonly long3 aab
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(3, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, z);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 www
+    public readonly long3 www
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(3, 3, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public long3 aaa
+    public readonly long3 aaa
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create(3, 3, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, w);
-#endif // NET8_0_OR_GREATER
     }
 }
 
@@ -9854,1669 +6174,933 @@ public partial struct long4
 
 public partial struct ulong4 
 {
-    public ulong3 xxx
+    public readonly ulong3 xxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 rrr
+    public readonly ulong3 rrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 xxy
+    public readonly ulong3 xxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 rrg
+    public readonly ulong3 rrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 xxz
+    public readonly ulong3 xxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 rrb
+    public readonly ulong3 rrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 xxw
+    public readonly ulong3 xxw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, w);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 rra
+    public readonly ulong3 rra
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, w);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 xyx
+    public readonly ulong3 xyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 rgr
+    public readonly ulong3 rgr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 xyy
+    public readonly ulong3 xyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 rgg
+    public readonly ulong3 rgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 xyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(vector & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(vector & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsUInt64(), 
             vector,
             value.vector
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 rgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(vector & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(vector & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsUInt64(), 
             vector,
             value.vector
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 xyw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)0, 1, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 rga
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)0, 1, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 xzx
+    public readonly ulong3 xzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 rbr
+    public readonly ulong3 rbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x);
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 xzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)0, 2, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 rbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)0, 2, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 xzz
+    public readonly ulong3 xzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 rbb
+    public readonly ulong3 rbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z);
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 xzw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)0, 0, 1, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 rba
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)0, 0, 1, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 xwx
+    public readonly ulong3 xwx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, x);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 rar
+    public readonly ulong3 rar
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, x);
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 xwy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)0, 2, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 rag
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)0, 2, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 xwz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)0, 0, 2, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 rab
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)0, 0, 2, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 xww
+    public readonly ulong3 xww
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 3, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 raa
+    public readonly ulong3 raa
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 3, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 yxx
+    public readonly ulong3 yxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 grr
+    public readonly ulong3 grr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 yxy
+    public readonly ulong3 yxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 grg
+    public readonly ulong3 grg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 yxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)1, 0, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 grb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)1, 0, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 yxw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)1, 0, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 gra
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)1, 0, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 yyx
+    public readonly ulong3 yyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 ggr
+    public readonly ulong3 ggr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 yyy
+    public readonly ulong3 yyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 ggg
+    public readonly ulong3 ggg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 yyz
+    public readonly ulong3 yyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 ggb
+    public readonly ulong3 ggb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 yyw
+    public readonly ulong3 yyw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, w);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 gga
+    public readonly ulong3 gga
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, w);
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 yzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)2, 0, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 gbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)2, 0, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 yzy
+    public readonly ulong3 yzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 gbg
+    public readonly ulong3 gbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 yzz
+    public readonly ulong3 yzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 gbb
+    public readonly ulong3 gbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z);
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 yzw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)0, 0, 1, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 gba
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)0, 0, 1, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 ywx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)2, 0, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 gar
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)2, 0, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 ywy
+    public readonly ulong3 ywy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, y);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 gag
+    public readonly ulong3 gag
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, y);
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 ywz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)0, 0, 2, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 gab
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)0, 0, 2, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 yww
+    public readonly ulong3 yww
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 3, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 gaa
+    public readonly ulong3 gaa
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 3, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 zxx
+    public readonly ulong3 zxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 brr
+    public readonly ulong3 brr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x);
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 zxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)1, 2, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 brg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)1, 2, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 zxz
+    public readonly ulong3 zxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 brb
+    public readonly ulong3 brb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z);
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 zxw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)1, 0, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 bra
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)1, 0, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 zyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)2, 1, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 bgr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)2, 1, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 zyy
+    public readonly ulong3 zyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 bgg
+    public readonly ulong3 bgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 zyz
+    public readonly ulong3 zyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 bgb
+    public readonly ulong3 bgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z);
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 zyw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)0, 1, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 bga
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)0, 1, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 zzx
+    public readonly ulong3 zzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 bbr
+    public readonly ulong3 bbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 zzy
+    public readonly ulong3 zzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 bbg
+    public readonly ulong3 bbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 zzz
+    public readonly ulong3 zzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 bbb
+    public readonly ulong3 bbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 zzw
+    public readonly ulong3 zzw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, w);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 bba
+    public readonly ulong3 bba
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, w);
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 zwx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)2, 0, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 bar
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)2, 0, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 zwy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)0, 2, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 bag
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)0, 2, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 zwz
+    public readonly ulong3 zwz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, z);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 bab
+    public readonly ulong3 bab
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, z);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 zww
+    public readonly ulong3 zww
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 3, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 baa
+    public readonly ulong3 baa
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 3, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 wxx
+    public readonly ulong3 wxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 0, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 arr
+    public readonly ulong3 arr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 0, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, x);
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 wxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)1, 2, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 arg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)1, 2, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 wxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)1, 0, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 arb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)1, 0, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 wxw
+    public readonly ulong3 wxw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, w);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 ara
+    public readonly ulong3 ara
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, w);
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 wyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)2, 1, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 agr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)2, 1, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 wyy
+    public readonly ulong3 wyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 1, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 agg
+    public readonly ulong3 agg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 1, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, y);
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 wyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 1, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 1, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)0, 1, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 agb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 1, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 1, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)0, 1, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 wyw
+    public readonly ulong3 wyw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, w);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 aga
+    public readonly ulong3 aga
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, w);
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 wzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)2, 0, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 abr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)2, 0, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 wzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)0, 2, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public ulong3 abg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)0, 2, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 wzz
+    public readonly ulong3 wzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 2, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 abb
+    public readonly ulong3 abb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 2, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 wzw
+    public readonly ulong3 wzw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, w);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 aba
+    public readonly ulong3 aba
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, w);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 wwx
+    public readonly ulong3 wwx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, x);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 aar
+    public readonly ulong3 aar
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, x);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 wwy
+    public readonly ulong3 wwy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, y);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 aag
+    public readonly ulong3 aag
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, y);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 wwz
+    public readonly ulong3 wwz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, z);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 aab
+    public readonly ulong3 aab
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, z);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 www
+    public readonly ulong3 www
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 3, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public ulong3 aaa
+    public readonly ulong3 aaa
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 3, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, w);
-#endif // NET8_0_OR_GREATER
     }
 }
 
@@ -11526,62 +7110,62 @@ public partial struct ulong4
 
 public partial struct decimal4 
 {
-    public decimal3 xxx
+    public readonly decimal3 xxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x);
     }
-    public decimal3 rrr
+    public readonly decimal3 rrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x);
     }
-    public decimal3 xxy
+    public readonly decimal3 xxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y);
     }
-    public decimal3 rrg
+    public readonly decimal3 rrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y);
     }
-    public decimal3 xxz
+    public readonly decimal3 xxz
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z);
     }
-    public decimal3 rrb
+    public readonly decimal3 rrb
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z);
     }
-    public decimal3 xxw
+    public readonly decimal3 xxw
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, w);
     }
-    public decimal3 rra
+    public readonly decimal3 rra
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, w);
     }
-    public decimal3 xyx
+    public readonly decimal3 xyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x);
     }
-    public decimal3 rgr
+    public readonly decimal3 rgr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x);
     }
-    public decimal3 xyy
+    public readonly decimal3 xyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y);
     }
-    public decimal3 rgg
+    public readonly decimal3 rgg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y);
@@ -11589,37 +7173,37 @@ public partial struct decimal4
     public decimal3 xyz
     {
         [MethodImpl(256 | 512)]
-        get => new(x, y, z);
+        readonly get => new(x, y, z);
         [MethodImpl(256 | 512)]
         set { x = value.x; y = value.y; z = value.z; }
     }
     public decimal3 rgb
     {
         [MethodImpl(256 | 512)]
-        get => new(x, y, z);
+        readonly get => new(x, y, z);
         [MethodImpl(256 | 512)]
         set { x = value.x; y = value.y; z = value.z; }
     }
     public decimal3 xyw
     {
         [MethodImpl(256 | 512)]
-        get => new(x, y, w);
+        readonly get => new(x, y, w);
         [MethodImpl(256 | 512)]
         set { x = value.x; y = value.y; w = value.z; }
     }
     public decimal3 rga
     {
         [MethodImpl(256 | 512)]
-        get => new(x, y, w);
+        readonly get => new(x, y, w);
         [MethodImpl(256 | 512)]
         set { x = value.x; y = value.y; w = value.z; }
     }
-    public decimal3 xzx
+    public readonly decimal3 xzx
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x);
     }
-    public decimal3 rbr
+    public readonly decimal3 rbr
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x);
@@ -11627,23 +7211,23 @@ public partial struct decimal4
     public decimal3 xzy
     {
         [MethodImpl(256 | 512)]
-        get => new(x, z, y);
+        readonly get => new(x, z, y);
         [MethodImpl(256 | 512)]
         set { x = value.x; z = value.y; y = value.z; }
     }
     public decimal3 rbg
     {
         [MethodImpl(256 | 512)]
-        get => new(x, z, y);
+        readonly get => new(x, z, y);
         [MethodImpl(256 | 512)]
         set { x = value.x; z = value.y; y = value.z; }
     }
-    public decimal3 xzz
+    public readonly decimal3 xzz
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z);
     }
-    public decimal3 rbb
+    public readonly decimal3 rbb
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z);
@@ -11651,23 +7235,23 @@ public partial struct decimal4
     public decimal3 xzw
     {
         [MethodImpl(256 | 512)]
-        get => new(x, z, w);
+        readonly get => new(x, z, w);
         [MethodImpl(256 | 512)]
         set { x = value.x; z = value.y; w = value.z; }
     }
     public decimal3 rba
     {
         [MethodImpl(256 | 512)]
-        get => new(x, z, w);
+        readonly get => new(x, z, w);
         [MethodImpl(256 | 512)]
         set { x = value.x; z = value.y; w = value.z; }
     }
-    public decimal3 xwx
+    public readonly decimal3 xwx
     {
         [MethodImpl(256 | 512)]
         get => new(x, w, x);
     }
-    public decimal3 rar
+    public readonly decimal3 rar
     {
         [MethodImpl(256 | 512)]
         get => new(x, w, x);
@@ -11675,57 +7259,57 @@ public partial struct decimal4
     public decimal3 xwy
     {
         [MethodImpl(256 | 512)]
-        get => new(x, w, y);
+        readonly get => new(x, w, y);
         [MethodImpl(256 | 512)]
         set { x = value.x; w = value.y; y = value.z; }
     }
     public decimal3 rag
     {
         [MethodImpl(256 | 512)]
-        get => new(x, w, y);
+        readonly get => new(x, w, y);
         [MethodImpl(256 | 512)]
         set { x = value.x; w = value.y; y = value.z; }
     }
     public decimal3 xwz
     {
         [MethodImpl(256 | 512)]
-        get => new(x, w, z);
+        readonly get => new(x, w, z);
         [MethodImpl(256 | 512)]
         set { x = value.x; w = value.y; z = value.z; }
     }
     public decimal3 rab
     {
         [MethodImpl(256 | 512)]
-        get => new(x, w, z);
+        readonly get => new(x, w, z);
         [MethodImpl(256 | 512)]
         set { x = value.x; w = value.y; z = value.z; }
     }
-    public decimal3 xww
+    public readonly decimal3 xww
     {
         [MethodImpl(256 | 512)]
         get => new(x, w, w);
     }
-    public decimal3 raa
+    public readonly decimal3 raa
     {
         [MethodImpl(256 | 512)]
         get => new(x, w, w);
     }
-    public decimal3 yxx
+    public readonly decimal3 yxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x);
     }
-    public decimal3 grr
+    public readonly decimal3 grr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x);
     }
-    public decimal3 yxy
+    public readonly decimal3 yxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y);
     }
-    public decimal3 grg
+    public readonly decimal3 grg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y);
@@ -11733,67 +7317,67 @@ public partial struct decimal4
     public decimal3 yxz
     {
         [MethodImpl(256 | 512)]
-        get => new(y, x, z);
+        readonly get => new(y, x, z);
         [MethodImpl(256 | 512)]
         set { y = value.x; x = value.y; z = value.z; }
     }
     public decimal3 grb
     {
         [MethodImpl(256 | 512)]
-        get => new(y, x, z);
+        readonly get => new(y, x, z);
         [MethodImpl(256 | 512)]
         set { y = value.x; x = value.y; z = value.z; }
     }
     public decimal3 yxw
     {
         [MethodImpl(256 | 512)]
-        get => new(y, x, w);
+        readonly get => new(y, x, w);
         [MethodImpl(256 | 512)]
         set { y = value.x; x = value.y; w = value.z; }
     }
     public decimal3 gra
     {
         [MethodImpl(256 | 512)]
-        get => new(y, x, w);
+        readonly get => new(y, x, w);
         [MethodImpl(256 | 512)]
         set { y = value.x; x = value.y; w = value.z; }
     }
-    public decimal3 yyx
+    public readonly decimal3 yyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x);
     }
-    public decimal3 ggr
+    public readonly decimal3 ggr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x);
     }
-    public decimal3 yyy
+    public readonly decimal3 yyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y);
     }
-    public decimal3 ggg
+    public readonly decimal3 ggg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y);
     }
-    public decimal3 yyz
+    public readonly decimal3 yyz
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z);
     }
-    public decimal3 ggb
+    public readonly decimal3 ggb
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z);
     }
-    public decimal3 yyw
+    public readonly decimal3 yyw
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, w);
     }
-    public decimal3 gga
+    public readonly decimal3 gga
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, w);
@@ -11801,33 +7385,33 @@ public partial struct decimal4
     public decimal3 yzx
     {
         [MethodImpl(256 | 512)]
-        get => new(y, z, x);
+        readonly get => new(y, z, x);
         [MethodImpl(256 | 512)]
         set { y = value.x; z = value.y; x = value.z; }
     }
     public decimal3 gbr
     {
         [MethodImpl(256 | 512)]
-        get => new(y, z, x);
+        readonly get => new(y, z, x);
         [MethodImpl(256 | 512)]
         set { y = value.x; z = value.y; x = value.z; }
     }
-    public decimal3 yzy
+    public readonly decimal3 yzy
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y);
     }
-    public decimal3 gbg
+    public readonly decimal3 gbg
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y);
     }
-    public decimal3 yzz
+    public readonly decimal3 yzz
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z);
     }
-    public decimal3 gbb
+    public readonly decimal3 gbb
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z);
@@ -11835,37 +7419,37 @@ public partial struct decimal4
     public decimal3 yzw
     {
         [MethodImpl(256 | 512)]
-        get => new(y, z, w);
+        readonly get => new(y, z, w);
         [MethodImpl(256 | 512)]
         set { y = value.x; z = value.y; w = value.z; }
     }
     public decimal3 gba
     {
         [MethodImpl(256 | 512)]
-        get => new(y, z, w);
+        readonly get => new(y, z, w);
         [MethodImpl(256 | 512)]
         set { y = value.x; z = value.y; w = value.z; }
     }
     public decimal3 ywx
     {
         [MethodImpl(256 | 512)]
-        get => new(y, w, x);
+        readonly get => new(y, w, x);
         [MethodImpl(256 | 512)]
         set { y = value.x; w = value.y; x = value.z; }
     }
     public decimal3 gar
     {
         [MethodImpl(256 | 512)]
-        get => new(y, w, x);
+        readonly get => new(y, w, x);
         [MethodImpl(256 | 512)]
         set { y = value.x; w = value.y; x = value.z; }
     }
-    public decimal3 ywy
+    public readonly decimal3 ywy
     {
         [MethodImpl(256 | 512)]
         get => new(y, w, y);
     }
-    public decimal3 gag
+    public readonly decimal3 gag
     {
         [MethodImpl(256 | 512)]
         get => new(y, w, y);
@@ -11873,33 +7457,33 @@ public partial struct decimal4
     public decimal3 ywz
     {
         [MethodImpl(256 | 512)]
-        get => new(y, w, z);
+        readonly get => new(y, w, z);
         [MethodImpl(256 | 512)]
         set { y = value.x; w = value.y; z = value.z; }
     }
     public decimal3 gab
     {
         [MethodImpl(256 | 512)]
-        get => new(y, w, z);
+        readonly get => new(y, w, z);
         [MethodImpl(256 | 512)]
         set { y = value.x; w = value.y; z = value.z; }
     }
-    public decimal3 yww
+    public readonly decimal3 yww
     {
         [MethodImpl(256 | 512)]
         get => new(y, w, w);
     }
-    public decimal3 gaa
+    public readonly decimal3 gaa
     {
         [MethodImpl(256 | 512)]
         get => new(y, w, w);
     }
-    public decimal3 zxx
+    public readonly decimal3 zxx
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x);
     }
-    public decimal3 brr
+    public readonly decimal3 brr
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x);
@@ -11907,23 +7491,23 @@ public partial struct decimal4
     public decimal3 zxy
     {
         [MethodImpl(256 | 512)]
-        get => new(z, x, y);
+        readonly get => new(z, x, y);
         [MethodImpl(256 | 512)]
         set { z = value.x; x = value.y; y = value.z; }
     }
     public decimal3 brg
     {
         [MethodImpl(256 | 512)]
-        get => new(z, x, y);
+        readonly get => new(z, x, y);
         [MethodImpl(256 | 512)]
         set { z = value.x; x = value.y; y = value.z; }
     }
-    public decimal3 zxz
+    public readonly decimal3 zxz
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z);
     }
-    public decimal3 brb
+    public readonly decimal3 brb
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z);
@@ -11931,47 +7515,47 @@ public partial struct decimal4
     public decimal3 zxw
     {
         [MethodImpl(256 | 512)]
-        get => new(z, x, w);
+        readonly get => new(z, x, w);
         [MethodImpl(256 | 512)]
         set { z = value.x; x = value.y; w = value.z; }
     }
     public decimal3 bra
     {
         [MethodImpl(256 | 512)]
-        get => new(z, x, w);
+        readonly get => new(z, x, w);
         [MethodImpl(256 | 512)]
         set { z = value.x; x = value.y; w = value.z; }
     }
     public decimal3 zyx
     {
         [MethodImpl(256 | 512)]
-        get => new(z, y, x);
+        readonly get => new(z, y, x);
         [MethodImpl(256 | 512)]
         set { z = value.x; y = value.y; x = value.z; }
     }
     public decimal3 bgr
     {
         [MethodImpl(256 | 512)]
-        get => new(z, y, x);
+        readonly get => new(z, y, x);
         [MethodImpl(256 | 512)]
         set { z = value.x; y = value.y; x = value.z; }
     }
-    public decimal3 zyy
+    public readonly decimal3 zyy
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y);
     }
-    public decimal3 bgg
+    public readonly decimal3 bgg
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y);
     }
-    public decimal3 zyz
+    public readonly decimal3 zyz
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z);
     }
-    public decimal3 bgb
+    public readonly decimal3 bgb
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z);
@@ -11979,53 +7563,53 @@ public partial struct decimal4
     public decimal3 zyw
     {
         [MethodImpl(256 | 512)]
-        get => new(z, y, w);
+        readonly get => new(z, y, w);
         [MethodImpl(256 | 512)]
         set { z = value.x; y = value.y; w = value.z; }
     }
     public decimal3 bga
     {
         [MethodImpl(256 | 512)]
-        get => new(z, y, w);
+        readonly get => new(z, y, w);
         [MethodImpl(256 | 512)]
         set { z = value.x; y = value.y; w = value.z; }
     }
-    public decimal3 zzx
+    public readonly decimal3 zzx
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x);
     }
-    public decimal3 bbr
+    public readonly decimal3 bbr
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x);
     }
-    public decimal3 zzy
+    public readonly decimal3 zzy
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y);
     }
-    public decimal3 bbg
+    public readonly decimal3 bbg
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y);
     }
-    public decimal3 zzz
+    public readonly decimal3 zzz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z);
     }
-    public decimal3 bbb
+    public readonly decimal3 bbb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z);
     }
-    public decimal3 zzw
+    public readonly decimal3 zzw
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, w);
     }
-    public decimal3 bba
+    public readonly decimal3 bba
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, w);
@@ -12033,57 +7617,57 @@ public partial struct decimal4
     public decimal3 zwx
     {
         [MethodImpl(256 | 512)]
-        get => new(z, w, x);
+        readonly get => new(z, w, x);
         [MethodImpl(256 | 512)]
         set { z = value.x; w = value.y; x = value.z; }
     }
     public decimal3 bar
     {
         [MethodImpl(256 | 512)]
-        get => new(z, w, x);
+        readonly get => new(z, w, x);
         [MethodImpl(256 | 512)]
         set { z = value.x; w = value.y; x = value.z; }
     }
     public decimal3 zwy
     {
         [MethodImpl(256 | 512)]
-        get => new(z, w, y);
+        readonly get => new(z, w, y);
         [MethodImpl(256 | 512)]
         set { z = value.x; w = value.y; y = value.z; }
     }
     public decimal3 bag
     {
         [MethodImpl(256 | 512)]
-        get => new(z, w, y);
+        readonly get => new(z, w, y);
         [MethodImpl(256 | 512)]
         set { z = value.x; w = value.y; y = value.z; }
     }
-    public decimal3 zwz
+    public readonly decimal3 zwz
     {
         [MethodImpl(256 | 512)]
         get => new(z, w, z);
     }
-    public decimal3 bab
+    public readonly decimal3 bab
     {
         [MethodImpl(256 | 512)]
         get => new(z, w, z);
     }
-    public decimal3 zww
+    public readonly decimal3 zww
     {
         [MethodImpl(256 | 512)]
         get => new(z, w, w);
     }
-    public decimal3 baa
+    public readonly decimal3 baa
     {
         [MethodImpl(256 | 512)]
         get => new(z, w, w);
     }
-    public decimal3 wxx
+    public readonly decimal3 wxx
     {
         [MethodImpl(256 | 512)]
         get => new(w, x, x);
     }
-    public decimal3 arr
+    public readonly decimal3 arr
     {
         [MethodImpl(256 | 512)]
         get => new(w, x, x);
@@ -12091,37 +7675,37 @@ public partial struct decimal4
     public decimal3 wxy
     {
         [MethodImpl(256 | 512)]
-        get => new(w, x, y);
+        readonly get => new(w, x, y);
         [MethodImpl(256 | 512)]
         set { w = value.x; x = value.y; y = value.z; }
     }
     public decimal3 arg
     {
         [MethodImpl(256 | 512)]
-        get => new(w, x, y);
+        readonly get => new(w, x, y);
         [MethodImpl(256 | 512)]
         set { w = value.x; x = value.y; y = value.z; }
     }
     public decimal3 wxz
     {
         [MethodImpl(256 | 512)]
-        get => new(w, x, z);
+        readonly get => new(w, x, z);
         [MethodImpl(256 | 512)]
         set { w = value.x; x = value.y; z = value.z; }
     }
     public decimal3 arb
     {
         [MethodImpl(256 | 512)]
-        get => new(w, x, z);
+        readonly get => new(w, x, z);
         [MethodImpl(256 | 512)]
         set { w = value.x; x = value.y; z = value.z; }
     }
-    public decimal3 wxw
+    public readonly decimal3 wxw
     {
         [MethodImpl(256 | 512)]
         get => new(w, x, w);
     }
-    public decimal3 ara
+    public readonly decimal3 ara
     {
         [MethodImpl(256 | 512)]
         get => new(w, x, w);
@@ -12129,23 +7713,23 @@ public partial struct decimal4
     public decimal3 wyx
     {
         [MethodImpl(256 | 512)]
-        get => new(w, y, x);
+        readonly get => new(w, y, x);
         [MethodImpl(256 | 512)]
         set { w = value.x; y = value.y; x = value.z; }
     }
     public decimal3 agr
     {
         [MethodImpl(256 | 512)]
-        get => new(w, y, x);
+        readonly get => new(w, y, x);
         [MethodImpl(256 | 512)]
         set { w = value.x; y = value.y; x = value.z; }
     }
-    public decimal3 wyy
+    public readonly decimal3 wyy
     {
         [MethodImpl(256 | 512)]
         get => new(w, y, y);
     }
-    public decimal3 agg
+    public readonly decimal3 agg
     {
         [MethodImpl(256 | 512)]
         get => new(w, y, y);
@@ -12153,23 +7737,23 @@ public partial struct decimal4
     public decimal3 wyz
     {
         [MethodImpl(256 | 512)]
-        get => new(w, y, z);
+        readonly get => new(w, y, z);
         [MethodImpl(256 | 512)]
         set { w = value.x; y = value.y; z = value.z; }
     }
     public decimal3 agb
     {
         [MethodImpl(256 | 512)]
-        get => new(w, y, z);
+        readonly get => new(w, y, z);
         [MethodImpl(256 | 512)]
         set { w = value.x; y = value.y; z = value.z; }
     }
-    public decimal3 wyw
+    public readonly decimal3 wyw
     {
         [MethodImpl(256 | 512)]
         get => new(w, y, w);
     }
-    public decimal3 aga
+    public readonly decimal3 aga
     {
         [MethodImpl(256 | 512)]
         get => new(w, y, w);
@@ -12177,87 +7761,87 @@ public partial struct decimal4
     public decimal3 wzx
     {
         [MethodImpl(256 | 512)]
-        get => new(w, z, x);
+        readonly get => new(w, z, x);
         [MethodImpl(256 | 512)]
         set { w = value.x; z = value.y; x = value.z; }
     }
     public decimal3 abr
     {
         [MethodImpl(256 | 512)]
-        get => new(w, z, x);
+        readonly get => new(w, z, x);
         [MethodImpl(256 | 512)]
         set { w = value.x; z = value.y; x = value.z; }
     }
     public decimal3 wzy
     {
         [MethodImpl(256 | 512)]
-        get => new(w, z, y);
+        readonly get => new(w, z, y);
         [MethodImpl(256 | 512)]
         set { w = value.x; z = value.y; y = value.z; }
     }
     public decimal3 abg
     {
         [MethodImpl(256 | 512)]
-        get => new(w, z, y);
+        readonly get => new(w, z, y);
         [MethodImpl(256 | 512)]
         set { w = value.x; z = value.y; y = value.z; }
     }
-    public decimal3 wzz
+    public readonly decimal3 wzz
     {
         [MethodImpl(256 | 512)]
         get => new(w, z, z);
     }
-    public decimal3 abb
+    public readonly decimal3 abb
     {
         [MethodImpl(256 | 512)]
         get => new(w, z, z);
     }
-    public decimal3 wzw
+    public readonly decimal3 wzw
     {
         [MethodImpl(256 | 512)]
         get => new(w, z, w);
     }
-    public decimal3 aba
+    public readonly decimal3 aba
     {
         [MethodImpl(256 | 512)]
         get => new(w, z, w);
     }
-    public decimal3 wwx
+    public readonly decimal3 wwx
     {
         [MethodImpl(256 | 512)]
         get => new(w, w, x);
     }
-    public decimal3 aar
+    public readonly decimal3 aar
     {
         [MethodImpl(256 | 512)]
         get => new(w, w, x);
     }
-    public decimal3 wwy
+    public readonly decimal3 wwy
     {
         [MethodImpl(256 | 512)]
         get => new(w, w, y);
     }
-    public decimal3 aag
+    public readonly decimal3 aag
     {
         [MethodImpl(256 | 512)]
         get => new(w, w, y);
     }
-    public decimal3 wwz
+    public readonly decimal3 wwz
     {
         [MethodImpl(256 | 512)]
         get => new(w, w, z);
     }
-    public decimal3 aab
+    public readonly decimal3 aab
     {
         [MethodImpl(256 | 512)]
         get => new(w, w, z);
     }
-    public decimal3 www
+    public readonly decimal3 www
     {
         [MethodImpl(256 | 512)]
         get => new(w, w, w);
     }
-    public decimal3 aaa
+    public readonly decimal3 aaa
     {
         [MethodImpl(256 | 512)]
         get => new(w, w, w);
@@ -12270,62 +7854,62 @@ public partial struct decimal4
 
 public partial struct half4 
 {
-    public half3 xxx
+    public readonly half3 xxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x);
     }
-    public half3 rrr
+    public readonly half3 rrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x);
     }
-    public half3 xxy
+    public readonly half3 xxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y);
     }
-    public half3 rrg
+    public readonly half3 rrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y);
     }
-    public half3 xxz
+    public readonly half3 xxz
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z);
     }
-    public half3 rrb
+    public readonly half3 rrb
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z);
     }
-    public half3 xxw
+    public readonly half3 xxw
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, w);
     }
-    public half3 rra
+    public readonly half3 rra
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, w);
     }
-    public half3 xyx
+    public readonly half3 xyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x);
     }
-    public half3 rgr
+    public readonly half3 rgr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x);
     }
-    public half3 xyy
+    public readonly half3 xyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y);
     }
-    public half3 rgg
+    public readonly half3 rgg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y);
@@ -12333,37 +7917,37 @@ public partial struct half4
     public half3 xyz
     {
         [MethodImpl(256 | 512)]
-        get => new(x, y, z);
+        readonly get => new(x, y, z);
         [MethodImpl(256 | 512)]
         set { x = value.x; y = value.y; z = value.z; }
     }
     public half3 rgb
     {
         [MethodImpl(256 | 512)]
-        get => new(x, y, z);
+        readonly get => new(x, y, z);
         [MethodImpl(256 | 512)]
         set { x = value.x; y = value.y; z = value.z; }
     }
     public half3 xyw
     {
         [MethodImpl(256 | 512)]
-        get => new(x, y, w);
+        readonly get => new(x, y, w);
         [MethodImpl(256 | 512)]
         set { x = value.x; y = value.y; w = value.z; }
     }
     public half3 rga
     {
         [MethodImpl(256 | 512)]
-        get => new(x, y, w);
+        readonly get => new(x, y, w);
         [MethodImpl(256 | 512)]
         set { x = value.x; y = value.y; w = value.z; }
     }
-    public half3 xzx
+    public readonly half3 xzx
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x);
     }
-    public half3 rbr
+    public readonly half3 rbr
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x);
@@ -12371,23 +7955,23 @@ public partial struct half4
     public half3 xzy
     {
         [MethodImpl(256 | 512)]
-        get => new(x, z, y);
+        readonly get => new(x, z, y);
         [MethodImpl(256 | 512)]
         set { x = value.x; z = value.y; y = value.z; }
     }
     public half3 rbg
     {
         [MethodImpl(256 | 512)]
-        get => new(x, z, y);
+        readonly get => new(x, z, y);
         [MethodImpl(256 | 512)]
         set { x = value.x; z = value.y; y = value.z; }
     }
-    public half3 xzz
+    public readonly half3 xzz
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z);
     }
-    public half3 rbb
+    public readonly half3 rbb
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z);
@@ -12395,23 +7979,23 @@ public partial struct half4
     public half3 xzw
     {
         [MethodImpl(256 | 512)]
-        get => new(x, z, w);
+        readonly get => new(x, z, w);
         [MethodImpl(256 | 512)]
         set { x = value.x; z = value.y; w = value.z; }
     }
     public half3 rba
     {
         [MethodImpl(256 | 512)]
-        get => new(x, z, w);
+        readonly get => new(x, z, w);
         [MethodImpl(256 | 512)]
         set { x = value.x; z = value.y; w = value.z; }
     }
-    public half3 xwx
+    public readonly half3 xwx
     {
         [MethodImpl(256 | 512)]
         get => new(x, w, x);
     }
-    public half3 rar
+    public readonly half3 rar
     {
         [MethodImpl(256 | 512)]
         get => new(x, w, x);
@@ -12419,57 +8003,57 @@ public partial struct half4
     public half3 xwy
     {
         [MethodImpl(256 | 512)]
-        get => new(x, w, y);
+        readonly get => new(x, w, y);
         [MethodImpl(256 | 512)]
         set { x = value.x; w = value.y; y = value.z; }
     }
     public half3 rag
     {
         [MethodImpl(256 | 512)]
-        get => new(x, w, y);
+        readonly get => new(x, w, y);
         [MethodImpl(256 | 512)]
         set { x = value.x; w = value.y; y = value.z; }
     }
     public half3 xwz
     {
         [MethodImpl(256 | 512)]
-        get => new(x, w, z);
+        readonly get => new(x, w, z);
         [MethodImpl(256 | 512)]
         set { x = value.x; w = value.y; z = value.z; }
     }
     public half3 rab
     {
         [MethodImpl(256 | 512)]
-        get => new(x, w, z);
+        readonly get => new(x, w, z);
         [MethodImpl(256 | 512)]
         set { x = value.x; w = value.y; z = value.z; }
     }
-    public half3 xww
+    public readonly half3 xww
     {
         [MethodImpl(256 | 512)]
         get => new(x, w, w);
     }
-    public half3 raa
+    public readonly half3 raa
     {
         [MethodImpl(256 | 512)]
         get => new(x, w, w);
     }
-    public half3 yxx
+    public readonly half3 yxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x);
     }
-    public half3 grr
+    public readonly half3 grr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x);
     }
-    public half3 yxy
+    public readonly half3 yxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y);
     }
-    public half3 grg
+    public readonly half3 grg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y);
@@ -12477,67 +8061,67 @@ public partial struct half4
     public half3 yxz
     {
         [MethodImpl(256 | 512)]
-        get => new(y, x, z);
+        readonly get => new(y, x, z);
         [MethodImpl(256 | 512)]
         set { y = value.x; x = value.y; z = value.z; }
     }
     public half3 grb
     {
         [MethodImpl(256 | 512)]
-        get => new(y, x, z);
+        readonly get => new(y, x, z);
         [MethodImpl(256 | 512)]
         set { y = value.x; x = value.y; z = value.z; }
     }
     public half3 yxw
     {
         [MethodImpl(256 | 512)]
-        get => new(y, x, w);
+        readonly get => new(y, x, w);
         [MethodImpl(256 | 512)]
         set { y = value.x; x = value.y; w = value.z; }
     }
     public half3 gra
     {
         [MethodImpl(256 | 512)]
-        get => new(y, x, w);
+        readonly get => new(y, x, w);
         [MethodImpl(256 | 512)]
         set { y = value.x; x = value.y; w = value.z; }
     }
-    public half3 yyx
+    public readonly half3 yyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x);
     }
-    public half3 ggr
+    public readonly half3 ggr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x);
     }
-    public half3 yyy
+    public readonly half3 yyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y);
     }
-    public half3 ggg
+    public readonly half3 ggg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y);
     }
-    public half3 yyz
+    public readonly half3 yyz
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z);
     }
-    public half3 ggb
+    public readonly half3 ggb
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z);
     }
-    public half3 yyw
+    public readonly half3 yyw
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, w);
     }
-    public half3 gga
+    public readonly half3 gga
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, w);
@@ -12545,33 +8129,33 @@ public partial struct half4
     public half3 yzx
     {
         [MethodImpl(256 | 512)]
-        get => new(y, z, x);
+        readonly get => new(y, z, x);
         [MethodImpl(256 | 512)]
         set { y = value.x; z = value.y; x = value.z; }
     }
     public half3 gbr
     {
         [MethodImpl(256 | 512)]
-        get => new(y, z, x);
+        readonly get => new(y, z, x);
         [MethodImpl(256 | 512)]
         set { y = value.x; z = value.y; x = value.z; }
     }
-    public half3 yzy
+    public readonly half3 yzy
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y);
     }
-    public half3 gbg
+    public readonly half3 gbg
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y);
     }
-    public half3 yzz
+    public readonly half3 yzz
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z);
     }
-    public half3 gbb
+    public readonly half3 gbb
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z);
@@ -12579,37 +8163,37 @@ public partial struct half4
     public half3 yzw
     {
         [MethodImpl(256 | 512)]
-        get => new(y, z, w);
+        readonly get => new(y, z, w);
         [MethodImpl(256 | 512)]
         set { y = value.x; z = value.y; w = value.z; }
     }
     public half3 gba
     {
         [MethodImpl(256 | 512)]
-        get => new(y, z, w);
+        readonly get => new(y, z, w);
         [MethodImpl(256 | 512)]
         set { y = value.x; z = value.y; w = value.z; }
     }
     public half3 ywx
     {
         [MethodImpl(256 | 512)]
-        get => new(y, w, x);
+        readonly get => new(y, w, x);
         [MethodImpl(256 | 512)]
         set { y = value.x; w = value.y; x = value.z; }
     }
     public half3 gar
     {
         [MethodImpl(256 | 512)]
-        get => new(y, w, x);
+        readonly get => new(y, w, x);
         [MethodImpl(256 | 512)]
         set { y = value.x; w = value.y; x = value.z; }
     }
-    public half3 ywy
+    public readonly half3 ywy
     {
         [MethodImpl(256 | 512)]
         get => new(y, w, y);
     }
-    public half3 gag
+    public readonly half3 gag
     {
         [MethodImpl(256 | 512)]
         get => new(y, w, y);
@@ -12617,33 +8201,33 @@ public partial struct half4
     public half3 ywz
     {
         [MethodImpl(256 | 512)]
-        get => new(y, w, z);
+        readonly get => new(y, w, z);
         [MethodImpl(256 | 512)]
         set { y = value.x; w = value.y; z = value.z; }
     }
     public half3 gab
     {
         [MethodImpl(256 | 512)]
-        get => new(y, w, z);
+        readonly get => new(y, w, z);
         [MethodImpl(256 | 512)]
         set { y = value.x; w = value.y; z = value.z; }
     }
-    public half3 yww
+    public readonly half3 yww
     {
         [MethodImpl(256 | 512)]
         get => new(y, w, w);
     }
-    public half3 gaa
+    public readonly half3 gaa
     {
         [MethodImpl(256 | 512)]
         get => new(y, w, w);
     }
-    public half3 zxx
+    public readonly half3 zxx
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x);
     }
-    public half3 brr
+    public readonly half3 brr
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x);
@@ -12651,23 +8235,23 @@ public partial struct half4
     public half3 zxy
     {
         [MethodImpl(256 | 512)]
-        get => new(z, x, y);
+        readonly get => new(z, x, y);
         [MethodImpl(256 | 512)]
         set { z = value.x; x = value.y; y = value.z; }
     }
     public half3 brg
     {
         [MethodImpl(256 | 512)]
-        get => new(z, x, y);
+        readonly get => new(z, x, y);
         [MethodImpl(256 | 512)]
         set { z = value.x; x = value.y; y = value.z; }
     }
-    public half3 zxz
+    public readonly half3 zxz
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z);
     }
-    public half3 brb
+    public readonly half3 brb
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z);
@@ -12675,47 +8259,47 @@ public partial struct half4
     public half3 zxw
     {
         [MethodImpl(256 | 512)]
-        get => new(z, x, w);
+        readonly get => new(z, x, w);
         [MethodImpl(256 | 512)]
         set { z = value.x; x = value.y; w = value.z; }
     }
     public half3 bra
     {
         [MethodImpl(256 | 512)]
-        get => new(z, x, w);
+        readonly get => new(z, x, w);
         [MethodImpl(256 | 512)]
         set { z = value.x; x = value.y; w = value.z; }
     }
     public half3 zyx
     {
         [MethodImpl(256 | 512)]
-        get => new(z, y, x);
+        readonly get => new(z, y, x);
         [MethodImpl(256 | 512)]
         set { z = value.x; y = value.y; x = value.z; }
     }
     public half3 bgr
     {
         [MethodImpl(256 | 512)]
-        get => new(z, y, x);
+        readonly get => new(z, y, x);
         [MethodImpl(256 | 512)]
         set { z = value.x; y = value.y; x = value.z; }
     }
-    public half3 zyy
+    public readonly half3 zyy
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y);
     }
-    public half3 bgg
+    public readonly half3 bgg
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y);
     }
-    public half3 zyz
+    public readonly half3 zyz
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z);
     }
-    public half3 bgb
+    public readonly half3 bgb
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z);
@@ -12723,53 +8307,53 @@ public partial struct half4
     public half3 zyw
     {
         [MethodImpl(256 | 512)]
-        get => new(z, y, w);
+        readonly get => new(z, y, w);
         [MethodImpl(256 | 512)]
         set { z = value.x; y = value.y; w = value.z; }
     }
     public half3 bga
     {
         [MethodImpl(256 | 512)]
-        get => new(z, y, w);
+        readonly get => new(z, y, w);
         [MethodImpl(256 | 512)]
         set { z = value.x; y = value.y; w = value.z; }
     }
-    public half3 zzx
+    public readonly half3 zzx
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x);
     }
-    public half3 bbr
+    public readonly half3 bbr
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x);
     }
-    public half3 zzy
+    public readonly half3 zzy
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y);
     }
-    public half3 bbg
+    public readonly half3 bbg
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y);
     }
-    public half3 zzz
+    public readonly half3 zzz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z);
     }
-    public half3 bbb
+    public readonly half3 bbb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z);
     }
-    public half3 zzw
+    public readonly half3 zzw
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, w);
     }
-    public half3 bba
+    public readonly half3 bba
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, w);
@@ -12777,57 +8361,57 @@ public partial struct half4
     public half3 zwx
     {
         [MethodImpl(256 | 512)]
-        get => new(z, w, x);
+        readonly get => new(z, w, x);
         [MethodImpl(256 | 512)]
         set { z = value.x; w = value.y; x = value.z; }
     }
     public half3 bar
     {
         [MethodImpl(256 | 512)]
-        get => new(z, w, x);
+        readonly get => new(z, w, x);
         [MethodImpl(256 | 512)]
         set { z = value.x; w = value.y; x = value.z; }
     }
     public half3 zwy
     {
         [MethodImpl(256 | 512)]
-        get => new(z, w, y);
+        readonly get => new(z, w, y);
         [MethodImpl(256 | 512)]
         set { z = value.x; w = value.y; y = value.z; }
     }
     public half3 bag
     {
         [MethodImpl(256 | 512)]
-        get => new(z, w, y);
+        readonly get => new(z, w, y);
         [MethodImpl(256 | 512)]
         set { z = value.x; w = value.y; y = value.z; }
     }
-    public half3 zwz
+    public readonly half3 zwz
     {
         [MethodImpl(256 | 512)]
         get => new(z, w, z);
     }
-    public half3 bab
+    public readonly half3 bab
     {
         [MethodImpl(256 | 512)]
         get => new(z, w, z);
     }
-    public half3 zww
+    public readonly half3 zww
     {
         [MethodImpl(256 | 512)]
         get => new(z, w, w);
     }
-    public half3 baa
+    public readonly half3 baa
     {
         [MethodImpl(256 | 512)]
         get => new(z, w, w);
     }
-    public half3 wxx
+    public readonly half3 wxx
     {
         [MethodImpl(256 | 512)]
         get => new(w, x, x);
     }
-    public half3 arr
+    public readonly half3 arr
     {
         [MethodImpl(256 | 512)]
         get => new(w, x, x);
@@ -12835,37 +8419,37 @@ public partial struct half4
     public half3 wxy
     {
         [MethodImpl(256 | 512)]
-        get => new(w, x, y);
+        readonly get => new(w, x, y);
         [MethodImpl(256 | 512)]
         set { w = value.x; x = value.y; y = value.z; }
     }
     public half3 arg
     {
         [MethodImpl(256 | 512)]
-        get => new(w, x, y);
+        readonly get => new(w, x, y);
         [MethodImpl(256 | 512)]
         set { w = value.x; x = value.y; y = value.z; }
     }
     public half3 wxz
     {
         [MethodImpl(256 | 512)]
-        get => new(w, x, z);
+        readonly get => new(w, x, z);
         [MethodImpl(256 | 512)]
         set { w = value.x; x = value.y; z = value.z; }
     }
     public half3 arb
     {
         [MethodImpl(256 | 512)]
-        get => new(w, x, z);
+        readonly get => new(w, x, z);
         [MethodImpl(256 | 512)]
         set { w = value.x; x = value.y; z = value.z; }
     }
-    public half3 wxw
+    public readonly half3 wxw
     {
         [MethodImpl(256 | 512)]
         get => new(w, x, w);
     }
-    public half3 ara
+    public readonly half3 ara
     {
         [MethodImpl(256 | 512)]
         get => new(w, x, w);
@@ -12873,23 +8457,23 @@ public partial struct half4
     public half3 wyx
     {
         [MethodImpl(256 | 512)]
-        get => new(w, y, x);
+        readonly get => new(w, y, x);
         [MethodImpl(256 | 512)]
         set { w = value.x; y = value.y; x = value.z; }
     }
     public half3 agr
     {
         [MethodImpl(256 | 512)]
-        get => new(w, y, x);
+        readonly get => new(w, y, x);
         [MethodImpl(256 | 512)]
         set { w = value.x; y = value.y; x = value.z; }
     }
-    public half3 wyy
+    public readonly half3 wyy
     {
         [MethodImpl(256 | 512)]
         get => new(w, y, y);
     }
-    public half3 agg
+    public readonly half3 agg
     {
         [MethodImpl(256 | 512)]
         get => new(w, y, y);
@@ -12897,23 +8481,23 @@ public partial struct half4
     public half3 wyz
     {
         [MethodImpl(256 | 512)]
-        get => new(w, y, z);
+        readonly get => new(w, y, z);
         [MethodImpl(256 | 512)]
         set { w = value.x; y = value.y; z = value.z; }
     }
     public half3 agb
     {
         [MethodImpl(256 | 512)]
-        get => new(w, y, z);
+        readonly get => new(w, y, z);
         [MethodImpl(256 | 512)]
         set { w = value.x; y = value.y; z = value.z; }
     }
-    public half3 wyw
+    public readonly half3 wyw
     {
         [MethodImpl(256 | 512)]
         get => new(w, y, w);
     }
-    public half3 aga
+    public readonly half3 aga
     {
         [MethodImpl(256 | 512)]
         get => new(w, y, w);
@@ -12921,87 +8505,87 @@ public partial struct half4
     public half3 wzx
     {
         [MethodImpl(256 | 512)]
-        get => new(w, z, x);
+        readonly get => new(w, z, x);
         [MethodImpl(256 | 512)]
         set { w = value.x; z = value.y; x = value.z; }
     }
     public half3 abr
     {
         [MethodImpl(256 | 512)]
-        get => new(w, z, x);
+        readonly get => new(w, z, x);
         [MethodImpl(256 | 512)]
         set { w = value.x; z = value.y; x = value.z; }
     }
     public half3 wzy
     {
         [MethodImpl(256 | 512)]
-        get => new(w, z, y);
+        readonly get => new(w, z, y);
         [MethodImpl(256 | 512)]
         set { w = value.x; z = value.y; y = value.z; }
     }
     public half3 abg
     {
         [MethodImpl(256 | 512)]
-        get => new(w, z, y);
+        readonly get => new(w, z, y);
         [MethodImpl(256 | 512)]
         set { w = value.x; z = value.y; y = value.z; }
     }
-    public half3 wzz
+    public readonly half3 wzz
     {
         [MethodImpl(256 | 512)]
         get => new(w, z, z);
     }
-    public half3 abb
+    public readonly half3 abb
     {
         [MethodImpl(256 | 512)]
         get => new(w, z, z);
     }
-    public half3 wzw
+    public readonly half3 wzw
     {
         [MethodImpl(256 | 512)]
         get => new(w, z, w);
     }
-    public half3 aba
+    public readonly half3 aba
     {
         [MethodImpl(256 | 512)]
         get => new(w, z, w);
     }
-    public half3 wwx
+    public readonly half3 wwx
     {
         [MethodImpl(256 | 512)]
         get => new(w, w, x);
     }
-    public half3 aar
+    public readonly half3 aar
     {
         [MethodImpl(256 | 512)]
         get => new(w, w, x);
     }
-    public half3 wwy
+    public readonly half3 wwy
     {
         [MethodImpl(256 | 512)]
         get => new(w, w, y);
     }
-    public half3 aag
+    public readonly half3 aag
     {
         [MethodImpl(256 | 512)]
         get => new(w, w, y);
     }
-    public half3 wwz
+    public readonly half3 wwz
     {
         [MethodImpl(256 | 512)]
         get => new(w, w, z);
     }
-    public half3 aab
+    public readonly half3 aab
     {
         [MethodImpl(256 | 512)]
         get => new(w, w, z);
     }
-    public half3 www
+    public readonly half3 www
     {
         [MethodImpl(256 | 512)]
         get => new(w, w, w);
     }
-    public half3 aaa
+    public readonly half3 aaa
     {
         [MethodImpl(256 | 512)]
         get => new(w, w, w);
@@ -13014,62 +8598,62 @@ public partial struct half4
 
 public partial struct b16v4 
 {
-    public b16v3 xxx
+    public readonly b16v3 xxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x);
     }
-    public b16v3 rrr
+    public readonly b16v3 rrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x);
     }
-    public b16v3 xxy
+    public readonly b16v3 xxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y);
     }
-    public b16v3 rrg
+    public readonly b16v3 rrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y);
     }
-    public b16v3 xxz
+    public readonly b16v3 xxz
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z);
     }
-    public b16v3 rrb
+    public readonly b16v3 rrb
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z);
     }
-    public b16v3 xxw
+    public readonly b16v3 xxw
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, w);
     }
-    public b16v3 rra
+    public readonly b16v3 rra
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, w);
     }
-    public b16v3 xyx
+    public readonly b16v3 xyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x);
     }
-    public b16v3 rgr
+    public readonly b16v3 rgr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x);
     }
-    public b16v3 xyy
+    public readonly b16v3 xyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y);
     }
-    public b16v3 rgg
+    public readonly b16v3 rgg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y);
@@ -13077,37 +8661,37 @@ public partial struct b16v4
     public b16v3 xyz
     {
         [MethodImpl(256 | 512)]
-        get => new(x, y, z);
+        readonly get => new(x, y, z);
         [MethodImpl(256 | 512)]
         set { x = value.x; y = value.y; z = value.z; }
     }
     public b16v3 rgb
     {
         [MethodImpl(256 | 512)]
-        get => new(x, y, z);
+        readonly get => new(x, y, z);
         [MethodImpl(256 | 512)]
         set { x = value.x; y = value.y; z = value.z; }
     }
     public b16v3 xyw
     {
         [MethodImpl(256 | 512)]
-        get => new(x, y, w);
+        readonly get => new(x, y, w);
         [MethodImpl(256 | 512)]
         set { x = value.x; y = value.y; w = value.z; }
     }
     public b16v3 rga
     {
         [MethodImpl(256 | 512)]
-        get => new(x, y, w);
+        readonly get => new(x, y, w);
         [MethodImpl(256 | 512)]
         set { x = value.x; y = value.y; w = value.z; }
     }
-    public b16v3 xzx
+    public readonly b16v3 xzx
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x);
     }
-    public b16v3 rbr
+    public readonly b16v3 rbr
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x);
@@ -13115,23 +8699,23 @@ public partial struct b16v4
     public b16v3 xzy
     {
         [MethodImpl(256 | 512)]
-        get => new(x, z, y);
+        readonly get => new(x, z, y);
         [MethodImpl(256 | 512)]
         set { x = value.x; z = value.y; y = value.z; }
     }
     public b16v3 rbg
     {
         [MethodImpl(256 | 512)]
-        get => new(x, z, y);
+        readonly get => new(x, z, y);
         [MethodImpl(256 | 512)]
         set { x = value.x; z = value.y; y = value.z; }
     }
-    public b16v3 xzz
+    public readonly b16v3 xzz
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z);
     }
-    public b16v3 rbb
+    public readonly b16v3 rbb
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z);
@@ -13139,23 +8723,23 @@ public partial struct b16v4
     public b16v3 xzw
     {
         [MethodImpl(256 | 512)]
-        get => new(x, z, w);
+        readonly get => new(x, z, w);
         [MethodImpl(256 | 512)]
         set { x = value.x; z = value.y; w = value.z; }
     }
     public b16v3 rba
     {
         [MethodImpl(256 | 512)]
-        get => new(x, z, w);
+        readonly get => new(x, z, w);
         [MethodImpl(256 | 512)]
         set { x = value.x; z = value.y; w = value.z; }
     }
-    public b16v3 xwx
+    public readonly b16v3 xwx
     {
         [MethodImpl(256 | 512)]
         get => new(x, w, x);
     }
-    public b16v3 rar
+    public readonly b16v3 rar
     {
         [MethodImpl(256 | 512)]
         get => new(x, w, x);
@@ -13163,57 +8747,57 @@ public partial struct b16v4
     public b16v3 xwy
     {
         [MethodImpl(256 | 512)]
-        get => new(x, w, y);
+        readonly get => new(x, w, y);
         [MethodImpl(256 | 512)]
         set { x = value.x; w = value.y; y = value.z; }
     }
     public b16v3 rag
     {
         [MethodImpl(256 | 512)]
-        get => new(x, w, y);
+        readonly get => new(x, w, y);
         [MethodImpl(256 | 512)]
         set { x = value.x; w = value.y; y = value.z; }
     }
     public b16v3 xwz
     {
         [MethodImpl(256 | 512)]
-        get => new(x, w, z);
+        readonly get => new(x, w, z);
         [MethodImpl(256 | 512)]
         set { x = value.x; w = value.y; z = value.z; }
     }
     public b16v3 rab
     {
         [MethodImpl(256 | 512)]
-        get => new(x, w, z);
+        readonly get => new(x, w, z);
         [MethodImpl(256 | 512)]
         set { x = value.x; w = value.y; z = value.z; }
     }
-    public b16v3 xww
+    public readonly b16v3 xww
     {
         [MethodImpl(256 | 512)]
         get => new(x, w, w);
     }
-    public b16v3 raa
+    public readonly b16v3 raa
     {
         [MethodImpl(256 | 512)]
         get => new(x, w, w);
     }
-    public b16v3 yxx
+    public readonly b16v3 yxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x);
     }
-    public b16v3 grr
+    public readonly b16v3 grr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x);
     }
-    public b16v3 yxy
+    public readonly b16v3 yxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y);
     }
-    public b16v3 grg
+    public readonly b16v3 grg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y);
@@ -13221,67 +8805,67 @@ public partial struct b16v4
     public b16v3 yxz
     {
         [MethodImpl(256 | 512)]
-        get => new(y, x, z);
+        readonly get => new(y, x, z);
         [MethodImpl(256 | 512)]
         set { y = value.x; x = value.y; z = value.z; }
     }
     public b16v3 grb
     {
         [MethodImpl(256 | 512)]
-        get => new(y, x, z);
+        readonly get => new(y, x, z);
         [MethodImpl(256 | 512)]
         set { y = value.x; x = value.y; z = value.z; }
     }
     public b16v3 yxw
     {
         [MethodImpl(256 | 512)]
-        get => new(y, x, w);
+        readonly get => new(y, x, w);
         [MethodImpl(256 | 512)]
         set { y = value.x; x = value.y; w = value.z; }
     }
     public b16v3 gra
     {
         [MethodImpl(256 | 512)]
-        get => new(y, x, w);
+        readonly get => new(y, x, w);
         [MethodImpl(256 | 512)]
         set { y = value.x; x = value.y; w = value.z; }
     }
-    public b16v3 yyx
+    public readonly b16v3 yyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x);
     }
-    public b16v3 ggr
+    public readonly b16v3 ggr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x);
     }
-    public b16v3 yyy
+    public readonly b16v3 yyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y);
     }
-    public b16v3 ggg
+    public readonly b16v3 ggg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y);
     }
-    public b16v3 yyz
+    public readonly b16v3 yyz
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z);
     }
-    public b16v3 ggb
+    public readonly b16v3 ggb
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z);
     }
-    public b16v3 yyw
+    public readonly b16v3 yyw
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, w);
     }
-    public b16v3 gga
+    public readonly b16v3 gga
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, w);
@@ -13289,33 +8873,33 @@ public partial struct b16v4
     public b16v3 yzx
     {
         [MethodImpl(256 | 512)]
-        get => new(y, z, x);
+        readonly get => new(y, z, x);
         [MethodImpl(256 | 512)]
         set { y = value.x; z = value.y; x = value.z; }
     }
     public b16v3 gbr
     {
         [MethodImpl(256 | 512)]
-        get => new(y, z, x);
+        readonly get => new(y, z, x);
         [MethodImpl(256 | 512)]
         set { y = value.x; z = value.y; x = value.z; }
     }
-    public b16v3 yzy
+    public readonly b16v3 yzy
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y);
     }
-    public b16v3 gbg
+    public readonly b16v3 gbg
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y);
     }
-    public b16v3 yzz
+    public readonly b16v3 yzz
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z);
     }
-    public b16v3 gbb
+    public readonly b16v3 gbb
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z);
@@ -13323,37 +8907,37 @@ public partial struct b16v4
     public b16v3 yzw
     {
         [MethodImpl(256 | 512)]
-        get => new(y, z, w);
+        readonly get => new(y, z, w);
         [MethodImpl(256 | 512)]
         set { y = value.x; z = value.y; w = value.z; }
     }
     public b16v3 gba
     {
         [MethodImpl(256 | 512)]
-        get => new(y, z, w);
+        readonly get => new(y, z, w);
         [MethodImpl(256 | 512)]
         set { y = value.x; z = value.y; w = value.z; }
     }
     public b16v3 ywx
     {
         [MethodImpl(256 | 512)]
-        get => new(y, w, x);
+        readonly get => new(y, w, x);
         [MethodImpl(256 | 512)]
         set { y = value.x; w = value.y; x = value.z; }
     }
     public b16v3 gar
     {
         [MethodImpl(256 | 512)]
-        get => new(y, w, x);
+        readonly get => new(y, w, x);
         [MethodImpl(256 | 512)]
         set { y = value.x; w = value.y; x = value.z; }
     }
-    public b16v3 ywy
+    public readonly b16v3 ywy
     {
         [MethodImpl(256 | 512)]
         get => new(y, w, y);
     }
-    public b16v3 gag
+    public readonly b16v3 gag
     {
         [MethodImpl(256 | 512)]
         get => new(y, w, y);
@@ -13361,33 +8945,33 @@ public partial struct b16v4
     public b16v3 ywz
     {
         [MethodImpl(256 | 512)]
-        get => new(y, w, z);
+        readonly get => new(y, w, z);
         [MethodImpl(256 | 512)]
         set { y = value.x; w = value.y; z = value.z; }
     }
     public b16v3 gab
     {
         [MethodImpl(256 | 512)]
-        get => new(y, w, z);
+        readonly get => new(y, w, z);
         [MethodImpl(256 | 512)]
         set { y = value.x; w = value.y; z = value.z; }
     }
-    public b16v3 yww
+    public readonly b16v3 yww
     {
         [MethodImpl(256 | 512)]
         get => new(y, w, w);
     }
-    public b16v3 gaa
+    public readonly b16v3 gaa
     {
         [MethodImpl(256 | 512)]
         get => new(y, w, w);
     }
-    public b16v3 zxx
+    public readonly b16v3 zxx
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x);
     }
-    public b16v3 brr
+    public readonly b16v3 brr
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x);
@@ -13395,23 +8979,23 @@ public partial struct b16v4
     public b16v3 zxy
     {
         [MethodImpl(256 | 512)]
-        get => new(z, x, y);
+        readonly get => new(z, x, y);
         [MethodImpl(256 | 512)]
         set { z = value.x; x = value.y; y = value.z; }
     }
     public b16v3 brg
     {
         [MethodImpl(256 | 512)]
-        get => new(z, x, y);
+        readonly get => new(z, x, y);
         [MethodImpl(256 | 512)]
         set { z = value.x; x = value.y; y = value.z; }
     }
-    public b16v3 zxz
+    public readonly b16v3 zxz
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z);
     }
-    public b16v3 brb
+    public readonly b16v3 brb
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z);
@@ -13419,47 +9003,47 @@ public partial struct b16v4
     public b16v3 zxw
     {
         [MethodImpl(256 | 512)]
-        get => new(z, x, w);
+        readonly get => new(z, x, w);
         [MethodImpl(256 | 512)]
         set { z = value.x; x = value.y; w = value.z; }
     }
     public b16v3 bra
     {
         [MethodImpl(256 | 512)]
-        get => new(z, x, w);
+        readonly get => new(z, x, w);
         [MethodImpl(256 | 512)]
         set { z = value.x; x = value.y; w = value.z; }
     }
     public b16v3 zyx
     {
         [MethodImpl(256 | 512)]
-        get => new(z, y, x);
+        readonly get => new(z, y, x);
         [MethodImpl(256 | 512)]
         set { z = value.x; y = value.y; x = value.z; }
     }
     public b16v3 bgr
     {
         [MethodImpl(256 | 512)]
-        get => new(z, y, x);
+        readonly get => new(z, y, x);
         [MethodImpl(256 | 512)]
         set { z = value.x; y = value.y; x = value.z; }
     }
-    public b16v3 zyy
+    public readonly b16v3 zyy
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y);
     }
-    public b16v3 bgg
+    public readonly b16v3 bgg
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y);
     }
-    public b16v3 zyz
+    public readonly b16v3 zyz
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z);
     }
-    public b16v3 bgb
+    public readonly b16v3 bgb
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z);
@@ -13467,53 +9051,53 @@ public partial struct b16v4
     public b16v3 zyw
     {
         [MethodImpl(256 | 512)]
-        get => new(z, y, w);
+        readonly get => new(z, y, w);
         [MethodImpl(256 | 512)]
         set { z = value.x; y = value.y; w = value.z; }
     }
     public b16v3 bga
     {
         [MethodImpl(256 | 512)]
-        get => new(z, y, w);
+        readonly get => new(z, y, w);
         [MethodImpl(256 | 512)]
         set { z = value.x; y = value.y; w = value.z; }
     }
-    public b16v3 zzx
+    public readonly b16v3 zzx
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x);
     }
-    public b16v3 bbr
+    public readonly b16v3 bbr
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x);
     }
-    public b16v3 zzy
+    public readonly b16v3 zzy
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y);
     }
-    public b16v3 bbg
+    public readonly b16v3 bbg
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y);
     }
-    public b16v3 zzz
+    public readonly b16v3 zzz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z);
     }
-    public b16v3 bbb
+    public readonly b16v3 bbb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z);
     }
-    public b16v3 zzw
+    public readonly b16v3 zzw
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, w);
     }
-    public b16v3 bba
+    public readonly b16v3 bba
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, w);
@@ -13521,57 +9105,57 @@ public partial struct b16v4
     public b16v3 zwx
     {
         [MethodImpl(256 | 512)]
-        get => new(z, w, x);
+        readonly get => new(z, w, x);
         [MethodImpl(256 | 512)]
         set { z = value.x; w = value.y; x = value.z; }
     }
     public b16v3 bar
     {
         [MethodImpl(256 | 512)]
-        get => new(z, w, x);
+        readonly get => new(z, w, x);
         [MethodImpl(256 | 512)]
         set { z = value.x; w = value.y; x = value.z; }
     }
     public b16v3 zwy
     {
         [MethodImpl(256 | 512)]
-        get => new(z, w, y);
+        readonly get => new(z, w, y);
         [MethodImpl(256 | 512)]
         set { z = value.x; w = value.y; y = value.z; }
     }
     public b16v3 bag
     {
         [MethodImpl(256 | 512)]
-        get => new(z, w, y);
+        readonly get => new(z, w, y);
         [MethodImpl(256 | 512)]
         set { z = value.x; w = value.y; y = value.z; }
     }
-    public b16v3 zwz
+    public readonly b16v3 zwz
     {
         [MethodImpl(256 | 512)]
         get => new(z, w, z);
     }
-    public b16v3 bab
+    public readonly b16v3 bab
     {
         [MethodImpl(256 | 512)]
         get => new(z, w, z);
     }
-    public b16v3 zww
+    public readonly b16v3 zww
     {
         [MethodImpl(256 | 512)]
         get => new(z, w, w);
     }
-    public b16v3 baa
+    public readonly b16v3 baa
     {
         [MethodImpl(256 | 512)]
         get => new(z, w, w);
     }
-    public b16v3 wxx
+    public readonly b16v3 wxx
     {
         [MethodImpl(256 | 512)]
         get => new(w, x, x);
     }
-    public b16v3 arr
+    public readonly b16v3 arr
     {
         [MethodImpl(256 | 512)]
         get => new(w, x, x);
@@ -13579,37 +9163,37 @@ public partial struct b16v4
     public b16v3 wxy
     {
         [MethodImpl(256 | 512)]
-        get => new(w, x, y);
+        readonly get => new(w, x, y);
         [MethodImpl(256 | 512)]
         set { w = value.x; x = value.y; y = value.z; }
     }
     public b16v3 arg
     {
         [MethodImpl(256 | 512)]
-        get => new(w, x, y);
+        readonly get => new(w, x, y);
         [MethodImpl(256 | 512)]
         set { w = value.x; x = value.y; y = value.z; }
     }
     public b16v3 wxz
     {
         [MethodImpl(256 | 512)]
-        get => new(w, x, z);
+        readonly get => new(w, x, z);
         [MethodImpl(256 | 512)]
         set { w = value.x; x = value.y; z = value.z; }
     }
     public b16v3 arb
     {
         [MethodImpl(256 | 512)]
-        get => new(w, x, z);
+        readonly get => new(w, x, z);
         [MethodImpl(256 | 512)]
         set { w = value.x; x = value.y; z = value.z; }
     }
-    public b16v3 wxw
+    public readonly b16v3 wxw
     {
         [MethodImpl(256 | 512)]
         get => new(w, x, w);
     }
-    public b16v3 ara
+    public readonly b16v3 ara
     {
         [MethodImpl(256 | 512)]
         get => new(w, x, w);
@@ -13617,23 +9201,23 @@ public partial struct b16v4
     public b16v3 wyx
     {
         [MethodImpl(256 | 512)]
-        get => new(w, y, x);
+        readonly get => new(w, y, x);
         [MethodImpl(256 | 512)]
         set { w = value.x; y = value.y; x = value.z; }
     }
     public b16v3 agr
     {
         [MethodImpl(256 | 512)]
-        get => new(w, y, x);
+        readonly get => new(w, y, x);
         [MethodImpl(256 | 512)]
         set { w = value.x; y = value.y; x = value.z; }
     }
-    public b16v3 wyy
+    public readonly b16v3 wyy
     {
         [MethodImpl(256 | 512)]
         get => new(w, y, y);
     }
-    public b16v3 agg
+    public readonly b16v3 agg
     {
         [MethodImpl(256 | 512)]
         get => new(w, y, y);
@@ -13641,23 +9225,23 @@ public partial struct b16v4
     public b16v3 wyz
     {
         [MethodImpl(256 | 512)]
-        get => new(w, y, z);
+        readonly get => new(w, y, z);
         [MethodImpl(256 | 512)]
         set { w = value.x; y = value.y; z = value.z; }
     }
     public b16v3 agb
     {
         [MethodImpl(256 | 512)]
-        get => new(w, y, z);
+        readonly get => new(w, y, z);
         [MethodImpl(256 | 512)]
         set { w = value.x; y = value.y; z = value.z; }
     }
-    public b16v3 wyw
+    public readonly b16v3 wyw
     {
         [MethodImpl(256 | 512)]
         get => new(w, y, w);
     }
-    public b16v3 aga
+    public readonly b16v3 aga
     {
         [MethodImpl(256 | 512)]
         get => new(w, y, w);
@@ -13665,87 +9249,87 @@ public partial struct b16v4
     public b16v3 wzx
     {
         [MethodImpl(256 | 512)]
-        get => new(w, z, x);
+        readonly get => new(w, z, x);
         [MethodImpl(256 | 512)]
         set { w = value.x; z = value.y; x = value.z; }
     }
     public b16v3 abr
     {
         [MethodImpl(256 | 512)]
-        get => new(w, z, x);
+        readonly get => new(w, z, x);
         [MethodImpl(256 | 512)]
         set { w = value.x; z = value.y; x = value.z; }
     }
     public b16v3 wzy
     {
         [MethodImpl(256 | 512)]
-        get => new(w, z, y);
+        readonly get => new(w, z, y);
         [MethodImpl(256 | 512)]
         set { w = value.x; z = value.y; y = value.z; }
     }
     public b16v3 abg
     {
         [MethodImpl(256 | 512)]
-        get => new(w, z, y);
+        readonly get => new(w, z, y);
         [MethodImpl(256 | 512)]
         set { w = value.x; z = value.y; y = value.z; }
     }
-    public b16v3 wzz
+    public readonly b16v3 wzz
     {
         [MethodImpl(256 | 512)]
         get => new(w, z, z);
     }
-    public b16v3 abb
+    public readonly b16v3 abb
     {
         [MethodImpl(256 | 512)]
         get => new(w, z, z);
     }
-    public b16v3 wzw
+    public readonly b16v3 wzw
     {
         [MethodImpl(256 | 512)]
         get => new(w, z, w);
     }
-    public b16v3 aba
+    public readonly b16v3 aba
     {
         [MethodImpl(256 | 512)]
         get => new(w, z, w);
     }
-    public b16v3 wwx
+    public readonly b16v3 wwx
     {
         [MethodImpl(256 | 512)]
         get => new(w, w, x);
     }
-    public b16v3 aar
+    public readonly b16v3 aar
     {
         [MethodImpl(256 | 512)]
         get => new(w, w, x);
     }
-    public b16v3 wwy
+    public readonly b16v3 wwy
     {
         [MethodImpl(256 | 512)]
         get => new(w, w, y);
     }
-    public b16v3 aag
+    public readonly b16v3 aag
     {
         [MethodImpl(256 | 512)]
         get => new(w, w, y);
     }
-    public b16v3 wwz
+    public readonly b16v3 wwz
     {
         [MethodImpl(256 | 512)]
         get => new(w, w, z);
     }
-    public b16v3 aab
+    public readonly b16v3 aab
     {
         [MethodImpl(256 | 512)]
         get => new(w, w, z);
     }
-    public b16v3 www
+    public readonly b16v3 www
     {
         [MethodImpl(256 | 512)]
         get => new(w, w, w);
     }
-    public b16v3 aaa
+    public readonly b16v3 aaa
     {
         [MethodImpl(256 | 512)]
         get => new(w, w, w);
@@ -13758,1669 +9342,933 @@ public partial struct b16v4
 
 public partial struct b32v4 
 {
-    public b32v3 xxx
+    public readonly b32v3 xxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 rrr
+    public readonly b32v3 rrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 xxy
+    public readonly b32v3 xxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 rrg
+    public readonly b32v3 rrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 xxz
+    public readonly b32v3 xxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 rrb
+    public readonly b32v3 rrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 xxw
+    public readonly b32v3 xxw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, w);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 rra
+    public readonly b32v3 rra
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, w);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 xyx
+    public readonly b32v3 xyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 rgr
+    public readonly b32v3 rgr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 xyy
+    public readonly b32v3 xyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 rgg
+    public readonly b32v3 rgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 xyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(vector & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(vector & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsUInt32(), 
             vector,
             value.vector
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 rgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(vector & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(vector & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsUInt32(), 
             vector,
             value.vector
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 xyw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)0, 1, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 rga
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)0, 1, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 xzx
+    public readonly b32v3 xzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 rbr
+    public readonly b32v3 rbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x);
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 xzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)0, 2, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 rbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)0, 2, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 xzz
+    public readonly b32v3 xzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 rbb
+    public readonly b32v3 rbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z);
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 xzw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)0, 0, 1, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 rba
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)0, 0, 1, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 xwx
+    public readonly b32v3 xwx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, x);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 rar
+    public readonly b32v3 rar
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, x);
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 xwy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)0, 2, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 rag
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)0, 2, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 xwz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)0, 0, 2, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 rab
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)0, 0, 2, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 xww
+    public readonly b32v3 xww
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 3, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 raa
+    public readonly b32v3 raa
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 3, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 yxx
+    public readonly b32v3 yxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 grr
+    public readonly b32v3 grr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 yxy
+    public readonly b32v3 yxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 grg
+    public readonly b32v3 grg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 yxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)1, 0, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 grb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)1, 0, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 yxw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)1, 0, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 gra
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)1, 0, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 yyx
+    public readonly b32v3 yyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 ggr
+    public readonly b32v3 ggr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 yyy
+    public readonly b32v3 yyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 ggg
+    public readonly b32v3 ggg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 yyz
+    public readonly b32v3 yyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 ggb
+    public readonly b32v3 ggb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 yyw
+    public readonly b32v3 yyw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, w);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 gga
+    public readonly b32v3 gga
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, w);
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 yzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)2, 0, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 gbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)2, 0, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 yzy
+    public readonly b32v3 yzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 gbg
+    public readonly b32v3 gbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 yzz
+    public readonly b32v3 yzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 gbb
+    public readonly b32v3 gbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z);
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 yzw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)0, 0, 1, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 gba
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)0, 0, 1, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 ywx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)2, 0, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 gar
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)2, 0, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 ywy
+    public readonly b32v3 ywy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, y);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 gag
+    public readonly b32v3 gag
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, y);
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 ywz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)0, 0, 2, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 gab
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)0, 0, 2, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 yww
+    public readonly b32v3 yww
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 3, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 gaa
+    public readonly b32v3 gaa
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 3, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 zxx
+    public readonly b32v3 zxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 brr
+    public readonly b32v3 brr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x);
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 zxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)1, 2, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 brg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)1, 2, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 zxz
+    public readonly b32v3 zxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 brb
+    public readonly b32v3 brb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z);
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 zxw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)1, 0, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 bra
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)1, 0, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 zyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)2, 1, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 bgr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, 0, -1).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)2, 1, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 zyy
+    public readonly b32v3 zyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 bgg
+    public readonly b32v3 bgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 zyz
+    public readonly b32v3 zyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 bgb
+    public readonly b32v3 bgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z);
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 zyw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)0, 1, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 bga
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)0, 1, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 zzx
+    public readonly b32v3 zzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 bbr
+    public readonly b32v3 bbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 zzy
+    public readonly b32v3 zzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 bbg
+    public readonly b32v3 bbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 zzz
+    public readonly b32v3 zzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 bbb
+    public readonly b32v3 bbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 zzw
+    public readonly b32v3 zzw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, w);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 bba
+    public readonly b32v3 bba
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, w);
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 zwx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)2, 0, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 bar
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)2, 0, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 zwy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)0, 2, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 bag
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)0, 2, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 zwz
+    public readonly b32v3 zwz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, z);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 bab
+    public readonly b32v3 bab
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, z);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 zww
+    public readonly b32v3 zww
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 3, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 baa
+    public readonly b32v3 baa
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 3, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 wxx
+    public readonly b32v3 wxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 0, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 arr
+    public readonly b32v3 arr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 0, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, x);
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 wxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)1, 2, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 arg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 0, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)1, 2, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 wxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)1, 0, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 arb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 0, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)1, 0, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 wxw
+    public readonly b32v3 wxw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, w);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 ara
+    public readonly b32v3 ara
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 0, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, w);
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 wyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)2, 1, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 agr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 1, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, 0, -1, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)2, 1, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 wyy
+    public readonly b32v3 wyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 1, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 agg
+    public readonly b32v3 agg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 1, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, y);
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 wyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 1, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 1, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)0, 1, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 agb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 1, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 1, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)0, 1, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 wyw
+    public readonly b32v3 wyw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, w);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 aga
+    public readonly b32v3 aga
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 1, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, w);
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 wzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)2, 0, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 abr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 2, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(0, -1, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)2, 0, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 wzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)0, 2, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b32v3 abg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        readonly get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 2, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
         [MethodImpl(256 | 512)]
         set => vector = Vector128.ConditionalSelect(
             Vector128.Create(-1, 0, 0, 0).AsUInt32(), 
             vector,
             Vector128.Shuffle(value.vector, Vector128.Create((uint)0, 2, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 wzz
+    public readonly b32v3 wzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 2, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 abb
+    public readonly b32v3 abb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 2, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 wzw
+    public readonly b32v3 wzw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, w);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 aba
+    public readonly b32v3 aba
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 2, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, w);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 wwx
+    public readonly b32v3 wwx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, x);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 aar
+    public readonly b32v3 aar
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 3, 0, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, x);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 wwy
+    public readonly b32v3 wwy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, y);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 aag
+    public readonly b32v3 aag
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 3, 1, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, y);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 wwz
+    public readonly b32v3 wwz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, z);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 aab
+    public readonly b32v3 aab
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 3, 2, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, z);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 www
+    public readonly b32v3 www
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 3, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public b32v3 aaa
+    public readonly b32v3 aaa
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector128.Shuffle(vector, Vector128.Create((uint)3, 3, 3, 3)) & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, w);
-#endif // NET8_0_OR_GREATER
     }
 }
 
@@ -15430,1669 +10278,933 @@ public partial struct b32v4
 
 public partial struct b64v4 
 {
-    public b64v3 xxx
+    public readonly b64v3 xxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 rrr
+    public readonly b64v3 rrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 xxy
+    public readonly b64v3 xxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 rrg
+    public readonly b64v3 rrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 xxz
+    public readonly b64v3 xxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 rrb
+    public readonly b64v3 rrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 xxw
+    public readonly b64v3 xxw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, w);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 rra
+    public readonly b64v3 rra
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, w);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 xyx
+    public readonly b64v3 xyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 rgr
+    public readonly b64v3 rgr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 xyy
+    public readonly b64v3 xyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 rgg
+    public readonly b64v3 rgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y);
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 xyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(vector & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(vector & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsUInt64(), 
             vector,
             value.vector
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 rgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(vector & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(vector & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsUInt64(), 
             vector,
             value.vector
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 xyw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)0, 1, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 rga
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)0, 1, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; y = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 xzx
+    public readonly b64v3 xzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 rbr
+    public readonly b64v3 rbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x);
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 xzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)0, 2, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 rbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)0, 2, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 xzz
+    public readonly b64v3 xzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 rbb
+    public readonly b64v3 rbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z);
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 xzw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)0, 0, 1, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 rba
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)0, 0, 1, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, w);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; z = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 xwx
+    public readonly b64v3 xwx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, x);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 rar
+    public readonly b64v3 rar
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, x);
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 xwy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)0, 2, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 rag
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)0, 2, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, y);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 xwz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)0, 0, 2, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 rab
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)0, 0, 2, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, z);
-        [MethodImpl(256 | 512)]
-        set { x = value.x; w = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 xww
+    public readonly b64v3 xww
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 3, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 raa
+    public readonly b64v3 raa
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 3, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 yxx
+    public readonly b64v3 yxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 grr
+    public readonly b64v3 grr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 yxy
+    public readonly b64v3 yxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 grg
+    public readonly b64v3 grg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y);
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 yxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)1, 0, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 grb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)1, 0, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 yxw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)1, 0, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 gra
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)1, 0, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; x = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 yyx
+    public readonly b64v3 yyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 ggr
+    public readonly b64v3 ggr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 yyy
+    public readonly b64v3 yyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 ggg
+    public readonly b64v3 ggg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 yyz
+    public readonly b64v3 yyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 ggb
+    public readonly b64v3 ggb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 yyw
+    public readonly b64v3 yyw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, w);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 gga
+    public readonly b64v3 gga
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, w);
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 yzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)2, 0, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 gbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)2, 0, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 yzy
+    public readonly b64v3 yzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 gbg
+    public readonly b64v3 gbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 yzz
+    public readonly b64v3 yzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 gbb
+    public readonly b64v3 gbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z);
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 yzw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)0, 0, 1, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 gba
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)0, 0, 1, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, w);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; z = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 ywx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)2, 0, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 gar
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)2, 0, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, x);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 ywy
+    public readonly b64v3 ywy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, y);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 gag
+    public readonly b64v3 gag
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, y);
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 ywz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)0, 0, 2, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 gab
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)0, 0, 2, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, z);
-        [MethodImpl(256 | 512)]
-        set { y = value.x; w = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 yww
+    public readonly b64v3 yww
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 3, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 gaa
+    public readonly b64v3 gaa
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 3, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 zxx
+    public readonly b64v3 zxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 brr
+    public readonly b64v3 brr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x);
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 zxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)1, 2, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 brg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)1, 2, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 zxz
+    public readonly b64v3 zxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 brb
+    public readonly b64v3 brb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z);
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 zxw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)1, 0, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 bra
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)1, 0, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; x = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 zyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)2, 1, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 bgr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, 0, -1).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)2, 1, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 zyy
+    public readonly b64v3 zyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 bgg
+    public readonly b64v3 bgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 zyz
+    public readonly b64v3 zyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 bgb
+    public readonly b64v3 bgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z);
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 zyw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)0, 1, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 bga
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)0, 1, 0, 2))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, w);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; y = value.y; w = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 zzx
+    public readonly b64v3 zzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 bbr
+    public readonly b64v3 bbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 zzy
+    public readonly b64v3 zzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 bbg
+    public readonly b64v3 bbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 zzz
+    public readonly b64v3 zzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 bbb
+    public readonly b64v3 bbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 zzw
+    public readonly b64v3 zzw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, w);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 bba
+    public readonly b64v3 bba
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, w);
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 zwx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)2, 0, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 bar
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)2, 0, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, x);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 zwy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)0, 2, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 bag
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)0, 2, 0, 1))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, y);
-        [MethodImpl(256 | 512)]
-        set { z = value.x; w = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 zwz
+    public readonly b64v3 zwz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, z);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 bab
+    public readonly b64v3 bab
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, z);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 zww
+    public readonly b64v3 zww
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 3, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 baa
+    public readonly b64v3 baa
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 3, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 wxx
+    public readonly b64v3 wxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 0, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, x);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 arr
+    public readonly b64v3 arr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 0, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, x);
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 wxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)1, 2, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 arg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 0, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)1, 2, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 wxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)1, 0, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 arb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 0, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)1, 0, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; x = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 wxw
+    public readonly b64v3 wxw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, w);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 ara
+    public readonly b64v3 ara
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 0, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, x, w);
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 wyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)2, 1, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 agr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 1, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, 0, -1, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)2, 1, 0, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 wyy
+    public readonly b64v3 wyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 1, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, y);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 agg
+    public readonly b64v3 agg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 1, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, y);
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 wyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 1, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 1, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)0, 1, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 agb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 1, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 1, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)0, 1, 2, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, z);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; y = value.y; z = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 wyw
+    public readonly b64v3 wyw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, w);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 aga
+    public readonly b64v3 aga
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 1, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, y, w);
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 wzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)2, 0, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 abr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 2, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(0, -1, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)2, 0, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, x);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; x = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 wzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)0, 2, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
     public b64v3 abg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        readonly get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 2, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
         [MethodImpl(256 | 512)]
         set => vector = Vector256.ConditionalSelect(
             Vector256.Create(-1, 0, 0, 0).AsUInt64(), 
             vector,
             Vector256.Shuffle(value.vector, Vector256.Create((ulong)0, 2, 1, 0))
         );
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, y);
-        [MethodImpl(256 | 512)]
-        set { w = value.x; z = value.y; y = value.z; }
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 wzz
+    public readonly b64v3 wzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 2, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 abb
+    public readonly b64v3 abb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 2, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, z);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 wzw
+    public readonly b64v3 wzw
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, w);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 aba
+    public readonly b64v3 aba
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 2, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, z, w);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 wwx
+    public readonly b64v3 wwx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, x);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 aar
+    public readonly b64v3 aar
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 3, 0, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, x);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 wwy
+    public readonly b64v3 wwy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, y);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 aag
+    public readonly b64v3 aag
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 3, 1, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, y);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 wwz
+    public readonly b64v3 wwz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, z);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 aab
+    public readonly b64v3 aab
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 3, 2, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, z);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 www
+    public readonly b64v3 www
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 3, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, w);
-#endif // NET8_0_OR_GREATER
     }
-    public b64v3 aaa
+    public readonly b64v3 aaa
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
         get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)3, 3, 3, 3)) & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(w, w, w);
-#endif // NET8_0_OR_GREATER
     }
 }
 

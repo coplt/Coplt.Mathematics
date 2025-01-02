@@ -4,10 +4,11 @@ namespace Coplt.Mathematics;
 
 #region float2x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float2x2 select(this b32m2x2 c, float2x2 t, float2x2 f) =>
+    public static float2x2 select([This] b32m2x2 c, float2x2 t, float2x2 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1));
 }
 
@@ -15,10 +16,11 @@ public static partial class math
 
 #region float2x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float2x3 select(this b32m2x3 c, float2x3 t, float2x3 f) =>
+    public static float2x3 select([This] b32m2x3 c, float2x3 t, float2x3 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2));
 }
 
@@ -26,10 +28,11 @@ public static partial class math
 
 #region float2x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float2x4 select(this b32m2x4 c, float2x4 t, float2x4 f) =>
+    public static float2x4 select([This] b32m2x4 c, float2x4 t, float2x4 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2), select(c.c3, t.c3, f.c3));
 }
 
@@ -37,10 +40,11 @@ public static partial class math
 
 #region float3x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float3x2 select(this b32m3x2 c, float3x2 t, float3x2 f) =>
+    public static float3x2 select([This] b32m3x2 c, float3x2 t, float3x2 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1));
 }
 
@@ -48,10 +52,11 @@ public static partial class math
 
 #region float3x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float3x3 select(this b32m3x3 c, float3x3 t, float3x3 f) =>
+    public static float3x3 select([This] b32m3x3 c, float3x3 t, float3x3 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2));
 }
 
@@ -59,10 +64,11 @@ public static partial class math
 
 #region float3x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float3x4 select(this b32m3x4 c, float3x4 t, float3x4 f) =>
+    public static float3x4 select([This] b32m3x4 c, float3x4 t, float3x4 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2), select(c.c3, t.c3, f.c3));
 }
 
@@ -70,10 +76,11 @@ public static partial class math
 
 #region float4x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float4x2 select(this b32m4x2 c, float4x2 t, float4x2 f) =>
+    public static float4x2 select([This] b32m4x2 c, float4x2 t, float4x2 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1));
 }
 
@@ -81,10 +88,11 @@ public static partial class math
 
 #region float4x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float4x3 select(this b32m4x3 c, float4x3 t, float4x3 f) =>
+    public static float4x3 select([This] b32m4x3 c, float4x3 t, float4x3 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2));
 }
 
@@ -92,10 +100,11 @@ public static partial class math
 
 #region float4x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float4x4 select(this b32m4x4 c, float4x4 t, float4x4 f) =>
+    public static float4x4 select([This] b32m4x4 c, float4x4 t, float4x4 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2), select(c.c3, t.c3, f.c3));
 }
 
@@ -103,10 +112,11 @@ public static partial class math
 
 #region double2x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double2x2 select(this b64m2x2 c, double2x2 t, double2x2 f) =>
+    public static double2x2 select([This] b64m2x2 c, double2x2 t, double2x2 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1));
 }
 
@@ -114,10 +124,11 @@ public static partial class math
 
 #region double2x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double2x3 select(this b64m2x3 c, double2x3 t, double2x3 f) =>
+    public static double2x3 select([This] b64m2x3 c, double2x3 t, double2x3 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2));
 }
 
@@ -125,10 +136,11 @@ public static partial class math
 
 #region double2x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double2x4 select(this b64m2x4 c, double2x4 t, double2x4 f) =>
+    public static double2x4 select([This] b64m2x4 c, double2x4 t, double2x4 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2), select(c.c3, t.c3, f.c3));
 }
 
@@ -136,10 +148,11 @@ public static partial class math
 
 #region double3x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double3x2 select(this b64m3x2 c, double3x2 t, double3x2 f) =>
+    public static double3x2 select([This] b64m3x2 c, double3x2 t, double3x2 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1));
 }
 
@@ -147,10 +160,11 @@ public static partial class math
 
 #region double3x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double3x3 select(this b64m3x3 c, double3x3 t, double3x3 f) =>
+    public static double3x3 select([This] b64m3x3 c, double3x3 t, double3x3 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2));
 }
 
@@ -158,10 +172,11 @@ public static partial class math
 
 #region double3x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double3x4 select(this b64m3x4 c, double3x4 t, double3x4 f) =>
+    public static double3x4 select([This] b64m3x4 c, double3x4 t, double3x4 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2), select(c.c3, t.c3, f.c3));
 }
 
@@ -169,10 +184,11 @@ public static partial class math
 
 #region double4x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double4x2 select(this b64m4x2 c, double4x2 t, double4x2 f) =>
+    public static double4x2 select([This] b64m4x2 c, double4x2 t, double4x2 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1));
 }
 
@@ -180,10 +196,11 @@ public static partial class math
 
 #region double4x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double4x3 select(this b64m4x3 c, double4x3 t, double4x3 f) =>
+    public static double4x3 select([This] b64m4x3 c, double4x3 t, double4x3 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2));
 }
 
@@ -191,10 +208,11 @@ public static partial class math
 
 #region double4x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double4x4 select(this b64m4x4 c, double4x4 t, double4x4 f) =>
+    public static double4x4 select([This] b64m4x4 c, double4x4 t, double4x4 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2), select(c.c3, t.c3, f.c3));
 }
 
@@ -202,10 +220,11 @@ public static partial class math
 
 #region short2x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static short2x2 select(this b16m2x2 c, short2x2 t, short2x2 f) =>
+    public static short2x2 select([This] b16m2x2 c, short2x2 t, short2x2 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1));
 }
 
@@ -213,10 +232,11 @@ public static partial class math
 
 #region short2x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static short2x3 select(this b16m2x3 c, short2x3 t, short2x3 f) =>
+    public static short2x3 select([This] b16m2x3 c, short2x3 t, short2x3 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2));
 }
 
@@ -224,10 +244,11 @@ public static partial class math
 
 #region short2x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static short2x4 select(this b16m2x4 c, short2x4 t, short2x4 f) =>
+    public static short2x4 select([This] b16m2x4 c, short2x4 t, short2x4 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2), select(c.c3, t.c3, f.c3));
 }
 
@@ -235,10 +256,11 @@ public static partial class math
 
 #region short3x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static short3x2 select(this b16m3x2 c, short3x2 t, short3x2 f) =>
+    public static short3x2 select([This] b16m3x2 c, short3x2 t, short3x2 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1));
 }
 
@@ -246,10 +268,11 @@ public static partial class math
 
 #region short3x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static short3x3 select(this b16m3x3 c, short3x3 t, short3x3 f) =>
+    public static short3x3 select([This] b16m3x3 c, short3x3 t, short3x3 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2));
 }
 
@@ -257,10 +280,11 @@ public static partial class math
 
 #region short3x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static short3x4 select(this b16m3x4 c, short3x4 t, short3x4 f) =>
+    public static short3x4 select([This] b16m3x4 c, short3x4 t, short3x4 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2), select(c.c3, t.c3, f.c3));
 }
 
@@ -268,10 +292,11 @@ public static partial class math
 
 #region short4x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static short4x2 select(this b16m4x2 c, short4x2 t, short4x2 f) =>
+    public static short4x2 select([This] b16m4x2 c, short4x2 t, short4x2 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1));
 }
 
@@ -279,10 +304,11 @@ public static partial class math
 
 #region short4x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static short4x3 select(this b16m4x3 c, short4x3 t, short4x3 f) =>
+    public static short4x3 select([This] b16m4x3 c, short4x3 t, short4x3 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2));
 }
 
@@ -290,10 +316,11 @@ public static partial class math
 
 #region short4x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static short4x4 select(this b16m4x4 c, short4x4 t, short4x4 f) =>
+    public static short4x4 select([This] b16m4x4 c, short4x4 t, short4x4 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2), select(c.c3, t.c3, f.c3));
 }
 
@@ -301,10 +328,11 @@ public static partial class math
 
 #region ushort2x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ushort2x2 select(this b16m2x2 c, ushort2x2 t, ushort2x2 f) =>
+    public static ushort2x2 select([This] b16m2x2 c, ushort2x2 t, ushort2x2 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1));
 }
 
@@ -312,10 +340,11 @@ public static partial class math
 
 #region ushort2x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ushort2x3 select(this b16m2x3 c, ushort2x3 t, ushort2x3 f) =>
+    public static ushort2x3 select([This] b16m2x3 c, ushort2x3 t, ushort2x3 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2));
 }
 
@@ -323,10 +352,11 @@ public static partial class math
 
 #region ushort2x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ushort2x4 select(this b16m2x4 c, ushort2x4 t, ushort2x4 f) =>
+    public static ushort2x4 select([This] b16m2x4 c, ushort2x4 t, ushort2x4 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2), select(c.c3, t.c3, f.c3));
 }
 
@@ -334,10 +364,11 @@ public static partial class math
 
 #region ushort3x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ushort3x2 select(this b16m3x2 c, ushort3x2 t, ushort3x2 f) =>
+    public static ushort3x2 select([This] b16m3x2 c, ushort3x2 t, ushort3x2 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1));
 }
 
@@ -345,10 +376,11 @@ public static partial class math
 
 #region ushort3x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ushort3x3 select(this b16m3x3 c, ushort3x3 t, ushort3x3 f) =>
+    public static ushort3x3 select([This] b16m3x3 c, ushort3x3 t, ushort3x3 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2));
 }
 
@@ -356,10 +388,11 @@ public static partial class math
 
 #region ushort3x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ushort3x4 select(this b16m3x4 c, ushort3x4 t, ushort3x4 f) =>
+    public static ushort3x4 select([This] b16m3x4 c, ushort3x4 t, ushort3x4 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2), select(c.c3, t.c3, f.c3));
 }
 
@@ -367,10 +400,11 @@ public static partial class math
 
 #region ushort4x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ushort4x2 select(this b16m4x2 c, ushort4x2 t, ushort4x2 f) =>
+    public static ushort4x2 select([This] b16m4x2 c, ushort4x2 t, ushort4x2 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1));
 }
 
@@ -378,10 +412,11 @@ public static partial class math
 
 #region ushort4x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ushort4x3 select(this b16m4x3 c, ushort4x3 t, ushort4x3 f) =>
+    public static ushort4x3 select([This] b16m4x3 c, ushort4x3 t, ushort4x3 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2));
 }
 
@@ -389,10 +424,11 @@ public static partial class math
 
 #region ushort4x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ushort4x4 select(this b16m4x4 c, ushort4x4 t, ushort4x4 f) =>
+    public static ushort4x4 select([This] b16m4x4 c, ushort4x4 t, ushort4x4 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2), select(c.c3, t.c3, f.c3));
 }
 
@@ -400,10 +436,11 @@ public static partial class math
 
 #region int2x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static int2x2 select(this b32m2x2 c, int2x2 t, int2x2 f) =>
+    public static int2x2 select([This] b32m2x2 c, int2x2 t, int2x2 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1));
 }
 
@@ -411,10 +448,11 @@ public static partial class math
 
 #region int2x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static int2x3 select(this b32m2x3 c, int2x3 t, int2x3 f) =>
+    public static int2x3 select([This] b32m2x3 c, int2x3 t, int2x3 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2));
 }
 
@@ -422,10 +460,11 @@ public static partial class math
 
 #region int2x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static int2x4 select(this b32m2x4 c, int2x4 t, int2x4 f) =>
+    public static int2x4 select([This] b32m2x4 c, int2x4 t, int2x4 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2), select(c.c3, t.c3, f.c3));
 }
 
@@ -433,10 +472,11 @@ public static partial class math
 
 #region int3x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static int3x2 select(this b32m3x2 c, int3x2 t, int3x2 f) =>
+    public static int3x2 select([This] b32m3x2 c, int3x2 t, int3x2 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1));
 }
 
@@ -444,10 +484,11 @@ public static partial class math
 
 #region int3x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static int3x3 select(this b32m3x3 c, int3x3 t, int3x3 f) =>
+    public static int3x3 select([This] b32m3x3 c, int3x3 t, int3x3 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2));
 }
 
@@ -455,10 +496,11 @@ public static partial class math
 
 #region int3x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static int3x4 select(this b32m3x4 c, int3x4 t, int3x4 f) =>
+    public static int3x4 select([This] b32m3x4 c, int3x4 t, int3x4 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2), select(c.c3, t.c3, f.c3));
 }
 
@@ -466,10 +508,11 @@ public static partial class math
 
 #region int4x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static int4x2 select(this b32m4x2 c, int4x2 t, int4x2 f) =>
+    public static int4x2 select([This] b32m4x2 c, int4x2 t, int4x2 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1));
 }
 
@@ -477,10 +520,11 @@ public static partial class math
 
 #region int4x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static int4x3 select(this b32m4x3 c, int4x3 t, int4x3 f) =>
+    public static int4x3 select([This] b32m4x3 c, int4x3 t, int4x3 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2));
 }
 
@@ -488,10 +532,11 @@ public static partial class math
 
 #region int4x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static int4x4 select(this b32m4x4 c, int4x4 t, int4x4 f) =>
+    public static int4x4 select([This] b32m4x4 c, int4x4 t, int4x4 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2), select(c.c3, t.c3, f.c3));
 }
 
@@ -499,10 +544,11 @@ public static partial class math
 
 #region uint2x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static uint2x2 select(this b32m2x2 c, uint2x2 t, uint2x2 f) =>
+    public static uint2x2 select([This] b32m2x2 c, uint2x2 t, uint2x2 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1));
 }
 
@@ -510,10 +556,11 @@ public static partial class math
 
 #region uint2x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static uint2x3 select(this b32m2x3 c, uint2x3 t, uint2x3 f) =>
+    public static uint2x3 select([This] b32m2x3 c, uint2x3 t, uint2x3 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2));
 }
 
@@ -521,10 +568,11 @@ public static partial class math
 
 #region uint2x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static uint2x4 select(this b32m2x4 c, uint2x4 t, uint2x4 f) =>
+    public static uint2x4 select([This] b32m2x4 c, uint2x4 t, uint2x4 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2), select(c.c3, t.c3, f.c3));
 }
 
@@ -532,10 +580,11 @@ public static partial class math
 
 #region uint3x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static uint3x2 select(this b32m3x2 c, uint3x2 t, uint3x2 f) =>
+    public static uint3x2 select([This] b32m3x2 c, uint3x2 t, uint3x2 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1));
 }
 
@@ -543,10 +592,11 @@ public static partial class math
 
 #region uint3x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static uint3x3 select(this b32m3x3 c, uint3x3 t, uint3x3 f) =>
+    public static uint3x3 select([This] b32m3x3 c, uint3x3 t, uint3x3 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2));
 }
 
@@ -554,10 +604,11 @@ public static partial class math
 
 #region uint3x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static uint3x4 select(this b32m3x4 c, uint3x4 t, uint3x4 f) =>
+    public static uint3x4 select([This] b32m3x4 c, uint3x4 t, uint3x4 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2), select(c.c3, t.c3, f.c3));
 }
 
@@ -565,10 +616,11 @@ public static partial class math
 
 #region uint4x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static uint4x2 select(this b32m4x2 c, uint4x2 t, uint4x2 f) =>
+    public static uint4x2 select([This] b32m4x2 c, uint4x2 t, uint4x2 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1));
 }
 
@@ -576,10 +628,11 @@ public static partial class math
 
 #region uint4x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static uint4x3 select(this b32m4x3 c, uint4x3 t, uint4x3 f) =>
+    public static uint4x3 select([This] b32m4x3 c, uint4x3 t, uint4x3 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2));
 }
 
@@ -587,10 +640,11 @@ public static partial class math
 
 #region uint4x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static uint4x4 select(this b32m4x4 c, uint4x4 t, uint4x4 f) =>
+    public static uint4x4 select([This] b32m4x4 c, uint4x4 t, uint4x4 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2), select(c.c3, t.c3, f.c3));
 }
 
@@ -598,10 +652,11 @@ public static partial class math
 
 #region long2x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static long2x2 select(this b64m2x2 c, long2x2 t, long2x2 f) =>
+    public static long2x2 select([This] b64m2x2 c, long2x2 t, long2x2 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1));
 }
 
@@ -609,10 +664,11 @@ public static partial class math
 
 #region long2x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static long2x3 select(this b64m2x3 c, long2x3 t, long2x3 f) =>
+    public static long2x3 select([This] b64m2x3 c, long2x3 t, long2x3 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2));
 }
 
@@ -620,10 +676,11 @@ public static partial class math
 
 #region long2x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static long2x4 select(this b64m2x4 c, long2x4 t, long2x4 f) =>
+    public static long2x4 select([This] b64m2x4 c, long2x4 t, long2x4 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2), select(c.c3, t.c3, f.c3));
 }
 
@@ -631,10 +688,11 @@ public static partial class math
 
 #region long3x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static long3x2 select(this b64m3x2 c, long3x2 t, long3x2 f) =>
+    public static long3x2 select([This] b64m3x2 c, long3x2 t, long3x2 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1));
 }
 
@@ -642,10 +700,11 @@ public static partial class math
 
 #region long3x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static long3x3 select(this b64m3x3 c, long3x3 t, long3x3 f) =>
+    public static long3x3 select([This] b64m3x3 c, long3x3 t, long3x3 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2));
 }
 
@@ -653,10 +712,11 @@ public static partial class math
 
 #region long3x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static long3x4 select(this b64m3x4 c, long3x4 t, long3x4 f) =>
+    public static long3x4 select([This] b64m3x4 c, long3x4 t, long3x4 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2), select(c.c3, t.c3, f.c3));
 }
 
@@ -664,10 +724,11 @@ public static partial class math
 
 #region long4x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static long4x2 select(this b64m4x2 c, long4x2 t, long4x2 f) =>
+    public static long4x2 select([This] b64m4x2 c, long4x2 t, long4x2 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1));
 }
 
@@ -675,10 +736,11 @@ public static partial class math
 
 #region long4x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static long4x3 select(this b64m4x3 c, long4x3 t, long4x3 f) =>
+    public static long4x3 select([This] b64m4x3 c, long4x3 t, long4x3 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2));
 }
 
@@ -686,10 +748,11 @@ public static partial class math
 
 #region long4x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static long4x4 select(this b64m4x4 c, long4x4 t, long4x4 f) =>
+    public static long4x4 select([This] b64m4x4 c, long4x4 t, long4x4 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2), select(c.c3, t.c3, f.c3));
 }
 
@@ -697,10 +760,11 @@ public static partial class math
 
 #region ulong2x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ulong2x2 select(this b64m2x2 c, ulong2x2 t, ulong2x2 f) =>
+    public static ulong2x2 select([This] b64m2x2 c, ulong2x2 t, ulong2x2 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1));
 }
 
@@ -708,10 +772,11 @@ public static partial class math
 
 #region ulong2x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ulong2x3 select(this b64m2x3 c, ulong2x3 t, ulong2x3 f) =>
+    public static ulong2x3 select([This] b64m2x3 c, ulong2x3 t, ulong2x3 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2));
 }
 
@@ -719,10 +784,11 @@ public static partial class math
 
 #region ulong2x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ulong2x4 select(this b64m2x4 c, ulong2x4 t, ulong2x4 f) =>
+    public static ulong2x4 select([This] b64m2x4 c, ulong2x4 t, ulong2x4 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2), select(c.c3, t.c3, f.c3));
 }
 
@@ -730,10 +796,11 @@ public static partial class math
 
 #region ulong3x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ulong3x2 select(this b64m3x2 c, ulong3x2 t, ulong3x2 f) =>
+    public static ulong3x2 select([This] b64m3x2 c, ulong3x2 t, ulong3x2 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1));
 }
 
@@ -741,10 +808,11 @@ public static partial class math
 
 #region ulong3x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ulong3x3 select(this b64m3x3 c, ulong3x3 t, ulong3x3 f) =>
+    public static ulong3x3 select([This] b64m3x3 c, ulong3x3 t, ulong3x3 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2));
 }
 
@@ -752,10 +820,11 @@ public static partial class math
 
 #region ulong3x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ulong3x4 select(this b64m3x4 c, ulong3x4 t, ulong3x4 f) =>
+    public static ulong3x4 select([This] b64m3x4 c, ulong3x4 t, ulong3x4 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2), select(c.c3, t.c3, f.c3));
 }
 
@@ -763,10 +832,11 @@ public static partial class math
 
 #region ulong4x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ulong4x2 select(this b64m4x2 c, ulong4x2 t, ulong4x2 f) =>
+    public static ulong4x2 select([This] b64m4x2 c, ulong4x2 t, ulong4x2 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1));
 }
 
@@ -774,10 +844,11 @@ public static partial class math
 
 #region ulong4x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ulong4x3 select(this b64m4x3 c, ulong4x3 t, ulong4x3 f) =>
+    public static ulong4x3 select([This] b64m4x3 c, ulong4x3 t, ulong4x3 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2));
 }
 
@@ -785,10 +856,11 @@ public static partial class math
 
 #region ulong4x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ulong4x4 select(this b64m4x4 c, ulong4x4 t, ulong4x4 f) =>
+    public static ulong4x4 select([This] b64m4x4 c, ulong4x4 t, ulong4x4 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2), select(c.c3, t.c3, f.c3));
 }
 
@@ -796,10 +868,11 @@ public static partial class math
 
 #region half2x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half2x2 select(this b16m2x2 c, half2x2 t, half2x2 f) =>
+    public static half2x2 select([This] b16m2x2 c, half2x2 t, half2x2 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1));
 }
 
@@ -807,10 +880,11 @@ public static partial class math
 
 #region half2x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half2x3 select(this b16m2x3 c, half2x3 t, half2x3 f) =>
+    public static half2x3 select([This] b16m2x3 c, half2x3 t, half2x3 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2));
 }
 
@@ -818,10 +892,11 @@ public static partial class math
 
 #region half2x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half2x4 select(this b16m2x4 c, half2x4 t, half2x4 f) =>
+    public static half2x4 select([This] b16m2x4 c, half2x4 t, half2x4 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2), select(c.c3, t.c3, f.c3));
 }
 
@@ -829,10 +904,11 @@ public static partial class math
 
 #region half3x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half3x2 select(this b16m3x2 c, half3x2 t, half3x2 f) =>
+    public static half3x2 select([This] b16m3x2 c, half3x2 t, half3x2 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1));
 }
 
@@ -840,10 +916,11 @@ public static partial class math
 
 #region half3x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half3x3 select(this b16m3x3 c, half3x3 t, half3x3 f) =>
+    public static half3x3 select([This] b16m3x3 c, half3x3 t, half3x3 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2));
 }
 
@@ -851,10 +928,11 @@ public static partial class math
 
 #region half3x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half3x4 select(this b16m3x4 c, half3x4 t, half3x4 f) =>
+    public static half3x4 select([This] b16m3x4 c, half3x4 t, half3x4 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2), select(c.c3, t.c3, f.c3));
 }
 
@@ -862,10 +940,11 @@ public static partial class math
 
 #region half4x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half4x2 select(this b16m4x2 c, half4x2 t, half4x2 f) =>
+    public static half4x2 select([This] b16m4x2 c, half4x2 t, half4x2 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1));
 }
 
@@ -873,10 +952,11 @@ public static partial class math
 
 #region half4x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half4x3 select(this b16m4x3 c, half4x3 t, half4x3 f) =>
+    public static half4x3 select([This] b16m4x3 c, half4x3 t, half4x3 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2));
 }
 
@@ -884,10 +964,11 @@ public static partial class math
 
 #region half4x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half4x4 select(this b16m4x4 c, half4x4 t, half4x4 f) =>
+    public static half4x4 select([This] b16m4x4 c, half4x4 t, half4x4 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2), select(c.c3, t.c3, f.c3));
 }
 
@@ -895,10 +976,11 @@ public static partial class math
 
 #region b16m2x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m2x2 select(this b16m2x2 c, b16m2x2 t, b16m2x2 f) =>
+    public static b16m2x2 select([This] b16m2x2 c, b16m2x2 t, b16m2x2 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1));
 }
 
@@ -906,10 +988,11 @@ public static partial class math
 
 #region b16m2x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m2x3 select(this b16m2x3 c, b16m2x3 t, b16m2x3 f) =>
+    public static b16m2x3 select([This] b16m2x3 c, b16m2x3 t, b16m2x3 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2));
 }
 
@@ -917,10 +1000,11 @@ public static partial class math
 
 #region b16m2x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m2x4 select(this b16m2x4 c, b16m2x4 t, b16m2x4 f) =>
+    public static b16m2x4 select([This] b16m2x4 c, b16m2x4 t, b16m2x4 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2), select(c.c3, t.c3, f.c3));
 }
 
@@ -928,10 +1012,11 @@ public static partial class math
 
 #region b16m3x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m3x2 select(this b16m3x2 c, b16m3x2 t, b16m3x2 f) =>
+    public static b16m3x2 select([This] b16m3x2 c, b16m3x2 t, b16m3x2 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1));
 }
 
@@ -939,10 +1024,11 @@ public static partial class math
 
 #region b16m3x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m3x3 select(this b16m3x3 c, b16m3x3 t, b16m3x3 f) =>
+    public static b16m3x3 select([This] b16m3x3 c, b16m3x3 t, b16m3x3 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2));
 }
 
@@ -950,10 +1036,11 @@ public static partial class math
 
 #region b16m3x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m3x4 select(this b16m3x4 c, b16m3x4 t, b16m3x4 f) =>
+    public static b16m3x4 select([This] b16m3x4 c, b16m3x4 t, b16m3x4 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2), select(c.c3, t.c3, f.c3));
 }
 
@@ -961,10 +1048,11 @@ public static partial class math
 
 #region b16m4x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m4x2 select(this b16m4x2 c, b16m4x2 t, b16m4x2 f) =>
+    public static b16m4x2 select([This] b16m4x2 c, b16m4x2 t, b16m4x2 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1));
 }
 
@@ -972,10 +1060,11 @@ public static partial class math
 
 #region b16m4x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m4x3 select(this b16m4x3 c, b16m4x3 t, b16m4x3 f) =>
+    public static b16m4x3 select([This] b16m4x3 c, b16m4x3 t, b16m4x3 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2));
 }
 
@@ -983,10 +1072,11 @@ public static partial class math
 
 #region b16m4x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m4x4 select(this b16m4x4 c, b16m4x4 t, b16m4x4 f) =>
+    public static b16m4x4 select([This] b16m4x4 c, b16m4x4 t, b16m4x4 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2), select(c.c3, t.c3, f.c3));
 }
 
@@ -994,10 +1084,11 @@ public static partial class math
 
 #region b32m2x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m2x2 select(this b32m2x2 c, b32m2x2 t, b32m2x2 f) =>
+    public static b32m2x2 select([This] b32m2x2 c, b32m2x2 t, b32m2x2 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1));
 }
 
@@ -1005,10 +1096,11 @@ public static partial class math
 
 #region b32m2x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m2x3 select(this b32m2x3 c, b32m2x3 t, b32m2x3 f) =>
+    public static b32m2x3 select([This] b32m2x3 c, b32m2x3 t, b32m2x3 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2));
 }
 
@@ -1016,10 +1108,11 @@ public static partial class math
 
 #region b32m2x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m2x4 select(this b32m2x4 c, b32m2x4 t, b32m2x4 f) =>
+    public static b32m2x4 select([This] b32m2x4 c, b32m2x4 t, b32m2x4 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2), select(c.c3, t.c3, f.c3));
 }
 
@@ -1027,10 +1120,11 @@ public static partial class math
 
 #region b32m3x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m3x2 select(this b32m3x2 c, b32m3x2 t, b32m3x2 f) =>
+    public static b32m3x2 select([This] b32m3x2 c, b32m3x2 t, b32m3x2 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1));
 }
 
@@ -1038,10 +1132,11 @@ public static partial class math
 
 #region b32m3x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m3x3 select(this b32m3x3 c, b32m3x3 t, b32m3x3 f) =>
+    public static b32m3x3 select([This] b32m3x3 c, b32m3x3 t, b32m3x3 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2));
 }
 
@@ -1049,10 +1144,11 @@ public static partial class math
 
 #region b32m3x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m3x4 select(this b32m3x4 c, b32m3x4 t, b32m3x4 f) =>
+    public static b32m3x4 select([This] b32m3x4 c, b32m3x4 t, b32m3x4 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2), select(c.c3, t.c3, f.c3));
 }
 
@@ -1060,10 +1156,11 @@ public static partial class math
 
 #region b32m4x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m4x2 select(this b32m4x2 c, b32m4x2 t, b32m4x2 f) =>
+    public static b32m4x2 select([This] b32m4x2 c, b32m4x2 t, b32m4x2 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1));
 }
 
@@ -1071,10 +1168,11 @@ public static partial class math
 
 #region b32m4x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m4x3 select(this b32m4x3 c, b32m4x3 t, b32m4x3 f) =>
+    public static b32m4x3 select([This] b32m4x3 c, b32m4x3 t, b32m4x3 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2));
 }
 
@@ -1082,10 +1180,11 @@ public static partial class math
 
 #region b32m4x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m4x4 select(this b32m4x4 c, b32m4x4 t, b32m4x4 f) =>
+    public static b32m4x4 select([This] b32m4x4 c, b32m4x4 t, b32m4x4 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2), select(c.c3, t.c3, f.c3));
 }
 
@@ -1093,10 +1192,11 @@ public static partial class math
 
 #region b64m2x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m2x2 select(this b64m2x2 c, b64m2x2 t, b64m2x2 f) =>
+    public static b64m2x2 select([This] b64m2x2 c, b64m2x2 t, b64m2x2 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1));
 }
 
@@ -1104,10 +1204,11 @@ public static partial class math
 
 #region b64m2x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m2x3 select(this b64m2x3 c, b64m2x3 t, b64m2x3 f) =>
+    public static b64m2x3 select([This] b64m2x3 c, b64m2x3 t, b64m2x3 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2));
 }
 
@@ -1115,10 +1216,11 @@ public static partial class math
 
 #region b64m2x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m2x4 select(this b64m2x4 c, b64m2x4 t, b64m2x4 f) =>
+    public static b64m2x4 select([This] b64m2x4 c, b64m2x4 t, b64m2x4 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2), select(c.c3, t.c3, f.c3));
 }
 
@@ -1126,10 +1228,11 @@ public static partial class math
 
 #region b64m3x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m3x2 select(this b64m3x2 c, b64m3x2 t, b64m3x2 f) =>
+    public static b64m3x2 select([This] b64m3x2 c, b64m3x2 t, b64m3x2 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1));
 }
 
@@ -1137,10 +1240,11 @@ public static partial class math
 
 #region b64m3x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m3x3 select(this b64m3x3 c, b64m3x3 t, b64m3x3 f) =>
+    public static b64m3x3 select([This] b64m3x3 c, b64m3x3 t, b64m3x3 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2));
 }
 
@@ -1148,10 +1252,11 @@ public static partial class math
 
 #region b64m3x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m3x4 select(this b64m3x4 c, b64m3x4 t, b64m3x4 f) =>
+    public static b64m3x4 select([This] b64m3x4 c, b64m3x4 t, b64m3x4 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2), select(c.c3, t.c3, f.c3));
 }
 
@@ -1159,10 +1264,11 @@ public static partial class math
 
 #region b64m4x2
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m4x2 select(this b64m4x2 c, b64m4x2 t, b64m4x2 f) =>
+    public static b64m4x2 select([This] b64m4x2 c, b64m4x2 t, b64m4x2 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1));
 }
 
@@ -1170,10 +1276,11 @@ public static partial class math
 
 #region b64m4x3
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m4x3 select(this b64m4x3 c, b64m4x3 t, b64m4x3 f) =>
+    public static b64m4x3 select([This] b64m4x3 c, b64m4x3 t, b64m4x3 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2));
 }
 
@@ -1181,10 +1288,11 @@ public static partial class math
 
 #region b64m4x4
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m4x4 select(this b64m4x4 c, b64m4x4 t, b64m4x4 f) =>
+    public static b64m4x4 select([This] b64m4x4 c, b64m4x4 t, b64m4x4 f) =>
         new(select(c.c0, t.c0, f.c0), select(c.c1, t.c1, f.c1), select(c.c2, t.c2, f.c2), select(c.c3, t.c3, f.c3));
 }
 

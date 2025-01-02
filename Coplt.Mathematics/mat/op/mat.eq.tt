@@ -26,7 +26,6 @@ namespace Coplt.Mathematics;
 #region <#= typeName #>
 
 public partial struct <#= typeName #> : IEquatable<<#= typeName #>>
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<<#= typeName #>, <#= typeName #>, bool>
 <#
             if (bTyp.name != null)
@@ -36,42 +35,40 @@ public partial struct <#= typeName #> : IEquatable<<#= typeName #>>
 <#
             }
 #>
-    #endif
 {
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public bool Equals(<#= typeName #> other) => EqualsAll(other);
+    public readonly bool Equals(<#= typeName #> other) => EqualsAll(other);
     [MethodImpl(256 | 512)]
-    public override bool Equals(object? obj) => obj is <#= typeName #> other && Equals(other);
+    public readonly override bool Equals(object? obj) => obj is <#= typeName #> other && Equals(other);
     [MethodImpl(256 | 512)]
-    public override int GetHashCode() => HashCode.Combine(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"c{i}.GetHashCode()")) #>);
+    public readonly override int GetHashCode() => HashCode.Combine(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"c{i}.GetHashCode()")) #>);
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAll(<#= typeName #> other) => <#= string.Join(" && ", Enumerable.Range(0, m).Select(i => $"c{i}.EqualsAll(other.c{i})")) #>;
+    public readonly bool EqualsAll(<#= typeName #> other) => <#= string.Join(" && ", Enumerable.Range(0, m).Select(i => $"c{i}.EqualsAll(other.c{i})")) #>;
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAny(<#= typeName #> other) => <#= string.Join(" || ", Enumerable.Range(0, m).Select(i => $"c{i}.EqualsAny(other.c{i})")) #>;
+    public readonly bool EqualsAny(<#= typeName #> other) => <#= string.Join(" || ", Enumerable.Range(0, m).Select(i => $"c{i}.EqualsAny(other.c{i})")) #>;
 <#
                 if (bTyp.name != null)
                 {
 #>
 
     [MethodImpl(256 | 512)]
-    public <#= bTypeName #> EqualsVector(<#= typeName #> other) => new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"c{i}.EqualsVector(other.c{i})")) #>);
+    public readonly <#= bTypeName #> EqualsVector(<#= typeName #> other) => new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"c{i}.EqualsVector(other.c{i})")) #>);
 
     [MethodImpl(256 | 512)]
-    public <#= bTypeName #> EqualsVectorNot(<#= typeName #> other) => new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"c{i}.EqualsVectorNot(other.c{i})")) #>);
+    public readonly <#= bTypeName #> EqualsVectorNot(<#= typeName #> other) => new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"c{i}.EqualsVectorNot(other.c{i})")) #>);
 <#
                 }
 #>
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<<#= typeName #>, <#= typeName #>, bool>.operator ==(<#= typeName #> left, <#= typeName #> right) => left.Equals(right);
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<<#= typeName #>, <#= typeName #>, bool>.operator !=(<#= typeName #> left, <#= typeName #> right) => !left.Equals(right);
-    #endif
+
 <#
             if (bTyp.name != null)
             {

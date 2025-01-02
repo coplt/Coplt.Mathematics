@@ -1,0 +1,8 @@
+﻿{
+  "profiles": {
+    "DebugRoslynComponent for Tests": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "..\\Coplt.Mathematics\\Coplt.Mathematics.csproj"
+    }
+  }
+}

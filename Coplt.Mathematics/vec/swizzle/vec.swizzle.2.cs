@@ -6,83 +6,89 @@ namespace Coplt.Mathematics;
 
 public partial struct float2 
 {
-    public float2 xx
+    public readonly float2 xx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector64.Shuffle(vector, Vector64.Create(0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector64.IsHardwareAccelerated)
+                return new(Vector64.Shuffle(vector, Vector64.Create(0, 0)));
+            else 
+                return new(x, x);
+        }
     }
-    public float2 rr
+    public readonly float2 rr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector64.Shuffle(vector, Vector64.Create(0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector64.IsHardwareAccelerated)
+                return new(Vector64.Shuffle(vector, Vector64.Create(0, 0)));
+            else 
+                return new(x, x);
+        }
     }
     public float2 xy
     {
         [MethodImpl(256 | 512)]
-        get => this;
+        readonly get => this;
         [MethodImpl(256 | 512)]
         set => this = value;
     }
     public float2 rg
     {
         [MethodImpl(256 | 512)]
-        get => this;
+        readonly get => this;
         [MethodImpl(256 | 512)]
         set => this = value;
     }
     public float2 yx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector64.Shuffle(vector, Vector64.Create(1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x);
-#endif // NET8_0_OR_GREATER
+        readonly get
+        {
+            if (Vector64.IsHardwareAccelerated)
+                return new(Vector64.Shuffle(vector, Vector64.Create(1, 0)));
+            else 
+                return new(y, x);
+        }
         [MethodImpl(256 | 512)]
         set => this = value.yx;
     }
     public float2 gr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector64.Shuffle(vector, Vector64.Create(1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x);
-#endif // NET8_0_OR_GREATER
+        readonly get
+        {
+            if (Vector64.IsHardwareAccelerated)
+                return new(Vector64.Shuffle(vector, Vector64.Create(1, 0)));
+            else 
+                return new(y, x);
+        }
         [MethodImpl(256 | 512)]
         set => this = value.yx;
     }
-    public float2 yy
+    public readonly float2 yy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector64.Shuffle(vector, Vector64.Create(1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector64.IsHardwareAccelerated)
+                return new(Vector64.Shuffle(vector, Vector64.Create(1, 1)));
+            else 
+                return new(y, y);
+        }
     }
-    public float2 gg
+    public readonly float2 gg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector64.Shuffle(vector, Vector64.Create(1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector64.IsHardwareAccelerated)
+                return new(Vector64.Shuffle(vector, Vector64.Create(1, 1)));
+            else 
+                return new(y, y);
+        }
     }
 }
 
@@ -92,83 +98,89 @@ public partial struct float2
 
 public partial struct double2 
 {
-    public double2 xx
+    public readonly double2 xx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 0)));
+            else 
+                return new(x, x);
+        }
     }
-    public double2 rr
+    public readonly double2 rr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 0)));
+            else 
+                return new(x, x);
+        }
     }
     public double2 xy
     {
         [MethodImpl(256 | 512)]
-        get => this;
+        readonly get => this;
         [MethodImpl(256 | 512)]
         set => this = value;
     }
     public double2 rg
     {
         [MethodImpl(256 | 512)]
-        get => this;
+        readonly get => this;
         [MethodImpl(256 | 512)]
         set => this = value;
     }
     public double2 yx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x);
-#endif // NET8_0_OR_GREATER
+        readonly get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 0)));
+            else 
+                return new(y, x);
+        }
         [MethodImpl(256 | 512)]
         set => this = value.yx;
     }
     public double2 gr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x);
-#endif // NET8_0_OR_GREATER
+        readonly get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 0)));
+            else 
+                return new(y, x);
+        }
         [MethodImpl(256 | 512)]
         set => this = value.yx;
     }
-    public double2 yy
+    public readonly double2 yy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 1)));
+            else 
+                return new(y, y);
+        }
     }
-    public double2 gg
+    public readonly double2 gg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 1)));
+            else 
+                return new(y, y);
+        }
     }
 }
 
@@ -178,12 +190,12 @@ public partial struct double2
 
 public partial struct short2 
 {
-    public short2 xx
+    public readonly short2 xx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x);
     }
-    public short2 rr
+    public readonly short2 rr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x);
@@ -191,37 +203,37 @@ public partial struct short2
     public short2 xy
     {
         [MethodImpl(256 | 512)]
-        get => this;
+        readonly get => this;
         [MethodImpl(256 | 512)]
         set => this = value;
     }
     public short2 rg
     {
         [MethodImpl(256 | 512)]
-        get => this;
+        readonly get => this;
         [MethodImpl(256 | 512)]
         set => this = value;
     }
     public short2 yx
     {
         [MethodImpl(256 | 512)]
-        get => new(y, x);
+        readonly get => new(y, x);
         [MethodImpl(256 | 512)]
         set => this = value.yx;
     }
     public short2 gr
     {
         [MethodImpl(256 | 512)]
-        get => new(y, x);
+        readonly get => new(y, x);
         [MethodImpl(256 | 512)]
         set => this = value.yx;
     }
-    public short2 yy
+    public readonly short2 yy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y);
     }
-    public short2 gg
+    public readonly short2 gg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y);
@@ -234,12 +246,12 @@ public partial struct short2
 
 public partial struct ushort2 
 {
-    public ushort2 xx
+    public readonly ushort2 xx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x);
     }
-    public ushort2 rr
+    public readonly ushort2 rr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x);
@@ -247,37 +259,37 @@ public partial struct ushort2
     public ushort2 xy
     {
         [MethodImpl(256 | 512)]
-        get => this;
+        readonly get => this;
         [MethodImpl(256 | 512)]
         set => this = value;
     }
     public ushort2 rg
     {
         [MethodImpl(256 | 512)]
-        get => this;
+        readonly get => this;
         [MethodImpl(256 | 512)]
         set => this = value;
     }
     public ushort2 yx
     {
         [MethodImpl(256 | 512)]
-        get => new(y, x);
+        readonly get => new(y, x);
         [MethodImpl(256 | 512)]
         set => this = value.yx;
     }
     public ushort2 gr
     {
         [MethodImpl(256 | 512)]
-        get => new(y, x);
+        readonly get => new(y, x);
         [MethodImpl(256 | 512)]
         set => this = value.yx;
     }
-    public ushort2 yy
+    public readonly ushort2 yy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y);
     }
-    public ushort2 gg
+    public readonly ushort2 gg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y);
@@ -290,83 +302,89 @@ public partial struct ushort2
 
 public partial struct int2 
 {
-    public int2 xx
+    public readonly int2 xx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector64.Shuffle(vector, Vector64.Create(0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector64.IsHardwareAccelerated)
+                return new(Vector64.Shuffle(vector, Vector64.Create(0, 0)));
+            else 
+                return new(x, x);
+        }
     }
-    public int2 rr
+    public readonly int2 rr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector64.Shuffle(vector, Vector64.Create(0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector64.IsHardwareAccelerated)
+                return new(Vector64.Shuffle(vector, Vector64.Create(0, 0)));
+            else 
+                return new(x, x);
+        }
     }
     public int2 xy
     {
         [MethodImpl(256 | 512)]
-        get => this;
+        readonly get => this;
         [MethodImpl(256 | 512)]
         set => this = value;
     }
     public int2 rg
     {
         [MethodImpl(256 | 512)]
-        get => this;
+        readonly get => this;
         [MethodImpl(256 | 512)]
         set => this = value;
     }
     public int2 yx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector64.Shuffle(vector, Vector64.Create(1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x);
-#endif // NET8_0_OR_GREATER
+        readonly get
+        {
+            if (Vector64.IsHardwareAccelerated)
+                return new(Vector64.Shuffle(vector, Vector64.Create(1, 0)));
+            else 
+                return new(y, x);
+        }
         [MethodImpl(256 | 512)]
         set => this = value.yx;
     }
     public int2 gr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector64.Shuffle(vector, Vector64.Create(1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x);
-#endif // NET8_0_OR_GREATER
+        readonly get
+        {
+            if (Vector64.IsHardwareAccelerated)
+                return new(Vector64.Shuffle(vector, Vector64.Create(1, 0)));
+            else 
+                return new(y, x);
+        }
         [MethodImpl(256 | 512)]
         set => this = value.yx;
     }
-    public int2 yy
+    public readonly int2 yy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector64.Shuffle(vector, Vector64.Create(1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector64.IsHardwareAccelerated)
+                return new(Vector64.Shuffle(vector, Vector64.Create(1, 1)));
+            else 
+                return new(y, y);
+        }
     }
-    public int2 gg
+    public readonly int2 gg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector64.Shuffle(vector, Vector64.Create(1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector64.IsHardwareAccelerated)
+                return new(Vector64.Shuffle(vector, Vector64.Create(1, 1)));
+            else 
+                return new(y, y);
+        }
     }
 }
 
@@ -376,83 +394,89 @@ public partial struct int2
 
 public partial struct uint2 
 {
-    public uint2 xx
+    public readonly uint2 xx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector64.Shuffle(vector, Vector64.Create((uint)0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector64.IsHardwareAccelerated)
+                return new(Vector64.Shuffle(vector, Vector64.Create((uint)0, 0)));
+            else 
+                return new(x, x);
+        }
     }
-    public uint2 rr
+    public readonly uint2 rr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector64.Shuffle(vector, Vector64.Create((uint)0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector64.IsHardwareAccelerated)
+                return new(Vector64.Shuffle(vector, Vector64.Create((uint)0, 0)));
+            else 
+                return new(x, x);
+        }
     }
     public uint2 xy
     {
         [MethodImpl(256 | 512)]
-        get => this;
+        readonly get => this;
         [MethodImpl(256 | 512)]
         set => this = value;
     }
     public uint2 rg
     {
         [MethodImpl(256 | 512)]
-        get => this;
+        readonly get => this;
         [MethodImpl(256 | 512)]
         set => this = value;
     }
     public uint2 yx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector64.Shuffle(vector, Vector64.Create((uint)1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x);
-#endif // NET8_0_OR_GREATER
+        readonly get
+        {
+            if (Vector64.IsHardwareAccelerated)
+                return new(Vector64.Shuffle(vector, Vector64.Create((uint)1, 0)));
+            else 
+                return new(y, x);
+        }
         [MethodImpl(256 | 512)]
         set => this = value.yx;
     }
     public uint2 gr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector64.Shuffle(vector, Vector64.Create((uint)1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x);
-#endif // NET8_0_OR_GREATER
+        readonly get
+        {
+            if (Vector64.IsHardwareAccelerated)
+                return new(Vector64.Shuffle(vector, Vector64.Create((uint)1, 0)));
+            else 
+                return new(y, x);
+        }
         [MethodImpl(256 | 512)]
         set => this = value.yx;
     }
-    public uint2 yy
+    public readonly uint2 yy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector64.Shuffle(vector, Vector64.Create((uint)1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector64.IsHardwareAccelerated)
+                return new(Vector64.Shuffle(vector, Vector64.Create((uint)1, 1)));
+            else 
+                return new(y, y);
+        }
     }
-    public uint2 gg
+    public readonly uint2 gg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector64.Shuffle(vector, Vector64.Create((uint)1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector64.IsHardwareAccelerated)
+                return new(Vector64.Shuffle(vector, Vector64.Create((uint)1, 1)));
+            else 
+                return new(y, y);
+        }
     }
 }
 
@@ -462,83 +486,89 @@ public partial struct uint2
 
 public partial struct long2 
 {
-    public long2 xx
+    public readonly long2 xx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 0)));
+            else 
+                return new(x, x);
+        }
     }
-    public long2 rr
+    public readonly long2 rr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 0)));
+            else 
+                return new(x, x);
+        }
     }
     public long2 xy
     {
         [MethodImpl(256 | 512)]
-        get => this;
+        readonly get => this;
         [MethodImpl(256 | 512)]
         set => this = value;
     }
     public long2 rg
     {
         [MethodImpl(256 | 512)]
-        get => this;
+        readonly get => this;
         [MethodImpl(256 | 512)]
         set => this = value;
     }
     public long2 yx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x);
-#endif // NET8_0_OR_GREATER
+        readonly get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 0)));
+            else 
+                return new(y, x);
+        }
         [MethodImpl(256 | 512)]
         set => this = value.yx;
     }
     public long2 gr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x);
-#endif // NET8_0_OR_GREATER
+        readonly get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 0)));
+            else 
+                return new(y, x);
+        }
         [MethodImpl(256 | 512)]
         set => this = value.yx;
     }
-    public long2 yy
+    public readonly long2 yy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 1)));
+            else 
+                return new(y, y);
+        }
     }
-    public long2 gg
+    public readonly long2 gg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 1)));
+            else 
+                return new(y, y);
+        }
     }
 }
 
@@ -548,83 +578,89 @@ public partial struct long2
 
 public partial struct ulong2 
 {
-    public ulong2 xx
+    public readonly ulong2 xx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((ulong)0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((ulong)0, 0)));
+            else 
+                return new(x, x);
+        }
     }
-    public ulong2 rr
+    public readonly ulong2 rr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((ulong)0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((ulong)0, 0)));
+            else 
+                return new(x, x);
+        }
     }
     public ulong2 xy
     {
         [MethodImpl(256 | 512)]
-        get => this;
+        readonly get => this;
         [MethodImpl(256 | 512)]
         set => this = value;
     }
     public ulong2 rg
     {
         [MethodImpl(256 | 512)]
-        get => this;
+        readonly get => this;
         [MethodImpl(256 | 512)]
         set => this = value;
     }
     public ulong2 yx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((ulong)1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x);
-#endif // NET8_0_OR_GREATER
+        readonly get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((ulong)1, 0)));
+            else 
+                return new(y, x);
+        }
         [MethodImpl(256 | 512)]
         set => this = value.yx;
     }
     public ulong2 gr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((ulong)1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x);
-#endif // NET8_0_OR_GREATER
+        readonly get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((ulong)1, 0)));
+            else 
+                return new(y, x);
+        }
         [MethodImpl(256 | 512)]
         set => this = value.yx;
     }
-    public ulong2 yy
+    public readonly ulong2 yy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((ulong)1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((ulong)1, 1)));
+            else 
+                return new(y, y);
+        }
     }
-    public ulong2 gg
+    public readonly ulong2 gg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((ulong)1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((ulong)1, 1)));
+            else 
+                return new(y, y);
+        }
     }
 }
 
@@ -634,12 +670,12 @@ public partial struct ulong2
 
 public partial struct decimal2 
 {
-    public decimal2 xx
+    public readonly decimal2 xx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x);
     }
-    public decimal2 rr
+    public readonly decimal2 rr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x);
@@ -647,37 +683,37 @@ public partial struct decimal2
     public decimal2 xy
     {
         [MethodImpl(256 | 512)]
-        get => this;
+        readonly get => this;
         [MethodImpl(256 | 512)]
         set => this = value;
     }
     public decimal2 rg
     {
         [MethodImpl(256 | 512)]
-        get => this;
+        readonly get => this;
         [MethodImpl(256 | 512)]
         set => this = value;
     }
     public decimal2 yx
     {
         [MethodImpl(256 | 512)]
-        get => new(y, x);
+        readonly get => new(y, x);
         [MethodImpl(256 | 512)]
         set => this = value.yx;
     }
     public decimal2 gr
     {
         [MethodImpl(256 | 512)]
-        get => new(y, x);
+        readonly get => new(y, x);
         [MethodImpl(256 | 512)]
         set => this = value.yx;
     }
-    public decimal2 yy
+    public readonly decimal2 yy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y);
     }
-    public decimal2 gg
+    public readonly decimal2 gg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y);
@@ -690,12 +726,12 @@ public partial struct decimal2
 
 public partial struct half2 
 {
-    public half2 xx
+    public readonly half2 xx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x);
     }
-    public half2 rr
+    public readonly half2 rr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x);
@@ -703,37 +739,37 @@ public partial struct half2
     public half2 xy
     {
         [MethodImpl(256 | 512)]
-        get => this;
+        readonly get => this;
         [MethodImpl(256 | 512)]
         set => this = value;
     }
     public half2 rg
     {
         [MethodImpl(256 | 512)]
-        get => this;
+        readonly get => this;
         [MethodImpl(256 | 512)]
         set => this = value;
     }
     public half2 yx
     {
         [MethodImpl(256 | 512)]
-        get => new(y, x);
+        readonly get => new(y, x);
         [MethodImpl(256 | 512)]
         set => this = value.yx;
     }
     public half2 gr
     {
         [MethodImpl(256 | 512)]
-        get => new(y, x);
+        readonly get => new(y, x);
         [MethodImpl(256 | 512)]
         set => this = value.yx;
     }
-    public half2 yy
+    public readonly half2 yy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y);
     }
-    public half2 gg
+    public readonly half2 gg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y);
@@ -746,12 +782,12 @@ public partial struct half2
 
 public partial struct b16v2 
 {
-    public b16v2 xx
+    public readonly b16v2 xx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x);
     }
-    public b16v2 rr
+    public readonly b16v2 rr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x);
@@ -759,37 +795,37 @@ public partial struct b16v2
     public b16v2 xy
     {
         [MethodImpl(256 | 512)]
-        get => this;
+        readonly get => this;
         [MethodImpl(256 | 512)]
         set => this = value;
     }
     public b16v2 rg
     {
         [MethodImpl(256 | 512)]
-        get => this;
+        readonly get => this;
         [MethodImpl(256 | 512)]
         set => this = value;
     }
     public b16v2 yx
     {
         [MethodImpl(256 | 512)]
-        get => new(y, x);
+        readonly get => new(y, x);
         [MethodImpl(256 | 512)]
         set => this = value.yx;
     }
     public b16v2 gr
     {
         [MethodImpl(256 | 512)]
-        get => new(y, x);
+        readonly get => new(y, x);
         [MethodImpl(256 | 512)]
         set => this = value.yx;
     }
-    public b16v2 yy
+    public readonly b16v2 yy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y);
     }
-    public b16v2 gg
+    public readonly b16v2 gg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y);
@@ -802,83 +838,89 @@ public partial struct b16v2
 
 public partial struct b32v2 
 {
-    public b32v2 xx
+    public readonly b32v2 xx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector64.Shuffle(vector, Vector64.Create((uint)0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector64.IsHardwareAccelerated)
+                return new(Vector64.Shuffle(vector, Vector64.Create((uint)0, 0)));
+            else 
+                return new(x, x);
+        }
     }
-    public b32v2 rr
+    public readonly b32v2 rr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector64.Shuffle(vector, Vector64.Create((uint)0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector64.IsHardwareAccelerated)
+                return new(Vector64.Shuffle(vector, Vector64.Create((uint)0, 0)));
+            else 
+                return new(x, x);
+        }
     }
     public b32v2 xy
     {
         [MethodImpl(256 | 512)]
-        get => this;
+        readonly get => this;
         [MethodImpl(256 | 512)]
         set => this = value;
     }
     public b32v2 rg
     {
         [MethodImpl(256 | 512)]
-        get => this;
+        readonly get => this;
         [MethodImpl(256 | 512)]
         set => this = value;
     }
     public b32v2 yx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector64.Shuffle(vector, Vector64.Create((uint)1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x);
-#endif // NET8_0_OR_GREATER
+        readonly get
+        {
+            if (Vector64.IsHardwareAccelerated)
+                return new(Vector64.Shuffle(vector, Vector64.Create((uint)1, 0)));
+            else 
+                return new(y, x);
+        }
         [MethodImpl(256 | 512)]
         set => this = value.yx;
     }
     public b32v2 gr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector64.Shuffle(vector, Vector64.Create((uint)1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x);
-#endif // NET8_0_OR_GREATER
+        readonly get
+        {
+            if (Vector64.IsHardwareAccelerated)
+                return new(Vector64.Shuffle(vector, Vector64.Create((uint)1, 0)));
+            else 
+                return new(y, x);
+        }
         [MethodImpl(256 | 512)]
         set => this = value.yx;
     }
-    public b32v2 yy
+    public readonly b32v2 yy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector64.Shuffle(vector, Vector64.Create((uint)1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector64.IsHardwareAccelerated)
+                return new(Vector64.Shuffle(vector, Vector64.Create((uint)1, 1)));
+            else 
+                return new(y, y);
+        }
     }
-    public b32v2 gg
+    public readonly b32v2 gg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector64.Shuffle(vector, Vector64.Create((uint)1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector64.IsHardwareAccelerated)
+                return new(Vector64.Shuffle(vector, Vector64.Create((uint)1, 1)));
+            else 
+                return new(y, y);
+        }
     }
 }
 
@@ -888,83 +930,89 @@ public partial struct b32v2
 
 public partial struct b64v2 
 {
-    public b64v2 xx
+    public readonly b64v2 xx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((ulong)0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((ulong)0, 0)));
+            else 
+                return new(x, x);
+        }
     }
-    public b64v2 rr
+    public readonly b64v2 rr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((ulong)0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((ulong)0, 0)));
+            else 
+                return new(x, x);
+        }
     }
     public b64v2 xy
     {
         [MethodImpl(256 | 512)]
-        get => this;
+        readonly get => this;
         [MethodImpl(256 | 512)]
         set => this = value;
     }
     public b64v2 rg
     {
         [MethodImpl(256 | 512)]
-        get => this;
+        readonly get => this;
         [MethodImpl(256 | 512)]
         set => this = value;
     }
     public b64v2 yx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((ulong)1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x);
-#endif // NET8_0_OR_GREATER
+        readonly get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((ulong)1, 0)));
+            else 
+                return new(y, x);
+        }
         [MethodImpl(256 | 512)]
         set => this = value.yx;
     }
     public b64v2 gr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((ulong)1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x);
-#endif // NET8_0_OR_GREATER
+        readonly get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((ulong)1, 0)));
+            else 
+                return new(y, x);
+        }
         [MethodImpl(256 | 512)]
         set => this = value.yx;
     }
-    public b64v2 yy
+    public readonly b64v2 yy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((ulong)1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((ulong)1, 1)));
+            else 
+                return new(y, y);
+        }
     }
-    public b64v2 gg
+    public readonly b64v2 gg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((ulong)1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((ulong)1, 1)));
+            else 
+                return new(y, y);
+        }
     }
 }
 

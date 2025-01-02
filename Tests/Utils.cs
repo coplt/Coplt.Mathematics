@@ -154,7 +154,7 @@ public static class Utils
             })
             .Sum() / (double)count;
         var max_ulp = data.AsParallel().Max(static i => i.ulp);
-        var avg_ulp = data.AsParallel().Average(static i => (long)i.ulp);
+        var avg_ulp = data.AsParallel().Average(static i => (int)i.ulp);
         Console.WriteLine($"[{name}] Ulp Pass Rate: {pass_rate * 100:P}; Max Ulp: {max_ulp}; Avg Ulp: {avg_ulp}");
         Assert.That(pass_rate, Is.GreaterThanOrEqualTo(rate));
     }

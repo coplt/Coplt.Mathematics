@@ -2,6 +2,7 @@
 
 namespace Coplt.Mathematics;
 
+[Ex]
 public static partial class math
 {
     /// <summary>
@@ -13,13 +14,11 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4 unpacklo(this float4 a, float4 b)
+    public static float4 unpacklo([This] float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.UnpackLow(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.UnpackLow(a.vector, b.vector));
         return new(a.x, b.x, a.y, b.y);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -31,16 +30,15 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4 unpackhi(this float4 a, float4 b)
+    public static float4 unpackhi([This] float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.UnpackHigh(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.UnpackHigh(a.vector, b.vector));
         return new(a.z, b.z, a.w, b.w);
-        #endif // NET8_0_OR_GREATER
     }
 }
 
+[Ex]
 public static partial class math
 {
     /// <summary>
@@ -52,13 +50,11 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4 unpacklo(this double4 a, double4 b)
+    public static double4 unpacklo([This] double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.UnpackLow(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.UnpackLow(a.vector, b.vector));
         return new(a.x, b.x, a.y, b.y);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -70,16 +66,15 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4 unpackhi(this double4 a, double4 b)
+    public static double4 unpackhi([This] double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.UnpackHigh(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.UnpackHigh(a.vector, b.vector));
         return new(a.z, b.z, a.w, b.w);
-        #endif // NET8_0_OR_GREATER
     }
 }
 
+[Ex]
 public static partial class math
 {
     /// <summary>
@@ -91,7 +86,7 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static short4 unpacklo(this short4 a, short4 b)
+    public static short4 unpacklo([This] short4 a, short4 b)
     {
         return new(a.x, b.x, a.y, b.y);
     }
@@ -105,12 +100,13 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static short4 unpackhi(this short4 a, short4 b)
+    public static short4 unpackhi([This] short4 a, short4 b)
     {
         return new(a.z, b.z, a.w, b.w);
     }
 }
 
+[Ex]
 public static partial class math
 {
     /// <summary>
@@ -122,7 +118,7 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static ushort4 unpacklo(this ushort4 a, ushort4 b)
+    public static ushort4 unpacklo([This] ushort4 a, ushort4 b)
     {
         return new(a.x, b.x, a.y, b.y);
     }
@@ -136,12 +132,13 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static ushort4 unpackhi(this ushort4 a, ushort4 b)
+    public static ushort4 unpackhi([This] ushort4 a, ushort4 b)
     {
         return new(a.z, b.z, a.w, b.w);
     }
 }
 
+[Ex]
 public static partial class math
 {
     /// <summary>
@@ -153,13 +150,11 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4 unpacklo(this int4 a, int4 b)
+    public static int4 unpacklo([This] int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.UnpackLow(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.UnpackLow(a.vector, b.vector));
         return new(a.x, b.x, a.y, b.y);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -171,16 +166,15 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4 unpackhi(this int4 a, int4 b)
+    public static int4 unpackhi([This] int4 a, int4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.UnpackHigh(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.UnpackHigh(a.vector, b.vector));
         return new(a.z, b.z, a.w, b.w);
-        #endif // NET8_0_OR_GREATER
     }
 }
 
+[Ex]
 public static partial class math
 {
     /// <summary>
@@ -192,13 +186,11 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static uint4 unpacklo(this uint4 a, uint4 b)
+    public static uint4 unpacklo([This] uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.UnpackLow(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.UnpackLow(a.vector, b.vector));
         return new(a.x, b.x, a.y, b.y);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -210,16 +202,15 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static uint4 unpackhi(this uint4 a, uint4 b)
+    public static uint4 unpackhi([This] uint4 a, uint4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.UnpackHigh(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.UnpackHigh(a.vector, b.vector));
         return new(a.z, b.z, a.w, b.w);
-        #endif // NET8_0_OR_GREATER
     }
 }
 
+[Ex]
 public static partial class math
 {
     /// <summary>
@@ -231,13 +222,11 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static long4 unpacklo(this long4 a, long4 b)
+    public static long4 unpacklo([This] long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.UnpackLow(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.UnpackLow(a.vector, b.vector));
         return new(a.x, b.x, a.y, b.y);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -249,16 +238,15 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static long4 unpackhi(this long4 a, long4 b)
+    public static long4 unpackhi([This] long4 a, long4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.UnpackHigh(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.UnpackHigh(a.vector, b.vector));
         return new(a.z, b.z, a.w, b.w);
-        #endif // NET8_0_OR_GREATER
     }
 }
 
+[Ex]
 public static partial class math
 {
     /// <summary>
@@ -270,13 +258,11 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static ulong4 unpacklo(this ulong4 a, ulong4 b)
+    public static ulong4 unpacklo([This] ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.UnpackLow(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.UnpackLow(a.vector, b.vector));
         return new(a.x, b.x, a.y, b.y);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -288,16 +274,15 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static ulong4 unpackhi(this ulong4 a, ulong4 b)
+    public static ulong4 unpackhi([This] ulong4 a, ulong4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.UnpackHigh(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.UnpackHigh(a.vector, b.vector));
         return new(a.z, b.z, a.w, b.w);
-        #endif // NET8_0_OR_GREATER
     }
 }
 
+[Ex]
 public static partial class math
 {
     /// <summary>
@@ -309,7 +294,7 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static decimal4 unpacklo(this decimal4 a, decimal4 b)
+    public static decimal4 unpacklo([This] decimal4 a, decimal4 b)
     {
         return new(a.x, b.x, a.y, b.y);
     }
@@ -323,12 +308,13 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static decimal4 unpackhi(this decimal4 a, decimal4 b)
+    public static decimal4 unpackhi([This] decimal4 a, decimal4 b)
     {
         return new(a.z, b.z, a.w, b.w);
     }
 }
 
+[Ex]
 public static partial class math
 {
     /// <summary>
@@ -340,7 +326,7 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static half4 unpacklo(this half4 a, half4 b)
+    public static half4 unpacklo([This] half4 a, half4 b)
     {
         return new(a.x, b.x, a.y, b.y);
     }
@@ -354,12 +340,13 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static half4 unpackhi(this half4 a, half4 b)
+    public static half4 unpackhi([This] half4 a, half4 b)
     {
         return new(a.z, b.z, a.w, b.w);
     }
 }
 
+[Ex]
 public static partial class math
 {
     /// <summary>
@@ -371,7 +358,7 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static b16v4 unpacklo(this b16v4 a, b16v4 b)
+    public static b16v4 unpacklo([This] b16v4 a, b16v4 b)
     {
         return new(a.x, b.x, a.y, b.y);
     }
@@ -385,12 +372,13 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static b16v4 unpackhi(this b16v4 a, b16v4 b)
+    public static b16v4 unpackhi([This] b16v4 a, b16v4 b)
     {
         return new(a.z, b.z, a.w, b.w);
     }
 }
 
+[Ex]
 public static partial class math
 {
     /// <summary>
@@ -402,13 +390,11 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static b32v4 unpacklo(this b32v4 a, b32v4 b)
+    public static b32v4 unpacklo([This] b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.UnpackLow(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.UnpackLow(a.vector, b.vector));
         return new(a.x, b.x, a.y, b.y);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -420,16 +406,15 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static b32v4 unpackhi(this b32v4 a, b32v4 b)
+    public static b32v4 unpackhi([This] b32v4 a, b32v4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.UnpackHigh(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.UnpackHigh(a.vector, b.vector));
         return new(a.z, b.z, a.w, b.w);
-        #endif // NET8_0_OR_GREATER
     }
 }
 
+[Ex]
 public static partial class math
 {
     /// <summary>
@@ -441,13 +426,11 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static b64v4 unpacklo(this b64v4 a, b64v4 b)
+    public static b64v4 unpacklo([This] b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.UnpackLow(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.UnpackLow(a.vector, b.vector));
         return new(a.x, b.x, a.y, b.y);
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
@@ -459,12 +442,10 @@ public static partial class math
     /// </code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static b64v4 unpackhi(this b64v4 a, b64v4 b)
+    public static b64v4 unpackhi([This] b64v4 a, b64v4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.UnpackHigh(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.UnpackHigh(a.vector, b.vector));
         return new(a.z, b.z, a.w, b.w);
-        #endif // NET8_0_OR_GREATER
     }
 }

@@ -37,23 +37,29 @@ public partial struct <#= typeName #>
             for (var t = 0; t < 2; t++)
             {
 #>
-    public <#= retTypeName #> <#= t == 0 ? xyzw : rgba #>
+    public readonly <#= retTypeName #> <#= t == 0 ? xyzw : rgba #>
     {
 <#
                 if (typ.simd)
                 {
-                    WriteLine("#if NET8_0_OR_GREATER");
 #>
         [MethodImpl(256 | 512)]
-        get => new(Vector<#= bitSize3 #>.Shuffle(vector.ToVector<#= bitSize3 #>(), Vector<#= bitSize3 #>.Create(<#= typ.shuffleCast #><#= a #>, <#= b #>, <#= c #>, 3)));
+        get
+        {
+            if (Vector<#= bitSize3 #>.IsHardwareAccelerated)
+                return new(Vector<#= bitSize3 #>.Shuffle(vector.ToVector<#= bitSize3 #>(), Vector<#= bitSize3 #>.Create(<#= typ.shuffleCast #><#= a #>, <#= b #>, <#= c #>, 3)));
+            else
+                return new(<#= Typ.xyzw[a] #>, <#= Typ.xyzw[b] #>, <#= Typ.xyzw[c] #>);
+        }
 <#
-                    WriteLine("#else // NET8_0_OR_GREATER");
                 }
+                else
+                {
 #>
         [MethodImpl(256 | 512)]
         get => new(<#= Typ.xyzw[a] #>, <#= Typ.xyzw[b] #>, <#= Typ.xyzw[c] #>);
 <#
-                if (typ.simd) WriteLine("#endif // NET8_0_OR_GREATER");
+                }
 #>
     }
 <#

@@ -33,30 +33,31 @@ public partial struct <#= typeName #>
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> ceil(this <#= typeName #> a) => 
+    public static <#= typeName #> ceil([This] <#= typeName #> a) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.ceil()")) #>);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> floor(this <#= typeName #> a) => 
+    public static <#= typeName #> floor([This] <#= typeName #> a) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.floor()")) #>);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> round(this <#= typeName #> a) => 
+    public static <#= typeName #> round([This] <#= typeName #> a) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.round()")) #>);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> trunc(this <#= typeName #> a) => 
+    public static <#= typeName #> trunc([This] <#= typeName #> a) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.trunc()")) #>);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> frac(this <#= typeName #> a) => 
+    public static <#= typeName #> frac([This] <#= typeName #> a) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.frac()")) #>);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> modf(this <#= typeName #> a, out <#= typeName #> i)
+    public static <#= typeName #> modf([This] <#= typeName #> a, out <#= typeName #> i)
     {
         <#= typeName #> r = new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.modf(out var i{i})")) #>);
         i = new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"i{i}")) #>);
@@ -64,24 +65,28 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> rcp(this <#= typeName #> a) => 
+    public static <#= typeName #> rcp([This] <#= typeName #> a) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.rcp()")) #>);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> saturate(this <#= typeName #> a) => 
+    public static <#= typeName #> saturate([This] <#= typeName #> a) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.saturate()")) #>);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> smoothstep(this <#= typeName #> a, <#= typeName #> min, <#= typeName #> max) => 
+    public static <#= typeName #> smoothstep(<#= typeName #> min, <#= typeName #> max, [This] <#= typeName #> a) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.smoothstep(min.c{i}, max.c{i})")) #>);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> radians(this <#= typeName #> a) => 
+    public static <#= typeName #> radians([This] <#= typeName #> a) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.radians()")) #>);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> degrees(this <#= typeName #> a) => 
+    public static <#= typeName #> degrees([This] <#= typeName #> a) => 
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.degrees()")) #>);
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> wrap([This] <#= typeName #> x, <#= typeName #> min, <#= typeName #> max) => 
+        new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"x.c{i}.wrap(min.c{i}, max.c{i})")) #>);
 }
 
 #endregion // <#= typeName #>

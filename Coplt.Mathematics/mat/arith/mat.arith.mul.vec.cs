@@ -21,14 +21,15 @@ public partial struct float2x2
         => new(b.c0 * a, b.c1 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float2 mul(this float2x2 a, float2 b)
+    public static float2 mul([This] float2x2 a, float2 b)
         => fma(a.c1, b.yy, a.c0 * b.xx); // a.c0 * b.xx + a.c1 * b.yy
 
     [MethodImpl(256 | 512)]
-    public static float2 mul(this float2 a, float2x2 b)
+    public static float2 mul([This] float2 a, float2x2 b)
         => new(dot(a, b.c0), dot(a, b.c1));
 }
 
@@ -53,14 +54,15 @@ public partial struct float2x3
         => new(b.c0 * a, b.c1 * a, b.c2 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float2 mul(this float2x3 a, float3 b)
+    public static float2 mul([This] float2x3 a, float3 b)
         => fma(a.c2, b.zz, fma(a.c1, b.yy, a.c0 * b.xx)); // a.c0 * b.xx + a.c1 * b.yy + a.c2 * b.zz
 
     [MethodImpl(256 | 512)]
-    public static float3 mul(this float2 a, float2x3 b)
+    public static float3 mul([This] float2 a, float2x3 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2));
 }
 
@@ -85,14 +87,15 @@ public partial struct float2x4
         => new(b.c0 * a, b.c1 * a, b.c2 * a, b.c3 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float2 mul(this float2x4 a, float4 b)
+    public static float2 mul([This] float2x4 a, float4 b)
         => fma(a.c3, b.ww, fma(a.c2, b.zz, fma(a.c1, b.yy, a.c0 * b.xx))); // a.c0 * b.xx + a.c1 * b.yy + a.c2 * b.zz + a.c3 * b.ww
 
     [MethodImpl(256 | 512)]
-    public static float4 mul(this float2 a, float2x4 b)
+    public static float4 mul([This] float2 a, float2x4 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2), dot(a, b.c3));
 }
 
@@ -117,14 +120,15 @@ public partial struct float3x2
         => new(b.c0 * a, b.c1 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float3 mul(this float3x2 a, float2 b)
+    public static float3 mul([This] float3x2 a, float2 b)
         => fma(a.c1, b.yyy, a.c0 * b.xxx); // a.c0 * b.xxx + a.c1 * b.yyy
 
     [MethodImpl(256 | 512)]
-    public static float2 mul(this float3 a, float3x2 b)
+    public static float2 mul([This] float3 a, float3x2 b)
         => new(dot(a, b.c0), dot(a, b.c1));
 }
 
@@ -149,14 +153,15 @@ public partial struct float3x3
         => new(b.c0 * a, b.c1 * a, b.c2 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float3 mul(this float3x3 a, float3 b)
+    public static float3 mul([This] float3x3 a, float3 b)
         => fma(a.c2, b.zzz, fma(a.c1, b.yyy, a.c0 * b.xxx)); // a.c0 * b.xxx + a.c1 * b.yyy + a.c2 * b.zzz
 
     [MethodImpl(256 | 512)]
-    public static float3 mul(this float3 a, float3x3 b)
+    public static float3 mul([This] float3 a, float3x3 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2));
 }
 
@@ -181,14 +186,15 @@ public partial struct float3x4
         => new(b.c0 * a, b.c1 * a, b.c2 * a, b.c3 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float3 mul(this float3x4 a, float4 b)
+    public static float3 mul([This] float3x4 a, float4 b)
         => fma(a.c3, b.www, fma(a.c2, b.zzz, fma(a.c1, b.yyy, a.c0 * b.xxx))); // a.c0 * b.xxx + a.c1 * b.yyy + a.c2 * b.zzz + a.c3 * b.www
 
     [MethodImpl(256 | 512)]
-    public static float4 mul(this float3 a, float3x4 b)
+    public static float4 mul([This] float3 a, float3x4 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2), dot(a, b.c3));
 }
 
@@ -213,14 +219,15 @@ public partial struct float4x2
         => new(b.c0 * a, b.c1 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float4 mul(this float4x2 a, float2 b)
+    public static float4 mul([This] float4x2 a, float2 b)
         => fma(a.c1, b.yyyy, a.c0 * b.xxxx); // a.c0 * b.xxxx + a.c1 * b.yyyy
 
     [MethodImpl(256 | 512)]
-    public static float2 mul(this float4 a, float4x2 b)
+    public static float2 mul([This] float4 a, float4x2 b)
         => new(dot(a, b.c0), dot(a, b.c1));
 }
 
@@ -245,14 +252,15 @@ public partial struct float4x3
         => new(b.c0 * a, b.c1 * a, b.c2 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float4 mul(this float4x3 a, float3 b)
+    public static float4 mul([This] float4x3 a, float3 b)
         => fma(a.c2, b.zzzz, fma(a.c1, b.yyyy, a.c0 * b.xxxx)); // a.c0 * b.xxxx + a.c1 * b.yyyy + a.c2 * b.zzzz
 
     [MethodImpl(256 | 512)]
-    public static float3 mul(this float4 a, float4x3 b)
+    public static float3 mul([This] float4 a, float4x3 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2));
 }
 
@@ -277,14 +285,15 @@ public partial struct float4x4
         => new(b.c0 * a, b.c1 * a, b.c2 * a, b.c3 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float4 mul(this float4x4 a, float4 b)
+    public static float4 mul([This] float4x4 a, float4 b)
         => fma(a.c3, b.wwww, fma(a.c2, b.zzzz, fma(a.c1, b.yyyy, a.c0 * b.xxxx))); // a.c0 * b.xxxx + a.c1 * b.yyyy + a.c2 * b.zzzz + a.c3 * b.wwww
 
     [MethodImpl(256 | 512)]
-    public static float4 mul(this float4 a, float4x4 b)
+    public static float4 mul([This] float4 a, float4x4 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2), dot(a, b.c3));
 }
 
@@ -309,14 +318,15 @@ public partial struct double2x2
         => new(b.c0 * a, b.c1 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double2 mul(this double2x2 a, double2 b)
+    public static double2 mul([This] double2x2 a, double2 b)
         => fma(a.c1, b.yy, a.c0 * b.xx); // a.c0 * b.xx + a.c1 * b.yy
 
     [MethodImpl(256 | 512)]
-    public static double2 mul(this double2 a, double2x2 b)
+    public static double2 mul([This] double2 a, double2x2 b)
         => new(dot(a, b.c0), dot(a, b.c1));
 }
 
@@ -341,14 +351,15 @@ public partial struct double2x3
         => new(b.c0 * a, b.c1 * a, b.c2 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double2 mul(this double2x3 a, double3 b)
+    public static double2 mul([This] double2x3 a, double3 b)
         => fma(a.c2, b.zz, fma(a.c1, b.yy, a.c0 * b.xx)); // a.c0 * b.xx + a.c1 * b.yy + a.c2 * b.zz
 
     [MethodImpl(256 | 512)]
-    public static double3 mul(this double2 a, double2x3 b)
+    public static double3 mul([This] double2 a, double2x3 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2));
 }
 
@@ -373,14 +384,15 @@ public partial struct double2x4
         => new(b.c0 * a, b.c1 * a, b.c2 * a, b.c3 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double2 mul(this double2x4 a, double4 b)
+    public static double2 mul([This] double2x4 a, double4 b)
         => fma(a.c3, b.ww, fma(a.c2, b.zz, fma(a.c1, b.yy, a.c0 * b.xx))); // a.c0 * b.xx + a.c1 * b.yy + a.c2 * b.zz + a.c3 * b.ww
 
     [MethodImpl(256 | 512)]
-    public static double4 mul(this double2 a, double2x4 b)
+    public static double4 mul([This] double2 a, double2x4 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2), dot(a, b.c3));
 }
 
@@ -405,14 +417,15 @@ public partial struct double3x2
         => new(b.c0 * a, b.c1 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double3 mul(this double3x2 a, double2 b)
+    public static double3 mul([This] double3x2 a, double2 b)
         => fma(a.c1, b.yyy, a.c0 * b.xxx); // a.c0 * b.xxx + a.c1 * b.yyy
 
     [MethodImpl(256 | 512)]
-    public static double2 mul(this double3 a, double3x2 b)
+    public static double2 mul([This] double3 a, double3x2 b)
         => new(dot(a, b.c0), dot(a, b.c1));
 }
 
@@ -437,14 +450,15 @@ public partial struct double3x3
         => new(b.c0 * a, b.c1 * a, b.c2 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double3 mul(this double3x3 a, double3 b)
+    public static double3 mul([This] double3x3 a, double3 b)
         => fma(a.c2, b.zzz, fma(a.c1, b.yyy, a.c0 * b.xxx)); // a.c0 * b.xxx + a.c1 * b.yyy + a.c2 * b.zzz
 
     [MethodImpl(256 | 512)]
-    public static double3 mul(this double3 a, double3x3 b)
+    public static double3 mul([This] double3 a, double3x3 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2));
 }
 
@@ -469,14 +483,15 @@ public partial struct double3x4
         => new(b.c0 * a, b.c1 * a, b.c2 * a, b.c3 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double3 mul(this double3x4 a, double4 b)
+    public static double3 mul([This] double3x4 a, double4 b)
         => fma(a.c3, b.www, fma(a.c2, b.zzz, fma(a.c1, b.yyy, a.c0 * b.xxx))); // a.c0 * b.xxx + a.c1 * b.yyy + a.c2 * b.zzz + a.c3 * b.www
 
     [MethodImpl(256 | 512)]
-    public static double4 mul(this double3 a, double3x4 b)
+    public static double4 mul([This] double3 a, double3x4 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2), dot(a, b.c3));
 }
 
@@ -501,14 +516,15 @@ public partial struct double4x2
         => new(b.c0 * a, b.c1 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double4 mul(this double4x2 a, double2 b)
+    public static double4 mul([This] double4x2 a, double2 b)
         => fma(a.c1, b.yyyy, a.c0 * b.xxxx); // a.c0 * b.xxxx + a.c1 * b.yyyy
 
     [MethodImpl(256 | 512)]
-    public static double2 mul(this double4 a, double4x2 b)
+    public static double2 mul([This] double4 a, double4x2 b)
         => new(dot(a, b.c0), dot(a, b.c1));
 }
 
@@ -533,14 +549,15 @@ public partial struct double4x3
         => new(b.c0 * a, b.c1 * a, b.c2 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double4 mul(this double4x3 a, double3 b)
+    public static double4 mul([This] double4x3 a, double3 b)
         => fma(a.c2, b.zzzz, fma(a.c1, b.yyyy, a.c0 * b.xxxx)); // a.c0 * b.xxxx + a.c1 * b.yyyy + a.c2 * b.zzzz
 
     [MethodImpl(256 | 512)]
-    public static double3 mul(this double4 a, double4x3 b)
+    public static double3 mul([This] double4 a, double4x3 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2));
 }
 
@@ -565,14 +582,15 @@ public partial struct double4x4
         => new(b.c0 * a, b.c1 * a, b.c2 * a, b.c3 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double4 mul(this double4x4 a, double4 b)
+    public static double4 mul([This] double4x4 a, double4 b)
         => fma(a.c3, b.wwww, fma(a.c2, b.zzzz, fma(a.c1, b.yyyy, a.c0 * b.xxxx))); // a.c0 * b.xxxx + a.c1 * b.yyyy + a.c2 * b.zzzz + a.c3 * b.wwww
 
     [MethodImpl(256 | 512)]
-    public static double4 mul(this double4 a, double4x4 b)
+    public static double4 mul([This] double4 a, double4x4 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2), dot(a, b.c3));
 }
 
@@ -597,14 +615,15 @@ public partial struct short2x2
         => new(b.c0 * a, b.c1 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static short2 mul(this short2x2 a, short2 b)
+    public static short2 mul([This] short2x2 a, short2 b)
         => fma(a.c1, b.yy, a.c0 * b.xx); // a.c0 * b.xx + a.c1 * b.yy
 
     [MethodImpl(256 | 512)]
-    public static short2 mul(this short2 a, short2x2 b)
+    public static short2 mul([This] short2 a, short2x2 b)
         => new(dot(a, b.c0), dot(a, b.c1));
 }
 
@@ -629,14 +648,15 @@ public partial struct short2x3
         => new(b.c0 * a, b.c1 * a, b.c2 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static short2 mul(this short2x3 a, short3 b)
+    public static short2 mul([This] short2x3 a, short3 b)
         => fma(a.c2, b.zz, fma(a.c1, b.yy, a.c0 * b.xx)); // a.c0 * b.xx + a.c1 * b.yy + a.c2 * b.zz
 
     [MethodImpl(256 | 512)]
-    public static short3 mul(this short2 a, short2x3 b)
+    public static short3 mul([This] short2 a, short2x3 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2));
 }
 
@@ -661,14 +681,15 @@ public partial struct short2x4
         => new(b.c0 * a, b.c1 * a, b.c2 * a, b.c3 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static short2 mul(this short2x4 a, short4 b)
+    public static short2 mul([This] short2x4 a, short4 b)
         => fma(a.c3, b.ww, fma(a.c2, b.zz, fma(a.c1, b.yy, a.c0 * b.xx))); // a.c0 * b.xx + a.c1 * b.yy + a.c2 * b.zz + a.c3 * b.ww
 
     [MethodImpl(256 | 512)]
-    public static short4 mul(this short2 a, short2x4 b)
+    public static short4 mul([This] short2 a, short2x4 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2), dot(a, b.c3));
 }
 
@@ -693,14 +714,15 @@ public partial struct short3x2
         => new(b.c0 * a, b.c1 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static short3 mul(this short3x2 a, short2 b)
+    public static short3 mul([This] short3x2 a, short2 b)
         => fma(a.c1, b.yyy, a.c0 * b.xxx); // a.c0 * b.xxx + a.c1 * b.yyy
 
     [MethodImpl(256 | 512)]
-    public static short2 mul(this short3 a, short3x2 b)
+    public static short2 mul([This] short3 a, short3x2 b)
         => new(dot(a, b.c0), dot(a, b.c1));
 }
 
@@ -725,14 +747,15 @@ public partial struct short3x3
         => new(b.c0 * a, b.c1 * a, b.c2 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static short3 mul(this short3x3 a, short3 b)
+    public static short3 mul([This] short3x3 a, short3 b)
         => fma(a.c2, b.zzz, fma(a.c1, b.yyy, a.c0 * b.xxx)); // a.c0 * b.xxx + a.c1 * b.yyy + a.c2 * b.zzz
 
     [MethodImpl(256 | 512)]
-    public static short3 mul(this short3 a, short3x3 b)
+    public static short3 mul([This] short3 a, short3x3 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2));
 }
 
@@ -757,14 +780,15 @@ public partial struct short3x4
         => new(b.c0 * a, b.c1 * a, b.c2 * a, b.c3 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static short3 mul(this short3x4 a, short4 b)
+    public static short3 mul([This] short3x4 a, short4 b)
         => fma(a.c3, b.www, fma(a.c2, b.zzz, fma(a.c1, b.yyy, a.c0 * b.xxx))); // a.c0 * b.xxx + a.c1 * b.yyy + a.c2 * b.zzz + a.c3 * b.www
 
     [MethodImpl(256 | 512)]
-    public static short4 mul(this short3 a, short3x4 b)
+    public static short4 mul([This] short3 a, short3x4 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2), dot(a, b.c3));
 }
 
@@ -789,14 +813,15 @@ public partial struct short4x2
         => new(b.c0 * a, b.c1 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static short4 mul(this short4x2 a, short2 b)
+    public static short4 mul([This] short4x2 a, short2 b)
         => fma(a.c1, b.yyyy, a.c0 * b.xxxx); // a.c0 * b.xxxx + a.c1 * b.yyyy
 
     [MethodImpl(256 | 512)]
-    public static short2 mul(this short4 a, short4x2 b)
+    public static short2 mul([This] short4 a, short4x2 b)
         => new(dot(a, b.c0), dot(a, b.c1));
 }
 
@@ -821,14 +846,15 @@ public partial struct short4x3
         => new(b.c0 * a, b.c1 * a, b.c2 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static short4 mul(this short4x3 a, short3 b)
+    public static short4 mul([This] short4x3 a, short3 b)
         => fma(a.c2, b.zzzz, fma(a.c1, b.yyyy, a.c0 * b.xxxx)); // a.c0 * b.xxxx + a.c1 * b.yyyy + a.c2 * b.zzzz
 
     [MethodImpl(256 | 512)]
-    public static short3 mul(this short4 a, short4x3 b)
+    public static short3 mul([This] short4 a, short4x3 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2));
 }
 
@@ -853,14 +879,15 @@ public partial struct short4x4
         => new(b.c0 * a, b.c1 * a, b.c2 * a, b.c3 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static short4 mul(this short4x4 a, short4 b)
+    public static short4 mul([This] short4x4 a, short4 b)
         => fma(a.c3, b.wwww, fma(a.c2, b.zzzz, fma(a.c1, b.yyyy, a.c0 * b.xxxx))); // a.c0 * b.xxxx + a.c1 * b.yyyy + a.c2 * b.zzzz + a.c3 * b.wwww
 
     [MethodImpl(256 | 512)]
-    public static short4 mul(this short4 a, short4x4 b)
+    public static short4 mul([This] short4 a, short4x4 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2), dot(a, b.c3));
 }
 
@@ -885,14 +912,15 @@ public partial struct ushort2x2
         => new(b.c0 * a, b.c1 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ushort2 mul(this ushort2x2 a, ushort2 b)
+    public static ushort2 mul([This] ushort2x2 a, ushort2 b)
         => fma(a.c1, b.yy, a.c0 * b.xx); // a.c0 * b.xx + a.c1 * b.yy
 
     [MethodImpl(256 | 512)]
-    public static ushort2 mul(this ushort2 a, ushort2x2 b)
+    public static ushort2 mul([This] ushort2 a, ushort2x2 b)
         => new(dot(a, b.c0), dot(a, b.c1));
 }
 
@@ -917,14 +945,15 @@ public partial struct ushort2x3
         => new(b.c0 * a, b.c1 * a, b.c2 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ushort2 mul(this ushort2x3 a, ushort3 b)
+    public static ushort2 mul([This] ushort2x3 a, ushort3 b)
         => fma(a.c2, b.zz, fma(a.c1, b.yy, a.c0 * b.xx)); // a.c0 * b.xx + a.c1 * b.yy + a.c2 * b.zz
 
     [MethodImpl(256 | 512)]
-    public static ushort3 mul(this ushort2 a, ushort2x3 b)
+    public static ushort3 mul([This] ushort2 a, ushort2x3 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2));
 }
 
@@ -949,14 +978,15 @@ public partial struct ushort2x4
         => new(b.c0 * a, b.c1 * a, b.c2 * a, b.c3 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ushort2 mul(this ushort2x4 a, ushort4 b)
+    public static ushort2 mul([This] ushort2x4 a, ushort4 b)
         => fma(a.c3, b.ww, fma(a.c2, b.zz, fma(a.c1, b.yy, a.c0 * b.xx))); // a.c0 * b.xx + a.c1 * b.yy + a.c2 * b.zz + a.c3 * b.ww
 
     [MethodImpl(256 | 512)]
-    public static ushort4 mul(this ushort2 a, ushort2x4 b)
+    public static ushort4 mul([This] ushort2 a, ushort2x4 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2), dot(a, b.c3));
 }
 
@@ -981,14 +1011,15 @@ public partial struct ushort3x2
         => new(b.c0 * a, b.c1 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ushort3 mul(this ushort3x2 a, ushort2 b)
+    public static ushort3 mul([This] ushort3x2 a, ushort2 b)
         => fma(a.c1, b.yyy, a.c0 * b.xxx); // a.c0 * b.xxx + a.c1 * b.yyy
 
     [MethodImpl(256 | 512)]
-    public static ushort2 mul(this ushort3 a, ushort3x2 b)
+    public static ushort2 mul([This] ushort3 a, ushort3x2 b)
         => new(dot(a, b.c0), dot(a, b.c1));
 }
 
@@ -1013,14 +1044,15 @@ public partial struct ushort3x3
         => new(b.c0 * a, b.c1 * a, b.c2 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ushort3 mul(this ushort3x3 a, ushort3 b)
+    public static ushort3 mul([This] ushort3x3 a, ushort3 b)
         => fma(a.c2, b.zzz, fma(a.c1, b.yyy, a.c0 * b.xxx)); // a.c0 * b.xxx + a.c1 * b.yyy + a.c2 * b.zzz
 
     [MethodImpl(256 | 512)]
-    public static ushort3 mul(this ushort3 a, ushort3x3 b)
+    public static ushort3 mul([This] ushort3 a, ushort3x3 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2));
 }
 
@@ -1045,14 +1077,15 @@ public partial struct ushort3x4
         => new(b.c0 * a, b.c1 * a, b.c2 * a, b.c3 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ushort3 mul(this ushort3x4 a, ushort4 b)
+    public static ushort3 mul([This] ushort3x4 a, ushort4 b)
         => fma(a.c3, b.www, fma(a.c2, b.zzz, fma(a.c1, b.yyy, a.c0 * b.xxx))); // a.c0 * b.xxx + a.c1 * b.yyy + a.c2 * b.zzz + a.c3 * b.www
 
     [MethodImpl(256 | 512)]
-    public static ushort4 mul(this ushort3 a, ushort3x4 b)
+    public static ushort4 mul([This] ushort3 a, ushort3x4 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2), dot(a, b.c3));
 }
 
@@ -1077,14 +1110,15 @@ public partial struct ushort4x2
         => new(b.c0 * a, b.c1 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ushort4 mul(this ushort4x2 a, ushort2 b)
+    public static ushort4 mul([This] ushort4x2 a, ushort2 b)
         => fma(a.c1, b.yyyy, a.c0 * b.xxxx); // a.c0 * b.xxxx + a.c1 * b.yyyy
 
     [MethodImpl(256 | 512)]
-    public static ushort2 mul(this ushort4 a, ushort4x2 b)
+    public static ushort2 mul([This] ushort4 a, ushort4x2 b)
         => new(dot(a, b.c0), dot(a, b.c1));
 }
 
@@ -1109,14 +1143,15 @@ public partial struct ushort4x3
         => new(b.c0 * a, b.c1 * a, b.c2 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ushort4 mul(this ushort4x3 a, ushort3 b)
+    public static ushort4 mul([This] ushort4x3 a, ushort3 b)
         => fma(a.c2, b.zzzz, fma(a.c1, b.yyyy, a.c0 * b.xxxx)); // a.c0 * b.xxxx + a.c1 * b.yyyy + a.c2 * b.zzzz
 
     [MethodImpl(256 | 512)]
-    public static ushort3 mul(this ushort4 a, ushort4x3 b)
+    public static ushort3 mul([This] ushort4 a, ushort4x3 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2));
 }
 
@@ -1141,14 +1176,15 @@ public partial struct ushort4x4
         => new(b.c0 * a, b.c1 * a, b.c2 * a, b.c3 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ushort4 mul(this ushort4x4 a, ushort4 b)
+    public static ushort4 mul([This] ushort4x4 a, ushort4 b)
         => fma(a.c3, b.wwww, fma(a.c2, b.zzzz, fma(a.c1, b.yyyy, a.c0 * b.xxxx))); // a.c0 * b.xxxx + a.c1 * b.yyyy + a.c2 * b.zzzz + a.c3 * b.wwww
 
     [MethodImpl(256 | 512)]
-    public static ushort4 mul(this ushort4 a, ushort4x4 b)
+    public static ushort4 mul([This] ushort4 a, ushort4x4 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2), dot(a, b.c3));
 }
 
@@ -1173,14 +1209,15 @@ public partial struct int2x2
         => new(b.c0 * a, b.c1 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static int2 mul(this int2x2 a, int2 b)
+    public static int2 mul([This] int2x2 a, int2 b)
         => fma(a.c1, b.yy, a.c0 * b.xx); // a.c0 * b.xx + a.c1 * b.yy
 
     [MethodImpl(256 | 512)]
-    public static int2 mul(this int2 a, int2x2 b)
+    public static int2 mul([This] int2 a, int2x2 b)
         => new(dot(a, b.c0), dot(a, b.c1));
 }
 
@@ -1205,14 +1242,15 @@ public partial struct int2x3
         => new(b.c0 * a, b.c1 * a, b.c2 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static int2 mul(this int2x3 a, int3 b)
+    public static int2 mul([This] int2x3 a, int3 b)
         => fma(a.c2, b.zz, fma(a.c1, b.yy, a.c0 * b.xx)); // a.c0 * b.xx + a.c1 * b.yy + a.c2 * b.zz
 
     [MethodImpl(256 | 512)]
-    public static int3 mul(this int2 a, int2x3 b)
+    public static int3 mul([This] int2 a, int2x3 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2));
 }
 
@@ -1237,14 +1275,15 @@ public partial struct int2x4
         => new(b.c0 * a, b.c1 * a, b.c2 * a, b.c3 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static int2 mul(this int2x4 a, int4 b)
+    public static int2 mul([This] int2x4 a, int4 b)
         => fma(a.c3, b.ww, fma(a.c2, b.zz, fma(a.c1, b.yy, a.c0 * b.xx))); // a.c0 * b.xx + a.c1 * b.yy + a.c2 * b.zz + a.c3 * b.ww
 
     [MethodImpl(256 | 512)]
-    public static int4 mul(this int2 a, int2x4 b)
+    public static int4 mul([This] int2 a, int2x4 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2), dot(a, b.c3));
 }
 
@@ -1269,14 +1308,15 @@ public partial struct int3x2
         => new(b.c0 * a, b.c1 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static int3 mul(this int3x2 a, int2 b)
+    public static int3 mul([This] int3x2 a, int2 b)
         => fma(a.c1, b.yyy, a.c0 * b.xxx); // a.c0 * b.xxx + a.c1 * b.yyy
 
     [MethodImpl(256 | 512)]
-    public static int2 mul(this int3 a, int3x2 b)
+    public static int2 mul([This] int3 a, int3x2 b)
         => new(dot(a, b.c0), dot(a, b.c1));
 }
 
@@ -1301,14 +1341,15 @@ public partial struct int3x3
         => new(b.c0 * a, b.c1 * a, b.c2 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static int3 mul(this int3x3 a, int3 b)
+    public static int3 mul([This] int3x3 a, int3 b)
         => fma(a.c2, b.zzz, fma(a.c1, b.yyy, a.c0 * b.xxx)); // a.c0 * b.xxx + a.c1 * b.yyy + a.c2 * b.zzz
 
     [MethodImpl(256 | 512)]
-    public static int3 mul(this int3 a, int3x3 b)
+    public static int3 mul([This] int3 a, int3x3 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2));
 }
 
@@ -1333,14 +1374,15 @@ public partial struct int3x4
         => new(b.c0 * a, b.c1 * a, b.c2 * a, b.c3 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static int3 mul(this int3x4 a, int4 b)
+    public static int3 mul([This] int3x4 a, int4 b)
         => fma(a.c3, b.www, fma(a.c2, b.zzz, fma(a.c1, b.yyy, a.c0 * b.xxx))); // a.c0 * b.xxx + a.c1 * b.yyy + a.c2 * b.zzz + a.c3 * b.www
 
     [MethodImpl(256 | 512)]
-    public static int4 mul(this int3 a, int3x4 b)
+    public static int4 mul([This] int3 a, int3x4 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2), dot(a, b.c3));
 }
 
@@ -1365,14 +1407,15 @@ public partial struct int4x2
         => new(b.c0 * a, b.c1 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static int4 mul(this int4x2 a, int2 b)
+    public static int4 mul([This] int4x2 a, int2 b)
         => fma(a.c1, b.yyyy, a.c0 * b.xxxx); // a.c0 * b.xxxx + a.c1 * b.yyyy
 
     [MethodImpl(256 | 512)]
-    public static int2 mul(this int4 a, int4x2 b)
+    public static int2 mul([This] int4 a, int4x2 b)
         => new(dot(a, b.c0), dot(a, b.c1));
 }
 
@@ -1397,14 +1440,15 @@ public partial struct int4x3
         => new(b.c0 * a, b.c1 * a, b.c2 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static int4 mul(this int4x3 a, int3 b)
+    public static int4 mul([This] int4x3 a, int3 b)
         => fma(a.c2, b.zzzz, fma(a.c1, b.yyyy, a.c0 * b.xxxx)); // a.c0 * b.xxxx + a.c1 * b.yyyy + a.c2 * b.zzzz
 
     [MethodImpl(256 | 512)]
-    public static int3 mul(this int4 a, int4x3 b)
+    public static int3 mul([This] int4 a, int4x3 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2));
 }
 
@@ -1429,14 +1473,15 @@ public partial struct int4x4
         => new(b.c0 * a, b.c1 * a, b.c2 * a, b.c3 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static int4 mul(this int4x4 a, int4 b)
+    public static int4 mul([This] int4x4 a, int4 b)
         => fma(a.c3, b.wwww, fma(a.c2, b.zzzz, fma(a.c1, b.yyyy, a.c0 * b.xxxx))); // a.c0 * b.xxxx + a.c1 * b.yyyy + a.c2 * b.zzzz + a.c3 * b.wwww
 
     [MethodImpl(256 | 512)]
-    public static int4 mul(this int4 a, int4x4 b)
+    public static int4 mul([This] int4 a, int4x4 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2), dot(a, b.c3));
 }
 
@@ -1461,14 +1506,15 @@ public partial struct uint2x2
         => new(b.c0 * a, b.c1 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static uint2 mul(this uint2x2 a, uint2 b)
+    public static uint2 mul([This] uint2x2 a, uint2 b)
         => fma(a.c1, b.yy, a.c0 * b.xx); // a.c0 * b.xx + a.c1 * b.yy
 
     [MethodImpl(256 | 512)]
-    public static uint2 mul(this uint2 a, uint2x2 b)
+    public static uint2 mul([This] uint2 a, uint2x2 b)
         => new(dot(a, b.c0), dot(a, b.c1));
 }
 
@@ -1493,14 +1539,15 @@ public partial struct uint2x3
         => new(b.c0 * a, b.c1 * a, b.c2 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static uint2 mul(this uint2x3 a, uint3 b)
+    public static uint2 mul([This] uint2x3 a, uint3 b)
         => fma(a.c2, b.zz, fma(a.c1, b.yy, a.c0 * b.xx)); // a.c0 * b.xx + a.c1 * b.yy + a.c2 * b.zz
 
     [MethodImpl(256 | 512)]
-    public static uint3 mul(this uint2 a, uint2x3 b)
+    public static uint3 mul([This] uint2 a, uint2x3 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2));
 }
 
@@ -1525,14 +1572,15 @@ public partial struct uint2x4
         => new(b.c0 * a, b.c1 * a, b.c2 * a, b.c3 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static uint2 mul(this uint2x4 a, uint4 b)
+    public static uint2 mul([This] uint2x4 a, uint4 b)
         => fma(a.c3, b.ww, fma(a.c2, b.zz, fma(a.c1, b.yy, a.c0 * b.xx))); // a.c0 * b.xx + a.c1 * b.yy + a.c2 * b.zz + a.c3 * b.ww
 
     [MethodImpl(256 | 512)]
-    public static uint4 mul(this uint2 a, uint2x4 b)
+    public static uint4 mul([This] uint2 a, uint2x4 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2), dot(a, b.c3));
 }
 
@@ -1557,14 +1605,15 @@ public partial struct uint3x2
         => new(b.c0 * a, b.c1 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static uint3 mul(this uint3x2 a, uint2 b)
+    public static uint3 mul([This] uint3x2 a, uint2 b)
         => fma(a.c1, b.yyy, a.c0 * b.xxx); // a.c0 * b.xxx + a.c1 * b.yyy
 
     [MethodImpl(256 | 512)]
-    public static uint2 mul(this uint3 a, uint3x2 b)
+    public static uint2 mul([This] uint3 a, uint3x2 b)
         => new(dot(a, b.c0), dot(a, b.c1));
 }
 
@@ -1589,14 +1638,15 @@ public partial struct uint3x3
         => new(b.c0 * a, b.c1 * a, b.c2 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static uint3 mul(this uint3x3 a, uint3 b)
+    public static uint3 mul([This] uint3x3 a, uint3 b)
         => fma(a.c2, b.zzz, fma(a.c1, b.yyy, a.c0 * b.xxx)); // a.c0 * b.xxx + a.c1 * b.yyy + a.c2 * b.zzz
 
     [MethodImpl(256 | 512)]
-    public static uint3 mul(this uint3 a, uint3x3 b)
+    public static uint3 mul([This] uint3 a, uint3x3 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2));
 }
 
@@ -1621,14 +1671,15 @@ public partial struct uint3x4
         => new(b.c0 * a, b.c1 * a, b.c2 * a, b.c3 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static uint3 mul(this uint3x4 a, uint4 b)
+    public static uint3 mul([This] uint3x4 a, uint4 b)
         => fma(a.c3, b.www, fma(a.c2, b.zzz, fma(a.c1, b.yyy, a.c0 * b.xxx))); // a.c0 * b.xxx + a.c1 * b.yyy + a.c2 * b.zzz + a.c3 * b.www
 
     [MethodImpl(256 | 512)]
-    public static uint4 mul(this uint3 a, uint3x4 b)
+    public static uint4 mul([This] uint3 a, uint3x4 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2), dot(a, b.c3));
 }
 
@@ -1653,14 +1704,15 @@ public partial struct uint4x2
         => new(b.c0 * a, b.c1 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static uint4 mul(this uint4x2 a, uint2 b)
+    public static uint4 mul([This] uint4x2 a, uint2 b)
         => fma(a.c1, b.yyyy, a.c0 * b.xxxx); // a.c0 * b.xxxx + a.c1 * b.yyyy
 
     [MethodImpl(256 | 512)]
-    public static uint2 mul(this uint4 a, uint4x2 b)
+    public static uint2 mul([This] uint4 a, uint4x2 b)
         => new(dot(a, b.c0), dot(a, b.c1));
 }
 
@@ -1685,14 +1737,15 @@ public partial struct uint4x3
         => new(b.c0 * a, b.c1 * a, b.c2 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static uint4 mul(this uint4x3 a, uint3 b)
+    public static uint4 mul([This] uint4x3 a, uint3 b)
         => fma(a.c2, b.zzzz, fma(a.c1, b.yyyy, a.c0 * b.xxxx)); // a.c0 * b.xxxx + a.c1 * b.yyyy + a.c2 * b.zzzz
 
     [MethodImpl(256 | 512)]
-    public static uint3 mul(this uint4 a, uint4x3 b)
+    public static uint3 mul([This] uint4 a, uint4x3 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2));
 }
 
@@ -1717,14 +1770,15 @@ public partial struct uint4x4
         => new(b.c0 * a, b.c1 * a, b.c2 * a, b.c3 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static uint4 mul(this uint4x4 a, uint4 b)
+    public static uint4 mul([This] uint4x4 a, uint4 b)
         => fma(a.c3, b.wwww, fma(a.c2, b.zzzz, fma(a.c1, b.yyyy, a.c0 * b.xxxx))); // a.c0 * b.xxxx + a.c1 * b.yyyy + a.c2 * b.zzzz + a.c3 * b.wwww
 
     [MethodImpl(256 | 512)]
-    public static uint4 mul(this uint4 a, uint4x4 b)
+    public static uint4 mul([This] uint4 a, uint4x4 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2), dot(a, b.c3));
 }
 
@@ -1749,14 +1803,15 @@ public partial struct long2x2
         => new(b.c0 * a, b.c1 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static long2 mul(this long2x2 a, long2 b)
+    public static long2 mul([This] long2x2 a, long2 b)
         => fma(a.c1, b.yy, a.c0 * b.xx); // a.c0 * b.xx + a.c1 * b.yy
 
     [MethodImpl(256 | 512)]
-    public static long2 mul(this long2 a, long2x2 b)
+    public static long2 mul([This] long2 a, long2x2 b)
         => new(dot(a, b.c0), dot(a, b.c1));
 }
 
@@ -1781,14 +1836,15 @@ public partial struct long2x3
         => new(b.c0 * a, b.c1 * a, b.c2 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static long2 mul(this long2x3 a, long3 b)
+    public static long2 mul([This] long2x3 a, long3 b)
         => fma(a.c2, b.zz, fma(a.c1, b.yy, a.c0 * b.xx)); // a.c0 * b.xx + a.c1 * b.yy + a.c2 * b.zz
 
     [MethodImpl(256 | 512)]
-    public static long3 mul(this long2 a, long2x3 b)
+    public static long3 mul([This] long2 a, long2x3 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2));
 }
 
@@ -1813,14 +1869,15 @@ public partial struct long2x4
         => new(b.c0 * a, b.c1 * a, b.c2 * a, b.c3 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static long2 mul(this long2x4 a, long4 b)
+    public static long2 mul([This] long2x4 a, long4 b)
         => fma(a.c3, b.ww, fma(a.c2, b.zz, fma(a.c1, b.yy, a.c0 * b.xx))); // a.c0 * b.xx + a.c1 * b.yy + a.c2 * b.zz + a.c3 * b.ww
 
     [MethodImpl(256 | 512)]
-    public static long4 mul(this long2 a, long2x4 b)
+    public static long4 mul([This] long2 a, long2x4 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2), dot(a, b.c3));
 }
 
@@ -1845,14 +1902,15 @@ public partial struct long3x2
         => new(b.c0 * a, b.c1 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static long3 mul(this long3x2 a, long2 b)
+    public static long3 mul([This] long3x2 a, long2 b)
         => fma(a.c1, b.yyy, a.c0 * b.xxx); // a.c0 * b.xxx + a.c1 * b.yyy
 
     [MethodImpl(256 | 512)]
-    public static long2 mul(this long3 a, long3x2 b)
+    public static long2 mul([This] long3 a, long3x2 b)
         => new(dot(a, b.c0), dot(a, b.c1));
 }
 
@@ -1877,14 +1935,15 @@ public partial struct long3x3
         => new(b.c0 * a, b.c1 * a, b.c2 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static long3 mul(this long3x3 a, long3 b)
+    public static long3 mul([This] long3x3 a, long3 b)
         => fma(a.c2, b.zzz, fma(a.c1, b.yyy, a.c0 * b.xxx)); // a.c0 * b.xxx + a.c1 * b.yyy + a.c2 * b.zzz
 
     [MethodImpl(256 | 512)]
-    public static long3 mul(this long3 a, long3x3 b)
+    public static long3 mul([This] long3 a, long3x3 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2));
 }
 
@@ -1909,14 +1968,15 @@ public partial struct long3x4
         => new(b.c0 * a, b.c1 * a, b.c2 * a, b.c3 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static long3 mul(this long3x4 a, long4 b)
+    public static long3 mul([This] long3x4 a, long4 b)
         => fma(a.c3, b.www, fma(a.c2, b.zzz, fma(a.c1, b.yyy, a.c0 * b.xxx))); // a.c0 * b.xxx + a.c1 * b.yyy + a.c2 * b.zzz + a.c3 * b.www
 
     [MethodImpl(256 | 512)]
-    public static long4 mul(this long3 a, long3x4 b)
+    public static long4 mul([This] long3 a, long3x4 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2), dot(a, b.c3));
 }
 
@@ -1941,14 +2001,15 @@ public partial struct long4x2
         => new(b.c0 * a, b.c1 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static long4 mul(this long4x2 a, long2 b)
+    public static long4 mul([This] long4x2 a, long2 b)
         => fma(a.c1, b.yyyy, a.c0 * b.xxxx); // a.c0 * b.xxxx + a.c1 * b.yyyy
 
     [MethodImpl(256 | 512)]
-    public static long2 mul(this long4 a, long4x2 b)
+    public static long2 mul([This] long4 a, long4x2 b)
         => new(dot(a, b.c0), dot(a, b.c1));
 }
 
@@ -1973,14 +2034,15 @@ public partial struct long4x3
         => new(b.c0 * a, b.c1 * a, b.c2 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static long4 mul(this long4x3 a, long3 b)
+    public static long4 mul([This] long4x3 a, long3 b)
         => fma(a.c2, b.zzzz, fma(a.c1, b.yyyy, a.c0 * b.xxxx)); // a.c0 * b.xxxx + a.c1 * b.yyyy + a.c2 * b.zzzz
 
     [MethodImpl(256 | 512)]
-    public static long3 mul(this long4 a, long4x3 b)
+    public static long3 mul([This] long4 a, long4x3 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2));
 }
 
@@ -2005,14 +2067,15 @@ public partial struct long4x4
         => new(b.c0 * a, b.c1 * a, b.c2 * a, b.c3 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static long4 mul(this long4x4 a, long4 b)
+    public static long4 mul([This] long4x4 a, long4 b)
         => fma(a.c3, b.wwww, fma(a.c2, b.zzzz, fma(a.c1, b.yyyy, a.c0 * b.xxxx))); // a.c0 * b.xxxx + a.c1 * b.yyyy + a.c2 * b.zzzz + a.c3 * b.wwww
 
     [MethodImpl(256 | 512)]
-    public static long4 mul(this long4 a, long4x4 b)
+    public static long4 mul([This] long4 a, long4x4 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2), dot(a, b.c3));
 }
 
@@ -2037,14 +2100,15 @@ public partial struct ulong2x2
         => new(b.c0 * a, b.c1 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ulong2 mul(this ulong2x2 a, ulong2 b)
+    public static ulong2 mul([This] ulong2x2 a, ulong2 b)
         => fma(a.c1, b.yy, a.c0 * b.xx); // a.c0 * b.xx + a.c1 * b.yy
 
     [MethodImpl(256 | 512)]
-    public static ulong2 mul(this ulong2 a, ulong2x2 b)
+    public static ulong2 mul([This] ulong2 a, ulong2x2 b)
         => new(dot(a, b.c0), dot(a, b.c1));
 }
 
@@ -2069,14 +2133,15 @@ public partial struct ulong2x3
         => new(b.c0 * a, b.c1 * a, b.c2 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ulong2 mul(this ulong2x3 a, ulong3 b)
+    public static ulong2 mul([This] ulong2x3 a, ulong3 b)
         => fma(a.c2, b.zz, fma(a.c1, b.yy, a.c0 * b.xx)); // a.c0 * b.xx + a.c1 * b.yy + a.c2 * b.zz
 
     [MethodImpl(256 | 512)]
-    public static ulong3 mul(this ulong2 a, ulong2x3 b)
+    public static ulong3 mul([This] ulong2 a, ulong2x3 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2));
 }
 
@@ -2101,14 +2166,15 @@ public partial struct ulong2x4
         => new(b.c0 * a, b.c1 * a, b.c2 * a, b.c3 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ulong2 mul(this ulong2x4 a, ulong4 b)
+    public static ulong2 mul([This] ulong2x4 a, ulong4 b)
         => fma(a.c3, b.ww, fma(a.c2, b.zz, fma(a.c1, b.yy, a.c0 * b.xx))); // a.c0 * b.xx + a.c1 * b.yy + a.c2 * b.zz + a.c3 * b.ww
 
     [MethodImpl(256 | 512)]
-    public static ulong4 mul(this ulong2 a, ulong2x4 b)
+    public static ulong4 mul([This] ulong2 a, ulong2x4 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2), dot(a, b.c3));
 }
 
@@ -2133,14 +2199,15 @@ public partial struct ulong3x2
         => new(b.c0 * a, b.c1 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ulong3 mul(this ulong3x2 a, ulong2 b)
+    public static ulong3 mul([This] ulong3x2 a, ulong2 b)
         => fma(a.c1, b.yyy, a.c0 * b.xxx); // a.c0 * b.xxx + a.c1 * b.yyy
 
     [MethodImpl(256 | 512)]
-    public static ulong2 mul(this ulong3 a, ulong3x2 b)
+    public static ulong2 mul([This] ulong3 a, ulong3x2 b)
         => new(dot(a, b.c0), dot(a, b.c1));
 }
 
@@ -2165,14 +2232,15 @@ public partial struct ulong3x3
         => new(b.c0 * a, b.c1 * a, b.c2 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ulong3 mul(this ulong3x3 a, ulong3 b)
+    public static ulong3 mul([This] ulong3x3 a, ulong3 b)
         => fma(a.c2, b.zzz, fma(a.c1, b.yyy, a.c0 * b.xxx)); // a.c0 * b.xxx + a.c1 * b.yyy + a.c2 * b.zzz
 
     [MethodImpl(256 | 512)]
-    public static ulong3 mul(this ulong3 a, ulong3x3 b)
+    public static ulong3 mul([This] ulong3 a, ulong3x3 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2));
 }
 
@@ -2197,14 +2265,15 @@ public partial struct ulong3x4
         => new(b.c0 * a, b.c1 * a, b.c2 * a, b.c3 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ulong3 mul(this ulong3x4 a, ulong4 b)
+    public static ulong3 mul([This] ulong3x4 a, ulong4 b)
         => fma(a.c3, b.www, fma(a.c2, b.zzz, fma(a.c1, b.yyy, a.c0 * b.xxx))); // a.c0 * b.xxx + a.c1 * b.yyy + a.c2 * b.zzz + a.c3 * b.www
 
     [MethodImpl(256 | 512)]
-    public static ulong4 mul(this ulong3 a, ulong3x4 b)
+    public static ulong4 mul([This] ulong3 a, ulong3x4 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2), dot(a, b.c3));
 }
 
@@ -2229,14 +2298,15 @@ public partial struct ulong4x2
         => new(b.c0 * a, b.c1 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ulong4 mul(this ulong4x2 a, ulong2 b)
+    public static ulong4 mul([This] ulong4x2 a, ulong2 b)
         => fma(a.c1, b.yyyy, a.c0 * b.xxxx); // a.c0 * b.xxxx + a.c1 * b.yyyy
 
     [MethodImpl(256 | 512)]
-    public static ulong2 mul(this ulong4 a, ulong4x2 b)
+    public static ulong2 mul([This] ulong4 a, ulong4x2 b)
         => new(dot(a, b.c0), dot(a, b.c1));
 }
 
@@ -2261,14 +2331,15 @@ public partial struct ulong4x3
         => new(b.c0 * a, b.c1 * a, b.c2 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ulong4 mul(this ulong4x3 a, ulong3 b)
+    public static ulong4 mul([This] ulong4x3 a, ulong3 b)
         => fma(a.c2, b.zzzz, fma(a.c1, b.yyyy, a.c0 * b.xxxx)); // a.c0 * b.xxxx + a.c1 * b.yyyy + a.c2 * b.zzzz
 
     [MethodImpl(256 | 512)]
-    public static ulong3 mul(this ulong4 a, ulong4x3 b)
+    public static ulong3 mul([This] ulong4 a, ulong4x3 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2));
 }
 
@@ -2293,14 +2364,15 @@ public partial struct ulong4x4
         => new(b.c0 * a, b.c1 * a, b.c2 * a, b.c3 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static ulong4 mul(this ulong4x4 a, ulong4 b)
+    public static ulong4 mul([This] ulong4x4 a, ulong4 b)
         => fma(a.c3, b.wwww, fma(a.c2, b.zzzz, fma(a.c1, b.yyyy, a.c0 * b.xxxx))); // a.c0 * b.xxxx + a.c1 * b.yyyy + a.c2 * b.zzzz + a.c3 * b.wwww
 
     [MethodImpl(256 | 512)]
-    public static ulong4 mul(this ulong4 a, ulong4x4 b)
+    public static ulong4 mul([This] ulong4 a, ulong4x4 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2), dot(a, b.c3));
 }
 
@@ -2325,14 +2397,15 @@ public partial struct decimal2x2
         => new(b.c0 * a, b.c1 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static decimal2 mul(this decimal2x2 a, decimal2 b)
+    public static decimal2 mul([This] decimal2x2 a, decimal2 b)
         => fma(a.c1, b.yy, a.c0 * b.xx); // a.c0 * b.xx + a.c1 * b.yy
 
     [MethodImpl(256 | 512)]
-    public static decimal2 mul(this decimal2 a, decimal2x2 b)
+    public static decimal2 mul([This] decimal2 a, decimal2x2 b)
         => new(dot(a, b.c0), dot(a, b.c1));
 }
 
@@ -2357,14 +2430,15 @@ public partial struct decimal2x3
         => new(b.c0 * a, b.c1 * a, b.c2 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static decimal2 mul(this decimal2x3 a, decimal3 b)
+    public static decimal2 mul([This] decimal2x3 a, decimal3 b)
         => fma(a.c2, b.zz, fma(a.c1, b.yy, a.c0 * b.xx)); // a.c0 * b.xx + a.c1 * b.yy + a.c2 * b.zz
 
     [MethodImpl(256 | 512)]
-    public static decimal3 mul(this decimal2 a, decimal2x3 b)
+    public static decimal3 mul([This] decimal2 a, decimal2x3 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2));
 }
 
@@ -2389,14 +2463,15 @@ public partial struct decimal2x4
         => new(b.c0 * a, b.c1 * a, b.c2 * a, b.c3 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static decimal2 mul(this decimal2x4 a, decimal4 b)
+    public static decimal2 mul([This] decimal2x4 a, decimal4 b)
         => fma(a.c3, b.ww, fma(a.c2, b.zz, fma(a.c1, b.yy, a.c0 * b.xx))); // a.c0 * b.xx + a.c1 * b.yy + a.c2 * b.zz + a.c3 * b.ww
 
     [MethodImpl(256 | 512)]
-    public static decimal4 mul(this decimal2 a, decimal2x4 b)
+    public static decimal4 mul([This] decimal2 a, decimal2x4 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2), dot(a, b.c3));
 }
 
@@ -2421,14 +2496,15 @@ public partial struct decimal3x2
         => new(b.c0 * a, b.c1 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static decimal3 mul(this decimal3x2 a, decimal2 b)
+    public static decimal3 mul([This] decimal3x2 a, decimal2 b)
         => fma(a.c1, b.yyy, a.c0 * b.xxx); // a.c0 * b.xxx + a.c1 * b.yyy
 
     [MethodImpl(256 | 512)]
-    public static decimal2 mul(this decimal3 a, decimal3x2 b)
+    public static decimal2 mul([This] decimal3 a, decimal3x2 b)
         => new(dot(a, b.c0), dot(a, b.c1));
 }
 
@@ -2453,14 +2529,15 @@ public partial struct decimal3x3
         => new(b.c0 * a, b.c1 * a, b.c2 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static decimal3 mul(this decimal3x3 a, decimal3 b)
+    public static decimal3 mul([This] decimal3x3 a, decimal3 b)
         => fma(a.c2, b.zzz, fma(a.c1, b.yyy, a.c0 * b.xxx)); // a.c0 * b.xxx + a.c1 * b.yyy + a.c2 * b.zzz
 
     [MethodImpl(256 | 512)]
-    public static decimal3 mul(this decimal3 a, decimal3x3 b)
+    public static decimal3 mul([This] decimal3 a, decimal3x3 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2));
 }
 
@@ -2485,14 +2562,15 @@ public partial struct decimal3x4
         => new(b.c0 * a, b.c1 * a, b.c2 * a, b.c3 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static decimal3 mul(this decimal3x4 a, decimal4 b)
+    public static decimal3 mul([This] decimal3x4 a, decimal4 b)
         => fma(a.c3, b.www, fma(a.c2, b.zzz, fma(a.c1, b.yyy, a.c0 * b.xxx))); // a.c0 * b.xxx + a.c1 * b.yyy + a.c2 * b.zzz + a.c3 * b.www
 
     [MethodImpl(256 | 512)]
-    public static decimal4 mul(this decimal3 a, decimal3x4 b)
+    public static decimal4 mul([This] decimal3 a, decimal3x4 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2), dot(a, b.c3));
 }
 
@@ -2517,14 +2595,15 @@ public partial struct decimal4x2
         => new(b.c0 * a, b.c1 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static decimal4 mul(this decimal4x2 a, decimal2 b)
+    public static decimal4 mul([This] decimal4x2 a, decimal2 b)
         => fma(a.c1, b.yyyy, a.c0 * b.xxxx); // a.c0 * b.xxxx + a.c1 * b.yyyy
 
     [MethodImpl(256 | 512)]
-    public static decimal2 mul(this decimal4 a, decimal4x2 b)
+    public static decimal2 mul([This] decimal4 a, decimal4x2 b)
         => new(dot(a, b.c0), dot(a, b.c1));
 }
 
@@ -2549,14 +2628,15 @@ public partial struct decimal4x3
         => new(b.c0 * a, b.c1 * a, b.c2 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static decimal4 mul(this decimal4x3 a, decimal3 b)
+    public static decimal4 mul([This] decimal4x3 a, decimal3 b)
         => fma(a.c2, b.zzzz, fma(a.c1, b.yyyy, a.c0 * b.xxxx)); // a.c0 * b.xxxx + a.c1 * b.yyyy + a.c2 * b.zzzz
 
     [MethodImpl(256 | 512)]
-    public static decimal3 mul(this decimal4 a, decimal4x3 b)
+    public static decimal3 mul([This] decimal4 a, decimal4x3 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2));
 }
 
@@ -2581,14 +2661,15 @@ public partial struct decimal4x4
         => new(b.c0 * a, b.c1 * a, b.c2 * a, b.c3 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static decimal4 mul(this decimal4x4 a, decimal4 b)
+    public static decimal4 mul([This] decimal4x4 a, decimal4 b)
         => fma(a.c3, b.wwww, fma(a.c2, b.zzzz, fma(a.c1, b.yyyy, a.c0 * b.xxxx))); // a.c0 * b.xxxx + a.c1 * b.yyyy + a.c2 * b.zzzz + a.c3 * b.wwww
 
     [MethodImpl(256 | 512)]
-    public static decimal4 mul(this decimal4 a, decimal4x4 b)
+    public static decimal4 mul([This] decimal4 a, decimal4x4 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2), dot(a, b.c3));
 }
 
@@ -2613,14 +2694,15 @@ public partial struct half2x2
         => new(b.c0 * a, b.c1 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half2 mul(this half2x2 a, half2 b)
+    public static half2 mul([This] half2x2 a, half2 b)
         => fma(a.c1, b.yy, a.c0 * b.xx); // a.c0 * b.xx + a.c1 * b.yy
 
     [MethodImpl(256 | 512)]
-    public static half2 mul(this half2 a, half2x2 b)
+    public static half2 mul([This] half2 a, half2x2 b)
         => new(dot(a, b.c0), dot(a, b.c1));
 }
 
@@ -2645,14 +2727,15 @@ public partial struct half2x3
         => new(b.c0 * a, b.c1 * a, b.c2 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half2 mul(this half2x3 a, half3 b)
+    public static half2 mul([This] half2x3 a, half3 b)
         => fma(a.c2, b.zz, fma(a.c1, b.yy, a.c0 * b.xx)); // a.c0 * b.xx + a.c1 * b.yy + a.c2 * b.zz
 
     [MethodImpl(256 | 512)]
-    public static half3 mul(this half2 a, half2x3 b)
+    public static half3 mul([This] half2 a, half2x3 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2));
 }
 
@@ -2677,14 +2760,15 @@ public partial struct half2x4
         => new(b.c0 * a, b.c1 * a, b.c2 * a, b.c3 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half2 mul(this half2x4 a, half4 b)
+    public static half2 mul([This] half2x4 a, half4 b)
         => fma(a.c3, b.ww, fma(a.c2, b.zz, fma(a.c1, b.yy, a.c0 * b.xx))); // a.c0 * b.xx + a.c1 * b.yy + a.c2 * b.zz + a.c3 * b.ww
 
     [MethodImpl(256 | 512)]
-    public static half4 mul(this half2 a, half2x4 b)
+    public static half4 mul([This] half2 a, half2x4 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2), dot(a, b.c3));
 }
 
@@ -2709,14 +2793,15 @@ public partial struct half3x2
         => new(b.c0 * a, b.c1 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half3 mul(this half3x2 a, half2 b)
+    public static half3 mul([This] half3x2 a, half2 b)
         => fma(a.c1, b.yyy, a.c0 * b.xxx); // a.c0 * b.xxx + a.c1 * b.yyy
 
     [MethodImpl(256 | 512)]
-    public static half2 mul(this half3 a, half3x2 b)
+    public static half2 mul([This] half3 a, half3x2 b)
         => new(dot(a, b.c0), dot(a, b.c1));
 }
 
@@ -2741,14 +2826,15 @@ public partial struct half3x3
         => new(b.c0 * a, b.c1 * a, b.c2 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half3 mul(this half3x3 a, half3 b)
+    public static half3 mul([This] half3x3 a, half3 b)
         => fma(a.c2, b.zzz, fma(a.c1, b.yyy, a.c0 * b.xxx)); // a.c0 * b.xxx + a.c1 * b.yyy + a.c2 * b.zzz
 
     [MethodImpl(256 | 512)]
-    public static half3 mul(this half3 a, half3x3 b)
+    public static half3 mul([This] half3 a, half3x3 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2));
 }
 
@@ -2773,14 +2859,15 @@ public partial struct half3x4
         => new(b.c0 * a, b.c1 * a, b.c2 * a, b.c3 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half3 mul(this half3x4 a, half4 b)
+    public static half3 mul([This] half3x4 a, half4 b)
         => fma(a.c3, b.www, fma(a.c2, b.zzz, fma(a.c1, b.yyy, a.c0 * b.xxx))); // a.c0 * b.xxx + a.c1 * b.yyy + a.c2 * b.zzz + a.c3 * b.www
 
     [MethodImpl(256 | 512)]
-    public static half4 mul(this half3 a, half3x4 b)
+    public static half4 mul([This] half3 a, half3x4 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2), dot(a, b.c3));
 }
 
@@ -2805,14 +2892,15 @@ public partial struct half4x2
         => new(b.c0 * a, b.c1 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half4 mul(this half4x2 a, half2 b)
+    public static half4 mul([This] half4x2 a, half2 b)
         => fma(a.c1, b.yyyy, a.c0 * b.xxxx); // a.c0 * b.xxxx + a.c1 * b.yyyy
 
     [MethodImpl(256 | 512)]
-    public static half2 mul(this half4 a, half4x2 b)
+    public static half2 mul([This] half4 a, half4x2 b)
         => new(dot(a, b.c0), dot(a, b.c1));
 }
 
@@ -2837,14 +2925,15 @@ public partial struct half4x3
         => new(b.c0 * a, b.c1 * a, b.c2 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half4 mul(this half4x3 a, half3 b)
+    public static half4 mul([This] half4x3 a, half3 b)
         => fma(a.c2, b.zzzz, fma(a.c1, b.yyyy, a.c0 * b.xxxx)); // a.c0 * b.xxxx + a.c1 * b.yyyy + a.c2 * b.zzzz
 
     [MethodImpl(256 | 512)]
-    public static half3 mul(this half4 a, half4x3 b)
+    public static half3 mul([This] half4 a, half4x3 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2));
 }
 
@@ -2869,14 +2958,15 @@ public partial struct half4x4
         => new(b.c0 * a, b.c1 * a, b.c2 * a, b.c3 * a);
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half4 mul(this half4x4 a, half4 b)
+    public static half4 mul([This] half4x4 a, half4 b)
         => fma(a.c3, b.wwww, fma(a.c2, b.zzzz, fma(a.c1, b.yyyy, a.c0 * b.xxxx))); // a.c0 * b.xxxx + a.c1 * b.yyyy + a.c2 * b.zzzz + a.c3 * b.wwww
 
     [MethodImpl(256 | 512)]
-    public static half4 mul(this half4 a, half4x4 b)
+    public static half4 mul([This] half4 a, half4x4 b)
         => new(dot(a, b.c0), dot(a, b.c1), dot(a, b.c2), dot(a, b.c3));
 }
 

@@ -1,5 +1,4 @@
-﻿#if NET8_0_OR_GREATER
-using System.Runtime.Intrinsics.Arm;
+﻿using System.Runtime.Intrinsics.Arm;
 using System.Runtime.Intrinsics.Wasm;
 using System.Runtime.Intrinsics.X86;
 using X86 = System.Runtime.Intrinsics.X86;
@@ -3247,5 +3246,3 @@ public static partial class simd
 
     #endregion
 }
-
-#endif

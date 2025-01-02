@@ -19,6 +19,6 @@
         /// Returns a point at distance units along the ray.
         /// </summary>
         [MethodImpl(256 | 512)]
-        public float3 point_at(float distance) => direction.fma(distance, origin);
+        public readonly float3 point_at(float distance) => direction.fma(distance, origin);
     }
 }

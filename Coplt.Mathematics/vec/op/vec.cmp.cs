@@ -5,20 +5,17 @@ namespace Coplt.Mathematics;
 #region float2
 
 public partial struct float2 : IComparable<float2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<float2, float2, bool>
     , IComparisonOperators<float2, float2, b32v2>
-    #endif
 {
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is float2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(float2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<float2, float2, bool>.operator <(float2 left, float2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -30,87 +27,116 @@ public partial struct float2 : IComparable<float2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<float2, float2, bool>.operator >=(float2 left, float2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
-    public int CompareTo(float2 other)
+    public readonly int CompareTo(float2 other)
     {
-        if (Vector64.LessThanAny(vector, other.vector)) return -1;
-        if (Vector64.GreaterThanAny(vector, other.vector)) return 1;
-        return 0;
-    }
-    
-    [MethodImpl(256 | 512)]
-    public static b32v2 operator <(float2 left, float2 right) => 
-        new(Vector64.LessThan(left.vector, right.vector).AsUInt32());
-    [MethodImpl(256 | 512)]
-    public static b32v2 operator >(float2 left, float2 right) => 
-        new(Vector64.GreaterThan(left.vector, right.vector).AsUInt32());
-    [MethodImpl(256 | 512)]
-    public static b32v2 operator <=(float2 left, float2 right) => 
-        new(Vector64.LessThanOrEqual(left.vector, right.vector).AsUInt32());
-    [MethodImpl(256 | 512)]
-    public static b32v2 operator >=(float2 left, float2 right) => 
-        new(Vector64.GreaterThanOrEqual(left.vector, right.vector).AsUInt32());
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAll(float2 other) => (this < other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(float2 other) => (this > other).all();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(float2 other) => (this <= other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(float2 other) => (this >= other).all();
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAny(float2 other) => (this < other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(float2 other) => (this > other).any();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(float2 other) => (this <= other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(float2 other) => (this >= other).any();
-    #else // NET8_0_OR_GREATER
-    [MethodImpl(256 | 512)]
-    public int CompareTo(float2 other)
-    {
+        if (Vector64.IsHardwareAccelerated)
+        {
+            if (Vector64.LessThanAny(vector, other.vector)) return -1;
+            if (Vector64.GreaterThanAny(vector, other.vector)) return 1;
+            return 0;
+        }
         if (x < other.x || y < other.y) return -1;
         if (x > other.x || y > other.y) return 1;
         return 0;
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2 operator <(float2 left, float2 right) =>
-        new(left.x < right.x, left.y < right.y);
-    [MethodImpl(256 | 512)]
-    public static b32v2 operator >(float2 left, float2 right) =>
-        new(left.x > right.x, left.y > right.y);
-    [MethodImpl(256 | 512)]
-    public static b32v2 operator <=(float2 left, float2 right) =>
-        new(left.x <= right.x, left.y <= right.y);
-    [MethodImpl(256 | 512)]
-    public static b32v2 operator >=(float2 left, float2 right) =>
-        new(left.x >= right.x, left.y >= right.y);
+    public static b32v2 operator <(float2 left, float2 right)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return new(Vector64.LessThan(left.vector, right.vector).AsUInt32());
+        return new(left.x < right.x, left.y < right.y);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(float2 other) => x < other.x && y < other.y;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(float2 other) => x > other.x && y > other.y;
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(float2 other) => x <= other.x && y <= other.y;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(float2 other) => x >= other.x && y >= other.y;
+    public static b32v2 operator >(float2 left, float2 right)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return new(Vector64.GreaterThan(left.vector, right.vector).AsUInt32());
+        return new(left.x > right.x, left.y > right.y);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(float2 other) => x < other.x || y < other.y;
+    public static b32v2 operator <=(float2 left, float2 right)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return new(Vector64.LessThanOrEqual(left.vector, right.vector).AsUInt32());
+        return new(left.x <= right.x, left.y <= right.y);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(float2 other) => x > other.x || y > other.y;
+    public static b32v2 operator >=(float2 left, float2 right)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return new(Vector64.GreaterThanOrEqual(left.vector, right.vector).AsUInt32());
+        return new(left.x >= right.x, left.y >= right.y);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(float2 other) => x <= other.x || y <= other.y;
+    public readonly bool LessThanAll(float2 other)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.LessThanAll(vector, other.vector);
+        return x < other.x && y < other.y;
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(float2 other) => x >= other.x || y >= other.y;
-    #endif // NET8_0_OR_GREATER
+    public readonly bool GreaterThanAll(float2 other)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.GreaterThanAll(vector, other.vector);
+        return x > other.x && y > other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAll(float2 other)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.LessThanOrEqualAll(vector, other.vector);
+        return x <= other.x && y <= other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAll(float2 other)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.GreaterThanOrEqualAll(vector, other.vector);
+        return x >= other.x && y >= other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanAny(float2 other)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.LessThanAll(vector, other.vector);
+        return x < other.x || y < other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanAny(float2 other)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.GreaterThanAny(vector, other.vector);
+        return x > other.x || y > other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAny(float2 other)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.LessThanOrEqualAny(vector, other.vector);
+        return x <= other.x || y <= other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAny(float2 other)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.GreaterThanOrEqualAny(vector, other.vector);
+        return x >= other.x || y >= other.y;
+    }
 
 }
 
@@ -119,20 +145,17 @@ public partial struct float2 : IComparable<float2>, IComparable
 #region float3
 
 public partial struct float3 : IComparable<float3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<float3, float3, bool>
     , IComparisonOperators<float3, float3, b32v3>
-    #endif
 {
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is float3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(float3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<float3, float3, bool>.operator <(float3 left, float3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -144,87 +167,116 @@ public partial struct float3 : IComparable<float3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<float3, float3, bool>.operator >=(float3 left, float3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
-    public int CompareTo(float3 other)
+    public readonly int CompareTo(float3 other)
     {
-        if (Vector128.LessThanAny(vector, other.vector)) return -1;
-        if (Vector128.GreaterThanAny(vector, other.vector)) return 1;
-        return 0;
-    }
-    
-    [MethodImpl(256 | 512)]
-    public static b32v3 operator <(float3 left, float3 right) => 
-        new(Vector128.LessThan(left.vector, right.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-    [MethodImpl(256 | 512)]
-    public static b32v3 operator >(float3 left, float3 right) => 
-        new(Vector128.GreaterThan(left.vector, right.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-    [MethodImpl(256 | 512)]
-    public static b32v3 operator <=(float3 left, float3 right) => 
-        new(Vector128.LessThanOrEqual(left.vector, right.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-    [MethodImpl(256 | 512)]
-    public static b32v3 operator >=(float3 left, float3 right) => 
-        new(Vector128.GreaterThanOrEqual(left.vector, right.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAll(float3 other) => (this < other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(float3 other) => (this > other).all();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(float3 other) => (this <= other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(float3 other) => (this >= other).all();
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAny(float3 other) => (this < other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(float3 other) => (this > other).any();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(float3 other) => (this <= other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(float3 other) => (this >= other).any();
-    #else // NET8_0_OR_GREATER
-    [MethodImpl(256 | 512)]
-    public int CompareTo(float3 other)
-    {
+        if (Vector128.IsHardwareAccelerated)
+        {
+            if (Vector128.LessThanAny(vector, other.vector)) return -1;
+            if (Vector128.GreaterThanAny(vector, other.vector)) return 1;
+            return 0;
+        }
         if (x < other.x || y < other.y || z < other.z) return -1;
         if (x > other.x || y > other.y || z > other.z) return 1;
         return 0;
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3 operator <(float3 left, float3 right) =>
-        new(left.x < right.x, left.y < right.y, left.z < right.z);
-    [MethodImpl(256 | 512)]
-    public static b32v3 operator >(float3 left, float3 right) =>
-        new(left.x > right.x, left.y > right.y, left.z > right.z);
-    [MethodImpl(256 | 512)]
-    public static b32v3 operator <=(float3 left, float3 right) =>
-        new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
-    [MethodImpl(256 | 512)]
-    public static b32v3 operator >=(float3 left, float3 right) =>
-        new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
+    public static b32v3 operator <(float3 left, float3 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.LessThan(left.vector, right.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        return new(left.x < right.x, left.y < right.y, left.z < right.z);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(float3 other) => x < other.x && y < other.y && z < other.z;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(float3 other) => x > other.x && y > other.y && z > other.z;
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(float3 other) => x <= other.x && y <= other.y && z <= other.z;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(float3 other) => x >= other.x && y >= other.y && z >= other.z;
+    public static b32v3 operator >(float3 left, float3 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.GreaterThan(left.vector, right.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        return new(left.x > right.x, left.y > right.y, left.z > right.z);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(float3 other) => x < other.x || y < other.y || z < other.z;
+    public static b32v3 operator <=(float3 left, float3 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.LessThanOrEqual(left.vector, right.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(float3 other) => x > other.x || y > other.y || z > other.z;
+    public static b32v3 operator >=(float3 left, float3 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.GreaterThanOrEqual(left.vector, right.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(float3 other) => x <= other.x || y <= other.y || z <= other.z;
+    public readonly bool LessThanAll(float3 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanAll(vector, other.vector);
+        return x < other.x && y < other.y && z < other.z;
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(float3 other) => x >= other.x || y >= other.y || z >= other.z;
-    #endif // NET8_0_OR_GREATER
+    public readonly bool GreaterThanAll(float3 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanAll(vector, other.vector);
+        return x > other.x && y > other.y && z > other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAll(float3 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanOrEqualAll(vector, other.vector);
+        return x <= other.x && y <= other.y && z <= other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAll(float3 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanOrEqualAll(vector, other.vector);
+        return x >= other.x && y >= other.y && z >= other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanAny(float3 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanAll(vector, other.vector);
+        return x < other.x || y < other.y || z < other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanAny(float3 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanAny(vector, other.vector);
+        return x > other.x || y > other.y || z > other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAny(float3 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanOrEqualAny(vector, other.vector);
+        return x <= other.x || y <= other.y || z <= other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAny(float3 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanOrEqualAny(vector, other.vector);
+        return x >= other.x || y >= other.y || z >= other.z;
+    }
 
 }
 
@@ -233,20 +285,17 @@ public partial struct float3 : IComparable<float3>, IComparable
 #region float4
 
 public partial struct float4 : IComparable<float4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<float4, float4, bool>
     , IComparisonOperators<float4, float4, b32v4>
-    #endif
 {
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is float4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(float4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<float4, float4, bool>.operator <(float4 left, float4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -258,87 +307,116 @@ public partial struct float4 : IComparable<float4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<float4, float4, bool>.operator >=(float4 left, float4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
-    public int CompareTo(float4 other)
+    public readonly int CompareTo(float4 other)
     {
-        if (Vector128.LessThanAny(vector, other.vector)) return -1;
-        if (Vector128.GreaterThanAny(vector, other.vector)) return 1;
-        return 0;
-    }
-    
-    [MethodImpl(256 | 512)]
-    public static b32v4 operator <(float4 left, float4 right) => 
-        new(Vector128.LessThan(left.vector, right.vector).AsUInt32());
-    [MethodImpl(256 | 512)]
-    public static b32v4 operator >(float4 left, float4 right) => 
-        new(Vector128.GreaterThan(left.vector, right.vector).AsUInt32());
-    [MethodImpl(256 | 512)]
-    public static b32v4 operator <=(float4 left, float4 right) => 
-        new(Vector128.LessThanOrEqual(left.vector, right.vector).AsUInt32());
-    [MethodImpl(256 | 512)]
-    public static b32v4 operator >=(float4 left, float4 right) => 
-        new(Vector128.GreaterThanOrEqual(left.vector, right.vector).AsUInt32());
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAll(float4 other) => (this < other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(float4 other) => (this > other).all();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(float4 other) => (this <= other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(float4 other) => (this >= other).all();
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAny(float4 other) => (this < other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(float4 other) => (this > other).any();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(float4 other) => (this <= other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(float4 other) => (this >= other).any();
-    #else // NET8_0_OR_GREATER
-    [MethodImpl(256 | 512)]
-    public int CompareTo(float4 other)
-    {
+        if (Vector128.IsHardwareAccelerated)
+        {
+            if (Vector128.LessThanAny(vector, other.vector)) return -1;
+            if (Vector128.GreaterThanAny(vector, other.vector)) return 1;
+            return 0;
+        }
         if (x < other.x || y < other.y || z < other.z || w < other.w) return -1;
         if (x > other.x || y > other.y || z > other.z || w > other.w) return 1;
         return 0;
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4 operator <(float4 left, float4 right) =>
-        new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
-    [MethodImpl(256 | 512)]
-    public static b32v4 operator >(float4 left, float4 right) =>
-        new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
-    [MethodImpl(256 | 512)]
-    public static b32v4 operator <=(float4 left, float4 right) =>
-        new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
-    [MethodImpl(256 | 512)]
-    public static b32v4 operator >=(float4 left, float4 right) =>
-        new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
+    public static b32v4 operator <(float4 left, float4 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.LessThan(left.vector, right.vector).AsUInt32());
+        return new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(float4 other) => x < other.x && y < other.y && z < other.z && w < other.w;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(float4 other) => x > other.x && y > other.y && z > other.z && w > other.w;
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(float4 other) => x <= other.x && y <= other.y && z <= other.z && w <= other.w;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(float4 other) => x >= other.x && y >= other.y && z >= other.z && w >= other.w;
+    public static b32v4 operator >(float4 left, float4 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.GreaterThan(left.vector, right.vector).AsUInt32());
+        return new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(float4 other) => x < other.x || y < other.y || z < other.z || w < other.w;
+    public static b32v4 operator <=(float4 left, float4 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.LessThanOrEqual(left.vector, right.vector).AsUInt32());
+        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(float4 other) => x > other.x || y > other.y || z > other.z || w > other.w;
+    public static b32v4 operator >=(float4 left, float4 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.GreaterThanOrEqual(left.vector, right.vector).AsUInt32());
+        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(float4 other) => x <= other.x || y <= other.y || z <= other.z || w <= other.w;
+    public readonly bool LessThanAll(float4 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanAll(vector, other.vector);
+        return x < other.x && y < other.y && z < other.z && w < other.w;
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(float4 other) => x >= other.x || y >= other.y || z >= other.z || w >= other.w;
-    #endif // NET8_0_OR_GREATER
+    public readonly bool GreaterThanAll(float4 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanAll(vector, other.vector);
+        return x > other.x && y > other.y && z > other.z && w > other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAll(float4 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanOrEqualAll(vector, other.vector);
+        return x <= other.x && y <= other.y && z <= other.z && w <= other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAll(float4 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanOrEqualAll(vector, other.vector);
+        return x >= other.x && y >= other.y && z >= other.z && w >= other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanAny(float4 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanAll(vector, other.vector);
+        return x < other.x || y < other.y || z < other.z || w < other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanAny(float4 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanAny(vector, other.vector);
+        return x > other.x || y > other.y || z > other.z || w > other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAny(float4 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanOrEqualAny(vector, other.vector);
+        return x <= other.x || y <= other.y || z <= other.z || w <= other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAny(float4 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanOrEqualAny(vector, other.vector);
+        return x >= other.x || y >= other.y || z >= other.z || w >= other.w;
+    }
 
 }
 
@@ -347,20 +425,17 @@ public partial struct float4 : IComparable<float4>, IComparable
 #region double2
 
 public partial struct double2 : IComparable<double2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<double2, double2, bool>
     , IComparisonOperators<double2, double2, b64v2>
-    #endif
 {
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is double2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(double2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<double2, double2, bool>.operator <(double2 left, double2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -372,87 +447,116 @@ public partial struct double2 : IComparable<double2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<double2, double2, bool>.operator >=(double2 left, double2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
-    public int CompareTo(double2 other)
+    public readonly int CompareTo(double2 other)
     {
-        if (Vector128.LessThanAny(vector, other.vector)) return -1;
-        if (Vector128.GreaterThanAny(vector, other.vector)) return 1;
-        return 0;
-    }
-    
-    [MethodImpl(256 | 512)]
-    public static b64v2 operator <(double2 left, double2 right) => 
-        new(Vector128.LessThan(left.vector, right.vector).AsUInt64());
-    [MethodImpl(256 | 512)]
-    public static b64v2 operator >(double2 left, double2 right) => 
-        new(Vector128.GreaterThan(left.vector, right.vector).AsUInt64());
-    [MethodImpl(256 | 512)]
-    public static b64v2 operator <=(double2 left, double2 right) => 
-        new(Vector128.LessThanOrEqual(left.vector, right.vector).AsUInt64());
-    [MethodImpl(256 | 512)]
-    public static b64v2 operator >=(double2 left, double2 right) => 
-        new(Vector128.GreaterThanOrEqual(left.vector, right.vector).AsUInt64());
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAll(double2 other) => (this < other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(double2 other) => (this > other).all();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(double2 other) => (this <= other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(double2 other) => (this >= other).all();
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAny(double2 other) => (this < other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(double2 other) => (this > other).any();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(double2 other) => (this <= other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(double2 other) => (this >= other).any();
-    #else // NET8_0_OR_GREATER
-    [MethodImpl(256 | 512)]
-    public int CompareTo(double2 other)
-    {
+        if (Vector128.IsHardwareAccelerated)
+        {
+            if (Vector128.LessThanAny(vector, other.vector)) return -1;
+            if (Vector128.GreaterThanAny(vector, other.vector)) return 1;
+            return 0;
+        }
         if (x < other.x || y < other.y) return -1;
         if (x > other.x || y > other.y) return 1;
         return 0;
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2 operator <(double2 left, double2 right) =>
-        new(left.x < right.x, left.y < right.y);
-    [MethodImpl(256 | 512)]
-    public static b64v2 operator >(double2 left, double2 right) =>
-        new(left.x > right.x, left.y > right.y);
-    [MethodImpl(256 | 512)]
-    public static b64v2 operator <=(double2 left, double2 right) =>
-        new(left.x <= right.x, left.y <= right.y);
-    [MethodImpl(256 | 512)]
-    public static b64v2 operator >=(double2 left, double2 right) =>
-        new(left.x >= right.x, left.y >= right.y);
+    public static b64v2 operator <(double2 left, double2 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.LessThan(left.vector, right.vector).AsUInt64());
+        return new(left.x < right.x, left.y < right.y);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(double2 other) => x < other.x && y < other.y;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(double2 other) => x > other.x && y > other.y;
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(double2 other) => x <= other.x && y <= other.y;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(double2 other) => x >= other.x && y >= other.y;
+    public static b64v2 operator >(double2 left, double2 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.GreaterThan(left.vector, right.vector).AsUInt64());
+        return new(left.x > right.x, left.y > right.y);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(double2 other) => x < other.x || y < other.y;
+    public static b64v2 operator <=(double2 left, double2 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.LessThanOrEqual(left.vector, right.vector).AsUInt64());
+        return new(left.x <= right.x, left.y <= right.y);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(double2 other) => x > other.x || y > other.y;
+    public static b64v2 operator >=(double2 left, double2 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.GreaterThanOrEqual(left.vector, right.vector).AsUInt64());
+        return new(left.x >= right.x, left.y >= right.y);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(double2 other) => x <= other.x || y <= other.y;
+    public readonly bool LessThanAll(double2 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanAll(vector, other.vector);
+        return x < other.x && y < other.y;
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(double2 other) => x >= other.x || y >= other.y;
-    #endif // NET8_0_OR_GREATER
+    public readonly bool GreaterThanAll(double2 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanAll(vector, other.vector);
+        return x > other.x && y > other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAll(double2 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanOrEqualAll(vector, other.vector);
+        return x <= other.x && y <= other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAll(double2 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanOrEqualAll(vector, other.vector);
+        return x >= other.x && y >= other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanAny(double2 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanAll(vector, other.vector);
+        return x < other.x || y < other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanAny(double2 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanAny(vector, other.vector);
+        return x > other.x || y > other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAny(double2 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanOrEqualAny(vector, other.vector);
+        return x <= other.x || y <= other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAny(double2 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanOrEqualAny(vector, other.vector);
+        return x >= other.x || y >= other.y;
+    }
 
 }
 
@@ -461,20 +565,17 @@ public partial struct double2 : IComparable<double2>, IComparable
 #region double3
 
 public partial struct double3 : IComparable<double3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<double3, double3, bool>
     , IComparisonOperators<double3, double3, b64v3>
-    #endif
 {
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is double3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(double3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<double3, double3, bool>.operator <(double3 left, double3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -486,87 +587,116 @@ public partial struct double3 : IComparable<double3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<double3, double3, bool>.operator >=(double3 left, double3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
-    public int CompareTo(double3 other)
+    public readonly int CompareTo(double3 other)
     {
-        if (Vector256.LessThanAny(vector, other.vector)) return -1;
-        if (Vector256.GreaterThanAny(vector, other.vector)) return 1;
-        return 0;
-    }
-    
-    [MethodImpl(256 | 512)]
-    public static b64v3 operator <(double3 left, double3 right) => 
-        new(Vector256.LessThan(left.vector, right.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-    [MethodImpl(256 | 512)]
-    public static b64v3 operator >(double3 left, double3 right) => 
-        new(Vector256.GreaterThan(left.vector, right.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-    [MethodImpl(256 | 512)]
-    public static b64v3 operator <=(double3 left, double3 right) => 
-        new(Vector256.LessThanOrEqual(left.vector, right.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-    [MethodImpl(256 | 512)]
-    public static b64v3 operator >=(double3 left, double3 right) => 
-        new(Vector256.GreaterThanOrEqual(left.vector, right.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAll(double3 other) => (this < other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(double3 other) => (this > other).all();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(double3 other) => (this <= other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(double3 other) => (this >= other).all();
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAny(double3 other) => (this < other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(double3 other) => (this > other).any();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(double3 other) => (this <= other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(double3 other) => (this >= other).any();
-    #else // NET8_0_OR_GREATER
-    [MethodImpl(256 | 512)]
-    public int CompareTo(double3 other)
-    {
+        if (Vector256.IsHardwareAccelerated)
+        {
+            if (Vector256.LessThanAny(vector, other.vector)) return -1;
+            if (Vector256.GreaterThanAny(vector, other.vector)) return 1;
+            return 0;
+        }
         if (x < other.x || y < other.y || z < other.z) return -1;
         if (x > other.x || y > other.y || z > other.z) return 1;
         return 0;
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v3 operator <(double3 left, double3 right) =>
-        new(left.x < right.x, left.y < right.y, left.z < right.z);
-    [MethodImpl(256 | 512)]
-    public static b64v3 operator >(double3 left, double3 right) =>
-        new(left.x > right.x, left.y > right.y, left.z > right.z);
-    [MethodImpl(256 | 512)]
-    public static b64v3 operator <=(double3 left, double3 right) =>
-        new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
-    [MethodImpl(256 | 512)]
-    public static b64v3 operator >=(double3 left, double3 right) =>
-        new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
+    public static b64v3 operator <(double3 left, double3 right)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.LessThan(left.vector, right.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        return new(left.x < right.x, left.y < right.y, left.z < right.z);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(double3 other) => x < other.x && y < other.y && z < other.z;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(double3 other) => x > other.x && y > other.y && z > other.z;
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(double3 other) => x <= other.x && y <= other.y && z <= other.z;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(double3 other) => x >= other.x && y >= other.y && z >= other.z;
+    public static b64v3 operator >(double3 left, double3 right)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.GreaterThan(left.vector, right.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        return new(left.x > right.x, left.y > right.y, left.z > right.z);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(double3 other) => x < other.x || y < other.y || z < other.z;
+    public static b64v3 operator <=(double3 left, double3 right)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.LessThanOrEqual(left.vector, right.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(double3 other) => x > other.x || y > other.y || z > other.z;
+    public static b64v3 operator >=(double3 left, double3 right)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.GreaterThanOrEqual(left.vector, right.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(double3 other) => x <= other.x || y <= other.y || z <= other.z;
+    public readonly bool LessThanAll(double3 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.LessThanAll(vector, other.vector);
+        return x < other.x && y < other.y && z < other.z;
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(double3 other) => x >= other.x || y >= other.y || z >= other.z;
-    #endif // NET8_0_OR_GREATER
+    public readonly bool GreaterThanAll(double3 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.GreaterThanAll(vector, other.vector);
+        return x > other.x && y > other.y && z > other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAll(double3 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.LessThanOrEqualAll(vector, other.vector);
+        return x <= other.x && y <= other.y && z <= other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAll(double3 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.GreaterThanOrEqualAll(vector, other.vector);
+        return x >= other.x && y >= other.y && z >= other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanAny(double3 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.LessThanAll(vector, other.vector);
+        return x < other.x || y < other.y || z < other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanAny(double3 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.GreaterThanAny(vector, other.vector);
+        return x > other.x || y > other.y || z > other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAny(double3 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.LessThanOrEqualAny(vector, other.vector);
+        return x <= other.x || y <= other.y || z <= other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAny(double3 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.GreaterThanOrEqualAny(vector, other.vector);
+        return x >= other.x || y >= other.y || z >= other.z;
+    }
 
 }
 
@@ -575,20 +705,17 @@ public partial struct double3 : IComparable<double3>, IComparable
 #region double4
 
 public partial struct double4 : IComparable<double4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<double4, double4, bool>
     , IComparisonOperators<double4, double4, b64v4>
-    #endif
 {
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is double4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(double4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<double4, double4, bool>.operator <(double4 left, double4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -600,87 +727,116 @@ public partial struct double4 : IComparable<double4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<double4, double4, bool>.operator >=(double4 left, double4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
-    public int CompareTo(double4 other)
+    public readonly int CompareTo(double4 other)
     {
-        if (Vector256.LessThanAny(vector, other.vector)) return -1;
-        if (Vector256.GreaterThanAny(vector, other.vector)) return 1;
-        return 0;
-    }
-    
-    [MethodImpl(256 | 512)]
-    public static b64v4 operator <(double4 left, double4 right) => 
-        new(Vector256.LessThan(left.vector, right.vector).AsUInt64());
-    [MethodImpl(256 | 512)]
-    public static b64v4 operator >(double4 left, double4 right) => 
-        new(Vector256.GreaterThan(left.vector, right.vector).AsUInt64());
-    [MethodImpl(256 | 512)]
-    public static b64v4 operator <=(double4 left, double4 right) => 
-        new(Vector256.LessThanOrEqual(left.vector, right.vector).AsUInt64());
-    [MethodImpl(256 | 512)]
-    public static b64v4 operator >=(double4 left, double4 right) => 
-        new(Vector256.GreaterThanOrEqual(left.vector, right.vector).AsUInt64());
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAll(double4 other) => (this < other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(double4 other) => (this > other).all();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(double4 other) => (this <= other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(double4 other) => (this >= other).all();
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAny(double4 other) => (this < other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(double4 other) => (this > other).any();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(double4 other) => (this <= other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(double4 other) => (this >= other).any();
-    #else // NET8_0_OR_GREATER
-    [MethodImpl(256 | 512)]
-    public int CompareTo(double4 other)
-    {
+        if (Vector256.IsHardwareAccelerated)
+        {
+            if (Vector256.LessThanAny(vector, other.vector)) return -1;
+            if (Vector256.GreaterThanAny(vector, other.vector)) return 1;
+            return 0;
+        }
         if (x < other.x || y < other.y || z < other.z || w < other.w) return -1;
         if (x > other.x || y > other.y || z > other.z || w > other.w) return 1;
         return 0;
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v4 operator <(double4 left, double4 right) =>
-        new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
-    [MethodImpl(256 | 512)]
-    public static b64v4 operator >(double4 left, double4 right) =>
-        new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
-    [MethodImpl(256 | 512)]
-    public static b64v4 operator <=(double4 left, double4 right) =>
-        new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
-    [MethodImpl(256 | 512)]
-    public static b64v4 operator >=(double4 left, double4 right) =>
-        new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
+    public static b64v4 operator <(double4 left, double4 right)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.LessThan(left.vector, right.vector).AsUInt64());
+        return new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(double4 other) => x < other.x && y < other.y && z < other.z && w < other.w;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(double4 other) => x > other.x && y > other.y && z > other.z && w > other.w;
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(double4 other) => x <= other.x && y <= other.y && z <= other.z && w <= other.w;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(double4 other) => x >= other.x && y >= other.y && z >= other.z && w >= other.w;
+    public static b64v4 operator >(double4 left, double4 right)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.GreaterThan(left.vector, right.vector).AsUInt64());
+        return new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(double4 other) => x < other.x || y < other.y || z < other.z || w < other.w;
+    public static b64v4 operator <=(double4 left, double4 right)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.LessThanOrEqual(left.vector, right.vector).AsUInt64());
+        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(double4 other) => x > other.x || y > other.y || z > other.z || w > other.w;
+    public static b64v4 operator >=(double4 left, double4 right)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.GreaterThanOrEqual(left.vector, right.vector).AsUInt64());
+        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(double4 other) => x <= other.x || y <= other.y || z <= other.z || w <= other.w;
+    public readonly bool LessThanAll(double4 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.LessThanAll(vector, other.vector);
+        return x < other.x && y < other.y && z < other.z && w < other.w;
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(double4 other) => x >= other.x || y >= other.y || z >= other.z || w >= other.w;
-    #endif // NET8_0_OR_GREATER
+    public readonly bool GreaterThanAll(double4 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.GreaterThanAll(vector, other.vector);
+        return x > other.x && y > other.y && z > other.z && w > other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAll(double4 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.LessThanOrEqualAll(vector, other.vector);
+        return x <= other.x && y <= other.y && z <= other.z && w <= other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAll(double4 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.GreaterThanOrEqualAll(vector, other.vector);
+        return x >= other.x && y >= other.y && z >= other.z && w >= other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanAny(double4 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.LessThanAll(vector, other.vector);
+        return x < other.x || y < other.y || z < other.z || w < other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanAny(double4 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.GreaterThanAny(vector, other.vector);
+        return x > other.x || y > other.y || z > other.z || w > other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAny(double4 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.LessThanOrEqualAny(vector, other.vector);
+        return x <= other.x || y <= other.y || z <= other.z || w <= other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAny(double4 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.GreaterThanOrEqualAny(vector, other.vector);
+        return x >= other.x || y >= other.y || z >= other.z || w >= other.w;
+    }
 
 }
 
@@ -689,20 +845,17 @@ public partial struct double4 : IComparable<double4>, IComparable
 #region short2
 
 public partial struct short2 : IComparable<short2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<short2, short2, bool>
     , IComparisonOperators<short2, short2, b16v2>
-    #endif
 {
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is short2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(short2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<short2, short2, bool>.operator <(short2 left, short2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -714,10 +867,9 @@ public partial struct short2 : IComparable<short2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<short2, short2, bool>.operator >=(short2 left, short2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(short2 other)
+    public readonly int CompareTo(short2 other)
     {
         if (x < other.x || y < other.y) return -1;
         if (x > other.x || y > other.y) return 1;
@@ -725,35 +877,76 @@ public partial struct short2 : IComparable<short2>, IComparable
     }
 
     [MethodImpl(256 | 512)]
-    public static b16v2 operator <(short2 left, short2 right) =>
-        new(left.x < right.x, left.y < right.y);
-    [MethodImpl(256 | 512)]
-    public static b16v2 operator >(short2 left, short2 right) =>
-        new(left.x > right.x, left.y > right.y);
-    [MethodImpl(256 | 512)]
-    public static b16v2 operator <=(short2 left, short2 right) =>
-        new(left.x <= right.x, left.y <= right.y);
-    [MethodImpl(256 | 512)]
-    public static b16v2 operator >=(short2 left, short2 right) =>
-        new(left.x >= right.x, left.y >= right.y);
+    public static b16v2 operator <(short2 left, short2 right)
+    {
+        return new(left.x < right.x, left.y < right.y);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(short2 other) => x < other.x && y < other.y;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(short2 other) => x > other.x && y > other.y;
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(short2 other) => x <= other.x && y <= other.y;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(short2 other) => x >= other.x && y >= other.y;
+    public static b16v2 operator >(short2 left, short2 right)
+    {
+        return new(left.x > right.x, left.y > right.y);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(short2 other) => x < other.x || y < other.y;
+    public static b16v2 operator <=(short2 left, short2 right)
+    {
+        return new(left.x <= right.x, left.y <= right.y);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(short2 other) => x > other.x || y > other.y;
+    public static b16v2 operator >=(short2 left, short2 right)
+    {
+        return new(left.x >= right.x, left.y >= right.y);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(short2 other) => x <= other.x || y <= other.y;
+    public readonly bool LessThanAll(short2 other)
+    {
+        return x < other.x && y < other.y;
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(short2 other) => x >= other.x || y >= other.y;
+    public readonly bool GreaterThanAll(short2 other)
+    {
+        return x > other.x && y > other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAll(short2 other)
+    {
+        return x <= other.x && y <= other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAll(short2 other)
+    {
+        return x >= other.x && y >= other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanAny(short2 other)
+    {
+        return x < other.x || y < other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanAny(short2 other)
+    {
+        return x > other.x || y > other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAny(short2 other)
+    {
+        return x <= other.x || y <= other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAny(short2 other)
+    {
+        return x >= other.x || y >= other.y;
+    }
 
 }
 
@@ -762,20 +955,17 @@ public partial struct short2 : IComparable<short2>, IComparable
 #region short3
 
 public partial struct short3 : IComparable<short3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<short3, short3, bool>
     , IComparisonOperators<short3, short3, b16v3>
-    #endif
 {
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is short3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(short3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<short3, short3, bool>.operator <(short3 left, short3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -787,10 +977,9 @@ public partial struct short3 : IComparable<short3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<short3, short3, bool>.operator >=(short3 left, short3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(short3 other)
+    public readonly int CompareTo(short3 other)
     {
         if (x < other.x || y < other.y || z < other.z) return -1;
         if (x > other.x || y > other.y || z > other.z) return 1;
@@ -798,35 +987,76 @@ public partial struct short3 : IComparable<short3>, IComparable
     }
 
     [MethodImpl(256 | 512)]
-    public static b16v3 operator <(short3 left, short3 right) =>
-        new(left.x < right.x, left.y < right.y, left.z < right.z);
-    [MethodImpl(256 | 512)]
-    public static b16v3 operator >(short3 left, short3 right) =>
-        new(left.x > right.x, left.y > right.y, left.z > right.z);
-    [MethodImpl(256 | 512)]
-    public static b16v3 operator <=(short3 left, short3 right) =>
-        new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
-    [MethodImpl(256 | 512)]
-    public static b16v3 operator >=(short3 left, short3 right) =>
-        new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
+    public static b16v3 operator <(short3 left, short3 right)
+    {
+        return new(left.x < right.x, left.y < right.y, left.z < right.z);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(short3 other) => x < other.x && y < other.y && z < other.z;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(short3 other) => x > other.x && y > other.y && z > other.z;
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(short3 other) => x <= other.x && y <= other.y && z <= other.z;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(short3 other) => x >= other.x && y >= other.y && z >= other.z;
+    public static b16v3 operator >(short3 left, short3 right)
+    {
+        return new(left.x > right.x, left.y > right.y, left.z > right.z);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(short3 other) => x < other.x || y < other.y || z < other.z;
+    public static b16v3 operator <=(short3 left, short3 right)
+    {
+        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(short3 other) => x > other.x || y > other.y || z > other.z;
+    public static b16v3 operator >=(short3 left, short3 right)
+    {
+        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(short3 other) => x <= other.x || y <= other.y || z <= other.z;
+    public readonly bool LessThanAll(short3 other)
+    {
+        return x < other.x && y < other.y && z < other.z;
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(short3 other) => x >= other.x || y >= other.y || z >= other.z;
+    public readonly bool GreaterThanAll(short3 other)
+    {
+        return x > other.x && y > other.y && z > other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAll(short3 other)
+    {
+        return x <= other.x && y <= other.y && z <= other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAll(short3 other)
+    {
+        return x >= other.x && y >= other.y && z >= other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanAny(short3 other)
+    {
+        return x < other.x || y < other.y || z < other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanAny(short3 other)
+    {
+        return x > other.x || y > other.y || z > other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAny(short3 other)
+    {
+        return x <= other.x || y <= other.y || z <= other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAny(short3 other)
+    {
+        return x >= other.x || y >= other.y || z >= other.z;
+    }
 
 }
 
@@ -835,20 +1065,17 @@ public partial struct short3 : IComparable<short3>, IComparable
 #region short4
 
 public partial struct short4 : IComparable<short4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<short4, short4, bool>
     , IComparisonOperators<short4, short4, b16v4>
-    #endif
 {
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is short4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(short4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<short4, short4, bool>.operator <(short4 left, short4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -860,10 +1087,9 @@ public partial struct short4 : IComparable<short4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<short4, short4, bool>.operator >=(short4 left, short4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(short4 other)
+    public readonly int CompareTo(short4 other)
     {
         if (x < other.x || y < other.y || z < other.z || w < other.w) return -1;
         if (x > other.x || y > other.y || z > other.z || w > other.w) return 1;
@@ -871,35 +1097,76 @@ public partial struct short4 : IComparable<short4>, IComparable
     }
 
     [MethodImpl(256 | 512)]
-    public static b16v4 operator <(short4 left, short4 right) =>
-        new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
-    [MethodImpl(256 | 512)]
-    public static b16v4 operator >(short4 left, short4 right) =>
-        new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
-    [MethodImpl(256 | 512)]
-    public static b16v4 operator <=(short4 left, short4 right) =>
-        new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
-    [MethodImpl(256 | 512)]
-    public static b16v4 operator >=(short4 left, short4 right) =>
-        new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
+    public static b16v4 operator <(short4 left, short4 right)
+    {
+        return new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(short4 other) => x < other.x && y < other.y && z < other.z && w < other.w;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(short4 other) => x > other.x && y > other.y && z > other.z && w > other.w;
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(short4 other) => x <= other.x && y <= other.y && z <= other.z && w <= other.w;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(short4 other) => x >= other.x && y >= other.y && z >= other.z && w >= other.w;
+    public static b16v4 operator >(short4 left, short4 right)
+    {
+        return new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(short4 other) => x < other.x || y < other.y || z < other.z || w < other.w;
+    public static b16v4 operator <=(short4 left, short4 right)
+    {
+        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(short4 other) => x > other.x || y > other.y || z > other.z || w > other.w;
+    public static b16v4 operator >=(short4 left, short4 right)
+    {
+        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(short4 other) => x <= other.x || y <= other.y || z <= other.z || w <= other.w;
+    public readonly bool LessThanAll(short4 other)
+    {
+        return x < other.x && y < other.y && z < other.z && w < other.w;
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(short4 other) => x >= other.x || y >= other.y || z >= other.z || w >= other.w;
+    public readonly bool GreaterThanAll(short4 other)
+    {
+        return x > other.x && y > other.y && z > other.z && w > other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAll(short4 other)
+    {
+        return x <= other.x && y <= other.y && z <= other.z && w <= other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAll(short4 other)
+    {
+        return x >= other.x && y >= other.y && z >= other.z && w >= other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanAny(short4 other)
+    {
+        return x < other.x || y < other.y || z < other.z || w < other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanAny(short4 other)
+    {
+        return x > other.x || y > other.y || z > other.z || w > other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAny(short4 other)
+    {
+        return x <= other.x || y <= other.y || z <= other.z || w <= other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAny(short4 other)
+    {
+        return x >= other.x || y >= other.y || z >= other.z || w >= other.w;
+    }
 
 }
 
@@ -908,20 +1175,17 @@ public partial struct short4 : IComparable<short4>, IComparable
 #region ushort2
 
 public partial struct ushort2 : IComparable<ushort2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<ushort2, ushort2, bool>
     , IComparisonOperators<ushort2, ushort2, b16v2>
-    #endif
 {
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is ushort2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(ushort2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<ushort2, ushort2, bool>.operator <(ushort2 left, ushort2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -933,10 +1197,9 @@ public partial struct ushort2 : IComparable<ushort2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<ushort2, ushort2, bool>.operator >=(ushort2 left, ushort2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(ushort2 other)
+    public readonly int CompareTo(ushort2 other)
     {
         if (x < other.x || y < other.y) return -1;
         if (x > other.x || y > other.y) return 1;
@@ -944,35 +1207,76 @@ public partial struct ushort2 : IComparable<ushort2>, IComparable
     }
 
     [MethodImpl(256 | 512)]
-    public static b16v2 operator <(ushort2 left, ushort2 right) =>
-        new(left.x < right.x, left.y < right.y);
-    [MethodImpl(256 | 512)]
-    public static b16v2 operator >(ushort2 left, ushort2 right) =>
-        new(left.x > right.x, left.y > right.y);
-    [MethodImpl(256 | 512)]
-    public static b16v2 operator <=(ushort2 left, ushort2 right) =>
-        new(left.x <= right.x, left.y <= right.y);
-    [MethodImpl(256 | 512)]
-    public static b16v2 operator >=(ushort2 left, ushort2 right) =>
-        new(left.x >= right.x, left.y >= right.y);
+    public static b16v2 operator <(ushort2 left, ushort2 right)
+    {
+        return new(left.x < right.x, left.y < right.y);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(ushort2 other) => x < other.x && y < other.y;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(ushort2 other) => x > other.x && y > other.y;
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(ushort2 other) => x <= other.x && y <= other.y;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(ushort2 other) => x >= other.x && y >= other.y;
+    public static b16v2 operator >(ushort2 left, ushort2 right)
+    {
+        return new(left.x > right.x, left.y > right.y);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(ushort2 other) => x < other.x || y < other.y;
+    public static b16v2 operator <=(ushort2 left, ushort2 right)
+    {
+        return new(left.x <= right.x, left.y <= right.y);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(ushort2 other) => x > other.x || y > other.y;
+    public static b16v2 operator >=(ushort2 left, ushort2 right)
+    {
+        return new(left.x >= right.x, left.y >= right.y);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(ushort2 other) => x <= other.x || y <= other.y;
+    public readonly bool LessThanAll(ushort2 other)
+    {
+        return x < other.x && y < other.y;
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(ushort2 other) => x >= other.x || y >= other.y;
+    public readonly bool GreaterThanAll(ushort2 other)
+    {
+        return x > other.x && y > other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAll(ushort2 other)
+    {
+        return x <= other.x && y <= other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAll(ushort2 other)
+    {
+        return x >= other.x && y >= other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanAny(ushort2 other)
+    {
+        return x < other.x || y < other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanAny(ushort2 other)
+    {
+        return x > other.x || y > other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAny(ushort2 other)
+    {
+        return x <= other.x || y <= other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAny(ushort2 other)
+    {
+        return x >= other.x || y >= other.y;
+    }
 
 }
 
@@ -981,20 +1285,17 @@ public partial struct ushort2 : IComparable<ushort2>, IComparable
 #region ushort3
 
 public partial struct ushort3 : IComparable<ushort3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<ushort3, ushort3, bool>
     , IComparisonOperators<ushort3, ushort3, b16v3>
-    #endif
 {
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is ushort3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(ushort3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<ushort3, ushort3, bool>.operator <(ushort3 left, ushort3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -1006,10 +1307,9 @@ public partial struct ushort3 : IComparable<ushort3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<ushort3, ushort3, bool>.operator >=(ushort3 left, ushort3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(ushort3 other)
+    public readonly int CompareTo(ushort3 other)
     {
         if (x < other.x || y < other.y || z < other.z) return -1;
         if (x > other.x || y > other.y || z > other.z) return 1;
@@ -1017,35 +1317,76 @@ public partial struct ushort3 : IComparable<ushort3>, IComparable
     }
 
     [MethodImpl(256 | 512)]
-    public static b16v3 operator <(ushort3 left, ushort3 right) =>
-        new(left.x < right.x, left.y < right.y, left.z < right.z);
-    [MethodImpl(256 | 512)]
-    public static b16v3 operator >(ushort3 left, ushort3 right) =>
-        new(left.x > right.x, left.y > right.y, left.z > right.z);
-    [MethodImpl(256 | 512)]
-    public static b16v3 operator <=(ushort3 left, ushort3 right) =>
-        new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
-    [MethodImpl(256 | 512)]
-    public static b16v3 operator >=(ushort3 left, ushort3 right) =>
-        new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
+    public static b16v3 operator <(ushort3 left, ushort3 right)
+    {
+        return new(left.x < right.x, left.y < right.y, left.z < right.z);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(ushort3 other) => x < other.x && y < other.y && z < other.z;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(ushort3 other) => x > other.x && y > other.y && z > other.z;
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(ushort3 other) => x <= other.x && y <= other.y && z <= other.z;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(ushort3 other) => x >= other.x && y >= other.y && z >= other.z;
+    public static b16v3 operator >(ushort3 left, ushort3 right)
+    {
+        return new(left.x > right.x, left.y > right.y, left.z > right.z);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(ushort3 other) => x < other.x || y < other.y || z < other.z;
+    public static b16v3 operator <=(ushort3 left, ushort3 right)
+    {
+        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(ushort3 other) => x > other.x || y > other.y || z > other.z;
+    public static b16v3 operator >=(ushort3 left, ushort3 right)
+    {
+        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(ushort3 other) => x <= other.x || y <= other.y || z <= other.z;
+    public readonly bool LessThanAll(ushort3 other)
+    {
+        return x < other.x && y < other.y && z < other.z;
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(ushort3 other) => x >= other.x || y >= other.y || z >= other.z;
+    public readonly bool GreaterThanAll(ushort3 other)
+    {
+        return x > other.x && y > other.y && z > other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAll(ushort3 other)
+    {
+        return x <= other.x && y <= other.y && z <= other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAll(ushort3 other)
+    {
+        return x >= other.x && y >= other.y && z >= other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanAny(ushort3 other)
+    {
+        return x < other.x || y < other.y || z < other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanAny(ushort3 other)
+    {
+        return x > other.x || y > other.y || z > other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAny(ushort3 other)
+    {
+        return x <= other.x || y <= other.y || z <= other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAny(ushort3 other)
+    {
+        return x >= other.x || y >= other.y || z >= other.z;
+    }
 
 }
 
@@ -1054,20 +1395,17 @@ public partial struct ushort3 : IComparable<ushort3>, IComparable
 #region ushort4
 
 public partial struct ushort4 : IComparable<ushort4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<ushort4, ushort4, bool>
     , IComparisonOperators<ushort4, ushort4, b16v4>
-    #endif
 {
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is ushort4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(ushort4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<ushort4, ushort4, bool>.operator <(ushort4 left, ushort4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -1079,10 +1417,9 @@ public partial struct ushort4 : IComparable<ushort4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<ushort4, ushort4, bool>.operator >=(ushort4 left, ushort4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(ushort4 other)
+    public readonly int CompareTo(ushort4 other)
     {
         if (x < other.x || y < other.y || z < other.z || w < other.w) return -1;
         if (x > other.x || y > other.y || z > other.z || w > other.w) return 1;
@@ -1090,35 +1427,76 @@ public partial struct ushort4 : IComparable<ushort4>, IComparable
     }
 
     [MethodImpl(256 | 512)]
-    public static b16v4 operator <(ushort4 left, ushort4 right) =>
-        new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
-    [MethodImpl(256 | 512)]
-    public static b16v4 operator >(ushort4 left, ushort4 right) =>
-        new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
-    [MethodImpl(256 | 512)]
-    public static b16v4 operator <=(ushort4 left, ushort4 right) =>
-        new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
-    [MethodImpl(256 | 512)]
-    public static b16v4 operator >=(ushort4 left, ushort4 right) =>
-        new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
+    public static b16v4 operator <(ushort4 left, ushort4 right)
+    {
+        return new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(ushort4 other) => x < other.x && y < other.y && z < other.z && w < other.w;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(ushort4 other) => x > other.x && y > other.y && z > other.z && w > other.w;
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(ushort4 other) => x <= other.x && y <= other.y && z <= other.z && w <= other.w;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(ushort4 other) => x >= other.x && y >= other.y && z >= other.z && w >= other.w;
+    public static b16v4 operator >(ushort4 left, ushort4 right)
+    {
+        return new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(ushort4 other) => x < other.x || y < other.y || z < other.z || w < other.w;
+    public static b16v4 operator <=(ushort4 left, ushort4 right)
+    {
+        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(ushort4 other) => x > other.x || y > other.y || z > other.z || w > other.w;
+    public static b16v4 operator >=(ushort4 left, ushort4 right)
+    {
+        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(ushort4 other) => x <= other.x || y <= other.y || z <= other.z || w <= other.w;
+    public readonly bool LessThanAll(ushort4 other)
+    {
+        return x < other.x && y < other.y && z < other.z && w < other.w;
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(ushort4 other) => x >= other.x || y >= other.y || z >= other.z || w >= other.w;
+    public readonly bool GreaterThanAll(ushort4 other)
+    {
+        return x > other.x && y > other.y && z > other.z && w > other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAll(ushort4 other)
+    {
+        return x <= other.x && y <= other.y && z <= other.z && w <= other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAll(ushort4 other)
+    {
+        return x >= other.x && y >= other.y && z >= other.z && w >= other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanAny(ushort4 other)
+    {
+        return x < other.x || y < other.y || z < other.z || w < other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanAny(ushort4 other)
+    {
+        return x > other.x || y > other.y || z > other.z || w > other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAny(ushort4 other)
+    {
+        return x <= other.x || y <= other.y || z <= other.z || w <= other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAny(ushort4 other)
+    {
+        return x >= other.x || y >= other.y || z >= other.z || w >= other.w;
+    }
 
 }
 
@@ -1127,20 +1505,17 @@ public partial struct ushort4 : IComparable<ushort4>, IComparable
 #region int2
 
 public partial struct int2 : IComparable<int2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<int2, int2, bool>
     , IComparisonOperators<int2, int2, b32v2>
-    #endif
 {
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is int2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(int2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<int2, int2, bool>.operator <(int2 left, int2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -1152,87 +1527,116 @@ public partial struct int2 : IComparable<int2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<int2, int2, bool>.operator >=(int2 left, int2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
-    public int CompareTo(int2 other)
+    public readonly int CompareTo(int2 other)
     {
-        if (Vector64.LessThanAny(vector, other.vector)) return -1;
-        if (Vector64.GreaterThanAny(vector, other.vector)) return 1;
-        return 0;
-    }
-    
-    [MethodImpl(256 | 512)]
-    public static b32v2 operator <(int2 left, int2 right) => 
-        new(Vector64.LessThan(left.vector, right.vector).AsUInt32());
-    [MethodImpl(256 | 512)]
-    public static b32v2 operator >(int2 left, int2 right) => 
-        new(Vector64.GreaterThan(left.vector, right.vector).AsUInt32());
-    [MethodImpl(256 | 512)]
-    public static b32v2 operator <=(int2 left, int2 right) => 
-        new(Vector64.LessThanOrEqual(left.vector, right.vector).AsUInt32());
-    [MethodImpl(256 | 512)]
-    public static b32v2 operator >=(int2 left, int2 right) => 
-        new(Vector64.GreaterThanOrEqual(left.vector, right.vector).AsUInt32());
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAll(int2 other) => (this < other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(int2 other) => (this > other).all();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(int2 other) => (this <= other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(int2 other) => (this >= other).all();
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAny(int2 other) => (this < other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(int2 other) => (this > other).any();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(int2 other) => (this <= other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(int2 other) => (this >= other).any();
-    #else // NET8_0_OR_GREATER
-    [MethodImpl(256 | 512)]
-    public int CompareTo(int2 other)
-    {
+        if (Vector64.IsHardwareAccelerated)
+        {
+            if (Vector64.LessThanAny(vector, other.vector)) return -1;
+            if (Vector64.GreaterThanAny(vector, other.vector)) return 1;
+            return 0;
+        }
         if (x < other.x || y < other.y) return -1;
         if (x > other.x || y > other.y) return 1;
         return 0;
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2 operator <(int2 left, int2 right) =>
-        new(left.x < right.x, left.y < right.y);
-    [MethodImpl(256 | 512)]
-    public static b32v2 operator >(int2 left, int2 right) =>
-        new(left.x > right.x, left.y > right.y);
-    [MethodImpl(256 | 512)]
-    public static b32v2 operator <=(int2 left, int2 right) =>
-        new(left.x <= right.x, left.y <= right.y);
-    [MethodImpl(256 | 512)]
-    public static b32v2 operator >=(int2 left, int2 right) =>
-        new(left.x >= right.x, left.y >= right.y);
+    public static b32v2 operator <(int2 left, int2 right)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return new(Vector64.LessThan(left.vector, right.vector).AsUInt32());
+        return new(left.x < right.x, left.y < right.y);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(int2 other) => x < other.x && y < other.y;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(int2 other) => x > other.x && y > other.y;
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(int2 other) => x <= other.x && y <= other.y;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(int2 other) => x >= other.x && y >= other.y;
+    public static b32v2 operator >(int2 left, int2 right)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return new(Vector64.GreaterThan(left.vector, right.vector).AsUInt32());
+        return new(left.x > right.x, left.y > right.y);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(int2 other) => x < other.x || y < other.y;
+    public static b32v2 operator <=(int2 left, int2 right)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return new(Vector64.LessThanOrEqual(left.vector, right.vector).AsUInt32());
+        return new(left.x <= right.x, left.y <= right.y);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(int2 other) => x > other.x || y > other.y;
+    public static b32v2 operator >=(int2 left, int2 right)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return new(Vector64.GreaterThanOrEqual(left.vector, right.vector).AsUInt32());
+        return new(left.x >= right.x, left.y >= right.y);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(int2 other) => x <= other.x || y <= other.y;
+    public readonly bool LessThanAll(int2 other)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.LessThanAll(vector, other.vector);
+        return x < other.x && y < other.y;
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(int2 other) => x >= other.x || y >= other.y;
-    #endif // NET8_0_OR_GREATER
+    public readonly bool GreaterThanAll(int2 other)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.GreaterThanAll(vector, other.vector);
+        return x > other.x && y > other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAll(int2 other)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.LessThanOrEqualAll(vector, other.vector);
+        return x <= other.x && y <= other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAll(int2 other)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.GreaterThanOrEqualAll(vector, other.vector);
+        return x >= other.x && y >= other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanAny(int2 other)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.LessThanAll(vector, other.vector);
+        return x < other.x || y < other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanAny(int2 other)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.GreaterThanAny(vector, other.vector);
+        return x > other.x || y > other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAny(int2 other)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.LessThanOrEqualAny(vector, other.vector);
+        return x <= other.x || y <= other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAny(int2 other)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.GreaterThanOrEqualAny(vector, other.vector);
+        return x >= other.x || y >= other.y;
+    }
 
 }
 
@@ -1241,20 +1645,17 @@ public partial struct int2 : IComparable<int2>, IComparable
 #region int3
 
 public partial struct int3 : IComparable<int3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<int3, int3, bool>
     , IComparisonOperators<int3, int3, b32v3>
-    #endif
 {
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is int3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(int3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<int3, int3, bool>.operator <(int3 left, int3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -1266,87 +1667,116 @@ public partial struct int3 : IComparable<int3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<int3, int3, bool>.operator >=(int3 left, int3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
-    public int CompareTo(int3 other)
+    public readonly int CompareTo(int3 other)
     {
-        if (Vector128.LessThanAny(vector, other.vector)) return -1;
-        if (Vector128.GreaterThanAny(vector, other.vector)) return 1;
-        return 0;
-    }
-    
-    [MethodImpl(256 | 512)]
-    public static b32v3 operator <(int3 left, int3 right) => 
-        new(Vector128.LessThan(left.vector, right.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-    [MethodImpl(256 | 512)]
-    public static b32v3 operator >(int3 left, int3 right) => 
-        new(Vector128.GreaterThan(left.vector, right.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-    [MethodImpl(256 | 512)]
-    public static b32v3 operator <=(int3 left, int3 right) => 
-        new(Vector128.LessThanOrEqual(left.vector, right.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-    [MethodImpl(256 | 512)]
-    public static b32v3 operator >=(int3 left, int3 right) => 
-        new(Vector128.GreaterThanOrEqual(left.vector, right.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAll(int3 other) => (this < other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(int3 other) => (this > other).all();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(int3 other) => (this <= other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(int3 other) => (this >= other).all();
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAny(int3 other) => (this < other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(int3 other) => (this > other).any();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(int3 other) => (this <= other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(int3 other) => (this >= other).any();
-    #else // NET8_0_OR_GREATER
-    [MethodImpl(256 | 512)]
-    public int CompareTo(int3 other)
-    {
+        if (Vector128.IsHardwareAccelerated)
+        {
+            if (Vector128.LessThanAny(vector, other.vector)) return -1;
+            if (Vector128.GreaterThanAny(vector, other.vector)) return 1;
+            return 0;
+        }
         if (x < other.x || y < other.y || z < other.z) return -1;
         if (x > other.x || y > other.y || z > other.z) return 1;
         return 0;
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3 operator <(int3 left, int3 right) =>
-        new(left.x < right.x, left.y < right.y, left.z < right.z);
-    [MethodImpl(256 | 512)]
-    public static b32v3 operator >(int3 left, int3 right) =>
-        new(left.x > right.x, left.y > right.y, left.z > right.z);
-    [MethodImpl(256 | 512)]
-    public static b32v3 operator <=(int3 left, int3 right) =>
-        new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
-    [MethodImpl(256 | 512)]
-    public static b32v3 operator >=(int3 left, int3 right) =>
-        new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
+    public static b32v3 operator <(int3 left, int3 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.LessThan(left.vector, right.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        return new(left.x < right.x, left.y < right.y, left.z < right.z);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(int3 other) => x < other.x && y < other.y && z < other.z;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(int3 other) => x > other.x && y > other.y && z > other.z;
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(int3 other) => x <= other.x && y <= other.y && z <= other.z;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(int3 other) => x >= other.x && y >= other.y && z >= other.z;
+    public static b32v3 operator >(int3 left, int3 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.GreaterThan(left.vector, right.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        return new(left.x > right.x, left.y > right.y, left.z > right.z);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(int3 other) => x < other.x || y < other.y || z < other.z;
+    public static b32v3 operator <=(int3 left, int3 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.LessThanOrEqual(left.vector, right.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(int3 other) => x > other.x || y > other.y || z > other.z;
+    public static b32v3 operator >=(int3 left, int3 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.GreaterThanOrEqual(left.vector, right.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(int3 other) => x <= other.x || y <= other.y || z <= other.z;
+    public readonly bool LessThanAll(int3 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanAll(vector, other.vector);
+        return x < other.x && y < other.y && z < other.z;
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(int3 other) => x >= other.x || y >= other.y || z >= other.z;
-    #endif // NET8_0_OR_GREATER
+    public readonly bool GreaterThanAll(int3 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanAll(vector, other.vector);
+        return x > other.x && y > other.y && z > other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAll(int3 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanOrEqualAll(vector, other.vector);
+        return x <= other.x && y <= other.y && z <= other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAll(int3 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanOrEqualAll(vector, other.vector);
+        return x >= other.x && y >= other.y && z >= other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanAny(int3 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanAll(vector, other.vector);
+        return x < other.x || y < other.y || z < other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanAny(int3 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanAny(vector, other.vector);
+        return x > other.x || y > other.y || z > other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAny(int3 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanOrEqualAny(vector, other.vector);
+        return x <= other.x || y <= other.y || z <= other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAny(int3 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanOrEqualAny(vector, other.vector);
+        return x >= other.x || y >= other.y || z >= other.z;
+    }
 
 }
 
@@ -1355,20 +1785,17 @@ public partial struct int3 : IComparable<int3>, IComparable
 #region int4
 
 public partial struct int4 : IComparable<int4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<int4, int4, bool>
     , IComparisonOperators<int4, int4, b32v4>
-    #endif
 {
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is int4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(int4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<int4, int4, bool>.operator <(int4 left, int4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -1380,87 +1807,116 @@ public partial struct int4 : IComparable<int4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<int4, int4, bool>.operator >=(int4 left, int4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
-    public int CompareTo(int4 other)
+    public readonly int CompareTo(int4 other)
     {
-        if (Vector128.LessThanAny(vector, other.vector)) return -1;
-        if (Vector128.GreaterThanAny(vector, other.vector)) return 1;
-        return 0;
-    }
-    
-    [MethodImpl(256 | 512)]
-    public static b32v4 operator <(int4 left, int4 right) => 
-        new(Vector128.LessThan(left.vector, right.vector).AsUInt32());
-    [MethodImpl(256 | 512)]
-    public static b32v4 operator >(int4 left, int4 right) => 
-        new(Vector128.GreaterThan(left.vector, right.vector).AsUInt32());
-    [MethodImpl(256 | 512)]
-    public static b32v4 operator <=(int4 left, int4 right) => 
-        new(Vector128.LessThanOrEqual(left.vector, right.vector).AsUInt32());
-    [MethodImpl(256 | 512)]
-    public static b32v4 operator >=(int4 left, int4 right) => 
-        new(Vector128.GreaterThanOrEqual(left.vector, right.vector).AsUInt32());
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAll(int4 other) => (this < other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(int4 other) => (this > other).all();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(int4 other) => (this <= other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(int4 other) => (this >= other).all();
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAny(int4 other) => (this < other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(int4 other) => (this > other).any();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(int4 other) => (this <= other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(int4 other) => (this >= other).any();
-    #else // NET8_0_OR_GREATER
-    [MethodImpl(256 | 512)]
-    public int CompareTo(int4 other)
-    {
+        if (Vector128.IsHardwareAccelerated)
+        {
+            if (Vector128.LessThanAny(vector, other.vector)) return -1;
+            if (Vector128.GreaterThanAny(vector, other.vector)) return 1;
+            return 0;
+        }
         if (x < other.x || y < other.y || z < other.z || w < other.w) return -1;
         if (x > other.x || y > other.y || z > other.z || w > other.w) return 1;
         return 0;
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4 operator <(int4 left, int4 right) =>
-        new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
-    [MethodImpl(256 | 512)]
-    public static b32v4 operator >(int4 left, int4 right) =>
-        new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
-    [MethodImpl(256 | 512)]
-    public static b32v4 operator <=(int4 left, int4 right) =>
-        new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
-    [MethodImpl(256 | 512)]
-    public static b32v4 operator >=(int4 left, int4 right) =>
-        new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
+    public static b32v4 operator <(int4 left, int4 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.LessThan(left.vector, right.vector).AsUInt32());
+        return new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(int4 other) => x < other.x && y < other.y && z < other.z && w < other.w;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(int4 other) => x > other.x && y > other.y && z > other.z && w > other.w;
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(int4 other) => x <= other.x && y <= other.y && z <= other.z && w <= other.w;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(int4 other) => x >= other.x && y >= other.y && z >= other.z && w >= other.w;
+    public static b32v4 operator >(int4 left, int4 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.GreaterThan(left.vector, right.vector).AsUInt32());
+        return new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(int4 other) => x < other.x || y < other.y || z < other.z || w < other.w;
+    public static b32v4 operator <=(int4 left, int4 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.LessThanOrEqual(left.vector, right.vector).AsUInt32());
+        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(int4 other) => x > other.x || y > other.y || z > other.z || w > other.w;
+    public static b32v4 operator >=(int4 left, int4 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.GreaterThanOrEqual(left.vector, right.vector).AsUInt32());
+        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(int4 other) => x <= other.x || y <= other.y || z <= other.z || w <= other.w;
+    public readonly bool LessThanAll(int4 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanAll(vector, other.vector);
+        return x < other.x && y < other.y && z < other.z && w < other.w;
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(int4 other) => x >= other.x || y >= other.y || z >= other.z || w >= other.w;
-    #endif // NET8_0_OR_GREATER
+    public readonly bool GreaterThanAll(int4 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanAll(vector, other.vector);
+        return x > other.x && y > other.y && z > other.z && w > other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAll(int4 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanOrEqualAll(vector, other.vector);
+        return x <= other.x && y <= other.y && z <= other.z && w <= other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAll(int4 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanOrEqualAll(vector, other.vector);
+        return x >= other.x && y >= other.y && z >= other.z && w >= other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanAny(int4 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanAll(vector, other.vector);
+        return x < other.x || y < other.y || z < other.z || w < other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanAny(int4 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanAny(vector, other.vector);
+        return x > other.x || y > other.y || z > other.z || w > other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAny(int4 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanOrEqualAny(vector, other.vector);
+        return x <= other.x || y <= other.y || z <= other.z || w <= other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAny(int4 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanOrEqualAny(vector, other.vector);
+        return x >= other.x || y >= other.y || z >= other.z || w >= other.w;
+    }
 
 }
 
@@ -1469,20 +1925,17 @@ public partial struct int4 : IComparable<int4>, IComparable
 #region uint2
 
 public partial struct uint2 : IComparable<uint2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<uint2, uint2, bool>
     , IComparisonOperators<uint2, uint2, b32v2>
-    #endif
 {
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is uint2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(uint2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<uint2, uint2, bool>.operator <(uint2 left, uint2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -1494,87 +1947,116 @@ public partial struct uint2 : IComparable<uint2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<uint2, uint2, bool>.operator >=(uint2 left, uint2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
-    public int CompareTo(uint2 other)
+    public readonly int CompareTo(uint2 other)
     {
-        if (Vector64.LessThanAny(vector, other.vector)) return -1;
-        if (Vector64.GreaterThanAny(vector, other.vector)) return 1;
-        return 0;
-    }
-    
-    [MethodImpl(256 | 512)]
-    public static b32v2 operator <(uint2 left, uint2 right) => 
-        new(Vector64.LessThan(left.vector, right.vector).AsUInt32());
-    [MethodImpl(256 | 512)]
-    public static b32v2 operator >(uint2 left, uint2 right) => 
-        new(Vector64.GreaterThan(left.vector, right.vector).AsUInt32());
-    [MethodImpl(256 | 512)]
-    public static b32v2 operator <=(uint2 left, uint2 right) => 
-        new(Vector64.LessThanOrEqual(left.vector, right.vector).AsUInt32());
-    [MethodImpl(256 | 512)]
-    public static b32v2 operator >=(uint2 left, uint2 right) => 
-        new(Vector64.GreaterThanOrEqual(left.vector, right.vector).AsUInt32());
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAll(uint2 other) => (this < other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(uint2 other) => (this > other).all();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(uint2 other) => (this <= other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(uint2 other) => (this >= other).all();
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAny(uint2 other) => (this < other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(uint2 other) => (this > other).any();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(uint2 other) => (this <= other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(uint2 other) => (this >= other).any();
-    #else // NET8_0_OR_GREATER
-    [MethodImpl(256 | 512)]
-    public int CompareTo(uint2 other)
-    {
+        if (Vector64.IsHardwareAccelerated)
+        {
+            if (Vector64.LessThanAny(vector, other.vector)) return -1;
+            if (Vector64.GreaterThanAny(vector, other.vector)) return 1;
+            return 0;
+        }
         if (x < other.x || y < other.y) return -1;
         if (x > other.x || y > other.y) return 1;
         return 0;
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2 operator <(uint2 left, uint2 right) =>
-        new(left.x < right.x, left.y < right.y);
-    [MethodImpl(256 | 512)]
-    public static b32v2 operator >(uint2 left, uint2 right) =>
-        new(left.x > right.x, left.y > right.y);
-    [MethodImpl(256 | 512)]
-    public static b32v2 operator <=(uint2 left, uint2 right) =>
-        new(left.x <= right.x, left.y <= right.y);
-    [MethodImpl(256 | 512)]
-    public static b32v2 operator >=(uint2 left, uint2 right) =>
-        new(left.x >= right.x, left.y >= right.y);
+    public static b32v2 operator <(uint2 left, uint2 right)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return new(Vector64.LessThan(left.vector, right.vector).AsUInt32());
+        return new(left.x < right.x, left.y < right.y);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(uint2 other) => x < other.x && y < other.y;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(uint2 other) => x > other.x && y > other.y;
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(uint2 other) => x <= other.x && y <= other.y;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(uint2 other) => x >= other.x && y >= other.y;
+    public static b32v2 operator >(uint2 left, uint2 right)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return new(Vector64.GreaterThan(left.vector, right.vector).AsUInt32());
+        return new(left.x > right.x, left.y > right.y);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(uint2 other) => x < other.x || y < other.y;
+    public static b32v2 operator <=(uint2 left, uint2 right)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return new(Vector64.LessThanOrEqual(left.vector, right.vector).AsUInt32());
+        return new(left.x <= right.x, left.y <= right.y);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(uint2 other) => x > other.x || y > other.y;
+    public static b32v2 operator >=(uint2 left, uint2 right)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return new(Vector64.GreaterThanOrEqual(left.vector, right.vector).AsUInt32());
+        return new(left.x >= right.x, left.y >= right.y);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(uint2 other) => x <= other.x || y <= other.y;
+    public readonly bool LessThanAll(uint2 other)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.LessThanAll(vector, other.vector);
+        return x < other.x && y < other.y;
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(uint2 other) => x >= other.x || y >= other.y;
-    #endif // NET8_0_OR_GREATER
+    public readonly bool GreaterThanAll(uint2 other)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.GreaterThanAll(vector, other.vector);
+        return x > other.x && y > other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAll(uint2 other)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.LessThanOrEqualAll(vector, other.vector);
+        return x <= other.x && y <= other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAll(uint2 other)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.GreaterThanOrEqualAll(vector, other.vector);
+        return x >= other.x && y >= other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanAny(uint2 other)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.LessThanAll(vector, other.vector);
+        return x < other.x || y < other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanAny(uint2 other)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.GreaterThanAny(vector, other.vector);
+        return x > other.x || y > other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAny(uint2 other)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.LessThanOrEqualAny(vector, other.vector);
+        return x <= other.x || y <= other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAny(uint2 other)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.GreaterThanOrEqualAny(vector, other.vector);
+        return x >= other.x || y >= other.y;
+    }
 
 }
 
@@ -1583,20 +2065,17 @@ public partial struct uint2 : IComparable<uint2>, IComparable
 #region uint3
 
 public partial struct uint3 : IComparable<uint3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<uint3, uint3, bool>
     , IComparisonOperators<uint3, uint3, b32v3>
-    #endif
 {
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is uint3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(uint3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<uint3, uint3, bool>.operator <(uint3 left, uint3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -1608,87 +2087,116 @@ public partial struct uint3 : IComparable<uint3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<uint3, uint3, bool>.operator >=(uint3 left, uint3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
-    public int CompareTo(uint3 other)
+    public readonly int CompareTo(uint3 other)
     {
-        if (Vector128.LessThanAny(vector, other.vector)) return -1;
-        if (Vector128.GreaterThanAny(vector, other.vector)) return 1;
-        return 0;
-    }
-    
-    [MethodImpl(256 | 512)]
-    public static b32v3 operator <(uint3 left, uint3 right) => 
-        new(Vector128.LessThan(left.vector, right.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-    [MethodImpl(256 | 512)]
-    public static b32v3 operator >(uint3 left, uint3 right) => 
-        new(Vector128.GreaterThan(left.vector, right.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-    [MethodImpl(256 | 512)]
-    public static b32v3 operator <=(uint3 left, uint3 right) => 
-        new(Vector128.LessThanOrEqual(left.vector, right.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-    [MethodImpl(256 | 512)]
-    public static b32v3 operator >=(uint3 left, uint3 right) => 
-        new(Vector128.GreaterThanOrEqual(left.vector, right.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAll(uint3 other) => (this < other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(uint3 other) => (this > other).all();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(uint3 other) => (this <= other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(uint3 other) => (this >= other).all();
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAny(uint3 other) => (this < other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(uint3 other) => (this > other).any();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(uint3 other) => (this <= other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(uint3 other) => (this >= other).any();
-    #else // NET8_0_OR_GREATER
-    [MethodImpl(256 | 512)]
-    public int CompareTo(uint3 other)
-    {
+        if (Vector128.IsHardwareAccelerated)
+        {
+            if (Vector128.LessThanAny(vector, other.vector)) return -1;
+            if (Vector128.GreaterThanAny(vector, other.vector)) return 1;
+            return 0;
+        }
         if (x < other.x || y < other.y || z < other.z) return -1;
         if (x > other.x || y > other.y || z > other.z) return 1;
         return 0;
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3 operator <(uint3 left, uint3 right) =>
-        new(left.x < right.x, left.y < right.y, left.z < right.z);
-    [MethodImpl(256 | 512)]
-    public static b32v3 operator >(uint3 left, uint3 right) =>
-        new(left.x > right.x, left.y > right.y, left.z > right.z);
-    [MethodImpl(256 | 512)]
-    public static b32v3 operator <=(uint3 left, uint3 right) =>
-        new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
-    [MethodImpl(256 | 512)]
-    public static b32v3 operator >=(uint3 left, uint3 right) =>
-        new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
+    public static b32v3 operator <(uint3 left, uint3 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.LessThan(left.vector, right.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        return new(left.x < right.x, left.y < right.y, left.z < right.z);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(uint3 other) => x < other.x && y < other.y && z < other.z;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(uint3 other) => x > other.x && y > other.y && z > other.z;
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(uint3 other) => x <= other.x && y <= other.y && z <= other.z;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(uint3 other) => x >= other.x && y >= other.y && z >= other.z;
+    public static b32v3 operator >(uint3 left, uint3 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.GreaterThan(left.vector, right.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        return new(left.x > right.x, left.y > right.y, left.z > right.z);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(uint3 other) => x < other.x || y < other.y || z < other.z;
+    public static b32v3 operator <=(uint3 left, uint3 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.LessThanOrEqual(left.vector, right.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(uint3 other) => x > other.x || y > other.y || z > other.z;
+    public static b32v3 operator >=(uint3 left, uint3 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.GreaterThanOrEqual(left.vector, right.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(uint3 other) => x <= other.x || y <= other.y || z <= other.z;
+    public readonly bool LessThanAll(uint3 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanAll(vector, other.vector);
+        return x < other.x && y < other.y && z < other.z;
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(uint3 other) => x >= other.x || y >= other.y || z >= other.z;
-    #endif // NET8_0_OR_GREATER
+    public readonly bool GreaterThanAll(uint3 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanAll(vector, other.vector);
+        return x > other.x && y > other.y && z > other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAll(uint3 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanOrEqualAll(vector, other.vector);
+        return x <= other.x && y <= other.y && z <= other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAll(uint3 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanOrEqualAll(vector, other.vector);
+        return x >= other.x && y >= other.y && z >= other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanAny(uint3 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanAll(vector, other.vector);
+        return x < other.x || y < other.y || z < other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanAny(uint3 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanAny(vector, other.vector);
+        return x > other.x || y > other.y || z > other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAny(uint3 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanOrEqualAny(vector, other.vector);
+        return x <= other.x || y <= other.y || z <= other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAny(uint3 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanOrEqualAny(vector, other.vector);
+        return x >= other.x || y >= other.y || z >= other.z;
+    }
 
 }
 
@@ -1697,20 +2205,17 @@ public partial struct uint3 : IComparable<uint3>, IComparable
 #region uint4
 
 public partial struct uint4 : IComparable<uint4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<uint4, uint4, bool>
     , IComparisonOperators<uint4, uint4, b32v4>
-    #endif
 {
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is uint4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(uint4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<uint4, uint4, bool>.operator <(uint4 left, uint4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -1722,87 +2227,116 @@ public partial struct uint4 : IComparable<uint4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<uint4, uint4, bool>.operator >=(uint4 left, uint4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
-    public int CompareTo(uint4 other)
+    public readonly int CompareTo(uint4 other)
     {
-        if (Vector128.LessThanAny(vector, other.vector)) return -1;
-        if (Vector128.GreaterThanAny(vector, other.vector)) return 1;
-        return 0;
-    }
-    
-    [MethodImpl(256 | 512)]
-    public static b32v4 operator <(uint4 left, uint4 right) => 
-        new(Vector128.LessThan(left.vector, right.vector).AsUInt32());
-    [MethodImpl(256 | 512)]
-    public static b32v4 operator >(uint4 left, uint4 right) => 
-        new(Vector128.GreaterThan(left.vector, right.vector).AsUInt32());
-    [MethodImpl(256 | 512)]
-    public static b32v4 operator <=(uint4 left, uint4 right) => 
-        new(Vector128.LessThanOrEqual(left.vector, right.vector).AsUInt32());
-    [MethodImpl(256 | 512)]
-    public static b32v4 operator >=(uint4 left, uint4 right) => 
-        new(Vector128.GreaterThanOrEqual(left.vector, right.vector).AsUInt32());
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAll(uint4 other) => (this < other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(uint4 other) => (this > other).all();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(uint4 other) => (this <= other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(uint4 other) => (this >= other).all();
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAny(uint4 other) => (this < other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(uint4 other) => (this > other).any();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(uint4 other) => (this <= other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(uint4 other) => (this >= other).any();
-    #else // NET8_0_OR_GREATER
-    [MethodImpl(256 | 512)]
-    public int CompareTo(uint4 other)
-    {
+        if (Vector128.IsHardwareAccelerated)
+        {
+            if (Vector128.LessThanAny(vector, other.vector)) return -1;
+            if (Vector128.GreaterThanAny(vector, other.vector)) return 1;
+            return 0;
+        }
         if (x < other.x || y < other.y || z < other.z || w < other.w) return -1;
         if (x > other.x || y > other.y || z > other.z || w > other.w) return 1;
         return 0;
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4 operator <(uint4 left, uint4 right) =>
-        new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
-    [MethodImpl(256 | 512)]
-    public static b32v4 operator >(uint4 left, uint4 right) =>
-        new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
-    [MethodImpl(256 | 512)]
-    public static b32v4 operator <=(uint4 left, uint4 right) =>
-        new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
-    [MethodImpl(256 | 512)]
-    public static b32v4 operator >=(uint4 left, uint4 right) =>
-        new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
+    public static b32v4 operator <(uint4 left, uint4 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.LessThan(left.vector, right.vector).AsUInt32());
+        return new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(uint4 other) => x < other.x && y < other.y && z < other.z && w < other.w;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(uint4 other) => x > other.x && y > other.y && z > other.z && w > other.w;
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(uint4 other) => x <= other.x && y <= other.y && z <= other.z && w <= other.w;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(uint4 other) => x >= other.x && y >= other.y && z >= other.z && w >= other.w;
+    public static b32v4 operator >(uint4 left, uint4 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.GreaterThan(left.vector, right.vector).AsUInt32());
+        return new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(uint4 other) => x < other.x || y < other.y || z < other.z || w < other.w;
+    public static b32v4 operator <=(uint4 left, uint4 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.LessThanOrEqual(left.vector, right.vector).AsUInt32());
+        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(uint4 other) => x > other.x || y > other.y || z > other.z || w > other.w;
+    public static b32v4 operator >=(uint4 left, uint4 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.GreaterThanOrEqual(left.vector, right.vector).AsUInt32());
+        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(uint4 other) => x <= other.x || y <= other.y || z <= other.z || w <= other.w;
+    public readonly bool LessThanAll(uint4 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanAll(vector, other.vector);
+        return x < other.x && y < other.y && z < other.z && w < other.w;
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(uint4 other) => x >= other.x || y >= other.y || z >= other.z || w >= other.w;
-    #endif // NET8_0_OR_GREATER
+    public readonly bool GreaterThanAll(uint4 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanAll(vector, other.vector);
+        return x > other.x && y > other.y && z > other.z && w > other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAll(uint4 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanOrEqualAll(vector, other.vector);
+        return x <= other.x && y <= other.y && z <= other.z && w <= other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAll(uint4 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanOrEqualAll(vector, other.vector);
+        return x >= other.x && y >= other.y && z >= other.z && w >= other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanAny(uint4 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanAll(vector, other.vector);
+        return x < other.x || y < other.y || z < other.z || w < other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanAny(uint4 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanAny(vector, other.vector);
+        return x > other.x || y > other.y || z > other.z || w > other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAny(uint4 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanOrEqualAny(vector, other.vector);
+        return x <= other.x || y <= other.y || z <= other.z || w <= other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAny(uint4 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanOrEqualAny(vector, other.vector);
+        return x >= other.x || y >= other.y || z >= other.z || w >= other.w;
+    }
 
 }
 
@@ -1811,20 +2345,17 @@ public partial struct uint4 : IComparable<uint4>, IComparable
 #region long2
 
 public partial struct long2 : IComparable<long2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<long2, long2, bool>
     , IComparisonOperators<long2, long2, b64v2>
-    #endif
 {
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is long2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(long2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<long2, long2, bool>.operator <(long2 left, long2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -1836,87 +2367,116 @@ public partial struct long2 : IComparable<long2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<long2, long2, bool>.operator >=(long2 left, long2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
-    public int CompareTo(long2 other)
+    public readonly int CompareTo(long2 other)
     {
-        if (Vector128.LessThanAny(vector, other.vector)) return -1;
-        if (Vector128.GreaterThanAny(vector, other.vector)) return 1;
-        return 0;
-    }
-    
-    [MethodImpl(256 | 512)]
-    public static b64v2 operator <(long2 left, long2 right) => 
-        new(Vector128.LessThan(left.vector, right.vector).AsUInt64());
-    [MethodImpl(256 | 512)]
-    public static b64v2 operator >(long2 left, long2 right) => 
-        new(Vector128.GreaterThan(left.vector, right.vector).AsUInt64());
-    [MethodImpl(256 | 512)]
-    public static b64v2 operator <=(long2 left, long2 right) => 
-        new(Vector128.LessThanOrEqual(left.vector, right.vector).AsUInt64());
-    [MethodImpl(256 | 512)]
-    public static b64v2 operator >=(long2 left, long2 right) => 
-        new(Vector128.GreaterThanOrEqual(left.vector, right.vector).AsUInt64());
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAll(long2 other) => (this < other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(long2 other) => (this > other).all();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(long2 other) => (this <= other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(long2 other) => (this >= other).all();
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAny(long2 other) => (this < other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(long2 other) => (this > other).any();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(long2 other) => (this <= other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(long2 other) => (this >= other).any();
-    #else // NET8_0_OR_GREATER
-    [MethodImpl(256 | 512)]
-    public int CompareTo(long2 other)
-    {
+        if (Vector128.IsHardwareAccelerated)
+        {
+            if (Vector128.LessThanAny(vector, other.vector)) return -1;
+            if (Vector128.GreaterThanAny(vector, other.vector)) return 1;
+            return 0;
+        }
         if (x < other.x || y < other.y) return -1;
         if (x > other.x || y > other.y) return 1;
         return 0;
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2 operator <(long2 left, long2 right) =>
-        new(left.x < right.x, left.y < right.y);
-    [MethodImpl(256 | 512)]
-    public static b64v2 operator >(long2 left, long2 right) =>
-        new(left.x > right.x, left.y > right.y);
-    [MethodImpl(256 | 512)]
-    public static b64v2 operator <=(long2 left, long2 right) =>
-        new(left.x <= right.x, left.y <= right.y);
-    [MethodImpl(256 | 512)]
-    public static b64v2 operator >=(long2 left, long2 right) =>
-        new(left.x >= right.x, left.y >= right.y);
+    public static b64v2 operator <(long2 left, long2 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.LessThan(left.vector, right.vector).AsUInt64());
+        return new(left.x < right.x, left.y < right.y);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(long2 other) => x < other.x && y < other.y;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(long2 other) => x > other.x && y > other.y;
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(long2 other) => x <= other.x && y <= other.y;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(long2 other) => x >= other.x && y >= other.y;
+    public static b64v2 operator >(long2 left, long2 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.GreaterThan(left.vector, right.vector).AsUInt64());
+        return new(left.x > right.x, left.y > right.y);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(long2 other) => x < other.x || y < other.y;
+    public static b64v2 operator <=(long2 left, long2 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.LessThanOrEqual(left.vector, right.vector).AsUInt64());
+        return new(left.x <= right.x, left.y <= right.y);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(long2 other) => x > other.x || y > other.y;
+    public static b64v2 operator >=(long2 left, long2 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.GreaterThanOrEqual(left.vector, right.vector).AsUInt64());
+        return new(left.x >= right.x, left.y >= right.y);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(long2 other) => x <= other.x || y <= other.y;
+    public readonly bool LessThanAll(long2 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanAll(vector, other.vector);
+        return x < other.x && y < other.y;
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(long2 other) => x >= other.x || y >= other.y;
-    #endif // NET8_0_OR_GREATER
+    public readonly bool GreaterThanAll(long2 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanAll(vector, other.vector);
+        return x > other.x && y > other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAll(long2 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanOrEqualAll(vector, other.vector);
+        return x <= other.x && y <= other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAll(long2 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanOrEqualAll(vector, other.vector);
+        return x >= other.x && y >= other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanAny(long2 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanAll(vector, other.vector);
+        return x < other.x || y < other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanAny(long2 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanAny(vector, other.vector);
+        return x > other.x || y > other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAny(long2 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanOrEqualAny(vector, other.vector);
+        return x <= other.x || y <= other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAny(long2 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanOrEqualAny(vector, other.vector);
+        return x >= other.x || y >= other.y;
+    }
 
 }
 
@@ -1925,20 +2485,17 @@ public partial struct long2 : IComparable<long2>, IComparable
 #region long3
 
 public partial struct long3 : IComparable<long3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<long3, long3, bool>
     , IComparisonOperators<long3, long3, b64v3>
-    #endif
 {
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is long3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(long3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<long3, long3, bool>.operator <(long3 left, long3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -1950,87 +2507,116 @@ public partial struct long3 : IComparable<long3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<long3, long3, bool>.operator >=(long3 left, long3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
-    public int CompareTo(long3 other)
+    public readonly int CompareTo(long3 other)
     {
-        if (Vector256.LessThanAny(vector, other.vector)) return -1;
-        if (Vector256.GreaterThanAny(vector, other.vector)) return 1;
-        return 0;
-    }
-    
-    [MethodImpl(256 | 512)]
-    public static b64v3 operator <(long3 left, long3 right) => 
-        new(Vector256.LessThan(left.vector, right.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-    [MethodImpl(256 | 512)]
-    public static b64v3 operator >(long3 left, long3 right) => 
-        new(Vector256.GreaterThan(left.vector, right.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-    [MethodImpl(256 | 512)]
-    public static b64v3 operator <=(long3 left, long3 right) => 
-        new(Vector256.LessThanOrEqual(left.vector, right.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-    [MethodImpl(256 | 512)]
-    public static b64v3 operator >=(long3 left, long3 right) => 
-        new(Vector256.GreaterThanOrEqual(left.vector, right.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAll(long3 other) => (this < other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(long3 other) => (this > other).all();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(long3 other) => (this <= other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(long3 other) => (this >= other).all();
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAny(long3 other) => (this < other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(long3 other) => (this > other).any();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(long3 other) => (this <= other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(long3 other) => (this >= other).any();
-    #else // NET8_0_OR_GREATER
-    [MethodImpl(256 | 512)]
-    public int CompareTo(long3 other)
-    {
+        if (Vector256.IsHardwareAccelerated)
+        {
+            if (Vector256.LessThanAny(vector, other.vector)) return -1;
+            if (Vector256.GreaterThanAny(vector, other.vector)) return 1;
+            return 0;
+        }
         if (x < other.x || y < other.y || z < other.z) return -1;
         if (x > other.x || y > other.y || z > other.z) return 1;
         return 0;
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v3 operator <(long3 left, long3 right) =>
-        new(left.x < right.x, left.y < right.y, left.z < right.z);
-    [MethodImpl(256 | 512)]
-    public static b64v3 operator >(long3 left, long3 right) =>
-        new(left.x > right.x, left.y > right.y, left.z > right.z);
-    [MethodImpl(256 | 512)]
-    public static b64v3 operator <=(long3 left, long3 right) =>
-        new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
-    [MethodImpl(256 | 512)]
-    public static b64v3 operator >=(long3 left, long3 right) =>
-        new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
+    public static b64v3 operator <(long3 left, long3 right)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.LessThan(left.vector, right.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        return new(left.x < right.x, left.y < right.y, left.z < right.z);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(long3 other) => x < other.x && y < other.y && z < other.z;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(long3 other) => x > other.x && y > other.y && z > other.z;
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(long3 other) => x <= other.x && y <= other.y && z <= other.z;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(long3 other) => x >= other.x && y >= other.y && z >= other.z;
+    public static b64v3 operator >(long3 left, long3 right)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.GreaterThan(left.vector, right.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        return new(left.x > right.x, left.y > right.y, left.z > right.z);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(long3 other) => x < other.x || y < other.y || z < other.z;
+    public static b64v3 operator <=(long3 left, long3 right)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.LessThanOrEqual(left.vector, right.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(long3 other) => x > other.x || y > other.y || z > other.z;
+    public static b64v3 operator >=(long3 left, long3 right)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.GreaterThanOrEqual(left.vector, right.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(long3 other) => x <= other.x || y <= other.y || z <= other.z;
+    public readonly bool LessThanAll(long3 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.LessThanAll(vector, other.vector);
+        return x < other.x && y < other.y && z < other.z;
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(long3 other) => x >= other.x || y >= other.y || z >= other.z;
-    #endif // NET8_0_OR_GREATER
+    public readonly bool GreaterThanAll(long3 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.GreaterThanAll(vector, other.vector);
+        return x > other.x && y > other.y && z > other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAll(long3 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.LessThanOrEqualAll(vector, other.vector);
+        return x <= other.x && y <= other.y && z <= other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAll(long3 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.GreaterThanOrEqualAll(vector, other.vector);
+        return x >= other.x && y >= other.y && z >= other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanAny(long3 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.LessThanAll(vector, other.vector);
+        return x < other.x || y < other.y || z < other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanAny(long3 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.GreaterThanAny(vector, other.vector);
+        return x > other.x || y > other.y || z > other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAny(long3 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.LessThanOrEqualAny(vector, other.vector);
+        return x <= other.x || y <= other.y || z <= other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAny(long3 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.GreaterThanOrEqualAny(vector, other.vector);
+        return x >= other.x || y >= other.y || z >= other.z;
+    }
 
 }
 
@@ -2039,20 +2625,17 @@ public partial struct long3 : IComparable<long3>, IComparable
 #region long4
 
 public partial struct long4 : IComparable<long4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<long4, long4, bool>
     , IComparisonOperators<long4, long4, b64v4>
-    #endif
 {
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is long4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(long4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<long4, long4, bool>.operator <(long4 left, long4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -2064,87 +2647,116 @@ public partial struct long4 : IComparable<long4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<long4, long4, bool>.operator >=(long4 left, long4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
-    public int CompareTo(long4 other)
+    public readonly int CompareTo(long4 other)
     {
-        if (Vector256.LessThanAny(vector, other.vector)) return -1;
-        if (Vector256.GreaterThanAny(vector, other.vector)) return 1;
-        return 0;
-    }
-    
-    [MethodImpl(256 | 512)]
-    public static b64v4 operator <(long4 left, long4 right) => 
-        new(Vector256.LessThan(left.vector, right.vector).AsUInt64());
-    [MethodImpl(256 | 512)]
-    public static b64v4 operator >(long4 left, long4 right) => 
-        new(Vector256.GreaterThan(left.vector, right.vector).AsUInt64());
-    [MethodImpl(256 | 512)]
-    public static b64v4 operator <=(long4 left, long4 right) => 
-        new(Vector256.LessThanOrEqual(left.vector, right.vector).AsUInt64());
-    [MethodImpl(256 | 512)]
-    public static b64v4 operator >=(long4 left, long4 right) => 
-        new(Vector256.GreaterThanOrEqual(left.vector, right.vector).AsUInt64());
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAll(long4 other) => (this < other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(long4 other) => (this > other).all();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(long4 other) => (this <= other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(long4 other) => (this >= other).all();
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAny(long4 other) => (this < other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(long4 other) => (this > other).any();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(long4 other) => (this <= other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(long4 other) => (this >= other).any();
-    #else // NET8_0_OR_GREATER
-    [MethodImpl(256 | 512)]
-    public int CompareTo(long4 other)
-    {
+        if (Vector256.IsHardwareAccelerated)
+        {
+            if (Vector256.LessThanAny(vector, other.vector)) return -1;
+            if (Vector256.GreaterThanAny(vector, other.vector)) return 1;
+            return 0;
+        }
         if (x < other.x || y < other.y || z < other.z || w < other.w) return -1;
         if (x > other.x || y > other.y || z > other.z || w > other.w) return 1;
         return 0;
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v4 operator <(long4 left, long4 right) =>
-        new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
-    [MethodImpl(256 | 512)]
-    public static b64v4 operator >(long4 left, long4 right) =>
-        new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
-    [MethodImpl(256 | 512)]
-    public static b64v4 operator <=(long4 left, long4 right) =>
-        new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
-    [MethodImpl(256 | 512)]
-    public static b64v4 operator >=(long4 left, long4 right) =>
-        new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
+    public static b64v4 operator <(long4 left, long4 right)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.LessThan(left.vector, right.vector).AsUInt64());
+        return new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(long4 other) => x < other.x && y < other.y && z < other.z && w < other.w;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(long4 other) => x > other.x && y > other.y && z > other.z && w > other.w;
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(long4 other) => x <= other.x && y <= other.y && z <= other.z && w <= other.w;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(long4 other) => x >= other.x && y >= other.y && z >= other.z && w >= other.w;
+    public static b64v4 operator >(long4 left, long4 right)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.GreaterThan(left.vector, right.vector).AsUInt64());
+        return new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(long4 other) => x < other.x || y < other.y || z < other.z || w < other.w;
+    public static b64v4 operator <=(long4 left, long4 right)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.LessThanOrEqual(left.vector, right.vector).AsUInt64());
+        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(long4 other) => x > other.x || y > other.y || z > other.z || w > other.w;
+    public static b64v4 operator >=(long4 left, long4 right)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.GreaterThanOrEqual(left.vector, right.vector).AsUInt64());
+        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(long4 other) => x <= other.x || y <= other.y || z <= other.z || w <= other.w;
+    public readonly bool LessThanAll(long4 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.LessThanAll(vector, other.vector);
+        return x < other.x && y < other.y && z < other.z && w < other.w;
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(long4 other) => x >= other.x || y >= other.y || z >= other.z || w >= other.w;
-    #endif // NET8_0_OR_GREATER
+    public readonly bool GreaterThanAll(long4 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.GreaterThanAll(vector, other.vector);
+        return x > other.x && y > other.y && z > other.z && w > other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAll(long4 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.LessThanOrEqualAll(vector, other.vector);
+        return x <= other.x && y <= other.y && z <= other.z && w <= other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAll(long4 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.GreaterThanOrEqualAll(vector, other.vector);
+        return x >= other.x && y >= other.y && z >= other.z && w >= other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanAny(long4 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.LessThanAll(vector, other.vector);
+        return x < other.x || y < other.y || z < other.z || w < other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanAny(long4 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.GreaterThanAny(vector, other.vector);
+        return x > other.x || y > other.y || z > other.z || w > other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAny(long4 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.LessThanOrEqualAny(vector, other.vector);
+        return x <= other.x || y <= other.y || z <= other.z || w <= other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAny(long4 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.GreaterThanOrEqualAny(vector, other.vector);
+        return x >= other.x || y >= other.y || z >= other.z || w >= other.w;
+    }
 
 }
 
@@ -2153,20 +2765,17 @@ public partial struct long4 : IComparable<long4>, IComparable
 #region ulong2
 
 public partial struct ulong2 : IComparable<ulong2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<ulong2, ulong2, bool>
     , IComparisonOperators<ulong2, ulong2, b64v2>
-    #endif
 {
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is ulong2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(ulong2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<ulong2, ulong2, bool>.operator <(ulong2 left, ulong2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -2178,87 +2787,116 @@ public partial struct ulong2 : IComparable<ulong2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<ulong2, ulong2, bool>.operator >=(ulong2 left, ulong2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
-    public int CompareTo(ulong2 other)
+    public readonly int CompareTo(ulong2 other)
     {
-        if (Vector128.LessThanAny(vector, other.vector)) return -1;
-        if (Vector128.GreaterThanAny(vector, other.vector)) return 1;
-        return 0;
-    }
-    
-    [MethodImpl(256 | 512)]
-    public static b64v2 operator <(ulong2 left, ulong2 right) => 
-        new(Vector128.LessThan(left.vector, right.vector).AsUInt64());
-    [MethodImpl(256 | 512)]
-    public static b64v2 operator >(ulong2 left, ulong2 right) => 
-        new(Vector128.GreaterThan(left.vector, right.vector).AsUInt64());
-    [MethodImpl(256 | 512)]
-    public static b64v2 operator <=(ulong2 left, ulong2 right) => 
-        new(Vector128.LessThanOrEqual(left.vector, right.vector).AsUInt64());
-    [MethodImpl(256 | 512)]
-    public static b64v2 operator >=(ulong2 left, ulong2 right) => 
-        new(Vector128.GreaterThanOrEqual(left.vector, right.vector).AsUInt64());
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAll(ulong2 other) => (this < other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(ulong2 other) => (this > other).all();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(ulong2 other) => (this <= other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(ulong2 other) => (this >= other).all();
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAny(ulong2 other) => (this < other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(ulong2 other) => (this > other).any();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(ulong2 other) => (this <= other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(ulong2 other) => (this >= other).any();
-    #else // NET8_0_OR_GREATER
-    [MethodImpl(256 | 512)]
-    public int CompareTo(ulong2 other)
-    {
+        if (Vector128.IsHardwareAccelerated)
+        {
+            if (Vector128.LessThanAny(vector, other.vector)) return -1;
+            if (Vector128.GreaterThanAny(vector, other.vector)) return 1;
+            return 0;
+        }
         if (x < other.x || y < other.y) return -1;
         if (x > other.x || y > other.y) return 1;
         return 0;
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2 operator <(ulong2 left, ulong2 right) =>
-        new(left.x < right.x, left.y < right.y);
-    [MethodImpl(256 | 512)]
-    public static b64v2 operator >(ulong2 left, ulong2 right) =>
-        new(left.x > right.x, left.y > right.y);
-    [MethodImpl(256 | 512)]
-    public static b64v2 operator <=(ulong2 left, ulong2 right) =>
-        new(left.x <= right.x, left.y <= right.y);
-    [MethodImpl(256 | 512)]
-    public static b64v2 operator >=(ulong2 left, ulong2 right) =>
-        new(left.x >= right.x, left.y >= right.y);
+    public static b64v2 operator <(ulong2 left, ulong2 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.LessThan(left.vector, right.vector).AsUInt64());
+        return new(left.x < right.x, left.y < right.y);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(ulong2 other) => x < other.x && y < other.y;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(ulong2 other) => x > other.x && y > other.y;
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(ulong2 other) => x <= other.x && y <= other.y;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(ulong2 other) => x >= other.x && y >= other.y;
+    public static b64v2 operator >(ulong2 left, ulong2 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.GreaterThan(left.vector, right.vector).AsUInt64());
+        return new(left.x > right.x, left.y > right.y);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(ulong2 other) => x < other.x || y < other.y;
+    public static b64v2 operator <=(ulong2 left, ulong2 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.LessThanOrEqual(left.vector, right.vector).AsUInt64());
+        return new(left.x <= right.x, left.y <= right.y);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(ulong2 other) => x > other.x || y > other.y;
+    public static b64v2 operator >=(ulong2 left, ulong2 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.GreaterThanOrEqual(left.vector, right.vector).AsUInt64());
+        return new(left.x >= right.x, left.y >= right.y);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(ulong2 other) => x <= other.x || y <= other.y;
+    public readonly bool LessThanAll(ulong2 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanAll(vector, other.vector);
+        return x < other.x && y < other.y;
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(ulong2 other) => x >= other.x || y >= other.y;
-    #endif // NET8_0_OR_GREATER
+    public readonly bool GreaterThanAll(ulong2 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanAll(vector, other.vector);
+        return x > other.x && y > other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAll(ulong2 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanOrEqualAll(vector, other.vector);
+        return x <= other.x && y <= other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAll(ulong2 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanOrEqualAll(vector, other.vector);
+        return x >= other.x && y >= other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanAny(ulong2 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanAll(vector, other.vector);
+        return x < other.x || y < other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanAny(ulong2 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanAny(vector, other.vector);
+        return x > other.x || y > other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAny(ulong2 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanOrEqualAny(vector, other.vector);
+        return x <= other.x || y <= other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAny(ulong2 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanOrEqualAny(vector, other.vector);
+        return x >= other.x || y >= other.y;
+    }
 
 }
 
@@ -2267,20 +2905,17 @@ public partial struct ulong2 : IComparable<ulong2>, IComparable
 #region ulong3
 
 public partial struct ulong3 : IComparable<ulong3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<ulong3, ulong3, bool>
     , IComparisonOperators<ulong3, ulong3, b64v3>
-    #endif
 {
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is ulong3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(ulong3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<ulong3, ulong3, bool>.operator <(ulong3 left, ulong3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -2292,87 +2927,116 @@ public partial struct ulong3 : IComparable<ulong3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<ulong3, ulong3, bool>.operator >=(ulong3 left, ulong3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
-    public int CompareTo(ulong3 other)
+    public readonly int CompareTo(ulong3 other)
     {
-        if (Vector256.LessThanAny(vector, other.vector)) return -1;
-        if (Vector256.GreaterThanAny(vector, other.vector)) return 1;
-        return 0;
-    }
-    
-    [MethodImpl(256 | 512)]
-    public static b64v3 operator <(ulong3 left, ulong3 right) => 
-        new(Vector256.LessThan(left.vector, right.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-    [MethodImpl(256 | 512)]
-    public static b64v3 operator >(ulong3 left, ulong3 right) => 
-        new(Vector256.GreaterThan(left.vector, right.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-    [MethodImpl(256 | 512)]
-    public static b64v3 operator <=(ulong3 left, ulong3 right) => 
-        new(Vector256.LessThanOrEqual(left.vector, right.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-    [MethodImpl(256 | 512)]
-    public static b64v3 operator >=(ulong3 left, ulong3 right) => 
-        new(Vector256.GreaterThanOrEqual(left.vector, right.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAll(ulong3 other) => (this < other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(ulong3 other) => (this > other).all();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(ulong3 other) => (this <= other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(ulong3 other) => (this >= other).all();
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAny(ulong3 other) => (this < other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(ulong3 other) => (this > other).any();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(ulong3 other) => (this <= other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(ulong3 other) => (this >= other).any();
-    #else // NET8_0_OR_GREATER
-    [MethodImpl(256 | 512)]
-    public int CompareTo(ulong3 other)
-    {
+        if (Vector256.IsHardwareAccelerated)
+        {
+            if (Vector256.LessThanAny(vector, other.vector)) return -1;
+            if (Vector256.GreaterThanAny(vector, other.vector)) return 1;
+            return 0;
+        }
         if (x < other.x || y < other.y || z < other.z) return -1;
         if (x > other.x || y > other.y || z > other.z) return 1;
         return 0;
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v3 operator <(ulong3 left, ulong3 right) =>
-        new(left.x < right.x, left.y < right.y, left.z < right.z);
-    [MethodImpl(256 | 512)]
-    public static b64v3 operator >(ulong3 left, ulong3 right) =>
-        new(left.x > right.x, left.y > right.y, left.z > right.z);
-    [MethodImpl(256 | 512)]
-    public static b64v3 operator <=(ulong3 left, ulong3 right) =>
-        new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
-    [MethodImpl(256 | 512)]
-    public static b64v3 operator >=(ulong3 left, ulong3 right) =>
-        new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
+    public static b64v3 operator <(ulong3 left, ulong3 right)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.LessThan(left.vector, right.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        return new(left.x < right.x, left.y < right.y, left.z < right.z);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(ulong3 other) => x < other.x && y < other.y && z < other.z;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(ulong3 other) => x > other.x && y > other.y && z > other.z;
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(ulong3 other) => x <= other.x && y <= other.y && z <= other.z;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(ulong3 other) => x >= other.x && y >= other.y && z >= other.z;
+    public static b64v3 operator >(ulong3 left, ulong3 right)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.GreaterThan(left.vector, right.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        return new(left.x > right.x, left.y > right.y, left.z > right.z);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(ulong3 other) => x < other.x || y < other.y || z < other.z;
+    public static b64v3 operator <=(ulong3 left, ulong3 right)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.LessThanOrEqual(left.vector, right.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(ulong3 other) => x > other.x || y > other.y || z > other.z;
+    public static b64v3 operator >=(ulong3 left, ulong3 right)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.GreaterThanOrEqual(left.vector, right.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(ulong3 other) => x <= other.x || y <= other.y || z <= other.z;
+    public readonly bool LessThanAll(ulong3 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.LessThanAll(vector, other.vector);
+        return x < other.x && y < other.y && z < other.z;
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(ulong3 other) => x >= other.x || y >= other.y || z >= other.z;
-    #endif // NET8_0_OR_GREATER
+    public readonly bool GreaterThanAll(ulong3 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.GreaterThanAll(vector, other.vector);
+        return x > other.x && y > other.y && z > other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAll(ulong3 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.LessThanOrEqualAll(vector, other.vector);
+        return x <= other.x && y <= other.y && z <= other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAll(ulong3 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.GreaterThanOrEqualAll(vector, other.vector);
+        return x >= other.x && y >= other.y && z >= other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanAny(ulong3 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.LessThanAll(vector, other.vector);
+        return x < other.x || y < other.y || z < other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanAny(ulong3 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.GreaterThanAny(vector, other.vector);
+        return x > other.x || y > other.y || z > other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAny(ulong3 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.LessThanOrEqualAny(vector, other.vector);
+        return x <= other.x || y <= other.y || z <= other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAny(ulong3 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.GreaterThanOrEqualAny(vector, other.vector);
+        return x >= other.x || y >= other.y || z >= other.z;
+    }
 
 }
 
@@ -2381,20 +3045,17 @@ public partial struct ulong3 : IComparable<ulong3>, IComparable
 #region ulong4
 
 public partial struct ulong4 : IComparable<ulong4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<ulong4, ulong4, bool>
     , IComparisonOperators<ulong4, ulong4, b64v4>
-    #endif
 {
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is ulong4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(ulong4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<ulong4, ulong4, bool>.operator <(ulong4 left, ulong4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -2406,87 +3067,116 @@ public partial struct ulong4 : IComparable<ulong4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<ulong4, ulong4, bool>.operator >=(ulong4 left, ulong4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
-    public int CompareTo(ulong4 other)
+    public readonly int CompareTo(ulong4 other)
     {
-        if (Vector256.LessThanAny(vector, other.vector)) return -1;
-        if (Vector256.GreaterThanAny(vector, other.vector)) return 1;
-        return 0;
-    }
-    
-    [MethodImpl(256 | 512)]
-    public static b64v4 operator <(ulong4 left, ulong4 right) => 
-        new(Vector256.LessThan(left.vector, right.vector).AsUInt64());
-    [MethodImpl(256 | 512)]
-    public static b64v4 operator >(ulong4 left, ulong4 right) => 
-        new(Vector256.GreaterThan(left.vector, right.vector).AsUInt64());
-    [MethodImpl(256 | 512)]
-    public static b64v4 operator <=(ulong4 left, ulong4 right) => 
-        new(Vector256.LessThanOrEqual(left.vector, right.vector).AsUInt64());
-    [MethodImpl(256 | 512)]
-    public static b64v4 operator >=(ulong4 left, ulong4 right) => 
-        new(Vector256.GreaterThanOrEqual(left.vector, right.vector).AsUInt64());
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAll(ulong4 other) => (this < other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(ulong4 other) => (this > other).all();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(ulong4 other) => (this <= other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(ulong4 other) => (this >= other).all();
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAny(ulong4 other) => (this < other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(ulong4 other) => (this > other).any();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(ulong4 other) => (this <= other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(ulong4 other) => (this >= other).any();
-    #else // NET8_0_OR_GREATER
-    [MethodImpl(256 | 512)]
-    public int CompareTo(ulong4 other)
-    {
+        if (Vector256.IsHardwareAccelerated)
+        {
+            if (Vector256.LessThanAny(vector, other.vector)) return -1;
+            if (Vector256.GreaterThanAny(vector, other.vector)) return 1;
+            return 0;
+        }
         if (x < other.x || y < other.y || z < other.z || w < other.w) return -1;
         if (x > other.x || y > other.y || z > other.z || w > other.w) return 1;
         return 0;
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v4 operator <(ulong4 left, ulong4 right) =>
-        new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
-    [MethodImpl(256 | 512)]
-    public static b64v4 operator >(ulong4 left, ulong4 right) =>
-        new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
-    [MethodImpl(256 | 512)]
-    public static b64v4 operator <=(ulong4 left, ulong4 right) =>
-        new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
-    [MethodImpl(256 | 512)]
-    public static b64v4 operator >=(ulong4 left, ulong4 right) =>
-        new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
+    public static b64v4 operator <(ulong4 left, ulong4 right)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.LessThan(left.vector, right.vector).AsUInt64());
+        return new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(ulong4 other) => x < other.x && y < other.y && z < other.z && w < other.w;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(ulong4 other) => x > other.x && y > other.y && z > other.z && w > other.w;
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(ulong4 other) => x <= other.x && y <= other.y && z <= other.z && w <= other.w;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(ulong4 other) => x >= other.x && y >= other.y && z >= other.z && w >= other.w;
+    public static b64v4 operator >(ulong4 left, ulong4 right)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.GreaterThan(left.vector, right.vector).AsUInt64());
+        return new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(ulong4 other) => x < other.x || y < other.y || z < other.z || w < other.w;
+    public static b64v4 operator <=(ulong4 left, ulong4 right)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.LessThanOrEqual(left.vector, right.vector).AsUInt64());
+        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(ulong4 other) => x > other.x || y > other.y || z > other.z || w > other.w;
+    public static b64v4 operator >=(ulong4 left, ulong4 right)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.GreaterThanOrEqual(left.vector, right.vector).AsUInt64());
+        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(ulong4 other) => x <= other.x || y <= other.y || z <= other.z || w <= other.w;
+    public readonly bool LessThanAll(ulong4 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.LessThanAll(vector, other.vector);
+        return x < other.x && y < other.y && z < other.z && w < other.w;
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(ulong4 other) => x >= other.x || y >= other.y || z >= other.z || w >= other.w;
-    #endif // NET8_0_OR_GREATER
+    public readonly bool GreaterThanAll(ulong4 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.GreaterThanAll(vector, other.vector);
+        return x > other.x && y > other.y && z > other.z && w > other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAll(ulong4 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.LessThanOrEqualAll(vector, other.vector);
+        return x <= other.x && y <= other.y && z <= other.z && w <= other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAll(ulong4 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.GreaterThanOrEqualAll(vector, other.vector);
+        return x >= other.x && y >= other.y && z >= other.z && w >= other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanAny(ulong4 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.LessThanAll(vector, other.vector);
+        return x < other.x || y < other.y || z < other.z || w < other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanAny(ulong4 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.GreaterThanAny(vector, other.vector);
+        return x > other.x || y > other.y || z > other.z || w > other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAny(ulong4 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.LessThanOrEqualAny(vector, other.vector);
+        return x <= other.x || y <= other.y || z <= other.z || w <= other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAny(ulong4 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.GreaterThanOrEqualAny(vector, other.vector);
+        return x >= other.x || y >= other.y || z >= other.z || w >= other.w;
+    }
 
 }
 
@@ -2495,20 +3185,17 @@ public partial struct ulong4 : IComparable<ulong4>, IComparable
 #region half2
 
 public partial struct half2 : IComparable<half2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<half2, half2, bool>
     , IComparisonOperators<half2, half2, b16v2>
-    #endif
 {
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is half2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(half2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<half2, half2, bool>.operator <(half2 left, half2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -2520,10 +3207,9 @@ public partial struct half2 : IComparable<half2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<half2, half2, bool>.operator >=(half2 left, half2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(half2 other)
+    public readonly int CompareTo(half2 other)
     {
         if (x < other.x || y < other.y) return -1;
         if (x > other.x || y > other.y) return 1;
@@ -2531,35 +3217,76 @@ public partial struct half2 : IComparable<half2>, IComparable
     }
 
     [MethodImpl(256 | 512)]
-    public static b16v2 operator <(half2 left, half2 right) =>
-        new(left.x < right.x, left.y < right.y);
-    [MethodImpl(256 | 512)]
-    public static b16v2 operator >(half2 left, half2 right) =>
-        new(left.x > right.x, left.y > right.y);
-    [MethodImpl(256 | 512)]
-    public static b16v2 operator <=(half2 left, half2 right) =>
-        new(left.x <= right.x, left.y <= right.y);
-    [MethodImpl(256 | 512)]
-    public static b16v2 operator >=(half2 left, half2 right) =>
-        new(left.x >= right.x, left.y >= right.y);
+    public static b16v2 operator <(half2 left, half2 right)
+    {
+        return new(left.x < right.x, left.y < right.y);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(half2 other) => x < other.x && y < other.y;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(half2 other) => x > other.x && y > other.y;
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(half2 other) => x <= other.x && y <= other.y;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(half2 other) => x >= other.x && y >= other.y;
+    public static b16v2 operator >(half2 left, half2 right)
+    {
+        return new(left.x > right.x, left.y > right.y);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(half2 other) => x < other.x || y < other.y;
+    public static b16v2 operator <=(half2 left, half2 right)
+    {
+        return new(left.x <= right.x, left.y <= right.y);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(half2 other) => x > other.x || y > other.y;
+    public static b16v2 operator >=(half2 left, half2 right)
+    {
+        return new(left.x >= right.x, left.y >= right.y);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(half2 other) => x <= other.x || y <= other.y;
+    public readonly bool LessThanAll(half2 other)
+    {
+        return x < other.x && y < other.y;
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(half2 other) => x >= other.x || y >= other.y;
+    public readonly bool GreaterThanAll(half2 other)
+    {
+        return x > other.x && y > other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAll(half2 other)
+    {
+        return x <= other.x && y <= other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAll(half2 other)
+    {
+        return x >= other.x && y >= other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanAny(half2 other)
+    {
+        return x < other.x || y < other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanAny(half2 other)
+    {
+        return x > other.x || y > other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAny(half2 other)
+    {
+        return x <= other.x || y <= other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAny(half2 other)
+    {
+        return x >= other.x || y >= other.y;
+    }
 
 }
 
@@ -2568,20 +3295,17 @@ public partial struct half2 : IComparable<half2>, IComparable
 #region half3
 
 public partial struct half3 : IComparable<half3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<half3, half3, bool>
     , IComparisonOperators<half3, half3, b16v3>
-    #endif
 {
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is half3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(half3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<half3, half3, bool>.operator <(half3 left, half3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -2593,10 +3317,9 @@ public partial struct half3 : IComparable<half3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<half3, half3, bool>.operator >=(half3 left, half3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(half3 other)
+    public readonly int CompareTo(half3 other)
     {
         if (x < other.x || y < other.y || z < other.z) return -1;
         if (x > other.x || y > other.y || z > other.z) return 1;
@@ -2604,35 +3327,76 @@ public partial struct half3 : IComparable<half3>, IComparable
     }
 
     [MethodImpl(256 | 512)]
-    public static b16v3 operator <(half3 left, half3 right) =>
-        new(left.x < right.x, left.y < right.y, left.z < right.z);
-    [MethodImpl(256 | 512)]
-    public static b16v3 operator >(half3 left, half3 right) =>
-        new(left.x > right.x, left.y > right.y, left.z > right.z);
-    [MethodImpl(256 | 512)]
-    public static b16v3 operator <=(half3 left, half3 right) =>
-        new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
-    [MethodImpl(256 | 512)]
-    public static b16v3 operator >=(half3 left, half3 right) =>
-        new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
+    public static b16v3 operator <(half3 left, half3 right)
+    {
+        return new(left.x < right.x, left.y < right.y, left.z < right.z);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(half3 other) => x < other.x && y < other.y && z < other.z;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(half3 other) => x > other.x && y > other.y && z > other.z;
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(half3 other) => x <= other.x && y <= other.y && z <= other.z;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(half3 other) => x >= other.x && y >= other.y && z >= other.z;
+    public static b16v3 operator >(half3 left, half3 right)
+    {
+        return new(left.x > right.x, left.y > right.y, left.z > right.z);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(half3 other) => x < other.x || y < other.y || z < other.z;
+    public static b16v3 operator <=(half3 left, half3 right)
+    {
+        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(half3 other) => x > other.x || y > other.y || z > other.z;
+    public static b16v3 operator >=(half3 left, half3 right)
+    {
+        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(half3 other) => x <= other.x || y <= other.y || z <= other.z;
+    public readonly bool LessThanAll(half3 other)
+    {
+        return x < other.x && y < other.y && z < other.z;
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(half3 other) => x >= other.x || y >= other.y || z >= other.z;
+    public readonly bool GreaterThanAll(half3 other)
+    {
+        return x > other.x && y > other.y && z > other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAll(half3 other)
+    {
+        return x <= other.x && y <= other.y && z <= other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAll(half3 other)
+    {
+        return x >= other.x && y >= other.y && z >= other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanAny(half3 other)
+    {
+        return x < other.x || y < other.y || z < other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanAny(half3 other)
+    {
+        return x > other.x || y > other.y || z > other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAny(half3 other)
+    {
+        return x <= other.x || y <= other.y || z <= other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAny(half3 other)
+    {
+        return x >= other.x || y >= other.y || z >= other.z;
+    }
 
 }
 
@@ -2641,20 +3405,17 @@ public partial struct half3 : IComparable<half3>, IComparable
 #region half4
 
 public partial struct half4 : IComparable<half4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<half4, half4, bool>
     , IComparisonOperators<half4, half4, b16v4>
-    #endif
 {
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is half4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(half4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<half4, half4, bool>.operator <(half4 left, half4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -2666,10 +3427,9 @@ public partial struct half4 : IComparable<half4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<half4, half4, bool>.operator >=(half4 left, half4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(half4 other)
+    public readonly int CompareTo(half4 other)
     {
         if (x < other.x || y < other.y || z < other.z || w < other.w) return -1;
         if (x > other.x || y > other.y || z > other.z || w > other.w) return 1;
@@ -2677,35 +3437,76 @@ public partial struct half4 : IComparable<half4>, IComparable
     }
 
     [MethodImpl(256 | 512)]
-    public static b16v4 operator <(half4 left, half4 right) =>
-        new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
-    [MethodImpl(256 | 512)]
-    public static b16v4 operator >(half4 left, half4 right) =>
-        new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
-    [MethodImpl(256 | 512)]
-    public static b16v4 operator <=(half4 left, half4 right) =>
-        new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
-    [MethodImpl(256 | 512)]
-    public static b16v4 operator >=(half4 left, half4 right) =>
-        new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
+    public static b16v4 operator <(half4 left, half4 right)
+    {
+        return new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(half4 other) => x < other.x && y < other.y && z < other.z && w < other.w;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(half4 other) => x > other.x && y > other.y && z > other.z && w > other.w;
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(half4 other) => x <= other.x && y <= other.y && z <= other.z && w <= other.w;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(half4 other) => x >= other.x && y >= other.y && z >= other.z && w >= other.w;
+    public static b16v4 operator >(half4 left, half4 right)
+    {
+        return new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(half4 other) => x < other.x || y < other.y || z < other.z || w < other.w;
+    public static b16v4 operator <=(half4 left, half4 right)
+    {
+        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(half4 other) => x > other.x || y > other.y || z > other.z || w > other.w;
+    public static b16v4 operator >=(half4 left, half4 right)
+    {
+        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(half4 other) => x <= other.x || y <= other.y || z <= other.z || w <= other.w;
+    public readonly bool LessThanAll(half4 other)
+    {
+        return x < other.x && y < other.y && z < other.z && w < other.w;
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(half4 other) => x >= other.x || y >= other.y || z >= other.z || w >= other.w;
+    public readonly bool GreaterThanAll(half4 other)
+    {
+        return x > other.x && y > other.y && z > other.z && w > other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAll(half4 other)
+    {
+        return x <= other.x && y <= other.y && z <= other.z && w <= other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAll(half4 other)
+    {
+        return x >= other.x && y >= other.y && z >= other.z && w >= other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanAny(half4 other)
+    {
+        return x < other.x || y < other.y || z < other.z || w < other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanAny(half4 other)
+    {
+        return x > other.x || y > other.y || z > other.z || w > other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAny(half4 other)
+    {
+        return x <= other.x || y <= other.y || z <= other.z || w <= other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAny(half4 other)
+    {
+        return x >= other.x || y >= other.y || z >= other.z || w >= other.w;
+    }
 
 }
 
@@ -2714,20 +3515,17 @@ public partial struct half4 : IComparable<half4>, IComparable
 #region b16v2
 
 public partial struct b16v2 : IComparable<b16v2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<b16v2, b16v2, bool>
     , IComparisonOperators<b16v2, b16v2, b16v2>
-    #endif
 {
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is b16v2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b16v2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<b16v2, b16v2, bool>.operator <(b16v2 left, b16v2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -2739,10 +3537,9 @@ public partial struct b16v2 : IComparable<b16v2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<b16v2, b16v2, bool>.operator >=(b16v2 left, b16v2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(b16v2 other)
+    public readonly int CompareTo(b16v2 other)
     {
         if (x < other.x || y < other.y) return -1;
         if (x > other.x || y > other.y) return 1;
@@ -2750,35 +3547,76 @@ public partial struct b16v2 : IComparable<b16v2>, IComparable
     }
 
     [MethodImpl(256 | 512)]
-    public static b16v2 operator <(b16v2 left, b16v2 right) =>
-        new(left.x < right.x, left.y < right.y);
-    [MethodImpl(256 | 512)]
-    public static b16v2 operator >(b16v2 left, b16v2 right) =>
-        new(left.x > right.x, left.y > right.y);
-    [MethodImpl(256 | 512)]
-    public static b16v2 operator <=(b16v2 left, b16v2 right) =>
-        new(left.x <= right.x, left.y <= right.y);
-    [MethodImpl(256 | 512)]
-    public static b16v2 operator >=(b16v2 left, b16v2 right) =>
-        new(left.x >= right.x, left.y >= right.y);
+    public static b16v2 operator <(b16v2 left, b16v2 right)
+    {
+        return new(left.x < right.x, left.y < right.y);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(b16v2 other) => x < other.x && y < other.y;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(b16v2 other) => x > other.x && y > other.y;
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(b16v2 other) => x <= other.x && y <= other.y;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(b16v2 other) => x >= other.x && y >= other.y;
+    public static b16v2 operator >(b16v2 left, b16v2 right)
+    {
+        return new(left.x > right.x, left.y > right.y);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(b16v2 other) => x < other.x || y < other.y;
+    public static b16v2 operator <=(b16v2 left, b16v2 right)
+    {
+        return new(left.x <= right.x, left.y <= right.y);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(b16v2 other) => x > other.x || y > other.y;
+    public static b16v2 operator >=(b16v2 left, b16v2 right)
+    {
+        return new(left.x >= right.x, left.y >= right.y);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(b16v2 other) => x <= other.x || y <= other.y;
+    public readonly bool LessThanAll(b16v2 other)
+    {
+        return x < other.x && y < other.y;
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(b16v2 other) => x >= other.x || y >= other.y;
+    public readonly bool GreaterThanAll(b16v2 other)
+    {
+        return x > other.x && y > other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAll(b16v2 other)
+    {
+        return x <= other.x && y <= other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAll(b16v2 other)
+    {
+        return x >= other.x && y >= other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanAny(b16v2 other)
+    {
+        return x < other.x || y < other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanAny(b16v2 other)
+    {
+        return x > other.x || y > other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAny(b16v2 other)
+    {
+        return x <= other.x || y <= other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAny(b16v2 other)
+    {
+        return x >= other.x || y >= other.y;
+    }
 
 }
 
@@ -2787,20 +3625,17 @@ public partial struct b16v2 : IComparable<b16v2>, IComparable
 #region b16v3
 
 public partial struct b16v3 : IComparable<b16v3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<b16v3, b16v3, bool>
     , IComparisonOperators<b16v3, b16v3, b16v3>
-    #endif
 {
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is b16v3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b16v3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<b16v3, b16v3, bool>.operator <(b16v3 left, b16v3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -2812,10 +3647,9 @@ public partial struct b16v3 : IComparable<b16v3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<b16v3, b16v3, bool>.operator >=(b16v3 left, b16v3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(b16v3 other)
+    public readonly int CompareTo(b16v3 other)
     {
         if (x < other.x || y < other.y || z < other.z) return -1;
         if (x > other.x || y > other.y || z > other.z) return 1;
@@ -2823,35 +3657,76 @@ public partial struct b16v3 : IComparable<b16v3>, IComparable
     }
 
     [MethodImpl(256 | 512)]
-    public static b16v3 operator <(b16v3 left, b16v3 right) =>
-        new(left.x < right.x, left.y < right.y, left.z < right.z);
-    [MethodImpl(256 | 512)]
-    public static b16v3 operator >(b16v3 left, b16v3 right) =>
-        new(left.x > right.x, left.y > right.y, left.z > right.z);
-    [MethodImpl(256 | 512)]
-    public static b16v3 operator <=(b16v3 left, b16v3 right) =>
-        new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
-    [MethodImpl(256 | 512)]
-    public static b16v3 operator >=(b16v3 left, b16v3 right) =>
-        new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
+    public static b16v3 operator <(b16v3 left, b16v3 right)
+    {
+        return new(left.x < right.x, left.y < right.y, left.z < right.z);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(b16v3 other) => x < other.x && y < other.y && z < other.z;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(b16v3 other) => x > other.x && y > other.y && z > other.z;
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(b16v3 other) => x <= other.x && y <= other.y && z <= other.z;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(b16v3 other) => x >= other.x && y >= other.y && z >= other.z;
+    public static b16v3 operator >(b16v3 left, b16v3 right)
+    {
+        return new(left.x > right.x, left.y > right.y, left.z > right.z);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(b16v3 other) => x < other.x || y < other.y || z < other.z;
+    public static b16v3 operator <=(b16v3 left, b16v3 right)
+    {
+        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(b16v3 other) => x > other.x || y > other.y || z > other.z;
+    public static b16v3 operator >=(b16v3 left, b16v3 right)
+    {
+        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(b16v3 other) => x <= other.x || y <= other.y || z <= other.z;
+    public readonly bool LessThanAll(b16v3 other)
+    {
+        return x < other.x && y < other.y && z < other.z;
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(b16v3 other) => x >= other.x || y >= other.y || z >= other.z;
+    public readonly bool GreaterThanAll(b16v3 other)
+    {
+        return x > other.x && y > other.y && z > other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAll(b16v3 other)
+    {
+        return x <= other.x && y <= other.y && z <= other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAll(b16v3 other)
+    {
+        return x >= other.x && y >= other.y && z >= other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanAny(b16v3 other)
+    {
+        return x < other.x || y < other.y || z < other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanAny(b16v3 other)
+    {
+        return x > other.x || y > other.y || z > other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAny(b16v3 other)
+    {
+        return x <= other.x || y <= other.y || z <= other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAny(b16v3 other)
+    {
+        return x >= other.x || y >= other.y || z >= other.z;
+    }
 
 }
 
@@ -2860,20 +3735,17 @@ public partial struct b16v3 : IComparable<b16v3>, IComparable
 #region b16v4
 
 public partial struct b16v4 : IComparable<b16v4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<b16v4, b16v4, bool>
     , IComparisonOperators<b16v4, b16v4, b16v4>
-    #endif
 {
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is b16v4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b16v4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<b16v4, b16v4, bool>.operator <(b16v4 left, b16v4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -2885,10 +3757,9 @@ public partial struct b16v4 : IComparable<b16v4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<b16v4, b16v4, bool>.operator >=(b16v4 left, b16v4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(b16v4 other)
+    public readonly int CompareTo(b16v4 other)
     {
         if (x < other.x || y < other.y || z < other.z || w < other.w) return -1;
         if (x > other.x || y > other.y || z > other.z || w > other.w) return 1;
@@ -2896,35 +3767,76 @@ public partial struct b16v4 : IComparable<b16v4>, IComparable
     }
 
     [MethodImpl(256 | 512)]
-    public static b16v4 operator <(b16v4 left, b16v4 right) =>
-        new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
-    [MethodImpl(256 | 512)]
-    public static b16v4 operator >(b16v4 left, b16v4 right) =>
-        new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
-    [MethodImpl(256 | 512)]
-    public static b16v4 operator <=(b16v4 left, b16v4 right) =>
-        new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
-    [MethodImpl(256 | 512)]
-    public static b16v4 operator >=(b16v4 left, b16v4 right) =>
-        new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
+    public static b16v4 operator <(b16v4 left, b16v4 right)
+    {
+        return new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(b16v4 other) => x < other.x && y < other.y && z < other.z && w < other.w;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(b16v4 other) => x > other.x && y > other.y && z > other.z && w > other.w;
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(b16v4 other) => x <= other.x && y <= other.y && z <= other.z && w <= other.w;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(b16v4 other) => x >= other.x && y >= other.y && z >= other.z && w >= other.w;
+    public static b16v4 operator >(b16v4 left, b16v4 right)
+    {
+        return new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(b16v4 other) => x < other.x || y < other.y || z < other.z || w < other.w;
+    public static b16v4 operator <=(b16v4 left, b16v4 right)
+    {
+        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(b16v4 other) => x > other.x || y > other.y || z > other.z || w > other.w;
+    public static b16v4 operator >=(b16v4 left, b16v4 right)
+    {
+        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(b16v4 other) => x <= other.x || y <= other.y || z <= other.z || w <= other.w;
+    public readonly bool LessThanAll(b16v4 other)
+    {
+        return x < other.x && y < other.y && z < other.z && w < other.w;
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(b16v4 other) => x >= other.x || y >= other.y || z >= other.z || w >= other.w;
+    public readonly bool GreaterThanAll(b16v4 other)
+    {
+        return x > other.x && y > other.y && z > other.z && w > other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAll(b16v4 other)
+    {
+        return x <= other.x && y <= other.y && z <= other.z && w <= other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAll(b16v4 other)
+    {
+        return x >= other.x && y >= other.y && z >= other.z && w >= other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanAny(b16v4 other)
+    {
+        return x < other.x || y < other.y || z < other.z || w < other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanAny(b16v4 other)
+    {
+        return x > other.x || y > other.y || z > other.z || w > other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAny(b16v4 other)
+    {
+        return x <= other.x || y <= other.y || z <= other.z || w <= other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAny(b16v4 other)
+    {
+        return x >= other.x || y >= other.y || z >= other.z || w >= other.w;
+    }
 
 }
 
@@ -2933,20 +3845,17 @@ public partial struct b16v4 : IComparable<b16v4>, IComparable
 #region b32v2
 
 public partial struct b32v2 : IComparable<b32v2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<b32v2, b32v2, bool>
     , IComparisonOperators<b32v2, b32v2, b32v2>
-    #endif
 {
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is b32v2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b32v2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<b32v2, b32v2, bool>.operator <(b32v2 left, b32v2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -2958,87 +3867,116 @@ public partial struct b32v2 : IComparable<b32v2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<b32v2, b32v2, bool>.operator >=(b32v2 left, b32v2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
-    public int CompareTo(b32v2 other)
+    public readonly int CompareTo(b32v2 other)
     {
-        if (Vector64.LessThanAny(vector, other.vector)) return -1;
-        if (Vector64.GreaterThanAny(vector, other.vector)) return 1;
-        return 0;
-    }
-    
-    [MethodImpl(256 | 512)]
-    public static b32v2 operator <(b32v2 left, b32v2 right) => 
-        new(Vector64.LessThan(left.vector, right.vector).AsUInt32());
-    [MethodImpl(256 | 512)]
-    public static b32v2 operator >(b32v2 left, b32v2 right) => 
-        new(Vector64.GreaterThan(left.vector, right.vector).AsUInt32());
-    [MethodImpl(256 | 512)]
-    public static b32v2 operator <=(b32v2 left, b32v2 right) => 
-        new(Vector64.LessThanOrEqual(left.vector, right.vector).AsUInt32());
-    [MethodImpl(256 | 512)]
-    public static b32v2 operator >=(b32v2 left, b32v2 right) => 
-        new(Vector64.GreaterThanOrEqual(left.vector, right.vector).AsUInt32());
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAll(b32v2 other) => (this < other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(b32v2 other) => (this > other).all();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(b32v2 other) => (this <= other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(b32v2 other) => (this >= other).all();
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAny(b32v2 other) => (this < other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(b32v2 other) => (this > other).any();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(b32v2 other) => (this <= other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(b32v2 other) => (this >= other).any();
-    #else // NET8_0_OR_GREATER
-    [MethodImpl(256 | 512)]
-    public int CompareTo(b32v2 other)
-    {
+        if (Vector64.IsHardwareAccelerated)
+        {
+            if (Vector64.LessThanAny(vector, other.vector)) return -1;
+            if (Vector64.GreaterThanAny(vector, other.vector)) return 1;
+            return 0;
+        }
         if (x < other.x || y < other.y) return -1;
         if (x > other.x || y > other.y) return 1;
         return 0;
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v2 operator <(b32v2 left, b32v2 right) =>
-        new(left.x < right.x, left.y < right.y);
-    [MethodImpl(256 | 512)]
-    public static b32v2 operator >(b32v2 left, b32v2 right) =>
-        new(left.x > right.x, left.y > right.y);
-    [MethodImpl(256 | 512)]
-    public static b32v2 operator <=(b32v2 left, b32v2 right) =>
-        new(left.x <= right.x, left.y <= right.y);
-    [MethodImpl(256 | 512)]
-    public static b32v2 operator >=(b32v2 left, b32v2 right) =>
-        new(left.x >= right.x, left.y >= right.y);
+    public static b32v2 operator <(b32v2 left, b32v2 right)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return new(Vector64.LessThan(left.vector, right.vector).AsUInt32());
+        return new(left.x < right.x, left.y < right.y);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(b32v2 other) => x < other.x && y < other.y;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(b32v2 other) => x > other.x && y > other.y;
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(b32v2 other) => x <= other.x && y <= other.y;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(b32v2 other) => x >= other.x && y >= other.y;
+    public static b32v2 operator >(b32v2 left, b32v2 right)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return new(Vector64.GreaterThan(left.vector, right.vector).AsUInt32());
+        return new(left.x > right.x, left.y > right.y);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(b32v2 other) => x < other.x || y < other.y;
+    public static b32v2 operator <=(b32v2 left, b32v2 right)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return new(Vector64.LessThanOrEqual(left.vector, right.vector).AsUInt32());
+        return new(left.x <= right.x, left.y <= right.y);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(b32v2 other) => x > other.x || y > other.y;
+    public static b32v2 operator >=(b32v2 left, b32v2 right)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return new(Vector64.GreaterThanOrEqual(left.vector, right.vector).AsUInt32());
+        return new(left.x >= right.x, left.y >= right.y);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(b32v2 other) => x <= other.x || y <= other.y;
+    public readonly bool LessThanAll(b32v2 other)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.LessThanAll(vector, other.vector);
+        return x < other.x && y < other.y;
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(b32v2 other) => x >= other.x || y >= other.y;
-    #endif // NET8_0_OR_GREATER
+    public readonly bool GreaterThanAll(b32v2 other)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.GreaterThanAll(vector, other.vector);
+        return x > other.x && y > other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAll(b32v2 other)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.LessThanOrEqualAll(vector, other.vector);
+        return x <= other.x && y <= other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAll(b32v2 other)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.GreaterThanOrEqualAll(vector, other.vector);
+        return x >= other.x && y >= other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanAny(b32v2 other)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.LessThanAll(vector, other.vector);
+        return x < other.x || y < other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanAny(b32v2 other)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.GreaterThanAny(vector, other.vector);
+        return x > other.x || y > other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAny(b32v2 other)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.LessThanOrEqualAny(vector, other.vector);
+        return x <= other.x || y <= other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAny(b32v2 other)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return Vector64.GreaterThanOrEqualAny(vector, other.vector);
+        return x >= other.x || y >= other.y;
+    }
 
 }
 
@@ -3047,20 +3985,17 @@ public partial struct b32v2 : IComparable<b32v2>, IComparable
 #region b32v3
 
 public partial struct b32v3 : IComparable<b32v3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<b32v3, b32v3, bool>
     , IComparisonOperators<b32v3, b32v3, b32v3>
-    #endif
 {
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is b32v3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b32v3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<b32v3, b32v3, bool>.operator <(b32v3 left, b32v3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -3072,87 +4007,116 @@ public partial struct b32v3 : IComparable<b32v3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<b32v3, b32v3, bool>.operator >=(b32v3 left, b32v3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
-    public int CompareTo(b32v3 other)
+    public readonly int CompareTo(b32v3 other)
     {
-        if (Vector128.LessThanAny(vector, other.vector)) return -1;
-        if (Vector128.GreaterThanAny(vector, other.vector)) return 1;
-        return 0;
-    }
-    
-    [MethodImpl(256 | 512)]
-    public static b32v3 operator <(b32v3 left, b32v3 right) => 
-        new(Vector128.LessThan(left.vector, right.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-    [MethodImpl(256 | 512)]
-    public static b32v3 operator >(b32v3 left, b32v3 right) => 
-        new(Vector128.GreaterThan(left.vector, right.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-    [MethodImpl(256 | 512)]
-    public static b32v3 operator <=(b32v3 left, b32v3 right) => 
-        new(Vector128.LessThanOrEqual(left.vector, right.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-    [MethodImpl(256 | 512)]
-    public static b32v3 operator >=(b32v3 left, b32v3 right) => 
-        new(Vector128.GreaterThanOrEqual(left.vector, right.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAll(b32v3 other) => (this < other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(b32v3 other) => (this > other).all();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(b32v3 other) => (this <= other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(b32v3 other) => (this >= other).all();
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAny(b32v3 other) => (this < other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(b32v3 other) => (this > other).any();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(b32v3 other) => (this <= other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(b32v3 other) => (this >= other).any();
-    #else // NET8_0_OR_GREATER
-    [MethodImpl(256 | 512)]
-    public int CompareTo(b32v3 other)
-    {
+        if (Vector128.IsHardwareAccelerated)
+        {
+            if (Vector128.LessThanAny(vector, other.vector)) return -1;
+            if (Vector128.GreaterThanAny(vector, other.vector)) return 1;
+            return 0;
+        }
         if (x < other.x || y < other.y || z < other.z) return -1;
         if (x > other.x || y > other.y || z > other.z) return 1;
         return 0;
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v3 operator <(b32v3 left, b32v3 right) =>
-        new(left.x < right.x, left.y < right.y, left.z < right.z);
-    [MethodImpl(256 | 512)]
-    public static b32v3 operator >(b32v3 left, b32v3 right) =>
-        new(left.x > right.x, left.y > right.y, left.z > right.z);
-    [MethodImpl(256 | 512)]
-    public static b32v3 operator <=(b32v3 left, b32v3 right) =>
-        new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
-    [MethodImpl(256 | 512)]
-    public static b32v3 operator >=(b32v3 left, b32v3 right) =>
-        new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
+    public static b32v3 operator <(b32v3 left, b32v3 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.LessThan(left.vector, right.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        return new(left.x < right.x, left.y < right.y, left.z < right.z);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(b32v3 other) => x < other.x && y < other.y && z < other.z;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(b32v3 other) => x > other.x && y > other.y && z > other.z;
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(b32v3 other) => x <= other.x && y <= other.y && z <= other.z;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(b32v3 other) => x >= other.x && y >= other.y && z >= other.z;
+    public static b32v3 operator >(b32v3 left, b32v3 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.GreaterThan(left.vector, right.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        return new(left.x > right.x, left.y > right.y, left.z > right.z);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(b32v3 other) => x < other.x || y < other.y || z < other.z;
+    public static b32v3 operator <=(b32v3 left, b32v3 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.LessThanOrEqual(left.vector, right.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(b32v3 other) => x > other.x || y > other.y || z > other.z;
+    public static b32v3 operator >=(b32v3 left, b32v3 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.GreaterThanOrEqual(left.vector, right.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
+        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(b32v3 other) => x <= other.x || y <= other.y || z <= other.z;
+    public readonly bool LessThanAll(b32v3 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanAll(vector, other.vector);
+        return x < other.x && y < other.y && z < other.z;
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(b32v3 other) => x >= other.x || y >= other.y || z >= other.z;
-    #endif // NET8_0_OR_GREATER
+    public readonly bool GreaterThanAll(b32v3 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanAll(vector, other.vector);
+        return x > other.x && y > other.y && z > other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAll(b32v3 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanOrEqualAll(vector, other.vector);
+        return x <= other.x && y <= other.y && z <= other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAll(b32v3 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanOrEqualAll(vector, other.vector);
+        return x >= other.x && y >= other.y && z >= other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanAny(b32v3 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanAll(vector, other.vector);
+        return x < other.x || y < other.y || z < other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanAny(b32v3 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanAny(vector, other.vector);
+        return x > other.x || y > other.y || z > other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAny(b32v3 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanOrEqualAny(vector, other.vector);
+        return x <= other.x || y <= other.y || z <= other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAny(b32v3 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanOrEqualAny(vector, other.vector);
+        return x >= other.x || y >= other.y || z >= other.z;
+    }
 
 }
 
@@ -3161,20 +4125,17 @@ public partial struct b32v3 : IComparable<b32v3>, IComparable
 #region b32v4
 
 public partial struct b32v4 : IComparable<b32v4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<b32v4, b32v4, bool>
     , IComparisonOperators<b32v4, b32v4, b32v4>
-    #endif
 {
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is b32v4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b32v4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<b32v4, b32v4, bool>.operator <(b32v4 left, b32v4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -3186,87 +4147,116 @@ public partial struct b32v4 : IComparable<b32v4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<b32v4, b32v4, bool>.operator >=(b32v4 left, b32v4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
-    public int CompareTo(b32v4 other)
+    public readonly int CompareTo(b32v4 other)
     {
-        if (Vector128.LessThanAny(vector, other.vector)) return -1;
-        if (Vector128.GreaterThanAny(vector, other.vector)) return 1;
-        return 0;
-    }
-    
-    [MethodImpl(256 | 512)]
-    public static b32v4 operator <(b32v4 left, b32v4 right) => 
-        new(Vector128.LessThan(left.vector, right.vector).AsUInt32());
-    [MethodImpl(256 | 512)]
-    public static b32v4 operator >(b32v4 left, b32v4 right) => 
-        new(Vector128.GreaterThan(left.vector, right.vector).AsUInt32());
-    [MethodImpl(256 | 512)]
-    public static b32v4 operator <=(b32v4 left, b32v4 right) => 
-        new(Vector128.LessThanOrEqual(left.vector, right.vector).AsUInt32());
-    [MethodImpl(256 | 512)]
-    public static b32v4 operator >=(b32v4 left, b32v4 right) => 
-        new(Vector128.GreaterThanOrEqual(left.vector, right.vector).AsUInt32());
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAll(b32v4 other) => (this < other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(b32v4 other) => (this > other).all();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(b32v4 other) => (this <= other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(b32v4 other) => (this >= other).all();
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAny(b32v4 other) => (this < other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(b32v4 other) => (this > other).any();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(b32v4 other) => (this <= other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(b32v4 other) => (this >= other).any();
-    #else // NET8_0_OR_GREATER
-    [MethodImpl(256 | 512)]
-    public int CompareTo(b32v4 other)
-    {
+        if (Vector128.IsHardwareAccelerated)
+        {
+            if (Vector128.LessThanAny(vector, other.vector)) return -1;
+            if (Vector128.GreaterThanAny(vector, other.vector)) return 1;
+            return 0;
+        }
         if (x < other.x || y < other.y || z < other.z || w < other.w) return -1;
         if (x > other.x || y > other.y || z > other.z || w > other.w) return 1;
         return 0;
     }
 
     [MethodImpl(256 | 512)]
-    public static b32v4 operator <(b32v4 left, b32v4 right) =>
-        new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
-    [MethodImpl(256 | 512)]
-    public static b32v4 operator >(b32v4 left, b32v4 right) =>
-        new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
-    [MethodImpl(256 | 512)]
-    public static b32v4 operator <=(b32v4 left, b32v4 right) =>
-        new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
-    [MethodImpl(256 | 512)]
-    public static b32v4 operator >=(b32v4 left, b32v4 right) =>
-        new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
+    public static b32v4 operator <(b32v4 left, b32v4 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.LessThan(left.vector, right.vector).AsUInt32());
+        return new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(b32v4 other) => x < other.x && y < other.y && z < other.z && w < other.w;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(b32v4 other) => x > other.x && y > other.y && z > other.z && w > other.w;
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(b32v4 other) => x <= other.x && y <= other.y && z <= other.z && w <= other.w;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(b32v4 other) => x >= other.x && y >= other.y && z >= other.z && w >= other.w;
+    public static b32v4 operator >(b32v4 left, b32v4 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.GreaterThan(left.vector, right.vector).AsUInt32());
+        return new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(b32v4 other) => x < other.x || y < other.y || z < other.z || w < other.w;
+    public static b32v4 operator <=(b32v4 left, b32v4 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.LessThanOrEqual(left.vector, right.vector).AsUInt32());
+        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(b32v4 other) => x > other.x || y > other.y || z > other.z || w > other.w;
+    public static b32v4 operator >=(b32v4 left, b32v4 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.GreaterThanOrEqual(left.vector, right.vector).AsUInt32());
+        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(b32v4 other) => x <= other.x || y <= other.y || z <= other.z || w <= other.w;
+    public readonly bool LessThanAll(b32v4 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanAll(vector, other.vector);
+        return x < other.x && y < other.y && z < other.z && w < other.w;
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(b32v4 other) => x >= other.x || y >= other.y || z >= other.z || w >= other.w;
-    #endif // NET8_0_OR_GREATER
+    public readonly bool GreaterThanAll(b32v4 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanAll(vector, other.vector);
+        return x > other.x && y > other.y && z > other.z && w > other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAll(b32v4 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanOrEqualAll(vector, other.vector);
+        return x <= other.x && y <= other.y && z <= other.z && w <= other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAll(b32v4 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanOrEqualAll(vector, other.vector);
+        return x >= other.x && y >= other.y && z >= other.z && w >= other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanAny(b32v4 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanAll(vector, other.vector);
+        return x < other.x || y < other.y || z < other.z || w < other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanAny(b32v4 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanAny(vector, other.vector);
+        return x > other.x || y > other.y || z > other.z || w > other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAny(b32v4 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanOrEqualAny(vector, other.vector);
+        return x <= other.x || y <= other.y || z <= other.z || w <= other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAny(b32v4 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanOrEqualAny(vector, other.vector);
+        return x >= other.x || y >= other.y || z >= other.z || w >= other.w;
+    }
 
 }
 
@@ -3275,20 +4265,17 @@ public partial struct b32v4 : IComparable<b32v4>, IComparable
 #region b64v2
 
 public partial struct b64v2 : IComparable<b64v2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<b64v2, b64v2, bool>
     , IComparisonOperators<b64v2, b64v2, b64v2>
-    #endif
 {
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is b64v2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b64v2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<b64v2, b64v2, bool>.operator <(b64v2 left, b64v2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -3300,87 +4287,116 @@ public partial struct b64v2 : IComparable<b64v2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<b64v2, b64v2, bool>.operator >=(b64v2 left, b64v2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
-    public int CompareTo(b64v2 other)
+    public readonly int CompareTo(b64v2 other)
     {
-        if (Vector128.LessThanAny(vector, other.vector)) return -1;
-        if (Vector128.GreaterThanAny(vector, other.vector)) return 1;
-        return 0;
-    }
-    
-    [MethodImpl(256 | 512)]
-    public static b64v2 operator <(b64v2 left, b64v2 right) => 
-        new(Vector128.LessThan(left.vector, right.vector).AsUInt64());
-    [MethodImpl(256 | 512)]
-    public static b64v2 operator >(b64v2 left, b64v2 right) => 
-        new(Vector128.GreaterThan(left.vector, right.vector).AsUInt64());
-    [MethodImpl(256 | 512)]
-    public static b64v2 operator <=(b64v2 left, b64v2 right) => 
-        new(Vector128.LessThanOrEqual(left.vector, right.vector).AsUInt64());
-    [MethodImpl(256 | 512)]
-    public static b64v2 operator >=(b64v2 left, b64v2 right) => 
-        new(Vector128.GreaterThanOrEqual(left.vector, right.vector).AsUInt64());
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAll(b64v2 other) => (this < other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(b64v2 other) => (this > other).all();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(b64v2 other) => (this <= other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(b64v2 other) => (this >= other).all();
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAny(b64v2 other) => (this < other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(b64v2 other) => (this > other).any();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(b64v2 other) => (this <= other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(b64v2 other) => (this >= other).any();
-    #else // NET8_0_OR_GREATER
-    [MethodImpl(256 | 512)]
-    public int CompareTo(b64v2 other)
-    {
+        if (Vector128.IsHardwareAccelerated)
+        {
+            if (Vector128.LessThanAny(vector, other.vector)) return -1;
+            if (Vector128.GreaterThanAny(vector, other.vector)) return 1;
+            return 0;
+        }
         if (x < other.x || y < other.y) return -1;
         if (x > other.x || y > other.y) return 1;
         return 0;
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v2 operator <(b64v2 left, b64v2 right) =>
-        new(left.x < right.x, left.y < right.y);
-    [MethodImpl(256 | 512)]
-    public static b64v2 operator >(b64v2 left, b64v2 right) =>
-        new(left.x > right.x, left.y > right.y);
-    [MethodImpl(256 | 512)]
-    public static b64v2 operator <=(b64v2 left, b64v2 right) =>
-        new(left.x <= right.x, left.y <= right.y);
-    [MethodImpl(256 | 512)]
-    public static b64v2 operator >=(b64v2 left, b64v2 right) =>
-        new(left.x >= right.x, left.y >= right.y);
+    public static b64v2 operator <(b64v2 left, b64v2 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.LessThan(left.vector, right.vector).AsUInt64());
+        return new(left.x < right.x, left.y < right.y);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(b64v2 other) => x < other.x && y < other.y;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(b64v2 other) => x > other.x && y > other.y;
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(b64v2 other) => x <= other.x && y <= other.y;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(b64v2 other) => x >= other.x && y >= other.y;
+    public static b64v2 operator >(b64v2 left, b64v2 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.GreaterThan(left.vector, right.vector).AsUInt64());
+        return new(left.x > right.x, left.y > right.y);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(b64v2 other) => x < other.x || y < other.y;
+    public static b64v2 operator <=(b64v2 left, b64v2 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.LessThanOrEqual(left.vector, right.vector).AsUInt64());
+        return new(left.x <= right.x, left.y <= right.y);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(b64v2 other) => x > other.x || y > other.y;
+    public static b64v2 operator >=(b64v2 left, b64v2 right)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.GreaterThanOrEqual(left.vector, right.vector).AsUInt64());
+        return new(left.x >= right.x, left.y >= right.y);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(b64v2 other) => x <= other.x || y <= other.y;
+    public readonly bool LessThanAll(b64v2 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanAll(vector, other.vector);
+        return x < other.x && y < other.y;
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(b64v2 other) => x >= other.x || y >= other.y;
-    #endif // NET8_0_OR_GREATER
+    public readonly bool GreaterThanAll(b64v2 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanAll(vector, other.vector);
+        return x > other.x && y > other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAll(b64v2 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanOrEqualAll(vector, other.vector);
+        return x <= other.x && y <= other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAll(b64v2 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanOrEqualAll(vector, other.vector);
+        return x >= other.x && y >= other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanAny(b64v2 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanAll(vector, other.vector);
+        return x < other.x || y < other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanAny(b64v2 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanAny(vector, other.vector);
+        return x > other.x || y > other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAny(b64v2 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.LessThanOrEqualAny(vector, other.vector);
+        return x <= other.x || y <= other.y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAny(b64v2 other)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return Vector128.GreaterThanOrEqualAny(vector, other.vector);
+        return x >= other.x || y >= other.y;
+    }
 
 }
 
@@ -3389,20 +4405,17 @@ public partial struct b64v2 : IComparable<b64v2>, IComparable
 #region b64v3
 
 public partial struct b64v3 : IComparable<b64v3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<b64v3, b64v3, bool>
     , IComparisonOperators<b64v3, b64v3, b64v3>
-    #endif
 {
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is b64v3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b64v3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<b64v3, b64v3, bool>.operator <(b64v3 left, b64v3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -3414,87 +4427,116 @@ public partial struct b64v3 : IComparable<b64v3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<b64v3, b64v3, bool>.operator >=(b64v3 left, b64v3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
-    public int CompareTo(b64v3 other)
+    public readonly int CompareTo(b64v3 other)
     {
-        if (Vector256.LessThanAny(vector, other.vector)) return -1;
-        if (Vector256.GreaterThanAny(vector, other.vector)) return 1;
-        return 0;
-    }
-    
-    [MethodImpl(256 | 512)]
-    public static b64v3 operator <(b64v3 left, b64v3 right) => 
-        new(Vector256.LessThan(left.vector, right.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-    [MethodImpl(256 | 512)]
-    public static b64v3 operator >(b64v3 left, b64v3 right) => 
-        new(Vector256.GreaterThan(left.vector, right.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-    [MethodImpl(256 | 512)]
-    public static b64v3 operator <=(b64v3 left, b64v3 right) => 
-        new(Vector256.LessThanOrEqual(left.vector, right.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-    [MethodImpl(256 | 512)]
-    public static b64v3 operator >=(b64v3 left, b64v3 right) => 
-        new(Vector256.GreaterThanOrEqual(left.vector, right.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAll(b64v3 other) => (this < other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(b64v3 other) => (this > other).all();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(b64v3 other) => (this <= other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(b64v3 other) => (this >= other).all();
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAny(b64v3 other) => (this < other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(b64v3 other) => (this > other).any();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(b64v3 other) => (this <= other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(b64v3 other) => (this >= other).any();
-    #else // NET8_0_OR_GREATER
-    [MethodImpl(256 | 512)]
-    public int CompareTo(b64v3 other)
-    {
+        if (Vector256.IsHardwareAccelerated)
+        {
+            if (Vector256.LessThanAny(vector, other.vector)) return -1;
+            if (Vector256.GreaterThanAny(vector, other.vector)) return 1;
+            return 0;
+        }
         if (x < other.x || y < other.y || z < other.z) return -1;
         if (x > other.x || y > other.y || z > other.z) return 1;
         return 0;
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v3 operator <(b64v3 left, b64v3 right) =>
-        new(left.x < right.x, left.y < right.y, left.z < right.z);
-    [MethodImpl(256 | 512)]
-    public static b64v3 operator >(b64v3 left, b64v3 right) =>
-        new(left.x > right.x, left.y > right.y, left.z > right.z);
-    [MethodImpl(256 | 512)]
-    public static b64v3 operator <=(b64v3 left, b64v3 right) =>
-        new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
-    [MethodImpl(256 | 512)]
-    public static b64v3 operator >=(b64v3 left, b64v3 right) =>
-        new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
+    public static b64v3 operator <(b64v3 left, b64v3 right)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.LessThan(left.vector, right.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        return new(left.x < right.x, left.y < right.y, left.z < right.z);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(b64v3 other) => x < other.x && y < other.y && z < other.z;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(b64v3 other) => x > other.x && y > other.y && z > other.z;
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(b64v3 other) => x <= other.x && y <= other.y && z <= other.z;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(b64v3 other) => x >= other.x && y >= other.y && z >= other.z;
+    public static b64v3 operator >(b64v3 left, b64v3 right)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.GreaterThan(left.vector, right.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        return new(left.x > right.x, left.y > right.y, left.z > right.z);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(b64v3 other) => x < other.x || y < other.y || z < other.z;
+    public static b64v3 operator <=(b64v3 left, b64v3 right)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.LessThanOrEqual(left.vector, right.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(b64v3 other) => x > other.x || y > other.y || z > other.z;
+    public static b64v3 operator >=(b64v3 left, b64v3 right)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.GreaterThanOrEqual(left.vector, right.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
+        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(b64v3 other) => x <= other.x || y <= other.y || z <= other.z;
+    public readonly bool LessThanAll(b64v3 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.LessThanAll(vector, other.vector);
+        return x < other.x && y < other.y && z < other.z;
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(b64v3 other) => x >= other.x || y >= other.y || z >= other.z;
-    #endif // NET8_0_OR_GREATER
+    public readonly bool GreaterThanAll(b64v3 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.GreaterThanAll(vector, other.vector);
+        return x > other.x && y > other.y && z > other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAll(b64v3 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.LessThanOrEqualAll(vector, other.vector);
+        return x <= other.x && y <= other.y && z <= other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAll(b64v3 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.GreaterThanOrEqualAll(vector, other.vector);
+        return x >= other.x && y >= other.y && z >= other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanAny(b64v3 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.LessThanAll(vector, other.vector);
+        return x < other.x || y < other.y || z < other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanAny(b64v3 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.GreaterThanAny(vector, other.vector);
+        return x > other.x || y > other.y || z > other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAny(b64v3 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.LessThanOrEqualAny(vector, other.vector);
+        return x <= other.x || y <= other.y || z <= other.z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAny(b64v3 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.GreaterThanOrEqualAny(vector, other.vector);
+        return x >= other.x || y >= other.y || z >= other.z;
+    }
 
 }
 
@@ -3503,20 +4545,17 @@ public partial struct b64v3 : IComparable<b64v3>, IComparable
 #region b64v4
 
 public partial struct b64v4 : IComparable<b64v4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<b64v4, b64v4, bool>
     , IComparisonOperators<b64v4, b64v4, b64v4>
-    #endif
 {
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is b64v4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b64v4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<b64v4, b64v4, bool>.operator <(b64v4 left, b64v4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -3528,87 +4567,116 @@ public partial struct b64v4 : IComparable<b64v4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<b64v4, b64v4, bool>.operator >=(b64v4 left, b64v4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
-    public int CompareTo(b64v4 other)
+    public readonly int CompareTo(b64v4 other)
     {
-        if (Vector256.LessThanAny(vector, other.vector)) return -1;
-        if (Vector256.GreaterThanAny(vector, other.vector)) return 1;
-        return 0;
-    }
-    
-    [MethodImpl(256 | 512)]
-    public static b64v4 operator <(b64v4 left, b64v4 right) => 
-        new(Vector256.LessThan(left.vector, right.vector).AsUInt64());
-    [MethodImpl(256 | 512)]
-    public static b64v4 operator >(b64v4 left, b64v4 right) => 
-        new(Vector256.GreaterThan(left.vector, right.vector).AsUInt64());
-    [MethodImpl(256 | 512)]
-    public static b64v4 operator <=(b64v4 left, b64v4 right) => 
-        new(Vector256.LessThanOrEqual(left.vector, right.vector).AsUInt64());
-    [MethodImpl(256 | 512)]
-    public static b64v4 operator >=(b64v4 left, b64v4 right) => 
-        new(Vector256.GreaterThanOrEqual(left.vector, right.vector).AsUInt64());
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAll(b64v4 other) => (this < other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(b64v4 other) => (this > other).all();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(b64v4 other) => (this <= other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(b64v4 other) => (this >= other).all();
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAny(b64v4 other) => (this < other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(b64v4 other) => (this > other).any();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(b64v4 other) => (this <= other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(b64v4 other) => (this >= other).any();
-    #else // NET8_0_OR_GREATER
-    [MethodImpl(256 | 512)]
-    public int CompareTo(b64v4 other)
-    {
+        if (Vector256.IsHardwareAccelerated)
+        {
+            if (Vector256.LessThanAny(vector, other.vector)) return -1;
+            if (Vector256.GreaterThanAny(vector, other.vector)) return 1;
+            return 0;
+        }
         if (x < other.x || y < other.y || z < other.z || w < other.w) return -1;
         if (x > other.x || y > other.y || z > other.z || w > other.w) return 1;
         return 0;
     }
 
     [MethodImpl(256 | 512)]
-    public static b64v4 operator <(b64v4 left, b64v4 right) =>
-        new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
-    [MethodImpl(256 | 512)]
-    public static b64v4 operator >(b64v4 left, b64v4 right) =>
-        new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
-    [MethodImpl(256 | 512)]
-    public static b64v4 operator <=(b64v4 left, b64v4 right) =>
-        new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
-    [MethodImpl(256 | 512)]
-    public static b64v4 operator >=(b64v4 left, b64v4 right) =>
-        new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
+    public static b64v4 operator <(b64v4 left, b64v4 right)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.LessThan(left.vector, right.vector).AsUInt64());
+        return new(left.x < right.x, left.y < right.y, left.z < right.z, left.w < right.w);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(b64v4 other) => x < other.x && y < other.y && z < other.z && w < other.w;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(b64v4 other) => x > other.x && y > other.y && z > other.z && w > other.w;
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(b64v4 other) => x <= other.x && y <= other.y && z <= other.z && w <= other.w;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(b64v4 other) => x >= other.x && y >= other.y && z >= other.z && w >= other.w;
+    public static b64v4 operator >(b64v4 left, b64v4 right)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.GreaterThan(left.vector, right.vector).AsUInt64());
+        return new(left.x > right.x, left.y > right.y, left.z > right.z, left.w > right.w);
+    }
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(b64v4 other) => x < other.x || y < other.y || z < other.z || w < other.w;
+    public static b64v4 operator <=(b64v4 left, b64v4 right)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.LessThanOrEqual(left.vector, right.vector).AsUInt64());
+        return new(left.x <= right.x, left.y <= right.y, left.z <= right.z, left.w <= right.w);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(b64v4 other) => x > other.x || y > other.y || z > other.z || w > other.w;
+    public static b64v4 operator >=(b64v4 left, b64v4 right)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.GreaterThanOrEqual(left.vector, right.vector).AsUInt64());
+        return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
+    }
+
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(b64v4 other) => x <= other.x || y <= other.y || z <= other.z || w <= other.w;
+    public readonly bool LessThanAll(b64v4 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.LessThanAll(vector, other.vector);
+        return x < other.x && y < other.y && z < other.z && w < other.w;
+    }
+
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(b64v4 other) => x >= other.x || y >= other.y || z >= other.z || w >= other.w;
-    #endif // NET8_0_OR_GREATER
+    public readonly bool GreaterThanAll(b64v4 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.GreaterThanAll(vector, other.vector);
+        return x > other.x && y > other.y && z > other.z && w > other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAll(b64v4 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.LessThanOrEqualAll(vector, other.vector);
+        return x <= other.x && y <= other.y && z <= other.z && w <= other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAll(b64v4 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.GreaterThanOrEqualAll(vector, other.vector);
+        return x >= other.x && y >= other.y && z >= other.z && w >= other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanAny(b64v4 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.LessThanAll(vector, other.vector);
+        return x < other.x || y < other.y || z < other.z || w < other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanAny(b64v4 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.GreaterThanAny(vector, other.vector);
+        return x > other.x || y > other.y || z > other.z || w > other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAny(b64v4 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.LessThanOrEqualAny(vector, other.vector);
+        return x <= other.x || y <= other.y || z <= other.z || w <= other.w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAny(b64v4 other)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return Vector256.GreaterThanOrEqualAny(vector, other.vector);
+        return x >= other.x || y >= other.y || z >= other.z || w >= other.w;
+    }
 
 }
 

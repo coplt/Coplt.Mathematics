@@ -21,17 +21,18 @@ public partial struct b16m2x2
     public static b16m2x2 operator !(b16m2x2 self) => new(!self.c0, !self.c1);
 }
 
+[Ex]
 public static partial class math
 {
 
     [MethodImpl(256 | 512)]
-    public static bool all(this b16m2x2 v) => all(v.c0) && all(v.c1);
+    public static bool all([This] b16m2x2 v) => all(v.c0) && all(v.c1);
 
     [MethodImpl(256 | 512)]
-    public static bool any(this b16m2x2 v) => any(v.c0) || any(v.c1);
+    public static bool any([This] b16m2x2 v) => any(v.c0) || any(v.c1);
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse(this b16m2x2 v) => allFalse(v.c0) && allFalse(v.c1);
+    public static bool allFalse([This] b16m2x2 v) => allFalse(v.c0) && allFalse(v.c1);
 }
 
 #endregion // b16m2x2
@@ -55,17 +56,18 @@ public partial struct b16m2x3
     public static b16m2x3 operator !(b16m2x3 self) => new(!self.c0, !self.c1, !self.c2);
 }
 
+[Ex]
 public static partial class math
 {
 
     [MethodImpl(256 | 512)]
-    public static bool all(this b16m2x3 v) => all(v.c0) && all(v.c1) && all(v.c2);
+    public static bool all([This] b16m2x3 v) => all(v.c0) && all(v.c1) && all(v.c2);
 
     [MethodImpl(256 | 512)]
-    public static bool any(this b16m2x3 v) => any(v.c0) || any(v.c1) || any(v.c2);
+    public static bool any([This] b16m2x3 v) => any(v.c0) || any(v.c1) || any(v.c2);
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse(this b16m2x3 v) => allFalse(v.c0) && allFalse(v.c1) && allFalse(v.c2);
+    public static bool allFalse([This] b16m2x3 v) => allFalse(v.c0) && allFalse(v.c1) && allFalse(v.c2);
 }
 
 #endregion // b16m2x3
@@ -89,17 +91,18 @@ public partial struct b16m2x4
     public static b16m2x4 operator !(b16m2x4 self) => new(!self.c0, !self.c1, !self.c2, !self.c3);
 }
 
+[Ex]
 public static partial class math
 {
 
     [MethodImpl(256 | 512)]
-    public static bool all(this b16m2x4 v) => all(v.c0) && all(v.c1) && all(v.c2) && all(v.c3);
+    public static bool all([This] b16m2x4 v) => all(v.c0) && all(v.c1) && all(v.c2) && all(v.c3);
 
     [MethodImpl(256 | 512)]
-    public static bool any(this b16m2x4 v) => any(v.c0) || any(v.c1) || any(v.c2) || any(v.c3);
+    public static bool any([This] b16m2x4 v) => any(v.c0) || any(v.c1) || any(v.c2) || any(v.c3);
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse(this b16m2x4 v) => allFalse(v.c0) && allFalse(v.c1) && allFalse(v.c2) && allFalse(v.c3);
+    public static bool allFalse([This] b16m2x4 v) => allFalse(v.c0) && allFalse(v.c1) && allFalse(v.c2) && allFalse(v.c3);
 }
 
 #endregion // b16m2x4
@@ -123,17 +126,18 @@ public partial struct b16m3x2
     public static b16m3x2 operator !(b16m3x2 self) => new(!self.c0, !self.c1);
 }
 
+[Ex]
 public static partial class math
 {
 
     [MethodImpl(256 | 512)]
-    public static bool all(this b16m3x2 v) => all(v.c0) && all(v.c1);
+    public static bool all([This] b16m3x2 v) => all(v.c0) && all(v.c1);
 
     [MethodImpl(256 | 512)]
-    public static bool any(this b16m3x2 v) => any(v.c0) || any(v.c1);
+    public static bool any([This] b16m3x2 v) => any(v.c0) || any(v.c1);
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse(this b16m3x2 v) => allFalse(v.c0) && allFalse(v.c1);
+    public static bool allFalse([This] b16m3x2 v) => allFalse(v.c0) && allFalse(v.c1);
 }
 
 #endregion // b16m3x2
@@ -157,17 +161,18 @@ public partial struct b16m3x3
     public static b16m3x3 operator !(b16m3x3 self) => new(!self.c0, !self.c1, !self.c2);
 }
 
+[Ex]
 public static partial class math
 {
 
     [MethodImpl(256 | 512)]
-    public static bool all(this b16m3x3 v) => all(v.c0) && all(v.c1) && all(v.c2);
+    public static bool all([This] b16m3x3 v) => all(v.c0) && all(v.c1) && all(v.c2);
 
     [MethodImpl(256 | 512)]
-    public static bool any(this b16m3x3 v) => any(v.c0) || any(v.c1) || any(v.c2);
+    public static bool any([This] b16m3x3 v) => any(v.c0) || any(v.c1) || any(v.c2);
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse(this b16m3x3 v) => allFalse(v.c0) && allFalse(v.c1) && allFalse(v.c2);
+    public static bool allFalse([This] b16m3x3 v) => allFalse(v.c0) && allFalse(v.c1) && allFalse(v.c2);
 }
 
 #endregion // b16m3x3
@@ -191,17 +196,18 @@ public partial struct b16m3x4
     public static b16m3x4 operator !(b16m3x4 self) => new(!self.c0, !self.c1, !self.c2, !self.c3);
 }
 
+[Ex]
 public static partial class math
 {
 
     [MethodImpl(256 | 512)]
-    public static bool all(this b16m3x4 v) => all(v.c0) && all(v.c1) && all(v.c2) && all(v.c3);
+    public static bool all([This] b16m3x4 v) => all(v.c0) && all(v.c1) && all(v.c2) && all(v.c3);
 
     [MethodImpl(256 | 512)]
-    public static bool any(this b16m3x4 v) => any(v.c0) || any(v.c1) || any(v.c2) || any(v.c3);
+    public static bool any([This] b16m3x4 v) => any(v.c0) || any(v.c1) || any(v.c2) || any(v.c3);
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse(this b16m3x4 v) => allFalse(v.c0) && allFalse(v.c1) && allFalse(v.c2) && allFalse(v.c3);
+    public static bool allFalse([This] b16m3x4 v) => allFalse(v.c0) && allFalse(v.c1) && allFalse(v.c2) && allFalse(v.c3);
 }
 
 #endregion // b16m3x4
@@ -225,17 +231,18 @@ public partial struct b16m4x2
     public static b16m4x2 operator !(b16m4x2 self) => new(!self.c0, !self.c1);
 }
 
+[Ex]
 public static partial class math
 {
 
     [MethodImpl(256 | 512)]
-    public static bool all(this b16m4x2 v) => all(v.c0) && all(v.c1);
+    public static bool all([This] b16m4x2 v) => all(v.c0) && all(v.c1);
 
     [MethodImpl(256 | 512)]
-    public static bool any(this b16m4x2 v) => any(v.c0) || any(v.c1);
+    public static bool any([This] b16m4x2 v) => any(v.c0) || any(v.c1);
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse(this b16m4x2 v) => allFalse(v.c0) && allFalse(v.c1);
+    public static bool allFalse([This] b16m4x2 v) => allFalse(v.c0) && allFalse(v.c1);
 }
 
 #endregion // b16m4x2
@@ -259,17 +266,18 @@ public partial struct b16m4x3
     public static b16m4x3 operator !(b16m4x3 self) => new(!self.c0, !self.c1, !self.c2);
 }
 
+[Ex]
 public static partial class math
 {
 
     [MethodImpl(256 | 512)]
-    public static bool all(this b16m4x3 v) => all(v.c0) && all(v.c1) && all(v.c2);
+    public static bool all([This] b16m4x3 v) => all(v.c0) && all(v.c1) && all(v.c2);
 
     [MethodImpl(256 | 512)]
-    public static bool any(this b16m4x3 v) => any(v.c0) || any(v.c1) || any(v.c2);
+    public static bool any([This] b16m4x3 v) => any(v.c0) || any(v.c1) || any(v.c2);
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse(this b16m4x3 v) => allFalse(v.c0) && allFalse(v.c1) && allFalse(v.c2);
+    public static bool allFalse([This] b16m4x3 v) => allFalse(v.c0) && allFalse(v.c1) && allFalse(v.c2);
 }
 
 #endregion // b16m4x3
@@ -293,17 +301,18 @@ public partial struct b16m4x4
     public static b16m4x4 operator !(b16m4x4 self) => new(!self.c0, !self.c1, !self.c2, !self.c3);
 }
 
+[Ex]
 public static partial class math
 {
 
     [MethodImpl(256 | 512)]
-    public static bool all(this b16m4x4 v) => all(v.c0) && all(v.c1) && all(v.c2) && all(v.c3);
+    public static bool all([This] b16m4x4 v) => all(v.c0) && all(v.c1) && all(v.c2) && all(v.c3);
 
     [MethodImpl(256 | 512)]
-    public static bool any(this b16m4x4 v) => any(v.c0) || any(v.c1) || any(v.c2) || any(v.c3);
+    public static bool any([This] b16m4x4 v) => any(v.c0) || any(v.c1) || any(v.c2) || any(v.c3);
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse(this b16m4x4 v) => allFalse(v.c0) && allFalse(v.c1) && allFalse(v.c2) && allFalse(v.c3);
+    public static bool allFalse([This] b16m4x4 v) => allFalse(v.c0) && allFalse(v.c1) && allFalse(v.c2) && allFalse(v.c3);
 }
 
 #endregion // b16m4x4
@@ -327,17 +336,18 @@ public partial struct b32m2x2
     public static b32m2x2 operator !(b32m2x2 self) => new(!self.c0, !self.c1);
 }
 
+[Ex]
 public static partial class math
 {
 
     [MethodImpl(256 | 512)]
-    public static bool all(this b32m2x2 v) => all(v.c0) && all(v.c1);
+    public static bool all([This] b32m2x2 v) => all(v.c0) && all(v.c1);
 
     [MethodImpl(256 | 512)]
-    public static bool any(this b32m2x2 v) => any(v.c0) || any(v.c1);
+    public static bool any([This] b32m2x2 v) => any(v.c0) || any(v.c1);
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse(this b32m2x2 v) => allFalse(v.c0) && allFalse(v.c1);
+    public static bool allFalse([This] b32m2x2 v) => allFalse(v.c0) && allFalse(v.c1);
 }
 
 #endregion // b32m2x2
@@ -361,17 +371,18 @@ public partial struct b32m2x3
     public static b32m2x3 operator !(b32m2x3 self) => new(!self.c0, !self.c1, !self.c2);
 }
 
+[Ex]
 public static partial class math
 {
 
     [MethodImpl(256 | 512)]
-    public static bool all(this b32m2x3 v) => all(v.c0) && all(v.c1) && all(v.c2);
+    public static bool all([This] b32m2x3 v) => all(v.c0) && all(v.c1) && all(v.c2);
 
     [MethodImpl(256 | 512)]
-    public static bool any(this b32m2x3 v) => any(v.c0) || any(v.c1) || any(v.c2);
+    public static bool any([This] b32m2x3 v) => any(v.c0) || any(v.c1) || any(v.c2);
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse(this b32m2x3 v) => allFalse(v.c0) && allFalse(v.c1) && allFalse(v.c2);
+    public static bool allFalse([This] b32m2x3 v) => allFalse(v.c0) && allFalse(v.c1) && allFalse(v.c2);
 }
 
 #endregion // b32m2x3
@@ -395,17 +406,18 @@ public partial struct b32m2x4
     public static b32m2x4 operator !(b32m2x4 self) => new(!self.c0, !self.c1, !self.c2, !self.c3);
 }
 
+[Ex]
 public static partial class math
 {
 
     [MethodImpl(256 | 512)]
-    public static bool all(this b32m2x4 v) => all(v.c0) && all(v.c1) && all(v.c2) && all(v.c3);
+    public static bool all([This] b32m2x4 v) => all(v.c0) && all(v.c1) && all(v.c2) && all(v.c3);
 
     [MethodImpl(256 | 512)]
-    public static bool any(this b32m2x4 v) => any(v.c0) || any(v.c1) || any(v.c2) || any(v.c3);
+    public static bool any([This] b32m2x4 v) => any(v.c0) || any(v.c1) || any(v.c2) || any(v.c3);
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse(this b32m2x4 v) => allFalse(v.c0) && allFalse(v.c1) && allFalse(v.c2) && allFalse(v.c3);
+    public static bool allFalse([This] b32m2x4 v) => allFalse(v.c0) && allFalse(v.c1) && allFalse(v.c2) && allFalse(v.c3);
 }
 
 #endregion // b32m2x4
@@ -429,17 +441,18 @@ public partial struct b32m3x2
     public static b32m3x2 operator !(b32m3x2 self) => new(!self.c0, !self.c1);
 }
 
+[Ex]
 public static partial class math
 {
 
     [MethodImpl(256 | 512)]
-    public static bool all(this b32m3x2 v) => all(v.c0) && all(v.c1);
+    public static bool all([This] b32m3x2 v) => all(v.c0) && all(v.c1);
 
     [MethodImpl(256 | 512)]
-    public static bool any(this b32m3x2 v) => any(v.c0) || any(v.c1);
+    public static bool any([This] b32m3x2 v) => any(v.c0) || any(v.c1);
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse(this b32m3x2 v) => allFalse(v.c0) && allFalse(v.c1);
+    public static bool allFalse([This] b32m3x2 v) => allFalse(v.c0) && allFalse(v.c1);
 }
 
 #endregion // b32m3x2
@@ -463,17 +476,18 @@ public partial struct b32m3x3
     public static b32m3x3 operator !(b32m3x3 self) => new(!self.c0, !self.c1, !self.c2);
 }
 
+[Ex]
 public static partial class math
 {
 
     [MethodImpl(256 | 512)]
-    public static bool all(this b32m3x3 v) => all(v.c0) && all(v.c1) && all(v.c2);
+    public static bool all([This] b32m3x3 v) => all(v.c0) && all(v.c1) && all(v.c2);
 
     [MethodImpl(256 | 512)]
-    public static bool any(this b32m3x3 v) => any(v.c0) || any(v.c1) || any(v.c2);
+    public static bool any([This] b32m3x3 v) => any(v.c0) || any(v.c1) || any(v.c2);
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse(this b32m3x3 v) => allFalse(v.c0) && allFalse(v.c1) && allFalse(v.c2);
+    public static bool allFalse([This] b32m3x3 v) => allFalse(v.c0) && allFalse(v.c1) && allFalse(v.c2);
 }
 
 #endregion // b32m3x3
@@ -497,17 +511,18 @@ public partial struct b32m3x4
     public static b32m3x4 operator !(b32m3x4 self) => new(!self.c0, !self.c1, !self.c2, !self.c3);
 }
 
+[Ex]
 public static partial class math
 {
 
     [MethodImpl(256 | 512)]
-    public static bool all(this b32m3x4 v) => all(v.c0) && all(v.c1) && all(v.c2) && all(v.c3);
+    public static bool all([This] b32m3x4 v) => all(v.c0) && all(v.c1) && all(v.c2) && all(v.c3);
 
     [MethodImpl(256 | 512)]
-    public static bool any(this b32m3x4 v) => any(v.c0) || any(v.c1) || any(v.c2) || any(v.c3);
+    public static bool any([This] b32m3x4 v) => any(v.c0) || any(v.c1) || any(v.c2) || any(v.c3);
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse(this b32m3x4 v) => allFalse(v.c0) && allFalse(v.c1) && allFalse(v.c2) && allFalse(v.c3);
+    public static bool allFalse([This] b32m3x4 v) => allFalse(v.c0) && allFalse(v.c1) && allFalse(v.c2) && allFalse(v.c3);
 }
 
 #endregion // b32m3x4
@@ -531,17 +546,18 @@ public partial struct b32m4x2
     public static b32m4x2 operator !(b32m4x2 self) => new(!self.c0, !self.c1);
 }
 
+[Ex]
 public static partial class math
 {
 
     [MethodImpl(256 | 512)]
-    public static bool all(this b32m4x2 v) => all(v.c0) && all(v.c1);
+    public static bool all([This] b32m4x2 v) => all(v.c0) && all(v.c1);
 
     [MethodImpl(256 | 512)]
-    public static bool any(this b32m4x2 v) => any(v.c0) || any(v.c1);
+    public static bool any([This] b32m4x2 v) => any(v.c0) || any(v.c1);
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse(this b32m4x2 v) => allFalse(v.c0) && allFalse(v.c1);
+    public static bool allFalse([This] b32m4x2 v) => allFalse(v.c0) && allFalse(v.c1);
 }
 
 #endregion // b32m4x2
@@ -565,17 +581,18 @@ public partial struct b32m4x3
     public static b32m4x3 operator !(b32m4x3 self) => new(!self.c0, !self.c1, !self.c2);
 }
 
+[Ex]
 public static partial class math
 {
 
     [MethodImpl(256 | 512)]
-    public static bool all(this b32m4x3 v) => all(v.c0) && all(v.c1) && all(v.c2);
+    public static bool all([This] b32m4x3 v) => all(v.c0) && all(v.c1) && all(v.c2);
 
     [MethodImpl(256 | 512)]
-    public static bool any(this b32m4x3 v) => any(v.c0) || any(v.c1) || any(v.c2);
+    public static bool any([This] b32m4x3 v) => any(v.c0) || any(v.c1) || any(v.c2);
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse(this b32m4x3 v) => allFalse(v.c0) && allFalse(v.c1) && allFalse(v.c2);
+    public static bool allFalse([This] b32m4x3 v) => allFalse(v.c0) && allFalse(v.c1) && allFalse(v.c2);
 }
 
 #endregion // b32m4x3
@@ -599,17 +616,18 @@ public partial struct b32m4x4
     public static b32m4x4 operator !(b32m4x4 self) => new(!self.c0, !self.c1, !self.c2, !self.c3);
 }
 
+[Ex]
 public static partial class math
 {
 
     [MethodImpl(256 | 512)]
-    public static bool all(this b32m4x4 v) => all(v.c0) && all(v.c1) && all(v.c2) && all(v.c3);
+    public static bool all([This] b32m4x4 v) => all(v.c0) && all(v.c1) && all(v.c2) && all(v.c3);
 
     [MethodImpl(256 | 512)]
-    public static bool any(this b32m4x4 v) => any(v.c0) || any(v.c1) || any(v.c2) || any(v.c3);
+    public static bool any([This] b32m4x4 v) => any(v.c0) || any(v.c1) || any(v.c2) || any(v.c3);
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse(this b32m4x4 v) => allFalse(v.c0) && allFalse(v.c1) && allFalse(v.c2) && allFalse(v.c3);
+    public static bool allFalse([This] b32m4x4 v) => allFalse(v.c0) && allFalse(v.c1) && allFalse(v.c2) && allFalse(v.c3);
 }
 
 #endregion // b32m4x4
@@ -633,17 +651,18 @@ public partial struct b64m2x2
     public static b64m2x2 operator !(b64m2x2 self) => new(!self.c0, !self.c1);
 }
 
+[Ex]
 public static partial class math
 {
 
     [MethodImpl(256 | 512)]
-    public static bool all(this b64m2x2 v) => all(v.c0) && all(v.c1);
+    public static bool all([This] b64m2x2 v) => all(v.c0) && all(v.c1);
 
     [MethodImpl(256 | 512)]
-    public static bool any(this b64m2x2 v) => any(v.c0) || any(v.c1);
+    public static bool any([This] b64m2x2 v) => any(v.c0) || any(v.c1);
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse(this b64m2x2 v) => allFalse(v.c0) && allFalse(v.c1);
+    public static bool allFalse([This] b64m2x2 v) => allFalse(v.c0) && allFalse(v.c1);
 }
 
 #endregion // b64m2x2
@@ -667,17 +686,18 @@ public partial struct b64m2x3
     public static b64m2x3 operator !(b64m2x3 self) => new(!self.c0, !self.c1, !self.c2);
 }
 
+[Ex]
 public static partial class math
 {
 
     [MethodImpl(256 | 512)]
-    public static bool all(this b64m2x3 v) => all(v.c0) && all(v.c1) && all(v.c2);
+    public static bool all([This] b64m2x3 v) => all(v.c0) && all(v.c1) && all(v.c2);
 
     [MethodImpl(256 | 512)]
-    public static bool any(this b64m2x3 v) => any(v.c0) || any(v.c1) || any(v.c2);
+    public static bool any([This] b64m2x3 v) => any(v.c0) || any(v.c1) || any(v.c2);
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse(this b64m2x3 v) => allFalse(v.c0) && allFalse(v.c1) && allFalse(v.c2);
+    public static bool allFalse([This] b64m2x3 v) => allFalse(v.c0) && allFalse(v.c1) && allFalse(v.c2);
 }
 
 #endregion // b64m2x3
@@ -701,17 +721,18 @@ public partial struct b64m2x4
     public static b64m2x4 operator !(b64m2x4 self) => new(!self.c0, !self.c1, !self.c2, !self.c3);
 }
 
+[Ex]
 public static partial class math
 {
 
     [MethodImpl(256 | 512)]
-    public static bool all(this b64m2x4 v) => all(v.c0) && all(v.c1) && all(v.c2) && all(v.c3);
+    public static bool all([This] b64m2x4 v) => all(v.c0) && all(v.c1) && all(v.c2) && all(v.c3);
 
     [MethodImpl(256 | 512)]
-    public static bool any(this b64m2x4 v) => any(v.c0) || any(v.c1) || any(v.c2) || any(v.c3);
+    public static bool any([This] b64m2x4 v) => any(v.c0) || any(v.c1) || any(v.c2) || any(v.c3);
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse(this b64m2x4 v) => allFalse(v.c0) && allFalse(v.c1) && allFalse(v.c2) && allFalse(v.c3);
+    public static bool allFalse([This] b64m2x4 v) => allFalse(v.c0) && allFalse(v.c1) && allFalse(v.c2) && allFalse(v.c3);
 }
 
 #endregion // b64m2x4
@@ -735,17 +756,18 @@ public partial struct b64m3x2
     public static b64m3x2 operator !(b64m3x2 self) => new(!self.c0, !self.c1);
 }
 
+[Ex]
 public static partial class math
 {
 
     [MethodImpl(256 | 512)]
-    public static bool all(this b64m3x2 v) => all(v.c0) && all(v.c1);
+    public static bool all([This] b64m3x2 v) => all(v.c0) && all(v.c1);
 
     [MethodImpl(256 | 512)]
-    public static bool any(this b64m3x2 v) => any(v.c0) || any(v.c1);
+    public static bool any([This] b64m3x2 v) => any(v.c0) || any(v.c1);
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse(this b64m3x2 v) => allFalse(v.c0) && allFalse(v.c1);
+    public static bool allFalse([This] b64m3x2 v) => allFalse(v.c0) && allFalse(v.c1);
 }
 
 #endregion // b64m3x2
@@ -769,17 +791,18 @@ public partial struct b64m3x3
     public static b64m3x3 operator !(b64m3x3 self) => new(!self.c0, !self.c1, !self.c2);
 }
 
+[Ex]
 public static partial class math
 {
 
     [MethodImpl(256 | 512)]
-    public static bool all(this b64m3x3 v) => all(v.c0) && all(v.c1) && all(v.c2);
+    public static bool all([This] b64m3x3 v) => all(v.c0) && all(v.c1) && all(v.c2);
 
     [MethodImpl(256 | 512)]
-    public static bool any(this b64m3x3 v) => any(v.c0) || any(v.c1) || any(v.c2);
+    public static bool any([This] b64m3x3 v) => any(v.c0) || any(v.c1) || any(v.c2);
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse(this b64m3x3 v) => allFalse(v.c0) && allFalse(v.c1) && allFalse(v.c2);
+    public static bool allFalse([This] b64m3x3 v) => allFalse(v.c0) && allFalse(v.c1) && allFalse(v.c2);
 }
 
 #endregion // b64m3x3
@@ -803,17 +826,18 @@ public partial struct b64m3x4
     public static b64m3x4 operator !(b64m3x4 self) => new(!self.c0, !self.c1, !self.c2, !self.c3);
 }
 
+[Ex]
 public static partial class math
 {
 
     [MethodImpl(256 | 512)]
-    public static bool all(this b64m3x4 v) => all(v.c0) && all(v.c1) && all(v.c2) && all(v.c3);
+    public static bool all([This] b64m3x4 v) => all(v.c0) && all(v.c1) && all(v.c2) && all(v.c3);
 
     [MethodImpl(256 | 512)]
-    public static bool any(this b64m3x4 v) => any(v.c0) || any(v.c1) || any(v.c2) || any(v.c3);
+    public static bool any([This] b64m3x4 v) => any(v.c0) || any(v.c1) || any(v.c2) || any(v.c3);
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse(this b64m3x4 v) => allFalse(v.c0) && allFalse(v.c1) && allFalse(v.c2) && allFalse(v.c3);
+    public static bool allFalse([This] b64m3x4 v) => allFalse(v.c0) && allFalse(v.c1) && allFalse(v.c2) && allFalse(v.c3);
 }
 
 #endregion // b64m3x4
@@ -837,17 +861,18 @@ public partial struct b64m4x2
     public static b64m4x2 operator !(b64m4x2 self) => new(!self.c0, !self.c1);
 }
 
+[Ex]
 public static partial class math
 {
 
     [MethodImpl(256 | 512)]
-    public static bool all(this b64m4x2 v) => all(v.c0) && all(v.c1);
+    public static bool all([This] b64m4x2 v) => all(v.c0) && all(v.c1);
 
     [MethodImpl(256 | 512)]
-    public static bool any(this b64m4x2 v) => any(v.c0) || any(v.c1);
+    public static bool any([This] b64m4x2 v) => any(v.c0) || any(v.c1);
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse(this b64m4x2 v) => allFalse(v.c0) && allFalse(v.c1);
+    public static bool allFalse([This] b64m4x2 v) => allFalse(v.c0) && allFalse(v.c1);
 }
 
 #endregion // b64m4x2
@@ -871,17 +896,18 @@ public partial struct b64m4x3
     public static b64m4x3 operator !(b64m4x3 self) => new(!self.c0, !self.c1, !self.c2);
 }
 
+[Ex]
 public static partial class math
 {
 
     [MethodImpl(256 | 512)]
-    public static bool all(this b64m4x3 v) => all(v.c0) && all(v.c1) && all(v.c2);
+    public static bool all([This] b64m4x3 v) => all(v.c0) && all(v.c1) && all(v.c2);
 
     [MethodImpl(256 | 512)]
-    public static bool any(this b64m4x3 v) => any(v.c0) || any(v.c1) || any(v.c2);
+    public static bool any([This] b64m4x3 v) => any(v.c0) || any(v.c1) || any(v.c2);
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse(this b64m4x3 v) => allFalse(v.c0) && allFalse(v.c1) && allFalse(v.c2);
+    public static bool allFalse([This] b64m4x3 v) => allFalse(v.c0) && allFalse(v.c1) && allFalse(v.c2);
 }
 
 #endregion // b64m4x3
@@ -905,17 +931,18 @@ public partial struct b64m4x4
     public static b64m4x4 operator !(b64m4x4 self) => new(!self.c0, !self.c1, !self.c2, !self.c3);
 }
 
+[Ex]
 public static partial class math
 {
 
     [MethodImpl(256 | 512)]
-    public static bool all(this b64m4x4 v) => all(v.c0) && all(v.c1) && all(v.c2) && all(v.c3);
+    public static bool all([This] b64m4x4 v) => all(v.c0) && all(v.c1) && all(v.c2) && all(v.c3);
 
     [MethodImpl(256 | 512)]
-    public static bool any(this b64m4x4 v) => any(v.c0) || any(v.c1) || any(v.c2) || any(v.c3);
+    public static bool any([This] b64m4x4 v) => any(v.c0) || any(v.c1) || any(v.c2) || any(v.c3);
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse(this b64m4x4 v) => allFalse(v.c0) && allFalse(v.c1) && allFalse(v.c2) && allFalse(v.c3);
+    public static bool allFalse([This] b64m4x4 v) => allFalse(v.c0) && allFalse(v.c1) && allFalse(v.c2) && allFalse(v.c3);
 }
 
 #endregion // b64m4x4

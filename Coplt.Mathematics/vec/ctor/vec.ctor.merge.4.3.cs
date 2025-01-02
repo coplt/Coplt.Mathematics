@@ -4,97 +4,77 @@ namespace Coplt.Mathematics;
 
 #region float4
 
+[Ex]
 public static partial class math
 {
     /// <summary>
-    /// Unchecked convert to float3, must ensure that the w component is 0.
+    /// Unchecked convert (reinterpret if simd) to float3, must ensure that the w component is 0.
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float3 as3(this float4 xyzw)
+    public static float3 as3([This] float4 xyzw)
     {
-        #if NET8_0_OR_GREATER
         return new(xyzw.vector);
-        #else // NET8_0_OR_GREATER
-        return xyzw.xyz;
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
-    /// Convert to float3, the w component will be 0.
+    /// Unchecked convert (reinterpret if simd) to float4, the w component will be 0.
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float4 as4(this float3 xyz) => new(xyz);
+    public static float4 as4([This] float3 xyz) => new(xyz);
 }
 
 public partial struct float4 
 {
     [MethodImpl(256 | 512)]
-    public float4(float3 xyz)
+    internal float4(float3 xyz)
     {
-        #if NET8_0_OR_GREATER
         vector = xyz.vector;
-        #else // NET8_0_OR_GREATER
-        this.x = xyz.x;
-        this.y = xyz.y;
-        this.z = xyz.z;
-        this.w = default;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public float4(float3 xyz, float w)
     {
-        #if NET8_0_OR_GREATER
         vector = xyz.vector.WithElement(3, w);
-        #else // NET8_0_OR_GREATER
-        this.x = xyz.x;
-        this.y = xyz.y;
-        this.z = xyz.z;
-        this.w = w;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public float4(float x, float3 yzw)
     {
-        #if NET8_0_OR_GREATER
-        vector = Vector128.Shuffle(xzw.vector.WithElement(3, x), Vector128.Create(3, 0, 1, 2));
-        #else // NET8_0_OR_GREATER
-        this.x = x;
-        this.y = yzw.x;
-        this.z = yzw.y;
-        this.w = yzw.z;
-        #endif // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            vector = Vector128.Shuffle(xzw.vector.WithElement(3, x), Vector128.Create(3, 0, 1, 2));
+        else
+            this = new(x, yzw.x, yzw.y, yzw.z);
     }
 
     [MethodImpl(256 | 512)]
     internal float4(float3 xzw, float y, insert_y _)
     {
-        #if NET8_0_OR_GREATER
-        vector = Vector128.Shuffle(xzw.vector.WithElement(3, y), Vector128.Create(0, 3, 1, 2));
-        #else // NET8_0_OR_GREATER
-        this.x = xzw.x;
-        this.y = y;
-        this.z = xzw.y;
-        this.w = xzw.z;
-        #endif // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            vector = Vector128.Shuffle(xzw.vector.WithElement(3, y), Vector128.Create(0, 3, 1, 2));
+        else
+            this = new(xzw.x, y, xzw.y, xzw.z);
     }
 
     [MethodImpl(256 | 512)]
     internal float4(float3 xyw, float z, insert_z _)
     {
-        #if NET8_0_OR_GREATER
-        vector = Vector128.Shuffle(xzw.vector.WithElement(3, z), Vector128.Create(0, 1, 3, 2));
-        #else // NET8_0_OR_GREATER
-        this.x = xyw.x;
-        this.y = xyw.y;
-        this.z = z;
-        this.w = xyw.z;
-        #endif // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            vector = Vector128.Shuffle(xzw.vector.WithElement(3, z), Vector128.Create(0, 1, 3, 2));
+        else
+            this = new(xyw.x, xyw.y, z, xyw.z);
     }
 }
 
-public static partial class math
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static float4 float4(float3 xyz, float w) => new(xyz, w);
+
+    [MethodImpl(256 | 512)]
+    public static float4 float4(float x, float3 yzw) => new(x, yzw);
+}
+
+public static partial class math_ex
 {
     /// <summary>
     /// Insert X component
@@ -129,97 +109,77 @@ public static partial class math
 
 #region double4
 
+[Ex]
 public static partial class math
 {
     /// <summary>
-    /// Unchecked convert to double3, must ensure that the w component is 0.
+    /// Unchecked convert (reinterpret if simd) to double3, must ensure that the w component is 0.
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double3 as3(this double4 xyzw)
+    public static double3 as3([This] double4 xyzw)
     {
-        #if NET8_0_OR_GREATER
         return new(xyzw.vector);
-        #else // NET8_0_OR_GREATER
-        return xyzw.xyz;
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
-    /// Convert to double3, the w component will be 0.
+    /// Unchecked convert (reinterpret if simd) to double4, the w component will be 0.
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double4 as4(this double3 xyz) => new(xyz);
+    public static double4 as4([This] double3 xyz) => new(xyz);
 }
 
 public partial struct double4 
 {
     [MethodImpl(256 | 512)]
-    public double4(double3 xyz)
+    internal double4(double3 xyz)
     {
-        #if NET8_0_OR_GREATER
         vector = xyz.vector;
-        #else // NET8_0_OR_GREATER
-        this.x = xyz.x;
-        this.y = xyz.y;
-        this.z = xyz.z;
-        this.w = default;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public double4(double3 xyz, double w)
     {
-        #if NET8_0_OR_GREATER
         vector = xyz.vector.WithElement(3, w);
-        #else // NET8_0_OR_GREATER
-        this.x = xyz.x;
-        this.y = xyz.y;
-        this.z = xyz.z;
-        this.w = w;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public double4(double x, double3 yzw)
     {
-        #if NET8_0_OR_GREATER
-        vector = Vector256.Shuffle(xzw.vector.WithElement(3, x), Vector256.Create(3, 0, 1, 2));
-        #else // NET8_0_OR_GREATER
-        this.x = x;
-        this.y = yzw.x;
-        this.z = yzw.y;
-        this.w = yzw.z;
-        #endif // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            vector = Vector256.Shuffle(xzw.vector.WithElement(3, x), Vector256.Create(3, 0, 1, 2));
+        else
+            this = new(x, yzw.x, yzw.y, yzw.z);
     }
 
     [MethodImpl(256 | 512)]
     internal double4(double3 xzw, double y, insert_y _)
     {
-        #if NET8_0_OR_GREATER
-        vector = Vector256.Shuffle(xzw.vector.WithElement(3, y), Vector256.Create(0, 3, 1, 2));
-        #else // NET8_0_OR_GREATER
-        this.x = xzw.x;
-        this.y = y;
-        this.z = xzw.y;
-        this.w = xzw.z;
-        #endif // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            vector = Vector256.Shuffle(xzw.vector.WithElement(3, y), Vector256.Create(0, 3, 1, 2));
+        else
+            this = new(xzw.x, y, xzw.y, xzw.z);
     }
 
     [MethodImpl(256 | 512)]
     internal double4(double3 xyw, double z, insert_z _)
     {
-        #if NET8_0_OR_GREATER
-        vector = Vector256.Shuffle(xzw.vector.WithElement(3, z), Vector256.Create(0, 1, 3, 2));
-        #else // NET8_0_OR_GREATER
-        this.x = xyw.x;
-        this.y = xyw.y;
-        this.z = z;
-        this.w = xyw.z;
-        #endif // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            vector = Vector256.Shuffle(xzw.vector.WithElement(3, z), Vector256.Create(0, 1, 3, 2));
+        else
+            this = new(xyw.x, xyw.y, z, xyw.z);
     }
 }
 
-public static partial class math
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static double4 double4(double3 xyz, double w) => new(xyz, w);
+
+    [MethodImpl(256 | 512)]
+    public static double4 double4(double x, double3 yzw) => new(x, yzw);
+}
+
+public static partial class math_ex
 {
     /// <summary>
     /// Insert X component
@@ -254,28 +214,29 @@ public static partial class math
 
 #region short4
 
+[Ex]
 public static partial class math
 {
     /// <summary>
-    /// Unchecked convert to short3, must ensure that the w component is 0.
+    /// Unchecked convert (reinterpret if simd) to short3, must ensure that the w component is 0.
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static short3 as3(this short4 xyzw)
+    public static short3 as3([This] short4 xyzw)
     {
         return xyzw.xyz;
     }
 
     /// <summary>
-    /// Convert to short3, the w component will be 0.
+    /// Unchecked convert (reinterpret if simd) to short4, the w component will be 0.
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static short4 as4(this short3 xyz) => new(xyz);
+    public static short4 as4([This] short3 xyz) => new(xyz);
 }
 
 public partial struct short4 
 {
     [MethodImpl(256 | 512)]
-    public short4(short3 xyz)
+    internal short4(short3 xyz)
     {
         this.x = xyz.x;
         this.y = xyz.y;
@@ -320,7 +281,16 @@ public partial struct short4
     }
 }
 
-public static partial class math
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static short4 short4(short3 xyz, short w) => new(xyz, w);
+
+    [MethodImpl(256 | 512)]
+    public static short4 short4(short x, short3 yzw) => new(x, yzw);
+}
+
+public static partial class math_ex
 {
     /// <summary>
     /// Insert X component
@@ -355,28 +325,29 @@ public static partial class math
 
 #region ushort4
 
+[Ex]
 public static partial class math
 {
     /// <summary>
-    /// Unchecked convert to ushort3, must ensure that the w component is 0.
+    /// Unchecked convert (reinterpret if simd) to ushort3, must ensure that the w component is 0.
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static ushort3 as3(this ushort4 xyzw)
+    public static ushort3 as3([This] ushort4 xyzw)
     {
         return xyzw.xyz;
     }
 
     /// <summary>
-    /// Convert to ushort3, the w component will be 0.
+    /// Unchecked convert (reinterpret if simd) to ushort4, the w component will be 0.
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static ushort4 as4(this ushort3 xyz) => new(xyz);
+    public static ushort4 as4([This] ushort3 xyz) => new(xyz);
 }
 
 public partial struct ushort4 
 {
     [MethodImpl(256 | 512)]
-    public ushort4(ushort3 xyz)
+    internal ushort4(ushort3 xyz)
     {
         this.x = xyz.x;
         this.y = xyz.y;
@@ -421,7 +392,16 @@ public partial struct ushort4
     }
 }
 
-public static partial class math
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static ushort4 ushort4(ushort3 xyz, ushort w) => new(xyz, w);
+
+    [MethodImpl(256 | 512)]
+    public static ushort4 ushort4(ushort x, ushort3 yzw) => new(x, yzw);
+}
+
+public static partial class math_ex
 {
     /// <summary>
     /// Insert X component
@@ -456,97 +436,77 @@ public static partial class math
 
 #region int4
 
+[Ex]
 public static partial class math
 {
     /// <summary>
-    /// Unchecked convert to int3, must ensure that the w component is 0.
+    /// Unchecked convert (reinterpret if simd) to int3, must ensure that the w component is 0.
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int3 as3(this int4 xyzw)
+    public static int3 as3([This] int4 xyzw)
     {
-        #if NET8_0_OR_GREATER
         return new(xyzw.vector);
-        #else // NET8_0_OR_GREATER
-        return xyzw.xyz;
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
-    /// Convert to int3, the w component will be 0.
+    /// Unchecked convert (reinterpret if simd) to int4, the w component will be 0.
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int4 as4(this int3 xyz) => new(xyz);
+    public static int4 as4([This] int3 xyz) => new(xyz);
 }
 
 public partial struct int4 
 {
     [MethodImpl(256 | 512)]
-    public int4(int3 xyz)
+    internal int4(int3 xyz)
     {
-        #if NET8_0_OR_GREATER
         vector = xyz.vector;
-        #else // NET8_0_OR_GREATER
-        this.x = xyz.x;
-        this.y = xyz.y;
-        this.z = xyz.z;
-        this.w = default;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public int4(int3 xyz, int w)
     {
-        #if NET8_0_OR_GREATER
         vector = xyz.vector.WithElement(3, w);
-        #else // NET8_0_OR_GREATER
-        this.x = xyz.x;
-        this.y = xyz.y;
-        this.z = xyz.z;
-        this.w = w;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public int4(int x, int3 yzw)
     {
-        #if NET8_0_OR_GREATER
-        vector = Vector128.Shuffle(xzw.vector.WithElement(3, x), Vector128.Create(3, 0, 1, 2));
-        #else // NET8_0_OR_GREATER
-        this.x = x;
-        this.y = yzw.x;
-        this.z = yzw.y;
-        this.w = yzw.z;
-        #endif // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            vector = Vector128.Shuffle(xzw.vector.WithElement(3, x), Vector128.Create(3, 0, 1, 2));
+        else
+            this = new(x, yzw.x, yzw.y, yzw.z);
     }
 
     [MethodImpl(256 | 512)]
     internal int4(int3 xzw, int y, insert_y _)
     {
-        #if NET8_0_OR_GREATER
-        vector = Vector128.Shuffle(xzw.vector.WithElement(3, y), Vector128.Create(0, 3, 1, 2));
-        #else // NET8_0_OR_GREATER
-        this.x = xzw.x;
-        this.y = y;
-        this.z = xzw.y;
-        this.w = xzw.z;
-        #endif // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            vector = Vector128.Shuffle(xzw.vector.WithElement(3, y), Vector128.Create(0, 3, 1, 2));
+        else
+            this = new(xzw.x, y, xzw.y, xzw.z);
     }
 
     [MethodImpl(256 | 512)]
     internal int4(int3 xyw, int z, insert_z _)
     {
-        #if NET8_0_OR_GREATER
-        vector = Vector128.Shuffle(xzw.vector.WithElement(3, z), Vector128.Create(0, 1, 3, 2));
-        #else // NET8_0_OR_GREATER
-        this.x = xyw.x;
-        this.y = xyw.y;
-        this.z = z;
-        this.w = xyw.z;
-        #endif // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            vector = Vector128.Shuffle(xzw.vector.WithElement(3, z), Vector128.Create(0, 1, 3, 2));
+        else
+            this = new(xyw.x, xyw.y, z, xyw.z);
     }
 }
 
-public static partial class math
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static int4 int4(int3 xyz, int w) => new(xyz, w);
+
+    [MethodImpl(256 | 512)]
+    public static int4 int4(int x, int3 yzw) => new(x, yzw);
+}
+
+public static partial class math_ex
 {
     /// <summary>
     /// Insert X component
@@ -581,97 +541,77 @@ public static partial class math
 
 #region uint4
 
+[Ex]
 public static partial class math
 {
     /// <summary>
-    /// Unchecked convert to uint3, must ensure that the w component is 0.
+    /// Unchecked convert (reinterpret if simd) to uint3, must ensure that the w component is 0.
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static uint3 as3(this uint4 xyzw)
+    public static uint3 as3([This] uint4 xyzw)
     {
-        #if NET8_0_OR_GREATER
         return new(xyzw.vector);
-        #else // NET8_0_OR_GREATER
-        return xyzw.xyz;
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
-    /// Convert to uint3, the w component will be 0.
+    /// Unchecked convert (reinterpret if simd) to uint4, the w component will be 0.
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static uint4 as4(this uint3 xyz) => new(xyz);
+    public static uint4 as4([This] uint3 xyz) => new(xyz);
 }
 
 public partial struct uint4 
 {
     [MethodImpl(256 | 512)]
-    public uint4(uint3 xyz)
+    internal uint4(uint3 xyz)
     {
-        #if NET8_0_OR_GREATER
         vector = xyz.vector;
-        #else // NET8_0_OR_GREATER
-        this.x = xyz.x;
-        this.y = xyz.y;
-        this.z = xyz.z;
-        this.w = default;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public uint4(uint3 xyz, uint w)
     {
-        #if NET8_0_OR_GREATER
         vector = xyz.vector.WithElement(3, w);
-        #else // NET8_0_OR_GREATER
-        this.x = xyz.x;
-        this.y = xyz.y;
-        this.z = xyz.z;
-        this.w = w;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public uint4(uint x, uint3 yzw)
     {
-        #if NET8_0_OR_GREATER
-        vector = Vector128.Shuffle(xzw.vector.WithElement(3, x), Vector128.Create((uint)3, 0, 1, 2));
-        #else // NET8_0_OR_GREATER
-        this.x = x;
-        this.y = yzw.x;
-        this.z = yzw.y;
-        this.w = yzw.z;
-        #endif // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            vector = Vector128.Shuffle(xzw.vector.WithElement(3, x), Vector128.Create((uint)3, 0, 1, 2));
+        else
+            this = new(x, yzw.x, yzw.y, yzw.z);
     }
 
     [MethodImpl(256 | 512)]
     internal uint4(uint3 xzw, uint y, insert_y _)
     {
-        #if NET8_0_OR_GREATER
-        vector = Vector128.Shuffle(xzw.vector.WithElement(3, y), Vector128.Create((uint)0, 3, 1, 2));
-        #else // NET8_0_OR_GREATER
-        this.x = xzw.x;
-        this.y = y;
-        this.z = xzw.y;
-        this.w = xzw.z;
-        #endif // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            vector = Vector128.Shuffle(xzw.vector.WithElement(3, y), Vector128.Create((uint)0, 3, 1, 2));
+        else
+            this = new(xzw.x, y, xzw.y, xzw.z);
     }
 
     [MethodImpl(256 | 512)]
     internal uint4(uint3 xyw, uint z, insert_z _)
     {
-        #if NET8_0_OR_GREATER
-        vector = Vector128.Shuffle(xzw.vector.WithElement(3, z), Vector128.Create((uint)0, 1, 3, 2));
-        #else // NET8_0_OR_GREATER
-        this.x = xyw.x;
-        this.y = xyw.y;
-        this.z = z;
-        this.w = xyw.z;
-        #endif // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            vector = Vector128.Shuffle(xzw.vector.WithElement(3, z), Vector128.Create((uint)0, 1, 3, 2));
+        else
+            this = new(xyw.x, xyw.y, z, xyw.z);
     }
 }
 
-public static partial class math
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static uint4 uint4(uint3 xyz, uint w) => new(xyz, w);
+
+    [MethodImpl(256 | 512)]
+    public static uint4 uint4(uint x, uint3 yzw) => new(x, yzw);
+}
+
+public static partial class math_ex
 {
     /// <summary>
     /// Insert X component
@@ -706,97 +646,77 @@ public static partial class math
 
 #region long4
 
+[Ex]
 public static partial class math
 {
     /// <summary>
-    /// Unchecked convert to long3, must ensure that the w component is 0.
+    /// Unchecked convert (reinterpret if simd) to long3, must ensure that the w component is 0.
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static long3 as3(this long4 xyzw)
+    public static long3 as3([This] long4 xyzw)
     {
-        #if NET8_0_OR_GREATER
         return new(xyzw.vector);
-        #else // NET8_0_OR_GREATER
-        return xyzw.xyz;
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
-    /// Convert to long3, the w component will be 0.
+    /// Unchecked convert (reinterpret if simd) to long4, the w component will be 0.
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static long4 as4(this long3 xyz) => new(xyz);
+    public static long4 as4([This] long3 xyz) => new(xyz);
 }
 
 public partial struct long4 
 {
     [MethodImpl(256 | 512)]
-    public long4(long3 xyz)
+    internal long4(long3 xyz)
     {
-        #if NET8_0_OR_GREATER
         vector = xyz.vector;
-        #else // NET8_0_OR_GREATER
-        this.x = xyz.x;
-        this.y = xyz.y;
-        this.z = xyz.z;
-        this.w = default;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public long4(long3 xyz, long w)
     {
-        #if NET8_0_OR_GREATER
         vector = xyz.vector.WithElement(3, w);
-        #else // NET8_0_OR_GREATER
-        this.x = xyz.x;
-        this.y = xyz.y;
-        this.z = xyz.z;
-        this.w = w;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public long4(long x, long3 yzw)
     {
-        #if NET8_0_OR_GREATER
-        vector = Vector256.Shuffle(xzw.vector.WithElement(3, x), Vector256.Create(3, 0, 1, 2));
-        #else // NET8_0_OR_GREATER
-        this.x = x;
-        this.y = yzw.x;
-        this.z = yzw.y;
-        this.w = yzw.z;
-        #endif // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            vector = Vector256.Shuffle(xzw.vector.WithElement(3, x), Vector256.Create(3, 0, 1, 2));
+        else
+            this = new(x, yzw.x, yzw.y, yzw.z);
     }
 
     [MethodImpl(256 | 512)]
     internal long4(long3 xzw, long y, insert_y _)
     {
-        #if NET8_0_OR_GREATER
-        vector = Vector256.Shuffle(xzw.vector.WithElement(3, y), Vector256.Create(0, 3, 1, 2));
-        #else // NET8_0_OR_GREATER
-        this.x = xzw.x;
-        this.y = y;
-        this.z = xzw.y;
-        this.w = xzw.z;
-        #endif // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            vector = Vector256.Shuffle(xzw.vector.WithElement(3, y), Vector256.Create(0, 3, 1, 2));
+        else
+            this = new(xzw.x, y, xzw.y, xzw.z);
     }
 
     [MethodImpl(256 | 512)]
     internal long4(long3 xyw, long z, insert_z _)
     {
-        #if NET8_0_OR_GREATER
-        vector = Vector256.Shuffle(xzw.vector.WithElement(3, z), Vector256.Create(0, 1, 3, 2));
-        #else // NET8_0_OR_GREATER
-        this.x = xyw.x;
-        this.y = xyw.y;
-        this.z = z;
-        this.w = xyw.z;
-        #endif // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            vector = Vector256.Shuffle(xzw.vector.WithElement(3, z), Vector256.Create(0, 1, 3, 2));
+        else
+            this = new(xyw.x, xyw.y, z, xyw.z);
     }
 }
 
-public static partial class math
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static long4 long4(long3 xyz, long w) => new(xyz, w);
+
+    [MethodImpl(256 | 512)]
+    public static long4 long4(long x, long3 yzw) => new(x, yzw);
+}
+
+public static partial class math_ex
 {
     /// <summary>
     /// Insert X component
@@ -831,97 +751,77 @@ public static partial class math
 
 #region ulong4
 
+[Ex]
 public static partial class math
 {
     /// <summary>
-    /// Unchecked convert to ulong3, must ensure that the w component is 0.
+    /// Unchecked convert (reinterpret if simd) to ulong3, must ensure that the w component is 0.
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static ulong3 as3(this ulong4 xyzw)
+    public static ulong3 as3([This] ulong4 xyzw)
     {
-        #if NET8_0_OR_GREATER
         return new(xyzw.vector);
-        #else // NET8_0_OR_GREATER
-        return xyzw.xyz;
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
-    /// Convert to ulong3, the w component will be 0.
+    /// Unchecked convert (reinterpret if simd) to ulong4, the w component will be 0.
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static ulong4 as4(this ulong3 xyz) => new(xyz);
+    public static ulong4 as4([This] ulong3 xyz) => new(xyz);
 }
 
 public partial struct ulong4 
 {
     [MethodImpl(256 | 512)]
-    public ulong4(ulong3 xyz)
+    internal ulong4(ulong3 xyz)
     {
-        #if NET8_0_OR_GREATER
         vector = xyz.vector;
-        #else // NET8_0_OR_GREATER
-        this.x = xyz.x;
-        this.y = xyz.y;
-        this.z = xyz.z;
-        this.w = default;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public ulong4(ulong3 xyz, ulong w)
     {
-        #if NET8_0_OR_GREATER
         vector = xyz.vector.WithElement(3, w);
-        #else // NET8_0_OR_GREATER
-        this.x = xyz.x;
-        this.y = xyz.y;
-        this.z = xyz.z;
-        this.w = w;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public ulong4(ulong x, ulong3 yzw)
     {
-        #if NET8_0_OR_GREATER
-        vector = Vector256.Shuffle(xzw.vector.WithElement(3, x), Vector256.Create((ulong)3, 0, 1, 2));
-        #else // NET8_0_OR_GREATER
-        this.x = x;
-        this.y = yzw.x;
-        this.z = yzw.y;
-        this.w = yzw.z;
-        #endif // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            vector = Vector256.Shuffle(xzw.vector.WithElement(3, x), Vector256.Create((ulong)3, 0, 1, 2));
+        else
+            this = new(x, yzw.x, yzw.y, yzw.z);
     }
 
     [MethodImpl(256 | 512)]
     internal ulong4(ulong3 xzw, ulong y, insert_y _)
     {
-        #if NET8_0_OR_GREATER
-        vector = Vector256.Shuffle(xzw.vector.WithElement(3, y), Vector256.Create((ulong)0, 3, 1, 2));
-        #else // NET8_0_OR_GREATER
-        this.x = xzw.x;
-        this.y = y;
-        this.z = xzw.y;
-        this.w = xzw.z;
-        #endif // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            vector = Vector256.Shuffle(xzw.vector.WithElement(3, y), Vector256.Create((ulong)0, 3, 1, 2));
+        else
+            this = new(xzw.x, y, xzw.y, xzw.z);
     }
 
     [MethodImpl(256 | 512)]
     internal ulong4(ulong3 xyw, ulong z, insert_z _)
     {
-        #if NET8_0_OR_GREATER
-        vector = Vector256.Shuffle(xzw.vector.WithElement(3, z), Vector256.Create((ulong)0, 1, 3, 2));
-        #else // NET8_0_OR_GREATER
-        this.x = xyw.x;
-        this.y = xyw.y;
-        this.z = z;
-        this.w = xyw.z;
-        #endif // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            vector = Vector256.Shuffle(xzw.vector.WithElement(3, z), Vector256.Create((ulong)0, 1, 3, 2));
+        else
+            this = new(xyw.x, xyw.y, z, xyw.z);
     }
 }
 
-public static partial class math
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static ulong4 ulong4(ulong3 xyz, ulong w) => new(xyz, w);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4 ulong4(ulong x, ulong3 yzw) => new(x, yzw);
+}
+
+public static partial class math_ex
 {
     /// <summary>
     /// Insert X component
@@ -956,28 +856,29 @@ public static partial class math
 
 #region decimal4
 
+[Ex]
 public static partial class math
 {
     /// <summary>
-    /// Unchecked convert to decimal3, must ensure that the w component is 0.
+    /// Unchecked convert (reinterpret if simd) to decimal3, must ensure that the w component is 0.
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static decimal3 as3(this decimal4 xyzw)
+    public static decimal3 as3([This] decimal4 xyzw)
     {
         return xyzw.xyz;
     }
 
     /// <summary>
-    /// Convert to decimal3, the w component will be 0.
+    /// Unchecked convert (reinterpret if simd) to decimal4, the w component will be 0.
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static decimal4 as4(this decimal3 xyz) => new(xyz);
+    public static decimal4 as4([This] decimal3 xyz) => new(xyz);
 }
 
 public partial struct decimal4 
 {
     [MethodImpl(256 | 512)]
-    public decimal4(decimal3 xyz)
+    internal decimal4(decimal3 xyz)
     {
         this.x = xyz.x;
         this.y = xyz.y;
@@ -1022,7 +923,16 @@ public partial struct decimal4
     }
 }
 
-public static partial class math
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static decimal4 decimal4(decimal3 xyz, decimal w) => new(xyz, w);
+
+    [MethodImpl(256 | 512)]
+    public static decimal4 decimal4(decimal x, decimal3 yzw) => new(x, yzw);
+}
+
+public static partial class math_ex
 {
     /// <summary>
     /// Insert X component
@@ -1057,28 +967,29 @@ public static partial class math
 
 #region half4
 
+[Ex]
 public static partial class math
 {
     /// <summary>
-    /// Unchecked convert to half3, must ensure that the w component is 0.
+    /// Unchecked convert (reinterpret if simd) to half3, must ensure that the w component is 0.
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static half3 as3(this half4 xyzw)
+    public static half3 as3([This] half4 xyzw)
     {
         return xyzw.xyz;
     }
 
     /// <summary>
-    /// Convert to half3, the w component will be 0.
+    /// Unchecked convert (reinterpret if simd) to half4, the w component will be 0.
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static half4 as4(this half3 xyz) => new(xyz);
+    public static half4 as4([This] half3 xyz) => new(xyz);
 }
 
 public partial struct half4 
 {
     [MethodImpl(256 | 512)]
-    public half4(half3 xyz)
+    internal half4(half3 xyz)
     {
         this.x = xyz.x;
         this.y = xyz.y;
@@ -1123,7 +1034,16 @@ public partial struct half4
     }
 }
 
-public static partial class math
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static half4 half4(half3 xyz, half w) => new(xyz, w);
+
+    [MethodImpl(256 | 512)]
+    public static half4 half4(half x, half3 yzw) => new(x, yzw);
+}
+
+public static partial class math_ex
 {
     /// <summary>
     /// Insert X component
@@ -1158,28 +1078,29 @@ public static partial class math
 
 #region b16v4
 
+[Ex]
 public static partial class math
 {
     /// <summary>
-    /// Unchecked convert to b16v3, must ensure that the w component is 0.
+    /// Unchecked convert (reinterpret if simd) to b16v3, must ensure that the w component is 0.
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static b16v3 as3(this b16v4 xyzw)
+    public static b16v3 as3([This] b16v4 xyzw)
     {
         return xyzw.xyz;
     }
 
     /// <summary>
-    /// Convert to b16v3, the w component will be 0.
+    /// Unchecked convert (reinterpret if simd) to b16v4, the w component will be 0.
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static b16v4 as4(this b16v3 xyz) => new(xyz);
+    public static b16v4 as4([This] b16v3 xyz) => new(xyz);
 }
 
 public partial struct b16v4 
 {
     [MethodImpl(256 | 512)]
-    public b16v4(b16v3 xyz)
+    internal b16v4(b16v3 xyz)
     {
         this.x = xyz.x;
         this.y = xyz.y;
@@ -1224,7 +1145,16 @@ public partial struct b16v4
     }
 }
 
-public static partial class math
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static b16v4 b16v4(b16v3 xyz, b16 w) => new(xyz, w);
+
+    [MethodImpl(256 | 512)]
+    public static b16v4 b16v4(b16 x, b16v3 yzw) => new(x, yzw);
+}
+
+public static partial class math_ex
 {
     /// <summary>
     /// Insert X component
@@ -1259,97 +1189,77 @@ public static partial class math
 
 #region b32v4
 
+[Ex]
 public static partial class math
 {
     /// <summary>
-    /// Unchecked convert to b32v3, must ensure that the w component is 0.
+    /// Unchecked convert (reinterpret if simd) to b32v3, must ensure that the w component is 0.
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static b32v3 as3(this b32v4 xyzw)
+    public static b32v3 as3([This] b32v4 xyzw)
     {
-        #if NET8_0_OR_GREATER
         return new(xyzw.vector);
-        #else // NET8_0_OR_GREATER
-        return xyzw.xyz;
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
-    /// Convert to b32v3, the w component will be 0.
+    /// Unchecked convert (reinterpret if simd) to b32v4, the w component will be 0.
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static b32v4 as4(this b32v3 xyz) => new(xyz);
+    public static b32v4 as4([This] b32v3 xyz) => new(xyz);
 }
 
 public partial struct b32v4 
 {
     [MethodImpl(256 | 512)]
-    public b32v4(b32v3 xyz)
+    internal b32v4(b32v3 xyz)
     {
-        #if NET8_0_OR_GREATER
         vector = xyz.vector;
-        #else // NET8_0_OR_GREATER
-        this.x = xyz.x;
-        this.y = xyz.y;
-        this.z = xyz.z;
-        this.w = default;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public b32v4(b32v3 xyz, b32 w)
     {
-        #if NET8_0_OR_GREATER
         vector = xyz.vector.WithElement(3, w);
-        #else // NET8_0_OR_GREATER
-        this.x = xyz.x;
-        this.y = xyz.y;
-        this.z = xyz.z;
-        this.w = w;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public b32v4(b32 x, b32v3 yzw)
     {
-        #if NET8_0_OR_GREATER
-        vector = Vector128.Shuffle(xzw.vector.WithElement(3, x), Vector128.Create((uint)3, 0, 1, 2));
-        #else // NET8_0_OR_GREATER
-        this.x = x;
-        this.y = yzw.x;
-        this.z = yzw.y;
-        this.w = yzw.z;
-        #endif // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            vector = Vector128.Shuffle(xzw.vector.WithElement(3, x), Vector128.Create((uint)3, 0, 1, 2));
+        else
+            this = new(x, yzw.x, yzw.y, yzw.z);
     }
 
     [MethodImpl(256 | 512)]
     internal b32v4(b32v3 xzw, b32 y, insert_y _)
     {
-        #if NET8_0_OR_GREATER
-        vector = Vector128.Shuffle(xzw.vector.WithElement(3, y), Vector128.Create((uint)0, 3, 1, 2));
-        #else // NET8_0_OR_GREATER
-        this.x = xzw.x;
-        this.y = y;
-        this.z = xzw.y;
-        this.w = xzw.z;
-        #endif // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            vector = Vector128.Shuffle(xzw.vector.WithElement(3, y), Vector128.Create((uint)0, 3, 1, 2));
+        else
+            this = new(xzw.x, y, xzw.y, xzw.z);
     }
 
     [MethodImpl(256 | 512)]
     internal b32v4(b32v3 xyw, b32 z, insert_z _)
     {
-        #if NET8_0_OR_GREATER
-        vector = Vector128.Shuffle(xzw.vector.WithElement(3, z), Vector128.Create((uint)0, 1, 3, 2));
-        #else // NET8_0_OR_GREATER
-        this.x = xyw.x;
-        this.y = xyw.y;
-        this.z = z;
-        this.w = xyw.z;
-        #endif // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            vector = Vector128.Shuffle(xzw.vector.WithElement(3, z), Vector128.Create((uint)0, 1, 3, 2));
+        else
+            this = new(xyw.x, xyw.y, z, xyw.z);
     }
 }
 
-public static partial class math
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static b32v4 b32v4(b32v3 xyz, b32 w) => new(xyz, w);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4 b32v4(b32 x, b32v3 yzw) => new(x, yzw);
+}
+
+public static partial class math_ex
 {
     /// <summary>
     /// Insert X component
@@ -1384,97 +1294,77 @@ public static partial class math
 
 #region b64v4
 
+[Ex]
 public static partial class math
 {
     /// <summary>
-    /// Unchecked convert to b64v3, must ensure that the w component is 0.
+    /// Unchecked convert (reinterpret if simd) to b64v3, must ensure that the w component is 0.
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static b64v3 as3(this b64v4 xyzw)
+    public static b64v3 as3([This] b64v4 xyzw)
     {
-        #if NET8_0_OR_GREATER
         return new(xyzw.vector);
-        #else // NET8_0_OR_GREATER
-        return xyzw.xyz;
-        #endif // NET8_0_OR_GREATER
     }
 
     /// <summary>
-    /// Convert to b64v3, the w component will be 0.
+    /// Unchecked convert (reinterpret if simd) to b64v4, the w component will be 0.
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static b64v4 as4(this b64v3 xyz) => new(xyz);
+    public static b64v4 as4([This] b64v3 xyz) => new(xyz);
 }
 
 public partial struct b64v4 
 {
     [MethodImpl(256 | 512)]
-    public b64v4(b64v3 xyz)
+    internal b64v4(b64v3 xyz)
     {
-        #if NET8_0_OR_GREATER
         vector = xyz.vector;
-        #else // NET8_0_OR_GREATER
-        this.x = xyz.x;
-        this.y = xyz.y;
-        this.z = xyz.z;
-        this.w = default;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public b64v4(b64v3 xyz, b64 w)
     {
-        #if NET8_0_OR_GREATER
         vector = xyz.vector.WithElement(3, w);
-        #else // NET8_0_OR_GREATER
-        this.x = xyz.x;
-        this.y = xyz.y;
-        this.z = xyz.z;
-        this.w = w;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
     public b64v4(b64 x, b64v3 yzw)
     {
-        #if NET8_0_OR_GREATER
-        vector = Vector256.Shuffle(xzw.vector.WithElement(3, x), Vector256.Create((ulong)3, 0, 1, 2));
-        #else // NET8_0_OR_GREATER
-        this.x = x;
-        this.y = yzw.x;
-        this.z = yzw.y;
-        this.w = yzw.z;
-        #endif // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            vector = Vector256.Shuffle(xzw.vector.WithElement(3, x), Vector256.Create((ulong)3, 0, 1, 2));
+        else
+            this = new(x, yzw.x, yzw.y, yzw.z);
     }
 
     [MethodImpl(256 | 512)]
     internal b64v4(b64v3 xzw, b64 y, insert_y _)
     {
-        #if NET8_0_OR_GREATER
-        vector = Vector256.Shuffle(xzw.vector.WithElement(3, y), Vector256.Create((ulong)0, 3, 1, 2));
-        #else // NET8_0_OR_GREATER
-        this.x = xzw.x;
-        this.y = y;
-        this.z = xzw.y;
-        this.w = xzw.z;
-        #endif // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            vector = Vector256.Shuffle(xzw.vector.WithElement(3, y), Vector256.Create((ulong)0, 3, 1, 2));
+        else
+            this = new(xzw.x, y, xzw.y, xzw.z);
     }
 
     [MethodImpl(256 | 512)]
     internal b64v4(b64v3 xyw, b64 z, insert_z _)
     {
-        #if NET8_0_OR_GREATER
-        vector = Vector256.Shuffle(xzw.vector.WithElement(3, z), Vector256.Create((ulong)0, 1, 3, 2));
-        #else // NET8_0_OR_GREATER
-        this.x = xyw.x;
-        this.y = xyw.y;
-        this.z = z;
-        this.w = xyw.z;
-        #endif // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            vector = Vector256.Shuffle(xzw.vector.WithElement(3, z), Vector256.Create((ulong)0, 1, 3, 2));
+        else
+            this = new(xyw.x, xyw.y, z, xyw.z);
     }
 }
 
-public static partial class math
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static b64v4 b64v4(b64v3 xyz, b64 w) => new(xyz, w);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4 b64v4(b64 x, b64v3 yzw) => new(x, yzw);
+}
+
+public static partial class math_ex
 {
     /// <summary>
     /// Insert X component

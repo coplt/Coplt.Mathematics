@@ -29,10 +29,11 @@ public partial struct <#= typeName #>
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static <#= bTypeName #> isPow2(this <#= typeName #> a)
+    public static <#= bTypeName #> isPow2([This] <#= typeName #> a)
     {
 <#
             if (typ.sig)
@@ -55,7 +56,7 @@ public static partial class math
 #>
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> up2pow2(this <#= typeName #> a)
+    public static <#= typeName #> up2pow2([This] <#= typeName #> a)
     {
         --a;
         a |= a >> 1;

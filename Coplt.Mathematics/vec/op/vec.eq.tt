@@ -23,7 +23,6 @@ namespace Coplt.Mathematics;
 #region <#= typeName #>
 
 public partial struct <#= typeName #> : IEquatable<<#= typeName #>>
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<<#= typeName #>, <#= typeName #>, bool>
 <#
             if (bTyp.name != null)
@@ -33,24 +32,22 @@ public partial struct <#= typeName #> : IEquatable<<#= typeName #>>
 <#
             }
 #>
-    #endif
 {
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public bool Equals(<#= typeName #> other) => EqualsAll(other);
+    public readonly bool Equals(<#= typeName #> other) => EqualsAll(other);
     [MethodImpl(256 | 512)]
-    public override bool Equals(object? obj) => obj is <#= typeName #> other && Equals(other);
+    public readonly override bool Equals(object? obj) => obj is <#= typeName #> other && Equals(other);
     [MethodImpl(256 | 512)]
-    public override int GetHashCode() 
+    public readonly override int GetHashCode() 
     {
 <#
             if (typ.simd)
             {
 #>
-        #if NET8_0_OR_GREATER
-        return vector.GetHashCode();
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return vector.GetHashCode();
 <#
             }
 #>
@@ -66,26 +63,17 @@ public partial struct <#= typeName #> : IEquatable<<#= typeName #>>
                 }
             }
 #>);
-<#
-            if (typ.simd)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-            }
-#>
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAll(<#= typeName #> other)
+    public readonly bool EqualsAll(<#= typeName #> other)
     {
 <#
             if (typ.simd)
             {
 #>
-        #if NET8_0_OR_GREATER
-        return (this == other).all();
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return Vector<#= bitSize #>.EqualsAll(vector, other.vector);
 <#
             }
 #>
@@ -101,26 +89,17 @@ public partial struct <#= typeName #> : IEquatable<<#= typeName #>>
                 }
             }
 #>;
-<#
-            if (typ.simd)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-            }
-#>
     }
 
     [MethodImpl(256 | 512)]
-    public bool EqualsAny(<#= typeName #> other)
+    public readonly bool EqualsAny(<#= typeName #> other)
     {
 <#
             if (typ.simd)
             {
 #>
-        #if NET8_0_OR_GREATER
-        return (this == other).any();
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return Vector<#= bitSize #>.EqualsAny(vector, other.vector);
 <#
             }
 #>
@@ -136,14 +115,6 @@ public partial struct <#= typeName #> : IEquatable<<#= typeName #>>
                 }
             }
 #>;
-<#
-            if (typ.simd)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-            }
-#>
     }
 <#
             if (bTyp.name != null)
@@ -151,20 +122,19 @@ public partial struct <#= typeName #> : IEquatable<<#= typeName #>>
 #>
 
     [MethodImpl(256 | 512)]
-    public <#= bTypeName #> EqualsVector(<#= typeName #> other)
+    public readonly <#= bTypeName #> EqualsVector(<#= typeName #> other)
     {
 <#
                 if (typ.simd)
                 {
 #>
-        #if NET8_0_OR_GREATER
-        return new(Vector<#= bitSize #>.Equals(vector, other.vector).As<#= bTyp.Type #>()<#
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return new(Vector<#= bitSize #>.Equals(vector, other.vector).As<#= bTyp.Type #>()<#
                     if (i == 3)
                     {
 #> & Vector<#= bitSize #>.Create(-1, -1, -1, 0).As<#= bTyp.Type #>()<#
                     }
 #>);
-        #else // NET8_0_OR_GREATER
 <#
                 }
 #>
@@ -180,29 +150,21 @@ public partial struct <#= typeName #> : IEquatable<<#= typeName #>>
                     }
                 }
 #>);
-<#
-                if (typ.simd)
-                {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-                }
-#>
     }
 
     [MethodImpl(256 | 512)]
-    public <#= bTypeName #> EqualsVectorNot(<#= typeName #> other)
+    public readonly <#= bTypeName #> EqualsVectorNot(<#= typeName #> other)
     {
 <#
                 if (typ.simd)
                 {
 #>
-        #if NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
 <#
                     if (typ.f && typ.bin)
                     {
 #>
-        return new(simd.Ne(vector, other.vector).As<#= bTyp.Type #>()<#
+            return new(simd.Ne(vector, other.vector).As<#= bTyp.Type #>()<#
                     if (i == 3)
                     {
 #> & Vector<#= bitSize #>.Create(-1, -1, -1, 0).As<#= bTyp.Type #>()<#
@@ -213,7 +175,7 @@ public partial struct <#= typeName #> : IEquatable<<#= typeName #>>
                     else
                     {
 #>
-        return new(~Vector<#= bitSize #>.Equals(vector, other.vector).As<#= bTyp.Type #>()<#
+            return new(~Vector<#= bitSize #>.Equals(vector, other.vector).As<#= bTyp.Type #>()<#
                     if (i == 3)
                     {
 #> & Vector<#= bitSize #>.Create(-1, -1, -1, 0).As<#= bTyp.Type #>()<#
@@ -222,7 +184,6 @@ public partial struct <#= typeName #> : IEquatable<<#= typeName #>>
 <#
                     }
                     #>
-        #else // NET8_0_OR_GREATER
 <#
                 }
 #>
@@ -238,25 +199,16 @@ public partial struct <#= typeName #> : IEquatable<<#= typeName #>>
                     }
                 }
 #>);
-<#
-                if (typ.simd)
-                {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-                }
-#>
     }
 <#
             }
 #>
 
-    #if NET8_0_OR_GREATER
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<<#= typeName #>, <#= typeName #>, bool>.operator ==(<#= typeName #> left, <#= typeName #> right) => left.Equals(right);
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<<#= typeName #>, <#= typeName #>, bool>.operator !=(<#= typeName #> left, <#= typeName #> right) => !left.Equals(right);
-    #endif
+
 <#
             if (bTyp.name != null)
             {

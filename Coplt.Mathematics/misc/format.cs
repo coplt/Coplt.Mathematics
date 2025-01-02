@@ -141,8 +141,6 @@ internal static class FormatUtils
 
     #endregion
 
-    #if NET8_0_OR_GREATER
-
     #region Utf8
 
     public static bool TryFormatPart(ref Span<byte> dst, ref int nc, ReadOnlySpan<byte> part)
@@ -168,6 +166,4 @@ internal static class FormatUtils
         => TryFormatPart(ref dst, ref nc, part ? "True"u8 : "False"u8);
 
     #endregion
-
-    #endif
 }

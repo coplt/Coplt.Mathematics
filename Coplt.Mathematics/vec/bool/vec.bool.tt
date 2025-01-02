@@ -45,97 +45,62 @@ public partial struct <#= typeName #>
             if (typ.simd)
             {
 #>
-        #if NET8_0_OR_GREATER
-        return new((~self.vector)<#= rmw #>);
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return new((~self.vector)<#= rmw #>);
 <#
             }
 #>
         return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"!self.{Typ.xyzw[n]}")) #>);
-<#
-            if (typ.simd)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-            }
-#>
     }
 }
 
+[Ex]
 public static partial class math
 {
 
     [MethodImpl(256 | 512)]
-    public static bool all(this <#= typeName #> v)
+    public static bool all([This] <#= typeName #> v)
     {
 <#
             if (typ.simd)
             {
 #>
-        #if NET8_0_OR_GREATER
-        return v.vector.ExtractMostSignificantBits() >= 0x<#= i == 3 ? "7" : "F" #>;
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return v.vector.ExtractMostSignificantBits() >= 0x<#= i == 3 ? "7" : "F" #>;
 <#
             }
 #>
         return <#= string.Join(" && ", Enumerable.Range(0, i).Select(n => $"v.{Typ.xyzw[n]}")) #>;
-<#
-            if (typ.simd)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-            }
-#>
     }
 
     [MethodImpl(256 | 512)]
-    public static bool any(this <#= typeName #> v)
+    public static bool any([This] <#= typeName #> v)
     {
 <#
             if (typ.simd)
             {
 #>
-        #if NET8_0_OR_GREATER
-        return v.vector.ExtractMostSignificantBits() != 0;
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return v.vector.ExtractMostSignificantBits() != 0;
 <#
             }
 #>
         return <#= string.Join(" || ", Enumerable.Range(0, i).Select(n => $"v.{Typ.xyzw[n]}")) #>;
-<#
-            if (typ.simd)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-            }
-#>
     }
 
     [MethodImpl(256 | 512)]
-    public static bool allFalse(this <#= typeName #> v)
+    public static bool allFalse([This] <#= typeName #> v)
     {
 <#
             if (typ.simd)
             {
 #>
-        #if NET8_0_OR_GREATER
-        return v.vector.ExtractMostSignificantBits() == 0;
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return v.vector.ExtractMostSignificantBits() == 0;
 <#
             }
 #>
         return <#= string.Join(" && ", Enumerable.Range(0, i).Select(n => $"!v.{Typ.xyzw[n]}")) #>;
-<#
-            if (typ.simd)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-            }
-#>
     }
 }
 

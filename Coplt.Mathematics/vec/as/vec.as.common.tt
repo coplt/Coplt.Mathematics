@@ -25,6 +25,7 @@ namespace Coplt.Mathematics;
 
 #region <#= typeName #>
 
+[Ex]
 public static partial class math
 {
 <#
@@ -34,7 +35,7 @@ public static partial class math
                 var tarType = target.Replace("v", "");
 #>
     [MethodImpl(256 | 512)]
-    public static <#= tarName #> as<#= name #>(this <#= typeName #> v) => v.BitCast<<#= typeName #>, <#= tarName #>>();
+    public static <#= tarName #> as<#= name #>([This] <#= typeName #> v) => v.BitCast<<#= typeName #>, <#= tarName #>>();
 <#
             }
 #>

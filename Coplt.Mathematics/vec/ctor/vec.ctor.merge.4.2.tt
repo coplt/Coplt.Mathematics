@@ -14,7 +14,7 @@ namespace Coplt.Mathematics;
 
         var byteSize = typ.size * 4;
         var bitSize = 8 * byteSize;
-        
+
         var byteSize2 = typ.size * 2;
         var bitSize2 = 8 * byteSize2;
 #>
@@ -30,21 +30,16 @@ public partial struct <#= typeName #>
         if (typ.simd)
         {
 #>
-        #if NET8_0_OR_GREATER
         vector = Vector<#= bitSize #>.Create(xy.vector, zw.vector);
-        #else // NET8_0_OR_GREATER
 <#
         }
+        else
+        {
 #>
         this.x = xy.x;
         this.y = xy.y;
         this.z = zw.x;
         this.w = zw.y;
-<#
-        if (typ.simd)
-        {
-#>
-        #endif // NET8_0_OR_GREATER
 <#
         }
 #>
@@ -57,21 +52,16 @@ public partial struct <#= typeName #>
         if (typ.simd)
         {
 #>
-        #if NET8_0_OR_GREATER
         vector = Vector<#= bitSize #>.Create(xy.vector, Vector<#= bitSize2 #>.Create(z, w));
-        #else // NET8_0_OR_GREATER
 <#
         }
+        else
+        {
 #>
         this.x = xy.x;
         this.y = xy.y;
         this.z = z;
         this.w = w;
-<#
-        if (typ.simd)
-        {
-#>
-        #endif // NET8_0_OR_GREATER
 <#
         }
 #>
@@ -84,21 +74,16 @@ public partial struct <#= typeName #>
         if (typ.simd)
         {
 #>
-        #if NET8_0_OR_GREATER
         vector = Vector<#= bitSize #>.Create(Vector<#= bitSize2 #>.Create(x, y), zw.vector);
-        #else // NET8_0_OR_GREATER
 <#
         }
+        else
+        {
 #>
         this.x = x;
         this.y = y;
         this.z = zw.x;
         this.w = zw.y;
-<#
-        if (typ.simd)
-        {
-#>
-        #endif // NET8_0_OR_GREATER
 <#
         }
 #>
@@ -111,24 +96,22 @@ public partial struct <#= typeName #>
         if (typ.simd)
         {
 #>
-        #if NET8_0_OR_GREATER
-        vector = Vector<#= bitSize #>.Shuffle(
-            Vector<#= bitSize #>.Create(Vector<#= bitSize2 #>.Create(x, w), yz.vector),
-            Vector<#= bitSize #>.Create(<#= typ.shuffleCast #>0, 2, 3, 1)
-        );
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            vector = Vector<#= bitSize #>.Shuffle(
+                Vector<#= bitSize #>.Create(Vector<#= bitSize2 #>.Create(x, w), yz.vector),
+                Vector<#= bitSize #>.Create(<#= typ.shuffleCast #>0, 2, 3, 1)
+            );
+        else
+            this = new(x, yz.x, yz.y, w);
 <#
         }
+        else
+        {
 #>
         this.x = x;
         this.y = yz.x;
         this.z = yz.y;
         this.w = w;
-<#
-        if (typ.simd)
-        {
-#>
-        #endif // NET8_0_OR_GREATER
 <#
         }
 #>
@@ -141,24 +124,22 @@ public partial struct <#= typeName #>
         if (typ.simd)
         {
 #>
-        #if NET8_0_OR_GREATER
-        vector = Vector<#= bitSize #>.Shuffle(
-            Vector<#= bitSize #>.Create(xw.vector, yz.vector),
-            Vector<#= bitSize #>.Create(<#= typ.shuffleCast #>0, 2, 3, 1)
-        );
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            vector = Vector<#= bitSize #>.Shuffle(
+                Vector<#= bitSize #>.Create(xw.vector, yz.vector),
+                Vector<#= bitSize #>.Create(<#= typ.shuffleCast #>0, 2, 3, 1)
+            );
+        else
+            this = new(xw.x, yz.x, yz.y, xw.y);
 <#
         }
+        else
+        {
 #>
         this.x = xw.x;
         this.y = yz.x;
         this.z = yz.y;
         this.w = xw.y;
-<#
-        if (typ.simd)
-        {
-#>
-        #endif // NET8_0_OR_GREATER
 <#
         }
 #>
@@ -171,24 +152,22 @@ public partial struct <#= typeName #>
         if (typ.simd)
         {
 #>
-        #if NET8_0_OR_GREATER
-        vector = Vector<#= bitSize #>.Shuffle(
-            Vector<#= bitSize #>.Create(xw.vector, Vector<#= bitSize2 #>.Create(y, z)),
-            Vector<#= bitSize #>.Create(<#= typ.shuffleCast #>0, 2, 3, 1)
-        );
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            vector = Vector<#= bitSize #>.Shuffle(
+                Vector<#= bitSize #>.Create(xw.vector, Vector<#= bitSize2 #>.Create(y, z)),
+                Vector<#= bitSize #>.Create(<#= typ.shuffleCast #>0, 2, 3, 1)
+            );
+        else
+            this = new(xw.x, y, z, xw.y);
 <#
         }
+        else
+        {
 #>
         this.x = xw.x;
         this.y = y;
         this.z = z;
         this.w = xw.y;
-<#
-        if (typ.simd)
-        {
-#>
-        #endif // NET8_0_OR_GREATER
 <#
         }
 #>
@@ -201,24 +180,22 @@ public partial struct <#= typeName #>
         if (typ.simd)
         {
 #>
-        #if NET8_0_OR_GREATER
-        vector = Vector<#= bitSize #>.Shuffle(
-            Vector<#= bitSize #>.Create(xz.vector, yw.vector),
-            Vector<#= bitSize #>.Create(<#= typ.shuffleCast #>0, 2, 1, 3)
-        );
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            vector = Vector<#= bitSize #>.Shuffle(
+                Vector<#= bitSize #>.Create(xz.vector, yw.vector),
+                Vector<#= bitSize #>.Create(<#= typ.shuffleCast #>0, 2, 1, 3)
+            );
+        else
+            this = new(xz.x, yw.x, xz.y, yw.y);
 <#
         }
+        else
+        {
 #>
         this.x = xz.x;
         this.y = yw.x;
         this.z = xz.y;
         this.w = yw.y;
-<#
-        if (typ.simd)
-        {
-#>
-        #endif // NET8_0_OR_GREATER
 <#
         }
 #>
@@ -231,24 +208,22 @@ public partial struct <#= typeName #>
         if (typ.simd)
         {
 #>
-        #if NET8_0_OR_GREATER
-        vector = Vector<#= bitSize #>.Shuffle(
-            Vector<#= bitSize #>.Create(xz.vector, Vector<#= bitSize2 #>.Create(y, w)),
-            Vector<#= bitSize #>.Create(<#= typ.shuffleCast #>0, 2, 1, 3)
-        );
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            vector = Vector<#= bitSize #>.Shuffle(
+                Vector<#= bitSize #>.Create(xz.vector, Vector<#= bitSize2 #>.Create(y, w)),
+                Vector<#= bitSize #>.Create(<#= typ.shuffleCast #>0, 2, 1, 3)
+            );
+        else
+            this = new(xz.x, y, xz.y, w);
 <#
         }
+        else
+        {
 #>
         this.x = xz.x;
         this.y = y;
         this.z = xz.y;
         this.w = w;
-<#
-        if (typ.simd)
-        {
-#>
-        #endif // NET8_0_OR_GREATER
 <#
         }
 #>
@@ -261,31 +236,44 @@ public partial struct <#= typeName #>
         if (typ.simd)
         {
 #>
-        #if NET8_0_OR_GREATER
-        vector = Vector<#= bitSize #>.Shuffle(
-            Vector<#= bitSize #>.Create(Vector<#= bitSize2 #>.Create(x, z), yw.vector),
-            Vector<#= bitSize #>.Create(<#= typ.shuffleCast #>0, 2, 1, 3)
-        );
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            vector = Vector<#= bitSize #>.Shuffle(
+                Vector<#= bitSize #>.Create(Vector<#= bitSize2 #>.Create(x, z), yw.vector),
+                Vector<#= bitSize #>.Create(<#= typ.shuffleCast #>0, 2, 1, 3)
+            );
+        else
+            this = new(x, yw.x, z, yw.y);
 <#
         }
+        else
+        {
 #>
         this.x = x;
         this.y = yw.x;
         this.z = z;
         this.w = yw.y;
 <#
-        if (typ.simd)
-        {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
         }
 #>
     }
 }
 
-public static partial class math
+public static partial class ctor
+{
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> <#= typeName #>(<#= typeName2 #> xy, <#= typeName2 #> zw) => new(xy, zw);
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> <#= typeName #>(<#= typeName2 #> xy, <#= type #> z, <#= type #> w) => new(xy, z, w);
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> <#= typeName #>(<#= type #> x, <#= type #> y, <#= typeName2 #> zw) => new(x, y, zw);
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> <#= typeName #>(<#= type #> x, <#= typeName2 #> yz, <#= type #> w) => new(x, yz, w);
+}
+
+public static partial class math_ex
 {
     /// <summary>
     /// Insert Z W component

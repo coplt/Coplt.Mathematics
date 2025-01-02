@@ -5,19 +5,16 @@ namespace Coplt.Mathematics;
 #region float2x2
 
 public partial struct float2x2 : IComparable<float2x2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<float2x2, float2x2, bool>
     , IComparisonOperators<float2x2, float2x2, b32m2x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is float2x2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(float2x2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<float2x2, float2x2, bool>.operator <(float2x2 left, float2x2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -29,10 +26,9 @@ public partial struct float2x2 : IComparable<float2x2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<float2x2, float2x2, bool>.operator >=(float2x2 left, float2x2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(float2x2 other)
+    public readonly int CompareTo(float2x2 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -53,22 +49,22 @@ public partial struct float2x2 : IComparable<float2x2>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(float2x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
+    public readonly bool LessThanAll(float2x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(float2x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
+    public readonly bool GreaterThanAll(float2x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(float2x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
+    public readonly bool LessThanOrEqualAll(float2x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(float2x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
+    public readonly bool GreaterThanOrEqualAll(float2x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(float2x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
+    public readonly bool LessThanAny(float2x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(float2x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
+    public readonly bool GreaterThanAny(float2x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(float2x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
+    public readonly bool LessThanOrEqualAny(float2x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(float2x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
+    public readonly bool GreaterThanOrEqualAny(float2x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
 }
 
 #endregion // float2x2
@@ -76,19 +72,16 @@ public partial struct float2x2 : IComparable<float2x2>, IComparable
 #region float2x3
 
 public partial struct float2x3 : IComparable<float2x3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<float2x3, float2x3, bool>
     , IComparisonOperators<float2x3, float2x3, b32m2x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is float2x3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(float2x3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<float2x3, float2x3, bool>.operator <(float2x3 left, float2x3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -100,10 +93,9 @@ public partial struct float2x3 : IComparable<float2x3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<float2x3, float2x3, bool>.operator >=(float2x3 left, float2x3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(float2x3 other)
+    public readonly int CompareTo(float2x3 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -125,22 +117,22 @@ public partial struct float2x3 : IComparable<float2x3>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(float2x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
+    public readonly bool LessThanAll(float2x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(float2x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
+    public readonly bool GreaterThanAll(float2x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(float2x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
+    public readonly bool LessThanOrEqualAll(float2x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(float2x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
+    public readonly bool GreaterThanOrEqualAll(float2x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(float2x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
+    public readonly bool LessThanAny(float2x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(float2x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
+    public readonly bool GreaterThanAny(float2x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(float2x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
+    public readonly bool LessThanOrEqualAny(float2x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(float2x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
+    public readonly bool GreaterThanOrEqualAny(float2x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
 }
 
 #endregion // float2x3
@@ -148,19 +140,16 @@ public partial struct float2x3 : IComparable<float2x3>, IComparable
 #region float2x4
 
 public partial struct float2x4 : IComparable<float2x4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<float2x4, float2x4, bool>
     , IComparisonOperators<float2x4, float2x4, b32m2x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is float2x4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(float2x4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<float2x4, float2x4, bool>.operator <(float2x4 left, float2x4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -172,10 +161,9 @@ public partial struct float2x4 : IComparable<float2x4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<float2x4, float2x4, bool>.operator >=(float2x4 left, float2x4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(float2x4 other)
+    public readonly int CompareTo(float2x4 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -198,22 +186,22 @@ public partial struct float2x4 : IComparable<float2x4>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2, left.c3 >= right.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(float2x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
+    public readonly bool LessThanAll(float2x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(float2x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
+    public readonly bool GreaterThanAll(float2x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(float2x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
+    public readonly bool LessThanOrEqualAll(float2x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(float2x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
+    public readonly bool GreaterThanOrEqualAll(float2x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(float2x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
+    public readonly bool LessThanAny(float2x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(float2x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
+    public readonly bool GreaterThanAny(float2x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(float2x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
+    public readonly bool LessThanOrEqualAny(float2x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(float2x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
+    public readonly bool GreaterThanOrEqualAny(float2x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
 }
 
 #endregion // float2x4
@@ -221,19 +209,16 @@ public partial struct float2x4 : IComparable<float2x4>, IComparable
 #region float3x2
 
 public partial struct float3x2 : IComparable<float3x2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<float3x2, float3x2, bool>
     , IComparisonOperators<float3x2, float3x2, b32m3x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is float3x2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(float3x2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<float3x2, float3x2, bool>.operator <(float3x2 left, float3x2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -245,10 +230,9 @@ public partial struct float3x2 : IComparable<float3x2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<float3x2, float3x2, bool>.operator >=(float3x2 left, float3x2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(float3x2 other)
+    public readonly int CompareTo(float3x2 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -269,22 +253,22 @@ public partial struct float3x2 : IComparable<float3x2>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(float3x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
+    public readonly bool LessThanAll(float3x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(float3x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
+    public readonly bool GreaterThanAll(float3x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(float3x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
+    public readonly bool LessThanOrEqualAll(float3x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(float3x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
+    public readonly bool GreaterThanOrEqualAll(float3x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(float3x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
+    public readonly bool LessThanAny(float3x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(float3x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
+    public readonly bool GreaterThanAny(float3x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(float3x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
+    public readonly bool LessThanOrEqualAny(float3x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(float3x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
+    public readonly bool GreaterThanOrEqualAny(float3x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
 }
 
 #endregion // float3x2
@@ -292,19 +276,16 @@ public partial struct float3x2 : IComparable<float3x2>, IComparable
 #region float3x3
 
 public partial struct float3x3 : IComparable<float3x3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<float3x3, float3x3, bool>
     , IComparisonOperators<float3x3, float3x3, b32m3x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is float3x3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(float3x3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<float3x3, float3x3, bool>.operator <(float3x3 left, float3x3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -316,10 +297,9 @@ public partial struct float3x3 : IComparable<float3x3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<float3x3, float3x3, bool>.operator >=(float3x3 left, float3x3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(float3x3 other)
+    public readonly int CompareTo(float3x3 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -341,22 +321,22 @@ public partial struct float3x3 : IComparable<float3x3>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(float3x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
+    public readonly bool LessThanAll(float3x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(float3x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
+    public readonly bool GreaterThanAll(float3x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(float3x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
+    public readonly bool LessThanOrEqualAll(float3x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(float3x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
+    public readonly bool GreaterThanOrEqualAll(float3x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(float3x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
+    public readonly bool LessThanAny(float3x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(float3x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
+    public readonly bool GreaterThanAny(float3x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(float3x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
+    public readonly bool LessThanOrEqualAny(float3x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(float3x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
+    public readonly bool GreaterThanOrEqualAny(float3x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
 }
 
 #endregion // float3x3
@@ -364,19 +344,16 @@ public partial struct float3x3 : IComparable<float3x3>, IComparable
 #region float3x4
 
 public partial struct float3x4 : IComparable<float3x4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<float3x4, float3x4, bool>
     , IComparisonOperators<float3x4, float3x4, b32m3x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is float3x4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(float3x4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<float3x4, float3x4, bool>.operator <(float3x4 left, float3x4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -388,10 +365,9 @@ public partial struct float3x4 : IComparable<float3x4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<float3x4, float3x4, bool>.operator >=(float3x4 left, float3x4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(float3x4 other)
+    public readonly int CompareTo(float3x4 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -414,22 +390,22 @@ public partial struct float3x4 : IComparable<float3x4>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2, left.c3 >= right.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(float3x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
+    public readonly bool LessThanAll(float3x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(float3x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
+    public readonly bool GreaterThanAll(float3x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(float3x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
+    public readonly bool LessThanOrEqualAll(float3x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(float3x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
+    public readonly bool GreaterThanOrEqualAll(float3x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(float3x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
+    public readonly bool LessThanAny(float3x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(float3x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
+    public readonly bool GreaterThanAny(float3x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(float3x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
+    public readonly bool LessThanOrEqualAny(float3x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(float3x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
+    public readonly bool GreaterThanOrEqualAny(float3x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
 }
 
 #endregion // float3x4
@@ -437,19 +413,16 @@ public partial struct float3x4 : IComparable<float3x4>, IComparable
 #region float4x2
 
 public partial struct float4x2 : IComparable<float4x2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<float4x2, float4x2, bool>
     , IComparisonOperators<float4x2, float4x2, b32m4x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is float4x2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(float4x2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<float4x2, float4x2, bool>.operator <(float4x2 left, float4x2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -461,10 +434,9 @@ public partial struct float4x2 : IComparable<float4x2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<float4x2, float4x2, bool>.operator >=(float4x2 left, float4x2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(float4x2 other)
+    public readonly int CompareTo(float4x2 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -485,22 +457,22 @@ public partial struct float4x2 : IComparable<float4x2>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(float4x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
+    public readonly bool LessThanAll(float4x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(float4x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
+    public readonly bool GreaterThanAll(float4x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(float4x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
+    public readonly bool LessThanOrEqualAll(float4x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(float4x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
+    public readonly bool GreaterThanOrEqualAll(float4x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(float4x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
+    public readonly bool LessThanAny(float4x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(float4x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
+    public readonly bool GreaterThanAny(float4x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(float4x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
+    public readonly bool LessThanOrEqualAny(float4x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(float4x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
+    public readonly bool GreaterThanOrEqualAny(float4x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
 }
 
 #endregion // float4x2
@@ -508,19 +480,16 @@ public partial struct float4x2 : IComparable<float4x2>, IComparable
 #region float4x3
 
 public partial struct float4x3 : IComparable<float4x3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<float4x3, float4x3, bool>
     , IComparisonOperators<float4x3, float4x3, b32m4x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is float4x3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(float4x3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<float4x3, float4x3, bool>.operator <(float4x3 left, float4x3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -532,10 +501,9 @@ public partial struct float4x3 : IComparable<float4x3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<float4x3, float4x3, bool>.operator >=(float4x3 left, float4x3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(float4x3 other)
+    public readonly int CompareTo(float4x3 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -557,22 +525,22 @@ public partial struct float4x3 : IComparable<float4x3>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(float4x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
+    public readonly bool LessThanAll(float4x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(float4x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
+    public readonly bool GreaterThanAll(float4x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(float4x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
+    public readonly bool LessThanOrEqualAll(float4x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(float4x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
+    public readonly bool GreaterThanOrEqualAll(float4x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(float4x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
+    public readonly bool LessThanAny(float4x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(float4x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
+    public readonly bool GreaterThanAny(float4x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(float4x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
+    public readonly bool LessThanOrEqualAny(float4x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(float4x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
+    public readonly bool GreaterThanOrEqualAny(float4x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
 }
 
 #endregion // float4x3
@@ -580,19 +548,16 @@ public partial struct float4x3 : IComparable<float4x3>, IComparable
 #region float4x4
 
 public partial struct float4x4 : IComparable<float4x4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<float4x4, float4x4, bool>
     , IComparisonOperators<float4x4, float4x4, b32m4x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is float4x4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(float4x4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<float4x4, float4x4, bool>.operator <(float4x4 left, float4x4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -604,10 +569,9 @@ public partial struct float4x4 : IComparable<float4x4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<float4x4, float4x4, bool>.operator >=(float4x4 left, float4x4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(float4x4 other)
+    public readonly int CompareTo(float4x4 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -630,22 +594,22 @@ public partial struct float4x4 : IComparable<float4x4>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2, left.c3 >= right.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(float4x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
+    public readonly bool LessThanAll(float4x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(float4x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
+    public readonly bool GreaterThanAll(float4x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(float4x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
+    public readonly bool LessThanOrEqualAll(float4x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(float4x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
+    public readonly bool GreaterThanOrEqualAll(float4x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(float4x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
+    public readonly bool LessThanAny(float4x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(float4x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
+    public readonly bool GreaterThanAny(float4x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(float4x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
+    public readonly bool LessThanOrEqualAny(float4x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(float4x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
+    public readonly bool GreaterThanOrEqualAny(float4x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
 }
 
 #endregion // float4x4
@@ -653,19 +617,16 @@ public partial struct float4x4 : IComparable<float4x4>, IComparable
 #region double2x2
 
 public partial struct double2x2 : IComparable<double2x2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<double2x2, double2x2, bool>
     , IComparisonOperators<double2x2, double2x2, b64m2x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is double2x2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(double2x2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<double2x2, double2x2, bool>.operator <(double2x2 left, double2x2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -677,10 +638,9 @@ public partial struct double2x2 : IComparable<double2x2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<double2x2, double2x2, bool>.operator >=(double2x2 left, double2x2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(double2x2 other)
+    public readonly int CompareTo(double2x2 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -701,22 +661,22 @@ public partial struct double2x2 : IComparable<double2x2>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(double2x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
+    public readonly bool LessThanAll(double2x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(double2x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
+    public readonly bool GreaterThanAll(double2x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(double2x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
+    public readonly bool LessThanOrEqualAll(double2x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(double2x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
+    public readonly bool GreaterThanOrEqualAll(double2x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(double2x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
+    public readonly bool LessThanAny(double2x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(double2x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
+    public readonly bool GreaterThanAny(double2x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(double2x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
+    public readonly bool LessThanOrEqualAny(double2x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(double2x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
+    public readonly bool GreaterThanOrEqualAny(double2x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
 }
 
 #endregion // double2x2
@@ -724,19 +684,16 @@ public partial struct double2x2 : IComparable<double2x2>, IComparable
 #region double2x3
 
 public partial struct double2x3 : IComparable<double2x3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<double2x3, double2x3, bool>
     , IComparisonOperators<double2x3, double2x3, b64m2x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is double2x3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(double2x3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<double2x3, double2x3, bool>.operator <(double2x3 left, double2x3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -748,10 +705,9 @@ public partial struct double2x3 : IComparable<double2x3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<double2x3, double2x3, bool>.operator >=(double2x3 left, double2x3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(double2x3 other)
+    public readonly int CompareTo(double2x3 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -773,22 +729,22 @@ public partial struct double2x3 : IComparable<double2x3>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(double2x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
+    public readonly bool LessThanAll(double2x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(double2x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
+    public readonly bool GreaterThanAll(double2x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(double2x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
+    public readonly bool LessThanOrEqualAll(double2x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(double2x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
+    public readonly bool GreaterThanOrEqualAll(double2x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(double2x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
+    public readonly bool LessThanAny(double2x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(double2x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
+    public readonly bool GreaterThanAny(double2x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(double2x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
+    public readonly bool LessThanOrEqualAny(double2x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(double2x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
+    public readonly bool GreaterThanOrEqualAny(double2x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
 }
 
 #endregion // double2x3
@@ -796,19 +752,16 @@ public partial struct double2x3 : IComparable<double2x3>, IComparable
 #region double2x4
 
 public partial struct double2x4 : IComparable<double2x4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<double2x4, double2x4, bool>
     , IComparisonOperators<double2x4, double2x4, b64m2x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is double2x4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(double2x4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<double2x4, double2x4, bool>.operator <(double2x4 left, double2x4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -820,10 +773,9 @@ public partial struct double2x4 : IComparable<double2x4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<double2x4, double2x4, bool>.operator >=(double2x4 left, double2x4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(double2x4 other)
+    public readonly int CompareTo(double2x4 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -846,22 +798,22 @@ public partial struct double2x4 : IComparable<double2x4>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2, left.c3 >= right.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(double2x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
+    public readonly bool LessThanAll(double2x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(double2x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
+    public readonly bool GreaterThanAll(double2x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(double2x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
+    public readonly bool LessThanOrEqualAll(double2x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(double2x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
+    public readonly bool GreaterThanOrEqualAll(double2x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(double2x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
+    public readonly bool LessThanAny(double2x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(double2x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
+    public readonly bool GreaterThanAny(double2x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(double2x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
+    public readonly bool LessThanOrEqualAny(double2x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(double2x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
+    public readonly bool GreaterThanOrEqualAny(double2x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
 }
 
 #endregion // double2x4
@@ -869,19 +821,16 @@ public partial struct double2x4 : IComparable<double2x4>, IComparable
 #region double3x2
 
 public partial struct double3x2 : IComparable<double3x2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<double3x2, double3x2, bool>
     , IComparisonOperators<double3x2, double3x2, b64m3x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is double3x2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(double3x2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<double3x2, double3x2, bool>.operator <(double3x2 left, double3x2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -893,10 +842,9 @@ public partial struct double3x2 : IComparable<double3x2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<double3x2, double3x2, bool>.operator >=(double3x2 left, double3x2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(double3x2 other)
+    public readonly int CompareTo(double3x2 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -917,22 +865,22 @@ public partial struct double3x2 : IComparable<double3x2>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(double3x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
+    public readonly bool LessThanAll(double3x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(double3x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
+    public readonly bool GreaterThanAll(double3x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(double3x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
+    public readonly bool LessThanOrEqualAll(double3x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(double3x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
+    public readonly bool GreaterThanOrEqualAll(double3x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(double3x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
+    public readonly bool LessThanAny(double3x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(double3x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
+    public readonly bool GreaterThanAny(double3x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(double3x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
+    public readonly bool LessThanOrEqualAny(double3x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(double3x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
+    public readonly bool GreaterThanOrEqualAny(double3x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
 }
 
 #endregion // double3x2
@@ -940,19 +888,16 @@ public partial struct double3x2 : IComparable<double3x2>, IComparable
 #region double3x3
 
 public partial struct double3x3 : IComparable<double3x3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<double3x3, double3x3, bool>
     , IComparisonOperators<double3x3, double3x3, b64m3x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is double3x3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(double3x3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<double3x3, double3x3, bool>.operator <(double3x3 left, double3x3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -964,10 +909,9 @@ public partial struct double3x3 : IComparable<double3x3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<double3x3, double3x3, bool>.operator >=(double3x3 left, double3x3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(double3x3 other)
+    public readonly int CompareTo(double3x3 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -989,22 +933,22 @@ public partial struct double3x3 : IComparable<double3x3>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(double3x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
+    public readonly bool LessThanAll(double3x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(double3x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
+    public readonly bool GreaterThanAll(double3x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(double3x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
+    public readonly bool LessThanOrEqualAll(double3x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(double3x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
+    public readonly bool GreaterThanOrEqualAll(double3x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(double3x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
+    public readonly bool LessThanAny(double3x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(double3x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
+    public readonly bool GreaterThanAny(double3x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(double3x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
+    public readonly bool LessThanOrEqualAny(double3x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(double3x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
+    public readonly bool GreaterThanOrEqualAny(double3x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
 }
 
 #endregion // double3x3
@@ -1012,19 +956,16 @@ public partial struct double3x3 : IComparable<double3x3>, IComparable
 #region double3x4
 
 public partial struct double3x4 : IComparable<double3x4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<double3x4, double3x4, bool>
     , IComparisonOperators<double3x4, double3x4, b64m3x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is double3x4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(double3x4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<double3x4, double3x4, bool>.operator <(double3x4 left, double3x4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -1036,10 +977,9 @@ public partial struct double3x4 : IComparable<double3x4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<double3x4, double3x4, bool>.operator >=(double3x4 left, double3x4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(double3x4 other)
+    public readonly int CompareTo(double3x4 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -1062,22 +1002,22 @@ public partial struct double3x4 : IComparable<double3x4>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2, left.c3 >= right.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(double3x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
+    public readonly bool LessThanAll(double3x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(double3x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
+    public readonly bool GreaterThanAll(double3x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(double3x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
+    public readonly bool LessThanOrEqualAll(double3x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(double3x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
+    public readonly bool GreaterThanOrEqualAll(double3x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(double3x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
+    public readonly bool LessThanAny(double3x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(double3x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
+    public readonly bool GreaterThanAny(double3x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(double3x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
+    public readonly bool LessThanOrEqualAny(double3x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(double3x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
+    public readonly bool GreaterThanOrEqualAny(double3x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
 }
 
 #endregion // double3x4
@@ -1085,19 +1025,16 @@ public partial struct double3x4 : IComparable<double3x4>, IComparable
 #region double4x2
 
 public partial struct double4x2 : IComparable<double4x2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<double4x2, double4x2, bool>
     , IComparisonOperators<double4x2, double4x2, b64m4x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is double4x2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(double4x2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<double4x2, double4x2, bool>.operator <(double4x2 left, double4x2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -1109,10 +1046,9 @@ public partial struct double4x2 : IComparable<double4x2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<double4x2, double4x2, bool>.operator >=(double4x2 left, double4x2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(double4x2 other)
+    public readonly int CompareTo(double4x2 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -1133,22 +1069,22 @@ public partial struct double4x2 : IComparable<double4x2>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(double4x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
+    public readonly bool LessThanAll(double4x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(double4x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
+    public readonly bool GreaterThanAll(double4x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(double4x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
+    public readonly bool LessThanOrEqualAll(double4x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(double4x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
+    public readonly bool GreaterThanOrEqualAll(double4x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(double4x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
+    public readonly bool LessThanAny(double4x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(double4x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
+    public readonly bool GreaterThanAny(double4x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(double4x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
+    public readonly bool LessThanOrEqualAny(double4x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(double4x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
+    public readonly bool GreaterThanOrEqualAny(double4x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
 }
 
 #endregion // double4x2
@@ -1156,19 +1092,16 @@ public partial struct double4x2 : IComparable<double4x2>, IComparable
 #region double4x3
 
 public partial struct double4x3 : IComparable<double4x3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<double4x3, double4x3, bool>
     , IComparisonOperators<double4x3, double4x3, b64m4x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is double4x3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(double4x3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<double4x3, double4x3, bool>.operator <(double4x3 left, double4x3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -1180,10 +1113,9 @@ public partial struct double4x3 : IComparable<double4x3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<double4x3, double4x3, bool>.operator >=(double4x3 left, double4x3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(double4x3 other)
+    public readonly int CompareTo(double4x3 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -1205,22 +1137,22 @@ public partial struct double4x3 : IComparable<double4x3>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(double4x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
+    public readonly bool LessThanAll(double4x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(double4x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
+    public readonly bool GreaterThanAll(double4x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(double4x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
+    public readonly bool LessThanOrEqualAll(double4x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(double4x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
+    public readonly bool GreaterThanOrEqualAll(double4x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(double4x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
+    public readonly bool LessThanAny(double4x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(double4x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
+    public readonly bool GreaterThanAny(double4x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(double4x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
+    public readonly bool LessThanOrEqualAny(double4x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(double4x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
+    public readonly bool GreaterThanOrEqualAny(double4x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
 }
 
 #endregion // double4x3
@@ -1228,19 +1160,16 @@ public partial struct double4x3 : IComparable<double4x3>, IComparable
 #region double4x4
 
 public partial struct double4x4 : IComparable<double4x4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<double4x4, double4x4, bool>
     , IComparisonOperators<double4x4, double4x4, b64m4x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is double4x4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(double4x4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<double4x4, double4x4, bool>.operator <(double4x4 left, double4x4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -1252,10 +1181,9 @@ public partial struct double4x4 : IComparable<double4x4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<double4x4, double4x4, bool>.operator >=(double4x4 left, double4x4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(double4x4 other)
+    public readonly int CompareTo(double4x4 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -1278,22 +1206,22 @@ public partial struct double4x4 : IComparable<double4x4>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2, left.c3 >= right.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(double4x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
+    public readonly bool LessThanAll(double4x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(double4x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
+    public readonly bool GreaterThanAll(double4x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(double4x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
+    public readonly bool LessThanOrEqualAll(double4x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(double4x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
+    public readonly bool GreaterThanOrEqualAll(double4x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(double4x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
+    public readonly bool LessThanAny(double4x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(double4x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
+    public readonly bool GreaterThanAny(double4x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(double4x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
+    public readonly bool LessThanOrEqualAny(double4x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(double4x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
+    public readonly bool GreaterThanOrEqualAny(double4x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
 }
 
 #endregion // double4x4
@@ -1301,19 +1229,16 @@ public partial struct double4x4 : IComparable<double4x4>, IComparable
 #region short2x2
 
 public partial struct short2x2 : IComparable<short2x2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<short2x2, short2x2, bool>
     , IComparisonOperators<short2x2, short2x2, b16m2x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is short2x2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(short2x2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<short2x2, short2x2, bool>.operator <(short2x2 left, short2x2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -1325,10 +1250,9 @@ public partial struct short2x2 : IComparable<short2x2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<short2x2, short2x2, bool>.operator >=(short2x2 left, short2x2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(short2x2 other)
+    public readonly int CompareTo(short2x2 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -1349,22 +1273,22 @@ public partial struct short2x2 : IComparable<short2x2>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(short2x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
+    public readonly bool LessThanAll(short2x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(short2x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
+    public readonly bool GreaterThanAll(short2x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(short2x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
+    public readonly bool LessThanOrEqualAll(short2x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(short2x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
+    public readonly bool GreaterThanOrEqualAll(short2x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(short2x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
+    public readonly bool LessThanAny(short2x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(short2x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
+    public readonly bool GreaterThanAny(short2x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(short2x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
+    public readonly bool LessThanOrEqualAny(short2x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(short2x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
+    public readonly bool GreaterThanOrEqualAny(short2x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
 }
 
 #endregion // short2x2
@@ -1372,19 +1296,16 @@ public partial struct short2x2 : IComparable<short2x2>, IComparable
 #region short2x3
 
 public partial struct short2x3 : IComparable<short2x3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<short2x3, short2x3, bool>
     , IComparisonOperators<short2x3, short2x3, b16m2x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is short2x3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(short2x3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<short2x3, short2x3, bool>.operator <(short2x3 left, short2x3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -1396,10 +1317,9 @@ public partial struct short2x3 : IComparable<short2x3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<short2x3, short2x3, bool>.operator >=(short2x3 left, short2x3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(short2x3 other)
+    public readonly int CompareTo(short2x3 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -1421,22 +1341,22 @@ public partial struct short2x3 : IComparable<short2x3>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(short2x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
+    public readonly bool LessThanAll(short2x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(short2x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
+    public readonly bool GreaterThanAll(short2x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(short2x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
+    public readonly bool LessThanOrEqualAll(short2x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(short2x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
+    public readonly bool GreaterThanOrEqualAll(short2x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(short2x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
+    public readonly bool LessThanAny(short2x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(short2x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
+    public readonly bool GreaterThanAny(short2x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(short2x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
+    public readonly bool LessThanOrEqualAny(short2x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(short2x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
+    public readonly bool GreaterThanOrEqualAny(short2x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
 }
 
 #endregion // short2x3
@@ -1444,19 +1364,16 @@ public partial struct short2x3 : IComparable<short2x3>, IComparable
 #region short2x4
 
 public partial struct short2x4 : IComparable<short2x4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<short2x4, short2x4, bool>
     , IComparisonOperators<short2x4, short2x4, b16m2x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is short2x4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(short2x4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<short2x4, short2x4, bool>.operator <(short2x4 left, short2x4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -1468,10 +1385,9 @@ public partial struct short2x4 : IComparable<short2x4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<short2x4, short2x4, bool>.operator >=(short2x4 left, short2x4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(short2x4 other)
+    public readonly int CompareTo(short2x4 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -1494,22 +1410,22 @@ public partial struct short2x4 : IComparable<short2x4>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2, left.c3 >= right.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(short2x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
+    public readonly bool LessThanAll(short2x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(short2x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
+    public readonly bool GreaterThanAll(short2x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(short2x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
+    public readonly bool LessThanOrEqualAll(short2x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(short2x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
+    public readonly bool GreaterThanOrEqualAll(short2x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(short2x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
+    public readonly bool LessThanAny(short2x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(short2x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
+    public readonly bool GreaterThanAny(short2x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(short2x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
+    public readonly bool LessThanOrEqualAny(short2x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(short2x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
+    public readonly bool GreaterThanOrEqualAny(short2x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
 }
 
 #endregion // short2x4
@@ -1517,19 +1433,16 @@ public partial struct short2x4 : IComparable<short2x4>, IComparable
 #region short3x2
 
 public partial struct short3x2 : IComparable<short3x2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<short3x2, short3x2, bool>
     , IComparisonOperators<short3x2, short3x2, b16m3x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is short3x2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(short3x2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<short3x2, short3x2, bool>.operator <(short3x2 left, short3x2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -1541,10 +1454,9 @@ public partial struct short3x2 : IComparable<short3x2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<short3x2, short3x2, bool>.operator >=(short3x2 left, short3x2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(short3x2 other)
+    public readonly int CompareTo(short3x2 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -1565,22 +1477,22 @@ public partial struct short3x2 : IComparable<short3x2>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(short3x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
+    public readonly bool LessThanAll(short3x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(short3x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
+    public readonly bool GreaterThanAll(short3x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(short3x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
+    public readonly bool LessThanOrEqualAll(short3x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(short3x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
+    public readonly bool GreaterThanOrEqualAll(short3x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(short3x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
+    public readonly bool LessThanAny(short3x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(short3x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
+    public readonly bool GreaterThanAny(short3x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(short3x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
+    public readonly bool LessThanOrEqualAny(short3x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(short3x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
+    public readonly bool GreaterThanOrEqualAny(short3x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
 }
 
 #endregion // short3x2
@@ -1588,19 +1500,16 @@ public partial struct short3x2 : IComparable<short3x2>, IComparable
 #region short3x3
 
 public partial struct short3x3 : IComparable<short3x3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<short3x3, short3x3, bool>
     , IComparisonOperators<short3x3, short3x3, b16m3x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is short3x3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(short3x3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<short3x3, short3x3, bool>.operator <(short3x3 left, short3x3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -1612,10 +1521,9 @@ public partial struct short3x3 : IComparable<short3x3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<short3x3, short3x3, bool>.operator >=(short3x3 left, short3x3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(short3x3 other)
+    public readonly int CompareTo(short3x3 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -1637,22 +1545,22 @@ public partial struct short3x3 : IComparable<short3x3>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(short3x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
+    public readonly bool LessThanAll(short3x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(short3x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
+    public readonly bool GreaterThanAll(short3x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(short3x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
+    public readonly bool LessThanOrEqualAll(short3x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(short3x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
+    public readonly bool GreaterThanOrEqualAll(short3x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(short3x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
+    public readonly bool LessThanAny(short3x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(short3x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
+    public readonly bool GreaterThanAny(short3x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(short3x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
+    public readonly bool LessThanOrEqualAny(short3x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(short3x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
+    public readonly bool GreaterThanOrEqualAny(short3x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
 }
 
 #endregion // short3x3
@@ -1660,19 +1568,16 @@ public partial struct short3x3 : IComparable<short3x3>, IComparable
 #region short3x4
 
 public partial struct short3x4 : IComparable<short3x4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<short3x4, short3x4, bool>
     , IComparisonOperators<short3x4, short3x4, b16m3x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is short3x4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(short3x4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<short3x4, short3x4, bool>.operator <(short3x4 left, short3x4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -1684,10 +1589,9 @@ public partial struct short3x4 : IComparable<short3x4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<short3x4, short3x4, bool>.operator >=(short3x4 left, short3x4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(short3x4 other)
+    public readonly int CompareTo(short3x4 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -1710,22 +1614,22 @@ public partial struct short3x4 : IComparable<short3x4>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2, left.c3 >= right.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(short3x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
+    public readonly bool LessThanAll(short3x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(short3x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
+    public readonly bool GreaterThanAll(short3x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(short3x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
+    public readonly bool LessThanOrEqualAll(short3x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(short3x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
+    public readonly bool GreaterThanOrEqualAll(short3x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(short3x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
+    public readonly bool LessThanAny(short3x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(short3x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
+    public readonly bool GreaterThanAny(short3x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(short3x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
+    public readonly bool LessThanOrEqualAny(short3x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(short3x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
+    public readonly bool GreaterThanOrEqualAny(short3x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
 }
 
 #endregion // short3x4
@@ -1733,19 +1637,16 @@ public partial struct short3x4 : IComparable<short3x4>, IComparable
 #region short4x2
 
 public partial struct short4x2 : IComparable<short4x2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<short4x2, short4x2, bool>
     , IComparisonOperators<short4x2, short4x2, b16m4x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is short4x2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(short4x2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<short4x2, short4x2, bool>.operator <(short4x2 left, short4x2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -1757,10 +1658,9 @@ public partial struct short4x2 : IComparable<short4x2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<short4x2, short4x2, bool>.operator >=(short4x2 left, short4x2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(short4x2 other)
+    public readonly int CompareTo(short4x2 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -1781,22 +1681,22 @@ public partial struct short4x2 : IComparable<short4x2>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(short4x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
+    public readonly bool LessThanAll(short4x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(short4x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
+    public readonly bool GreaterThanAll(short4x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(short4x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
+    public readonly bool LessThanOrEqualAll(short4x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(short4x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
+    public readonly bool GreaterThanOrEqualAll(short4x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(short4x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
+    public readonly bool LessThanAny(short4x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(short4x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
+    public readonly bool GreaterThanAny(short4x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(short4x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
+    public readonly bool LessThanOrEqualAny(short4x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(short4x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
+    public readonly bool GreaterThanOrEqualAny(short4x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
 }
 
 #endregion // short4x2
@@ -1804,19 +1704,16 @@ public partial struct short4x2 : IComparable<short4x2>, IComparable
 #region short4x3
 
 public partial struct short4x3 : IComparable<short4x3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<short4x3, short4x3, bool>
     , IComparisonOperators<short4x3, short4x3, b16m4x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is short4x3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(short4x3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<short4x3, short4x3, bool>.operator <(short4x3 left, short4x3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -1828,10 +1725,9 @@ public partial struct short4x3 : IComparable<short4x3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<short4x3, short4x3, bool>.operator >=(short4x3 left, short4x3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(short4x3 other)
+    public readonly int CompareTo(short4x3 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -1853,22 +1749,22 @@ public partial struct short4x3 : IComparable<short4x3>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(short4x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
+    public readonly bool LessThanAll(short4x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(short4x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
+    public readonly bool GreaterThanAll(short4x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(short4x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
+    public readonly bool LessThanOrEqualAll(short4x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(short4x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
+    public readonly bool GreaterThanOrEqualAll(short4x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(short4x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
+    public readonly bool LessThanAny(short4x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(short4x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
+    public readonly bool GreaterThanAny(short4x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(short4x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
+    public readonly bool LessThanOrEqualAny(short4x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(short4x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
+    public readonly bool GreaterThanOrEqualAny(short4x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
 }
 
 #endregion // short4x3
@@ -1876,19 +1772,16 @@ public partial struct short4x3 : IComparable<short4x3>, IComparable
 #region short4x4
 
 public partial struct short4x4 : IComparable<short4x4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<short4x4, short4x4, bool>
     , IComparisonOperators<short4x4, short4x4, b16m4x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is short4x4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(short4x4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<short4x4, short4x4, bool>.operator <(short4x4 left, short4x4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -1900,10 +1793,9 @@ public partial struct short4x4 : IComparable<short4x4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<short4x4, short4x4, bool>.operator >=(short4x4 left, short4x4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(short4x4 other)
+    public readonly int CompareTo(short4x4 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -1926,22 +1818,22 @@ public partial struct short4x4 : IComparable<short4x4>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2, left.c3 >= right.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(short4x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
+    public readonly bool LessThanAll(short4x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(short4x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
+    public readonly bool GreaterThanAll(short4x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(short4x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
+    public readonly bool LessThanOrEqualAll(short4x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(short4x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
+    public readonly bool GreaterThanOrEqualAll(short4x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(short4x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
+    public readonly bool LessThanAny(short4x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(short4x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
+    public readonly bool GreaterThanAny(short4x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(short4x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
+    public readonly bool LessThanOrEqualAny(short4x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(short4x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
+    public readonly bool GreaterThanOrEqualAny(short4x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
 }
 
 #endregion // short4x4
@@ -1949,19 +1841,16 @@ public partial struct short4x4 : IComparable<short4x4>, IComparable
 #region ushort2x2
 
 public partial struct ushort2x2 : IComparable<ushort2x2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<ushort2x2, ushort2x2, bool>
     , IComparisonOperators<ushort2x2, ushort2x2, b16m2x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is ushort2x2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(ushort2x2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<ushort2x2, ushort2x2, bool>.operator <(ushort2x2 left, ushort2x2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -1973,10 +1862,9 @@ public partial struct ushort2x2 : IComparable<ushort2x2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<ushort2x2, ushort2x2, bool>.operator >=(ushort2x2 left, ushort2x2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(ushort2x2 other)
+    public readonly int CompareTo(ushort2x2 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -1997,22 +1885,22 @@ public partial struct ushort2x2 : IComparable<ushort2x2>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(ushort2x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
+    public readonly bool LessThanAll(ushort2x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(ushort2x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
+    public readonly bool GreaterThanAll(ushort2x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(ushort2x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
+    public readonly bool LessThanOrEqualAll(ushort2x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(ushort2x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
+    public readonly bool GreaterThanOrEqualAll(ushort2x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(ushort2x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
+    public readonly bool LessThanAny(ushort2x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(ushort2x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
+    public readonly bool GreaterThanAny(ushort2x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(ushort2x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
+    public readonly bool LessThanOrEqualAny(ushort2x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(ushort2x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
+    public readonly bool GreaterThanOrEqualAny(ushort2x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
 }
 
 #endregion // ushort2x2
@@ -2020,19 +1908,16 @@ public partial struct ushort2x2 : IComparable<ushort2x2>, IComparable
 #region ushort2x3
 
 public partial struct ushort2x3 : IComparable<ushort2x3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<ushort2x3, ushort2x3, bool>
     , IComparisonOperators<ushort2x3, ushort2x3, b16m2x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is ushort2x3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(ushort2x3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<ushort2x3, ushort2x3, bool>.operator <(ushort2x3 left, ushort2x3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -2044,10 +1929,9 @@ public partial struct ushort2x3 : IComparable<ushort2x3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<ushort2x3, ushort2x3, bool>.operator >=(ushort2x3 left, ushort2x3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(ushort2x3 other)
+    public readonly int CompareTo(ushort2x3 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -2069,22 +1953,22 @@ public partial struct ushort2x3 : IComparable<ushort2x3>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(ushort2x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
+    public readonly bool LessThanAll(ushort2x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(ushort2x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
+    public readonly bool GreaterThanAll(ushort2x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(ushort2x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
+    public readonly bool LessThanOrEqualAll(ushort2x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(ushort2x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
+    public readonly bool GreaterThanOrEqualAll(ushort2x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(ushort2x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
+    public readonly bool LessThanAny(ushort2x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(ushort2x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
+    public readonly bool GreaterThanAny(ushort2x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(ushort2x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
+    public readonly bool LessThanOrEqualAny(ushort2x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(ushort2x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
+    public readonly bool GreaterThanOrEqualAny(ushort2x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
 }
 
 #endregion // ushort2x3
@@ -2092,19 +1976,16 @@ public partial struct ushort2x3 : IComparable<ushort2x3>, IComparable
 #region ushort2x4
 
 public partial struct ushort2x4 : IComparable<ushort2x4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<ushort2x4, ushort2x4, bool>
     , IComparisonOperators<ushort2x4, ushort2x4, b16m2x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is ushort2x4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(ushort2x4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<ushort2x4, ushort2x4, bool>.operator <(ushort2x4 left, ushort2x4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -2116,10 +1997,9 @@ public partial struct ushort2x4 : IComparable<ushort2x4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<ushort2x4, ushort2x4, bool>.operator >=(ushort2x4 left, ushort2x4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(ushort2x4 other)
+    public readonly int CompareTo(ushort2x4 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -2142,22 +2022,22 @@ public partial struct ushort2x4 : IComparable<ushort2x4>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2, left.c3 >= right.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(ushort2x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
+    public readonly bool LessThanAll(ushort2x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(ushort2x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
+    public readonly bool GreaterThanAll(ushort2x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(ushort2x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
+    public readonly bool LessThanOrEqualAll(ushort2x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(ushort2x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
+    public readonly bool GreaterThanOrEqualAll(ushort2x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(ushort2x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
+    public readonly bool LessThanAny(ushort2x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(ushort2x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
+    public readonly bool GreaterThanAny(ushort2x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(ushort2x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
+    public readonly bool LessThanOrEqualAny(ushort2x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(ushort2x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
+    public readonly bool GreaterThanOrEqualAny(ushort2x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
 }
 
 #endregion // ushort2x4
@@ -2165,19 +2045,16 @@ public partial struct ushort2x4 : IComparable<ushort2x4>, IComparable
 #region ushort3x2
 
 public partial struct ushort3x2 : IComparable<ushort3x2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<ushort3x2, ushort3x2, bool>
     , IComparisonOperators<ushort3x2, ushort3x2, b16m3x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is ushort3x2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(ushort3x2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<ushort3x2, ushort3x2, bool>.operator <(ushort3x2 left, ushort3x2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -2189,10 +2066,9 @@ public partial struct ushort3x2 : IComparable<ushort3x2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<ushort3x2, ushort3x2, bool>.operator >=(ushort3x2 left, ushort3x2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(ushort3x2 other)
+    public readonly int CompareTo(ushort3x2 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -2213,22 +2089,22 @@ public partial struct ushort3x2 : IComparable<ushort3x2>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(ushort3x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
+    public readonly bool LessThanAll(ushort3x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(ushort3x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
+    public readonly bool GreaterThanAll(ushort3x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(ushort3x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
+    public readonly bool LessThanOrEqualAll(ushort3x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(ushort3x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
+    public readonly bool GreaterThanOrEqualAll(ushort3x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(ushort3x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
+    public readonly bool LessThanAny(ushort3x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(ushort3x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
+    public readonly bool GreaterThanAny(ushort3x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(ushort3x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
+    public readonly bool LessThanOrEqualAny(ushort3x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(ushort3x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
+    public readonly bool GreaterThanOrEqualAny(ushort3x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
 }
 
 #endregion // ushort3x2
@@ -2236,19 +2112,16 @@ public partial struct ushort3x2 : IComparable<ushort3x2>, IComparable
 #region ushort3x3
 
 public partial struct ushort3x3 : IComparable<ushort3x3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<ushort3x3, ushort3x3, bool>
     , IComparisonOperators<ushort3x3, ushort3x3, b16m3x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is ushort3x3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(ushort3x3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<ushort3x3, ushort3x3, bool>.operator <(ushort3x3 left, ushort3x3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -2260,10 +2133,9 @@ public partial struct ushort3x3 : IComparable<ushort3x3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<ushort3x3, ushort3x3, bool>.operator >=(ushort3x3 left, ushort3x3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(ushort3x3 other)
+    public readonly int CompareTo(ushort3x3 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -2285,22 +2157,22 @@ public partial struct ushort3x3 : IComparable<ushort3x3>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(ushort3x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
+    public readonly bool LessThanAll(ushort3x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(ushort3x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
+    public readonly bool GreaterThanAll(ushort3x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(ushort3x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
+    public readonly bool LessThanOrEqualAll(ushort3x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(ushort3x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
+    public readonly bool GreaterThanOrEqualAll(ushort3x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(ushort3x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
+    public readonly bool LessThanAny(ushort3x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(ushort3x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
+    public readonly bool GreaterThanAny(ushort3x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(ushort3x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
+    public readonly bool LessThanOrEqualAny(ushort3x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(ushort3x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
+    public readonly bool GreaterThanOrEqualAny(ushort3x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
 }
 
 #endregion // ushort3x3
@@ -2308,19 +2180,16 @@ public partial struct ushort3x3 : IComparable<ushort3x3>, IComparable
 #region ushort3x4
 
 public partial struct ushort3x4 : IComparable<ushort3x4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<ushort3x4, ushort3x4, bool>
     , IComparisonOperators<ushort3x4, ushort3x4, b16m3x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is ushort3x4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(ushort3x4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<ushort3x4, ushort3x4, bool>.operator <(ushort3x4 left, ushort3x4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -2332,10 +2201,9 @@ public partial struct ushort3x4 : IComparable<ushort3x4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<ushort3x4, ushort3x4, bool>.operator >=(ushort3x4 left, ushort3x4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(ushort3x4 other)
+    public readonly int CompareTo(ushort3x4 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -2358,22 +2226,22 @@ public partial struct ushort3x4 : IComparable<ushort3x4>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2, left.c3 >= right.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(ushort3x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
+    public readonly bool LessThanAll(ushort3x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(ushort3x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
+    public readonly bool GreaterThanAll(ushort3x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(ushort3x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
+    public readonly bool LessThanOrEqualAll(ushort3x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(ushort3x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
+    public readonly bool GreaterThanOrEqualAll(ushort3x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(ushort3x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
+    public readonly bool LessThanAny(ushort3x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(ushort3x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
+    public readonly bool GreaterThanAny(ushort3x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(ushort3x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
+    public readonly bool LessThanOrEqualAny(ushort3x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(ushort3x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
+    public readonly bool GreaterThanOrEqualAny(ushort3x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
 }
 
 #endregion // ushort3x4
@@ -2381,19 +2249,16 @@ public partial struct ushort3x4 : IComparable<ushort3x4>, IComparable
 #region ushort4x2
 
 public partial struct ushort4x2 : IComparable<ushort4x2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<ushort4x2, ushort4x2, bool>
     , IComparisonOperators<ushort4x2, ushort4x2, b16m4x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is ushort4x2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(ushort4x2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<ushort4x2, ushort4x2, bool>.operator <(ushort4x2 left, ushort4x2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -2405,10 +2270,9 @@ public partial struct ushort4x2 : IComparable<ushort4x2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<ushort4x2, ushort4x2, bool>.operator >=(ushort4x2 left, ushort4x2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(ushort4x2 other)
+    public readonly int CompareTo(ushort4x2 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -2429,22 +2293,22 @@ public partial struct ushort4x2 : IComparable<ushort4x2>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(ushort4x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
+    public readonly bool LessThanAll(ushort4x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(ushort4x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
+    public readonly bool GreaterThanAll(ushort4x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(ushort4x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
+    public readonly bool LessThanOrEqualAll(ushort4x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(ushort4x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
+    public readonly bool GreaterThanOrEqualAll(ushort4x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(ushort4x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
+    public readonly bool LessThanAny(ushort4x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(ushort4x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
+    public readonly bool GreaterThanAny(ushort4x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(ushort4x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
+    public readonly bool LessThanOrEqualAny(ushort4x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(ushort4x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
+    public readonly bool GreaterThanOrEqualAny(ushort4x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
 }
 
 #endregion // ushort4x2
@@ -2452,19 +2316,16 @@ public partial struct ushort4x2 : IComparable<ushort4x2>, IComparable
 #region ushort4x3
 
 public partial struct ushort4x3 : IComparable<ushort4x3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<ushort4x3, ushort4x3, bool>
     , IComparisonOperators<ushort4x3, ushort4x3, b16m4x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is ushort4x3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(ushort4x3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<ushort4x3, ushort4x3, bool>.operator <(ushort4x3 left, ushort4x3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -2476,10 +2337,9 @@ public partial struct ushort4x3 : IComparable<ushort4x3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<ushort4x3, ushort4x3, bool>.operator >=(ushort4x3 left, ushort4x3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(ushort4x3 other)
+    public readonly int CompareTo(ushort4x3 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -2501,22 +2361,22 @@ public partial struct ushort4x3 : IComparable<ushort4x3>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(ushort4x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
+    public readonly bool LessThanAll(ushort4x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(ushort4x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
+    public readonly bool GreaterThanAll(ushort4x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(ushort4x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
+    public readonly bool LessThanOrEqualAll(ushort4x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(ushort4x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
+    public readonly bool GreaterThanOrEqualAll(ushort4x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(ushort4x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
+    public readonly bool LessThanAny(ushort4x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(ushort4x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
+    public readonly bool GreaterThanAny(ushort4x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(ushort4x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
+    public readonly bool LessThanOrEqualAny(ushort4x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(ushort4x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
+    public readonly bool GreaterThanOrEqualAny(ushort4x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
 }
 
 #endregion // ushort4x3
@@ -2524,19 +2384,16 @@ public partial struct ushort4x3 : IComparable<ushort4x3>, IComparable
 #region ushort4x4
 
 public partial struct ushort4x4 : IComparable<ushort4x4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<ushort4x4, ushort4x4, bool>
     , IComparisonOperators<ushort4x4, ushort4x4, b16m4x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is ushort4x4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(ushort4x4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<ushort4x4, ushort4x4, bool>.operator <(ushort4x4 left, ushort4x4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -2548,10 +2405,9 @@ public partial struct ushort4x4 : IComparable<ushort4x4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<ushort4x4, ushort4x4, bool>.operator >=(ushort4x4 left, ushort4x4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(ushort4x4 other)
+    public readonly int CompareTo(ushort4x4 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -2574,22 +2430,22 @@ public partial struct ushort4x4 : IComparable<ushort4x4>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2, left.c3 >= right.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(ushort4x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
+    public readonly bool LessThanAll(ushort4x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(ushort4x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
+    public readonly bool GreaterThanAll(ushort4x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(ushort4x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
+    public readonly bool LessThanOrEqualAll(ushort4x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(ushort4x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
+    public readonly bool GreaterThanOrEqualAll(ushort4x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(ushort4x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
+    public readonly bool LessThanAny(ushort4x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(ushort4x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
+    public readonly bool GreaterThanAny(ushort4x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(ushort4x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
+    public readonly bool LessThanOrEqualAny(ushort4x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(ushort4x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
+    public readonly bool GreaterThanOrEqualAny(ushort4x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
 }
 
 #endregion // ushort4x4
@@ -2597,19 +2453,16 @@ public partial struct ushort4x4 : IComparable<ushort4x4>, IComparable
 #region int2x2
 
 public partial struct int2x2 : IComparable<int2x2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<int2x2, int2x2, bool>
     , IComparisonOperators<int2x2, int2x2, b32m2x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is int2x2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(int2x2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<int2x2, int2x2, bool>.operator <(int2x2 left, int2x2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -2621,10 +2474,9 @@ public partial struct int2x2 : IComparable<int2x2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<int2x2, int2x2, bool>.operator >=(int2x2 left, int2x2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(int2x2 other)
+    public readonly int CompareTo(int2x2 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -2645,22 +2497,22 @@ public partial struct int2x2 : IComparable<int2x2>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(int2x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
+    public readonly bool LessThanAll(int2x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(int2x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
+    public readonly bool GreaterThanAll(int2x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(int2x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
+    public readonly bool LessThanOrEqualAll(int2x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(int2x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
+    public readonly bool GreaterThanOrEqualAll(int2x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(int2x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
+    public readonly bool LessThanAny(int2x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(int2x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
+    public readonly bool GreaterThanAny(int2x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(int2x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
+    public readonly bool LessThanOrEqualAny(int2x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(int2x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
+    public readonly bool GreaterThanOrEqualAny(int2x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
 }
 
 #endregion // int2x2
@@ -2668,19 +2520,16 @@ public partial struct int2x2 : IComparable<int2x2>, IComparable
 #region int2x3
 
 public partial struct int2x3 : IComparable<int2x3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<int2x3, int2x3, bool>
     , IComparisonOperators<int2x3, int2x3, b32m2x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is int2x3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(int2x3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<int2x3, int2x3, bool>.operator <(int2x3 left, int2x3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -2692,10 +2541,9 @@ public partial struct int2x3 : IComparable<int2x3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<int2x3, int2x3, bool>.operator >=(int2x3 left, int2x3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(int2x3 other)
+    public readonly int CompareTo(int2x3 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -2717,22 +2565,22 @@ public partial struct int2x3 : IComparable<int2x3>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(int2x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
+    public readonly bool LessThanAll(int2x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(int2x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
+    public readonly bool GreaterThanAll(int2x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(int2x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
+    public readonly bool LessThanOrEqualAll(int2x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(int2x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
+    public readonly bool GreaterThanOrEqualAll(int2x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(int2x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
+    public readonly bool LessThanAny(int2x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(int2x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
+    public readonly bool GreaterThanAny(int2x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(int2x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
+    public readonly bool LessThanOrEqualAny(int2x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(int2x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
+    public readonly bool GreaterThanOrEqualAny(int2x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
 }
 
 #endregion // int2x3
@@ -2740,19 +2588,16 @@ public partial struct int2x3 : IComparable<int2x3>, IComparable
 #region int2x4
 
 public partial struct int2x4 : IComparable<int2x4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<int2x4, int2x4, bool>
     , IComparisonOperators<int2x4, int2x4, b32m2x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is int2x4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(int2x4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<int2x4, int2x4, bool>.operator <(int2x4 left, int2x4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -2764,10 +2609,9 @@ public partial struct int2x4 : IComparable<int2x4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<int2x4, int2x4, bool>.operator >=(int2x4 left, int2x4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(int2x4 other)
+    public readonly int CompareTo(int2x4 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -2790,22 +2634,22 @@ public partial struct int2x4 : IComparable<int2x4>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2, left.c3 >= right.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(int2x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
+    public readonly bool LessThanAll(int2x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(int2x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
+    public readonly bool GreaterThanAll(int2x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(int2x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
+    public readonly bool LessThanOrEqualAll(int2x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(int2x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
+    public readonly bool GreaterThanOrEqualAll(int2x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(int2x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
+    public readonly bool LessThanAny(int2x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(int2x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
+    public readonly bool GreaterThanAny(int2x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(int2x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
+    public readonly bool LessThanOrEqualAny(int2x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(int2x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
+    public readonly bool GreaterThanOrEqualAny(int2x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
 }
 
 #endregion // int2x4
@@ -2813,19 +2657,16 @@ public partial struct int2x4 : IComparable<int2x4>, IComparable
 #region int3x2
 
 public partial struct int3x2 : IComparable<int3x2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<int3x2, int3x2, bool>
     , IComparisonOperators<int3x2, int3x2, b32m3x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is int3x2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(int3x2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<int3x2, int3x2, bool>.operator <(int3x2 left, int3x2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -2837,10 +2678,9 @@ public partial struct int3x2 : IComparable<int3x2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<int3x2, int3x2, bool>.operator >=(int3x2 left, int3x2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(int3x2 other)
+    public readonly int CompareTo(int3x2 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -2861,22 +2701,22 @@ public partial struct int3x2 : IComparable<int3x2>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(int3x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
+    public readonly bool LessThanAll(int3x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(int3x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
+    public readonly bool GreaterThanAll(int3x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(int3x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
+    public readonly bool LessThanOrEqualAll(int3x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(int3x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
+    public readonly bool GreaterThanOrEqualAll(int3x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(int3x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
+    public readonly bool LessThanAny(int3x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(int3x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
+    public readonly bool GreaterThanAny(int3x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(int3x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
+    public readonly bool LessThanOrEqualAny(int3x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(int3x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
+    public readonly bool GreaterThanOrEqualAny(int3x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
 }
 
 #endregion // int3x2
@@ -2884,19 +2724,16 @@ public partial struct int3x2 : IComparable<int3x2>, IComparable
 #region int3x3
 
 public partial struct int3x3 : IComparable<int3x3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<int3x3, int3x3, bool>
     , IComparisonOperators<int3x3, int3x3, b32m3x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is int3x3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(int3x3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<int3x3, int3x3, bool>.operator <(int3x3 left, int3x3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -2908,10 +2745,9 @@ public partial struct int3x3 : IComparable<int3x3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<int3x3, int3x3, bool>.operator >=(int3x3 left, int3x3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(int3x3 other)
+    public readonly int CompareTo(int3x3 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -2933,22 +2769,22 @@ public partial struct int3x3 : IComparable<int3x3>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(int3x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
+    public readonly bool LessThanAll(int3x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(int3x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
+    public readonly bool GreaterThanAll(int3x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(int3x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
+    public readonly bool LessThanOrEqualAll(int3x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(int3x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
+    public readonly bool GreaterThanOrEqualAll(int3x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(int3x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
+    public readonly bool LessThanAny(int3x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(int3x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
+    public readonly bool GreaterThanAny(int3x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(int3x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
+    public readonly bool LessThanOrEqualAny(int3x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(int3x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
+    public readonly bool GreaterThanOrEqualAny(int3x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
 }
 
 #endregion // int3x3
@@ -2956,19 +2792,16 @@ public partial struct int3x3 : IComparable<int3x3>, IComparable
 #region int3x4
 
 public partial struct int3x4 : IComparable<int3x4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<int3x4, int3x4, bool>
     , IComparisonOperators<int3x4, int3x4, b32m3x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is int3x4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(int3x4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<int3x4, int3x4, bool>.operator <(int3x4 left, int3x4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -2980,10 +2813,9 @@ public partial struct int3x4 : IComparable<int3x4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<int3x4, int3x4, bool>.operator >=(int3x4 left, int3x4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(int3x4 other)
+    public readonly int CompareTo(int3x4 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -3006,22 +2838,22 @@ public partial struct int3x4 : IComparable<int3x4>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2, left.c3 >= right.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(int3x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
+    public readonly bool LessThanAll(int3x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(int3x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
+    public readonly bool GreaterThanAll(int3x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(int3x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
+    public readonly bool LessThanOrEqualAll(int3x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(int3x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
+    public readonly bool GreaterThanOrEqualAll(int3x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(int3x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
+    public readonly bool LessThanAny(int3x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(int3x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
+    public readonly bool GreaterThanAny(int3x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(int3x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
+    public readonly bool LessThanOrEqualAny(int3x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(int3x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
+    public readonly bool GreaterThanOrEqualAny(int3x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
 }
 
 #endregion // int3x4
@@ -3029,19 +2861,16 @@ public partial struct int3x4 : IComparable<int3x4>, IComparable
 #region int4x2
 
 public partial struct int4x2 : IComparable<int4x2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<int4x2, int4x2, bool>
     , IComparisonOperators<int4x2, int4x2, b32m4x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is int4x2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(int4x2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<int4x2, int4x2, bool>.operator <(int4x2 left, int4x2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -3053,10 +2882,9 @@ public partial struct int4x2 : IComparable<int4x2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<int4x2, int4x2, bool>.operator >=(int4x2 left, int4x2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(int4x2 other)
+    public readonly int CompareTo(int4x2 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -3077,22 +2905,22 @@ public partial struct int4x2 : IComparable<int4x2>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(int4x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
+    public readonly bool LessThanAll(int4x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(int4x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
+    public readonly bool GreaterThanAll(int4x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(int4x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
+    public readonly bool LessThanOrEqualAll(int4x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(int4x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
+    public readonly bool GreaterThanOrEqualAll(int4x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(int4x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
+    public readonly bool LessThanAny(int4x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(int4x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
+    public readonly bool GreaterThanAny(int4x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(int4x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
+    public readonly bool LessThanOrEqualAny(int4x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(int4x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
+    public readonly bool GreaterThanOrEqualAny(int4x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
 }
 
 #endregion // int4x2
@@ -3100,19 +2928,16 @@ public partial struct int4x2 : IComparable<int4x2>, IComparable
 #region int4x3
 
 public partial struct int4x3 : IComparable<int4x3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<int4x3, int4x3, bool>
     , IComparisonOperators<int4x3, int4x3, b32m4x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is int4x3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(int4x3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<int4x3, int4x3, bool>.operator <(int4x3 left, int4x3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -3124,10 +2949,9 @@ public partial struct int4x3 : IComparable<int4x3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<int4x3, int4x3, bool>.operator >=(int4x3 left, int4x3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(int4x3 other)
+    public readonly int CompareTo(int4x3 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -3149,22 +2973,22 @@ public partial struct int4x3 : IComparable<int4x3>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(int4x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
+    public readonly bool LessThanAll(int4x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(int4x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
+    public readonly bool GreaterThanAll(int4x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(int4x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
+    public readonly bool LessThanOrEqualAll(int4x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(int4x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
+    public readonly bool GreaterThanOrEqualAll(int4x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(int4x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
+    public readonly bool LessThanAny(int4x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(int4x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
+    public readonly bool GreaterThanAny(int4x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(int4x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
+    public readonly bool LessThanOrEqualAny(int4x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(int4x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
+    public readonly bool GreaterThanOrEqualAny(int4x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
 }
 
 #endregion // int4x3
@@ -3172,19 +2996,16 @@ public partial struct int4x3 : IComparable<int4x3>, IComparable
 #region int4x4
 
 public partial struct int4x4 : IComparable<int4x4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<int4x4, int4x4, bool>
     , IComparisonOperators<int4x4, int4x4, b32m4x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is int4x4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(int4x4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<int4x4, int4x4, bool>.operator <(int4x4 left, int4x4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -3196,10 +3017,9 @@ public partial struct int4x4 : IComparable<int4x4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<int4x4, int4x4, bool>.operator >=(int4x4 left, int4x4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(int4x4 other)
+    public readonly int CompareTo(int4x4 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -3222,22 +3042,22 @@ public partial struct int4x4 : IComparable<int4x4>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2, left.c3 >= right.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(int4x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
+    public readonly bool LessThanAll(int4x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(int4x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
+    public readonly bool GreaterThanAll(int4x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(int4x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
+    public readonly bool LessThanOrEqualAll(int4x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(int4x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
+    public readonly bool GreaterThanOrEqualAll(int4x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(int4x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
+    public readonly bool LessThanAny(int4x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(int4x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
+    public readonly bool GreaterThanAny(int4x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(int4x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
+    public readonly bool LessThanOrEqualAny(int4x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(int4x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
+    public readonly bool GreaterThanOrEqualAny(int4x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
 }
 
 #endregion // int4x4
@@ -3245,19 +3065,16 @@ public partial struct int4x4 : IComparable<int4x4>, IComparable
 #region uint2x2
 
 public partial struct uint2x2 : IComparable<uint2x2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<uint2x2, uint2x2, bool>
     , IComparisonOperators<uint2x2, uint2x2, b32m2x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is uint2x2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(uint2x2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<uint2x2, uint2x2, bool>.operator <(uint2x2 left, uint2x2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -3269,10 +3086,9 @@ public partial struct uint2x2 : IComparable<uint2x2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<uint2x2, uint2x2, bool>.operator >=(uint2x2 left, uint2x2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(uint2x2 other)
+    public readonly int CompareTo(uint2x2 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -3293,22 +3109,22 @@ public partial struct uint2x2 : IComparable<uint2x2>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(uint2x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
+    public readonly bool LessThanAll(uint2x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(uint2x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
+    public readonly bool GreaterThanAll(uint2x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(uint2x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
+    public readonly bool LessThanOrEqualAll(uint2x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(uint2x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
+    public readonly bool GreaterThanOrEqualAll(uint2x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(uint2x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
+    public readonly bool LessThanAny(uint2x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(uint2x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
+    public readonly bool GreaterThanAny(uint2x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(uint2x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
+    public readonly bool LessThanOrEqualAny(uint2x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(uint2x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
+    public readonly bool GreaterThanOrEqualAny(uint2x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
 }
 
 #endregion // uint2x2
@@ -3316,19 +3132,16 @@ public partial struct uint2x2 : IComparable<uint2x2>, IComparable
 #region uint2x3
 
 public partial struct uint2x3 : IComparable<uint2x3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<uint2x3, uint2x3, bool>
     , IComparisonOperators<uint2x3, uint2x3, b32m2x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is uint2x3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(uint2x3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<uint2x3, uint2x3, bool>.operator <(uint2x3 left, uint2x3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -3340,10 +3153,9 @@ public partial struct uint2x3 : IComparable<uint2x3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<uint2x3, uint2x3, bool>.operator >=(uint2x3 left, uint2x3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(uint2x3 other)
+    public readonly int CompareTo(uint2x3 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -3365,22 +3177,22 @@ public partial struct uint2x3 : IComparable<uint2x3>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(uint2x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
+    public readonly bool LessThanAll(uint2x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(uint2x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
+    public readonly bool GreaterThanAll(uint2x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(uint2x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
+    public readonly bool LessThanOrEqualAll(uint2x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(uint2x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
+    public readonly bool GreaterThanOrEqualAll(uint2x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(uint2x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
+    public readonly bool LessThanAny(uint2x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(uint2x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
+    public readonly bool GreaterThanAny(uint2x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(uint2x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
+    public readonly bool LessThanOrEqualAny(uint2x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(uint2x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
+    public readonly bool GreaterThanOrEqualAny(uint2x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
 }
 
 #endregion // uint2x3
@@ -3388,19 +3200,16 @@ public partial struct uint2x3 : IComparable<uint2x3>, IComparable
 #region uint2x4
 
 public partial struct uint2x4 : IComparable<uint2x4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<uint2x4, uint2x4, bool>
     , IComparisonOperators<uint2x4, uint2x4, b32m2x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is uint2x4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(uint2x4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<uint2x4, uint2x4, bool>.operator <(uint2x4 left, uint2x4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -3412,10 +3221,9 @@ public partial struct uint2x4 : IComparable<uint2x4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<uint2x4, uint2x4, bool>.operator >=(uint2x4 left, uint2x4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(uint2x4 other)
+    public readonly int CompareTo(uint2x4 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -3438,22 +3246,22 @@ public partial struct uint2x4 : IComparable<uint2x4>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2, left.c3 >= right.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(uint2x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
+    public readonly bool LessThanAll(uint2x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(uint2x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
+    public readonly bool GreaterThanAll(uint2x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(uint2x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
+    public readonly bool LessThanOrEqualAll(uint2x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(uint2x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
+    public readonly bool GreaterThanOrEqualAll(uint2x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(uint2x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
+    public readonly bool LessThanAny(uint2x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(uint2x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
+    public readonly bool GreaterThanAny(uint2x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(uint2x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
+    public readonly bool LessThanOrEqualAny(uint2x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(uint2x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
+    public readonly bool GreaterThanOrEqualAny(uint2x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
 }
 
 #endregion // uint2x4
@@ -3461,19 +3269,16 @@ public partial struct uint2x4 : IComparable<uint2x4>, IComparable
 #region uint3x2
 
 public partial struct uint3x2 : IComparable<uint3x2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<uint3x2, uint3x2, bool>
     , IComparisonOperators<uint3x2, uint3x2, b32m3x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is uint3x2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(uint3x2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<uint3x2, uint3x2, bool>.operator <(uint3x2 left, uint3x2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -3485,10 +3290,9 @@ public partial struct uint3x2 : IComparable<uint3x2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<uint3x2, uint3x2, bool>.operator >=(uint3x2 left, uint3x2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(uint3x2 other)
+    public readonly int CompareTo(uint3x2 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -3509,22 +3313,22 @@ public partial struct uint3x2 : IComparable<uint3x2>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(uint3x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
+    public readonly bool LessThanAll(uint3x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(uint3x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
+    public readonly bool GreaterThanAll(uint3x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(uint3x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
+    public readonly bool LessThanOrEqualAll(uint3x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(uint3x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
+    public readonly bool GreaterThanOrEqualAll(uint3x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(uint3x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
+    public readonly bool LessThanAny(uint3x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(uint3x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
+    public readonly bool GreaterThanAny(uint3x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(uint3x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
+    public readonly bool LessThanOrEqualAny(uint3x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(uint3x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
+    public readonly bool GreaterThanOrEqualAny(uint3x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
 }
 
 #endregion // uint3x2
@@ -3532,19 +3336,16 @@ public partial struct uint3x2 : IComparable<uint3x2>, IComparable
 #region uint3x3
 
 public partial struct uint3x3 : IComparable<uint3x3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<uint3x3, uint3x3, bool>
     , IComparisonOperators<uint3x3, uint3x3, b32m3x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is uint3x3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(uint3x3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<uint3x3, uint3x3, bool>.operator <(uint3x3 left, uint3x3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -3556,10 +3357,9 @@ public partial struct uint3x3 : IComparable<uint3x3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<uint3x3, uint3x3, bool>.operator >=(uint3x3 left, uint3x3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(uint3x3 other)
+    public readonly int CompareTo(uint3x3 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -3581,22 +3381,22 @@ public partial struct uint3x3 : IComparable<uint3x3>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(uint3x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
+    public readonly bool LessThanAll(uint3x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(uint3x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
+    public readonly bool GreaterThanAll(uint3x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(uint3x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
+    public readonly bool LessThanOrEqualAll(uint3x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(uint3x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
+    public readonly bool GreaterThanOrEqualAll(uint3x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(uint3x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
+    public readonly bool LessThanAny(uint3x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(uint3x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
+    public readonly bool GreaterThanAny(uint3x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(uint3x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
+    public readonly bool LessThanOrEqualAny(uint3x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(uint3x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
+    public readonly bool GreaterThanOrEqualAny(uint3x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
 }
 
 #endregion // uint3x3
@@ -3604,19 +3404,16 @@ public partial struct uint3x3 : IComparable<uint3x3>, IComparable
 #region uint3x4
 
 public partial struct uint3x4 : IComparable<uint3x4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<uint3x4, uint3x4, bool>
     , IComparisonOperators<uint3x4, uint3x4, b32m3x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is uint3x4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(uint3x4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<uint3x4, uint3x4, bool>.operator <(uint3x4 left, uint3x4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -3628,10 +3425,9 @@ public partial struct uint3x4 : IComparable<uint3x4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<uint3x4, uint3x4, bool>.operator >=(uint3x4 left, uint3x4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(uint3x4 other)
+    public readonly int CompareTo(uint3x4 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -3654,22 +3450,22 @@ public partial struct uint3x4 : IComparable<uint3x4>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2, left.c3 >= right.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(uint3x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
+    public readonly bool LessThanAll(uint3x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(uint3x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
+    public readonly bool GreaterThanAll(uint3x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(uint3x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
+    public readonly bool LessThanOrEqualAll(uint3x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(uint3x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
+    public readonly bool GreaterThanOrEqualAll(uint3x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(uint3x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
+    public readonly bool LessThanAny(uint3x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(uint3x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
+    public readonly bool GreaterThanAny(uint3x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(uint3x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
+    public readonly bool LessThanOrEqualAny(uint3x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(uint3x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
+    public readonly bool GreaterThanOrEqualAny(uint3x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
 }
 
 #endregion // uint3x4
@@ -3677,19 +3473,16 @@ public partial struct uint3x4 : IComparable<uint3x4>, IComparable
 #region uint4x2
 
 public partial struct uint4x2 : IComparable<uint4x2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<uint4x2, uint4x2, bool>
     , IComparisonOperators<uint4x2, uint4x2, b32m4x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is uint4x2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(uint4x2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<uint4x2, uint4x2, bool>.operator <(uint4x2 left, uint4x2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -3701,10 +3494,9 @@ public partial struct uint4x2 : IComparable<uint4x2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<uint4x2, uint4x2, bool>.operator >=(uint4x2 left, uint4x2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(uint4x2 other)
+    public readonly int CompareTo(uint4x2 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -3725,22 +3517,22 @@ public partial struct uint4x2 : IComparable<uint4x2>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(uint4x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
+    public readonly bool LessThanAll(uint4x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(uint4x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
+    public readonly bool GreaterThanAll(uint4x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(uint4x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
+    public readonly bool LessThanOrEqualAll(uint4x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(uint4x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
+    public readonly bool GreaterThanOrEqualAll(uint4x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(uint4x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
+    public readonly bool LessThanAny(uint4x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(uint4x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
+    public readonly bool GreaterThanAny(uint4x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(uint4x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
+    public readonly bool LessThanOrEqualAny(uint4x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(uint4x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
+    public readonly bool GreaterThanOrEqualAny(uint4x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
 }
 
 #endregion // uint4x2
@@ -3748,19 +3540,16 @@ public partial struct uint4x2 : IComparable<uint4x2>, IComparable
 #region uint4x3
 
 public partial struct uint4x3 : IComparable<uint4x3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<uint4x3, uint4x3, bool>
     , IComparisonOperators<uint4x3, uint4x3, b32m4x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is uint4x3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(uint4x3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<uint4x3, uint4x3, bool>.operator <(uint4x3 left, uint4x3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -3772,10 +3561,9 @@ public partial struct uint4x3 : IComparable<uint4x3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<uint4x3, uint4x3, bool>.operator >=(uint4x3 left, uint4x3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(uint4x3 other)
+    public readonly int CompareTo(uint4x3 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -3797,22 +3585,22 @@ public partial struct uint4x3 : IComparable<uint4x3>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(uint4x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
+    public readonly bool LessThanAll(uint4x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(uint4x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
+    public readonly bool GreaterThanAll(uint4x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(uint4x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
+    public readonly bool LessThanOrEqualAll(uint4x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(uint4x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
+    public readonly bool GreaterThanOrEqualAll(uint4x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(uint4x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
+    public readonly bool LessThanAny(uint4x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(uint4x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
+    public readonly bool GreaterThanAny(uint4x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(uint4x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
+    public readonly bool LessThanOrEqualAny(uint4x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(uint4x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
+    public readonly bool GreaterThanOrEqualAny(uint4x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
 }
 
 #endregion // uint4x3
@@ -3820,19 +3608,16 @@ public partial struct uint4x3 : IComparable<uint4x3>, IComparable
 #region uint4x4
 
 public partial struct uint4x4 : IComparable<uint4x4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<uint4x4, uint4x4, bool>
     , IComparisonOperators<uint4x4, uint4x4, b32m4x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is uint4x4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(uint4x4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<uint4x4, uint4x4, bool>.operator <(uint4x4 left, uint4x4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -3844,10 +3629,9 @@ public partial struct uint4x4 : IComparable<uint4x4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<uint4x4, uint4x4, bool>.operator >=(uint4x4 left, uint4x4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(uint4x4 other)
+    public readonly int CompareTo(uint4x4 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -3870,22 +3654,22 @@ public partial struct uint4x4 : IComparable<uint4x4>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2, left.c3 >= right.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(uint4x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
+    public readonly bool LessThanAll(uint4x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(uint4x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
+    public readonly bool GreaterThanAll(uint4x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(uint4x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
+    public readonly bool LessThanOrEqualAll(uint4x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(uint4x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
+    public readonly bool GreaterThanOrEqualAll(uint4x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(uint4x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
+    public readonly bool LessThanAny(uint4x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(uint4x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
+    public readonly bool GreaterThanAny(uint4x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(uint4x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
+    public readonly bool LessThanOrEqualAny(uint4x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(uint4x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
+    public readonly bool GreaterThanOrEqualAny(uint4x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
 }
 
 #endregion // uint4x4
@@ -3893,19 +3677,16 @@ public partial struct uint4x4 : IComparable<uint4x4>, IComparable
 #region long2x2
 
 public partial struct long2x2 : IComparable<long2x2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<long2x2, long2x2, bool>
     , IComparisonOperators<long2x2, long2x2, b64m2x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is long2x2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(long2x2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<long2x2, long2x2, bool>.operator <(long2x2 left, long2x2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -3917,10 +3698,9 @@ public partial struct long2x2 : IComparable<long2x2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<long2x2, long2x2, bool>.operator >=(long2x2 left, long2x2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(long2x2 other)
+    public readonly int CompareTo(long2x2 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -3941,22 +3721,22 @@ public partial struct long2x2 : IComparable<long2x2>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(long2x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
+    public readonly bool LessThanAll(long2x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(long2x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
+    public readonly bool GreaterThanAll(long2x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(long2x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
+    public readonly bool LessThanOrEqualAll(long2x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(long2x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
+    public readonly bool GreaterThanOrEqualAll(long2x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(long2x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
+    public readonly bool LessThanAny(long2x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(long2x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
+    public readonly bool GreaterThanAny(long2x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(long2x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
+    public readonly bool LessThanOrEqualAny(long2x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(long2x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
+    public readonly bool GreaterThanOrEqualAny(long2x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
 }
 
 #endregion // long2x2
@@ -3964,19 +3744,16 @@ public partial struct long2x2 : IComparable<long2x2>, IComparable
 #region long2x3
 
 public partial struct long2x3 : IComparable<long2x3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<long2x3, long2x3, bool>
     , IComparisonOperators<long2x3, long2x3, b64m2x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is long2x3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(long2x3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<long2x3, long2x3, bool>.operator <(long2x3 left, long2x3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -3988,10 +3765,9 @@ public partial struct long2x3 : IComparable<long2x3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<long2x3, long2x3, bool>.operator >=(long2x3 left, long2x3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(long2x3 other)
+    public readonly int CompareTo(long2x3 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -4013,22 +3789,22 @@ public partial struct long2x3 : IComparable<long2x3>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(long2x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
+    public readonly bool LessThanAll(long2x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(long2x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
+    public readonly bool GreaterThanAll(long2x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(long2x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
+    public readonly bool LessThanOrEqualAll(long2x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(long2x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
+    public readonly bool GreaterThanOrEqualAll(long2x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(long2x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
+    public readonly bool LessThanAny(long2x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(long2x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
+    public readonly bool GreaterThanAny(long2x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(long2x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
+    public readonly bool LessThanOrEqualAny(long2x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(long2x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
+    public readonly bool GreaterThanOrEqualAny(long2x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
 }
 
 #endregion // long2x3
@@ -4036,19 +3812,16 @@ public partial struct long2x3 : IComparable<long2x3>, IComparable
 #region long2x4
 
 public partial struct long2x4 : IComparable<long2x4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<long2x4, long2x4, bool>
     , IComparisonOperators<long2x4, long2x4, b64m2x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is long2x4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(long2x4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<long2x4, long2x4, bool>.operator <(long2x4 left, long2x4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -4060,10 +3833,9 @@ public partial struct long2x4 : IComparable<long2x4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<long2x4, long2x4, bool>.operator >=(long2x4 left, long2x4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(long2x4 other)
+    public readonly int CompareTo(long2x4 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -4086,22 +3858,22 @@ public partial struct long2x4 : IComparable<long2x4>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2, left.c3 >= right.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(long2x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
+    public readonly bool LessThanAll(long2x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(long2x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
+    public readonly bool GreaterThanAll(long2x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(long2x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
+    public readonly bool LessThanOrEqualAll(long2x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(long2x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
+    public readonly bool GreaterThanOrEqualAll(long2x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(long2x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
+    public readonly bool LessThanAny(long2x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(long2x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
+    public readonly bool GreaterThanAny(long2x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(long2x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
+    public readonly bool LessThanOrEqualAny(long2x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(long2x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
+    public readonly bool GreaterThanOrEqualAny(long2x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
 }
 
 #endregion // long2x4
@@ -4109,19 +3881,16 @@ public partial struct long2x4 : IComparable<long2x4>, IComparable
 #region long3x2
 
 public partial struct long3x2 : IComparable<long3x2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<long3x2, long3x2, bool>
     , IComparisonOperators<long3x2, long3x2, b64m3x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is long3x2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(long3x2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<long3x2, long3x2, bool>.operator <(long3x2 left, long3x2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -4133,10 +3902,9 @@ public partial struct long3x2 : IComparable<long3x2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<long3x2, long3x2, bool>.operator >=(long3x2 left, long3x2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(long3x2 other)
+    public readonly int CompareTo(long3x2 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -4157,22 +3925,22 @@ public partial struct long3x2 : IComparable<long3x2>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(long3x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
+    public readonly bool LessThanAll(long3x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(long3x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
+    public readonly bool GreaterThanAll(long3x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(long3x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
+    public readonly bool LessThanOrEqualAll(long3x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(long3x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
+    public readonly bool GreaterThanOrEqualAll(long3x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(long3x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
+    public readonly bool LessThanAny(long3x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(long3x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
+    public readonly bool GreaterThanAny(long3x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(long3x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
+    public readonly bool LessThanOrEqualAny(long3x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(long3x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
+    public readonly bool GreaterThanOrEqualAny(long3x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
 }
 
 #endregion // long3x2
@@ -4180,19 +3948,16 @@ public partial struct long3x2 : IComparable<long3x2>, IComparable
 #region long3x3
 
 public partial struct long3x3 : IComparable<long3x3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<long3x3, long3x3, bool>
     , IComparisonOperators<long3x3, long3x3, b64m3x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is long3x3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(long3x3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<long3x3, long3x3, bool>.operator <(long3x3 left, long3x3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -4204,10 +3969,9 @@ public partial struct long3x3 : IComparable<long3x3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<long3x3, long3x3, bool>.operator >=(long3x3 left, long3x3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(long3x3 other)
+    public readonly int CompareTo(long3x3 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -4229,22 +3993,22 @@ public partial struct long3x3 : IComparable<long3x3>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(long3x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
+    public readonly bool LessThanAll(long3x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(long3x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
+    public readonly bool GreaterThanAll(long3x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(long3x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
+    public readonly bool LessThanOrEqualAll(long3x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(long3x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
+    public readonly bool GreaterThanOrEqualAll(long3x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(long3x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
+    public readonly bool LessThanAny(long3x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(long3x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
+    public readonly bool GreaterThanAny(long3x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(long3x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
+    public readonly bool LessThanOrEqualAny(long3x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(long3x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
+    public readonly bool GreaterThanOrEqualAny(long3x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
 }
 
 #endregion // long3x3
@@ -4252,19 +4016,16 @@ public partial struct long3x3 : IComparable<long3x3>, IComparable
 #region long3x4
 
 public partial struct long3x4 : IComparable<long3x4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<long3x4, long3x4, bool>
     , IComparisonOperators<long3x4, long3x4, b64m3x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is long3x4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(long3x4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<long3x4, long3x4, bool>.operator <(long3x4 left, long3x4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -4276,10 +4037,9 @@ public partial struct long3x4 : IComparable<long3x4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<long3x4, long3x4, bool>.operator >=(long3x4 left, long3x4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(long3x4 other)
+    public readonly int CompareTo(long3x4 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -4302,22 +4062,22 @@ public partial struct long3x4 : IComparable<long3x4>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2, left.c3 >= right.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(long3x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
+    public readonly bool LessThanAll(long3x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(long3x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
+    public readonly bool GreaterThanAll(long3x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(long3x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
+    public readonly bool LessThanOrEqualAll(long3x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(long3x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
+    public readonly bool GreaterThanOrEqualAll(long3x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(long3x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
+    public readonly bool LessThanAny(long3x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(long3x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
+    public readonly bool GreaterThanAny(long3x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(long3x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
+    public readonly bool LessThanOrEqualAny(long3x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(long3x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
+    public readonly bool GreaterThanOrEqualAny(long3x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
 }
 
 #endregion // long3x4
@@ -4325,19 +4085,16 @@ public partial struct long3x4 : IComparable<long3x4>, IComparable
 #region long4x2
 
 public partial struct long4x2 : IComparable<long4x2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<long4x2, long4x2, bool>
     , IComparisonOperators<long4x2, long4x2, b64m4x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is long4x2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(long4x2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<long4x2, long4x2, bool>.operator <(long4x2 left, long4x2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -4349,10 +4106,9 @@ public partial struct long4x2 : IComparable<long4x2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<long4x2, long4x2, bool>.operator >=(long4x2 left, long4x2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(long4x2 other)
+    public readonly int CompareTo(long4x2 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -4373,22 +4129,22 @@ public partial struct long4x2 : IComparable<long4x2>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(long4x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
+    public readonly bool LessThanAll(long4x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(long4x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
+    public readonly bool GreaterThanAll(long4x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(long4x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
+    public readonly bool LessThanOrEqualAll(long4x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(long4x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
+    public readonly bool GreaterThanOrEqualAll(long4x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(long4x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
+    public readonly bool LessThanAny(long4x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(long4x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
+    public readonly bool GreaterThanAny(long4x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(long4x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
+    public readonly bool LessThanOrEqualAny(long4x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(long4x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
+    public readonly bool GreaterThanOrEqualAny(long4x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
 }
 
 #endregion // long4x2
@@ -4396,19 +4152,16 @@ public partial struct long4x2 : IComparable<long4x2>, IComparable
 #region long4x3
 
 public partial struct long4x3 : IComparable<long4x3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<long4x3, long4x3, bool>
     , IComparisonOperators<long4x3, long4x3, b64m4x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is long4x3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(long4x3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<long4x3, long4x3, bool>.operator <(long4x3 left, long4x3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -4420,10 +4173,9 @@ public partial struct long4x3 : IComparable<long4x3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<long4x3, long4x3, bool>.operator >=(long4x3 left, long4x3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(long4x3 other)
+    public readonly int CompareTo(long4x3 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -4445,22 +4197,22 @@ public partial struct long4x3 : IComparable<long4x3>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(long4x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
+    public readonly bool LessThanAll(long4x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(long4x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
+    public readonly bool GreaterThanAll(long4x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(long4x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
+    public readonly bool LessThanOrEqualAll(long4x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(long4x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
+    public readonly bool GreaterThanOrEqualAll(long4x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(long4x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
+    public readonly bool LessThanAny(long4x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(long4x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
+    public readonly bool GreaterThanAny(long4x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(long4x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
+    public readonly bool LessThanOrEqualAny(long4x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(long4x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
+    public readonly bool GreaterThanOrEqualAny(long4x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
 }
 
 #endregion // long4x3
@@ -4468,19 +4220,16 @@ public partial struct long4x3 : IComparable<long4x3>, IComparable
 #region long4x4
 
 public partial struct long4x4 : IComparable<long4x4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<long4x4, long4x4, bool>
     , IComparisonOperators<long4x4, long4x4, b64m4x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is long4x4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(long4x4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<long4x4, long4x4, bool>.operator <(long4x4 left, long4x4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -4492,10 +4241,9 @@ public partial struct long4x4 : IComparable<long4x4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<long4x4, long4x4, bool>.operator >=(long4x4 left, long4x4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(long4x4 other)
+    public readonly int CompareTo(long4x4 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -4518,22 +4266,22 @@ public partial struct long4x4 : IComparable<long4x4>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2, left.c3 >= right.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(long4x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
+    public readonly bool LessThanAll(long4x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(long4x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
+    public readonly bool GreaterThanAll(long4x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(long4x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
+    public readonly bool LessThanOrEqualAll(long4x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(long4x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
+    public readonly bool GreaterThanOrEqualAll(long4x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(long4x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
+    public readonly bool LessThanAny(long4x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(long4x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
+    public readonly bool GreaterThanAny(long4x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(long4x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
+    public readonly bool LessThanOrEqualAny(long4x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(long4x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
+    public readonly bool GreaterThanOrEqualAny(long4x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
 }
 
 #endregion // long4x4
@@ -4541,19 +4289,16 @@ public partial struct long4x4 : IComparable<long4x4>, IComparable
 #region ulong2x2
 
 public partial struct ulong2x2 : IComparable<ulong2x2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<ulong2x2, ulong2x2, bool>
     , IComparisonOperators<ulong2x2, ulong2x2, b64m2x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is ulong2x2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(ulong2x2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<ulong2x2, ulong2x2, bool>.operator <(ulong2x2 left, ulong2x2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -4565,10 +4310,9 @@ public partial struct ulong2x2 : IComparable<ulong2x2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<ulong2x2, ulong2x2, bool>.operator >=(ulong2x2 left, ulong2x2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(ulong2x2 other)
+    public readonly int CompareTo(ulong2x2 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -4589,22 +4333,22 @@ public partial struct ulong2x2 : IComparable<ulong2x2>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(ulong2x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
+    public readonly bool LessThanAll(ulong2x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(ulong2x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
+    public readonly bool GreaterThanAll(ulong2x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(ulong2x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
+    public readonly bool LessThanOrEqualAll(ulong2x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(ulong2x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
+    public readonly bool GreaterThanOrEqualAll(ulong2x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(ulong2x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
+    public readonly bool LessThanAny(ulong2x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(ulong2x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
+    public readonly bool GreaterThanAny(ulong2x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(ulong2x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
+    public readonly bool LessThanOrEqualAny(ulong2x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(ulong2x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
+    public readonly bool GreaterThanOrEqualAny(ulong2x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
 }
 
 #endregion // ulong2x2
@@ -4612,19 +4356,16 @@ public partial struct ulong2x2 : IComparable<ulong2x2>, IComparable
 #region ulong2x3
 
 public partial struct ulong2x3 : IComparable<ulong2x3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<ulong2x3, ulong2x3, bool>
     , IComparisonOperators<ulong2x3, ulong2x3, b64m2x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is ulong2x3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(ulong2x3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<ulong2x3, ulong2x3, bool>.operator <(ulong2x3 left, ulong2x3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -4636,10 +4377,9 @@ public partial struct ulong2x3 : IComparable<ulong2x3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<ulong2x3, ulong2x3, bool>.operator >=(ulong2x3 left, ulong2x3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(ulong2x3 other)
+    public readonly int CompareTo(ulong2x3 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -4661,22 +4401,22 @@ public partial struct ulong2x3 : IComparable<ulong2x3>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(ulong2x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
+    public readonly bool LessThanAll(ulong2x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(ulong2x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
+    public readonly bool GreaterThanAll(ulong2x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(ulong2x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
+    public readonly bool LessThanOrEqualAll(ulong2x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(ulong2x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
+    public readonly bool GreaterThanOrEqualAll(ulong2x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(ulong2x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
+    public readonly bool LessThanAny(ulong2x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(ulong2x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
+    public readonly bool GreaterThanAny(ulong2x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(ulong2x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
+    public readonly bool LessThanOrEqualAny(ulong2x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(ulong2x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
+    public readonly bool GreaterThanOrEqualAny(ulong2x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
 }
 
 #endregion // ulong2x3
@@ -4684,19 +4424,16 @@ public partial struct ulong2x3 : IComparable<ulong2x3>, IComparable
 #region ulong2x4
 
 public partial struct ulong2x4 : IComparable<ulong2x4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<ulong2x4, ulong2x4, bool>
     , IComparisonOperators<ulong2x4, ulong2x4, b64m2x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is ulong2x4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(ulong2x4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<ulong2x4, ulong2x4, bool>.operator <(ulong2x4 left, ulong2x4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -4708,10 +4445,9 @@ public partial struct ulong2x4 : IComparable<ulong2x4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<ulong2x4, ulong2x4, bool>.operator >=(ulong2x4 left, ulong2x4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(ulong2x4 other)
+    public readonly int CompareTo(ulong2x4 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -4734,22 +4470,22 @@ public partial struct ulong2x4 : IComparable<ulong2x4>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2, left.c3 >= right.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(ulong2x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
+    public readonly bool LessThanAll(ulong2x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(ulong2x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
+    public readonly bool GreaterThanAll(ulong2x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(ulong2x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
+    public readonly bool LessThanOrEqualAll(ulong2x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(ulong2x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
+    public readonly bool GreaterThanOrEqualAll(ulong2x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(ulong2x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
+    public readonly bool LessThanAny(ulong2x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(ulong2x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
+    public readonly bool GreaterThanAny(ulong2x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(ulong2x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
+    public readonly bool LessThanOrEqualAny(ulong2x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(ulong2x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
+    public readonly bool GreaterThanOrEqualAny(ulong2x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
 }
 
 #endregion // ulong2x4
@@ -4757,19 +4493,16 @@ public partial struct ulong2x4 : IComparable<ulong2x4>, IComparable
 #region ulong3x2
 
 public partial struct ulong3x2 : IComparable<ulong3x2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<ulong3x2, ulong3x2, bool>
     , IComparisonOperators<ulong3x2, ulong3x2, b64m3x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is ulong3x2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(ulong3x2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<ulong3x2, ulong3x2, bool>.operator <(ulong3x2 left, ulong3x2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -4781,10 +4514,9 @@ public partial struct ulong3x2 : IComparable<ulong3x2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<ulong3x2, ulong3x2, bool>.operator >=(ulong3x2 left, ulong3x2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(ulong3x2 other)
+    public readonly int CompareTo(ulong3x2 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -4805,22 +4537,22 @@ public partial struct ulong3x2 : IComparable<ulong3x2>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(ulong3x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
+    public readonly bool LessThanAll(ulong3x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(ulong3x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
+    public readonly bool GreaterThanAll(ulong3x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(ulong3x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
+    public readonly bool LessThanOrEqualAll(ulong3x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(ulong3x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
+    public readonly bool GreaterThanOrEqualAll(ulong3x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(ulong3x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
+    public readonly bool LessThanAny(ulong3x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(ulong3x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
+    public readonly bool GreaterThanAny(ulong3x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(ulong3x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
+    public readonly bool LessThanOrEqualAny(ulong3x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(ulong3x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
+    public readonly bool GreaterThanOrEqualAny(ulong3x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
 }
 
 #endregion // ulong3x2
@@ -4828,19 +4560,16 @@ public partial struct ulong3x2 : IComparable<ulong3x2>, IComparable
 #region ulong3x3
 
 public partial struct ulong3x3 : IComparable<ulong3x3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<ulong3x3, ulong3x3, bool>
     , IComparisonOperators<ulong3x3, ulong3x3, b64m3x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is ulong3x3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(ulong3x3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<ulong3x3, ulong3x3, bool>.operator <(ulong3x3 left, ulong3x3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -4852,10 +4581,9 @@ public partial struct ulong3x3 : IComparable<ulong3x3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<ulong3x3, ulong3x3, bool>.operator >=(ulong3x3 left, ulong3x3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(ulong3x3 other)
+    public readonly int CompareTo(ulong3x3 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -4877,22 +4605,22 @@ public partial struct ulong3x3 : IComparable<ulong3x3>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(ulong3x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
+    public readonly bool LessThanAll(ulong3x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(ulong3x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
+    public readonly bool GreaterThanAll(ulong3x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(ulong3x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
+    public readonly bool LessThanOrEqualAll(ulong3x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(ulong3x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
+    public readonly bool GreaterThanOrEqualAll(ulong3x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(ulong3x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
+    public readonly bool LessThanAny(ulong3x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(ulong3x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
+    public readonly bool GreaterThanAny(ulong3x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(ulong3x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
+    public readonly bool LessThanOrEqualAny(ulong3x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(ulong3x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
+    public readonly bool GreaterThanOrEqualAny(ulong3x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
 }
 
 #endregion // ulong3x3
@@ -4900,19 +4628,16 @@ public partial struct ulong3x3 : IComparable<ulong3x3>, IComparable
 #region ulong3x4
 
 public partial struct ulong3x4 : IComparable<ulong3x4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<ulong3x4, ulong3x4, bool>
     , IComparisonOperators<ulong3x4, ulong3x4, b64m3x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is ulong3x4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(ulong3x4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<ulong3x4, ulong3x4, bool>.operator <(ulong3x4 left, ulong3x4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -4924,10 +4649,9 @@ public partial struct ulong3x4 : IComparable<ulong3x4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<ulong3x4, ulong3x4, bool>.operator >=(ulong3x4 left, ulong3x4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(ulong3x4 other)
+    public readonly int CompareTo(ulong3x4 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -4950,22 +4674,22 @@ public partial struct ulong3x4 : IComparable<ulong3x4>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2, left.c3 >= right.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(ulong3x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
+    public readonly bool LessThanAll(ulong3x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(ulong3x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
+    public readonly bool GreaterThanAll(ulong3x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(ulong3x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
+    public readonly bool LessThanOrEqualAll(ulong3x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(ulong3x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
+    public readonly bool GreaterThanOrEqualAll(ulong3x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(ulong3x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
+    public readonly bool LessThanAny(ulong3x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(ulong3x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
+    public readonly bool GreaterThanAny(ulong3x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(ulong3x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
+    public readonly bool LessThanOrEqualAny(ulong3x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(ulong3x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
+    public readonly bool GreaterThanOrEqualAny(ulong3x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
 }
 
 #endregion // ulong3x4
@@ -4973,19 +4697,16 @@ public partial struct ulong3x4 : IComparable<ulong3x4>, IComparable
 #region ulong4x2
 
 public partial struct ulong4x2 : IComparable<ulong4x2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<ulong4x2, ulong4x2, bool>
     , IComparisonOperators<ulong4x2, ulong4x2, b64m4x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is ulong4x2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(ulong4x2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<ulong4x2, ulong4x2, bool>.operator <(ulong4x2 left, ulong4x2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -4997,10 +4718,9 @@ public partial struct ulong4x2 : IComparable<ulong4x2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<ulong4x2, ulong4x2, bool>.operator >=(ulong4x2 left, ulong4x2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(ulong4x2 other)
+    public readonly int CompareTo(ulong4x2 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -5021,22 +4741,22 @@ public partial struct ulong4x2 : IComparable<ulong4x2>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(ulong4x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
+    public readonly bool LessThanAll(ulong4x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(ulong4x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
+    public readonly bool GreaterThanAll(ulong4x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(ulong4x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
+    public readonly bool LessThanOrEqualAll(ulong4x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(ulong4x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
+    public readonly bool GreaterThanOrEqualAll(ulong4x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(ulong4x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
+    public readonly bool LessThanAny(ulong4x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(ulong4x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
+    public readonly bool GreaterThanAny(ulong4x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(ulong4x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
+    public readonly bool LessThanOrEqualAny(ulong4x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(ulong4x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
+    public readonly bool GreaterThanOrEqualAny(ulong4x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
 }
 
 #endregion // ulong4x2
@@ -5044,19 +4764,16 @@ public partial struct ulong4x2 : IComparable<ulong4x2>, IComparable
 #region ulong4x3
 
 public partial struct ulong4x3 : IComparable<ulong4x3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<ulong4x3, ulong4x3, bool>
     , IComparisonOperators<ulong4x3, ulong4x3, b64m4x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is ulong4x3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(ulong4x3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<ulong4x3, ulong4x3, bool>.operator <(ulong4x3 left, ulong4x3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -5068,10 +4785,9 @@ public partial struct ulong4x3 : IComparable<ulong4x3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<ulong4x3, ulong4x3, bool>.operator >=(ulong4x3 left, ulong4x3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(ulong4x3 other)
+    public readonly int CompareTo(ulong4x3 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -5093,22 +4809,22 @@ public partial struct ulong4x3 : IComparable<ulong4x3>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(ulong4x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
+    public readonly bool LessThanAll(ulong4x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(ulong4x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
+    public readonly bool GreaterThanAll(ulong4x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(ulong4x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
+    public readonly bool LessThanOrEqualAll(ulong4x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(ulong4x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
+    public readonly bool GreaterThanOrEqualAll(ulong4x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(ulong4x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
+    public readonly bool LessThanAny(ulong4x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(ulong4x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
+    public readonly bool GreaterThanAny(ulong4x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(ulong4x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
+    public readonly bool LessThanOrEqualAny(ulong4x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(ulong4x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
+    public readonly bool GreaterThanOrEqualAny(ulong4x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
 }
 
 #endregion // ulong4x3
@@ -5116,19 +4832,16 @@ public partial struct ulong4x3 : IComparable<ulong4x3>, IComparable
 #region ulong4x4
 
 public partial struct ulong4x4 : IComparable<ulong4x4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<ulong4x4, ulong4x4, bool>
     , IComparisonOperators<ulong4x4, ulong4x4, b64m4x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is ulong4x4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(ulong4x4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<ulong4x4, ulong4x4, bool>.operator <(ulong4x4 left, ulong4x4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -5140,10 +4853,9 @@ public partial struct ulong4x4 : IComparable<ulong4x4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<ulong4x4, ulong4x4, bool>.operator >=(ulong4x4 left, ulong4x4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(ulong4x4 other)
+    public readonly int CompareTo(ulong4x4 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -5166,22 +4878,22 @@ public partial struct ulong4x4 : IComparable<ulong4x4>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2, left.c3 >= right.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(ulong4x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
+    public readonly bool LessThanAll(ulong4x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(ulong4x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
+    public readonly bool GreaterThanAll(ulong4x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(ulong4x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
+    public readonly bool LessThanOrEqualAll(ulong4x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(ulong4x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
+    public readonly bool GreaterThanOrEqualAll(ulong4x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(ulong4x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
+    public readonly bool LessThanAny(ulong4x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(ulong4x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
+    public readonly bool GreaterThanAny(ulong4x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(ulong4x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
+    public readonly bool LessThanOrEqualAny(ulong4x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(ulong4x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
+    public readonly bool GreaterThanOrEqualAny(ulong4x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
 }
 
 #endregion // ulong4x4
@@ -5189,19 +4901,16 @@ public partial struct ulong4x4 : IComparable<ulong4x4>, IComparable
 #region half2x2
 
 public partial struct half2x2 : IComparable<half2x2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<half2x2, half2x2, bool>
     , IComparisonOperators<half2x2, half2x2, b16m2x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is half2x2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(half2x2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<half2x2, half2x2, bool>.operator <(half2x2 left, half2x2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -5213,10 +4922,9 @@ public partial struct half2x2 : IComparable<half2x2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<half2x2, half2x2, bool>.operator >=(half2x2 left, half2x2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(half2x2 other)
+    public readonly int CompareTo(half2x2 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -5237,22 +4945,22 @@ public partial struct half2x2 : IComparable<half2x2>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(half2x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
+    public readonly bool LessThanAll(half2x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(half2x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
+    public readonly bool GreaterThanAll(half2x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(half2x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
+    public readonly bool LessThanOrEqualAll(half2x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(half2x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
+    public readonly bool GreaterThanOrEqualAll(half2x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(half2x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
+    public readonly bool LessThanAny(half2x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(half2x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
+    public readonly bool GreaterThanAny(half2x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(half2x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
+    public readonly bool LessThanOrEqualAny(half2x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(half2x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
+    public readonly bool GreaterThanOrEqualAny(half2x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
 }
 
 #endregion // half2x2
@@ -5260,19 +4968,16 @@ public partial struct half2x2 : IComparable<half2x2>, IComparable
 #region half2x3
 
 public partial struct half2x3 : IComparable<half2x3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<half2x3, half2x3, bool>
     , IComparisonOperators<half2x3, half2x3, b16m2x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is half2x3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(half2x3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<half2x3, half2x3, bool>.operator <(half2x3 left, half2x3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -5284,10 +4989,9 @@ public partial struct half2x3 : IComparable<half2x3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<half2x3, half2x3, bool>.operator >=(half2x3 left, half2x3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(half2x3 other)
+    public readonly int CompareTo(half2x3 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -5309,22 +5013,22 @@ public partial struct half2x3 : IComparable<half2x3>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(half2x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
+    public readonly bool LessThanAll(half2x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(half2x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
+    public readonly bool GreaterThanAll(half2x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(half2x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
+    public readonly bool LessThanOrEqualAll(half2x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(half2x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
+    public readonly bool GreaterThanOrEqualAll(half2x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(half2x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
+    public readonly bool LessThanAny(half2x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(half2x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
+    public readonly bool GreaterThanAny(half2x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(half2x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
+    public readonly bool LessThanOrEqualAny(half2x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(half2x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
+    public readonly bool GreaterThanOrEqualAny(half2x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
 }
 
 #endregion // half2x3
@@ -5332,19 +5036,16 @@ public partial struct half2x3 : IComparable<half2x3>, IComparable
 #region half2x4
 
 public partial struct half2x4 : IComparable<half2x4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<half2x4, half2x4, bool>
     , IComparisonOperators<half2x4, half2x4, b16m2x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is half2x4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(half2x4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<half2x4, half2x4, bool>.operator <(half2x4 left, half2x4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -5356,10 +5057,9 @@ public partial struct half2x4 : IComparable<half2x4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<half2x4, half2x4, bool>.operator >=(half2x4 left, half2x4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(half2x4 other)
+    public readonly int CompareTo(half2x4 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -5382,22 +5082,22 @@ public partial struct half2x4 : IComparable<half2x4>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2, left.c3 >= right.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(half2x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
+    public readonly bool LessThanAll(half2x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(half2x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
+    public readonly bool GreaterThanAll(half2x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(half2x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
+    public readonly bool LessThanOrEqualAll(half2x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(half2x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
+    public readonly bool GreaterThanOrEqualAll(half2x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(half2x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
+    public readonly bool LessThanAny(half2x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(half2x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
+    public readonly bool GreaterThanAny(half2x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(half2x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
+    public readonly bool LessThanOrEqualAny(half2x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(half2x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
+    public readonly bool GreaterThanOrEqualAny(half2x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
 }
 
 #endregion // half2x4
@@ -5405,19 +5105,16 @@ public partial struct half2x4 : IComparable<half2x4>, IComparable
 #region half3x2
 
 public partial struct half3x2 : IComparable<half3x2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<half3x2, half3x2, bool>
     , IComparisonOperators<half3x2, half3x2, b16m3x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is half3x2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(half3x2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<half3x2, half3x2, bool>.operator <(half3x2 left, half3x2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -5429,10 +5126,9 @@ public partial struct half3x2 : IComparable<half3x2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<half3x2, half3x2, bool>.operator >=(half3x2 left, half3x2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(half3x2 other)
+    public readonly int CompareTo(half3x2 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -5453,22 +5149,22 @@ public partial struct half3x2 : IComparable<half3x2>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(half3x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
+    public readonly bool LessThanAll(half3x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(half3x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
+    public readonly bool GreaterThanAll(half3x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(half3x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
+    public readonly bool LessThanOrEqualAll(half3x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(half3x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
+    public readonly bool GreaterThanOrEqualAll(half3x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(half3x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
+    public readonly bool LessThanAny(half3x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(half3x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
+    public readonly bool GreaterThanAny(half3x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(half3x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
+    public readonly bool LessThanOrEqualAny(half3x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(half3x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
+    public readonly bool GreaterThanOrEqualAny(half3x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
 }
 
 #endregion // half3x2
@@ -5476,19 +5172,16 @@ public partial struct half3x2 : IComparable<half3x2>, IComparable
 #region half3x3
 
 public partial struct half3x3 : IComparable<half3x3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<half3x3, half3x3, bool>
     , IComparisonOperators<half3x3, half3x3, b16m3x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is half3x3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(half3x3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<half3x3, half3x3, bool>.operator <(half3x3 left, half3x3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -5500,10 +5193,9 @@ public partial struct half3x3 : IComparable<half3x3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<half3x3, half3x3, bool>.operator >=(half3x3 left, half3x3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(half3x3 other)
+    public readonly int CompareTo(half3x3 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -5525,22 +5217,22 @@ public partial struct half3x3 : IComparable<half3x3>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(half3x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
+    public readonly bool LessThanAll(half3x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(half3x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
+    public readonly bool GreaterThanAll(half3x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(half3x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
+    public readonly bool LessThanOrEqualAll(half3x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(half3x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
+    public readonly bool GreaterThanOrEqualAll(half3x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(half3x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
+    public readonly bool LessThanAny(half3x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(half3x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
+    public readonly bool GreaterThanAny(half3x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(half3x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
+    public readonly bool LessThanOrEqualAny(half3x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(half3x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
+    public readonly bool GreaterThanOrEqualAny(half3x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
 }
 
 #endregion // half3x3
@@ -5548,19 +5240,16 @@ public partial struct half3x3 : IComparable<half3x3>, IComparable
 #region half3x4
 
 public partial struct half3x4 : IComparable<half3x4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<half3x4, half3x4, bool>
     , IComparisonOperators<half3x4, half3x4, b16m3x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is half3x4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(half3x4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<half3x4, half3x4, bool>.operator <(half3x4 left, half3x4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -5572,10 +5261,9 @@ public partial struct half3x4 : IComparable<half3x4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<half3x4, half3x4, bool>.operator >=(half3x4 left, half3x4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(half3x4 other)
+    public readonly int CompareTo(half3x4 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -5598,22 +5286,22 @@ public partial struct half3x4 : IComparable<half3x4>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2, left.c3 >= right.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(half3x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
+    public readonly bool LessThanAll(half3x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(half3x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
+    public readonly bool GreaterThanAll(half3x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(half3x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
+    public readonly bool LessThanOrEqualAll(half3x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(half3x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
+    public readonly bool GreaterThanOrEqualAll(half3x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(half3x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
+    public readonly bool LessThanAny(half3x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(half3x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
+    public readonly bool GreaterThanAny(half3x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(half3x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
+    public readonly bool LessThanOrEqualAny(half3x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(half3x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
+    public readonly bool GreaterThanOrEqualAny(half3x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
 }
 
 #endregion // half3x4
@@ -5621,19 +5309,16 @@ public partial struct half3x4 : IComparable<half3x4>, IComparable
 #region half4x2
 
 public partial struct half4x2 : IComparable<half4x2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<half4x2, half4x2, bool>
     , IComparisonOperators<half4x2, half4x2, b16m4x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is half4x2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(half4x2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<half4x2, half4x2, bool>.operator <(half4x2 left, half4x2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -5645,10 +5330,9 @@ public partial struct half4x2 : IComparable<half4x2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<half4x2, half4x2, bool>.operator >=(half4x2 left, half4x2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(half4x2 other)
+    public readonly int CompareTo(half4x2 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -5669,22 +5353,22 @@ public partial struct half4x2 : IComparable<half4x2>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(half4x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
+    public readonly bool LessThanAll(half4x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(half4x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
+    public readonly bool GreaterThanAll(half4x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(half4x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
+    public readonly bool LessThanOrEqualAll(half4x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(half4x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
+    public readonly bool GreaterThanOrEqualAll(half4x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(half4x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
+    public readonly bool LessThanAny(half4x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(half4x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
+    public readonly bool GreaterThanAny(half4x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(half4x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
+    public readonly bool LessThanOrEqualAny(half4x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(half4x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
+    public readonly bool GreaterThanOrEqualAny(half4x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
 }
 
 #endregion // half4x2
@@ -5692,19 +5376,16 @@ public partial struct half4x2 : IComparable<half4x2>, IComparable
 #region half4x3
 
 public partial struct half4x3 : IComparable<half4x3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<half4x3, half4x3, bool>
     , IComparisonOperators<half4x3, half4x3, b16m4x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is half4x3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(half4x3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<half4x3, half4x3, bool>.operator <(half4x3 left, half4x3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -5716,10 +5397,9 @@ public partial struct half4x3 : IComparable<half4x3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<half4x3, half4x3, bool>.operator >=(half4x3 left, half4x3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(half4x3 other)
+    public readonly int CompareTo(half4x3 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -5741,22 +5421,22 @@ public partial struct half4x3 : IComparable<half4x3>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(half4x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
+    public readonly bool LessThanAll(half4x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(half4x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
+    public readonly bool GreaterThanAll(half4x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(half4x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
+    public readonly bool LessThanOrEqualAll(half4x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(half4x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
+    public readonly bool GreaterThanOrEqualAll(half4x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(half4x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
+    public readonly bool LessThanAny(half4x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(half4x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
+    public readonly bool GreaterThanAny(half4x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(half4x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
+    public readonly bool LessThanOrEqualAny(half4x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(half4x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
+    public readonly bool GreaterThanOrEqualAny(half4x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
 }
 
 #endregion // half4x3
@@ -5764,19 +5444,16 @@ public partial struct half4x3 : IComparable<half4x3>, IComparable
 #region half4x4
 
 public partial struct half4x4 : IComparable<half4x4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<half4x4, half4x4, bool>
     , IComparisonOperators<half4x4, half4x4, b16m4x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is half4x4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(half4x4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<half4x4, half4x4, bool>.operator <(half4x4 left, half4x4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -5788,10 +5465,9 @@ public partial struct half4x4 : IComparable<half4x4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<half4x4, half4x4, bool>.operator >=(half4x4 left, half4x4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(half4x4 other)
+    public readonly int CompareTo(half4x4 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -5814,22 +5490,22 @@ public partial struct half4x4 : IComparable<half4x4>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2, left.c3 >= right.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(half4x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
+    public readonly bool LessThanAll(half4x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(half4x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
+    public readonly bool GreaterThanAll(half4x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(half4x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
+    public readonly bool LessThanOrEqualAll(half4x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(half4x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
+    public readonly bool GreaterThanOrEqualAll(half4x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(half4x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
+    public readonly bool LessThanAny(half4x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(half4x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
+    public readonly bool GreaterThanAny(half4x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(half4x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
+    public readonly bool LessThanOrEqualAny(half4x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(half4x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
+    public readonly bool GreaterThanOrEqualAny(half4x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
 }
 
 #endregion // half4x4
@@ -5837,19 +5513,16 @@ public partial struct half4x4 : IComparable<half4x4>, IComparable
 #region b16m2x2
 
 public partial struct b16m2x2 : IComparable<b16m2x2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<b16m2x2, b16m2x2, bool>
     , IComparisonOperators<b16m2x2, b16m2x2, b16m2x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is b16m2x2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b16m2x2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<b16m2x2, b16m2x2, bool>.operator <(b16m2x2 left, b16m2x2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -5861,10 +5534,9 @@ public partial struct b16m2x2 : IComparable<b16m2x2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<b16m2x2, b16m2x2, bool>.operator >=(b16m2x2 left, b16m2x2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(b16m2x2 other)
+    public readonly int CompareTo(b16m2x2 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -5885,22 +5557,22 @@ public partial struct b16m2x2 : IComparable<b16m2x2>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(b16m2x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
+    public readonly bool LessThanAll(b16m2x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(b16m2x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
+    public readonly bool GreaterThanAll(b16m2x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(b16m2x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
+    public readonly bool LessThanOrEqualAll(b16m2x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(b16m2x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
+    public readonly bool GreaterThanOrEqualAll(b16m2x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(b16m2x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
+    public readonly bool LessThanAny(b16m2x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(b16m2x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
+    public readonly bool GreaterThanAny(b16m2x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(b16m2x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
+    public readonly bool LessThanOrEqualAny(b16m2x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(b16m2x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
+    public readonly bool GreaterThanOrEqualAny(b16m2x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
 }
 
 #endregion // b16m2x2
@@ -5908,19 +5580,16 @@ public partial struct b16m2x2 : IComparable<b16m2x2>, IComparable
 #region b16m2x3
 
 public partial struct b16m2x3 : IComparable<b16m2x3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<b16m2x3, b16m2x3, bool>
     , IComparisonOperators<b16m2x3, b16m2x3, b16m2x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is b16m2x3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b16m2x3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<b16m2x3, b16m2x3, bool>.operator <(b16m2x3 left, b16m2x3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -5932,10 +5601,9 @@ public partial struct b16m2x3 : IComparable<b16m2x3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<b16m2x3, b16m2x3, bool>.operator >=(b16m2x3 left, b16m2x3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(b16m2x3 other)
+    public readonly int CompareTo(b16m2x3 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -5957,22 +5625,22 @@ public partial struct b16m2x3 : IComparable<b16m2x3>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(b16m2x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
+    public readonly bool LessThanAll(b16m2x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(b16m2x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
+    public readonly bool GreaterThanAll(b16m2x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(b16m2x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
+    public readonly bool LessThanOrEqualAll(b16m2x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(b16m2x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
+    public readonly bool GreaterThanOrEqualAll(b16m2x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(b16m2x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
+    public readonly bool LessThanAny(b16m2x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(b16m2x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
+    public readonly bool GreaterThanAny(b16m2x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(b16m2x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
+    public readonly bool LessThanOrEqualAny(b16m2x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(b16m2x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
+    public readonly bool GreaterThanOrEqualAny(b16m2x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
 }
 
 #endregion // b16m2x3
@@ -5980,19 +5648,16 @@ public partial struct b16m2x3 : IComparable<b16m2x3>, IComparable
 #region b16m2x4
 
 public partial struct b16m2x4 : IComparable<b16m2x4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<b16m2x4, b16m2x4, bool>
     , IComparisonOperators<b16m2x4, b16m2x4, b16m2x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is b16m2x4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b16m2x4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<b16m2x4, b16m2x4, bool>.operator <(b16m2x4 left, b16m2x4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -6004,10 +5669,9 @@ public partial struct b16m2x4 : IComparable<b16m2x4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<b16m2x4, b16m2x4, bool>.operator >=(b16m2x4 left, b16m2x4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(b16m2x4 other)
+    public readonly int CompareTo(b16m2x4 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -6030,22 +5694,22 @@ public partial struct b16m2x4 : IComparable<b16m2x4>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2, left.c3 >= right.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(b16m2x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
+    public readonly bool LessThanAll(b16m2x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(b16m2x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
+    public readonly bool GreaterThanAll(b16m2x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(b16m2x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
+    public readonly bool LessThanOrEqualAll(b16m2x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(b16m2x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
+    public readonly bool GreaterThanOrEqualAll(b16m2x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(b16m2x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
+    public readonly bool LessThanAny(b16m2x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(b16m2x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
+    public readonly bool GreaterThanAny(b16m2x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(b16m2x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
+    public readonly bool LessThanOrEqualAny(b16m2x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(b16m2x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
+    public readonly bool GreaterThanOrEqualAny(b16m2x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
 }
 
 #endregion // b16m2x4
@@ -6053,19 +5717,16 @@ public partial struct b16m2x4 : IComparable<b16m2x4>, IComparable
 #region b16m3x2
 
 public partial struct b16m3x2 : IComparable<b16m3x2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<b16m3x2, b16m3x2, bool>
     , IComparisonOperators<b16m3x2, b16m3x2, b16m3x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is b16m3x2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b16m3x2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<b16m3x2, b16m3x2, bool>.operator <(b16m3x2 left, b16m3x2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -6077,10 +5738,9 @@ public partial struct b16m3x2 : IComparable<b16m3x2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<b16m3x2, b16m3x2, bool>.operator >=(b16m3x2 left, b16m3x2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(b16m3x2 other)
+    public readonly int CompareTo(b16m3x2 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -6101,22 +5761,22 @@ public partial struct b16m3x2 : IComparable<b16m3x2>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(b16m3x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
+    public readonly bool LessThanAll(b16m3x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(b16m3x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
+    public readonly bool GreaterThanAll(b16m3x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(b16m3x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
+    public readonly bool LessThanOrEqualAll(b16m3x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(b16m3x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
+    public readonly bool GreaterThanOrEqualAll(b16m3x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(b16m3x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
+    public readonly bool LessThanAny(b16m3x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(b16m3x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
+    public readonly bool GreaterThanAny(b16m3x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(b16m3x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
+    public readonly bool LessThanOrEqualAny(b16m3x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(b16m3x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
+    public readonly bool GreaterThanOrEqualAny(b16m3x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
 }
 
 #endregion // b16m3x2
@@ -6124,19 +5784,16 @@ public partial struct b16m3x2 : IComparable<b16m3x2>, IComparable
 #region b16m3x3
 
 public partial struct b16m3x3 : IComparable<b16m3x3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<b16m3x3, b16m3x3, bool>
     , IComparisonOperators<b16m3x3, b16m3x3, b16m3x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is b16m3x3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b16m3x3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<b16m3x3, b16m3x3, bool>.operator <(b16m3x3 left, b16m3x3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -6148,10 +5805,9 @@ public partial struct b16m3x3 : IComparable<b16m3x3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<b16m3x3, b16m3x3, bool>.operator >=(b16m3x3 left, b16m3x3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(b16m3x3 other)
+    public readonly int CompareTo(b16m3x3 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -6173,22 +5829,22 @@ public partial struct b16m3x3 : IComparable<b16m3x3>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(b16m3x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
+    public readonly bool LessThanAll(b16m3x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(b16m3x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
+    public readonly bool GreaterThanAll(b16m3x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(b16m3x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
+    public readonly bool LessThanOrEqualAll(b16m3x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(b16m3x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
+    public readonly bool GreaterThanOrEqualAll(b16m3x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(b16m3x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
+    public readonly bool LessThanAny(b16m3x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(b16m3x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
+    public readonly bool GreaterThanAny(b16m3x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(b16m3x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
+    public readonly bool LessThanOrEqualAny(b16m3x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(b16m3x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
+    public readonly bool GreaterThanOrEqualAny(b16m3x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
 }
 
 #endregion // b16m3x3
@@ -6196,19 +5852,16 @@ public partial struct b16m3x3 : IComparable<b16m3x3>, IComparable
 #region b16m3x4
 
 public partial struct b16m3x4 : IComparable<b16m3x4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<b16m3x4, b16m3x4, bool>
     , IComparisonOperators<b16m3x4, b16m3x4, b16m3x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is b16m3x4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b16m3x4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<b16m3x4, b16m3x4, bool>.operator <(b16m3x4 left, b16m3x4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -6220,10 +5873,9 @@ public partial struct b16m3x4 : IComparable<b16m3x4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<b16m3x4, b16m3x4, bool>.operator >=(b16m3x4 left, b16m3x4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(b16m3x4 other)
+    public readonly int CompareTo(b16m3x4 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -6246,22 +5898,22 @@ public partial struct b16m3x4 : IComparable<b16m3x4>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2, left.c3 >= right.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(b16m3x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
+    public readonly bool LessThanAll(b16m3x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(b16m3x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
+    public readonly bool GreaterThanAll(b16m3x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(b16m3x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
+    public readonly bool LessThanOrEqualAll(b16m3x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(b16m3x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
+    public readonly bool GreaterThanOrEqualAll(b16m3x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(b16m3x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
+    public readonly bool LessThanAny(b16m3x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(b16m3x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
+    public readonly bool GreaterThanAny(b16m3x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(b16m3x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
+    public readonly bool LessThanOrEqualAny(b16m3x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(b16m3x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
+    public readonly bool GreaterThanOrEqualAny(b16m3x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
 }
 
 #endregion // b16m3x4
@@ -6269,19 +5921,16 @@ public partial struct b16m3x4 : IComparable<b16m3x4>, IComparable
 #region b16m4x2
 
 public partial struct b16m4x2 : IComparable<b16m4x2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<b16m4x2, b16m4x2, bool>
     , IComparisonOperators<b16m4x2, b16m4x2, b16m4x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is b16m4x2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b16m4x2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<b16m4x2, b16m4x2, bool>.operator <(b16m4x2 left, b16m4x2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -6293,10 +5942,9 @@ public partial struct b16m4x2 : IComparable<b16m4x2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<b16m4x2, b16m4x2, bool>.operator >=(b16m4x2 left, b16m4x2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(b16m4x2 other)
+    public readonly int CompareTo(b16m4x2 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -6317,22 +5965,22 @@ public partial struct b16m4x2 : IComparable<b16m4x2>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(b16m4x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
+    public readonly bool LessThanAll(b16m4x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(b16m4x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
+    public readonly bool GreaterThanAll(b16m4x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(b16m4x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
+    public readonly bool LessThanOrEqualAll(b16m4x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(b16m4x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
+    public readonly bool GreaterThanOrEqualAll(b16m4x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(b16m4x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
+    public readonly bool LessThanAny(b16m4x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(b16m4x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
+    public readonly bool GreaterThanAny(b16m4x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(b16m4x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
+    public readonly bool LessThanOrEqualAny(b16m4x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(b16m4x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
+    public readonly bool GreaterThanOrEqualAny(b16m4x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
 }
 
 #endregion // b16m4x2
@@ -6340,19 +5988,16 @@ public partial struct b16m4x2 : IComparable<b16m4x2>, IComparable
 #region b16m4x3
 
 public partial struct b16m4x3 : IComparable<b16m4x3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<b16m4x3, b16m4x3, bool>
     , IComparisonOperators<b16m4x3, b16m4x3, b16m4x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is b16m4x3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b16m4x3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<b16m4x3, b16m4x3, bool>.operator <(b16m4x3 left, b16m4x3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -6364,10 +6009,9 @@ public partial struct b16m4x3 : IComparable<b16m4x3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<b16m4x3, b16m4x3, bool>.operator >=(b16m4x3 left, b16m4x3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(b16m4x3 other)
+    public readonly int CompareTo(b16m4x3 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -6389,22 +6033,22 @@ public partial struct b16m4x3 : IComparable<b16m4x3>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(b16m4x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
+    public readonly bool LessThanAll(b16m4x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(b16m4x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
+    public readonly bool GreaterThanAll(b16m4x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(b16m4x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
+    public readonly bool LessThanOrEqualAll(b16m4x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(b16m4x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
+    public readonly bool GreaterThanOrEqualAll(b16m4x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(b16m4x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
+    public readonly bool LessThanAny(b16m4x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(b16m4x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
+    public readonly bool GreaterThanAny(b16m4x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(b16m4x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
+    public readonly bool LessThanOrEqualAny(b16m4x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(b16m4x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
+    public readonly bool GreaterThanOrEqualAny(b16m4x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
 }
 
 #endregion // b16m4x3
@@ -6412,19 +6056,16 @@ public partial struct b16m4x3 : IComparable<b16m4x3>, IComparable
 #region b16m4x4
 
 public partial struct b16m4x4 : IComparable<b16m4x4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<b16m4x4, b16m4x4, bool>
     , IComparisonOperators<b16m4x4, b16m4x4, b16m4x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is b16m4x4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b16m4x4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<b16m4x4, b16m4x4, bool>.operator <(b16m4x4 left, b16m4x4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -6436,10 +6077,9 @@ public partial struct b16m4x4 : IComparable<b16m4x4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<b16m4x4, b16m4x4, bool>.operator >=(b16m4x4 left, b16m4x4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(b16m4x4 other)
+    public readonly int CompareTo(b16m4x4 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -6462,22 +6102,22 @@ public partial struct b16m4x4 : IComparable<b16m4x4>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2, left.c3 >= right.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(b16m4x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
+    public readonly bool LessThanAll(b16m4x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(b16m4x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
+    public readonly bool GreaterThanAll(b16m4x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(b16m4x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
+    public readonly bool LessThanOrEqualAll(b16m4x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(b16m4x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
+    public readonly bool GreaterThanOrEqualAll(b16m4x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(b16m4x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
+    public readonly bool LessThanAny(b16m4x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(b16m4x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
+    public readonly bool GreaterThanAny(b16m4x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(b16m4x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
+    public readonly bool LessThanOrEqualAny(b16m4x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(b16m4x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
+    public readonly bool GreaterThanOrEqualAny(b16m4x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
 }
 
 #endregion // b16m4x4
@@ -6485,19 +6125,16 @@ public partial struct b16m4x4 : IComparable<b16m4x4>, IComparable
 #region b32m2x2
 
 public partial struct b32m2x2 : IComparable<b32m2x2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<b32m2x2, b32m2x2, bool>
     , IComparisonOperators<b32m2x2, b32m2x2, b32m2x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is b32m2x2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b32m2x2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<b32m2x2, b32m2x2, bool>.operator <(b32m2x2 left, b32m2x2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -6509,10 +6146,9 @@ public partial struct b32m2x2 : IComparable<b32m2x2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<b32m2x2, b32m2x2, bool>.operator >=(b32m2x2 left, b32m2x2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(b32m2x2 other)
+    public readonly int CompareTo(b32m2x2 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -6533,22 +6169,22 @@ public partial struct b32m2x2 : IComparable<b32m2x2>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(b32m2x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
+    public readonly bool LessThanAll(b32m2x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(b32m2x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
+    public readonly bool GreaterThanAll(b32m2x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(b32m2x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
+    public readonly bool LessThanOrEqualAll(b32m2x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(b32m2x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
+    public readonly bool GreaterThanOrEqualAll(b32m2x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(b32m2x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
+    public readonly bool LessThanAny(b32m2x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(b32m2x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
+    public readonly bool GreaterThanAny(b32m2x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(b32m2x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
+    public readonly bool LessThanOrEqualAny(b32m2x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(b32m2x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
+    public readonly bool GreaterThanOrEqualAny(b32m2x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
 }
 
 #endregion // b32m2x2
@@ -6556,19 +6192,16 @@ public partial struct b32m2x2 : IComparable<b32m2x2>, IComparable
 #region b32m2x3
 
 public partial struct b32m2x3 : IComparable<b32m2x3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<b32m2x3, b32m2x3, bool>
     , IComparisonOperators<b32m2x3, b32m2x3, b32m2x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is b32m2x3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b32m2x3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<b32m2x3, b32m2x3, bool>.operator <(b32m2x3 left, b32m2x3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -6580,10 +6213,9 @@ public partial struct b32m2x3 : IComparable<b32m2x3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<b32m2x3, b32m2x3, bool>.operator >=(b32m2x3 left, b32m2x3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(b32m2x3 other)
+    public readonly int CompareTo(b32m2x3 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -6605,22 +6237,22 @@ public partial struct b32m2x3 : IComparable<b32m2x3>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(b32m2x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
+    public readonly bool LessThanAll(b32m2x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(b32m2x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
+    public readonly bool GreaterThanAll(b32m2x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(b32m2x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
+    public readonly bool LessThanOrEqualAll(b32m2x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(b32m2x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
+    public readonly bool GreaterThanOrEqualAll(b32m2x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(b32m2x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
+    public readonly bool LessThanAny(b32m2x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(b32m2x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
+    public readonly bool GreaterThanAny(b32m2x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(b32m2x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
+    public readonly bool LessThanOrEqualAny(b32m2x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(b32m2x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
+    public readonly bool GreaterThanOrEqualAny(b32m2x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
 }
 
 #endregion // b32m2x3
@@ -6628,19 +6260,16 @@ public partial struct b32m2x3 : IComparable<b32m2x3>, IComparable
 #region b32m2x4
 
 public partial struct b32m2x4 : IComparable<b32m2x4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<b32m2x4, b32m2x4, bool>
     , IComparisonOperators<b32m2x4, b32m2x4, b32m2x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is b32m2x4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b32m2x4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<b32m2x4, b32m2x4, bool>.operator <(b32m2x4 left, b32m2x4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -6652,10 +6281,9 @@ public partial struct b32m2x4 : IComparable<b32m2x4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<b32m2x4, b32m2x4, bool>.operator >=(b32m2x4 left, b32m2x4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(b32m2x4 other)
+    public readonly int CompareTo(b32m2x4 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -6678,22 +6306,22 @@ public partial struct b32m2x4 : IComparable<b32m2x4>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2, left.c3 >= right.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(b32m2x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
+    public readonly bool LessThanAll(b32m2x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(b32m2x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
+    public readonly bool GreaterThanAll(b32m2x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(b32m2x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
+    public readonly bool LessThanOrEqualAll(b32m2x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(b32m2x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
+    public readonly bool GreaterThanOrEqualAll(b32m2x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(b32m2x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
+    public readonly bool LessThanAny(b32m2x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(b32m2x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
+    public readonly bool GreaterThanAny(b32m2x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(b32m2x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
+    public readonly bool LessThanOrEqualAny(b32m2x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(b32m2x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
+    public readonly bool GreaterThanOrEqualAny(b32m2x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
 }
 
 #endregion // b32m2x4
@@ -6701,19 +6329,16 @@ public partial struct b32m2x4 : IComparable<b32m2x4>, IComparable
 #region b32m3x2
 
 public partial struct b32m3x2 : IComparable<b32m3x2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<b32m3x2, b32m3x2, bool>
     , IComparisonOperators<b32m3x2, b32m3x2, b32m3x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is b32m3x2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b32m3x2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<b32m3x2, b32m3x2, bool>.operator <(b32m3x2 left, b32m3x2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -6725,10 +6350,9 @@ public partial struct b32m3x2 : IComparable<b32m3x2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<b32m3x2, b32m3x2, bool>.operator >=(b32m3x2 left, b32m3x2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(b32m3x2 other)
+    public readonly int CompareTo(b32m3x2 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -6749,22 +6373,22 @@ public partial struct b32m3x2 : IComparable<b32m3x2>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(b32m3x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
+    public readonly bool LessThanAll(b32m3x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(b32m3x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
+    public readonly bool GreaterThanAll(b32m3x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(b32m3x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
+    public readonly bool LessThanOrEqualAll(b32m3x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(b32m3x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
+    public readonly bool GreaterThanOrEqualAll(b32m3x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(b32m3x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
+    public readonly bool LessThanAny(b32m3x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(b32m3x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
+    public readonly bool GreaterThanAny(b32m3x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(b32m3x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
+    public readonly bool LessThanOrEqualAny(b32m3x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(b32m3x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
+    public readonly bool GreaterThanOrEqualAny(b32m3x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
 }
 
 #endregion // b32m3x2
@@ -6772,19 +6396,16 @@ public partial struct b32m3x2 : IComparable<b32m3x2>, IComparable
 #region b32m3x3
 
 public partial struct b32m3x3 : IComparable<b32m3x3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<b32m3x3, b32m3x3, bool>
     , IComparisonOperators<b32m3x3, b32m3x3, b32m3x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is b32m3x3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b32m3x3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<b32m3x3, b32m3x3, bool>.operator <(b32m3x3 left, b32m3x3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -6796,10 +6417,9 @@ public partial struct b32m3x3 : IComparable<b32m3x3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<b32m3x3, b32m3x3, bool>.operator >=(b32m3x3 left, b32m3x3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(b32m3x3 other)
+    public readonly int CompareTo(b32m3x3 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -6821,22 +6441,22 @@ public partial struct b32m3x3 : IComparable<b32m3x3>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(b32m3x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
+    public readonly bool LessThanAll(b32m3x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(b32m3x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
+    public readonly bool GreaterThanAll(b32m3x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(b32m3x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
+    public readonly bool LessThanOrEqualAll(b32m3x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(b32m3x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
+    public readonly bool GreaterThanOrEqualAll(b32m3x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(b32m3x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
+    public readonly bool LessThanAny(b32m3x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(b32m3x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
+    public readonly bool GreaterThanAny(b32m3x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(b32m3x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
+    public readonly bool LessThanOrEqualAny(b32m3x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(b32m3x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
+    public readonly bool GreaterThanOrEqualAny(b32m3x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
 }
 
 #endregion // b32m3x3
@@ -6844,19 +6464,16 @@ public partial struct b32m3x3 : IComparable<b32m3x3>, IComparable
 #region b32m3x4
 
 public partial struct b32m3x4 : IComparable<b32m3x4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<b32m3x4, b32m3x4, bool>
     , IComparisonOperators<b32m3x4, b32m3x4, b32m3x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is b32m3x4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b32m3x4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<b32m3x4, b32m3x4, bool>.operator <(b32m3x4 left, b32m3x4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -6868,10 +6485,9 @@ public partial struct b32m3x4 : IComparable<b32m3x4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<b32m3x4, b32m3x4, bool>.operator >=(b32m3x4 left, b32m3x4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(b32m3x4 other)
+    public readonly int CompareTo(b32m3x4 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -6894,22 +6510,22 @@ public partial struct b32m3x4 : IComparable<b32m3x4>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2, left.c3 >= right.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(b32m3x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
+    public readonly bool LessThanAll(b32m3x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(b32m3x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
+    public readonly bool GreaterThanAll(b32m3x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(b32m3x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
+    public readonly bool LessThanOrEqualAll(b32m3x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(b32m3x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
+    public readonly bool GreaterThanOrEqualAll(b32m3x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(b32m3x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
+    public readonly bool LessThanAny(b32m3x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(b32m3x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
+    public readonly bool GreaterThanAny(b32m3x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(b32m3x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
+    public readonly bool LessThanOrEqualAny(b32m3x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(b32m3x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
+    public readonly bool GreaterThanOrEqualAny(b32m3x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
 }
 
 #endregion // b32m3x4
@@ -6917,19 +6533,16 @@ public partial struct b32m3x4 : IComparable<b32m3x4>, IComparable
 #region b32m4x2
 
 public partial struct b32m4x2 : IComparable<b32m4x2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<b32m4x2, b32m4x2, bool>
     , IComparisonOperators<b32m4x2, b32m4x2, b32m4x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is b32m4x2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b32m4x2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<b32m4x2, b32m4x2, bool>.operator <(b32m4x2 left, b32m4x2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -6941,10 +6554,9 @@ public partial struct b32m4x2 : IComparable<b32m4x2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<b32m4x2, b32m4x2, bool>.operator >=(b32m4x2 left, b32m4x2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(b32m4x2 other)
+    public readonly int CompareTo(b32m4x2 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -6965,22 +6577,22 @@ public partial struct b32m4x2 : IComparable<b32m4x2>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(b32m4x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
+    public readonly bool LessThanAll(b32m4x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(b32m4x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
+    public readonly bool GreaterThanAll(b32m4x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(b32m4x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
+    public readonly bool LessThanOrEqualAll(b32m4x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(b32m4x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
+    public readonly bool GreaterThanOrEqualAll(b32m4x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(b32m4x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
+    public readonly bool LessThanAny(b32m4x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(b32m4x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
+    public readonly bool GreaterThanAny(b32m4x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(b32m4x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
+    public readonly bool LessThanOrEqualAny(b32m4x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(b32m4x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
+    public readonly bool GreaterThanOrEqualAny(b32m4x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
 }
 
 #endregion // b32m4x2
@@ -6988,19 +6600,16 @@ public partial struct b32m4x2 : IComparable<b32m4x2>, IComparable
 #region b32m4x3
 
 public partial struct b32m4x3 : IComparable<b32m4x3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<b32m4x3, b32m4x3, bool>
     , IComparisonOperators<b32m4x3, b32m4x3, b32m4x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is b32m4x3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b32m4x3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<b32m4x3, b32m4x3, bool>.operator <(b32m4x3 left, b32m4x3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -7012,10 +6621,9 @@ public partial struct b32m4x3 : IComparable<b32m4x3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<b32m4x3, b32m4x3, bool>.operator >=(b32m4x3 left, b32m4x3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(b32m4x3 other)
+    public readonly int CompareTo(b32m4x3 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -7037,22 +6645,22 @@ public partial struct b32m4x3 : IComparable<b32m4x3>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(b32m4x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
+    public readonly bool LessThanAll(b32m4x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(b32m4x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
+    public readonly bool GreaterThanAll(b32m4x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(b32m4x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
+    public readonly bool LessThanOrEqualAll(b32m4x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(b32m4x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
+    public readonly bool GreaterThanOrEqualAll(b32m4x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(b32m4x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
+    public readonly bool LessThanAny(b32m4x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(b32m4x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
+    public readonly bool GreaterThanAny(b32m4x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(b32m4x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
+    public readonly bool LessThanOrEqualAny(b32m4x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(b32m4x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
+    public readonly bool GreaterThanOrEqualAny(b32m4x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
 }
 
 #endregion // b32m4x3
@@ -7060,19 +6668,16 @@ public partial struct b32m4x3 : IComparable<b32m4x3>, IComparable
 #region b32m4x4
 
 public partial struct b32m4x4 : IComparable<b32m4x4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<b32m4x4, b32m4x4, bool>
     , IComparisonOperators<b32m4x4, b32m4x4, b32m4x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is b32m4x4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b32m4x4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<b32m4x4, b32m4x4, bool>.operator <(b32m4x4 left, b32m4x4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -7084,10 +6689,9 @@ public partial struct b32m4x4 : IComparable<b32m4x4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<b32m4x4, b32m4x4, bool>.operator >=(b32m4x4 left, b32m4x4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(b32m4x4 other)
+    public readonly int CompareTo(b32m4x4 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -7110,22 +6714,22 @@ public partial struct b32m4x4 : IComparable<b32m4x4>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2, left.c3 >= right.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(b32m4x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
+    public readonly bool LessThanAll(b32m4x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(b32m4x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
+    public readonly bool GreaterThanAll(b32m4x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(b32m4x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
+    public readonly bool LessThanOrEqualAll(b32m4x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(b32m4x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
+    public readonly bool GreaterThanOrEqualAll(b32m4x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(b32m4x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
+    public readonly bool LessThanAny(b32m4x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(b32m4x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
+    public readonly bool GreaterThanAny(b32m4x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(b32m4x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
+    public readonly bool LessThanOrEqualAny(b32m4x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(b32m4x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
+    public readonly bool GreaterThanOrEqualAny(b32m4x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
 }
 
 #endregion // b32m4x4
@@ -7133,19 +6737,16 @@ public partial struct b32m4x4 : IComparable<b32m4x4>, IComparable
 #region b64m2x2
 
 public partial struct b64m2x2 : IComparable<b64m2x2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<b64m2x2, b64m2x2, bool>
     , IComparisonOperators<b64m2x2, b64m2x2, b64m2x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is b64m2x2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b64m2x2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<b64m2x2, b64m2x2, bool>.operator <(b64m2x2 left, b64m2x2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -7157,10 +6758,9 @@ public partial struct b64m2x2 : IComparable<b64m2x2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<b64m2x2, b64m2x2, bool>.operator >=(b64m2x2 left, b64m2x2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(b64m2x2 other)
+    public readonly int CompareTo(b64m2x2 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -7181,22 +6781,22 @@ public partial struct b64m2x2 : IComparable<b64m2x2>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(b64m2x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
+    public readonly bool LessThanAll(b64m2x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(b64m2x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
+    public readonly bool GreaterThanAll(b64m2x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(b64m2x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
+    public readonly bool LessThanOrEqualAll(b64m2x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(b64m2x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
+    public readonly bool GreaterThanOrEqualAll(b64m2x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(b64m2x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
+    public readonly bool LessThanAny(b64m2x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(b64m2x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
+    public readonly bool GreaterThanAny(b64m2x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(b64m2x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
+    public readonly bool LessThanOrEqualAny(b64m2x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(b64m2x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
+    public readonly bool GreaterThanOrEqualAny(b64m2x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
 }
 
 #endregion // b64m2x2
@@ -7204,19 +6804,16 @@ public partial struct b64m2x2 : IComparable<b64m2x2>, IComparable
 #region b64m2x3
 
 public partial struct b64m2x3 : IComparable<b64m2x3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<b64m2x3, b64m2x3, bool>
     , IComparisonOperators<b64m2x3, b64m2x3, b64m2x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is b64m2x3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b64m2x3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<b64m2x3, b64m2x3, bool>.operator <(b64m2x3 left, b64m2x3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -7228,10 +6825,9 @@ public partial struct b64m2x3 : IComparable<b64m2x3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<b64m2x3, b64m2x3, bool>.operator >=(b64m2x3 left, b64m2x3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(b64m2x3 other)
+    public readonly int CompareTo(b64m2x3 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -7253,22 +6849,22 @@ public partial struct b64m2x3 : IComparable<b64m2x3>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(b64m2x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
+    public readonly bool LessThanAll(b64m2x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(b64m2x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
+    public readonly bool GreaterThanAll(b64m2x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(b64m2x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
+    public readonly bool LessThanOrEqualAll(b64m2x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(b64m2x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
+    public readonly bool GreaterThanOrEqualAll(b64m2x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(b64m2x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
+    public readonly bool LessThanAny(b64m2x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(b64m2x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
+    public readonly bool GreaterThanAny(b64m2x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(b64m2x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
+    public readonly bool LessThanOrEqualAny(b64m2x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(b64m2x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
+    public readonly bool GreaterThanOrEqualAny(b64m2x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
 }
 
 #endregion // b64m2x3
@@ -7276,19 +6872,16 @@ public partial struct b64m2x3 : IComparable<b64m2x3>, IComparable
 #region b64m2x4
 
 public partial struct b64m2x4 : IComparable<b64m2x4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<b64m2x4, b64m2x4, bool>
     , IComparisonOperators<b64m2x4, b64m2x4, b64m2x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is b64m2x4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b64m2x4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<b64m2x4, b64m2x4, bool>.operator <(b64m2x4 left, b64m2x4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -7300,10 +6893,9 @@ public partial struct b64m2x4 : IComparable<b64m2x4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<b64m2x4, b64m2x4, bool>.operator >=(b64m2x4 left, b64m2x4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(b64m2x4 other)
+    public readonly int CompareTo(b64m2x4 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -7326,22 +6918,22 @@ public partial struct b64m2x4 : IComparable<b64m2x4>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2, left.c3 >= right.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(b64m2x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
+    public readonly bool LessThanAll(b64m2x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(b64m2x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
+    public readonly bool GreaterThanAll(b64m2x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(b64m2x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
+    public readonly bool LessThanOrEqualAll(b64m2x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(b64m2x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
+    public readonly bool GreaterThanOrEqualAll(b64m2x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(b64m2x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
+    public readonly bool LessThanAny(b64m2x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(b64m2x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
+    public readonly bool GreaterThanAny(b64m2x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(b64m2x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
+    public readonly bool LessThanOrEqualAny(b64m2x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(b64m2x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
+    public readonly bool GreaterThanOrEqualAny(b64m2x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
 }
 
 #endregion // b64m2x4
@@ -7349,19 +6941,16 @@ public partial struct b64m2x4 : IComparable<b64m2x4>, IComparable
 #region b64m3x2
 
 public partial struct b64m3x2 : IComparable<b64m3x2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<b64m3x2, b64m3x2, bool>
     , IComparisonOperators<b64m3x2, b64m3x2, b64m3x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is b64m3x2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b64m3x2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<b64m3x2, b64m3x2, bool>.operator <(b64m3x2 left, b64m3x2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -7373,10 +6962,9 @@ public partial struct b64m3x2 : IComparable<b64m3x2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<b64m3x2, b64m3x2, bool>.operator >=(b64m3x2 left, b64m3x2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(b64m3x2 other)
+    public readonly int CompareTo(b64m3x2 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -7397,22 +6985,22 @@ public partial struct b64m3x2 : IComparable<b64m3x2>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(b64m3x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
+    public readonly bool LessThanAll(b64m3x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(b64m3x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
+    public readonly bool GreaterThanAll(b64m3x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(b64m3x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
+    public readonly bool LessThanOrEqualAll(b64m3x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(b64m3x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
+    public readonly bool GreaterThanOrEqualAll(b64m3x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(b64m3x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
+    public readonly bool LessThanAny(b64m3x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(b64m3x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
+    public readonly bool GreaterThanAny(b64m3x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(b64m3x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
+    public readonly bool LessThanOrEqualAny(b64m3x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(b64m3x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
+    public readonly bool GreaterThanOrEqualAny(b64m3x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
 }
 
 #endregion // b64m3x2
@@ -7420,19 +7008,16 @@ public partial struct b64m3x2 : IComparable<b64m3x2>, IComparable
 #region b64m3x3
 
 public partial struct b64m3x3 : IComparable<b64m3x3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<b64m3x3, b64m3x3, bool>
     , IComparisonOperators<b64m3x3, b64m3x3, b64m3x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is b64m3x3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b64m3x3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<b64m3x3, b64m3x3, bool>.operator <(b64m3x3 left, b64m3x3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -7444,10 +7029,9 @@ public partial struct b64m3x3 : IComparable<b64m3x3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<b64m3x3, b64m3x3, bool>.operator >=(b64m3x3 left, b64m3x3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(b64m3x3 other)
+    public readonly int CompareTo(b64m3x3 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -7469,22 +7053,22 @@ public partial struct b64m3x3 : IComparable<b64m3x3>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(b64m3x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
+    public readonly bool LessThanAll(b64m3x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(b64m3x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
+    public readonly bool GreaterThanAll(b64m3x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(b64m3x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
+    public readonly bool LessThanOrEqualAll(b64m3x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(b64m3x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
+    public readonly bool GreaterThanOrEqualAll(b64m3x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(b64m3x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
+    public readonly bool LessThanAny(b64m3x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(b64m3x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
+    public readonly bool GreaterThanAny(b64m3x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(b64m3x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
+    public readonly bool LessThanOrEqualAny(b64m3x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(b64m3x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
+    public readonly bool GreaterThanOrEqualAny(b64m3x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
 }
 
 #endregion // b64m3x3
@@ -7492,19 +7076,16 @@ public partial struct b64m3x3 : IComparable<b64m3x3>, IComparable
 #region b64m3x4
 
 public partial struct b64m3x4 : IComparable<b64m3x4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<b64m3x4, b64m3x4, bool>
     , IComparisonOperators<b64m3x4, b64m3x4, b64m3x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is b64m3x4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b64m3x4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<b64m3x4, b64m3x4, bool>.operator <(b64m3x4 left, b64m3x4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -7516,10 +7097,9 @@ public partial struct b64m3x4 : IComparable<b64m3x4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<b64m3x4, b64m3x4, bool>.operator >=(b64m3x4 left, b64m3x4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(b64m3x4 other)
+    public readonly int CompareTo(b64m3x4 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -7542,22 +7122,22 @@ public partial struct b64m3x4 : IComparable<b64m3x4>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2, left.c3 >= right.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(b64m3x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
+    public readonly bool LessThanAll(b64m3x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(b64m3x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
+    public readonly bool GreaterThanAll(b64m3x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(b64m3x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
+    public readonly bool LessThanOrEqualAll(b64m3x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(b64m3x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
+    public readonly bool GreaterThanOrEqualAll(b64m3x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(b64m3x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
+    public readonly bool LessThanAny(b64m3x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(b64m3x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
+    public readonly bool GreaterThanAny(b64m3x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(b64m3x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
+    public readonly bool LessThanOrEqualAny(b64m3x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(b64m3x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
+    public readonly bool GreaterThanOrEqualAny(b64m3x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
 }
 
 #endregion // b64m3x4
@@ -7565,19 +7145,16 @@ public partial struct b64m3x4 : IComparable<b64m3x4>, IComparable
 #region b64m4x2
 
 public partial struct b64m4x2 : IComparable<b64m4x2>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<b64m4x2, b64m4x2, bool>
     , IComparisonOperators<b64m4x2, b64m4x2, b64m4x2>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is b64m4x2 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b64m4x2)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<b64m4x2, b64m4x2, bool>.operator <(b64m4x2 left, b64m4x2 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -7589,10 +7166,9 @@ public partial struct b64m4x2 : IComparable<b64m4x2>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<b64m4x2, b64m4x2, bool>.operator >=(b64m4x2 left, b64m4x2 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(b64m4x2 other)
+    public readonly int CompareTo(b64m4x2 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -7613,22 +7189,22 @@ public partial struct b64m4x2 : IComparable<b64m4x2>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(b64m4x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
+    public readonly bool LessThanAll(b64m4x2 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(b64m4x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
+    public readonly bool GreaterThanAll(b64m4x2 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(b64m4x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
+    public readonly bool LessThanOrEqualAll(b64m4x2 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(b64m4x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
+    public readonly bool GreaterThanOrEqualAll(b64m4x2 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(b64m4x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
+    public readonly bool LessThanAny(b64m4x2 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(b64m4x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
+    public readonly bool GreaterThanAny(b64m4x2 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(b64m4x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
+    public readonly bool LessThanOrEqualAny(b64m4x2 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(b64m4x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
+    public readonly bool GreaterThanOrEqualAny(b64m4x2 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1);
 }
 
 #endregion // b64m4x2
@@ -7636,19 +7212,16 @@ public partial struct b64m4x2 : IComparable<b64m4x2>, IComparable
 #region b64m4x3
 
 public partial struct b64m4x3 : IComparable<b64m4x3>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<b64m4x3, b64m4x3, bool>
     , IComparisonOperators<b64m4x3, b64m4x3, b64m4x3>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is b64m4x3 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b64m4x3)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<b64m4x3, b64m4x3, bool>.operator <(b64m4x3 left, b64m4x3 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -7660,10 +7233,9 @@ public partial struct b64m4x3 : IComparable<b64m4x3>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<b64m4x3, b64m4x3, bool>.operator >=(b64m4x3 left, b64m4x3 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(b64m4x3 other)
+    public readonly int CompareTo(b64m4x3 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -7685,22 +7257,22 @@ public partial struct b64m4x3 : IComparable<b64m4x3>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(b64m4x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
+    public readonly bool LessThanAll(b64m4x3 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(b64m4x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
+    public readonly bool GreaterThanAll(b64m4x3 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(b64m4x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
+    public readonly bool LessThanOrEqualAll(b64m4x3 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(b64m4x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
+    public readonly bool GreaterThanOrEqualAll(b64m4x3 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(b64m4x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
+    public readonly bool LessThanAny(b64m4x3 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(b64m4x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
+    public readonly bool GreaterThanAny(b64m4x3 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(b64m4x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
+    public readonly bool LessThanOrEqualAny(b64m4x3 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(b64m4x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
+    public readonly bool GreaterThanOrEqualAny(b64m4x3 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2);
 }
 
 #endregion // b64m4x3
@@ -7708,19 +7280,16 @@ public partial struct b64m4x3 : IComparable<b64m4x3>, IComparable
 #region b64m4x4
 
 public partial struct b64m4x4 : IComparable<b64m4x4>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<b64m4x4, b64m4x4, bool>
     , IComparisonOperators<b64m4x4, b64m4x4, b64m4x4>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is b64m4x4 other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(b64m4x4)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<b64m4x4, b64m4x4, bool>.operator <(b64m4x4 left, b64m4x4 right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -7732,10 +7301,9 @@ public partial struct b64m4x4 : IComparable<b64m4x4>, IComparable
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<b64m4x4, b64m4x4, bool>.operator >=(b64m4x4 left, b64m4x4 right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(b64m4x4 other)
+    public readonly int CompareTo(b64m4x4 other)
     {
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
         { if (c0.CompareTo(other.c0) is var r and not 0) return r; }
@@ -7758,22 +7326,22 @@ public partial struct b64m4x4 : IComparable<b64m4x4>, IComparable
         new(left.c0 >= right.c0, left.c1 >= right.c1, left.c2 >= right.c2, left.c3 >= right.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(b64m4x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
+    public readonly bool LessThanAll(b64m4x4 other) => c0.LessThanAll(other.c0) && c1.LessThanAll(other.c1) && c2.LessThanAll(other.c2) && c3.LessThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(b64m4x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
+    public readonly bool GreaterThanAll(b64m4x4 other) => c0.GreaterThanAll(other.c0) && c1.GreaterThanAll(other.c1) && c2.GreaterThanAll(other.c2) && c3.GreaterThanAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(b64m4x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
+    public readonly bool LessThanOrEqualAll(b64m4x4 other) => c0.LessThanOrEqualAll(other.c0) && c1.LessThanOrEqualAll(other.c1) && c2.LessThanOrEqualAll(other.c2) && c3.LessThanOrEqualAll(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(b64m4x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
+    public readonly bool GreaterThanOrEqualAll(b64m4x4 other) => c0.GreaterThanOrEqualAll(other.c0) && c1.GreaterThanOrEqualAll(other.c1) && c2.GreaterThanOrEqualAll(other.c2) && c3.GreaterThanOrEqualAll(other.c3);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(b64m4x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
+    public readonly bool LessThanAny(b64m4x4 other) => c0.LessThanAny(other.c0) || c1.LessThanAny(other.c1) || c2.LessThanAny(other.c2) || c3.LessThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(b64m4x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
+    public readonly bool GreaterThanAny(b64m4x4 other) => c0.GreaterThanAny(other.c0) || c1.GreaterThanAny(other.c1) || c2.GreaterThanAny(other.c2) || c3.GreaterThanAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(b64m4x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
+    public readonly bool LessThanOrEqualAny(b64m4x4 other) => c0.LessThanOrEqualAny(other.c0) || c1.LessThanOrEqualAny(other.c1) || c2.LessThanOrEqualAny(other.c2) || c3.LessThanOrEqualAny(other.c3);
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(b64m4x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
+    public readonly bool GreaterThanOrEqualAny(b64m4x4 other) => c0.GreaterThanOrEqualAny(other.c0) || c1.GreaterThanOrEqualAny(other.c1) || c2.GreaterThanOrEqualAny(other.c2) || c3.GreaterThanOrEqualAny(other.c3);
 }
 
 #endregion // b64m4x4

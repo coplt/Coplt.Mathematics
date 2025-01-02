@@ -28,7 +28,6 @@ namespace Coplt.Mathematics;
 #region <#= typeName #>
 
 public partial struct <#= typeName #> : IMatrixBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<<#= typeName #>, <#= typeName #>, <#= typeName #>>
 <#
             if (typ.shift)
@@ -38,7 +37,6 @@ public partial struct <#= typeName #> : IMatrixBitops
 <#
             }
 #>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static <#= typeName #> operator ~(<#= typeName #> a) => new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"~a.c{i}")) #>);
@@ -69,10 +67,11 @@ public partial struct <#= typeName #> : IMatrixBitops
 #>
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> andnot(this <#= typeName #> a, <#= typeName #> b) => new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.andnot(b.c{i})")) #>);
+    public static <#= typeName #> andnot([This] <#= typeName #> a, <#= typeName #> b) => new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"a.c{i}.andnot(b.c{i})")) #>);
 }
 
 #endregion // <#= typeName #>

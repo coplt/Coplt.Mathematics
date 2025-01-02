@@ -6,1625 +6,1787 @@ namespace Coplt.Mathematics;
 
 public partial struct float3 
 {
-    public float4 xxxx
+    public readonly float4 xxxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 0, 0)));
+            else
+                return new(x, x, x, x);
+        }
     }
-    public float4 rrrr
+    public readonly float4 rrrr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 0, 0)));
+            else
+                return new(x, x, x, x);
+        }
     }
-    public float4 xxxy
+    public readonly float4 xxxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 0, 1)));
+            else
+                return new(x, x, x, y);
+        }
     }
-    public float4 rrrg
+    public readonly float4 rrrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 0, 1)));
+            else
+                return new(x, x, x, y);
+        }
     }
-    public float4 xxxz
+    public readonly float4 xxxz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 0, 2)));
+            else
+                return new(x, x, x, z);
+        }
     }
-    public float4 rrrb
+    public readonly float4 rrrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 0, 2)));
+            else
+                return new(x, x, x, z);
+        }
     }
-    public float4 xxyx
+    public readonly float4 xxyx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 1, 0)));
+            else
+                return new(x, x, y, x);
+        }
     }
-    public float4 rrgr
+    public readonly float4 rrgr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 1, 0)));
+            else
+                return new(x, x, y, x);
+        }
     }
-    public float4 xxyy
+    public readonly float4 xxyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 1, 1)));
+            else
+                return new(x, x, y, y);
+        }
     }
-    public float4 rrgg
+    public readonly float4 rrgg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 1, 1)));
+            else
+                return new(x, x, y, y);
+        }
     }
-    public float4 xxyz
+    public readonly float4 xxyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 1, 2)));
+            else
+                return new(x, x, y, z);
+        }
     }
-    public float4 rrgb
+    public readonly float4 rrgb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 1, 2)));
+            else
+                return new(x, x, y, z);
+        }
     }
-    public float4 xxzx
+    public readonly float4 xxzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 2, 0)));
+            else
+                return new(x, x, z, x);
+        }
     }
-    public float4 rrbr
+    public readonly float4 rrbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 2, 0)));
+            else
+                return new(x, x, z, x);
+        }
     }
-    public float4 xxzy
+    public readonly float4 xxzy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 2, 1)));
+            else
+                return new(x, x, z, y);
+        }
     }
-    public float4 rrbg
+    public readonly float4 rrbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 2, 1)));
+            else
+                return new(x, x, z, y);
+        }
     }
-    public float4 xxzz
+    public readonly float4 xxzz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 2, 2)));
+            else
+                return new(x, x, z, z);
+        }
     }
-    public float4 rrbb
+    public readonly float4 rrbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 2, 2)));
+            else
+                return new(x, x, z, z);
+        }
     }
-    public float4 xyxx
+    public readonly float4 xyxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 0, 0)));
+            else
+                return new(x, y, x, x);
+        }
     }
-    public float4 rgrr
+    public readonly float4 rgrr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 0, 0)));
+            else
+                return new(x, y, x, x);
+        }
     }
-    public float4 xyxy
+    public readonly float4 xyxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 0, 1)));
+            else
+                return new(x, y, x, y);
+        }
     }
-    public float4 rgrg
+    public readonly float4 rgrg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 0, 1)));
+            else
+                return new(x, y, x, y);
+        }
     }
-    public float4 xyxz
+    public readonly float4 xyxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 0, 2)));
+            else
+                return new(x, y, x, z);
+        }
     }
-    public float4 rgrb
+    public readonly float4 rgrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 0, 2)));
+            else
+                return new(x, y, x, z);
+        }
     }
-    public float4 xyyx
+    public readonly float4 xyyx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 1, 0)));
+            else
+                return new(x, y, y, x);
+        }
     }
-    public float4 rggr
+    public readonly float4 rggr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 1, 0)));
+            else
+                return new(x, y, y, x);
+        }
     }
-    public float4 xyyy
+    public readonly float4 xyyy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 1, 1)));
+            else
+                return new(x, y, y, y);
+        }
     }
-    public float4 rggg
+    public readonly float4 rggg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 1, 1)));
+            else
+                return new(x, y, y, y);
+        }
     }
-    public float4 xyyz
+    public readonly float4 xyyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 1, 2)));
+            else
+                return new(x, y, y, z);
+        }
     }
-    public float4 rggb
+    public readonly float4 rggb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 1, 2)));
+            else
+                return new(x, y, y, z);
+        }
     }
-    public float4 xyzx
+    public readonly float4 xyzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 2, 0)));
+            else
+                return new(x, y, z, x);
+        }
     }
-    public float4 rgbr
+    public readonly float4 rgbr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 2, 0)));
+            else
+                return new(x, y, z, x);
+        }
     }
-    public float4 xyzy
+    public readonly float4 xyzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 2, 1)));
+            else
+                return new(x, y, z, y);
+        }
     }
-    public float4 rgbg
+    public readonly float4 rgbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 2, 1)));
+            else
+                return new(x, y, z, y);
+        }
     }
-    public float4 xyzz
+    public readonly float4 xyzz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 2, 2)));
+            else
+                return new(x, y, z, z);
+        }
     }
-    public float4 rgbb
+    public readonly float4 rgbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 2, 2)));
+            else
+                return new(x, y, z, z);
+        }
     }
-    public float4 xzxx
+    public readonly float4 xzxx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 0, 0)));
+            else
+                return new(x, z, x, x);
+        }
     }
-    public float4 rbrr
+    public readonly float4 rbrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 0, 0)));
+            else
+                return new(x, z, x, x);
+        }
     }
-    public float4 xzxy
+    public readonly float4 xzxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 0, 1)));
+            else
+                return new(x, z, x, y);
+        }
     }
-    public float4 rbrg
+    public readonly float4 rbrg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 0, 1)));
+            else
+                return new(x, z, x, y);
+        }
     }
-    public float4 xzxz
+    public readonly float4 xzxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 0, 2)));
+            else
+                return new(x, z, x, z);
+        }
     }
-    public float4 rbrb
+    public readonly float4 rbrb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 0, 2)));
+            else
+                return new(x, z, x, z);
+        }
     }
-    public float4 xzyx
+    public readonly float4 xzyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 1, 0)));
+            else
+                return new(x, z, y, x);
+        }
     }
-    public float4 rbgr
+    public readonly float4 rbgr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 1, 0)));
+            else
+                return new(x, z, y, x);
+        }
     }
-    public float4 xzyy
+    public readonly float4 xzyy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 1, 1)));
+            else
+                return new(x, z, y, y);
+        }
     }
-    public float4 rbgg
+    public readonly float4 rbgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 1, 1)));
+            else
+                return new(x, z, y, y);
+        }
     }
-    public float4 xzyz
+    public readonly float4 xzyz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 1, 2)));
+            else
+                return new(x, z, y, z);
+        }
     }
-    public float4 rbgb
+    public readonly float4 rbgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 1, 2)));
+            else
+                return new(x, z, y, z);
+        }
     }
-    public float4 xzzx
+    public readonly float4 xzzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 2, 0)));
+            else
+                return new(x, z, z, x);
+        }
     }
-    public float4 rbbr
+    public readonly float4 rbbr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 2, 0)));
+            else
+                return new(x, z, z, x);
+        }
     }
-    public float4 xzzy
+    public readonly float4 xzzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 2, 1)));
+            else
+                return new(x, z, z, y);
+        }
     }
-    public float4 rbbg
+    public readonly float4 rbbg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 2, 1)));
+            else
+                return new(x, z, z, y);
+        }
     }
-    public float4 xzzz
+    public readonly float4 xzzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 2, 2)));
+            else
+                return new(x, z, z, z);
+        }
     }
-    public float4 rbbb
+    public readonly float4 rbbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 2, 2)));
+            else
+                return new(x, z, z, z);
+        }
     }
-    public float4 yxxx
+    public readonly float4 yxxx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 0, 0)));
+            else
+                return new(y, x, x, x);
+        }
     }
-    public float4 grrr
+    public readonly float4 grrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 0, 0)));
+            else
+                return new(y, x, x, x);
+        }
     }
-    public float4 yxxy
+    public readonly float4 yxxy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 0, 1)));
+            else
+                return new(y, x, x, y);
+        }
     }
-    public float4 grrg
+    public readonly float4 grrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 0, 1)));
+            else
+                return new(y, x, x, y);
+        }
     }
-    public float4 yxxz
+    public readonly float4 yxxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 0, 2)));
+            else
+                return new(y, x, x, z);
+        }
     }
-    public float4 grrb
+    public readonly float4 grrb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 0, 2)));
+            else
+                return new(y, x, x, z);
+        }
     }
-    public float4 yxyx
+    public readonly float4 yxyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 1, 0)));
+            else
+                return new(y, x, y, x);
+        }
     }
-    public float4 grgr
+    public readonly float4 grgr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 1, 0)));
+            else
+                return new(y, x, y, x);
+        }
     }
-    public float4 yxyy
+    public readonly float4 yxyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 1, 1)));
+            else
+                return new(y, x, y, y);
+        }
     }
-    public float4 grgg
+    public readonly float4 grgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 1, 1)));
+            else
+                return new(y, x, y, y);
+        }
     }
-    public float4 yxyz
+    public readonly float4 yxyz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 1, 2)));
+            else
+                return new(y, x, y, z);
+        }
     }
-    public float4 grgb
+    public readonly float4 grgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 1, 2)));
+            else
+                return new(y, x, y, z);
+        }
     }
-    public float4 yxzx
+    public readonly float4 yxzx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 2, 0)));
+            else
+                return new(y, x, z, x);
+        }
     }
-    public float4 grbr
+    public readonly float4 grbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 2, 0)));
+            else
+                return new(y, x, z, x);
+        }
     }
-    public float4 yxzy
+    public readonly float4 yxzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 2, 1)));
+            else
+                return new(y, x, z, y);
+        }
     }
-    public float4 grbg
+    public readonly float4 grbg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 2, 1)));
+            else
+                return new(y, x, z, y);
+        }
     }
-    public float4 yxzz
+    public readonly float4 yxzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 2, 2)));
+            else
+                return new(y, x, z, z);
+        }
     }
-    public float4 grbb
+    public readonly float4 grbb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 2, 2)));
+            else
+                return new(y, x, z, z);
+        }
     }
-    public float4 yyxx
+    public readonly float4 yyxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 0, 0)));
+            else
+                return new(y, y, x, x);
+        }
     }
-    public float4 ggrr
+    public readonly float4 ggrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 0, 0)));
+            else
+                return new(y, y, x, x);
+        }
     }
-    public float4 yyxy
+    public readonly float4 yyxy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 0, 1)));
+            else
+                return new(y, y, x, y);
+        }
     }
-    public float4 ggrg
+    public readonly float4 ggrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 0, 1)));
+            else
+                return new(y, y, x, y);
+        }
     }
-    public float4 yyxz
+    public readonly float4 yyxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 0, 2)));
+            else
+                return new(y, y, x, z);
+        }
     }
-    public float4 ggrb
+    public readonly float4 ggrb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 0, 2)));
+            else
+                return new(y, y, x, z);
+        }
     }
-    public float4 yyyx
+    public readonly float4 yyyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 1, 0)));
+            else
+                return new(y, y, y, x);
+        }
     }
-    public float4 gggr
+    public readonly float4 gggr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 1, 0)));
+            else
+                return new(y, y, y, x);
+        }
     }
-    public float4 yyyy
+    public readonly float4 yyyy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 1, 1)));
+            else
+                return new(y, y, y, y);
+        }
     }
-    public float4 gggg
+    public readonly float4 gggg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 1, 1)));
+            else
+                return new(y, y, y, y);
+        }
     }
-    public float4 yyyz
+    public readonly float4 yyyz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 1, 2)));
+            else
+                return new(y, y, y, z);
+        }
     }
-    public float4 gggb
+    public readonly float4 gggb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 1, 2)));
+            else
+                return new(y, y, y, z);
+        }
     }
-    public float4 yyzx
+    public readonly float4 yyzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 2, 0)));
+            else
+                return new(y, y, z, x);
+        }
     }
-    public float4 ggbr
+    public readonly float4 ggbr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 2, 0)));
+            else
+                return new(y, y, z, x);
+        }
     }
-    public float4 yyzy
+    public readonly float4 yyzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 2, 1)));
+            else
+                return new(y, y, z, y);
+        }
     }
-    public float4 ggbg
+    public readonly float4 ggbg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 2, 1)));
+            else
+                return new(y, y, z, y);
+        }
     }
-    public float4 yyzz
+    public readonly float4 yyzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 2, 2)));
+            else
+                return new(y, y, z, z);
+        }
     }
-    public float4 ggbb
+    public readonly float4 ggbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 2, 2)));
+            else
+                return new(y, y, z, z);
+        }
     }
-    public float4 yzxx
+    public readonly float4 yzxx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 0, 0)));
+            else
+                return new(y, z, x, x);
+        }
     }
-    public float4 gbrr
+    public readonly float4 gbrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 0, 0)));
+            else
+                return new(y, z, x, x);
+        }
     }
-    public float4 yzxy
+    public readonly float4 yzxy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 0, 1)));
+            else
+                return new(y, z, x, y);
+        }
     }
-    public float4 gbrg
+    public readonly float4 gbrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 0, 1)));
+            else
+                return new(y, z, x, y);
+        }
     }
-    public float4 yzxz
+    public readonly float4 yzxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 0, 2)));
+            else
+                return new(y, z, x, z);
+        }
     }
-    public float4 gbrb
+    public readonly float4 gbrb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 0, 2)));
+            else
+                return new(y, z, x, z);
+        }
     }
-    public float4 yzyx
+    public readonly float4 yzyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 1, 0)));
+            else
+                return new(y, z, y, x);
+        }
     }
-    public float4 gbgr
+    public readonly float4 gbgr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 1, 0)));
+            else
+                return new(y, z, y, x);
+        }
     }
-    public float4 yzyy
+    public readonly float4 yzyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 1, 1)));
+            else
+                return new(y, z, y, y);
+        }
     }
-    public float4 gbgg
+    public readonly float4 gbgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 1, 1)));
+            else
+                return new(y, z, y, y);
+        }
     }
-    public float4 yzyz
+    public readonly float4 yzyz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 1, 2)));
+            else
+                return new(y, z, y, z);
+        }
     }
-    public float4 gbgb
+    public readonly float4 gbgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 1, 2)));
+            else
+                return new(y, z, y, z);
+        }
     }
-    public float4 yzzx
+    public readonly float4 yzzx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 2, 0)));
+            else
+                return new(y, z, z, x);
+        }
     }
-    public float4 gbbr
+    public readonly float4 gbbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 2, 0)));
+            else
+                return new(y, z, z, x);
+        }
     }
-    public float4 yzzy
+    public readonly float4 yzzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 2, 1)));
+            else
+                return new(y, z, z, y);
+        }
     }
-    public float4 gbbg
+    public readonly float4 gbbg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 2, 1)));
+            else
+                return new(y, z, z, y);
+        }
     }
-    public float4 yzzz
+    public readonly float4 yzzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 2, 2)));
+            else
+                return new(y, z, z, z);
+        }
     }
-    public float4 gbbb
+    public readonly float4 gbbb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 2, 2)));
+            else
+                return new(y, z, z, z);
+        }
     }
-    public float4 zxxx
+    public readonly float4 zxxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 0, 0)));
+            else
+                return new(z, x, x, x);
+        }
     }
-    public float4 brrr
+    public readonly float4 brrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 0, 0)));
+            else
+                return new(z, x, x, x);
+        }
     }
-    public float4 zxxy
+    public readonly float4 zxxy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 0, 1)));
+            else
+                return new(z, x, x, y);
+        }
     }
-    public float4 brrg
+    public readonly float4 brrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 0, 1)));
+            else
+                return new(z, x, x, y);
+        }
     }
-    public float4 zxxz
+    public readonly float4 zxxz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 0, 2)));
+            else
+                return new(z, x, x, z);
+        }
     }
-    public float4 brrb
+    public readonly float4 brrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 0, 2)));
+            else
+                return new(z, x, x, z);
+        }
     }
-    public float4 zxyx
+    public readonly float4 zxyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 1, 0)));
+            else
+                return new(z, x, y, x);
+        }
     }
-    public float4 brgr
+    public readonly float4 brgr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 1, 0)));
+            else
+                return new(z, x, y, x);
+        }
     }
-    public float4 zxyy
+    public readonly float4 zxyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 1, 1)));
+            else
+                return new(z, x, y, y);
+        }
     }
-    public float4 brgg
+    public readonly float4 brgg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 1, 1)));
+            else
+                return new(z, x, y, y);
+        }
     }
-    public float4 zxyz
+    public readonly float4 zxyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 1, 2)));
+            else
+                return new(z, x, y, z);
+        }
     }
-    public float4 brgb
+    public readonly float4 brgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 1, 2)));
+            else
+                return new(z, x, y, z);
+        }
     }
-    public float4 zxzx
+    public readonly float4 zxzx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 2, 0)));
+            else
+                return new(z, x, z, x);
+        }
     }
-    public float4 brbr
+    public readonly float4 brbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 2, 0)));
+            else
+                return new(z, x, z, x);
+        }
     }
-    public float4 zxzy
+    public readonly float4 zxzy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 2, 1)));
+            else
+                return new(z, x, z, y);
+        }
     }
-    public float4 brbg
+    public readonly float4 brbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 2, 1)));
+            else
+                return new(z, x, z, y);
+        }
     }
-    public float4 zxzz
+    public readonly float4 zxzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 2, 2)));
+            else
+                return new(z, x, z, z);
+        }
     }
-    public float4 brbb
+    public readonly float4 brbb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 2, 2)));
+            else
+                return new(z, x, z, z);
+        }
     }
-    public float4 zyxx
+    public readonly float4 zyxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 0, 0)));
+            else
+                return new(z, y, x, x);
+        }
     }
-    public float4 bgrr
+    public readonly float4 bgrr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 0, 0)));
+            else
+                return new(z, y, x, x);
+        }
     }
-    public float4 zyxy
+    public readonly float4 zyxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 0, 1)));
+            else
+                return new(z, y, x, y);
+        }
     }
-    public float4 bgrg
+    public readonly float4 bgrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 0, 1)));
+            else
+                return new(z, y, x, y);
+        }
     }
-    public float4 zyxz
+    public readonly float4 zyxz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 0, 2)));
+            else
+                return new(z, y, x, z);
+        }
     }
-    public float4 bgrb
+    public readonly float4 bgrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 0, 2)));
+            else
+                return new(z, y, x, z);
+        }
     }
-    public float4 zyyx
+    public readonly float4 zyyx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 1, 0)));
+            else
+                return new(z, y, y, x);
+        }
     }
-    public float4 bggr
+    public readonly float4 bggr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 1, 0)));
+            else
+                return new(z, y, y, x);
+        }
     }
-    public float4 zyyy
+    public readonly float4 zyyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 1, 1)));
+            else
+                return new(z, y, y, y);
+        }
     }
-    public float4 bggg
+    public readonly float4 bggg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 1, 1)));
+            else
+                return new(z, y, y, y);
+        }
     }
-    public float4 zyyz
+    public readonly float4 zyyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 1, 2)));
+            else
+                return new(z, y, y, z);
+        }
     }
-    public float4 bggb
+    public readonly float4 bggb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 1, 2)));
+            else
+                return new(z, y, y, z);
+        }
     }
-    public float4 zyzx
+    public readonly float4 zyzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 2, 0)));
+            else
+                return new(z, y, z, x);
+        }
     }
-    public float4 bgbr
+    public readonly float4 bgbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 2, 0)));
+            else
+                return new(z, y, z, x);
+        }
     }
-    public float4 zyzy
+    public readonly float4 zyzy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 2, 1)));
+            else
+                return new(z, y, z, y);
+        }
     }
-    public float4 bgbg
+    public readonly float4 bgbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 2, 1)));
+            else
+                return new(z, y, z, y);
+        }
     }
-    public float4 zyzz
+    public readonly float4 zyzz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 2, 2)));
+            else
+                return new(z, y, z, z);
+        }
     }
-    public float4 bgbb
+    public readonly float4 bgbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 2, 2)));
+            else
+                return new(z, y, z, z);
+        }
     }
-    public float4 zzxx
+    public readonly float4 zzxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 0, 0)));
+            else
+                return new(z, z, x, x);
+        }
     }
-    public float4 bbrr
+    public readonly float4 bbrr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 0, 0)));
+            else
+                return new(z, z, x, x);
+        }
     }
-    public float4 zzxy
+    public readonly float4 zzxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 0, 1)));
+            else
+                return new(z, z, x, y);
+        }
     }
-    public float4 bbrg
+    public readonly float4 bbrg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 0, 1)));
+            else
+                return new(z, z, x, y);
+        }
     }
-    public float4 zzxz
+    public readonly float4 zzxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 0, 2)));
+            else
+                return new(z, z, x, z);
+        }
     }
-    public float4 bbrb
+    public readonly float4 bbrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 0, 2)));
+            else
+                return new(z, z, x, z);
+        }
     }
-    public float4 zzyx
+    public readonly float4 zzyx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 1, 0)));
+            else
+                return new(z, z, y, x);
+        }
     }
-    public float4 bbgr
+    public readonly float4 bbgr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 1, 0)));
+            else
+                return new(z, z, y, x);
+        }
     }
-    public float4 zzyy
+    public readonly float4 zzyy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 1, 1)));
+            else
+                return new(z, z, y, y);
+        }
     }
-    public float4 bbgg
+    public readonly float4 bbgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 1, 1)));
+            else
+                return new(z, z, y, y);
+        }
     }
-    public float4 zzyz
+    public readonly float4 zzyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 1, 2)));
+            else
+                return new(z, z, y, z);
+        }
     }
-    public float4 bbgb
+    public readonly float4 bbgb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 1, 2)));
+            else
+                return new(z, z, y, z);
+        }
     }
-    public float4 zzzx
+    public readonly float4 zzzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 2, 0)));
+            else
+                return new(z, z, z, x);
+        }
     }
-    public float4 bbbr
+    public readonly float4 bbbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 2, 0)));
+            else
+                return new(z, z, z, x);
+        }
     }
-    public float4 zzzy
+    public readonly float4 zzzy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 2, 1)));
+            else
+                return new(z, z, z, y);
+        }
     }
-    public float4 bbbg
+    public readonly float4 bbbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 2, 1)));
+            else
+                return new(z, z, z, y);
+        }
     }
-    public float4 zzzz
+    public readonly float4 zzzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 2, 2)));
+            else
+                return new(z, z, z, z);
+        }
     }
-    public float4 bbbb
+    public readonly float4 bbbb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 2, 2)));
+            else
+                return new(z, z, z, z);
+        }
     }
 }
 
@@ -1634,1625 +1796,1787 @@ public partial struct float3
 
 public partial struct double3 
 {
-    public double4 xxxx
+    public readonly double4 xxxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 0, 0)));
+            else
+                return new(x, x, x, x);
+        }
     }
-    public double4 rrrr
+    public readonly double4 rrrr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 0, 0)));
+            else
+                return new(x, x, x, x);
+        }
     }
-    public double4 xxxy
+    public readonly double4 xxxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 0, 1)));
+            else
+                return new(x, x, x, y);
+        }
     }
-    public double4 rrrg
+    public readonly double4 rrrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 0, 1)));
+            else
+                return new(x, x, x, y);
+        }
     }
-    public double4 xxxz
+    public readonly double4 xxxz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 0, 2)));
+            else
+                return new(x, x, x, z);
+        }
     }
-    public double4 rrrb
+    public readonly double4 rrrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 0, 2)));
+            else
+                return new(x, x, x, z);
+        }
     }
-    public double4 xxyx
+    public readonly double4 xxyx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 1, 0)));
+            else
+                return new(x, x, y, x);
+        }
     }
-    public double4 rrgr
+    public readonly double4 rrgr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 1, 0)));
+            else
+                return new(x, x, y, x);
+        }
     }
-    public double4 xxyy
+    public readonly double4 xxyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 1, 1)));
+            else
+                return new(x, x, y, y);
+        }
     }
-    public double4 rrgg
+    public readonly double4 rrgg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 1, 1)));
+            else
+                return new(x, x, y, y);
+        }
     }
-    public double4 xxyz
+    public readonly double4 xxyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 1, 2)));
+            else
+                return new(x, x, y, z);
+        }
     }
-    public double4 rrgb
+    public readonly double4 rrgb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 1, 2)));
+            else
+                return new(x, x, y, z);
+        }
     }
-    public double4 xxzx
+    public readonly double4 xxzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 2, 0)));
+            else
+                return new(x, x, z, x);
+        }
     }
-    public double4 rrbr
+    public readonly double4 rrbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 2, 0)));
+            else
+                return new(x, x, z, x);
+        }
     }
-    public double4 xxzy
+    public readonly double4 xxzy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 2, 1)));
+            else
+                return new(x, x, z, y);
+        }
     }
-    public double4 rrbg
+    public readonly double4 rrbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 2, 1)));
+            else
+                return new(x, x, z, y);
+        }
     }
-    public double4 xxzz
+    public readonly double4 xxzz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 2, 2)));
+            else
+                return new(x, x, z, z);
+        }
     }
-    public double4 rrbb
+    public readonly double4 rrbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 2, 2)));
+            else
+                return new(x, x, z, z);
+        }
     }
-    public double4 xyxx
+    public readonly double4 xyxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 0, 0)));
+            else
+                return new(x, y, x, x);
+        }
     }
-    public double4 rgrr
+    public readonly double4 rgrr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 0, 0)));
+            else
+                return new(x, y, x, x);
+        }
     }
-    public double4 xyxy
+    public readonly double4 xyxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 0, 1)));
+            else
+                return new(x, y, x, y);
+        }
     }
-    public double4 rgrg
+    public readonly double4 rgrg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 0, 1)));
+            else
+                return new(x, y, x, y);
+        }
     }
-    public double4 xyxz
+    public readonly double4 xyxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 0, 2)));
+            else
+                return new(x, y, x, z);
+        }
     }
-    public double4 rgrb
+    public readonly double4 rgrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 0, 2)));
+            else
+                return new(x, y, x, z);
+        }
     }
-    public double4 xyyx
+    public readonly double4 xyyx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 1, 0)));
+            else
+                return new(x, y, y, x);
+        }
     }
-    public double4 rggr
+    public readonly double4 rggr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 1, 0)));
+            else
+                return new(x, y, y, x);
+        }
     }
-    public double4 xyyy
+    public readonly double4 xyyy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 1, 1)));
+            else
+                return new(x, y, y, y);
+        }
     }
-    public double4 rggg
+    public readonly double4 rggg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 1, 1)));
+            else
+                return new(x, y, y, y);
+        }
     }
-    public double4 xyyz
+    public readonly double4 xyyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 1, 2)));
+            else
+                return new(x, y, y, z);
+        }
     }
-    public double4 rggb
+    public readonly double4 rggb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 1, 2)));
+            else
+                return new(x, y, y, z);
+        }
     }
-    public double4 xyzx
+    public readonly double4 xyzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 2, 0)));
+            else
+                return new(x, y, z, x);
+        }
     }
-    public double4 rgbr
+    public readonly double4 rgbr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 2, 0)));
+            else
+                return new(x, y, z, x);
+        }
     }
-    public double4 xyzy
+    public readonly double4 xyzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 2, 1)));
+            else
+                return new(x, y, z, y);
+        }
     }
-    public double4 rgbg
+    public readonly double4 rgbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 2, 1)));
+            else
+                return new(x, y, z, y);
+        }
     }
-    public double4 xyzz
+    public readonly double4 xyzz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 2, 2)));
+            else
+                return new(x, y, z, z);
+        }
     }
-    public double4 rgbb
+    public readonly double4 rgbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 2, 2)));
+            else
+                return new(x, y, z, z);
+        }
     }
-    public double4 xzxx
+    public readonly double4 xzxx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 0, 0)));
+            else
+                return new(x, z, x, x);
+        }
     }
-    public double4 rbrr
+    public readonly double4 rbrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 0, 0)));
+            else
+                return new(x, z, x, x);
+        }
     }
-    public double4 xzxy
+    public readonly double4 xzxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 0, 1)));
+            else
+                return new(x, z, x, y);
+        }
     }
-    public double4 rbrg
+    public readonly double4 rbrg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 0, 1)));
+            else
+                return new(x, z, x, y);
+        }
     }
-    public double4 xzxz
+    public readonly double4 xzxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 0, 2)));
+            else
+                return new(x, z, x, z);
+        }
     }
-    public double4 rbrb
+    public readonly double4 rbrb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 0, 2)));
+            else
+                return new(x, z, x, z);
+        }
     }
-    public double4 xzyx
+    public readonly double4 xzyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 1, 0)));
+            else
+                return new(x, z, y, x);
+        }
     }
-    public double4 rbgr
+    public readonly double4 rbgr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 1, 0)));
+            else
+                return new(x, z, y, x);
+        }
     }
-    public double4 xzyy
+    public readonly double4 xzyy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 1, 1)));
+            else
+                return new(x, z, y, y);
+        }
     }
-    public double4 rbgg
+    public readonly double4 rbgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 1, 1)));
+            else
+                return new(x, z, y, y);
+        }
     }
-    public double4 xzyz
+    public readonly double4 xzyz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 1, 2)));
+            else
+                return new(x, z, y, z);
+        }
     }
-    public double4 rbgb
+    public readonly double4 rbgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 1, 2)));
+            else
+                return new(x, z, y, z);
+        }
     }
-    public double4 xzzx
+    public readonly double4 xzzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 2, 0)));
+            else
+                return new(x, z, z, x);
+        }
     }
-    public double4 rbbr
+    public readonly double4 rbbr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 2, 0)));
+            else
+                return new(x, z, z, x);
+        }
     }
-    public double4 xzzy
+    public readonly double4 xzzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 2, 1)));
+            else
+                return new(x, z, z, y);
+        }
     }
-    public double4 rbbg
+    public readonly double4 rbbg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 2, 1)));
+            else
+                return new(x, z, z, y);
+        }
     }
-    public double4 xzzz
+    public readonly double4 xzzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 2, 2)));
+            else
+                return new(x, z, z, z);
+        }
     }
-    public double4 rbbb
+    public readonly double4 rbbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 2, 2)));
+            else
+                return new(x, z, z, z);
+        }
     }
-    public double4 yxxx
+    public readonly double4 yxxx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 0, 0)));
+            else
+                return new(y, x, x, x);
+        }
     }
-    public double4 grrr
+    public readonly double4 grrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 0, 0)));
+            else
+                return new(y, x, x, x);
+        }
     }
-    public double4 yxxy
+    public readonly double4 yxxy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 0, 1)));
+            else
+                return new(y, x, x, y);
+        }
     }
-    public double4 grrg
+    public readonly double4 grrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 0, 1)));
+            else
+                return new(y, x, x, y);
+        }
     }
-    public double4 yxxz
+    public readonly double4 yxxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 0, 2)));
+            else
+                return new(y, x, x, z);
+        }
     }
-    public double4 grrb
+    public readonly double4 grrb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 0, 2)));
+            else
+                return new(y, x, x, z);
+        }
     }
-    public double4 yxyx
+    public readonly double4 yxyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 1, 0)));
+            else
+                return new(y, x, y, x);
+        }
     }
-    public double4 grgr
+    public readonly double4 grgr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 1, 0)));
+            else
+                return new(y, x, y, x);
+        }
     }
-    public double4 yxyy
+    public readonly double4 yxyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 1, 1)));
+            else
+                return new(y, x, y, y);
+        }
     }
-    public double4 grgg
+    public readonly double4 grgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 1, 1)));
+            else
+                return new(y, x, y, y);
+        }
     }
-    public double4 yxyz
+    public readonly double4 yxyz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 1, 2)));
+            else
+                return new(y, x, y, z);
+        }
     }
-    public double4 grgb
+    public readonly double4 grgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 1, 2)));
+            else
+                return new(y, x, y, z);
+        }
     }
-    public double4 yxzx
+    public readonly double4 yxzx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 2, 0)));
+            else
+                return new(y, x, z, x);
+        }
     }
-    public double4 grbr
+    public readonly double4 grbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 2, 0)));
+            else
+                return new(y, x, z, x);
+        }
     }
-    public double4 yxzy
+    public readonly double4 yxzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 2, 1)));
+            else
+                return new(y, x, z, y);
+        }
     }
-    public double4 grbg
+    public readonly double4 grbg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 2, 1)));
+            else
+                return new(y, x, z, y);
+        }
     }
-    public double4 yxzz
+    public readonly double4 yxzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 2, 2)));
+            else
+                return new(y, x, z, z);
+        }
     }
-    public double4 grbb
+    public readonly double4 grbb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 2, 2)));
+            else
+                return new(y, x, z, z);
+        }
     }
-    public double4 yyxx
+    public readonly double4 yyxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 0, 0)));
+            else
+                return new(y, y, x, x);
+        }
     }
-    public double4 ggrr
+    public readonly double4 ggrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 0, 0)));
+            else
+                return new(y, y, x, x);
+        }
     }
-    public double4 yyxy
+    public readonly double4 yyxy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 0, 1)));
+            else
+                return new(y, y, x, y);
+        }
     }
-    public double4 ggrg
+    public readonly double4 ggrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 0, 1)));
+            else
+                return new(y, y, x, y);
+        }
     }
-    public double4 yyxz
+    public readonly double4 yyxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 0, 2)));
+            else
+                return new(y, y, x, z);
+        }
     }
-    public double4 ggrb
+    public readonly double4 ggrb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 0, 2)));
+            else
+                return new(y, y, x, z);
+        }
     }
-    public double4 yyyx
+    public readonly double4 yyyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 1, 0)));
+            else
+                return new(y, y, y, x);
+        }
     }
-    public double4 gggr
+    public readonly double4 gggr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 1, 0)));
+            else
+                return new(y, y, y, x);
+        }
     }
-    public double4 yyyy
+    public readonly double4 yyyy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 1, 1)));
+            else
+                return new(y, y, y, y);
+        }
     }
-    public double4 gggg
+    public readonly double4 gggg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 1, 1)));
+            else
+                return new(y, y, y, y);
+        }
     }
-    public double4 yyyz
+    public readonly double4 yyyz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 1, 2)));
+            else
+                return new(y, y, y, z);
+        }
     }
-    public double4 gggb
+    public readonly double4 gggb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 1, 2)));
+            else
+                return new(y, y, y, z);
+        }
     }
-    public double4 yyzx
+    public readonly double4 yyzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 2, 0)));
+            else
+                return new(y, y, z, x);
+        }
     }
-    public double4 ggbr
+    public readonly double4 ggbr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 2, 0)));
+            else
+                return new(y, y, z, x);
+        }
     }
-    public double4 yyzy
+    public readonly double4 yyzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 2, 1)));
+            else
+                return new(y, y, z, y);
+        }
     }
-    public double4 ggbg
+    public readonly double4 ggbg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 2, 1)));
+            else
+                return new(y, y, z, y);
+        }
     }
-    public double4 yyzz
+    public readonly double4 yyzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 2, 2)));
+            else
+                return new(y, y, z, z);
+        }
     }
-    public double4 ggbb
+    public readonly double4 ggbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 2, 2)));
+            else
+                return new(y, y, z, z);
+        }
     }
-    public double4 yzxx
+    public readonly double4 yzxx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 0, 0)));
+            else
+                return new(y, z, x, x);
+        }
     }
-    public double4 gbrr
+    public readonly double4 gbrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 0, 0)));
+            else
+                return new(y, z, x, x);
+        }
     }
-    public double4 yzxy
+    public readonly double4 yzxy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 0, 1)));
+            else
+                return new(y, z, x, y);
+        }
     }
-    public double4 gbrg
+    public readonly double4 gbrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 0, 1)));
+            else
+                return new(y, z, x, y);
+        }
     }
-    public double4 yzxz
+    public readonly double4 yzxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 0, 2)));
+            else
+                return new(y, z, x, z);
+        }
     }
-    public double4 gbrb
+    public readonly double4 gbrb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 0, 2)));
+            else
+                return new(y, z, x, z);
+        }
     }
-    public double4 yzyx
+    public readonly double4 yzyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 1, 0)));
+            else
+                return new(y, z, y, x);
+        }
     }
-    public double4 gbgr
+    public readonly double4 gbgr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 1, 0)));
+            else
+                return new(y, z, y, x);
+        }
     }
-    public double4 yzyy
+    public readonly double4 yzyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 1, 1)));
+            else
+                return new(y, z, y, y);
+        }
     }
-    public double4 gbgg
+    public readonly double4 gbgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 1, 1)));
+            else
+                return new(y, z, y, y);
+        }
     }
-    public double4 yzyz
+    public readonly double4 yzyz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 1, 2)));
+            else
+                return new(y, z, y, z);
+        }
     }
-    public double4 gbgb
+    public readonly double4 gbgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 1, 2)));
+            else
+                return new(y, z, y, z);
+        }
     }
-    public double4 yzzx
+    public readonly double4 yzzx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 2, 0)));
+            else
+                return new(y, z, z, x);
+        }
     }
-    public double4 gbbr
+    public readonly double4 gbbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 2, 0)));
+            else
+                return new(y, z, z, x);
+        }
     }
-    public double4 yzzy
+    public readonly double4 yzzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 2, 1)));
+            else
+                return new(y, z, z, y);
+        }
     }
-    public double4 gbbg
+    public readonly double4 gbbg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 2, 1)));
+            else
+                return new(y, z, z, y);
+        }
     }
-    public double4 yzzz
+    public readonly double4 yzzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 2, 2)));
+            else
+                return new(y, z, z, z);
+        }
     }
-    public double4 gbbb
+    public readonly double4 gbbb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 2, 2)));
+            else
+                return new(y, z, z, z);
+        }
     }
-    public double4 zxxx
+    public readonly double4 zxxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 0, 0)));
+            else
+                return new(z, x, x, x);
+        }
     }
-    public double4 brrr
+    public readonly double4 brrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 0, 0)));
+            else
+                return new(z, x, x, x);
+        }
     }
-    public double4 zxxy
+    public readonly double4 zxxy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 0, 1)));
+            else
+                return new(z, x, x, y);
+        }
     }
-    public double4 brrg
+    public readonly double4 brrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 0, 1)));
+            else
+                return new(z, x, x, y);
+        }
     }
-    public double4 zxxz
+    public readonly double4 zxxz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 0, 2)));
+            else
+                return new(z, x, x, z);
+        }
     }
-    public double4 brrb
+    public readonly double4 brrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 0, 2)));
+            else
+                return new(z, x, x, z);
+        }
     }
-    public double4 zxyx
+    public readonly double4 zxyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 1, 0)));
+            else
+                return new(z, x, y, x);
+        }
     }
-    public double4 brgr
+    public readonly double4 brgr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 1, 0)));
+            else
+                return new(z, x, y, x);
+        }
     }
-    public double4 zxyy
+    public readonly double4 zxyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 1, 1)));
+            else
+                return new(z, x, y, y);
+        }
     }
-    public double4 brgg
+    public readonly double4 brgg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 1, 1)));
+            else
+                return new(z, x, y, y);
+        }
     }
-    public double4 zxyz
+    public readonly double4 zxyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 1, 2)));
+            else
+                return new(z, x, y, z);
+        }
     }
-    public double4 brgb
+    public readonly double4 brgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 1, 2)));
+            else
+                return new(z, x, y, z);
+        }
     }
-    public double4 zxzx
+    public readonly double4 zxzx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 2, 0)));
+            else
+                return new(z, x, z, x);
+        }
     }
-    public double4 brbr
+    public readonly double4 brbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 2, 0)));
+            else
+                return new(z, x, z, x);
+        }
     }
-    public double4 zxzy
+    public readonly double4 zxzy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 2, 1)));
+            else
+                return new(z, x, z, y);
+        }
     }
-    public double4 brbg
+    public readonly double4 brbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 2, 1)));
+            else
+                return new(z, x, z, y);
+        }
     }
-    public double4 zxzz
+    public readonly double4 zxzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 2, 2)));
+            else
+                return new(z, x, z, z);
+        }
     }
-    public double4 brbb
+    public readonly double4 brbb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 2, 2)));
+            else
+                return new(z, x, z, z);
+        }
     }
-    public double4 zyxx
+    public readonly double4 zyxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 0, 0)));
+            else
+                return new(z, y, x, x);
+        }
     }
-    public double4 bgrr
+    public readonly double4 bgrr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 0, 0)));
+            else
+                return new(z, y, x, x);
+        }
     }
-    public double4 zyxy
+    public readonly double4 zyxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 0, 1)));
+            else
+                return new(z, y, x, y);
+        }
     }
-    public double4 bgrg
+    public readonly double4 bgrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 0, 1)));
+            else
+                return new(z, y, x, y);
+        }
     }
-    public double4 zyxz
+    public readonly double4 zyxz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 0, 2)));
+            else
+                return new(z, y, x, z);
+        }
     }
-    public double4 bgrb
+    public readonly double4 bgrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 0, 2)));
+            else
+                return new(z, y, x, z);
+        }
     }
-    public double4 zyyx
+    public readonly double4 zyyx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 1, 0)));
+            else
+                return new(z, y, y, x);
+        }
     }
-    public double4 bggr
+    public readonly double4 bggr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 1, 0)));
+            else
+                return new(z, y, y, x);
+        }
     }
-    public double4 zyyy
+    public readonly double4 zyyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 1, 1)));
+            else
+                return new(z, y, y, y);
+        }
     }
-    public double4 bggg
+    public readonly double4 bggg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 1, 1)));
+            else
+                return new(z, y, y, y);
+        }
     }
-    public double4 zyyz
+    public readonly double4 zyyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 1, 2)));
+            else
+                return new(z, y, y, z);
+        }
     }
-    public double4 bggb
+    public readonly double4 bggb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 1, 2)));
+            else
+                return new(z, y, y, z);
+        }
     }
-    public double4 zyzx
+    public readonly double4 zyzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 2, 0)));
+            else
+                return new(z, y, z, x);
+        }
     }
-    public double4 bgbr
+    public readonly double4 bgbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 2, 0)));
+            else
+                return new(z, y, z, x);
+        }
     }
-    public double4 zyzy
+    public readonly double4 zyzy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 2, 1)));
+            else
+                return new(z, y, z, y);
+        }
     }
-    public double4 bgbg
+    public readonly double4 bgbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 2, 1)));
+            else
+                return new(z, y, z, y);
+        }
     }
-    public double4 zyzz
+    public readonly double4 zyzz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 2, 2)));
+            else
+                return new(z, y, z, z);
+        }
     }
-    public double4 bgbb
+    public readonly double4 bgbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 2, 2)));
+            else
+                return new(z, y, z, z);
+        }
     }
-    public double4 zzxx
+    public readonly double4 zzxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 0, 0)));
+            else
+                return new(z, z, x, x);
+        }
     }
-    public double4 bbrr
+    public readonly double4 bbrr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 0, 0)));
+            else
+                return new(z, z, x, x);
+        }
     }
-    public double4 zzxy
+    public readonly double4 zzxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 0, 1)));
+            else
+                return new(z, z, x, y);
+        }
     }
-    public double4 bbrg
+    public readonly double4 bbrg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 0, 1)));
+            else
+                return new(z, z, x, y);
+        }
     }
-    public double4 zzxz
+    public readonly double4 zzxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 0, 2)));
+            else
+                return new(z, z, x, z);
+        }
     }
-    public double4 bbrb
+    public readonly double4 bbrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 0, 2)));
+            else
+                return new(z, z, x, z);
+        }
     }
-    public double4 zzyx
+    public readonly double4 zzyx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 1, 0)));
+            else
+                return new(z, z, y, x);
+        }
     }
-    public double4 bbgr
+    public readonly double4 bbgr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 1, 0)));
+            else
+                return new(z, z, y, x);
+        }
     }
-    public double4 zzyy
+    public readonly double4 zzyy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 1, 1)));
+            else
+                return new(z, z, y, y);
+        }
     }
-    public double4 bbgg
+    public readonly double4 bbgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 1, 1)));
+            else
+                return new(z, z, y, y);
+        }
     }
-    public double4 zzyz
+    public readonly double4 zzyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 1, 2)));
+            else
+                return new(z, z, y, z);
+        }
     }
-    public double4 bbgb
+    public readonly double4 bbgb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 1, 2)));
+            else
+                return new(z, z, y, z);
+        }
     }
-    public double4 zzzx
+    public readonly double4 zzzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 2, 0)));
+            else
+                return new(z, z, z, x);
+        }
     }
-    public double4 bbbr
+    public readonly double4 bbbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 2, 0)));
+            else
+                return new(z, z, z, x);
+        }
     }
-    public double4 zzzy
+    public readonly double4 zzzy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 2, 1)));
+            else
+                return new(z, z, z, y);
+        }
     }
-    public double4 bbbg
+    public readonly double4 bbbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 2, 1)));
+            else
+                return new(z, z, z, y);
+        }
     }
-    public double4 zzzz
+    public readonly double4 zzzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 2, 2)));
+            else
+                return new(z, z, z, z);
+        }
     }
-    public double4 bbbb
+    public readonly double4 bbbb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 2, 2)));
+            else
+                return new(z, z, z, z);
+        }
     }
 }
 
@@ -3262,812 +3586,812 @@ public partial struct double3
 
 public partial struct short3 
 {
-    public short4 xxxx
+    public readonly short4 xxxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, x);
     }
-    public short4 rrrr
+    public readonly short4 rrrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, x);
     }
-    public short4 xxxy
+    public readonly short4 xxxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, y);
     }
-    public short4 rrrg
+    public readonly short4 rrrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, y);
     }
-    public short4 xxxz
+    public readonly short4 xxxz
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, z);
     }
-    public short4 rrrb
+    public readonly short4 rrrb
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, z);
     }
-    public short4 xxyx
+    public readonly short4 xxyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, x);
     }
-    public short4 rrgr
+    public readonly short4 rrgr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, x);
     }
-    public short4 xxyy
+    public readonly short4 xxyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, y);
     }
-    public short4 rrgg
+    public readonly short4 rrgg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, y);
     }
-    public short4 xxyz
+    public readonly short4 xxyz
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, z);
     }
-    public short4 rrgb
+    public readonly short4 rrgb
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, z);
     }
-    public short4 xxzx
+    public readonly short4 xxzx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, x);
     }
-    public short4 rrbr
+    public readonly short4 rrbr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, x);
     }
-    public short4 xxzy
+    public readonly short4 xxzy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, y);
     }
-    public short4 rrbg
+    public readonly short4 rrbg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, y);
     }
-    public short4 xxzz
+    public readonly short4 xxzz
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, z);
     }
-    public short4 rrbb
+    public readonly short4 rrbb
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, z);
     }
-    public short4 xyxx
+    public readonly short4 xyxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, x);
     }
-    public short4 rgrr
+    public readonly short4 rgrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, x);
     }
-    public short4 xyxy
+    public readonly short4 xyxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, y);
     }
-    public short4 rgrg
+    public readonly short4 rgrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, y);
     }
-    public short4 xyxz
+    public readonly short4 xyxz
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, z);
     }
-    public short4 rgrb
+    public readonly short4 rgrb
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, z);
     }
-    public short4 xyyx
+    public readonly short4 xyyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, x);
     }
-    public short4 rggr
+    public readonly short4 rggr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, x);
     }
-    public short4 xyyy
+    public readonly short4 xyyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, y);
     }
-    public short4 rggg
+    public readonly short4 rggg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, y);
     }
-    public short4 xyyz
+    public readonly short4 xyyz
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, z);
     }
-    public short4 rggb
+    public readonly short4 rggb
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, z);
     }
-    public short4 xyzx
+    public readonly short4 xyzx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, x);
     }
-    public short4 rgbr
+    public readonly short4 rgbr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, x);
     }
-    public short4 xyzy
+    public readonly short4 xyzy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, y);
     }
-    public short4 rgbg
+    public readonly short4 rgbg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, y);
     }
-    public short4 xyzz
+    public readonly short4 xyzz
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, z);
     }
-    public short4 rgbb
+    public readonly short4 rgbb
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, z);
     }
-    public short4 xzxx
+    public readonly short4 xzxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, x);
     }
-    public short4 rbrr
+    public readonly short4 rbrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, x);
     }
-    public short4 xzxy
+    public readonly short4 xzxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, y);
     }
-    public short4 rbrg
+    public readonly short4 rbrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, y);
     }
-    public short4 xzxz
+    public readonly short4 xzxz
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, z);
     }
-    public short4 rbrb
+    public readonly short4 rbrb
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, z);
     }
-    public short4 xzyx
+    public readonly short4 xzyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, x);
     }
-    public short4 rbgr
+    public readonly short4 rbgr
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, x);
     }
-    public short4 xzyy
+    public readonly short4 xzyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, y);
     }
-    public short4 rbgg
+    public readonly short4 rbgg
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, y);
     }
-    public short4 xzyz
+    public readonly short4 xzyz
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, z);
     }
-    public short4 rbgb
+    public readonly short4 rbgb
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, z);
     }
-    public short4 xzzx
+    public readonly short4 xzzx
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, x);
     }
-    public short4 rbbr
+    public readonly short4 rbbr
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, x);
     }
-    public short4 xzzy
+    public readonly short4 xzzy
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, y);
     }
-    public short4 rbbg
+    public readonly short4 rbbg
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, y);
     }
-    public short4 xzzz
+    public readonly short4 xzzz
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, z);
     }
-    public short4 rbbb
+    public readonly short4 rbbb
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, z);
     }
-    public short4 yxxx
+    public readonly short4 yxxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, x);
     }
-    public short4 grrr
+    public readonly short4 grrr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, x);
     }
-    public short4 yxxy
+    public readonly short4 yxxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, y);
     }
-    public short4 grrg
+    public readonly short4 grrg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, y);
     }
-    public short4 yxxz
+    public readonly short4 yxxz
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, z);
     }
-    public short4 grrb
+    public readonly short4 grrb
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, z);
     }
-    public short4 yxyx
+    public readonly short4 yxyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, x);
     }
-    public short4 grgr
+    public readonly short4 grgr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, x);
     }
-    public short4 yxyy
+    public readonly short4 yxyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, y);
     }
-    public short4 grgg
+    public readonly short4 grgg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, y);
     }
-    public short4 yxyz
+    public readonly short4 yxyz
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, z);
     }
-    public short4 grgb
+    public readonly short4 grgb
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, z);
     }
-    public short4 yxzx
+    public readonly short4 yxzx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, x);
     }
-    public short4 grbr
+    public readonly short4 grbr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, x);
     }
-    public short4 yxzy
+    public readonly short4 yxzy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, y);
     }
-    public short4 grbg
+    public readonly short4 grbg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, y);
     }
-    public short4 yxzz
+    public readonly short4 yxzz
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, z);
     }
-    public short4 grbb
+    public readonly short4 grbb
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, z);
     }
-    public short4 yyxx
+    public readonly short4 yyxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, x);
     }
-    public short4 ggrr
+    public readonly short4 ggrr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, x);
     }
-    public short4 yyxy
+    public readonly short4 yyxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, y);
     }
-    public short4 ggrg
+    public readonly short4 ggrg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, y);
     }
-    public short4 yyxz
+    public readonly short4 yyxz
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, z);
     }
-    public short4 ggrb
+    public readonly short4 ggrb
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, z);
     }
-    public short4 yyyx
+    public readonly short4 yyyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, x);
     }
-    public short4 gggr
+    public readonly short4 gggr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, x);
     }
-    public short4 yyyy
+    public readonly short4 yyyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, y);
     }
-    public short4 gggg
+    public readonly short4 gggg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, y);
     }
-    public short4 yyyz
+    public readonly short4 yyyz
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, z);
     }
-    public short4 gggb
+    public readonly short4 gggb
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, z);
     }
-    public short4 yyzx
+    public readonly short4 yyzx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, x);
     }
-    public short4 ggbr
+    public readonly short4 ggbr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, x);
     }
-    public short4 yyzy
+    public readonly short4 yyzy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, y);
     }
-    public short4 ggbg
+    public readonly short4 ggbg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, y);
     }
-    public short4 yyzz
+    public readonly short4 yyzz
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, z);
     }
-    public short4 ggbb
+    public readonly short4 ggbb
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, z);
     }
-    public short4 yzxx
+    public readonly short4 yzxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, x);
     }
-    public short4 gbrr
+    public readonly short4 gbrr
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, x);
     }
-    public short4 yzxy
+    public readonly short4 yzxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, y);
     }
-    public short4 gbrg
+    public readonly short4 gbrg
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, y);
     }
-    public short4 yzxz
+    public readonly short4 yzxz
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, z);
     }
-    public short4 gbrb
+    public readonly short4 gbrb
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, z);
     }
-    public short4 yzyx
+    public readonly short4 yzyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, x);
     }
-    public short4 gbgr
+    public readonly short4 gbgr
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, x);
     }
-    public short4 yzyy
+    public readonly short4 yzyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, y);
     }
-    public short4 gbgg
+    public readonly short4 gbgg
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, y);
     }
-    public short4 yzyz
+    public readonly short4 yzyz
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, z);
     }
-    public short4 gbgb
+    public readonly short4 gbgb
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, z);
     }
-    public short4 yzzx
+    public readonly short4 yzzx
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, x);
     }
-    public short4 gbbr
+    public readonly short4 gbbr
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, x);
     }
-    public short4 yzzy
+    public readonly short4 yzzy
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, y);
     }
-    public short4 gbbg
+    public readonly short4 gbbg
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, y);
     }
-    public short4 yzzz
+    public readonly short4 yzzz
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, z);
     }
-    public short4 gbbb
+    public readonly short4 gbbb
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, z);
     }
-    public short4 zxxx
+    public readonly short4 zxxx
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, x);
     }
-    public short4 brrr
+    public readonly short4 brrr
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, x);
     }
-    public short4 zxxy
+    public readonly short4 zxxy
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, y);
     }
-    public short4 brrg
+    public readonly short4 brrg
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, y);
     }
-    public short4 zxxz
+    public readonly short4 zxxz
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, z);
     }
-    public short4 brrb
+    public readonly short4 brrb
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, z);
     }
-    public short4 zxyx
+    public readonly short4 zxyx
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, x);
     }
-    public short4 brgr
+    public readonly short4 brgr
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, x);
     }
-    public short4 zxyy
+    public readonly short4 zxyy
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, y);
     }
-    public short4 brgg
+    public readonly short4 brgg
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, y);
     }
-    public short4 zxyz
+    public readonly short4 zxyz
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, z);
     }
-    public short4 brgb
+    public readonly short4 brgb
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, z);
     }
-    public short4 zxzx
+    public readonly short4 zxzx
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, x);
     }
-    public short4 brbr
+    public readonly short4 brbr
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, x);
     }
-    public short4 zxzy
+    public readonly short4 zxzy
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, y);
     }
-    public short4 brbg
+    public readonly short4 brbg
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, y);
     }
-    public short4 zxzz
+    public readonly short4 zxzz
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, z);
     }
-    public short4 brbb
+    public readonly short4 brbb
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, z);
     }
-    public short4 zyxx
+    public readonly short4 zyxx
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, x);
     }
-    public short4 bgrr
+    public readonly short4 bgrr
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, x);
     }
-    public short4 zyxy
+    public readonly short4 zyxy
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, y);
     }
-    public short4 bgrg
+    public readonly short4 bgrg
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, y);
     }
-    public short4 zyxz
+    public readonly short4 zyxz
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, z);
     }
-    public short4 bgrb
+    public readonly short4 bgrb
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, z);
     }
-    public short4 zyyx
+    public readonly short4 zyyx
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, x);
     }
-    public short4 bggr
+    public readonly short4 bggr
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, x);
     }
-    public short4 zyyy
+    public readonly short4 zyyy
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, y);
     }
-    public short4 bggg
+    public readonly short4 bggg
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, y);
     }
-    public short4 zyyz
+    public readonly short4 zyyz
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, z);
     }
-    public short4 bggb
+    public readonly short4 bggb
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, z);
     }
-    public short4 zyzx
+    public readonly short4 zyzx
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, x);
     }
-    public short4 bgbr
+    public readonly short4 bgbr
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, x);
     }
-    public short4 zyzy
+    public readonly short4 zyzy
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, y);
     }
-    public short4 bgbg
+    public readonly short4 bgbg
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, y);
     }
-    public short4 zyzz
+    public readonly short4 zyzz
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, z);
     }
-    public short4 bgbb
+    public readonly short4 bgbb
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, z);
     }
-    public short4 zzxx
+    public readonly short4 zzxx
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, x);
     }
-    public short4 bbrr
+    public readonly short4 bbrr
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, x);
     }
-    public short4 zzxy
+    public readonly short4 zzxy
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, y);
     }
-    public short4 bbrg
+    public readonly short4 bbrg
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, y);
     }
-    public short4 zzxz
+    public readonly short4 zzxz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, z);
     }
-    public short4 bbrb
+    public readonly short4 bbrb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, z);
     }
-    public short4 zzyx
+    public readonly short4 zzyx
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, x);
     }
-    public short4 bbgr
+    public readonly short4 bbgr
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, x);
     }
-    public short4 zzyy
+    public readonly short4 zzyy
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, y);
     }
-    public short4 bbgg
+    public readonly short4 bbgg
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, y);
     }
-    public short4 zzyz
+    public readonly short4 zzyz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, z);
     }
-    public short4 bbgb
+    public readonly short4 bbgb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, z);
     }
-    public short4 zzzx
+    public readonly short4 zzzx
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, x);
     }
-    public short4 bbbr
+    public readonly short4 bbbr
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, x);
     }
-    public short4 zzzy
+    public readonly short4 zzzy
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, y);
     }
-    public short4 bbbg
+    public readonly short4 bbbg
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, y);
     }
-    public short4 zzzz
+    public readonly short4 zzzz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, z);
     }
-    public short4 bbbb
+    public readonly short4 bbbb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, z);
@@ -4080,812 +4404,812 @@ public partial struct short3
 
 public partial struct ushort3 
 {
-    public ushort4 xxxx
+    public readonly ushort4 xxxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, x);
     }
-    public ushort4 rrrr
+    public readonly ushort4 rrrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, x);
     }
-    public ushort4 xxxy
+    public readonly ushort4 xxxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, y);
     }
-    public ushort4 rrrg
+    public readonly ushort4 rrrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, y);
     }
-    public ushort4 xxxz
+    public readonly ushort4 xxxz
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, z);
     }
-    public ushort4 rrrb
+    public readonly ushort4 rrrb
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, z);
     }
-    public ushort4 xxyx
+    public readonly ushort4 xxyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, x);
     }
-    public ushort4 rrgr
+    public readonly ushort4 rrgr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, x);
     }
-    public ushort4 xxyy
+    public readonly ushort4 xxyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, y);
     }
-    public ushort4 rrgg
+    public readonly ushort4 rrgg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, y);
     }
-    public ushort4 xxyz
+    public readonly ushort4 xxyz
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, z);
     }
-    public ushort4 rrgb
+    public readonly ushort4 rrgb
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, z);
     }
-    public ushort4 xxzx
+    public readonly ushort4 xxzx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, x);
     }
-    public ushort4 rrbr
+    public readonly ushort4 rrbr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, x);
     }
-    public ushort4 xxzy
+    public readonly ushort4 xxzy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, y);
     }
-    public ushort4 rrbg
+    public readonly ushort4 rrbg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, y);
     }
-    public ushort4 xxzz
+    public readonly ushort4 xxzz
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, z);
     }
-    public ushort4 rrbb
+    public readonly ushort4 rrbb
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, z);
     }
-    public ushort4 xyxx
+    public readonly ushort4 xyxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, x);
     }
-    public ushort4 rgrr
+    public readonly ushort4 rgrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, x);
     }
-    public ushort4 xyxy
+    public readonly ushort4 xyxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, y);
     }
-    public ushort4 rgrg
+    public readonly ushort4 rgrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, y);
     }
-    public ushort4 xyxz
+    public readonly ushort4 xyxz
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, z);
     }
-    public ushort4 rgrb
+    public readonly ushort4 rgrb
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, z);
     }
-    public ushort4 xyyx
+    public readonly ushort4 xyyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, x);
     }
-    public ushort4 rggr
+    public readonly ushort4 rggr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, x);
     }
-    public ushort4 xyyy
+    public readonly ushort4 xyyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, y);
     }
-    public ushort4 rggg
+    public readonly ushort4 rggg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, y);
     }
-    public ushort4 xyyz
+    public readonly ushort4 xyyz
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, z);
     }
-    public ushort4 rggb
+    public readonly ushort4 rggb
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, z);
     }
-    public ushort4 xyzx
+    public readonly ushort4 xyzx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, x);
     }
-    public ushort4 rgbr
+    public readonly ushort4 rgbr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, x);
     }
-    public ushort4 xyzy
+    public readonly ushort4 xyzy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, y);
     }
-    public ushort4 rgbg
+    public readonly ushort4 rgbg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, y);
     }
-    public ushort4 xyzz
+    public readonly ushort4 xyzz
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, z);
     }
-    public ushort4 rgbb
+    public readonly ushort4 rgbb
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, z);
     }
-    public ushort4 xzxx
+    public readonly ushort4 xzxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, x);
     }
-    public ushort4 rbrr
+    public readonly ushort4 rbrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, x);
     }
-    public ushort4 xzxy
+    public readonly ushort4 xzxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, y);
     }
-    public ushort4 rbrg
+    public readonly ushort4 rbrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, y);
     }
-    public ushort4 xzxz
+    public readonly ushort4 xzxz
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, z);
     }
-    public ushort4 rbrb
+    public readonly ushort4 rbrb
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, z);
     }
-    public ushort4 xzyx
+    public readonly ushort4 xzyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, x);
     }
-    public ushort4 rbgr
+    public readonly ushort4 rbgr
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, x);
     }
-    public ushort4 xzyy
+    public readonly ushort4 xzyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, y);
     }
-    public ushort4 rbgg
+    public readonly ushort4 rbgg
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, y);
     }
-    public ushort4 xzyz
+    public readonly ushort4 xzyz
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, z);
     }
-    public ushort4 rbgb
+    public readonly ushort4 rbgb
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, z);
     }
-    public ushort4 xzzx
+    public readonly ushort4 xzzx
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, x);
     }
-    public ushort4 rbbr
+    public readonly ushort4 rbbr
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, x);
     }
-    public ushort4 xzzy
+    public readonly ushort4 xzzy
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, y);
     }
-    public ushort4 rbbg
+    public readonly ushort4 rbbg
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, y);
     }
-    public ushort4 xzzz
+    public readonly ushort4 xzzz
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, z);
     }
-    public ushort4 rbbb
+    public readonly ushort4 rbbb
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, z);
     }
-    public ushort4 yxxx
+    public readonly ushort4 yxxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, x);
     }
-    public ushort4 grrr
+    public readonly ushort4 grrr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, x);
     }
-    public ushort4 yxxy
+    public readonly ushort4 yxxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, y);
     }
-    public ushort4 grrg
+    public readonly ushort4 grrg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, y);
     }
-    public ushort4 yxxz
+    public readonly ushort4 yxxz
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, z);
     }
-    public ushort4 grrb
+    public readonly ushort4 grrb
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, z);
     }
-    public ushort4 yxyx
+    public readonly ushort4 yxyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, x);
     }
-    public ushort4 grgr
+    public readonly ushort4 grgr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, x);
     }
-    public ushort4 yxyy
+    public readonly ushort4 yxyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, y);
     }
-    public ushort4 grgg
+    public readonly ushort4 grgg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, y);
     }
-    public ushort4 yxyz
+    public readonly ushort4 yxyz
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, z);
     }
-    public ushort4 grgb
+    public readonly ushort4 grgb
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, z);
     }
-    public ushort4 yxzx
+    public readonly ushort4 yxzx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, x);
     }
-    public ushort4 grbr
+    public readonly ushort4 grbr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, x);
     }
-    public ushort4 yxzy
+    public readonly ushort4 yxzy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, y);
     }
-    public ushort4 grbg
+    public readonly ushort4 grbg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, y);
     }
-    public ushort4 yxzz
+    public readonly ushort4 yxzz
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, z);
     }
-    public ushort4 grbb
+    public readonly ushort4 grbb
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, z);
     }
-    public ushort4 yyxx
+    public readonly ushort4 yyxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, x);
     }
-    public ushort4 ggrr
+    public readonly ushort4 ggrr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, x);
     }
-    public ushort4 yyxy
+    public readonly ushort4 yyxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, y);
     }
-    public ushort4 ggrg
+    public readonly ushort4 ggrg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, y);
     }
-    public ushort4 yyxz
+    public readonly ushort4 yyxz
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, z);
     }
-    public ushort4 ggrb
+    public readonly ushort4 ggrb
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, z);
     }
-    public ushort4 yyyx
+    public readonly ushort4 yyyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, x);
     }
-    public ushort4 gggr
+    public readonly ushort4 gggr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, x);
     }
-    public ushort4 yyyy
+    public readonly ushort4 yyyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, y);
     }
-    public ushort4 gggg
+    public readonly ushort4 gggg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, y);
     }
-    public ushort4 yyyz
+    public readonly ushort4 yyyz
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, z);
     }
-    public ushort4 gggb
+    public readonly ushort4 gggb
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, z);
     }
-    public ushort4 yyzx
+    public readonly ushort4 yyzx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, x);
     }
-    public ushort4 ggbr
+    public readonly ushort4 ggbr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, x);
     }
-    public ushort4 yyzy
+    public readonly ushort4 yyzy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, y);
     }
-    public ushort4 ggbg
+    public readonly ushort4 ggbg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, y);
     }
-    public ushort4 yyzz
+    public readonly ushort4 yyzz
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, z);
     }
-    public ushort4 ggbb
+    public readonly ushort4 ggbb
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, z);
     }
-    public ushort4 yzxx
+    public readonly ushort4 yzxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, x);
     }
-    public ushort4 gbrr
+    public readonly ushort4 gbrr
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, x);
     }
-    public ushort4 yzxy
+    public readonly ushort4 yzxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, y);
     }
-    public ushort4 gbrg
+    public readonly ushort4 gbrg
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, y);
     }
-    public ushort4 yzxz
+    public readonly ushort4 yzxz
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, z);
     }
-    public ushort4 gbrb
+    public readonly ushort4 gbrb
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, z);
     }
-    public ushort4 yzyx
+    public readonly ushort4 yzyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, x);
     }
-    public ushort4 gbgr
+    public readonly ushort4 gbgr
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, x);
     }
-    public ushort4 yzyy
+    public readonly ushort4 yzyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, y);
     }
-    public ushort4 gbgg
+    public readonly ushort4 gbgg
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, y);
     }
-    public ushort4 yzyz
+    public readonly ushort4 yzyz
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, z);
     }
-    public ushort4 gbgb
+    public readonly ushort4 gbgb
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, z);
     }
-    public ushort4 yzzx
+    public readonly ushort4 yzzx
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, x);
     }
-    public ushort4 gbbr
+    public readonly ushort4 gbbr
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, x);
     }
-    public ushort4 yzzy
+    public readonly ushort4 yzzy
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, y);
     }
-    public ushort4 gbbg
+    public readonly ushort4 gbbg
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, y);
     }
-    public ushort4 yzzz
+    public readonly ushort4 yzzz
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, z);
     }
-    public ushort4 gbbb
+    public readonly ushort4 gbbb
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, z);
     }
-    public ushort4 zxxx
+    public readonly ushort4 zxxx
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, x);
     }
-    public ushort4 brrr
+    public readonly ushort4 brrr
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, x);
     }
-    public ushort4 zxxy
+    public readonly ushort4 zxxy
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, y);
     }
-    public ushort4 brrg
+    public readonly ushort4 brrg
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, y);
     }
-    public ushort4 zxxz
+    public readonly ushort4 zxxz
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, z);
     }
-    public ushort4 brrb
+    public readonly ushort4 brrb
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, z);
     }
-    public ushort4 zxyx
+    public readonly ushort4 zxyx
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, x);
     }
-    public ushort4 brgr
+    public readonly ushort4 brgr
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, x);
     }
-    public ushort4 zxyy
+    public readonly ushort4 zxyy
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, y);
     }
-    public ushort4 brgg
+    public readonly ushort4 brgg
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, y);
     }
-    public ushort4 zxyz
+    public readonly ushort4 zxyz
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, z);
     }
-    public ushort4 brgb
+    public readonly ushort4 brgb
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, z);
     }
-    public ushort4 zxzx
+    public readonly ushort4 zxzx
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, x);
     }
-    public ushort4 brbr
+    public readonly ushort4 brbr
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, x);
     }
-    public ushort4 zxzy
+    public readonly ushort4 zxzy
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, y);
     }
-    public ushort4 brbg
+    public readonly ushort4 brbg
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, y);
     }
-    public ushort4 zxzz
+    public readonly ushort4 zxzz
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, z);
     }
-    public ushort4 brbb
+    public readonly ushort4 brbb
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, z);
     }
-    public ushort4 zyxx
+    public readonly ushort4 zyxx
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, x);
     }
-    public ushort4 bgrr
+    public readonly ushort4 bgrr
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, x);
     }
-    public ushort4 zyxy
+    public readonly ushort4 zyxy
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, y);
     }
-    public ushort4 bgrg
+    public readonly ushort4 bgrg
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, y);
     }
-    public ushort4 zyxz
+    public readonly ushort4 zyxz
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, z);
     }
-    public ushort4 bgrb
+    public readonly ushort4 bgrb
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, z);
     }
-    public ushort4 zyyx
+    public readonly ushort4 zyyx
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, x);
     }
-    public ushort4 bggr
+    public readonly ushort4 bggr
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, x);
     }
-    public ushort4 zyyy
+    public readonly ushort4 zyyy
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, y);
     }
-    public ushort4 bggg
+    public readonly ushort4 bggg
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, y);
     }
-    public ushort4 zyyz
+    public readonly ushort4 zyyz
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, z);
     }
-    public ushort4 bggb
+    public readonly ushort4 bggb
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, z);
     }
-    public ushort4 zyzx
+    public readonly ushort4 zyzx
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, x);
     }
-    public ushort4 bgbr
+    public readonly ushort4 bgbr
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, x);
     }
-    public ushort4 zyzy
+    public readonly ushort4 zyzy
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, y);
     }
-    public ushort4 bgbg
+    public readonly ushort4 bgbg
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, y);
     }
-    public ushort4 zyzz
+    public readonly ushort4 zyzz
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, z);
     }
-    public ushort4 bgbb
+    public readonly ushort4 bgbb
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, z);
     }
-    public ushort4 zzxx
+    public readonly ushort4 zzxx
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, x);
     }
-    public ushort4 bbrr
+    public readonly ushort4 bbrr
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, x);
     }
-    public ushort4 zzxy
+    public readonly ushort4 zzxy
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, y);
     }
-    public ushort4 bbrg
+    public readonly ushort4 bbrg
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, y);
     }
-    public ushort4 zzxz
+    public readonly ushort4 zzxz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, z);
     }
-    public ushort4 bbrb
+    public readonly ushort4 bbrb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, z);
     }
-    public ushort4 zzyx
+    public readonly ushort4 zzyx
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, x);
     }
-    public ushort4 bbgr
+    public readonly ushort4 bbgr
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, x);
     }
-    public ushort4 zzyy
+    public readonly ushort4 zzyy
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, y);
     }
-    public ushort4 bbgg
+    public readonly ushort4 bbgg
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, y);
     }
-    public ushort4 zzyz
+    public readonly ushort4 zzyz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, z);
     }
-    public ushort4 bbgb
+    public readonly ushort4 bbgb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, z);
     }
-    public ushort4 zzzx
+    public readonly ushort4 zzzx
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, x);
     }
-    public ushort4 bbbr
+    public readonly ushort4 bbbr
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, x);
     }
-    public ushort4 zzzy
+    public readonly ushort4 zzzy
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, y);
     }
-    public ushort4 bbbg
+    public readonly ushort4 bbbg
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, y);
     }
-    public ushort4 zzzz
+    public readonly ushort4 zzzz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, z);
     }
-    public ushort4 bbbb
+    public readonly ushort4 bbbb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, z);
@@ -4898,1625 +5222,1787 @@ public partial struct ushort3
 
 public partial struct int3 
 {
-    public int4 xxxx
+    public readonly int4 xxxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 0, 0)));
+            else
+                return new(x, x, x, x);
+        }
     }
-    public int4 rrrr
+    public readonly int4 rrrr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 0, 0)));
+            else
+                return new(x, x, x, x);
+        }
     }
-    public int4 xxxy
+    public readonly int4 xxxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 0, 1)));
+            else
+                return new(x, x, x, y);
+        }
     }
-    public int4 rrrg
+    public readonly int4 rrrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 0, 1)));
+            else
+                return new(x, x, x, y);
+        }
     }
-    public int4 xxxz
+    public readonly int4 xxxz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 0, 2)));
+            else
+                return new(x, x, x, z);
+        }
     }
-    public int4 rrrb
+    public readonly int4 rrrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 0, 2)));
+            else
+                return new(x, x, x, z);
+        }
     }
-    public int4 xxyx
+    public readonly int4 xxyx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 1, 0)));
+            else
+                return new(x, x, y, x);
+        }
     }
-    public int4 rrgr
+    public readonly int4 rrgr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 1, 0)));
+            else
+                return new(x, x, y, x);
+        }
     }
-    public int4 xxyy
+    public readonly int4 xxyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 1, 1)));
+            else
+                return new(x, x, y, y);
+        }
     }
-    public int4 rrgg
+    public readonly int4 rrgg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 1, 1)));
+            else
+                return new(x, x, y, y);
+        }
     }
-    public int4 xxyz
+    public readonly int4 xxyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 1, 2)));
+            else
+                return new(x, x, y, z);
+        }
     }
-    public int4 rrgb
+    public readonly int4 rrgb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 1, 2)));
+            else
+                return new(x, x, y, z);
+        }
     }
-    public int4 xxzx
+    public readonly int4 xxzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 2, 0)));
+            else
+                return new(x, x, z, x);
+        }
     }
-    public int4 rrbr
+    public readonly int4 rrbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 2, 0)));
+            else
+                return new(x, x, z, x);
+        }
     }
-    public int4 xxzy
+    public readonly int4 xxzy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 2, 1)));
+            else
+                return new(x, x, z, y);
+        }
     }
-    public int4 rrbg
+    public readonly int4 rrbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 2, 1)));
+            else
+                return new(x, x, z, y);
+        }
     }
-    public int4 xxzz
+    public readonly int4 xxzz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 2, 2)));
+            else
+                return new(x, x, z, z);
+        }
     }
-    public int4 rrbb
+    public readonly int4 rrbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 0, 2, 2)));
+            else
+                return new(x, x, z, z);
+        }
     }
-    public int4 xyxx
+    public readonly int4 xyxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 0, 0)));
+            else
+                return new(x, y, x, x);
+        }
     }
-    public int4 rgrr
+    public readonly int4 rgrr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 0, 0)));
+            else
+                return new(x, y, x, x);
+        }
     }
-    public int4 xyxy
+    public readonly int4 xyxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 0, 1)));
+            else
+                return new(x, y, x, y);
+        }
     }
-    public int4 rgrg
+    public readonly int4 rgrg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 0, 1)));
+            else
+                return new(x, y, x, y);
+        }
     }
-    public int4 xyxz
+    public readonly int4 xyxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 0, 2)));
+            else
+                return new(x, y, x, z);
+        }
     }
-    public int4 rgrb
+    public readonly int4 rgrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 0, 2)));
+            else
+                return new(x, y, x, z);
+        }
     }
-    public int4 xyyx
+    public readonly int4 xyyx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 1, 0)));
+            else
+                return new(x, y, y, x);
+        }
     }
-    public int4 rggr
+    public readonly int4 rggr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 1, 0)));
+            else
+                return new(x, y, y, x);
+        }
     }
-    public int4 xyyy
+    public readonly int4 xyyy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 1, 1)));
+            else
+                return new(x, y, y, y);
+        }
     }
-    public int4 rggg
+    public readonly int4 rggg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 1, 1)));
+            else
+                return new(x, y, y, y);
+        }
     }
-    public int4 xyyz
+    public readonly int4 xyyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 1, 2)));
+            else
+                return new(x, y, y, z);
+        }
     }
-    public int4 rggb
+    public readonly int4 rggb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 1, 2)));
+            else
+                return new(x, y, y, z);
+        }
     }
-    public int4 xyzx
+    public readonly int4 xyzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 2, 0)));
+            else
+                return new(x, y, z, x);
+        }
     }
-    public int4 rgbr
+    public readonly int4 rgbr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 2, 0)));
+            else
+                return new(x, y, z, x);
+        }
     }
-    public int4 xyzy
+    public readonly int4 xyzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 2, 1)));
+            else
+                return new(x, y, z, y);
+        }
     }
-    public int4 rgbg
+    public readonly int4 rgbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 2, 1)));
+            else
+                return new(x, y, z, y);
+        }
     }
-    public int4 xyzz
+    public readonly int4 xyzz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 2, 2)));
+            else
+                return new(x, y, z, z);
+        }
     }
-    public int4 rgbb
+    public readonly int4 rgbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 1, 2, 2)));
+            else
+                return new(x, y, z, z);
+        }
     }
-    public int4 xzxx
+    public readonly int4 xzxx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 0, 0)));
+            else
+                return new(x, z, x, x);
+        }
     }
-    public int4 rbrr
+    public readonly int4 rbrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 0, 0)));
+            else
+                return new(x, z, x, x);
+        }
     }
-    public int4 xzxy
+    public readonly int4 xzxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 0, 1)));
+            else
+                return new(x, z, x, y);
+        }
     }
-    public int4 rbrg
+    public readonly int4 rbrg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 0, 1)));
+            else
+                return new(x, z, x, y);
+        }
     }
-    public int4 xzxz
+    public readonly int4 xzxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 0, 2)));
+            else
+                return new(x, z, x, z);
+        }
     }
-    public int4 rbrb
+    public readonly int4 rbrb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 0, 2)));
+            else
+                return new(x, z, x, z);
+        }
     }
-    public int4 xzyx
+    public readonly int4 xzyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 1, 0)));
+            else
+                return new(x, z, y, x);
+        }
     }
-    public int4 rbgr
+    public readonly int4 rbgr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 1, 0)));
+            else
+                return new(x, z, y, x);
+        }
     }
-    public int4 xzyy
+    public readonly int4 xzyy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 1, 1)));
+            else
+                return new(x, z, y, y);
+        }
     }
-    public int4 rbgg
+    public readonly int4 rbgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 1, 1)));
+            else
+                return new(x, z, y, y);
+        }
     }
-    public int4 xzyz
+    public readonly int4 xzyz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 1, 2)));
+            else
+                return new(x, z, y, z);
+        }
     }
-    public int4 rbgb
+    public readonly int4 rbgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 1, 2)));
+            else
+                return new(x, z, y, z);
+        }
     }
-    public int4 xzzx
+    public readonly int4 xzzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 2, 0)));
+            else
+                return new(x, z, z, x);
+        }
     }
-    public int4 rbbr
+    public readonly int4 rbbr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 2, 0)));
+            else
+                return new(x, z, z, x);
+        }
     }
-    public int4 xzzy
+    public readonly int4 xzzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 2, 1)));
+            else
+                return new(x, z, z, y);
+        }
     }
-    public int4 rbbg
+    public readonly int4 rbbg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 2, 1)));
+            else
+                return new(x, z, z, y);
+        }
     }
-    public int4 xzzz
+    public readonly int4 xzzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 2, 2)));
+            else
+                return new(x, z, z, z);
+        }
     }
-    public int4 rbbb
+    public readonly int4 rbbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(0, 2, 2, 2)));
+            else
+                return new(x, z, z, z);
+        }
     }
-    public int4 yxxx
+    public readonly int4 yxxx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 0, 0)));
+            else
+                return new(y, x, x, x);
+        }
     }
-    public int4 grrr
+    public readonly int4 grrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 0, 0)));
+            else
+                return new(y, x, x, x);
+        }
     }
-    public int4 yxxy
+    public readonly int4 yxxy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 0, 1)));
+            else
+                return new(y, x, x, y);
+        }
     }
-    public int4 grrg
+    public readonly int4 grrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 0, 1)));
+            else
+                return new(y, x, x, y);
+        }
     }
-    public int4 yxxz
+    public readonly int4 yxxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 0, 2)));
+            else
+                return new(y, x, x, z);
+        }
     }
-    public int4 grrb
+    public readonly int4 grrb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 0, 2)));
+            else
+                return new(y, x, x, z);
+        }
     }
-    public int4 yxyx
+    public readonly int4 yxyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 1, 0)));
+            else
+                return new(y, x, y, x);
+        }
     }
-    public int4 grgr
+    public readonly int4 grgr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 1, 0)));
+            else
+                return new(y, x, y, x);
+        }
     }
-    public int4 yxyy
+    public readonly int4 yxyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 1, 1)));
+            else
+                return new(y, x, y, y);
+        }
     }
-    public int4 grgg
+    public readonly int4 grgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 1, 1)));
+            else
+                return new(y, x, y, y);
+        }
     }
-    public int4 yxyz
+    public readonly int4 yxyz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 1, 2)));
+            else
+                return new(y, x, y, z);
+        }
     }
-    public int4 grgb
+    public readonly int4 grgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 1, 2)));
+            else
+                return new(y, x, y, z);
+        }
     }
-    public int4 yxzx
+    public readonly int4 yxzx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 2, 0)));
+            else
+                return new(y, x, z, x);
+        }
     }
-    public int4 grbr
+    public readonly int4 grbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 2, 0)));
+            else
+                return new(y, x, z, x);
+        }
     }
-    public int4 yxzy
+    public readonly int4 yxzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 2, 1)));
+            else
+                return new(y, x, z, y);
+        }
     }
-    public int4 grbg
+    public readonly int4 grbg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 2, 1)));
+            else
+                return new(y, x, z, y);
+        }
     }
-    public int4 yxzz
+    public readonly int4 yxzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 2, 2)));
+            else
+                return new(y, x, z, z);
+        }
     }
-    public int4 grbb
+    public readonly int4 grbb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 0, 2, 2)));
+            else
+                return new(y, x, z, z);
+        }
     }
-    public int4 yyxx
+    public readonly int4 yyxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 0, 0)));
+            else
+                return new(y, y, x, x);
+        }
     }
-    public int4 ggrr
+    public readonly int4 ggrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 0, 0)));
+            else
+                return new(y, y, x, x);
+        }
     }
-    public int4 yyxy
+    public readonly int4 yyxy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 0, 1)));
+            else
+                return new(y, y, x, y);
+        }
     }
-    public int4 ggrg
+    public readonly int4 ggrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 0, 1)));
+            else
+                return new(y, y, x, y);
+        }
     }
-    public int4 yyxz
+    public readonly int4 yyxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 0, 2)));
+            else
+                return new(y, y, x, z);
+        }
     }
-    public int4 ggrb
+    public readonly int4 ggrb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 0, 2)));
+            else
+                return new(y, y, x, z);
+        }
     }
-    public int4 yyyx
+    public readonly int4 yyyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 1, 0)));
+            else
+                return new(y, y, y, x);
+        }
     }
-    public int4 gggr
+    public readonly int4 gggr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 1, 0)));
+            else
+                return new(y, y, y, x);
+        }
     }
-    public int4 yyyy
+    public readonly int4 yyyy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 1, 1)));
+            else
+                return new(y, y, y, y);
+        }
     }
-    public int4 gggg
+    public readonly int4 gggg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 1, 1)));
+            else
+                return new(y, y, y, y);
+        }
     }
-    public int4 yyyz
+    public readonly int4 yyyz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 1, 2)));
+            else
+                return new(y, y, y, z);
+        }
     }
-    public int4 gggb
+    public readonly int4 gggb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 1, 2)));
+            else
+                return new(y, y, y, z);
+        }
     }
-    public int4 yyzx
+    public readonly int4 yyzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 2, 0)));
+            else
+                return new(y, y, z, x);
+        }
     }
-    public int4 ggbr
+    public readonly int4 ggbr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 2, 0)));
+            else
+                return new(y, y, z, x);
+        }
     }
-    public int4 yyzy
+    public readonly int4 yyzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 2, 1)));
+            else
+                return new(y, y, z, y);
+        }
     }
-    public int4 ggbg
+    public readonly int4 ggbg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 2, 1)));
+            else
+                return new(y, y, z, y);
+        }
     }
-    public int4 yyzz
+    public readonly int4 yyzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 2, 2)));
+            else
+                return new(y, y, z, z);
+        }
     }
-    public int4 ggbb
+    public readonly int4 ggbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 1, 2, 2)));
+            else
+                return new(y, y, z, z);
+        }
     }
-    public int4 yzxx
+    public readonly int4 yzxx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 0, 0)));
+            else
+                return new(y, z, x, x);
+        }
     }
-    public int4 gbrr
+    public readonly int4 gbrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 0, 0)));
+            else
+                return new(y, z, x, x);
+        }
     }
-    public int4 yzxy
+    public readonly int4 yzxy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 0, 1)));
+            else
+                return new(y, z, x, y);
+        }
     }
-    public int4 gbrg
+    public readonly int4 gbrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 0, 1)));
+            else
+                return new(y, z, x, y);
+        }
     }
-    public int4 yzxz
+    public readonly int4 yzxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 0, 2)));
+            else
+                return new(y, z, x, z);
+        }
     }
-    public int4 gbrb
+    public readonly int4 gbrb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 0, 2)));
+            else
+                return new(y, z, x, z);
+        }
     }
-    public int4 yzyx
+    public readonly int4 yzyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 1, 0)));
+            else
+                return new(y, z, y, x);
+        }
     }
-    public int4 gbgr
+    public readonly int4 gbgr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 1, 0)));
+            else
+                return new(y, z, y, x);
+        }
     }
-    public int4 yzyy
+    public readonly int4 yzyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 1, 1)));
+            else
+                return new(y, z, y, y);
+        }
     }
-    public int4 gbgg
+    public readonly int4 gbgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 1, 1)));
+            else
+                return new(y, z, y, y);
+        }
     }
-    public int4 yzyz
+    public readonly int4 yzyz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 1, 2)));
+            else
+                return new(y, z, y, z);
+        }
     }
-    public int4 gbgb
+    public readonly int4 gbgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 1, 2)));
+            else
+                return new(y, z, y, z);
+        }
     }
-    public int4 yzzx
+    public readonly int4 yzzx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 2, 0)));
+            else
+                return new(y, z, z, x);
+        }
     }
-    public int4 gbbr
+    public readonly int4 gbbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 2, 0)));
+            else
+                return new(y, z, z, x);
+        }
     }
-    public int4 yzzy
+    public readonly int4 yzzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 2, 1)));
+            else
+                return new(y, z, z, y);
+        }
     }
-    public int4 gbbg
+    public readonly int4 gbbg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 2, 1)));
+            else
+                return new(y, z, z, y);
+        }
     }
-    public int4 yzzz
+    public readonly int4 yzzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 2, 2)));
+            else
+                return new(y, z, z, z);
+        }
     }
-    public int4 gbbb
+    public readonly int4 gbbb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(1, 2, 2, 2)));
+            else
+                return new(y, z, z, z);
+        }
     }
-    public int4 zxxx
+    public readonly int4 zxxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 0, 0)));
+            else
+                return new(z, x, x, x);
+        }
     }
-    public int4 brrr
+    public readonly int4 brrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 0, 0)));
+            else
+                return new(z, x, x, x);
+        }
     }
-    public int4 zxxy
+    public readonly int4 zxxy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 0, 1)));
+            else
+                return new(z, x, x, y);
+        }
     }
-    public int4 brrg
+    public readonly int4 brrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 0, 1)));
+            else
+                return new(z, x, x, y);
+        }
     }
-    public int4 zxxz
+    public readonly int4 zxxz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 0, 2)));
+            else
+                return new(z, x, x, z);
+        }
     }
-    public int4 brrb
+    public readonly int4 brrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 0, 2)));
+            else
+                return new(z, x, x, z);
+        }
     }
-    public int4 zxyx
+    public readonly int4 zxyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 1, 0)));
+            else
+                return new(z, x, y, x);
+        }
     }
-    public int4 brgr
+    public readonly int4 brgr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 1, 0)));
+            else
+                return new(z, x, y, x);
+        }
     }
-    public int4 zxyy
+    public readonly int4 zxyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 1, 1)));
+            else
+                return new(z, x, y, y);
+        }
     }
-    public int4 brgg
+    public readonly int4 brgg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 1, 1)));
+            else
+                return new(z, x, y, y);
+        }
     }
-    public int4 zxyz
+    public readonly int4 zxyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 1, 2)));
+            else
+                return new(z, x, y, z);
+        }
     }
-    public int4 brgb
+    public readonly int4 brgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 1, 2)));
+            else
+                return new(z, x, y, z);
+        }
     }
-    public int4 zxzx
+    public readonly int4 zxzx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 2, 0)));
+            else
+                return new(z, x, z, x);
+        }
     }
-    public int4 brbr
+    public readonly int4 brbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 2, 0)));
+            else
+                return new(z, x, z, x);
+        }
     }
-    public int4 zxzy
+    public readonly int4 zxzy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 2, 1)));
+            else
+                return new(z, x, z, y);
+        }
     }
-    public int4 brbg
+    public readonly int4 brbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 2, 1)));
+            else
+                return new(z, x, z, y);
+        }
     }
-    public int4 zxzz
+    public readonly int4 zxzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 2, 2)));
+            else
+                return new(z, x, z, z);
+        }
     }
-    public int4 brbb
+    public readonly int4 brbb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 0, 2, 2)));
+            else
+                return new(z, x, z, z);
+        }
     }
-    public int4 zyxx
+    public readonly int4 zyxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 0, 0)));
+            else
+                return new(z, y, x, x);
+        }
     }
-    public int4 bgrr
+    public readonly int4 bgrr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 0, 0)));
+            else
+                return new(z, y, x, x);
+        }
     }
-    public int4 zyxy
+    public readonly int4 zyxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 0, 1)));
+            else
+                return new(z, y, x, y);
+        }
     }
-    public int4 bgrg
+    public readonly int4 bgrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 0, 1)));
+            else
+                return new(z, y, x, y);
+        }
     }
-    public int4 zyxz
+    public readonly int4 zyxz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 0, 2)));
+            else
+                return new(z, y, x, z);
+        }
     }
-    public int4 bgrb
+    public readonly int4 bgrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 0, 2)));
+            else
+                return new(z, y, x, z);
+        }
     }
-    public int4 zyyx
+    public readonly int4 zyyx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 1, 0)));
+            else
+                return new(z, y, y, x);
+        }
     }
-    public int4 bggr
+    public readonly int4 bggr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 1, 0)));
+            else
+                return new(z, y, y, x);
+        }
     }
-    public int4 zyyy
+    public readonly int4 zyyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 1, 1)));
+            else
+                return new(z, y, y, y);
+        }
     }
-    public int4 bggg
+    public readonly int4 bggg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 1, 1)));
+            else
+                return new(z, y, y, y);
+        }
     }
-    public int4 zyyz
+    public readonly int4 zyyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 1, 2)));
+            else
+                return new(z, y, y, z);
+        }
     }
-    public int4 bggb
+    public readonly int4 bggb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 1, 2)));
+            else
+                return new(z, y, y, z);
+        }
     }
-    public int4 zyzx
+    public readonly int4 zyzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 2, 0)));
+            else
+                return new(z, y, z, x);
+        }
     }
-    public int4 bgbr
+    public readonly int4 bgbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 2, 0)));
+            else
+                return new(z, y, z, x);
+        }
     }
-    public int4 zyzy
+    public readonly int4 zyzy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 2, 1)));
+            else
+                return new(z, y, z, y);
+        }
     }
-    public int4 bgbg
+    public readonly int4 bgbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 2, 1)));
+            else
+                return new(z, y, z, y);
+        }
     }
-    public int4 zyzz
+    public readonly int4 zyzz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 2, 2)));
+            else
+                return new(z, y, z, z);
+        }
     }
-    public int4 bgbb
+    public readonly int4 bgbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 1, 2, 2)));
+            else
+                return new(z, y, z, z);
+        }
     }
-    public int4 zzxx
+    public readonly int4 zzxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 0, 0)));
+            else
+                return new(z, z, x, x);
+        }
     }
-    public int4 bbrr
+    public readonly int4 bbrr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 0, 0)));
+            else
+                return new(z, z, x, x);
+        }
     }
-    public int4 zzxy
+    public readonly int4 zzxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 0, 1)));
+            else
+                return new(z, z, x, y);
+        }
     }
-    public int4 bbrg
+    public readonly int4 bbrg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 0, 1)));
+            else
+                return new(z, z, x, y);
+        }
     }
-    public int4 zzxz
+    public readonly int4 zzxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 0, 2)));
+            else
+                return new(z, z, x, z);
+        }
     }
-    public int4 bbrb
+    public readonly int4 bbrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 0, 2)));
+            else
+                return new(z, z, x, z);
+        }
     }
-    public int4 zzyx
+    public readonly int4 zzyx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 1, 0)));
+            else
+                return new(z, z, y, x);
+        }
     }
-    public int4 bbgr
+    public readonly int4 bbgr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 1, 0)));
+            else
+                return new(z, z, y, x);
+        }
     }
-    public int4 zzyy
+    public readonly int4 zzyy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 1, 1)));
+            else
+                return new(z, z, y, y);
+        }
     }
-    public int4 bbgg
+    public readonly int4 bbgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 1, 1)));
+            else
+                return new(z, z, y, y);
+        }
     }
-    public int4 zzyz
+    public readonly int4 zzyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 1, 2)));
+            else
+                return new(z, z, y, z);
+        }
     }
-    public int4 bbgb
+    public readonly int4 bbgb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 1, 2)));
+            else
+                return new(z, z, y, z);
+        }
     }
-    public int4 zzzx
+    public readonly int4 zzzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 2, 0)));
+            else
+                return new(z, z, z, x);
+        }
     }
-    public int4 bbbr
+    public readonly int4 bbbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 2, 0)));
+            else
+                return new(z, z, z, x);
+        }
     }
-    public int4 zzzy
+    public readonly int4 zzzy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 2, 1)));
+            else
+                return new(z, z, z, y);
+        }
     }
-    public int4 bbbg
+    public readonly int4 bbbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 2, 1)));
+            else
+                return new(z, z, z, y);
+        }
     }
-    public int4 zzzz
+    public readonly int4 zzzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 2, 2)));
+            else
+                return new(z, z, z, z);
+        }
     }
-    public int4 bbbb
+    public readonly int4 bbbb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create(2, 2, 2, 2)));
+            else
+                return new(z, z, z, z);
+        }
     }
 }
 
@@ -6526,1625 +7012,1787 @@ public partial struct int3
 
 public partial struct uint3 
 {
-    public uint4 xxxx
+    public readonly uint4 xxxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 0, 0)));
+            else
+                return new(x, x, x, x);
+        }
     }
-    public uint4 rrrr
+    public readonly uint4 rrrr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 0, 0)));
+            else
+                return new(x, x, x, x);
+        }
     }
-    public uint4 xxxy
+    public readonly uint4 xxxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 0, 1)));
+            else
+                return new(x, x, x, y);
+        }
     }
-    public uint4 rrrg
+    public readonly uint4 rrrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 0, 1)));
+            else
+                return new(x, x, x, y);
+        }
     }
-    public uint4 xxxz
+    public readonly uint4 xxxz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 0, 2)));
+            else
+                return new(x, x, x, z);
+        }
     }
-    public uint4 rrrb
+    public readonly uint4 rrrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 0, 2)));
+            else
+                return new(x, x, x, z);
+        }
     }
-    public uint4 xxyx
+    public readonly uint4 xxyx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 1, 0)));
+            else
+                return new(x, x, y, x);
+        }
     }
-    public uint4 rrgr
+    public readonly uint4 rrgr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 1, 0)));
+            else
+                return new(x, x, y, x);
+        }
     }
-    public uint4 xxyy
+    public readonly uint4 xxyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 1, 1)));
+            else
+                return new(x, x, y, y);
+        }
     }
-    public uint4 rrgg
+    public readonly uint4 rrgg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 1, 1)));
+            else
+                return new(x, x, y, y);
+        }
     }
-    public uint4 xxyz
+    public readonly uint4 xxyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 1, 2)));
+            else
+                return new(x, x, y, z);
+        }
     }
-    public uint4 rrgb
+    public readonly uint4 rrgb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 1, 2)));
+            else
+                return new(x, x, y, z);
+        }
     }
-    public uint4 xxzx
+    public readonly uint4 xxzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 2, 0)));
+            else
+                return new(x, x, z, x);
+        }
     }
-    public uint4 rrbr
+    public readonly uint4 rrbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 2, 0)));
+            else
+                return new(x, x, z, x);
+        }
     }
-    public uint4 xxzy
+    public readonly uint4 xxzy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 2, 1)));
+            else
+                return new(x, x, z, y);
+        }
     }
-    public uint4 rrbg
+    public readonly uint4 rrbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 2, 1)));
+            else
+                return new(x, x, z, y);
+        }
     }
-    public uint4 xxzz
+    public readonly uint4 xxzz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 2, 2)));
+            else
+                return new(x, x, z, z);
+        }
     }
-    public uint4 rrbb
+    public readonly uint4 rrbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 2, 2)));
+            else
+                return new(x, x, z, z);
+        }
     }
-    public uint4 xyxx
+    public readonly uint4 xyxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 0, 0)));
+            else
+                return new(x, y, x, x);
+        }
     }
-    public uint4 rgrr
+    public readonly uint4 rgrr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 0, 0)));
+            else
+                return new(x, y, x, x);
+        }
     }
-    public uint4 xyxy
+    public readonly uint4 xyxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 0, 1)));
+            else
+                return new(x, y, x, y);
+        }
     }
-    public uint4 rgrg
+    public readonly uint4 rgrg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 0, 1)));
+            else
+                return new(x, y, x, y);
+        }
     }
-    public uint4 xyxz
+    public readonly uint4 xyxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 0, 2)));
+            else
+                return new(x, y, x, z);
+        }
     }
-    public uint4 rgrb
+    public readonly uint4 rgrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 0, 2)));
+            else
+                return new(x, y, x, z);
+        }
     }
-    public uint4 xyyx
+    public readonly uint4 xyyx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 1, 0)));
+            else
+                return new(x, y, y, x);
+        }
     }
-    public uint4 rggr
+    public readonly uint4 rggr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 1, 0)));
+            else
+                return new(x, y, y, x);
+        }
     }
-    public uint4 xyyy
+    public readonly uint4 xyyy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 1, 1)));
+            else
+                return new(x, y, y, y);
+        }
     }
-    public uint4 rggg
+    public readonly uint4 rggg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 1, 1)));
+            else
+                return new(x, y, y, y);
+        }
     }
-    public uint4 xyyz
+    public readonly uint4 xyyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 1, 2)));
+            else
+                return new(x, y, y, z);
+        }
     }
-    public uint4 rggb
+    public readonly uint4 rggb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 1, 2)));
+            else
+                return new(x, y, y, z);
+        }
     }
-    public uint4 xyzx
+    public readonly uint4 xyzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 2, 0)));
+            else
+                return new(x, y, z, x);
+        }
     }
-    public uint4 rgbr
+    public readonly uint4 rgbr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 2, 0)));
+            else
+                return new(x, y, z, x);
+        }
     }
-    public uint4 xyzy
+    public readonly uint4 xyzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 2, 1)));
+            else
+                return new(x, y, z, y);
+        }
     }
-    public uint4 rgbg
+    public readonly uint4 rgbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 2, 1)));
+            else
+                return new(x, y, z, y);
+        }
     }
-    public uint4 xyzz
+    public readonly uint4 xyzz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 2, 2)));
+            else
+                return new(x, y, z, z);
+        }
     }
-    public uint4 rgbb
+    public readonly uint4 rgbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 2, 2)));
+            else
+                return new(x, y, z, z);
+        }
     }
-    public uint4 xzxx
+    public readonly uint4 xzxx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 0, 0)));
+            else
+                return new(x, z, x, x);
+        }
     }
-    public uint4 rbrr
+    public readonly uint4 rbrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 0, 0)));
+            else
+                return new(x, z, x, x);
+        }
     }
-    public uint4 xzxy
+    public readonly uint4 xzxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 0, 1)));
+            else
+                return new(x, z, x, y);
+        }
     }
-    public uint4 rbrg
+    public readonly uint4 rbrg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 0, 1)));
+            else
+                return new(x, z, x, y);
+        }
     }
-    public uint4 xzxz
+    public readonly uint4 xzxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 0, 2)));
+            else
+                return new(x, z, x, z);
+        }
     }
-    public uint4 rbrb
+    public readonly uint4 rbrb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 0, 2)));
+            else
+                return new(x, z, x, z);
+        }
     }
-    public uint4 xzyx
+    public readonly uint4 xzyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 1, 0)));
+            else
+                return new(x, z, y, x);
+        }
     }
-    public uint4 rbgr
+    public readonly uint4 rbgr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 1, 0)));
+            else
+                return new(x, z, y, x);
+        }
     }
-    public uint4 xzyy
+    public readonly uint4 xzyy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 1, 1)));
+            else
+                return new(x, z, y, y);
+        }
     }
-    public uint4 rbgg
+    public readonly uint4 rbgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 1, 1)));
+            else
+                return new(x, z, y, y);
+        }
     }
-    public uint4 xzyz
+    public readonly uint4 xzyz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 1, 2)));
+            else
+                return new(x, z, y, z);
+        }
     }
-    public uint4 rbgb
+    public readonly uint4 rbgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 1, 2)));
+            else
+                return new(x, z, y, z);
+        }
     }
-    public uint4 xzzx
+    public readonly uint4 xzzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 2, 0)));
+            else
+                return new(x, z, z, x);
+        }
     }
-    public uint4 rbbr
+    public readonly uint4 rbbr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 2, 0)));
+            else
+                return new(x, z, z, x);
+        }
     }
-    public uint4 xzzy
+    public readonly uint4 xzzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 2, 1)));
+            else
+                return new(x, z, z, y);
+        }
     }
-    public uint4 rbbg
+    public readonly uint4 rbbg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 2, 1)));
+            else
+                return new(x, z, z, y);
+        }
     }
-    public uint4 xzzz
+    public readonly uint4 xzzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 2, 2)));
+            else
+                return new(x, z, z, z);
+        }
     }
-    public uint4 rbbb
+    public readonly uint4 rbbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 2, 2)));
+            else
+                return new(x, z, z, z);
+        }
     }
-    public uint4 yxxx
+    public readonly uint4 yxxx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 0, 0)));
+            else
+                return new(y, x, x, x);
+        }
     }
-    public uint4 grrr
+    public readonly uint4 grrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 0, 0)));
+            else
+                return new(y, x, x, x);
+        }
     }
-    public uint4 yxxy
+    public readonly uint4 yxxy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 0, 1)));
+            else
+                return new(y, x, x, y);
+        }
     }
-    public uint4 grrg
+    public readonly uint4 grrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 0, 1)));
+            else
+                return new(y, x, x, y);
+        }
     }
-    public uint4 yxxz
+    public readonly uint4 yxxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 0, 2)));
+            else
+                return new(y, x, x, z);
+        }
     }
-    public uint4 grrb
+    public readonly uint4 grrb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 0, 2)));
+            else
+                return new(y, x, x, z);
+        }
     }
-    public uint4 yxyx
+    public readonly uint4 yxyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 1, 0)));
+            else
+                return new(y, x, y, x);
+        }
     }
-    public uint4 grgr
+    public readonly uint4 grgr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 1, 0)));
+            else
+                return new(y, x, y, x);
+        }
     }
-    public uint4 yxyy
+    public readonly uint4 yxyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 1, 1)));
+            else
+                return new(y, x, y, y);
+        }
     }
-    public uint4 grgg
+    public readonly uint4 grgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 1, 1)));
+            else
+                return new(y, x, y, y);
+        }
     }
-    public uint4 yxyz
+    public readonly uint4 yxyz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 1, 2)));
+            else
+                return new(y, x, y, z);
+        }
     }
-    public uint4 grgb
+    public readonly uint4 grgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 1, 2)));
+            else
+                return new(y, x, y, z);
+        }
     }
-    public uint4 yxzx
+    public readonly uint4 yxzx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 2, 0)));
+            else
+                return new(y, x, z, x);
+        }
     }
-    public uint4 grbr
+    public readonly uint4 grbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 2, 0)));
+            else
+                return new(y, x, z, x);
+        }
     }
-    public uint4 yxzy
+    public readonly uint4 yxzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 2, 1)));
+            else
+                return new(y, x, z, y);
+        }
     }
-    public uint4 grbg
+    public readonly uint4 grbg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 2, 1)));
+            else
+                return new(y, x, z, y);
+        }
     }
-    public uint4 yxzz
+    public readonly uint4 yxzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 2, 2)));
+            else
+                return new(y, x, z, z);
+        }
     }
-    public uint4 grbb
+    public readonly uint4 grbb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 2, 2)));
+            else
+                return new(y, x, z, z);
+        }
     }
-    public uint4 yyxx
+    public readonly uint4 yyxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 0, 0)));
+            else
+                return new(y, y, x, x);
+        }
     }
-    public uint4 ggrr
+    public readonly uint4 ggrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 0, 0)));
+            else
+                return new(y, y, x, x);
+        }
     }
-    public uint4 yyxy
+    public readonly uint4 yyxy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 0, 1)));
+            else
+                return new(y, y, x, y);
+        }
     }
-    public uint4 ggrg
+    public readonly uint4 ggrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 0, 1)));
+            else
+                return new(y, y, x, y);
+        }
     }
-    public uint4 yyxz
+    public readonly uint4 yyxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 0, 2)));
+            else
+                return new(y, y, x, z);
+        }
     }
-    public uint4 ggrb
+    public readonly uint4 ggrb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 0, 2)));
+            else
+                return new(y, y, x, z);
+        }
     }
-    public uint4 yyyx
+    public readonly uint4 yyyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 1, 0)));
+            else
+                return new(y, y, y, x);
+        }
     }
-    public uint4 gggr
+    public readonly uint4 gggr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 1, 0)));
+            else
+                return new(y, y, y, x);
+        }
     }
-    public uint4 yyyy
+    public readonly uint4 yyyy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 1, 1)));
+            else
+                return new(y, y, y, y);
+        }
     }
-    public uint4 gggg
+    public readonly uint4 gggg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 1, 1)));
+            else
+                return new(y, y, y, y);
+        }
     }
-    public uint4 yyyz
+    public readonly uint4 yyyz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 1, 2)));
+            else
+                return new(y, y, y, z);
+        }
     }
-    public uint4 gggb
+    public readonly uint4 gggb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 1, 2)));
+            else
+                return new(y, y, y, z);
+        }
     }
-    public uint4 yyzx
+    public readonly uint4 yyzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 2, 0)));
+            else
+                return new(y, y, z, x);
+        }
     }
-    public uint4 ggbr
+    public readonly uint4 ggbr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 2, 0)));
+            else
+                return new(y, y, z, x);
+        }
     }
-    public uint4 yyzy
+    public readonly uint4 yyzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 2, 1)));
+            else
+                return new(y, y, z, y);
+        }
     }
-    public uint4 ggbg
+    public readonly uint4 ggbg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 2, 1)));
+            else
+                return new(y, y, z, y);
+        }
     }
-    public uint4 yyzz
+    public readonly uint4 yyzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 2, 2)));
+            else
+                return new(y, y, z, z);
+        }
     }
-    public uint4 ggbb
+    public readonly uint4 ggbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 2, 2)));
+            else
+                return new(y, y, z, z);
+        }
     }
-    public uint4 yzxx
+    public readonly uint4 yzxx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 0, 0)));
+            else
+                return new(y, z, x, x);
+        }
     }
-    public uint4 gbrr
+    public readonly uint4 gbrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 0, 0)));
+            else
+                return new(y, z, x, x);
+        }
     }
-    public uint4 yzxy
+    public readonly uint4 yzxy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 0, 1)));
+            else
+                return new(y, z, x, y);
+        }
     }
-    public uint4 gbrg
+    public readonly uint4 gbrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 0, 1)));
+            else
+                return new(y, z, x, y);
+        }
     }
-    public uint4 yzxz
+    public readonly uint4 yzxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 0, 2)));
+            else
+                return new(y, z, x, z);
+        }
     }
-    public uint4 gbrb
+    public readonly uint4 gbrb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 0, 2)));
+            else
+                return new(y, z, x, z);
+        }
     }
-    public uint4 yzyx
+    public readonly uint4 yzyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 1, 0)));
+            else
+                return new(y, z, y, x);
+        }
     }
-    public uint4 gbgr
+    public readonly uint4 gbgr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 1, 0)));
+            else
+                return new(y, z, y, x);
+        }
     }
-    public uint4 yzyy
+    public readonly uint4 yzyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 1, 1)));
+            else
+                return new(y, z, y, y);
+        }
     }
-    public uint4 gbgg
+    public readonly uint4 gbgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 1, 1)));
+            else
+                return new(y, z, y, y);
+        }
     }
-    public uint4 yzyz
+    public readonly uint4 yzyz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 1, 2)));
+            else
+                return new(y, z, y, z);
+        }
     }
-    public uint4 gbgb
+    public readonly uint4 gbgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 1, 2)));
+            else
+                return new(y, z, y, z);
+        }
     }
-    public uint4 yzzx
+    public readonly uint4 yzzx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 2, 0)));
+            else
+                return new(y, z, z, x);
+        }
     }
-    public uint4 gbbr
+    public readonly uint4 gbbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 2, 0)));
+            else
+                return new(y, z, z, x);
+        }
     }
-    public uint4 yzzy
+    public readonly uint4 yzzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 2, 1)));
+            else
+                return new(y, z, z, y);
+        }
     }
-    public uint4 gbbg
+    public readonly uint4 gbbg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 2, 1)));
+            else
+                return new(y, z, z, y);
+        }
     }
-    public uint4 yzzz
+    public readonly uint4 yzzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 2, 2)));
+            else
+                return new(y, z, z, z);
+        }
     }
-    public uint4 gbbb
+    public readonly uint4 gbbb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 2, 2)));
+            else
+                return new(y, z, z, z);
+        }
     }
-    public uint4 zxxx
+    public readonly uint4 zxxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 0, 0)));
+            else
+                return new(z, x, x, x);
+        }
     }
-    public uint4 brrr
+    public readonly uint4 brrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 0, 0)));
+            else
+                return new(z, x, x, x);
+        }
     }
-    public uint4 zxxy
+    public readonly uint4 zxxy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 0, 1)));
+            else
+                return new(z, x, x, y);
+        }
     }
-    public uint4 brrg
+    public readonly uint4 brrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 0, 1)));
+            else
+                return new(z, x, x, y);
+        }
     }
-    public uint4 zxxz
+    public readonly uint4 zxxz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 0, 2)));
+            else
+                return new(z, x, x, z);
+        }
     }
-    public uint4 brrb
+    public readonly uint4 brrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 0, 2)));
+            else
+                return new(z, x, x, z);
+        }
     }
-    public uint4 zxyx
+    public readonly uint4 zxyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 1, 0)));
+            else
+                return new(z, x, y, x);
+        }
     }
-    public uint4 brgr
+    public readonly uint4 brgr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 1, 0)));
+            else
+                return new(z, x, y, x);
+        }
     }
-    public uint4 zxyy
+    public readonly uint4 zxyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 1, 1)));
+            else
+                return new(z, x, y, y);
+        }
     }
-    public uint4 brgg
+    public readonly uint4 brgg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 1, 1)));
+            else
+                return new(z, x, y, y);
+        }
     }
-    public uint4 zxyz
+    public readonly uint4 zxyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 1, 2)));
+            else
+                return new(z, x, y, z);
+        }
     }
-    public uint4 brgb
+    public readonly uint4 brgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 1, 2)));
+            else
+                return new(z, x, y, z);
+        }
     }
-    public uint4 zxzx
+    public readonly uint4 zxzx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 2, 0)));
+            else
+                return new(z, x, z, x);
+        }
     }
-    public uint4 brbr
+    public readonly uint4 brbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 2, 0)));
+            else
+                return new(z, x, z, x);
+        }
     }
-    public uint4 zxzy
+    public readonly uint4 zxzy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 2, 1)));
+            else
+                return new(z, x, z, y);
+        }
     }
-    public uint4 brbg
+    public readonly uint4 brbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 2, 1)));
+            else
+                return new(z, x, z, y);
+        }
     }
-    public uint4 zxzz
+    public readonly uint4 zxzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 2, 2)));
+            else
+                return new(z, x, z, z);
+        }
     }
-    public uint4 brbb
+    public readonly uint4 brbb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 2, 2)));
+            else
+                return new(z, x, z, z);
+        }
     }
-    public uint4 zyxx
+    public readonly uint4 zyxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 0, 0)));
+            else
+                return new(z, y, x, x);
+        }
     }
-    public uint4 bgrr
+    public readonly uint4 bgrr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 0, 0)));
+            else
+                return new(z, y, x, x);
+        }
     }
-    public uint4 zyxy
+    public readonly uint4 zyxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 0, 1)));
+            else
+                return new(z, y, x, y);
+        }
     }
-    public uint4 bgrg
+    public readonly uint4 bgrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 0, 1)));
+            else
+                return new(z, y, x, y);
+        }
     }
-    public uint4 zyxz
+    public readonly uint4 zyxz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 0, 2)));
+            else
+                return new(z, y, x, z);
+        }
     }
-    public uint4 bgrb
+    public readonly uint4 bgrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 0, 2)));
+            else
+                return new(z, y, x, z);
+        }
     }
-    public uint4 zyyx
+    public readonly uint4 zyyx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 1, 0)));
+            else
+                return new(z, y, y, x);
+        }
     }
-    public uint4 bggr
+    public readonly uint4 bggr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 1, 0)));
+            else
+                return new(z, y, y, x);
+        }
     }
-    public uint4 zyyy
+    public readonly uint4 zyyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 1, 1)));
+            else
+                return new(z, y, y, y);
+        }
     }
-    public uint4 bggg
+    public readonly uint4 bggg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 1, 1)));
+            else
+                return new(z, y, y, y);
+        }
     }
-    public uint4 zyyz
+    public readonly uint4 zyyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 1, 2)));
+            else
+                return new(z, y, y, z);
+        }
     }
-    public uint4 bggb
+    public readonly uint4 bggb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 1, 2)));
+            else
+                return new(z, y, y, z);
+        }
     }
-    public uint4 zyzx
+    public readonly uint4 zyzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 2, 0)));
+            else
+                return new(z, y, z, x);
+        }
     }
-    public uint4 bgbr
+    public readonly uint4 bgbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 2, 0)));
+            else
+                return new(z, y, z, x);
+        }
     }
-    public uint4 zyzy
+    public readonly uint4 zyzy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 2, 1)));
+            else
+                return new(z, y, z, y);
+        }
     }
-    public uint4 bgbg
+    public readonly uint4 bgbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 2, 1)));
+            else
+                return new(z, y, z, y);
+        }
     }
-    public uint4 zyzz
+    public readonly uint4 zyzz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 2, 2)));
+            else
+                return new(z, y, z, z);
+        }
     }
-    public uint4 bgbb
+    public readonly uint4 bgbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 2, 2)));
+            else
+                return new(z, y, z, z);
+        }
     }
-    public uint4 zzxx
+    public readonly uint4 zzxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 0, 0)));
+            else
+                return new(z, z, x, x);
+        }
     }
-    public uint4 bbrr
+    public readonly uint4 bbrr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 0, 0)));
+            else
+                return new(z, z, x, x);
+        }
     }
-    public uint4 zzxy
+    public readonly uint4 zzxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 0, 1)));
+            else
+                return new(z, z, x, y);
+        }
     }
-    public uint4 bbrg
+    public readonly uint4 bbrg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 0, 1)));
+            else
+                return new(z, z, x, y);
+        }
     }
-    public uint4 zzxz
+    public readonly uint4 zzxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 0, 2)));
+            else
+                return new(z, z, x, z);
+        }
     }
-    public uint4 bbrb
+    public readonly uint4 bbrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 0, 2)));
+            else
+                return new(z, z, x, z);
+        }
     }
-    public uint4 zzyx
+    public readonly uint4 zzyx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 1, 0)));
+            else
+                return new(z, z, y, x);
+        }
     }
-    public uint4 bbgr
+    public readonly uint4 bbgr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 1, 0)));
+            else
+                return new(z, z, y, x);
+        }
     }
-    public uint4 zzyy
+    public readonly uint4 zzyy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 1, 1)));
+            else
+                return new(z, z, y, y);
+        }
     }
-    public uint4 bbgg
+    public readonly uint4 bbgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 1, 1)));
+            else
+                return new(z, z, y, y);
+        }
     }
-    public uint4 zzyz
+    public readonly uint4 zzyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 1, 2)));
+            else
+                return new(z, z, y, z);
+        }
     }
-    public uint4 bbgb
+    public readonly uint4 bbgb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 1, 2)));
+            else
+                return new(z, z, y, z);
+        }
     }
-    public uint4 zzzx
+    public readonly uint4 zzzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 2, 0)));
+            else
+                return new(z, z, z, x);
+        }
     }
-    public uint4 bbbr
+    public readonly uint4 bbbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 2, 0)));
+            else
+                return new(z, z, z, x);
+        }
     }
-    public uint4 zzzy
+    public readonly uint4 zzzy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 2, 1)));
+            else
+                return new(z, z, z, y);
+        }
     }
-    public uint4 bbbg
+    public readonly uint4 bbbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 2, 1)));
+            else
+                return new(z, z, z, y);
+        }
     }
-    public uint4 zzzz
+    public readonly uint4 zzzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 2, 2)));
+            else
+                return new(z, z, z, z);
+        }
     }
-    public uint4 bbbb
+    public readonly uint4 bbbb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 2, 2)));
+            else
+                return new(z, z, z, z);
+        }
     }
 }
 
@@ -8154,1625 +8802,1787 @@ public partial struct uint3
 
 public partial struct long3 
 {
-    public long4 xxxx
+    public readonly long4 xxxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 0, 0)));
+            else
+                return new(x, x, x, x);
+        }
     }
-    public long4 rrrr
+    public readonly long4 rrrr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 0, 0)));
+            else
+                return new(x, x, x, x);
+        }
     }
-    public long4 xxxy
+    public readonly long4 xxxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 0, 1)));
+            else
+                return new(x, x, x, y);
+        }
     }
-    public long4 rrrg
+    public readonly long4 rrrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 0, 1)));
+            else
+                return new(x, x, x, y);
+        }
     }
-    public long4 xxxz
+    public readonly long4 xxxz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 0, 2)));
+            else
+                return new(x, x, x, z);
+        }
     }
-    public long4 rrrb
+    public readonly long4 rrrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 0, 2)));
+            else
+                return new(x, x, x, z);
+        }
     }
-    public long4 xxyx
+    public readonly long4 xxyx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 1, 0)));
+            else
+                return new(x, x, y, x);
+        }
     }
-    public long4 rrgr
+    public readonly long4 rrgr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 1, 0)));
+            else
+                return new(x, x, y, x);
+        }
     }
-    public long4 xxyy
+    public readonly long4 xxyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 1, 1)));
+            else
+                return new(x, x, y, y);
+        }
     }
-    public long4 rrgg
+    public readonly long4 rrgg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 1, 1)));
+            else
+                return new(x, x, y, y);
+        }
     }
-    public long4 xxyz
+    public readonly long4 xxyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 1, 2)));
+            else
+                return new(x, x, y, z);
+        }
     }
-    public long4 rrgb
+    public readonly long4 rrgb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 1, 2)));
+            else
+                return new(x, x, y, z);
+        }
     }
-    public long4 xxzx
+    public readonly long4 xxzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 2, 0)));
+            else
+                return new(x, x, z, x);
+        }
     }
-    public long4 rrbr
+    public readonly long4 rrbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 2, 0)));
+            else
+                return new(x, x, z, x);
+        }
     }
-    public long4 xxzy
+    public readonly long4 xxzy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 2, 1)));
+            else
+                return new(x, x, z, y);
+        }
     }
-    public long4 rrbg
+    public readonly long4 rrbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 2, 1)));
+            else
+                return new(x, x, z, y);
+        }
     }
-    public long4 xxzz
+    public readonly long4 xxzz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 2, 2)));
+            else
+                return new(x, x, z, z);
+        }
     }
-    public long4 rrbb
+    public readonly long4 rrbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 0, 2, 2)));
+            else
+                return new(x, x, z, z);
+        }
     }
-    public long4 xyxx
+    public readonly long4 xyxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 0, 0)));
+            else
+                return new(x, y, x, x);
+        }
     }
-    public long4 rgrr
+    public readonly long4 rgrr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 0, 0)));
+            else
+                return new(x, y, x, x);
+        }
     }
-    public long4 xyxy
+    public readonly long4 xyxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 0, 1)));
+            else
+                return new(x, y, x, y);
+        }
     }
-    public long4 rgrg
+    public readonly long4 rgrg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 0, 1)));
+            else
+                return new(x, y, x, y);
+        }
     }
-    public long4 xyxz
+    public readonly long4 xyxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 0, 2)));
+            else
+                return new(x, y, x, z);
+        }
     }
-    public long4 rgrb
+    public readonly long4 rgrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 0, 2)));
+            else
+                return new(x, y, x, z);
+        }
     }
-    public long4 xyyx
+    public readonly long4 xyyx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 1, 0)));
+            else
+                return new(x, y, y, x);
+        }
     }
-    public long4 rggr
+    public readonly long4 rggr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 1, 0)));
+            else
+                return new(x, y, y, x);
+        }
     }
-    public long4 xyyy
+    public readonly long4 xyyy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 1, 1)));
+            else
+                return new(x, y, y, y);
+        }
     }
-    public long4 rggg
+    public readonly long4 rggg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 1, 1)));
+            else
+                return new(x, y, y, y);
+        }
     }
-    public long4 xyyz
+    public readonly long4 xyyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 1, 2)));
+            else
+                return new(x, y, y, z);
+        }
     }
-    public long4 rggb
+    public readonly long4 rggb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 1, 2)));
+            else
+                return new(x, y, y, z);
+        }
     }
-    public long4 xyzx
+    public readonly long4 xyzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 2, 0)));
+            else
+                return new(x, y, z, x);
+        }
     }
-    public long4 rgbr
+    public readonly long4 rgbr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 2, 0)));
+            else
+                return new(x, y, z, x);
+        }
     }
-    public long4 xyzy
+    public readonly long4 xyzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 2, 1)));
+            else
+                return new(x, y, z, y);
+        }
     }
-    public long4 rgbg
+    public readonly long4 rgbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 2, 1)));
+            else
+                return new(x, y, z, y);
+        }
     }
-    public long4 xyzz
+    public readonly long4 xyzz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 2, 2)));
+            else
+                return new(x, y, z, z);
+        }
     }
-    public long4 rgbb
+    public readonly long4 rgbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 1, 2, 2)));
+            else
+                return new(x, y, z, z);
+        }
     }
-    public long4 xzxx
+    public readonly long4 xzxx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 0, 0)));
+            else
+                return new(x, z, x, x);
+        }
     }
-    public long4 rbrr
+    public readonly long4 rbrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 0, 0)));
+            else
+                return new(x, z, x, x);
+        }
     }
-    public long4 xzxy
+    public readonly long4 xzxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 0, 1)));
+            else
+                return new(x, z, x, y);
+        }
     }
-    public long4 rbrg
+    public readonly long4 rbrg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 0, 1)));
+            else
+                return new(x, z, x, y);
+        }
     }
-    public long4 xzxz
+    public readonly long4 xzxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 0, 2)));
+            else
+                return new(x, z, x, z);
+        }
     }
-    public long4 rbrb
+    public readonly long4 rbrb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 0, 2)));
+            else
+                return new(x, z, x, z);
+        }
     }
-    public long4 xzyx
+    public readonly long4 xzyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 1, 0)));
+            else
+                return new(x, z, y, x);
+        }
     }
-    public long4 rbgr
+    public readonly long4 rbgr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 1, 0)));
+            else
+                return new(x, z, y, x);
+        }
     }
-    public long4 xzyy
+    public readonly long4 xzyy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 1, 1)));
+            else
+                return new(x, z, y, y);
+        }
     }
-    public long4 rbgg
+    public readonly long4 rbgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 1, 1)));
+            else
+                return new(x, z, y, y);
+        }
     }
-    public long4 xzyz
+    public readonly long4 xzyz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 1, 2)));
+            else
+                return new(x, z, y, z);
+        }
     }
-    public long4 rbgb
+    public readonly long4 rbgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 1, 2)));
+            else
+                return new(x, z, y, z);
+        }
     }
-    public long4 xzzx
+    public readonly long4 xzzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 2, 0)));
+            else
+                return new(x, z, z, x);
+        }
     }
-    public long4 rbbr
+    public readonly long4 rbbr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 2, 0)));
+            else
+                return new(x, z, z, x);
+        }
     }
-    public long4 xzzy
+    public readonly long4 xzzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 2, 1)));
+            else
+                return new(x, z, z, y);
+        }
     }
-    public long4 rbbg
+    public readonly long4 rbbg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 2, 1)));
+            else
+                return new(x, z, z, y);
+        }
     }
-    public long4 xzzz
+    public readonly long4 xzzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 2, 2)));
+            else
+                return new(x, z, z, z);
+        }
     }
-    public long4 rbbb
+    public readonly long4 rbbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(0, 2, 2, 2)));
+            else
+                return new(x, z, z, z);
+        }
     }
-    public long4 yxxx
+    public readonly long4 yxxx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 0, 0)));
+            else
+                return new(y, x, x, x);
+        }
     }
-    public long4 grrr
+    public readonly long4 grrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 0, 0)));
+            else
+                return new(y, x, x, x);
+        }
     }
-    public long4 yxxy
+    public readonly long4 yxxy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 0, 1)));
+            else
+                return new(y, x, x, y);
+        }
     }
-    public long4 grrg
+    public readonly long4 grrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 0, 1)));
+            else
+                return new(y, x, x, y);
+        }
     }
-    public long4 yxxz
+    public readonly long4 yxxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 0, 2)));
+            else
+                return new(y, x, x, z);
+        }
     }
-    public long4 grrb
+    public readonly long4 grrb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 0, 2)));
+            else
+                return new(y, x, x, z);
+        }
     }
-    public long4 yxyx
+    public readonly long4 yxyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 1, 0)));
+            else
+                return new(y, x, y, x);
+        }
     }
-    public long4 grgr
+    public readonly long4 grgr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 1, 0)));
+            else
+                return new(y, x, y, x);
+        }
     }
-    public long4 yxyy
+    public readonly long4 yxyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 1, 1)));
+            else
+                return new(y, x, y, y);
+        }
     }
-    public long4 grgg
+    public readonly long4 grgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 1, 1)));
+            else
+                return new(y, x, y, y);
+        }
     }
-    public long4 yxyz
+    public readonly long4 yxyz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 1, 2)));
+            else
+                return new(y, x, y, z);
+        }
     }
-    public long4 grgb
+    public readonly long4 grgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 1, 2)));
+            else
+                return new(y, x, y, z);
+        }
     }
-    public long4 yxzx
+    public readonly long4 yxzx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 2, 0)));
+            else
+                return new(y, x, z, x);
+        }
     }
-    public long4 grbr
+    public readonly long4 grbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 2, 0)));
+            else
+                return new(y, x, z, x);
+        }
     }
-    public long4 yxzy
+    public readonly long4 yxzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 2, 1)));
+            else
+                return new(y, x, z, y);
+        }
     }
-    public long4 grbg
+    public readonly long4 grbg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 2, 1)));
+            else
+                return new(y, x, z, y);
+        }
     }
-    public long4 yxzz
+    public readonly long4 yxzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 2, 2)));
+            else
+                return new(y, x, z, z);
+        }
     }
-    public long4 grbb
+    public readonly long4 grbb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 0, 2, 2)));
+            else
+                return new(y, x, z, z);
+        }
     }
-    public long4 yyxx
+    public readonly long4 yyxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 0, 0)));
+            else
+                return new(y, y, x, x);
+        }
     }
-    public long4 ggrr
+    public readonly long4 ggrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 0, 0)));
+            else
+                return new(y, y, x, x);
+        }
     }
-    public long4 yyxy
+    public readonly long4 yyxy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 0, 1)));
+            else
+                return new(y, y, x, y);
+        }
     }
-    public long4 ggrg
+    public readonly long4 ggrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 0, 1)));
+            else
+                return new(y, y, x, y);
+        }
     }
-    public long4 yyxz
+    public readonly long4 yyxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 0, 2)));
+            else
+                return new(y, y, x, z);
+        }
     }
-    public long4 ggrb
+    public readonly long4 ggrb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 0, 2)));
+            else
+                return new(y, y, x, z);
+        }
     }
-    public long4 yyyx
+    public readonly long4 yyyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 1, 0)));
+            else
+                return new(y, y, y, x);
+        }
     }
-    public long4 gggr
+    public readonly long4 gggr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 1, 0)));
+            else
+                return new(y, y, y, x);
+        }
     }
-    public long4 yyyy
+    public readonly long4 yyyy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 1, 1)));
+            else
+                return new(y, y, y, y);
+        }
     }
-    public long4 gggg
+    public readonly long4 gggg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 1, 1)));
+            else
+                return new(y, y, y, y);
+        }
     }
-    public long4 yyyz
+    public readonly long4 yyyz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 1, 2)));
+            else
+                return new(y, y, y, z);
+        }
     }
-    public long4 gggb
+    public readonly long4 gggb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 1, 2)));
+            else
+                return new(y, y, y, z);
+        }
     }
-    public long4 yyzx
+    public readonly long4 yyzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 2, 0)));
+            else
+                return new(y, y, z, x);
+        }
     }
-    public long4 ggbr
+    public readonly long4 ggbr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 2, 0)));
+            else
+                return new(y, y, z, x);
+        }
     }
-    public long4 yyzy
+    public readonly long4 yyzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 2, 1)));
+            else
+                return new(y, y, z, y);
+        }
     }
-    public long4 ggbg
+    public readonly long4 ggbg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 2, 1)));
+            else
+                return new(y, y, z, y);
+        }
     }
-    public long4 yyzz
+    public readonly long4 yyzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 2, 2)));
+            else
+                return new(y, y, z, z);
+        }
     }
-    public long4 ggbb
+    public readonly long4 ggbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 1, 2, 2)));
+            else
+                return new(y, y, z, z);
+        }
     }
-    public long4 yzxx
+    public readonly long4 yzxx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 0, 0)));
+            else
+                return new(y, z, x, x);
+        }
     }
-    public long4 gbrr
+    public readonly long4 gbrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 0, 0)));
+            else
+                return new(y, z, x, x);
+        }
     }
-    public long4 yzxy
+    public readonly long4 yzxy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 0, 1)));
+            else
+                return new(y, z, x, y);
+        }
     }
-    public long4 gbrg
+    public readonly long4 gbrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 0, 1)));
+            else
+                return new(y, z, x, y);
+        }
     }
-    public long4 yzxz
+    public readonly long4 yzxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 0, 2)));
+            else
+                return new(y, z, x, z);
+        }
     }
-    public long4 gbrb
+    public readonly long4 gbrb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 0, 2)));
+            else
+                return new(y, z, x, z);
+        }
     }
-    public long4 yzyx
+    public readonly long4 yzyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 1, 0)));
+            else
+                return new(y, z, y, x);
+        }
     }
-    public long4 gbgr
+    public readonly long4 gbgr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 1, 0)));
+            else
+                return new(y, z, y, x);
+        }
     }
-    public long4 yzyy
+    public readonly long4 yzyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 1, 1)));
+            else
+                return new(y, z, y, y);
+        }
     }
-    public long4 gbgg
+    public readonly long4 gbgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 1, 1)));
+            else
+                return new(y, z, y, y);
+        }
     }
-    public long4 yzyz
+    public readonly long4 yzyz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 1, 2)));
+            else
+                return new(y, z, y, z);
+        }
     }
-    public long4 gbgb
+    public readonly long4 gbgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 1, 2)));
+            else
+                return new(y, z, y, z);
+        }
     }
-    public long4 yzzx
+    public readonly long4 yzzx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 2, 0)));
+            else
+                return new(y, z, z, x);
+        }
     }
-    public long4 gbbr
+    public readonly long4 gbbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 2, 0)));
+            else
+                return new(y, z, z, x);
+        }
     }
-    public long4 yzzy
+    public readonly long4 yzzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 2, 1)));
+            else
+                return new(y, z, z, y);
+        }
     }
-    public long4 gbbg
+    public readonly long4 gbbg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 2, 1)));
+            else
+                return new(y, z, z, y);
+        }
     }
-    public long4 yzzz
+    public readonly long4 yzzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 2, 2)));
+            else
+                return new(y, z, z, z);
+        }
     }
-    public long4 gbbb
+    public readonly long4 gbbb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(1, 2, 2, 2)));
+            else
+                return new(y, z, z, z);
+        }
     }
-    public long4 zxxx
+    public readonly long4 zxxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 0, 0)));
+            else
+                return new(z, x, x, x);
+        }
     }
-    public long4 brrr
+    public readonly long4 brrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 0, 0)));
+            else
+                return new(z, x, x, x);
+        }
     }
-    public long4 zxxy
+    public readonly long4 zxxy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 0, 1)));
+            else
+                return new(z, x, x, y);
+        }
     }
-    public long4 brrg
+    public readonly long4 brrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 0, 1)));
+            else
+                return new(z, x, x, y);
+        }
     }
-    public long4 zxxz
+    public readonly long4 zxxz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 0, 2)));
+            else
+                return new(z, x, x, z);
+        }
     }
-    public long4 brrb
+    public readonly long4 brrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 0, 2)));
+            else
+                return new(z, x, x, z);
+        }
     }
-    public long4 zxyx
+    public readonly long4 zxyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 1, 0)));
+            else
+                return new(z, x, y, x);
+        }
     }
-    public long4 brgr
+    public readonly long4 brgr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 1, 0)));
+            else
+                return new(z, x, y, x);
+        }
     }
-    public long4 zxyy
+    public readonly long4 zxyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 1, 1)));
+            else
+                return new(z, x, y, y);
+        }
     }
-    public long4 brgg
+    public readonly long4 brgg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 1, 1)));
+            else
+                return new(z, x, y, y);
+        }
     }
-    public long4 zxyz
+    public readonly long4 zxyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 1, 2)));
+            else
+                return new(z, x, y, z);
+        }
     }
-    public long4 brgb
+    public readonly long4 brgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 1, 2)));
+            else
+                return new(z, x, y, z);
+        }
     }
-    public long4 zxzx
+    public readonly long4 zxzx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 2, 0)));
+            else
+                return new(z, x, z, x);
+        }
     }
-    public long4 brbr
+    public readonly long4 brbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 2, 0)));
+            else
+                return new(z, x, z, x);
+        }
     }
-    public long4 zxzy
+    public readonly long4 zxzy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 2, 1)));
+            else
+                return new(z, x, z, y);
+        }
     }
-    public long4 brbg
+    public readonly long4 brbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 2, 1)));
+            else
+                return new(z, x, z, y);
+        }
     }
-    public long4 zxzz
+    public readonly long4 zxzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 2, 2)));
+            else
+                return new(z, x, z, z);
+        }
     }
-    public long4 brbb
+    public readonly long4 brbb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 0, 2, 2)));
+            else
+                return new(z, x, z, z);
+        }
     }
-    public long4 zyxx
+    public readonly long4 zyxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 0, 0)));
+            else
+                return new(z, y, x, x);
+        }
     }
-    public long4 bgrr
+    public readonly long4 bgrr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 0, 0)));
+            else
+                return new(z, y, x, x);
+        }
     }
-    public long4 zyxy
+    public readonly long4 zyxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 0, 1)));
+            else
+                return new(z, y, x, y);
+        }
     }
-    public long4 bgrg
+    public readonly long4 bgrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 0, 1)));
+            else
+                return new(z, y, x, y);
+        }
     }
-    public long4 zyxz
+    public readonly long4 zyxz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 0, 2)));
+            else
+                return new(z, y, x, z);
+        }
     }
-    public long4 bgrb
+    public readonly long4 bgrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 0, 2)));
+            else
+                return new(z, y, x, z);
+        }
     }
-    public long4 zyyx
+    public readonly long4 zyyx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 1, 0)));
+            else
+                return new(z, y, y, x);
+        }
     }
-    public long4 bggr
+    public readonly long4 bggr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 1, 0)));
+            else
+                return new(z, y, y, x);
+        }
     }
-    public long4 zyyy
+    public readonly long4 zyyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 1, 1)));
+            else
+                return new(z, y, y, y);
+        }
     }
-    public long4 bggg
+    public readonly long4 bggg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 1, 1)));
+            else
+                return new(z, y, y, y);
+        }
     }
-    public long4 zyyz
+    public readonly long4 zyyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 1, 2)));
+            else
+                return new(z, y, y, z);
+        }
     }
-    public long4 bggb
+    public readonly long4 bggb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 1, 2)));
+            else
+                return new(z, y, y, z);
+        }
     }
-    public long4 zyzx
+    public readonly long4 zyzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 2, 0)));
+            else
+                return new(z, y, z, x);
+        }
     }
-    public long4 bgbr
+    public readonly long4 bgbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 2, 0)));
+            else
+                return new(z, y, z, x);
+        }
     }
-    public long4 zyzy
+    public readonly long4 zyzy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 2, 1)));
+            else
+                return new(z, y, z, y);
+        }
     }
-    public long4 bgbg
+    public readonly long4 bgbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 2, 1)));
+            else
+                return new(z, y, z, y);
+        }
     }
-    public long4 zyzz
+    public readonly long4 zyzz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 2, 2)));
+            else
+                return new(z, y, z, z);
+        }
     }
-    public long4 bgbb
+    public readonly long4 bgbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 1, 2, 2)));
+            else
+                return new(z, y, z, z);
+        }
     }
-    public long4 zzxx
+    public readonly long4 zzxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 0, 0)));
+            else
+                return new(z, z, x, x);
+        }
     }
-    public long4 bbrr
+    public readonly long4 bbrr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 0, 0)));
+            else
+                return new(z, z, x, x);
+        }
     }
-    public long4 zzxy
+    public readonly long4 zzxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 0, 1)));
+            else
+                return new(z, z, x, y);
+        }
     }
-    public long4 bbrg
+    public readonly long4 bbrg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 0, 1)));
+            else
+                return new(z, z, x, y);
+        }
     }
-    public long4 zzxz
+    public readonly long4 zzxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 0, 2)));
+            else
+                return new(z, z, x, z);
+        }
     }
-    public long4 bbrb
+    public readonly long4 bbrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 0, 2)));
+            else
+                return new(z, z, x, z);
+        }
     }
-    public long4 zzyx
+    public readonly long4 zzyx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 1, 0)));
+            else
+                return new(z, z, y, x);
+        }
     }
-    public long4 bbgr
+    public readonly long4 bbgr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 1, 0)));
+            else
+                return new(z, z, y, x);
+        }
     }
-    public long4 zzyy
+    public readonly long4 zzyy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 1, 1)));
+            else
+                return new(z, z, y, y);
+        }
     }
-    public long4 bbgg
+    public readonly long4 bbgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 1, 1)));
+            else
+                return new(z, z, y, y);
+        }
     }
-    public long4 zzyz
+    public readonly long4 zzyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 1, 2)));
+            else
+                return new(z, z, y, z);
+        }
     }
-    public long4 bbgb
+    public readonly long4 bbgb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 1, 2)));
+            else
+                return new(z, z, y, z);
+        }
     }
-    public long4 zzzx
+    public readonly long4 zzzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 2, 0)));
+            else
+                return new(z, z, z, x);
+        }
     }
-    public long4 bbbr
+    public readonly long4 bbbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 2, 0)));
+            else
+                return new(z, z, z, x);
+        }
     }
-    public long4 zzzy
+    public readonly long4 zzzy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 2, 1)));
+            else
+                return new(z, z, z, y);
+        }
     }
-    public long4 bbbg
+    public readonly long4 bbbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 2, 1)));
+            else
+                return new(z, z, z, y);
+        }
     }
-    public long4 zzzz
+    public readonly long4 zzzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 2, 2)));
+            else
+                return new(z, z, z, z);
+        }
     }
-    public long4 bbbb
+    public readonly long4 bbbb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create(2, 2, 2, 2)));
+            else
+                return new(z, z, z, z);
+        }
     }
 }
 
@@ -9782,1625 +10592,1787 @@ public partial struct long3
 
 public partial struct ulong3 
 {
-    public ulong4 xxxx
+    public readonly ulong4 xxxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 0, 0)));
+            else
+                return new(x, x, x, x);
+        }
     }
-    public ulong4 rrrr
+    public readonly ulong4 rrrr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 0, 0)));
+            else
+                return new(x, x, x, x);
+        }
     }
-    public ulong4 xxxy
+    public readonly ulong4 xxxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 0, 1)));
+            else
+                return new(x, x, x, y);
+        }
     }
-    public ulong4 rrrg
+    public readonly ulong4 rrrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 0, 1)));
+            else
+                return new(x, x, x, y);
+        }
     }
-    public ulong4 xxxz
+    public readonly ulong4 xxxz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 0, 2)));
+            else
+                return new(x, x, x, z);
+        }
     }
-    public ulong4 rrrb
+    public readonly ulong4 rrrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 0, 2)));
+            else
+                return new(x, x, x, z);
+        }
     }
-    public ulong4 xxyx
+    public readonly ulong4 xxyx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 1, 0)));
+            else
+                return new(x, x, y, x);
+        }
     }
-    public ulong4 rrgr
+    public readonly ulong4 rrgr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 1, 0)));
+            else
+                return new(x, x, y, x);
+        }
     }
-    public ulong4 xxyy
+    public readonly ulong4 xxyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 1, 1)));
+            else
+                return new(x, x, y, y);
+        }
     }
-    public ulong4 rrgg
+    public readonly ulong4 rrgg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 1, 1)));
+            else
+                return new(x, x, y, y);
+        }
     }
-    public ulong4 xxyz
+    public readonly ulong4 xxyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 1, 2)));
+            else
+                return new(x, x, y, z);
+        }
     }
-    public ulong4 rrgb
+    public readonly ulong4 rrgb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 1, 2)));
+            else
+                return new(x, x, y, z);
+        }
     }
-    public ulong4 xxzx
+    public readonly ulong4 xxzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 2, 0)));
+            else
+                return new(x, x, z, x);
+        }
     }
-    public ulong4 rrbr
+    public readonly ulong4 rrbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 2, 0)));
+            else
+                return new(x, x, z, x);
+        }
     }
-    public ulong4 xxzy
+    public readonly ulong4 xxzy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 2, 1)));
+            else
+                return new(x, x, z, y);
+        }
     }
-    public ulong4 rrbg
+    public readonly ulong4 rrbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 2, 1)));
+            else
+                return new(x, x, z, y);
+        }
     }
-    public ulong4 xxzz
+    public readonly ulong4 xxzz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 2, 2)));
+            else
+                return new(x, x, z, z);
+        }
     }
-    public ulong4 rrbb
+    public readonly ulong4 rrbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 2, 2)));
+            else
+                return new(x, x, z, z);
+        }
     }
-    public ulong4 xyxx
+    public readonly ulong4 xyxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 0, 0)));
+            else
+                return new(x, y, x, x);
+        }
     }
-    public ulong4 rgrr
+    public readonly ulong4 rgrr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 0, 0)));
+            else
+                return new(x, y, x, x);
+        }
     }
-    public ulong4 xyxy
+    public readonly ulong4 xyxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 0, 1)));
+            else
+                return new(x, y, x, y);
+        }
     }
-    public ulong4 rgrg
+    public readonly ulong4 rgrg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 0, 1)));
+            else
+                return new(x, y, x, y);
+        }
     }
-    public ulong4 xyxz
+    public readonly ulong4 xyxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 0, 2)));
+            else
+                return new(x, y, x, z);
+        }
     }
-    public ulong4 rgrb
+    public readonly ulong4 rgrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 0, 2)));
+            else
+                return new(x, y, x, z);
+        }
     }
-    public ulong4 xyyx
+    public readonly ulong4 xyyx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 1, 0)));
+            else
+                return new(x, y, y, x);
+        }
     }
-    public ulong4 rggr
+    public readonly ulong4 rggr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 1, 0)));
+            else
+                return new(x, y, y, x);
+        }
     }
-    public ulong4 xyyy
+    public readonly ulong4 xyyy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 1, 1)));
+            else
+                return new(x, y, y, y);
+        }
     }
-    public ulong4 rggg
+    public readonly ulong4 rggg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 1, 1)));
+            else
+                return new(x, y, y, y);
+        }
     }
-    public ulong4 xyyz
+    public readonly ulong4 xyyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 1, 2)));
+            else
+                return new(x, y, y, z);
+        }
     }
-    public ulong4 rggb
+    public readonly ulong4 rggb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 1, 2)));
+            else
+                return new(x, y, y, z);
+        }
     }
-    public ulong4 xyzx
+    public readonly ulong4 xyzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 2, 0)));
+            else
+                return new(x, y, z, x);
+        }
     }
-    public ulong4 rgbr
+    public readonly ulong4 rgbr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 2, 0)));
+            else
+                return new(x, y, z, x);
+        }
     }
-    public ulong4 xyzy
+    public readonly ulong4 xyzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 2, 1)));
+            else
+                return new(x, y, z, y);
+        }
     }
-    public ulong4 rgbg
+    public readonly ulong4 rgbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 2, 1)));
+            else
+                return new(x, y, z, y);
+        }
     }
-    public ulong4 xyzz
+    public readonly ulong4 xyzz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 2, 2)));
+            else
+                return new(x, y, z, z);
+        }
     }
-    public ulong4 rgbb
+    public readonly ulong4 rgbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 2, 2)));
+            else
+                return new(x, y, z, z);
+        }
     }
-    public ulong4 xzxx
+    public readonly ulong4 xzxx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 0, 0)));
+            else
+                return new(x, z, x, x);
+        }
     }
-    public ulong4 rbrr
+    public readonly ulong4 rbrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 0, 0)));
+            else
+                return new(x, z, x, x);
+        }
     }
-    public ulong4 xzxy
+    public readonly ulong4 xzxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 0, 1)));
+            else
+                return new(x, z, x, y);
+        }
     }
-    public ulong4 rbrg
+    public readonly ulong4 rbrg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 0, 1)));
+            else
+                return new(x, z, x, y);
+        }
     }
-    public ulong4 xzxz
+    public readonly ulong4 xzxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 0, 2)));
+            else
+                return new(x, z, x, z);
+        }
     }
-    public ulong4 rbrb
+    public readonly ulong4 rbrb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 0, 2)));
+            else
+                return new(x, z, x, z);
+        }
     }
-    public ulong4 xzyx
+    public readonly ulong4 xzyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 1, 0)));
+            else
+                return new(x, z, y, x);
+        }
     }
-    public ulong4 rbgr
+    public readonly ulong4 rbgr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 1, 0)));
+            else
+                return new(x, z, y, x);
+        }
     }
-    public ulong4 xzyy
+    public readonly ulong4 xzyy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 1, 1)));
+            else
+                return new(x, z, y, y);
+        }
     }
-    public ulong4 rbgg
+    public readonly ulong4 rbgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 1, 1)));
+            else
+                return new(x, z, y, y);
+        }
     }
-    public ulong4 xzyz
+    public readonly ulong4 xzyz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 1, 2)));
+            else
+                return new(x, z, y, z);
+        }
     }
-    public ulong4 rbgb
+    public readonly ulong4 rbgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 1, 2)));
+            else
+                return new(x, z, y, z);
+        }
     }
-    public ulong4 xzzx
+    public readonly ulong4 xzzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 2, 0)));
+            else
+                return new(x, z, z, x);
+        }
     }
-    public ulong4 rbbr
+    public readonly ulong4 rbbr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 2, 0)));
+            else
+                return new(x, z, z, x);
+        }
     }
-    public ulong4 xzzy
+    public readonly ulong4 xzzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 2, 1)));
+            else
+                return new(x, z, z, y);
+        }
     }
-    public ulong4 rbbg
+    public readonly ulong4 rbbg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 2, 1)));
+            else
+                return new(x, z, z, y);
+        }
     }
-    public ulong4 xzzz
+    public readonly ulong4 xzzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 2, 2)));
+            else
+                return new(x, z, z, z);
+        }
     }
-    public ulong4 rbbb
+    public readonly ulong4 rbbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 2, 2)));
+            else
+                return new(x, z, z, z);
+        }
     }
-    public ulong4 yxxx
+    public readonly ulong4 yxxx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 0, 0)));
+            else
+                return new(y, x, x, x);
+        }
     }
-    public ulong4 grrr
+    public readonly ulong4 grrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 0, 0)));
+            else
+                return new(y, x, x, x);
+        }
     }
-    public ulong4 yxxy
+    public readonly ulong4 yxxy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 0, 1)));
+            else
+                return new(y, x, x, y);
+        }
     }
-    public ulong4 grrg
+    public readonly ulong4 grrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 0, 1)));
+            else
+                return new(y, x, x, y);
+        }
     }
-    public ulong4 yxxz
+    public readonly ulong4 yxxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 0, 2)));
+            else
+                return new(y, x, x, z);
+        }
     }
-    public ulong4 grrb
+    public readonly ulong4 grrb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 0, 2)));
+            else
+                return new(y, x, x, z);
+        }
     }
-    public ulong4 yxyx
+    public readonly ulong4 yxyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 1, 0)));
+            else
+                return new(y, x, y, x);
+        }
     }
-    public ulong4 grgr
+    public readonly ulong4 grgr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 1, 0)));
+            else
+                return new(y, x, y, x);
+        }
     }
-    public ulong4 yxyy
+    public readonly ulong4 yxyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 1, 1)));
+            else
+                return new(y, x, y, y);
+        }
     }
-    public ulong4 grgg
+    public readonly ulong4 grgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 1, 1)));
+            else
+                return new(y, x, y, y);
+        }
     }
-    public ulong4 yxyz
+    public readonly ulong4 yxyz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 1, 2)));
+            else
+                return new(y, x, y, z);
+        }
     }
-    public ulong4 grgb
+    public readonly ulong4 grgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 1, 2)));
+            else
+                return new(y, x, y, z);
+        }
     }
-    public ulong4 yxzx
+    public readonly ulong4 yxzx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 2, 0)));
+            else
+                return new(y, x, z, x);
+        }
     }
-    public ulong4 grbr
+    public readonly ulong4 grbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 2, 0)));
+            else
+                return new(y, x, z, x);
+        }
     }
-    public ulong4 yxzy
+    public readonly ulong4 yxzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 2, 1)));
+            else
+                return new(y, x, z, y);
+        }
     }
-    public ulong4 grbg
+    public readonly ulong4 grbg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 2, 1)));
+            else
+                return new(y, x, z, y);
+        }
     }
-    public ulong4 yxzz
+    public readonly ulong4 yxzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 2, 2)));
+            else
+                return new(y, x, z, z);
+        }
     }
-    public ulong4 grbb
+    public readonly ulong4 grbb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 2, 2)));
+            else
+                return new(y, x, z, z);
+        }
     }
-    public ulong4 yyxx
+    public readonly ulong4 yyxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 0, 0)));
+            else
+                return new(y, y, x, x);
+        }
     }
-    public ulong4 ggrr
+    public readonly ulong4 ggrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 0, 0)));
+            else
+                return new(y, y, x, x);
+        }
     }
-    public ulong4 yyxy
+    public readonly ulong4 yyxy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 0, 1)));
+            else
+                return new(y, y, x, y);
+        }
     }
-    public ulong4 ggrg
+    public readonly ulong4 ggrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 0, 1)));
+            else
+                return new(y, y, x, y);
+        }
     }
-    public ulong4 yyxz
+    public readonly ulong4 yyxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 0, 2)));
+            else
+                return new(y, y, x, z);
+        }
     }
-    public ulong4 ggrb
+    public readonly ulong4 ggrb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 0, 2)));
+            else
+                return new(y, y, x, z);
+        }
     }
-    public ulong4 yyyx
+    public readonly ulong4 yyyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 1, 0)));
+            else
+                return new(y, y, y, x);
+        }
     }
-    public ulong4 gggr
+    public readonly ulong4 gggr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 1, 0)));
+            else
+                return new(y, y, y, x);
+        }
     }
-    public ulong4 yyyy
+    public readonly ulong4 yyyy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 1, 1)));
+            else
+                return new(y, y, y, y);
+        }
     }
-    public ulong4 gggg
+    public readonly ulong4 gggg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 1, 1)));
+            else
+                return new(y, y, y, y);
+        }
     }
-    public ulong4 yyyz
+    public readonly ulong4 yyyz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 1, 2)));
+            else
+                return new(y, y, y, z);
+        }
     }
-    public ulong4 gggb
+    public readonly ulong4 gggb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 1, 2)));
+            else
+                return new(y, y, y, z);
+        }
     }
-    public ulong4 yyzx
+    public readonly ulong4 yyzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 2, 0)));
+            else
+                return new(y, y, z, x);
+        }
     }
-    public ulong4 ggbr
+    public readonly ulong4 ggbr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 2, 0)));
+            else
+                return new(y, y, z, x);
+        }
     }
-    public ulong4 yyzy
+    public readonly ulong4 yyzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 2, 1)));
+            else
+                return new(y, y, z, y);
+        }
     }
-    public ulong4 ggbg
+    public readonly ulong4 ggbg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 2, 1)));
+            else
+                return new(y, y, z, y);
+        }
     }
-    public ulong4 yyzz
+    public readonly ulong4 yyzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 2, 2)));
+            else
+                return new(y, y, z, z);
+        }
     }
-    public ulong4 ggbb
+    public readonly ulong4 ggbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 2, 2)));
+            else
+                return new(y, y, z, z);
+        }
     }
-    public ulong4 yzxx
+    public readonly ulong4 yzxx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 0, 0)));
+            else
+                return new(y, z, x, x);
+        }
     }
-    public ulong4 gbrr
+    public readonly ulong4 gbrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 0, 0)));
+            else
+                return new(y, z, x, x);
+        }
     }
-    public ulong4 yzxy
+    public readonly ulong4 yzxy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 0, 1)));
+            else
+                return new(y, z, x, y);
+        }
     }
-    public ulong4 gbrg
+    public readonly ulong4 gbrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 0, 1)));
+            else
+                return new(y, z, x, y);
+        }
     }
-    public ulong4 yzxz
+    public readonly ulong4 yzxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 0, 2)));
+            else
+                return new(y, z, x, z);
+        }
     }
-    public ulong4 gbrb
+    public readonly ulong4 gbrb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 0, 2)));
+            else
+                return new(y, z, x, z);
+        }
     }
-    public ulong4 yzyx
+    public readonly ulong4 yzyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 1, 0)));
+            else
+                return new(y, z, y, x);
+        }
     }
-    public ulong4 gbgr
+    public readonly ulong4 gbgr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 1, 0)));
+            else
+                return new(y, z, y, x);
+        }
     }
-    public ulong4 yzyy
+    public readonly ulong4 yzyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 1, 1)));
+            else
+                return new(y, z, y, y);
+        }
     }
-    public ulong4 gbgg
+    public readonly ulong4 gbgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 1, 1)));
+            else
+                return new(y, z, y, y);
+        }
     }
-    public ulong4 yzyz
+    public readonly ulong4 yzyz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 1, 2)));
+            else
+                return new(y, z, y, z);
+        }
     }
-    public ulong4 gbgb
+    public readonly ulong4 gbgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 1, 2)));
+            else
+                return new(y, z, y, z);
+        }
     }
-    public ulong4 yzzx
+    public readonly ulong4 yzzx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 2, 0)));
+            else
+                return new(y, z, z, x);
+        }
     }
-    public ulong4 gbbr
+    public readonly ulong4 gbbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 2, 0)));
+            else
+                return new(y, z, z, x);
+        }
     }
-    public ulong4 yzzy
+    public readonly ulong4 yzzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 2, 1)));
+            else
+                return new(y, z, z, y);
+        }
     }
-    public ulong4 gbbg
+    public readonly ulong4 gbbg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 2, 1)));
+            else
+                return new(y, z, z, y);
+        }
     }
-    public ulong4 yzzz
+    public readonly ulong4 yzzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 2, 2)));
+            else
+                return new(y, z, z, z);
+        }
     }
-    public ulong4 gbbb
+    public readonly ulong4 gbbb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 2, 2)));
+            else
+                return new(y, z, z, z);
+        }
     }
-    public ulong4 zxxx
+    public readonly ulong4 zxxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 0, 0)));
+            else
+                return new(z, x, x, x);
+        }
     }
-    public ulong4 brrr
+    public readonly ulong4 brrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 0, 0)));
+            else
+                return new(z, x, x, x);
+        }
     }
-    public ulong4 zxxy
+    public readonly ulong4 zxxy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 0, 1)));
+            else
+                return new(z, x, x, y);
+        }
     }
-    public ulong4 brrg
+    public readonly ulong4 brrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 0, 1)));
+            else
+                return new(z, x, x, y);
+        }
     }
-    public ulong4 zxxz
+    public readonly ulong4 zxxz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 0, 2)));
+            else
+                return new(z, x, x, z);
+        }
     }
-    public ulong4 brrb
+    public readonly ulong4 brrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 0, 2)));
+            else
+                return new(z, x, x, z);
+        }
     }
-    public ulong4 zxyx
+    public readonly ulong4 zxyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 1, 0)));
+            else
+                return new(z, x, y, x);
+        }
     }
-    public ulong4 brgr
+    public readonly ulong4 brgr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 1, 0)));
+            else
+                return new(z, x, y, x);
+        }
     }
-    public ulong4 zxyy
+    public readonly ulong4 zxyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 1, 1)));
+            else
+                return new(z, x, y, y);
+        }
     }
-    public ulong4 brgg
+    public readonly ulong4 brgg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 1, 1)));
+            else
+                return new(z, x, y, y);
+        }
     }
-    public ulong4 zxyz
+    public readonly ulong4 zxyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 1, 2)));
+            else
+                return new(z, x, y, z);
+        }
     }
-    public ulong4 brgb
+    public readonly ulong4 brgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 1, 2)));
+            else
+                return new(z, x, y, z);
+        }
     }
-    public ulong4 zxzx
+    public readonly ulong4 zxzx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 2, 0)));
+            else
+                return new(z, x, z, x);
+        }
     }
-    public ulong4 brbr
+    public readonly ulong4 brbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 2, 0)));
+            else
+                return new(z, x, z, x);
+        }
     }
-    public ulong4 zxzy
+    public readonly ulong4 zxzy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 2, 1)));
+            else
+                return new(z, x, z, y);
+        }
     }
-    public ulong4 brbg
+    public readonly ulong4 brbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 2, 1)));
+            else
+                return new(z, x, z, y);
+        }
     }
-    public ulong4 zxzz
+    public readonly ulong4 zxzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 2, 2)));
+            else
+                return new(z, x, z, z);
+        }
     }
-    public ulong4 brbb
+    public readonly ulong4 brbb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 2, 2)));
+            else
+                return new(z, x, z, z);
+        }
     }
-    public ulong4 zyxx
+    public readonly ulong4 zyxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 0, 0)));
+            else
+                return new(z, y, x, x);
+        }
     }
-    public ulong4 bgrr
+    public readonly ulong4 bgrr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 0, 0)));
+            else
+                return new(z, y, x, x);
+        }
     }
-    public ulong4 zyxy
+    public readonly ulong4 zyxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 0, 1)));
+            else
+                return new(z, y, x, y);
+        }
     }
-    public ulong4 bgrg
+    public readonly ulong4 bgrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 0, 1)));
+            else
+                return new(z, y, x, y);
+        }
     }
-    public ulong4 zyxz
+    public readonly ulong4 zyxz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 0, 2)));
+            else
+                return new(z, y, x, z);
+        }
     }
-    public ulong4 bgrb
+    public readonly ulong4 bgrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 0, 2)));
+            else
+                return new(z, y, x, z);
+        }
     }
-    public ulong4 zyyx
+    public readonly ulong4 zyyx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 1, 0)));
+            else
+                return new(z, y, y, x);
+        }
     }
-    public ulong4 bggr
+    public readonly ulong4 bggr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 1, 0)));
+            else
+                return new(z, y, y, x);
+        }
     }
-    public ulong4 zyyy
+    public readonly ulong4 zyyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 1, 1)));
+            else
+                return new(z, y, y, y);
+        }
     }
-    public ulong4 bggg
+    public readonly ulong4 bggg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 1, 1)));
+            else
+                return new(z, y, y, y);
+        }
     }
-    public ulong4 zyyz
+    public readonly ulong4 zyyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 1, 2)));
+            else
+                return new(z, y, y, z);
+        }
     }
-    public ulong4 bggb
+    public readonly ulong4 bggb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 1, 2)));
+            else
+                return new(z, y, y, z);
+        }
     }
-    public ulong4 zyzx
+    public readonly ulong4 zyzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 2, 0)));
+            else
+                return new(z, y, z, x);
+        }
     }
-    public ulong4 bgbr
+    public readonly ulong4 bgbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 2, 0)));
+            else
+                return new(z, y, z, x);
+        }
     }
-    public ulong4 zyzy
+    public readonly ulong4 zyzy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 2, 1)));
+            else
+                return new(z, y, z, y);
+        }
     }
-    public ulong4 bgbg
+    public readonly ulong4 bgbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 2, 1)));
+            else
+                return new(z, y, z, y);
+        }
     }
-    public ulong4 zyzz
+    public readonly ulong4 zyzz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 2, 2)));
+            else
+                return new(z, y, z, z);
+        }
     }
-    public ulong4 bgbb
+    public readonly ulong4 bgbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 2, 2)));
+            else
+                return new(z, y, z, z);
+        }
     }
-    public ulong4 zzxx
+    public readonly ulong4 zzxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 0, 0)));
+            else
+                return new(z, z, x, x);
+        }
     }
-    public ulong4 bbrr
+    public readonly ulong4 bbrr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 0, 0)));
+            else
+                return new(z, z, x, x);
+        }
     }
-    public ulong4 zzxy
+    public readonly ulong4 zzxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 0, 1)));
+            else
+                return new(z, z, x, y);
+        }
     }
-    public ulong4 bbrg
+    public readonly ulong4 bbrg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 0, 1)));
+            else
+                return new(z, z, x, y);
+        }
     }
-    public ulong4 zzxz
+    public readonly ulong4 zzxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 0, 2)));
+            else
+                return new(z, z, x, z);
+        }
     }
-    public ulong4 bbrb
+    public readonly ulong4 bbrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 0, 2)));
+            else
+                return new(z, z, x, z);
+        }
     }
-    public ulong4 zzyx
+    public readonly ulong4 zzyx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 1, 0)));
+            else
+                return new(z, z, y, x);
+        }
     }
-    public ulong4 bbgr
+    public readonly ulong4 bbgr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 1, 0)));
+            else
+                return new(z, z, y, x);
+        }
     }
-    public ulong4 zzyy
+    public readonly ulong4 zzyy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 1, 1)));
+            else
+                return new(z, z, y, y);
+        }
     }
-    public ulong4 bbgg
+    public readonly ulong4 bbgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 1, 1)));
+            else
+                return new(z, z, y, y);
+        }
     }
-    public ulong4 zzyz
+    public readonly ulong4 zzyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 1, 2)));
+            else
+                return new(z, z, y, z);
+        }
     }
-    public ulong4 bbgb
+    public readonly ulong4 bbgb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 1, 2)));
+            else
+                return new(z, z, y, z);
+        }
     }
-    public ulong4 zzzx
+    public readonly ulong4 zzzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 2, 0)));
+            else
+                return new(z, z, z, x);
+        }
     }
-    public ulong4 bbbr
+    public readonly ulong4 bbbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 2, 0)));
+            else
+                return new(z, z, z, x);
+        }
     }
-    public ulong4 zzzy
+    public readonly ulong4 zzzy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 2, 1)));
+            else
+                return new(z, z, z, y);
+        }
     }
-    public ulong4 bbbg
+    public readonly ulong4 bbbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 2, 1)));
+            else
+                return new(z, z, z, y);
+        }
     }
-    public ulong4 zzzz
+    public readonly ulong4 zzzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 2, 2)));
+            else
+                return new(z, z, z, z);
+        }
     }
-    public ulong4 bbbb
+    public readonly ulong4 bbbb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 2, 2)));
+            else
+                return new(z, z, z, z);
+        }
     }
 }
 
@@ -11410,812 +12382,812 @@ public partial struct ulong3
 
 public partial struct decimal3 
 {
-    public decimal4 xxxx
+    public readonly decimal4 xxxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, x);
     }
-    public decimal4 rrrr
+    public readonly decimal4 rrrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, x);
     }
-    public decimal4 xxxy
+    public readonly decimal4 xxxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, y);
     }
-    public decimal4 rrrg
+    public readonly decimal4 rrrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, y);
     }
-    public decimal4 xxxz
+    public readonly decimal4 xxxz
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, z);
     }
-    public decimal4 rrrb
+    public readonly decimal4 rrrb
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, z);
     }
-    public decimal4 xxyx
+    public readonly decimal4 xxyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, x);
     }
-    public decimal4 rrgr
+    public readonly decimal4 rrgr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, x);
     }
-    public decimal4 xxyy
+    public readonly decimal4 xxyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, y);
     }
-    public decimal4 rrgg
+    public readonly decimal4 rrgg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, y);
     }
-    public decimal4 xxyz
+    public readonly decimal4 xxyz
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, z);
     }
-    public decimal4 rrgb
+    public readonly decimal4 rrgb
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, z);
     }
-    public decimal4 xxzx
+    public readonly decimal4 xxzx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, x);
     }
-    public decimal4 rrbr
+    public readonly decimal4 rrbr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, x);
     }
-    public decimal4 xxzy
+    public readonly decimal4 xxzy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, y);
     }
-    public decimal4 rrbg
+    public readonly decimal4 rrbg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, y);
     }
-    public decimal4 xxzz
+    public readonly decimal4 xxzz
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, z);
     }
-    public decimal4 rrbb
+    public readonly decimal4 rrbb
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, z);
     }
-    public decimal4 xyxx
+    public readonly decimal4 xyxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, x);
     }
-    public decimal4 rgrr
+    public readonly decimal4 rgrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, x);
     }
-    public decimal4 xyxy
+    public readonly decimal4 xyxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, y);
     }
-    public decimal4 rgrg
+    public readonly decimal4 rgrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, y);
     }
-    public decimal4 xyxz
+    public readonly decimal4 xyxz
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, z);
     }
-    public decimal4 rgrb
+    public readonly decimal4 rgrb
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, z);
     }
-    public decimal4 xyyx
+    public readonly decimal4 xyyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, x);
     }
-    public decimal4 rggr
+    public readonly decimal4 rggr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, x);
     }
-    public decimal4 xyyy
+    public readonly decimal4 xyyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, y);
     }
-    public decimal4 rggg
+    public readonly decimal4 rggg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, y);
     }
-    public decimal4 xyyz
+    public readonly decimal4 xyyz
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, z);
     }
-    public decimal4 rggb
+    public readonly decimal4 rggb
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, z);
     }
-    public decimal4 xyzx
+    public readonly decimal4 xyzx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, x);
     }
-    public decimal4 rgbr
+    public readonly decimal4 rgbr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, x);
     }
-    public decimal4 xyzy
+    public readonly decimal4 xyzy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, y);
     }
-    public decimal4 rgbg
+    public readonly decimal4 rgbg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, y);
     }
-    public decimal4 xyzz
+    public readonly decimal4 xyzz
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, z);
     }
-    public decimal4 rgbb
+    public readonly decimal4 rgbb
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, z);
     }
-    public decimal4 xzxx
+    public readonly decimal4 xzxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, x);
     }
-    public decimal4 rbrr
+    public readonly decimal4 rbrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, x);
     }
-    public decimal4 xzxy
+    public readonly decimal4 xzxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, y);
     }
-    public decimal4 rbrg
+    public readonly decimal4 rbrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, y);
     }
-    public decimal4 xzxz
+    public readonly decimal4 xzxz
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, z);
     }
-    public decimal4 rbrb
+    public readonly decimal4 rbrb
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, z);
     }
-    public decimal4 xzyx
+    public readonly decimal4 xzyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, x);
     }
-    public decimal4 rbgr
+    public readonly decimal4 rbgr
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, x);
     }
-    public decimal4 xzyy
+    public readonly decimal4 xzyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, y);
     }
-    public decimal4 rbgg
+    public readonly decimal4 rbgg
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, y);
     }
-    public decimal4 xzyz
+    public readonly decimal4 xzyz
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, z);
     }
-    public decimal4 rbgb
+    public readonly decimal4 rbgb
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, z);
     }
-    public decimal4 xzzx
+    public readonly decimal4 xzzx
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, x);
     }
-    public decimal4 rbbr
+    public readonly decimal4 rbbr
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, x);
     }
-    public decimal4 xzzy
+    public readonly decimal4 xzzy
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, y);
     }
-    public decimal4 rbbg
+    public readonly decimal4 rbbg
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, y);
     }
-    public decimal4 xzzz
+    public readonly decimal4 xzzz
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, z);
     }
-    public decimal4 rbbb
+    public readonly decimal4 rbbb
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, z);
     }
-    public decimal4 yxxx
+    public readonly decimal4 yxxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, x);
     }
-    public decimal4 grrr
+    public readonly decimal4 grrr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, x);
     }
-    public decimal4 yxxy
+    public readonly decimal4 yxxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, y);
     }
-    public decimal4 grrg
+    public readonly decimal4 grrg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, y);
     }
-    public decimal4 yxxz
+    public readonly decimal4 yxxz
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, z);
     }
-    public decimal4 grrb
+    public readonly decimal4 grrb
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, z);
     }
-    public decimal4 yxyx
+    public readonly decimal4 yxyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, x);
     }
-    public decimal4 grgr
+    public readonly decimal4 grgr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, x);
     }
-    public decimal4 yxyy
+    public readonly decimal4 yxyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, y);
     }
-    public decimal4 grgg
+    public readonly decimal4 grgg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, y);
     }
-    public decimal4 yxyz
+    public readonly decimal4 yxyz
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, z);
     }
-    public decimal4 grgb
+    public readonly decimal4 grgb
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, z);
     }
-    public decimal4 yxzx
+    public readonly decimal4 yxzx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, x);
     }
-    public decimal4 grbr
+    public readonly decimal4 grbr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, x);
     }
-    public decimal4 yxzy
+    public readonly decimal4 yxzy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, y);
     }
-    public decimal4 grbg
+    public readonly decimal4 grbg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, y);
     }
-    public decimal4 yxzz
+    public readonly decimal4 yxzz
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, z);
     }
-    public decimal4 grbb
+    public readonly decimal4 grbb
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, z);
     }
-    public decimal4 yyxx
+    public readonly decimal4 yyxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, x);
     }
-    public decimal4 ggrr
+    public readonly decimal4 ggrr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, x);
     }
-    public decimal4 yyxy
+    public readonly decimal4 yyxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, y);
     }
-    public decimal4 ggrg
+    public readonly decimal4 ggrg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, y);
     }
-    public decimal4 yyxz
+    public readonly decimal4 yyxz
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, z);
     }
-    public decimal4 ggrb
+    public readonly decimal4 ggrb
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, z);
     }
-    public decimal4 yyyx
+    public readonly decimal4 yyyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, x);
     }
-    public decimal4 gggr
+    public readonly decimal4 gggr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, x);
     }
-    public decimal4 yyyy
+    public readonly decimal4 yyyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, y);
     }
-    public decimal4 gggg
+    public readonly decimal4 gggg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, y);
     }
-    public decimal4 yyyz
+    public readonly decimal4 yyyz
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, z);
     }
-    public decimal4 gggb
+    public readonly decimal4 gggb
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, z);
     }
-    public decimal4 yyzx
+    public readonly decimal4 yyzx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, x);
     }
-    public decimal4 ggbr
+    public readonly decimal4 ggbr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, x);
     }
-    public decimal4 yyzy
+    public readonly decimal4 yyzy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, y);
     }
-    public decimal4 ggbg
+    public readonly decimal4 ggbg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, y);
     }
-    public decimal4 yyzz
+    public readonly decimal4 yyzz
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, z);
     }
-    public decimal4 ggbb
+    public readonly decimal4 ggbb
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, z);
     }
-    public decimal4 yzxx
+    public readonly decimal4 yzxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, x);
     }
-    public decimal4 gbrr
+    public readonly decimal4 gbrr
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, x);
     }
-    public decimal4 yzxy
+    public readonly decimal4 yzxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, y);
     }
-    public decimal4 gbrg
+    public readonly decimal4 gbrg
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, y);
     }
-    public decimal4 yzxz
+    public readonly decimal4 yzxz
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, z);
     }
-    public decimal4 gbrb
+    public readonly decimal4 gbrb
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, z);
     }
-    public decimal4 yzyx
+    public readonly decimal4 yzyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, x);
     }
-    public decimal4 gbgr
+    public readonly decimal4 gbgr
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, x);
     }
-    public decimal4 yzyy
+    public readonly decimal4 yzyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, y);
     }
-    public decimal4 gbgg
+    public readonly decimal4 gbgg
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, y);
     }
-    public decimal4 yzyz
+    public readonly decimal4 yzyz
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, z);
     }
-    public decimal4 gbgb
+    public readonly decimal4 gbgb
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, z);
     }
-    public decimal4 yzzx
+    public readonly decimal4 yzzx
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, x);
     }
-    public decimal4 gbbr
+    public readonly decimal4 gbbr
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, x);
     }
-    public decimal4 yzzy
+    public readonly decimal4 yzzy
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, y);
     }
-    public decimal4 gbbg
+    public readonly decimal4 gbbg
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, y);
     }
-    public decimal4 yzzz
+    public readonly decimal4 yzzz
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, z);
     }
-    public decimal4 gbbb
+    public readonly decimal4 gbbb
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, z);
     }
-    public decimal4 zxxx
+    public readonly decimal4 zxxx
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, x);
     }
-    public decimal4 brrr
+    public readonly decimal4 brrr
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, x);
     }
-    public decimal4 zxxy
+    public readonly decimal4 zxxy
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, y);
     }
-    public decimal4 brrg
+    public readonly decimal4 brrg
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, y);
     }
-    public decimal4 zxxz
+    public readonly decimal4 zxxz
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, z);
     }
-    public decimal4 brrb
+    public readonly decimal4 brrb
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, z);
     }
-    public decimal4 zxyx
+    public readonly decimal4 zxyx
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, x);
     }
-    public decimal4 brgr
+    public readonly decimal4 brgr
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, x);
     }
-    public decimal4 zxyy
+    public readonly decimal4 zxyy
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, y);
     }
-    public decimal4 brgg
+    public readonly decimal4 brgg
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, y);
     }
-    public decimal4 zxyz
+    public readonly decimal4 zxyz
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, z);
     }
-    public decimal4 brgb
+    public readonly decimal4 brgb
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, z);
     }
-    public decimal4 zxzx
+    public readonly decimal4 zxzx
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, x);
     }
-    public decimal4 brbr
+    public readonly decimal4 brbr
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, x);
     }
-    public decimal4 zxzy
+    public readonly decimal4 zxzy
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, y);
     }
-    public decimal4 brbg
+    public readonly decimal4 brbg
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, y);
     }
-    public decimal4 zxzz
+    public readonly decimal4 zxzz
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, z);
     }
-    public decimal4 brbb
+    public readonly decimal4 brbb
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, z);
     }
-    public decimal4 zyxx
+    public readonly decimal4 zyxx
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, x);
     }
-    public decimal4 bgrr
+    public readonly decimal4 bgrr
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, x);
     }
-    public decimal4 zyxy
+    public readonly decimal4 zyxy
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, y);
     }
-    public decimal4 bgrg
+    public readonly decimal4 bgrg
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, y);
     }
-    public decimal4 zyxz
+    public readonly decimal4 zyxz
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, z);
     }
-    public decimal4 bgrb
+    public readonly decimal4 bgrb
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, z);
     }
-    public decimal4 zyyx
+    public readonly decimal4 zyyx
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, x);
     }
-    public decimal4 bggr
+    public readonly decimal4 bggr
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, x);
     }
-    public decimal4 zyyy
+    public readonly decimal4 zyyy
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, y);
     }
-    public decimal4 bggg
+    public readonly decimal4 bggg
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, y);
     }
-    public decimal4 zyyz
+    public readonly decimal4 zyyz
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, z);
     }
-    public decimal4 bggb
+    public readonly decimal4 bggb
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, z);
     }
-    public decimal4 zyzx
+    public readonly decimal4 zyzx
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, x);
     }
-    public decimal4 bgbr
+    public readonly decimal4 bgbr
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, x);
     }
-    public decimal4 zyzy
+    public readonly decimal4 zyzy
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, y);
     }
-    public decimal4 bgbg
+    public readonly decimal4 bgbg
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, y);
     }
-    public decimal4 zyzz
+    public readonly decimal4 zyzz
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, z);
     }
-    public decimal4 bgbb
+    public readonly decimal4 bgbb
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, z);
     }
-    public decimal4 zzxx
+    public readonly decimal4 zzxx
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, x);
     }
-    public decimal4 bbrr
+    public readonly decimal4 bbrr
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, x);
     }
-    public decimal4 zzxy
+    public readonly decimal4 zzxy
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, y);
     }
-    public decimal4 bbrg
+    public readonly decimal4 bbrg
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, y);
     }
-    public decimal4 zzxz
+    public readonly decimal4 zzxz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, z);
     }
-    public decimal4 bbrb
+    public readonly decimal4 bbrb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, z);
     }
-    public decimal4 zzyx
+    public readonly decimal4 zzyx
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, x);
     }
-    public decimal4 bbgr
+    public readonly decimal4 bbgr
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, x);
     }
-    public decimal4 zzyy
+    public readonly decimal4 zzyy
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, y);
     }
-    public decimal4 bbgg
+    public readonly decimal4 bbgg
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, y);
     }
-    public decimal4 zzyz
+    public readonly decimal4 zzyz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, z);
     }
-    public decimal4 bbgb
+    public readonly decimal4 bbgb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, z);
     }
-    public decimal4 zzzx
+    public readonly decimal4 zzzx
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, x);
     }
-    public decimal4 bbbr
+    public readonly decimal4 bbbr
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, x);
     }
-    public decimal4 zzzy
+    public readonly decimal4 zzzy
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, y);
     }
-    public decimal4 bbbg
+    public readonly decimal4 bbbg
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, y);
     }
-    public decimal4 zzzz
+    public readonly decimal4 zzzz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, z);
     }
-    public decimal4 bbbb
+    public readonly decimal4 bbbb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, z);
@@ -12228,812 +13200,812 @@ public partial struct decimal3
 
 public partial struct half3 
 {
-    public half4 xxxx
+    public readonly half4 xxxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, x);
     }
-    public half4 rrrr
+    public readonly half4 rrrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, x);
     }
-    public half4 xxxy
+    public readonly half4 xxxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, y);
     }
-    public half4 rrrg
+    public readonly half4 rrrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, y);
     }
-    public half4 xxxz
+    public readonly half4 xxxz
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, z);
     }
-    public half4 rrrb
+    public readonly half4 rrrb
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, z);
     }
-    public half4 xxyx
+    public readonly half4 xxyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, x);
     }
-    public half4 rrgr
+    public readonly half4 rrgr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, x);
     }
-    public half4 xxyy
+    public readonly half4 xxyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, y);
     }
-    public half4 rrgg
+    public readonly half4 rrgg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, y);
     }
-    public half4 xxyz
+    public readonly half4 xxyz
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, z);
     }
-    public half4 rrgb
+    public readonly half4 rrgb
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, z);
     }
-    public half4 xxzx
+    public readonly half4 xxzx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, x);
     }
-    public half4 rrbr
+    public readonly half4 rrbr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, x);
     }
-    public half4 xxzy
+    public readonly half4 xxzy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, y);
     }
-    public half4 rrbg
+    public readonly half4 rrbg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, y);
     }
-    public half4 xxzz
+    public readonly half4 xxzz
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, z);
     }
-    public half4 rrbb
+    public readonly half4 rrbb
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, z);
     }
-    public half4 xyxx
+    public readonly half4 xyxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, x);
     }
-    public half4 rgrr
+    public readonly half4 rgrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, x);
     }
-    public half4 xyxy
+    public readonly half4 xyxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, y);
     }
-    public half4 rgrg
+    public readonly half4 rgrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, y);
     }
-    public half4 xyxz
+    public readonly half4 xyxz
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, z);
     }
-    public half4 rgrb
+    public readonly half4 rgrb
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, z);
     }
-    public half4 xyyx
+    public readonly half4 xyyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, x);
     }
-    public half4 rggr
+    public readonly half4 rggr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, x);
     }
-    public half4 xyyy
+    public readonly half4 xyyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, y);
     }
-    public half4 rggg
+    public readonly half4 rggg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, y);
     }
-    public half4 xyyz
+    public readonly half4 xyyz
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, z);
     }
-    public half4 rggb
+    public readonly half4 rggb
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, z);
     }
-    public half4 xyzx
+    public readonly half4 xyzx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, x);
     }
-    public half4 rgbr
+    public readonly half4 rgbr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, x);
     }
-    public half4 xyzy
+    public readonly half4 xyzy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, y);
     }
-    public half4 rgbg
+    public readonly half4 rgbg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, y);
     }
-    public half4 xyzz
+    public readonly half4 xyzz
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, z);
     }
-    public half4 rgbb
+    public readonly half4 rgbb
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, z);
     }
-    public half4 xzxx
+    public readonly half4 xzxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, x);
     }
-    public half4 rbrr
+    public readonly half4 rbrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, x);
     }
-    public half4 xzxy
+    public readonly half4 xzxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, y);
     }
-    public half4 rbrg
+    public readonly half4 rbrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, y);
     }
-    public half4 xzxz
+    public readonly half4 xzxz
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, z);
     }
-    public half4 rbrb
+    public readonly half4 rbrb
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, z);
     }
-    public half4 xzyx
+    public readonly half4 xzyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, x);
     }
-    public half4 rbgr
+    public readonly half4 rbgr
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, x);
     }
-    public half4 xzyy
+    public readonly half4 xzyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, y);
     }
-    public half4 rbgg
+    public readonly half4 rbgg
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, y);
     }
-    public half4 xzyz
+    public readonly half4 xzyz
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, z);
     }
-    public half4 rbgb
+    public readonly half4 rbgb
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, z);
     }
-    public half4 xzzx
+    public readonly half4 xzzx
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, x);
     }
-    public half4 rbbr
+    public readonly half4 rbbr
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, x);
     }
-    public half4 xzzy
+    public readonly half4 xzzy
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, y);
     }
-    public half4 rbbg
+    public readonly half4 rbbg
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, y);
     }
-    public half4 xzzz
+    public readonly half4 xzzz
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, z);
     }
-    public half4 rbbb
+    public readonly half4 rbbb
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, z);
     }
-    public half4 yxxx
+    public readonly half4 yxxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, x);
     }
-    public half4 grrr
+    public readonly half4 grrr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, x);
     }
-    public half4 yxxy
+    public readonly half4 yxxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, y);
     }
-    public half4 grrg
+    public readonly half4 grrg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, y);
     }
-    public half4 yxxz
+    public readonly half4 yxxz
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, z);
     }
-    public half4 grrb
+    public readonly half4 grrb
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, z);
     }
-    public half4 yxyx
+    public readonly half4 yxyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, x);
     }
-    public half4 grgr
+    public readonly half4 grgr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, x);
     }
-    public half4 yxyy
+    public readonly half4 yxyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, y);
     }
-    public half4 grgg
+    public readonly half4 grgg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, y);
     }
-    public half4 yxyz
+    public readonly half4 yxyz
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, z);
     }
-    public half4 grgb
+    public readonly half4 grgb
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, z);
     }
-    public half4 yxzx
+    public readonly half4 yxzx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, x);
     }
-    public half4 grbr
+    public readonly half4 grbr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, x);
     }
-    public half4 yxzy
+    public readonly half4 yxzy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, y);
     }
-    public half4 grbg
+    public readonly half4 grbg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, y);
     }
-    public half4 yxzz
+    public readonly half4 yxzz
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, z);
     }
-    public half4 grbb
+    public readonly half4 grbb
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, z);
     }
-    public half4 yyxx
+    public readonly half4 yyxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, x);
     }
-    public half4 ggrr
+    public readonly half4 ggrr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, x);
     }
-    public half4 yyxy
+    public readonly half4 yyxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, y);
     }
-    public half4 ggrg
+    public readonly half4 ggrg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, y);
     }
-    public half4 yyxz
+    public readonly half4 yyxz
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, z);
     }
-    public half4 ggrb
+    public readonly half4 ggrb
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, z);
     }
-    public half4 yyyx
+    public readonly half4 yyyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, x);
     }
-    public half4 gggr
+    public readonly half4 gggr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, x);
     }
-    public half4 yyyy
+    public readonly half4 yyyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, y);
     }
-    public half4 gggg
+    public readonly half4 gggg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, y);
     }
-    public half4 yyyz
+    public readonly half4 yyyz
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, z);
     }
-    public half4 gggb
+    public readonly half4 gggb
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, z);
     }
-    public half4 yyzx
+    public readonly half4 yyzx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, x);
     }
-    public half4 ggbr
+    public readonly half4 ggbr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, x);
     }
-    public half4 yyzy
+    public readonly half4 yyzy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, y);
     }
-    public half4 ggbg
+    public readonly half4 ggbg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, y);
     }
-    public half4 yyzz
+    public readonly half4 yyzz
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, z);
     }
-    public half4 ggbb
+    public readonly half4 ggbb
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, z);
     }
-    public half4 yzxx
+    public readonly half4 yzxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, x);
     }
-    public half4 gbrr
+    public readonly half4 gbrr
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, x);
     }
-    public half4 yzxy
+    public readonly half4 yzxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, y);
     }
-    public half4 gbrg
+    public readonly half4 gbrg
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, y);
     }
-    public half4 yzxz
+    public readonly half4 yzxz
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, z);
     }
-    public half4 gbrb
+    public readonly half4 gbrb
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, z);
     }
-    public half4 yzyx
+    public readonly half4 yzyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, x);
     }
-    public half4 gbgr
+    public readonly half4 gbgr
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, x);
     }
-    public half4 yzyy
+    public readonly half4 yzyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, y);
     }
-    public half4 gbgg
+    public readonly half4 gbgg
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, y);
     }
-    public half4 yzyz
+    public readonly half4 yzyz
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, z);
     }
-    public half4 gbgb
+    public readonly half4 gbgb
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, z);
     }
-    public half4 yzzx
+    public readonly half4 yzzx
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, x);
     }
-    public half4 gbbr
+    public readonly half4 gbbr
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, x);
     }
-    public half4 yzzy
+    public readonly half4 yzzy
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, y);
     }
-    public half4 gbbg
+    public readonly half4 gbbg
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, y);
     }
-    public half4 yzzz
+    public readonly half4 yzzz
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, z);
     }
-    public half4 gbbb
+    public readonly half4 gbbb
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, z);
     }
-    public half4 zxxx
+    public readonly half4 zxxx
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, x);
     }
-    public half4 brrr
+    public readonly half4 brrr
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, x);
     }
-    public half4 zxxy
+    public readonly half4 zxxy
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, y);
     }
-    public half4 brrg
+    public readonly half4 brrg
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, y);
     }
-    public half4 zxxz
+    public readonly half4 zxxz
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, z);
     }
-    public half4 brrb
+    public readonly half4 brrb
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, z);
     }
-    public half4 zxyx
+    public readonly half4 zxyx
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, x);
     }
-    public half4 brgr
+    public readonly half4 brgr
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, x);
     }
-    public half4 zxyy
+    public readonly half4 zxyy
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, y);
     }
-    public half4 brgg
+    public readonly half4 brgg
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, y);
     }
-    public half4 zxyz
+    public readonly half4 zxyz
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, z);
     }
-    public half4 brgb
+    public readonly half4 brgb
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, z);
     }
-    public half4 zxzx
+    public readonly half4 zxzx
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, x);
     }
-    public half4 brbr
+    public readonly half4 brbr
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, x);
     }
-    public half4 zxzy
+    public readonly half4 zxzy
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, y);
     }
-    public half4 brbg
+    public readonly half4 brbg
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, y);
     }
-    public half4 zxzz
+    public readonly half4 zxzz
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, z);
     }
-    public half4 brbb
+    public readonly half4 brbb
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, z);
     }
-    public half4 zyxx
+    public readonly half4 zyxx
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, x);
     }
-    public half4 bgrr
+    public readonly half4 bgrr
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, x);
     }
-    public half4 zyxy
+    public readonly half4 zyxy
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, y);
     }
-    public half4 bgrg
+    public readonly half4 bgrg
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, y);
     }
-    public half4 zyxz
+    public readonly half4 zyxz
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, z);
     }
-    public half4 bgrb
+    public readonly half4 bgrb
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, z);
     }
-    public half4 zyyx
+    public readonly half4 zyyx
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, x);
     }
-    public half4 bggr
+    public readonly half4 bggr
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, x);
     }
-    public half4 zyyy
+    public readonly half4 zyyy
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, y);
     }
-    public half4 bggg
+    public readonly half4 bggg
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, y);
     }
-    public half4 zyyz
+    public readonly half4 zyyz
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, z);
     }
-    public half4 bggb
+    public readonly half4 bggb
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, z);
     }
-    public half4 zyzx
+    public readonly half4 zyzx
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, x);
     }
-    public half4 bgbr
+    public readonly half4 bgbr
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, x);
     }
-    public half4 zyzy
+    public readonly half4 zyzy
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, y);
     }
-    public half4 bgbg
+    public readonly half4 bgbg
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, y);
     }
-    public half4 zyzz
+    public readonly half4 zyzz
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, z);
     }
-    public half4 bgbb
+    public readonly half4 bgbb
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, z);
     }
-    public half4 zzxx
+    public readonly half4 zzxx
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, x);
     }
-    public half4 bbrr
+    public readonly half4 bbrr
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, x);
     }
-    public half4 zzxy
+    public readonly half4 zzxy
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, y);
     }
-    public half4 bbrg
+    public readonly half4 bbrg
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, y);
     }
-    public half4 zzxz
+    public readonly half4 zzxz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, z);
     }
-    public half4 bbrb
+    public readonly half4 bbrb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, z);
     }
-    public half4 zzyx
+    public readonly half4 zzyx
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, x);
     }
-    public half4 bbgr
+    public readonly half4 bbgr
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, x);
     }
-    public half4 zzyy
+    public readonly half4 zzyy
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, y);
     }
-    public half4 bbgg
+    public readonly half4 bbgg
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, y);
     }
-    public half4 zzyz
+    public readonly half4 zzyz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, z);
     }
-    public half4 bbgb
+    public readonly half4 bbgb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, z);
     }
-    public half4 zzzx
+    public readonly half4 zzzx
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, x);
     }
-    public half4 bbbr
+    public readonly half4 bbbr
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, x);
     }
-    public half4 zzzy
+    public readonly half4 zzzy
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, y);
     }
-    public half4 bbbg
+    public readonly half4 bbbg
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, y);
     }
-    public half4 zzzz
+    public readonly half4 zzzz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, z);
     }
-    public half4 bbbb
+    public readonly half4 bbbb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, z);
@@ -13046,812 +14018,812 @@ public partial struct half3
 
 public partial struct b16v3 
 {
-    public b16v4 xxxx
+    public readonly b16v4 xxxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, x);
     }
-    public b16v4 rrrr
+    public readonly b16v4 rrrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, x);
     }
-    public b16v4 xxxy
+    public readonly b16v4 xxxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, y);
     }
-    public b16v4 rrrg
+    public readonly b16v4 rrrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, y);
     }
-    public b16v4 xxxz
+    public readonly b16v4 xxxz
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, z);
     }
-    public b16v4 rrrb
+    public readonly b16v4 rrrb
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, x, z);
     }
-    public b16v4 xxyx
+    public readonly b16v4 xxyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, x);
     }
-    public b16v4 rrgr
+    public readonly b16v4 rrgr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, x);
     }
-    public b16v4 xxyy
+    public readonly b16v4 xxyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, y);
     }
-    public b16v4 rrgg
+    public readonly b16v4 rrgg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, y);
     }
-    public b16v4 xxyz
+    public readonly b16v4 xxyz
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, z);
     }
-    public b16v4 rrgb
+    public readonly b16v4 rrgb
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, y, z);
     }
-    public b16v4 xxzx
+    public readonly b16v4 xxzx
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, x);
     }
-    public b16v4 rrbr
+    public readonly b16v4 rrbr
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, x);
     }
-    public b16v4 xxzy
+    public readonly b16v4 xxzy
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, y);
     }
-    public b16v4 rrbg
+    public readonly b16v4 rrbg
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, y);
     }
-    public b16v4 xxzz
+    public readonly b16v4 xxzz
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, z);
     }
-    public b16v4 rrbb
+    public readonly b16v4 rrbb
     {
         [MethodImpl(256 | 512)]
         get => new(x, x, z, z);
     }
-    public b16v4 xyxx
+    public readonly b16v4 xyxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, x);
     }
-    public b16v4 rgrr
+    public readonly b16v4 rgrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, x);
     }
-    public b16v4 xyxy
+    public readonly b16v4 xyxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, y);
     }
-    public b16v4 rgrg
+    public readonly b16v4 rgrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, y);
     }
-    public b16v4 xyxz
+    public readonly b16v4 xyxz
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, z);
     }
-    public b16v4 rgrb
+    public readonly b16v4 rgrb
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, x, z);
     }
-    public b16v4 xyyx
+    public readonly b16v4 xyyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, x);
     }
-    public b16v4 rggr
+    public readonly b16v4 rggr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, x);
     }
-    public b16v4 xyyy
+    public readonly b16v4 xyyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, y);
     }
-    public b16v4 rggg
+    public readonly b16v4 rggg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, y);
     }
-    public b16v4 xyyz
+    public readonly b16v4 xyyz
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, z);
     }
-    public b16v4 rggb
+    public readonly b16v4 rggb
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, y, z);
     }
-    public b16v4 xyzx
+    public readonly b16v4 xyzx
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, x);
     }
-    public b16v4 rgbr
+    public readonly b16v4 rgbr
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, x);
     }
-    public b16v4 xyzy
+    public readonly b16v4 xyzy
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, y);
     }
-    public b16v4 rgbg
+    public readonly b16v4 rgbg
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, y);
     }
-    public b16v4 xyzz
+    public readonly b16v4 xyzz
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, z);
     }
-    public b16v4 rgbb
+    public readonly b16v4 rgbb
     {
         [MethodImpl(256 | 512)]
         get => new(x, y, z, z);
     }
-    public b16v4 xzxx
+    public readonly b16v4 xzxx
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, x);
     }
-    public b16v4 rbrr
+    public readonly b16v4 rbrr
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, x);
     }
-    public b16v4 xzxy
+    public readonly b16v4 xzxy
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, y);
     }
-    public b16v4 rbrg
+    public readonly b16v4 rbrg
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, y);
     }
-    public b16v4 xzxz
+    public readonly b16v4 xzxz
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, z);
     }
-    public b16v4 rbrb
+    public readonly b16v4 rbrb
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, x, z);
     }
-    public b16v4 xzyx
+    public readonly b16v4 xzyx
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, x);
     }
-    public b16v4 rbgr
+    public readonly b16v4 rbgr
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, x);
     }
-    public b16v4 xzyy
+    public readonly b16v4 xzyy
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, y);
     }
-    public b16v4 rbgg
+    public readonly b16v4 rbgg
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, y);
     }
-    public b16v4 xzyz
+    public readonly b16v4 xzyz
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, z);
     }
-    public b16v4 rbgb
+    public readonly b16v4 rbgb
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, y, z);
     }
-    public b16v4 xzzx
+    public readonly b16v4 xzzx
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, x);
     }
-    public b16v4 rbbr
+    public readonly b16v4 rbbr
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, x);
     }
-    public b16v4 xzzy
+    public readonly b16v4 xzzy
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, y);
     }
-    public b16v4 rbbg
+    public readonly b16v4 rbbg
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, y);
     }
-    public b16v4 xzzz
+    public readonly b16v4 xzzz
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, z);
     }
-    public b16v4 rbbb
+    public readonly b16v4 rbbb
     {
         [MethodImpl(256 | 512)]
         get => new(x, z, z, z);
     }
-    public b16v4 yxxx
+    public readonly b16v4 yxxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, x);
     }
-    public b16v4 grrr
+    public readonly b16v4 grrr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, x);
     }
-    public b16v4 yxxy
+    public readonly b16v4 yxxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, y);
     }
-    public b16v4 grrg
+    public readonly b16v4 grrg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, y);
     }
-    public b16v4 yxxz
+    public readonly b16v4 yxxz
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, z);
     }
-    public b16v4 grrb
+    public readonly b16v4 grrb
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, x, z);
     }
-    public b16v4 yxyx
+    public readonly b16v4 yxyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, x);
     }
-    public b16v4 grgr
+    public readonly b16v4 grgr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, x);
     }
-    public b16v4 yxyy
+    public readonly b16v4 yxyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, y);
     }
-    public b16v4 grgg
+    public readonly b16v4 grgg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, y);
     }
-    public b16v4 yxyz
+    public readonly b16v4 yxyz
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, z);
     }
-    public b16v4 grgb
+    public readonly b16v4 grgb
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, y, z);
     }
-    public b16v4 yxzx
+    public readonly b16v4 yxzx
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, x);
     }
-    public b16v4 grbr
+    public readonly b16v4 grbr
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, x);
     }
-    public b16v4 yxzy
+    public readonly b16v4 yxzy
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, y);
     }
-    public b16v4 grbg
+    public readonly b16v4 grbg
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, y);
     }
-    public b16v4 yxzz
+    public readonly b16v4 yxzz
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, z);
     }
-    public b16v4 grbb
+    public readonly b16v4 grbb
     {
         [MethodImpl(256 | 512)]
         get => new(y, x, z, z);
     }
-    public b16v4 yyxx
+    public readonly b16v4 yyxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, x);
     }
-    public b16v4 ggrr
+    public readonly b16v4 ggrr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, x);
     }
-    public b16v4 yyxy
+    public readonly b16v4 yyxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, y);
     }
-    public b16v4 ggrg
+    public readonly b16v4 ggrg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, y);
     }
-    public b16v4 yyxz
+    public readonly b16v4 yyxz
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, z);
     }
-    public b16v4 ggrb
+    public readonly b16v4 ggrb
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, x, z);
     }
-    public b16v4 yyyx
+    public readonly b16v4 yyyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, x);
     }
-    public b16v4 gggr
+    public readonly b16v4 gggr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, x);
     }
-    public b16v4 yyyy
+    public readonly b16v4 yyyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, y);
     }
-    public b16v4 gggg
+    public readonly b16v4 gggg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, y);
     }
-    public b16v4 yyyz
+    public readonly b16v4 yyyz
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, z);
     }
-    public b16v4 gggb
+    public readonly b16v4 gggb
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, y, z);
     }
-    public b16v4 yyzx
+    public readonly b16v4 yyzx
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, x);
     }
-    public b16v4 ggbr
+    public readonly b16v4 ggbr
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, x);
     }
-    public b16v4 yyzy
+    public readonly b16v4 yyzy
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, y);
     }
-    public b16v4 ggbg
+    public readonly b16v4 ggbg
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, y);
     }
-    public b16v4 yyzz
+    public readonly b16v4 yyzz
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, z);
     }
-    public b16v4 ggbb
+    public readonly b16v4 ggbb
     {
         [MethodImpl(256 | 512)]
         get => new(y, y, z, z);
     }
-    public b16v4 yzxx
+    public readonly b16v4 yzxx
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, x);
     }
-    public b16v4 gbrr
+    public readonly b16v4 gbrr
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, x);
     }
-    public b16v4 yzxy
+    public readonly b16v4 yzxy
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, y);
     }
-    public b16v4 gbrg
+    public readonly b16v4 gbrg
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, y);
     }
-    public b16v4 yzxz
+    public readonly b16v4 yzxz
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, z);
     }
-    public b16v4 gbrb
+    public readonly b16v4 gbrb
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, x, z);
     }
-    public b16v4 yzyx
+    public readonly b16v4 yzyx
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, x);
     }
-    public b16v4 gbgr
+    public readonly b16v4 gbgr
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, x);
     }
-    public b16v4 yzyy
+    public readonly b16v4 yzyy
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, y);
     }
-    public b16v4 gbgg
+    public readonly b16v4 gbgg
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, y);
     }
-    public b16v4 yzyz
+    public readonly b16v4 yzyz
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, z);
     }
-    public b16v4 gbgb
+    public readonly b16v4 gbgb
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, y, z);
     }
-    public b16v4 yzzx
+    public readonly b16v4 yzzx
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, x);
     }
-    public b16v4 gbbr
+    public readonly b16v4 gbbr
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, x);
     }
-    public b16v4 yzzy
+    public readonly b16v4 yzzy
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, y);
     }
-    public b16v4 gbbg
+    public readonly b16v4 gbbg
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, y);
     }
-    public b16v4 yzzz
+    public readonly b16v4 yzzz
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, z);
     }
-    public b16v4 gbbb
+    public readonly b16v4 gbbb
     {
         [MethodImpl(256 | 512)]
         get => new(y, z, z, z);
     }
-    public b16v4 zxxx
+    public readonly b16v4 zxxx
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, x);
     }
-    public b16v4 brrr
+    public readonly b16v4 brrr
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, x);
     }
-    public b16v4 zxxy
+    public readonly b16v4 zxxy
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, y);
     }
-    public b16v4 brrg
+    public readonly b16v4 brrg
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, y);
     }
-    public b16v4 zxxz
+    public readonly b16v4 zxxz
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, z);
     }
-    public b16v4 brrb
+    public readonly b16v4 brrb
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, x, z);
     }
-    public b16v4 zxyx
+    public readonly b16v4 zxyx
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, x);
     }
-    public b16v4 brgr
+    public readonly b16v4 brgr
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, x);
     }
-    public b16v4 zxyy
+    public readonly b16v4 zxyy
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, y);
     }
-    public b16v4 brgg
+    public readonly b16v4 brgg
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, y);
     }
-    public b16v4 zxyz
+    public readonly b16v4 zxyz
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, z);
     }
-    public b16v4 brgb
+    public readonly b16v4 brgb
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, y, z);
     }
-    public b16v4 zxzx
+    public readonly b16v4 zxzx
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, x);
     }
-    public b16v4 brbr
+    public readonly b16v4 brbr
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, x);
     }
-    public b16v4 zxzy
+    public readonly b16v4 zxzy
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, y);
     }
-    public b16v4 brbg
+    public readonly b16v4 brbg
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, y);
     }
-    public b16v4 zxzz
+    public readonly b16v4 zxzz
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, z);
     }
-    public b16v4 brbb
+    public readonly b16v4 brbb
     {
         [MethodImpl(256 | 512)]
         get => new(z, x, z, z);
     }
-    public b16v4 zyxx
+    public readonly b16v4 zyxx
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, x);
     }
-    public b16v4 bgrr
+    public readonly b16v4 bgrr
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, x);
     }
-    public b16v4 zyxy
+    public readonly b16v4 zyxy
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, y);
     }
-    public b16v4 bgrg
+    public readonly b16v4 bgrg
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, y);
     }
-    public b16v4 zyxz
+    public readonly b16v4 zyxz
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, z);
     }
-    public b16v4 bgrb
+    public readonly b16v4 bgrb
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, x, z);
     }
-    public b16v4 zyyx
+    public readonly b16v4 zyyx
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, x);
     }
-    public b16v4 bggr
+    public readonly b16v4 bggr
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, x);
     }
-    public b16v4 zyyy
+    public readonly b16v4 zyyy
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, y);
     }
-    public b16v4 bggg
+    public readonly b16v4 bggg
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, y);
     }
-    public b16v4 zyyz
+    public readonly b16v4 zyyz
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, z);
     }
-    public b16v4 bggb
+    public readonly b16v4 bggb
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, y, z);
     }
-    public b16v4 zyzx
+    public readonly b16v4 zyzx
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, x);
     }
-    public b16v4 bgbr
+    public readonly b16v4 bgbr
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, x);
     }
-    public b16v4 zyzy
+    public readonly b16v4 zyzy
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, y);
     }
-    public b16v4 bgbg
+    public readonly b16v4 bgbg
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, y);
     }
-    public b16v4 zyzz
+    public readonly b16v4 zyzz
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, z);
     }
-    public b16v4 bgbb
+    public readonly b16v4 bgbb
     {
         [MethodImpl(256 | 512)]
         get => new(z, y, z, z);
     }
-    public b16v4 zzxx
+    public readonly b16v4 zzxx
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, x);
     }
-    public b16v4 bbrr
+    public readonly b16v4 bbrr
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, x);
     }
-    public b16v4 zzxy
+    public readonly b16v4 zzxy
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, y);
     }
-    public b16v4 bbrg
+    public readonly b16v4 bbrg
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, y);
     }
-    public b16v4 zzxz
+    public readonly b16v4 zzxz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, z);
     }
-    public b16v4 bbrb
+    public readonly b16v4 bbrb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, x, z);
     }
-    public b16v4 zzyx
+    public readonly b16v4 zzyx
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, x);
     }
-    public b16v4 bbgr
+    public readonly b16v4 bbgr
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, x);
     }
-    public b16v4 zzyy
+    public readonly b16v4 zzyy
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, y);
     }
-    public b16v4 bbgg
+    public readonly b16v4 bbgg
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, y);
     }
-    public b16v4 zzyz
+    public readonly b16v4 zzyz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, z);
     }
-    public b16v4 bbgb
+    public readonly b16v4 bbgb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, y, z);
     }
-    public b16v4 zzzx
+    public readonly b16v4 zzzx
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, x);
     }
-    public b16v4 bbbr
+    public readonly b16v4 bbbr
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, x);
     }
-    public b16v4 zzzy
+    public readonly b16v4 zzzy
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, y);
     }
-    public b16v4 bbbg
+    public readonly b16v4 bbbg
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, y);
     }
-    public b16v4 zzzz
+    public readonly b16v4 zzzz
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, z);
     }
-    public b16v4 bbbb
+    public readonly b16v4 bbbb
     {
         [MethodImpl(256 | 512)]
         get => new(z, z, z, z);
@@ -13864,1625 +14836,1787 @@ public partial struct b16v3
 
 public partial struct b32v3 
 {
-    public b32v4 xxxx
+    public readonly b32v4 xxxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 0, 0)));
+            else
+                return new(x, x, x, x);
+        }
     }
-    public b32v4 rrrr
+    public readonly b32v4 rrrr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 0, 0)));
+            else
+                return new(x, x, x, x);
+        }
     }
-    public b32v4 xxxy
+    public readonly b32v4 xxxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 0, 1)));
+            else
+                return new(x, x, x, y);
+        }
     }
-    public b32v4 rrrg
+    public readonly b32v4 rrrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 0, 1)));
+            else
+                return new(x, x, x, y);
+        }
     }
-    public b32v4 xxxz
+    public readonly b32v4 xxxz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 0, 2)));
+            else
+                return new(x, x, x, z);
+        }
     }
-    public b32v4 rrrb
+    public readonly b32v4 rrrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 0, 2)));
+            else
+                return new(x, x, x, z);
+        }
     }
-    public b32v4 xxyx
+    public readonly b32v4 xxyx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 1, 0)));
+            else
+                return new(x, x, y, x);
+        }
     }
-    public b32v4 rrgr
+    public readonly b32v4 rrgr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 1, 0)));
+            else
+                return new(x, x, y, x);
+        }
     }
-    public b32v4 xxyy
+    public readonly b32v4 xxyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 1, 1)));
+            else
+                return new(x, x, y, y);
+        }
     }
-    public b32v4 rrgg
+    public readonly b32v4 rrgg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 1, 1)));
+            else
+                return new(x, x, y, y);
+        }
     }
-    public b32v4 xxyz
+    public readonly b32v4 xxyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 1, 2)));
+            else
+                return new(x, x, y, z);
+        }
     }
-    public b32v4 rrgb
+    public readonly b32v4 rrgb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 1, 2)));
+            else
+                return new(x, x, y, z);
+        }
     }
-    public b32v4 xxzx
+    public readonly b32v4 xxzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 2, 0)));
+            else
+                return new(x, x, z, x);
+        }
     }
-    public b32v4 rrbr
+    public readonly b32v4 rrbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 2, 0)));
+            else
+                return new(x, x, z, x);
+        }
     }
-    public b32v4 xxzy
+    public readonly b32v4 xxzy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 2, 1)));
+            else
+                return new(x, x, z, y);
+        }
     }
-    public b32v4 rrbg
+    public readonly b32v4 rrbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 2, 1)));
+            else
+                return new(x, x, z, y);
+        }
     }
-    public b32v4 xxzz
+    public readonly b32v4 xxzz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 2, 2)));
+            else
+                return new(x, x, z, z);
+        }
     }
-    public b32v4 rrbb
+    public readonly b32v4 rrbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 0, 2, 2)));
+            else
+                return new(x, x, z, z);
+        }
     }
-    public b32v4 xyxx
+    public readonly b32v4 xyxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 0, 0)));
+            else
+                return new(x, y, x, x);
+        }
     }
-    public b32v4 rgrr
+    public readonly b32v4 rgrr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 0, 0)));
+            else
+                return new(x, y, x, x);
+        }
     }
-    public b32v4 xyxy
+    public readonly b32v4 xyxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 0, 1)));
+            else
+                return new(x, y, x, y);
+        }
     }
-    public b32v4 rgrg
+    public readonly b32v4 rgrg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 0, 1)));
+            else
+                return new(x, y, x, y);
+        }
     }
-    public b32v4 xyxz
+    public readonly b32v4 xyxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 0, 2)));
+            else
+                return new(x, y, x, z);
+        }
     }
-    public b32v4 rgrb
+    public readonly b32v4 rgrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 0, 2)));
+            else
+                return new(x, y, x, z);
+        }
     }
-    public b32v4 xyyx
+    public readonly b32v4 xyyx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 1, 0)));
+            else
+                return new(x, y, y, x);
+        }
     }
-    public b32v4 rggr
+    public readonly b32v4 rggr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 1, 0)));
+            else
+                return new(x, y, y, x);
+        }
     }
-    public b32v4 xyyy
+    public readonly b32v4 xyyy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 1, 1)));
+            else
+                return new(x, y, y, y);
+        }
     }
-    public b32v4 rggg
+    public readonly b32v4 rggg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 1, 1)));
+            else
+                return new(x, y, y, y);
+        }
     }
-    public b32v4 xyyz
+    public readonly b32v4 xyyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 1, 2)));
+            else
+                return new(x, y, y, z);
+        }
     }
-    public b32v4 rggb
+    public readonly b32v4 rggb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 1, 2)));
+            else
+                return new(x, y, y, z);
+        }
     }
-    public b32v4 xyzx
+    public readonly b32v4 xyzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 2, 0)));
+            else
+                return new(x, y, z, x);
+        }
     }
-    public b32v4 rgbr
+    public readonly b32v4 rgbr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 2, 0)));
+            else
+                return new(x, y, z, x);
+        }
     }
-    public b32v4 xyzy
+    public readonly b32v4 xyzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 2, 1)));
+            else
+                return new(x, y, z, y);
+        }
     }
-    public b32v4 rgbg
+    public readonly b32v4 rgbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 2, 1)));
+            else
+                return new(x, y, z, y);
+        }
     }
-    public b32v4 xyzz
+    public readonly b32v4 xyzz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 2, 2)));
+            else
+                return new(x, y, z, z);
+        }
     }
-    public b32v4 rgbb
+    public readonly b32v4 rgbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 1, 2, 2)));
+            else
+                return new(x, y, z, z);
+        }
     }
-    public b32v4 xzxx
+    public readonly b32v4 xzxx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 0, 0)));
+            else
+                return new(x, z, x, x);
+        }
     }
-    public b32v4 rbrr
+    public readonly b32v4 rbrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 0, 0)));
+            else
+                return new(x, z, x, x);
+        }
     }
-    public b32v4 xzxy
+    public readonly b32v4 xzxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 0, 1)));
+            else
+                return new(x, z, x, y);
+        }
     }
-    public b32v4 rbrg
+    public readonly b32v4 rbrg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 0, 1)));
+            else
+                return new(x, z, x, y);
+        }
     }
-    public b32v4 xzxz
+    public readonly b32v4 xzxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 0, 2)));
+            else
+                return new(x, z, x, z);
+        }
     }
-    public b32v4 rbrb
+    public readonly b32v4 rbrb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 0, 2)));
+            else
+                return new(x, z, x, z);
+        }
     }
-    public b32v4 xzyx
+    public readonly b32v4 xzyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 1, 0)));
+            else
+                return new(x, z, y, x);
+        }
     }
-    public b32v4 rbgr
+    public readonly b32v4 rbgr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 1, 0)));
+            else
+                return new(x, z, y, x);
+        }
     }
-    public b32v4 xzyy
+    public readonly b32v4 xzyy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 1, 1)));
+            else
+                return new(x, z, y, y);
+        }
     }
-    public b32v4 rbgg
+    public readonly b32v4 rbgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 1, 1)));
+            else
+                return new(x, z, y, y);
+        }
     }
-    public b32v4 xzyz
+    public readonly b32v4 xzyz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 1, 2)));
+            else
+                return new(x, z, y, z);
+        }
     }
-    public b32v4 rbgb
+    public readonly b32v4 rbgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 1, 2)));
+            else
+                return new(x, z, y, z);
+        }
     }
-    public b32v4 xzzx
+    public readonly b32v4 xzzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 2, 0)));
+            else
+                return new(x, z, z, x);
+        }
     }
-    public b32v4 rbbr
+    public readonly b32v4 rbbr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 2, 0)));
+            else
+                return new(x, z, z, x);
+        }
     }
-    public b32v4 xzzy
+    public readonly b32v4 xzzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 2, 1)));
+            else
+                return new(x, z, z, y);
+        }
     }
-    public b32v4 rbbg
+    public readonly b32v4 rbbg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 2, 1)));
+            else
+                return new(x, z, z, y);
+        }
     }
-    public b32v4 xzzz
+    public readonly b32v4 xzzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 2, 2)));
+            else
+                return new(x, z, z, z);
+        }
     }
-    public b32v4 rbbb
+    public readonly b32v4 rbbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)0, 2, 2, 2)));
+            else
+                return new(x, z, z, z);
+        }
     }
-    public b32v4 yxxx
+    public readonly b32v4 yxxx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 0, 0)));
+            else
+                return new(y, x, x, x);
+        }
     }
-    public b32v4 grrr
+    public readonly b32v4 grrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 0, 0)));
+            else
+                return new(y, x, x, x);
+        }
     }
-    public b32v4 yxxy
+    public readonly b32v4 yxxy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 0, 1)));
+            else
+                return new(y, x, x, y);
+        }
     }
-    public b32v4 grrg
+    public readonly b32v4 grrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 0, 1)));
+            else
+                return new(y, x, x, y);
+        }
     }
-    public b32v4 yxxz
+    public readonly b32v4 yxxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 0, 2)));
+            else
+                return new(y, x, x, z);
+        }
     }
-    public b32v4 grrb
+    public readonly b32v4 grrb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 0, 2)));
+            else
+                return new(y, x, x, z);
+        }
     }
-    public b32v4 yxyx
+    public readonly b32v4 yxyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 1, 0)));
+            else
+                return new(y, x, y, x);
+        }
     }
-    public b32v4 grgr
+    public readonly b32v4 grgr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 1, 0)));
+            else
+                return new(y, x, y, x);
+        }
     }
-    public b32v4 yxyy
+    public readonly b32v4 yxyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 1, 1)));
+            else
+                return new(y, x, y, y);
+        }
     }
-    public b32v4 grgg
+    public readonly b32v4 grgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 1, 1)));
+            else
+                return new(y, x, y, y);
+        }
     }
-    public b32v4 yxyz
+    public readonly b32v4 yxyz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 1, 2)));
+            else
+                return new(y, x, y, z);
+        }
     }
-    public b32v4 grgb
+    public readonly b32v4 grgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 1, 2)));
+            else
+                return new(y, x, y, z);
+        }
     }
-    public b32v4 yxzx
+    public readonly b32v4 yxzx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 2, 0)));
+            else
+                return new(y, x, z, x);
+        }
     }
-    public b32v4 grbr
+    public readonly b32v4 grbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 2, 0)));
+            else
+                return new(y, x, z, x);
+        }
     }
-    public b32v4 yxzy
+    public readonly b32v4 yxzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 2, 1)));
+            else
+                return new(y, x, z, y);
+        }
     }
-    public b32v4 grbg
+    public readonly b32v4 grbg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 2, 1)));
+            else
+                return new(y, x, z, y);
+        }
     }
-    public b32v4 yxzz
+    public readonly b32v4 yxzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 2, 2)));
+            else
+                return new(y, x, z, z);
+        }
     }
-    public b32v4 grbb
+    public readonly b32v4 grbb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 0, 2, 2)));
+            else
+                return new(y, x, z, z);
+        }
     }
-    public b32v4 yyxx
+    public readonly b32v4 yyxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 0, 0)));
+            else
+                return new(y, y, x, x);
+        }
     }
-    public b32v4 ggrr
+    public readonly b32v4 ggrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 0, 0)));
+            else
+                return new(y, y, x, x);
+        }
     }
-    public b32v4 yyxy
+    public readonly b32v4 yyxy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 0, 1)));
+            else
+                return new(y, y, x, y);
+        }
     }
-    public b32v4 ggrg
+    public readonly b32v4 ggrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 0, 1)));
+            else
+                return new(y, y, x, y);
+        }
     }
-    public b32v4 yyxz
+    public readonly b32v4 yyxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 0, 2)));
+            else
+                return new(y, y, x, z);
+        }
     }
-    public b32v4 ggrb
+    public readonly b32v4 ggrb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 0, 2)));
+            else
+                return new(y, y, x, z);
+        }
     }
-    public b32v4 yyyx
+    public readonly b32v4 yyyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 1, 0)));
+            else
+                return new(y, y, y, x);
+        }
     }
-    public b32v4 gggr
+    public readonly b32v4 gggr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 1, 0)));
+            else
+                return new(y, y, y, x);
+        }
     }
-    public b32v4 yyyy
+    public readonly b32v4 yyyy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 1, 1)));
+            else
+                return new(y, y, y, y);
+        }
     }
-    public b32v4 gggg
+    public readonly b32v4 gggg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 1, 1)));
+            else
+                return new(y, y, y, y);
+        }
     }
-    public b32v4 yyyz
+    public readonly b32v4 yyyz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 1, 2)));
+            else
+                return new(y, y, y, z);
+        }
     }
-    public b32v4 gggb
+    public readonly b32v4 gggb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 1, 2)));
+            else
+                return new(y, y, y, z);
+        }
     }
-    public b32v4 yyzx
+    public readonly b32v4 yyzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 2, 0)));
+            else
+                return new(y, y, z, x);
+        }
     }
-    public b32v4 ggbr
+    public readonly b32v4 ggbr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 2, 0)));
+            else
+                return new(y, y, z, x);
+        }
     }
-    public b32v4 yyzy
+    public readonly b32v4 yyzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 2, 1)));
+            else
+                return new(y, y, z, y);
+        }
     }
-    public b32v4 ggbg
+    public readonly b32v4 ggbg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 2, 1)));
+            else
+                return new(y, y, z, y);
+        }
     }
-    public b32v4 yyzz
+    public readonly b32v4 yyzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 2, 2)));
+            else
+                return new(y, y, z, z);
+        }
     }
-    public b32v4 ggbb
+    public readonly b32v4 ggbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 1, 2, 2)));
+            else
+                return new(y, y, z, z);
+        }
     }
-    public b32v4 yzxx
+    public readonly b32v4 yzxx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 0, 0)));
+            else
+                return new(y, z, x, x);
+        }
     }
-    public b32v4 gbrr
+    public readonly b32v4 gbrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 0, 0)));
+            else
+                return new(y, z, x, x);
+        }
     }
-    public b32v4 yzxy
+    public readonly b32v4 yzxy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 0, 1)));
+            else
+                return new(y, z, x, y);
+        }
     }
-    public b32v4 gbrg
+    public readonly b32v4 gbrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 0, 1)));
+            else
+                return new(y, z, x, y);
+        }
     }
-    public b32v4 yzxz
+    public readonly b32v4 yzxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 0, 2)));
+            else
+                return new(y, z, x, z);
+        }
     }
-    public b32v4 gbrb
+    public readonly b32v4 gbrb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 0, 2)));
+            else
+                return new(y, z, x, z);
+        }
     }
-    public b32v4 yzyx
+    public readonly b32v4 yzyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 1, 0)));
+            else
+                return new(y, z, y, x);
+        }
     }
-    public b32v4 gbgr
+    public readonly b32v4 gbgr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 1, 0)));
+            else
+                return new(y, z, y, x);
+        }
     }
-    public b32v4 yzyy
+    public readonly b32v4 yzyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 1, 1)));
+            else
+                return new(y, z, y, y);
+        }
     }
-    public b32v4 gbgg
+    public readonly b32v4 gbgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 1, 1)));
+            else
+                return new(y, z, y, y);
+        }
     }
-    public b32v4 yzyz
+    public readonly b32v4 yzyz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 1, 2)));
+            else
+                return new(y, z, y, z);
+        }
     }
-    public b32v4 gbgb
+    public readonly b32v4 gbgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 1, 2)));
+            else
+                return new(y, z, y, z);
+        }
     }
-    public b32v4 yzzx
+    public readonly b32v4 yzzx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 2, 0)));
+            else
+                return new(y, z, z, x);
+        }
     }
-    public b32v4 gbbr
+    public readonly b32v4 gbbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 2, 0)));
+            else
+                return new(y, z, z, x);
+        }
     }
-    public b32v4 yzzy
+    public readonly b32v4 yzzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 2, 1)));
+            else
+                return new(y, z, z, y);
+        }
     }
-    public b32v4 gbbg
+    public readonly b32v4 gbbg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 2, 1)));
+            else
+                return new(y, z, z, y);
+        }
     }
-    public b32v4 yzzz
+    public readonly b32v4 yzzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 2, 2)));
+            else
+                return new(y, z, z, z);
+        }
     }
-    public b32v4 gbbb
+    public readonly b32v4 gbbb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)1, 2, 2, 2)));
+            else
+                return new(y, z, z, z);
+        }
     }
-    public b32v4 zxxx
+    public readonly b32v4 zxxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 0, 0)));
+            else
+                return new(z, x, x, x);
+        }
     }
-    public b32v4 brrr
+    public readonly b32v4 brrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 0, 0)));
+            else
+                return new(z, x, x, x);
+        }
     }
-    public b32v4 zxxy
+    public readonly b32v4 zxxy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 0, 1)));
+            else
+                return new(z, x, x, y);
+        }
     }
-    public b32v4 brrg
+    public readonly b32v4 brrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 0, 1)));
+            else
+                return new(z, x, x, y);
+        }
     }
-    public b32v4 zxxz
+    public readonly b32v4 zxxz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 0, 2)));
+            else
+                return new(z, x, x, z);
+        }
     }
-    public b32v4 brrb
+    public readonly b32v4 brrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 0, 2)));
+            else
+                return new(z, x, x, z);
+        }
     }
-    public b32v4 zxyx
+    public readonly b32v4 zxyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 1, 0)));
+            else
+                return new(z, x, y, x);
+        }
     }
-    public b32v4 brgr
+    public readonly b32v4 brgr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 1, 0)));
+            else
+                return new(z, x, y, x);
+        }
     }
-    public b32v4 zxyy
+    public readonly b32v4 zxyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 1, 1)));
+            else
+                return new(z, x, y, y);
+        }
     }
-    public b32v4 brgg
+    public readonly b32v4 brgg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 1, 1)));
+            else
+                return new(z, x, y, y);
+        }
     }
-    public b32v4 zxyz
+    public readonly b32v4 zxyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 1, 2)));
+            else
+                return new(z, x, y, z);
+        }
     }
-    public b32v4 brgb
+    public readonly b32v4 brgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 1, 2)));
+            else
+                return new(z, x, y, z);
+        }
     }
-    public b32v4 zxzx
+    public readonly b32v4 zxzx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 2, 0)));
+            else
+                return new(z, x, z, x);
+        }
     }
-    public b32v4 brbr
+    public readonly b32v4 brbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 2, 0)));
+            else
+                return new(z, x, z, x);
+        }
     }
-    public b32v4 zxzy
+    public readonly b32v4 zxzy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 2, 1)));
+            else
+                return new(z, x, z, y);
+        }
     }
-    public b32v4 brbg
+    public readonly b32v4 brbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 2, 1)));
+            else
+                return new(z, x, z, y);
+        }
     }
-    public b32v4 zxzz
+    public readonly b32v4 zxzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 2, 2)));
+            else
+                return new(z, x, z, z);
+        }
     }
-    public b32v4 brbb
+    public readonly b32v4 brbb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 0, 2, 2)));
+            else
+                return new(z, x, z, z);
+        }
     }
-    public b32v4 zyxx
+    public readonly b32v4 zyxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 0, 0)));
+            else
+                return new(z, y, x, x);
+        }
     }
-    public b32v4 bgrr
+    public readonly b32v4 bgrr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 0, 0)));
+            else
+                return new(z, y, x, x);
+        }
     }
-    public b32v4 zyxy
+    public readonly b32v4 zyxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 0, 1)));
+            else
+                return new(z, y, x, y);
+        }
     }
-    public b32v4 bgrg
+    public readonly b32v4 bgrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 0, 1)));
+            else
+                return new(z, y, x, y);
+        }
     }
-    public b32v4 zyxz
+    public readonly b32v4 zyxz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 0, 2)));
+            else
+                return new(z, y, x, z);
+        }
     }
-    public b32v4 bgrb
+    public readonly b32v4 bgrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 0, 2)));
+            else
+                return new(z, y, x, z);
+        }
     }
-    public b32v4 zyyx
+    public readonly b32v4 zyyx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 1, 0)));
+            else
+                return new(z, y, y, x);
+        }
     }
-    public b32v4 bggr
+    public readonly b32v4 bggr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 1, 0)));
+            else
+                return new(z, y, y, x);
+        }
     }
-    public b32v4 zyyy
+    public readonly b32v4 zyyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 1, 1)));
+            else
+                return new(z, y, y, y);
+        }
     }
-    public b32v4 bggg
+    public readonly b32v4 bggg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 1, 1)));
+            else
+                return new(z, y, y, y);
+        }
     }
-    public b32v4 zyyz
+    public readonly b32v4 zyyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 1, 2)));
+            else
+                return new(z, y, y, z);
+        }
     }
-    public b32v4 bggb
+    public readonly b32v4 bggb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 1, 2)));
+            else
+                return new(z, y, y, z);
+        }
     }
-    public b32v4 zyzx
+    public readonly b32v4 zyzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 2, 0)));
+            else
+                return new(z, y, z, x);
+        }
     }
-    public b32v4 bgbr
+    public readonly b32v4 bgbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 2, 0)));
+            else
+                return new(z, y, z, x);
+        }
     }
-    public b32v4 zyzy
+    public readonly b32v4 zyzy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 2, 1)));
+            else
+                return new(z, y, z, y);
+        }
     }
-    public b32v4 bgbg
+    public readonly b32v4 bgbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 2, 1)));
+            else
+                return new(z, y, z, y);
+        }
     }
-    public b32v4 zyzz
+    public readonly b32v4 zyzz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 2, 2)));
+            else
+                return new(z, y, z, z);
+        }
     }
-    public b32v4 bgbb
+    public readonly b32v4 bgbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 1, 2, 2)));
+            else
+                return new(z, y, z, z);
+        }
     }
-    public b32v4 zzxx
+    public readonly b32v4 zzxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 0, 0)));
+            else
+                return new(z, z, x, x);
+        }
     }
-    public b32v4 bbrr
+    public readonly b32v4 bbrr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 0, 0)));
+            else
+                return new(z, z, x, x);
+        }
     }
-    public b32v4 zzxy
+    public readonly b32v4 zzxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 0, 1)));
+            else
+                return new(z, z, x, y);
+        }
     }
-    public b32v4 bbrg
+    public readonly b32v4 bbrg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 0, 1)));
+            else
+                return new(z, z, x, y);
+        }
     }
-    public b32v4 zzxz
+    public readonly b32v4 zzxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 0, 2)));
+            else
+                return new(z, z, x, z);
+        }
     }
-    public b32v4 bbrb
+    public readonly b32v4 bbrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 0, 2)));
+            else
+                return new(z, z, x, z);
+        }
     }
-    public b32v4 zzyx
+    public readonly b32v4 zzyx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 1, 0)));
+            else
+                return new(z, z, y, x);
+        }
     }
-    public b32v4 bbgr
+    public readonly b32v4 bbgr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 1, 0)));
+            else
+                return new(z, z, y, x);
+        }
     }
-    public b32v4 zzyy
+    public readonly b32v4 zzyy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 1, 1)));
+            else
+                return new(z, z, y, y);
+        }
     }
-    public b32v4 bbgg
+    public readonly b32v4 bbgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 1, 1)));
+            else
+                return new(z, z, y, y);
+        }
     }
-    public b32v4 zzyz
+    public readonly b32v4 zzyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 1, 2)));
+            else
+                return new(z, z, y, z);
+        }
     }
-    public b32v4 bbgb
+    public readonly b32v4 bbgb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 1, 2)));
+            else
+                return new(z, z, y, z);
+        }
     }
-    public b32v4 zzzx
+    public readonly b32v4 zzzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 2, 0)));
+            else
+                return new(z, z, z, x);
+        }
     }
-    public b32v4 bbbr
+    public readonly b32v4 bbbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 2, 0)));
+            else
+                return new(z, z, z, x);
+        }
     }
-    public b32v4 zzzy
+    public readonly b32v4 zzzy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 2, 1)));
+            else
+                return new(z, z, z, y);
+        }
     }
-    public b32v4 bbbg
+    public readonly b32v4 bbbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 2, 1)));
+            else
+                return new(z, z, z, y);
+        }
     }
-    public b32v4 zzzz
+    public readonly b32v4 zzzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 2, 2)));
+            else
+                return new(z, z, z, z);
+        }
     }
-    public b32v4 bbbb
+    public readonly b32v4 bbbb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector128.IsHardwareAccelerated)
+                return new(Vector128.Shuffle(vector, Vector128.Create((uint)2, 2, 2, 2)));
+            else
+                return new(z, z, z, z);
+        }
     }
 }
 
@@ -15492,1625 +16626,1787 @@ public partial struct b32v3
 
 public partial struct b64v3 
 {
-    public b64v4 xxxx
+    public readonly b64v4 xxxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 0, 0)));
+            else
+                return new(x, x, x, x);
+        }
     }
-    public b64v4 rrrr
+    public readonly b64v4 rrrr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 0, 0)));
+            else
+                return new(x, x, x, x);
+        }
     }
-    public b64v4 xxxy
+    public readonly b64v4 xxxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 0, 1)));
+            else
+                return new(x, x, x, y);
+        }
     }
-    public b64v4 rrrg
+    public readonly b64v4 rrrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 0, 1)));
+            else
+                return new(x, x, x, y);
+        }
     }
-    public b64v4 xxxz
+    public readonly b64v4 xxxz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 0, 2)));
+            else
+                return new(x, x, x, z);
+        }
     }
-    public b64v4 rrrb
+    public readonly b64v4 rrrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 0, 2)));
+            else
+                return new(x, x, x, z);
+        }
     }
-    public b64v4 xxyx
+    public readonly b64v4 xxyx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 1, 0)));
+            else
+                return new(x, x, y, x);
+        }
     }
-    public b64v4 rrgr
+    public readonly b64v4 rrgr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 1, 0)));
+            else
+                return new(x, x, y, x);
+        }
     }
-    public b64v4 xxyy
+    public readonly b64v4 xxyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 1, 1)));
+            else
+                return new(x, x, y, y);
+        }
     }
-    public b64v4 rrgg
+    public readonly b64v4 rrgg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 1, 1)));
+            else
+                return new(x, x, y, y);
+        }
     }
-    public b64v4 xxyz
+    public readonly b64v4 xxyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 1, 2)));
+            else
+                return new(x, x, y, z);
+        }
     }
-    public b64v4 rrgb
+    public readonly b64v4 rrgb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 1, 2)));
+            else
+                return new(x, x, y, z);
+        }
     }
-    public b64v4 xxzx
+    public readonly b64v4 xxzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 2, 0)));
+            else
+                return new(x, x, z, x);
+        }
     }
-    public b64v4 rrbr
+    public readonly b64v4 rrbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 2, 0)));
+            else
+                return new(x, x, z, x);
+        }
     }
-    public b64v4 xxzy
+    public readonly b64v4 xxzy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 2, 1)));
+            else
+                return new(x, x, z, y);
+        }
     }
-    public b64v4 rrbg
+    public readonly b64v4 rrbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 2, 1)));
+            else
+                return new(x, x, z, y);
+        }
     }
-    public b64v4 xxzz
+    public readonly b64v4 xxzz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 2, 2)));
+            else
+                return new(x, x, z, z);
+        }
     }
-    public b64v4 rrbb
+    public readonly b64v4 rrbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 0, 2, 2)));
+            else
+                return new(x, x, z, z);
+        }
     }
-    public b64v4 xyxx
+    public readonly b64v4 xyxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 0, 0)));
+            else
+                return new(x, y, x, x);
+        }
     }
-    public b64v4 rgrr
+    public readonly b64v4 rgrr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 0, 0)));
+            else
+                return new(x, y, x, x);
+        }
     }
-    public b64v4 xyxy
+    public readonly b64v4 xyxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 0, 1)));
+            else
+                return new(x, y, x, y);
+        }
     }
-    public b64v4 rgrg
+    public readonly b64v4 rgrg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 0, 1)));
+            else
+                return new(x, y, x, y);
+        }
     }
-    public b64v4 xyxz
+    public readonly b64v4 xyxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 0, 2)));
+            else
+                return new(x, y, x, z);
+        }
     }
-    public b64v4 rgrb
+    public readonly b64v4 rgrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 0, 2)));
+            else
+                return new(x, y, x, z);
+        }
     }
-    public b64v4 xyyx
+    public readonly b64v4 xyyx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 1, 0)));
+            else
+                return new(x, y, y, x);
+        }
     }
-    public b64v4 rggr
+    public readonly b64v4 rggr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 1, 0)));
+            else
+                return new(x, y, y, x);
+        }
     }
-    public b64v4 xyyy
+    public readonly b64v4 xyyy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 1, 1)));
+            else
+                return new(x, y, y, y);
+        }
     }
-    public b64v4 rggg
+    public readonly b64v4 rggg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 1, 1)));
+            else
+                return new(x, y, y, y);
+        }
     }
-    public b64v4 xyyz
+    public readonly b64v4 xyyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 1, 2)));
+            else
+                return new(x, y, y, z);
+        }
     }
-    public b64v4 rggb
+    public readonly b64v4 rggb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 1, 2)));
+            else
+                return new(x, y, y, z);
+        }
     }
-    public b64v4 xyzx
+    public readonly b64v4 xyzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 2, 0)));
+            else
+                return new(x, y, z, x);
+        }
     }
-    public b64v4 rgbr
+    public readonly b64v4 rgbr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 2, 0)));
+            else
+                return new(x, y, z, x);
+        }
     }
-    public b64v4 xyzy
+    public readonly b64v4 xyzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 2, 1)));
+            else
+                return new(x, y, z, y);
+        }
     }
-    public b64v4 rgbg
+    public readonly b64v4 rgbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 2, 1)));
+            else
+                return new(x, y, z, y);
+        }
     }
-    public b64v4 xyzz
+    public readonly b64v4 xyzz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 2, 2)));
+            else
+                return new(x, y, z, z);
+        }
     }
-    public b64v4 rgbb
+    public readonly b64v4 rgbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 1, 2, 2)));
+            else
+                return new(x, y, z, z);
+        }
     }
-    public b64v4 xzxx
+    public readonly b64v4 xzxx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 0, 0)));
+            else
+                return new(x, z, x, x);
+        }
     }
-    public b64v4 rbrr
+    public readonly b64v4 rbrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 0, 0)));
+            else
+                return new(x, z, x, x);
+        }
     }
-    public b64v4 xzxy
+    public readonly b64v4 xzxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 0, 1)));
+            else
+                return new(x, z, x, y);
+        }
     }
-    public b64v4 rbrg
+    public readonly b64v4 rbrg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 0, 1)));
+            else
+                return new(x, z, x, y);
+        }
     }
-    public b64v4 xzxz
+    public readonly b64v4 xzxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 0, 2)));
+            else
+                return new(x, z, x, z);
+        }
     }
-    public b64v4 rbrb
+    public readonly b64v4 rbrb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 0, 2)));
+            else
+                return new(x, z, x, z);
+        }
     }
-    public b64v4 xzyx
+    public readonly b64v4 xzyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 1, 0)));
+            else
+                return new(x, z, y, x);
+        }
     }
-    public b64v4 rbgr
+    public readonly b64v4 rbgr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 1, 0)));
+            else
+                return new(x, z, y, x);
+        }
     }
-    public b64v4 xzyy
+    public readonly b64v4 xzyy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 1, 1)));
+            else
+                return new(x, z, y, y);
+        }
     }
-    public b64v4 rbgg
+    public readonly b64v4 rbgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 1, 1)));
+            else
+                return new(x, z, y, y);
+        }
     }
-    public b64v4 xzyz
+    public readonly b64v4 xzyz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 1, 2)));
+            else
+                return new(x, z, y, z);
+        }
     }
-    public b64v4 rbgb
+    public readonly b64v4 rbgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 1, 2)));
+            else
+                return new(x, z, y, z);
+        }
     }
-    public b64v4 xzzx
+    public readonly b64v4 xzzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 2, 0)));
+            else
+                return new(x, z, z, x);
+        }
     }
-    public b64v4 rbbr
+    public readonly b64v4 rbbr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 2, 0)));
+            else
+                return new(x, z, z, x);
+        }
     }
-    public b64v4 xzzy
+    public readonly b64v4 xzzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 2, 1)));
+            else
+                return new(x, z, z, y);
+        }
     }
-    public b64v4 rbbg
+    public readonly b64v4 rbbg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(x, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 2, 1)));
+            else
+                return new(x, z, z, y);
+        }
     }
-    public b64v4 xzzz
+    public readonly b64v4 xzzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 2, 2)));
+            else
+                return new(x, z, z, z);
+        }
     }
-    public b64v4 rbbb
+    public readonly b64v4 rbbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(x, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)0, 2, 2, 2)));
+            else
+                return new(x, z, z, z);
+        }
     }
-    public b64v4 yxxx
+    public readonly b64v4 yxxx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 0, 0)));
+            else
+                return new(y, x, x, x);
+        }
     }
-    public b64v4 grrr
+    public readonly b64v4 grrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 0, 0)));
+            else
+                return new(y, x, x, x);
+        }
     }
-    public b64v4 yxxy
+    public readonly b64v4 yxxy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 0, 1)));
+            else
+                return new(y, x, x, y);
+        }
     }
-    public b64v4 grrg
+    public readonly b64v4 grrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 0, 1)));
+            else
+                return new(y, x, x, y);
+        }
     }
-    public b64v4 yxxz
+    public readonly b64v4 yxxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 0, 2)));
+            else
+                return new(y, x, x, z);
+        }
     }
-    public b64v4 grrb
+    public readonly b64v4 grrb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 0, 2)));
+            else
+                return new(y, x, x, z);
+        }
     }
-    public b64v4 yxyx
+    public readonly b64v4 yxyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 1, 0)));
+            else
+                return new(y, x, y, x);
+        }
     }
-    public b64v4 grgr
+    public readonly b64v4 grgr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 1, 0)));
+            else
+                return new(y, x, y, x);
+        }
     }
-    public b64v4 yxyy
+    public readonly b64v4 yxyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 1, 1)));
+            else
+                return new(y, x, y, y);
+        }
     }
-    public b64v4 grgg
+    public readonly b64v4 grgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 1, 1)));
+            else
+                return new(y, x, y, y);
+        }
     }
-    public b64v4 yxyz
+    public readonly b64v4 yxyz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 1, 2)));
+            else
+                return new(y, x, y, z);
+        }
     }
-    public b64v4 grgb
+    public readonly b64v4 grgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 1, 2)));
+            else
+                return new(y, x, y, z);
+        }
     }
-    public b64v4 yxzx
+    public readonly b64v4 yxzx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 2, 0)));
+            else
+                return new(y, x, z, x);
+        }
     }
-    public b64v4 grbr
+    public readonly b64v4 grbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 2, 0)));
+            else
+                return new(y, x, z, x);
+        }
     }
-    public b64v4 yxzy
+    public readonly b64v4 yxzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 2, 1)));
+            else
+                return new(y, x, z, y);
+        }
     }
-    public b64v4 grbg
+    public readonly b64v4 grbg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 2, 1)));
+            else
+                return new(y, x, z, y);
+        }
     }
-    public b64v4 yxzz
+    public readonly b64v4 yxzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 2, 2)));
+            else
+                return new(y, x, z, z);
+        }
     }
-    public b64v4 grbb
+    public readonly b64v4 grbb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 0, 2, 2)));
+            else
+                return new(y, x, z, z);
+        }
     }
-    public b64v4 yyxx
+    public readonly b64v4 yyxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 0, 0)));
+            else
+                return new(y, y, x, x);
+        }
     }
-    public b64v4 ggrr
+    public readonly b64v4 ggrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 0, 0)));
+            else
+                return new(y, y, x, x);
+        }
     }
-    public b64v4 yyxy
+    public readonly b64v4 yyxy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 0, 1)));
+            else
+                return new(y, y, x, y);
+        }
     }
-    public b64v4 ggrg
+    public readonly b64v4 ggrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 0, 1)));
+            else
+                return new(y, y, x, y);
+        }
     }
-    public b64v4 yyxz
+    public readonly b64v4 yyxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 0, 2)));
+            else
+                return new(y, y, x, z);
+        }
     }
-    public b64v4 ggrb
+    public readonly b64v4 ggrb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 0, 2)));
+            else
+                return new(y, y, x, z);
+        }
     }
-    public b64v4 yyyx
+    public readonly b64v4 yyyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 1, 0)));
+            else
+                return new(y, y, y, x);
+        }
     }
-    public b64v4 gggr
+    public readonly b64v4 gggr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 1, 0)));
+            else
+                return new(y, y, y, x);
+        }
     }
-    public b64v4 yyyy
+    public readonly b64v4 yyyy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 1, 1)));
+            else
+                return new(y, y, y, y);
+        }
     }
-    public b64v4 gggg
+    public readonly b64v4 gggg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 1, 1)));
+            else
+                return new(y, y, y, y);
+        }
     }
-    public b64v4 yyyz
+    public readonly b64v4 yyyz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 1, 2)));
+            else
+                return new(y, y, y, z);
+        }
     }
-    public b64v4 gggb
+    public readonly b64v4 gggb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 1, 2)));
+            else
+                return new(y, y, y, z);
+        }
     }
-    public b64v4 yyzx
+    public readonly b64v4 yyzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 2, 0)));
+            else
+                return new(y, y, z, x);
+        }
     }
-    public b64v4 ggbr
+    public readonly b64v4 ggbr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 2, 0)));
+            else
+                return new(y, y, z, x);
+        }
     }
-    public b64v4 yyzy
+    public readonly b64v4 yyzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 2, 1)));
+            else
+                return new(y, y, z, y);
+        }
     }
-    public b64v4 ggbg
+    public readonly b64v4 ggbg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 2, 1)));
+            else
+                return new(y, y, z, y);
+        }
     }
-    public b64v4 yyzz
+    public readonly b64v4 yyzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 2, 2)));
+            else
+                return new(y, y, z, z);
+        }
     }
-    public b64v4 ggbb
+    public readonly b64v4 ggbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 1, 2, 2)));
+            else
+                return new(y, y, z, z);
+        }
     }
-    public b64v4 yzxx
+    public readonly b64v4 yzxx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 0, 0)));
+            else
+                return new(y, z, x, x);
+        }
     }
-    public b64v4 gbrr
+    public readonly b64v4 gbrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 0, 0)));
+            else
+                return new(y, z, x, x);
+        }
     }
-    public b64v4 yzxy
+    public readonly b64v4 yzxy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 0, 1)));
+            else
+                return new(y, z, x, y);
+        }
     }
-    public b64v4 gbrg
+    public readonly b64v4 gbrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 0, 1)));
+            else
+                return new(y, z, x, y);
+        }
     }
-    public b64v4 yzxz
+    public readonly b64v4 yzxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 0, 2)));
+            else
+                return new(y, z, x, z);
+        }
     }
-    public b64v4 gbrb
+    public readonly b64v4 gbrb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 0, 2)));
+            else
+                return new(y, z, x, z);
+        }
     }
-    public b64v4 yzyx
+    public readonly b64v4 yzyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 1, 0)));
+            else
+                return new(y, z, y, x);
+        }
     }
-    public b64v4 gbgr
+    public readonly b64v4 gbgr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 1, 0)));
+            else
+                return new(y, z, y, x);
+        }
     }
-    public b64v4 yzyy
+    public readonly b64v4 yzyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 1, 1)));
+            else
+                return new(y, z, y, y);
+        }
     }
-    public b64v4 gbgg
+    public readonly b64v4 gbgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 1, 1)));
+            else
+                return new(y, z, y, y);
+        }
     }
-    public b64v4 yzyz
+    public readonly b64v4 yzyz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 1, 2)));
+            else
+                return new(y, z, y, z);
+        }
     }
-    public b64v4 gbgb
+    public readonly b64v4 gbgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 1, 2)));
+            else
+                return new(y, z, y, z);
+        }
     }
-    public b64v4 yzzx
+    public readonly b64v4 yzzx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 2, 0)));
+            else
+                return new(y, z, z, x);
+        }
     }
-    public b64v4 gbbr
+    public readonly b64v4 gbbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 2, 0)));
+            else
+                return new(y, z, z, x);
+        }
     }
-    public b64v4 yzzy
+    public readonly b64v4 yzzy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 2, 1)));
+            else
+                return new(y, z, z, y);
+        }
     }
-    public b64v4 gbbg
+    public readonly b64v4 gbbg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 2, 1)));
+            else
+                return new(y, z, z, y);
+        }
     }
-    public b64v4 yzzz
+    public readonly b64v4 yzzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 2, 2)));
+            else
+                return new(y, z, z, z);
+        }
     }
-    public b64v4 gbbb
+    public readonly b64v4 gbbb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(y, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)1, 2, 2, 2)));
+            else
+                return new(y, z, z, z);
+        }
     }
-    public b64v4 zxxx
+    public readonly b64v4 zxxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 0, 0)));
+            else
+                return new(z, x, x, x);
+        }
     }
-    public b64v4 brrr
+    public readonly b64v4 brrr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 0, 0)));
+            else
+                return new(z, x, x, x);
+        }
     }
-    public b64v4 zxxy
+    public readonly b64v4 zxxy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 0, 1)));
+            else
+                return new(z, x, x, y);
+        }
     }
-    public b64v4 brrg
+    public readonly b64v4 brrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 0, 1)));
+            else
+                return new(z, x, x, y);
+        }
     }
-    public b64v4 zxxz
+    public readonly b64v4 zxxz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 0, 2)));
+            else
+                return new(z, x, x, z);
+        }
     }
-    public b64v4 brrb
+    public readonly b64v4 brrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 0, 2)));
+            else
+                return new(z, x, x, z);
+        }
     }
-    public b64v4 zxyx
+    public readonly b64v4 zxyx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 1, 0)));
+            else
+                return new(z, x, y, x);
+        }
     }
-    public b64v4 brgr
+    public readonly b64v4 brgr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 1, 0)));
+            else
+                return new(z, x, y, x);
+        }
     }
-    public b64v4 zxyy
+    public readonly b64v4 zxyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 1, 1)));
+            else
+                return new(z, x, y, y);
+        }
     }
-    public b64v4 brgg
+    public readonly b64v4 brgg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 1, 1)));
+            else
+                return new(z, x, y, y);
+        }
     }
-    public b64v4 zxyz
+    public readonly b64v4 zxyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 1, 2)));
+            else
+                return new(z, x, y, z);
+        }
     }
-    public b64v4 brgb
+    public readonly b64v4 brgb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 1, 2)));
+            else
+                return new(z, x, y, z);
+        }
     }
-    public b64v4 zxzx
+    public readonly b64v4 zxzx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 2, 0)));
+            else
+                return new(z, x, z, x);
+        }
     }
-    public b64v4 brbr
+    public readonly b64v4 brbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 2, 0)));
+            else
+                return new(z, x, z, x);
+        }
     }
-    public b64v4 zxzy
+    public readonly b64v4 zxzy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 2, 1)));
+            else
+                return new(z, x, z, y);
+        }
     }
-    public b64v4 brbg
+    public readonly b64v4 brbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 2, 1)));
+            else
+                return new(z, x, z, y);
+        }
     }
-    public b64v4 zxzz
+    public readonly b64v4 zxzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 2, 2)));
+            else
+                return new(z, x, z, z);
+        }
     }
-    public b64v4 brbb
+    public readonly b64v4 brbb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, x, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 0, 2, 2)));
+            else
+                return new(z, x, z, z);
+        }
     }
-    public b64v4 zyxx
+    public readonly b64v4 zyxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 0, 0)));
+            else
+                return new(z, y, x, x);
+        }
     }
-    public b64v4 bgrr
+    public readonly b64v4 bgrr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 0, 0)));
+            else
+                return new(z, y, x, x);
+        }
     }
-    public b64v4 zyxy
+    public readonly b64v4 zyxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 0, 1)));
+            else
+                return new(z, y, x, y);
+        }
     }
-    public b64v4 bgrg
+    public readonly b64v4 bgrg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 0, 1)));
+            else
+                return new(z, y, x, y);
+        }
     }
-    public b64v4 zyxz
+    public readonly b64v4 zyxz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 0, 2)));
+            else
+                return new(z, y, x, z);
+        }
     }
-    public b64v4 bgrb
+    public readonly b64v4 bgrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 0, 2)));
+            else
+                return new(z, y, x, z);
+        }
     }
-    public b64v4 zyyx
+    public readonly b64v4 zyyx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 1, 0)));
+            else
+                return new(z, y, y, x);
+        }
     }
-    public b64v4 bggr
+    public readonly b64v4 bggr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 1, 0)));
+            else
+                return new(z, y, y, x);
+        }
     }
-    public b64v4 zyyy
+    public readonly b64v4 zyyy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 1, 1)));
+            else
+                return new(z, y, y, y);
+        }
     }
-    public b64v4 bggg
+    public readonly b64v4 bggg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 1, 1)));
+            else
+                return new(z, y, y, y);
+        }
     }
-    public b64v4 zyyz
+    public readonly b64v4 zyyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 1, 2)));
+            else
+                return new(z, y, y, z);
+        }
     }
-    public b64v4 bggb
+    public readonly b64v4 bggb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 1, 2)));
+            else
+                return new(z, y, y, z);
+        }
     }
-    public b64v4 zyzx
+    public readonly b64v4 zyzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 2, 0)));
+            else
+                return new(z, y, z, x);
+        }
     }
-    public b64v4 bgbr
+    public readonly b64v4 bgbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 2, 0)));
+            else
+                return new(z, y, z, x);
+        }
     }
-    public b64v4 zyzy
+    public readonly b64v4 zyzy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 2, 1)));
+            else
+                return new(z, y, z, y);
+        }
     }
-    public b64v4 bgbg
+    public readonly b64v4 bgbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 2, 1)));
+            else
+                return new(z, y, z, y);
+        }
     }
-    public b64v4 zyzz
+    public readonly b64v4 zyzz
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 2, 2)));
+            else
+                return new(z, y, z, z);
+        }
     }
-    public b64v4 bgbb
+    public readonly b64v4 bgbb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, y, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 1, 2, 2)));
+            else
+                return new(z, y, z, z);
+        }
     }
-    public b64v4 zzxx
+    public readonly b64v4 zzxx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 0, 0)));
+            else
+                return new(z, z, x, x);
+        }
     }
-    public b64v4 bbrr
+    public readonly b64v4 bbrr
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 0, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, x, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 0, 0)));
+            else
+                return new(z, z, x, x);
+        }
     }
-    public b64v4 zzxy
+    public readonly b64v4 zzxy
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 0, 1)));
+            else
+                return new(z, z, x, y);
+        }
     }
-    public b64v4 bbrg
+    public readonly b64v4 bbrg
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 0, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, x, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 0, 1)));
+            else
+                return new(z, z, x, y);
+        }
     }
-    public b64v4 zzxz
+    public readonly b64v4 zzxz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 0, 2)));
+            else
+                return new(z, z, x, z);
+        }
     }
-    public b64v4 bbrb
+    public readonly b64v4 bbrb
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 0, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, x, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 0, 2)));
+            else
+                return new(z, z, x, z);
+        }
     }
-    public b64v4 zzyx
+    public readonly b64v4 zzyx
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 1, 0)));
+            else
+                return new(z, z, y, x);
+        }
     }
-    public b64v4 bbgr
+    public readonly b64v4 bbgr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 1, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 1, 0)));
+            else
+                return new(z, z, y, x);
+        }
     }
-    public b64v4 zzyy
+    public readonly b64v4 zzyy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 1, 1)));
+            else
+                return new(z, z, y, y);
+        }
     }
-    public b64v4 bbgg
+    public readonly b64v4 bbgg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 1, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 1, 1)));
+            else
+                return new(z, z, y, y);
+        }
     }
-    public b64v4 zzyz
+    public readonly b64v4 zzyz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 1, 2)));
+            else
+                return new(z, z, y, z);
+        }
     }
-    public b64v4 bbgb
+    public readonly b64v4 bbgb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 1, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, y, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 1, 2)));
+            else
+                return new(z, z, y, z);
+        }
     }
-    public b64v4 zzzx
+    public readonly b64v4 zzzx
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 2, 0)));
+            else
+                return new(z, z, z, x);
+        }
     }
-    public b64v4 bbbr
+    public readonly b64v4 bbbr
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 2, 0)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, x);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 2, 0)));
+            else
+                return new(z, z, z, x);
+        }
     }
-    public b64v4 zzzy
+    public readonly b64v4 zzzy
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 2, 1)));
+            else
+                return new(z, z, z, y);
+        }
     }
-    public b64v4 bbbg
+    public readonly b64v4 bbbg
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 2, 1)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, y);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 2, 1)));
+            else
+                return new(z, z, z, y);
+        }
     }
-    public b64v4 zzzz
+    public readonly b64v4 zzzz
     {
-#if NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 2, 2)));
+            else
+                return new(z, z, z, z);
+        }
     }
-    public b64v4 bbbb
+    public readonly b64v4 bbbb
     {
-#if NET8_0_OR_GREATER
-        [MethodImpl(256 | 512)]
-        get => new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 2, 2)));
-#else // NET8_0_OR_GREATER
         [MethodImpl(256 | 512)]
-        get => new(z, z, z, z);
-#endif // NET8_0_OR_GREATER
+        get
+        {
+            if (Vector256.IsHardwareAccelerated)
+                return new(Vector256.Shuffle(vector, Vector256.Create((ulong)2, 2, 2, 2)));
+            else
+                return new(z, z, z, z);
+        }
     }
 }
 

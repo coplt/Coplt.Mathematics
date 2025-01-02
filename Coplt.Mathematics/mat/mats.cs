@@ -63,28 +63,28 @@ public partial struct float2x2 :
     public float m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public float m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public float m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public float m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
@@ -177,14 +177,14 @@ public partial struct float2x2 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out float2 c0, out float2 c1)
+    public readonly void Deconstruct(out float2 c0, out float2 c1)
     {
         c0 = this.c0;
         c1 = this.c1;
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out float m00, out float m01,
         out float m10, out float m11
     )
@@ -200,7 +200,7 @@ public partial struct float2x2 :
     public float2 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -226,7 +226,7 @@ public partial struct float2x2 :
     public float this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -316,42 +316,42 @@ public partial struct float2x3 :
     public float m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public float m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public float m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public float m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public float m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public float m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
@@ -451,7 +451,7 @@ public partial struct float2x3 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out float2 c0, out float2 c1, out float2 c2)
+    public readonly void Deconstruct(out float2 c0, out float2 c1, out float2 c2)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -459,7 +459,7 @@ public partial struct float2x3 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out float m00, out float m01, out float m02,
         out float m10, out float m11, out float m12
     )
@@ -476,7 +476,7 @@ public partial struct float2x3 :
     public float2 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -506,7 +506,7 @@ public partial struct float2x3 :
     public float this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -601,56 +601,56 @@ public partial struct float2x4 :
     public float m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public float m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public float m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public float m03
     {
         [MethodImpl(256 | 512)]
-        get => c3.x;
+        readonly get => c3.x;
         [MethodImpl(256 | 512)]
         set => c3.x = value;
     }
     public float m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public float m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public float m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public float m13
     {
         [MethodImpl(256 | 512)]
-        get => c3.y;
+        readonly get => c3.y;
         [MethodImpl(256 | 512)]
         set => c3.y = value;
     }
@@ -757,7 +757,7 @@ public partial struct float2x4 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out float2 c0, out float2 c1, out float2 c2, out float2 c3)
+    public readonly void Deconstruct(out float2 c0, out float2 c1, out float2 c2, out float2 c3)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -766,7 +766,7 @@ public partial struct float2x4 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out float m00, out float m01, out float m02, out float m03,
         out float m10, out float m11, out float m12, out float m13
     )
@@ -784,7 +784,7 @@ public partial struct float2x4 :
     public float2 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -818,7 +818,7 @@ public partial struct float2x4 :
     public float this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -916,42 +916,42 @@ public partial struct float3x2 :
     public float m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public float m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public float m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public float m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public float m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public float m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
@@ -1049,14 +1049,14 @@ public partial struct float3x2 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out float3 c0, out float3 c1)
+    public readonly void Deconstruct(out float3 c0, out float3 c1)
     {
         c0 = this.c0;
         c1 = this.c1;
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out float m00, out float m01,
         out float m10, out float m11,
         out float m20, out float m21
@@ -1073,7 +1073,7 @@ public partial struct float3x2 :
     public float3 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -1099,7 +1099,7 @@ public partial struct float3x2 :
     public float this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -1190,63 +1190,63 @@ public partial struct float3x3 :
     public float m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public float m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public float m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public float m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public float m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public float m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public float m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public float m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public float m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
@@ -1351,7 +1351,7 @@ public partial struct float3x3 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out float3 c0, out float3 c1, out float3 c2)
+    public readonly void Deconstruct(out float3 c0, out float3 c1, out float3 c2)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -1359,7 +1359,7 @@ public partial struct float3x3 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out float m00, out float m01, out float m02,
         out float m10, out float m11, out float m12,
         out float m20, out float m21, out float m22
@@ -1377,7 +1377,7 @@ public partial struct float3x3 :
     public float3 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -1407,7 +1407,7 @@ public partial struct float3x3 :
     public float this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -1503,84 +1503,84 @@ public partial struct float3x4 :
     public float m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public float m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public float m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public float m03
     {
         [MethodImpl(256 | 512)]
-        get => c3.x;
+        readonly get => c3.x;
         [MethodImpl(256 | 512)]
         set => c3.x = value;
     }
     public float m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public float m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public float m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public float m13
     {
         [MethodImpl(256 | 512)]
-        get => c3.y;
+        readonly get => c3.y;
         [MethodImpl(256 | 512)]
         set => c3.y = value;
     }
     public float m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public float m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public float m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
     public float m23
     {
         [MethodImpl(256 | 512)]
-        get => c3.z;
+        readonly get => c3.z;
         [MethodImpl(256 | 512)]
         set => c3.z = value;
     }
@@ -1692,7 +1692,7 @@ public partial struct float3x4 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out float3 c0, out float3 c1, out float3 c2, out float3 c3)
+    public readonly void Deconstruct(out float3 c0, out float3 c1, out float3 c2, out float3 c3)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -1701,7 +1701,7 @@ public partial struct float3x4 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out float m00, out float m01, out float m02, out float m03,
         out float m10, out float m11, out float m12, out float m13,
         out float m20, out float m21, out float m22, out float m23
@@ -1720,7 +1720,7 @@ public partial struct float3x4 :
     public float3 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -1754,7 +1754,7 @@ public partial struct float3x4 :
     public float this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -1853,56 +1853,56 @@ public partial struct float4x2 :
     public float m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public float m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public float m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public float m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public float m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public float m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public float m30
     {
         [MethodImpl(256 | 512)]
-        get => c0.w;
+        readonly get => c0.w;
         [MethodImpl(256 | 512)]
         set => c0.w = value;
     }
     public float m31
     {
         [MethodImpl(256 | 512)]
-        get => c1.w;
+        readonly get => c1.w;
         [MethodImpl(256 | 512)]
         set => c1.w = value;
     }
@@ -2005,14 +2005,14 @@ public partial struct float4x2 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out float4 c0, out float4 c1)
+    public readonly void Deconstruct(out float4 c0, out float4 c1)
     {
         c0 = this.c0;
         c1 = this.c1;
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out float m00, out float m01,
         out float m10, out float m11,
         out float m20, out float m21,
@@ -2030,7 +2030,7 @@ public partial struct float4x2 :
     public float4 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -2056,7 +2056,7 @@ public partial struct float4x2 :
     public float this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -2148,84 +2148,84 @@ public partial struct float4x3 :
     public float m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public float m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public float m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public float m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public float m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public float m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public float m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public float m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public float m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
     public float m30
     {
         [MethodImpl(256 | 512)]
-        get => c0.w;
+        readonly get => c0.w;
         [MethodImpl(256 | 512)]
         set => c0.w = value;
     }
     public float m31
     {
         [MethodImpl(256 | 512)]
-        get => c1.w;
+        readonly get => c1.w;
         [MethodImpl(256 | 512)]
         set => c1.w = value;
     }
     public float m32
     {
         [MethodImpl(256 | 512)]
-        get => c2.w;
+        readonly get => c2.w;
         [MethodImpl(256 | 512)]
         set => c2.w = value;
     }
@@ -2335,7 +2335,7 @@ public partial struct float4x3 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out float4 c0, out float4 c1, out float4 c2)
+    public readonly void Deconstruct(out float4 c0, out float4 c1, out float4 c2)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -2343,7 +2343,7 @@ public partial struct float4x3 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out float m00, out float m01, out float m02,
         out float m10, out float m11, out float m12,
         out float m20, out float m21, out float m22,
@@ -2362,7 +2362,7 @@ public partial struct float4x3 :
     public float4 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -2392,7 +2392,7 @@ public partial struct float4x3 :
     public float this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -2489,112 +2489,112 @@ public partial struct float4x4 :
     public float m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public float m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public float m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public float m03
     {
         [MethodImpl(256 | 512)]
-        get => c3.x;
+        readonly get => c3.x;
         [MethodImpl(256 | 512)]
         set => c3.x = value;
     }
     public float m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public float m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public float m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public float m13
     {
         [MethodImpl(256 | 512)]
-        get => c3.y;
+        readonly get => c3.y;
         [MethodImpl(256 | 512)]
         set => c3.y = value;
     }
     public float m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public float m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public float m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
     public float m23
     {
         [MethodImpl(256 | 512)]
-        get => c3.z;
+        readonly get => c3.z;
         [MethodImpl(256 | 512)]
         set => c3.z = value;
     }
     public float m30
     {
         [MethodImpl(256 | 512)]
-        get => c0.w;
+        readonly get => c0.w;
         [MethodImpl(256 | 512)]
         set => c0.w = value;
     }
     public float m31
     {
         [MethodImpl(256 | 512)]
-        get => c1.w;
+        readonly get => c1.w;
         [MethodImpl(256 | 512)]
         set => c1.w = value;
     }
     public float m32
     {
         [MethodImpl(256 | 512)]
-        get => c2.w;
+        readonly get => c2.w;
         [MethodImpl(256 | 512)]
         set => c2.w = value;
     }
     public float m33
     {
         [MethodImpl(256 | 512)]
-        get => c3.w;
+        readonly get => c3.w;
         [MethodImpl(256 | 512)]
         set => c3.w = value;
     }
@@ -2711,7 +2711,7 @@ public partial struct float4x4 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out float4 c0, out float4 c1, out float4 c2, out float4 c3)
+    public readonly void Deconstruct(out float4 c0, out float4 c1, out float4 c2, out float4 c3)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -2720,7 +2720,7 @@ public partial struct float4x4 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out float m00, out float m01, out float m02, out float m03,
         out float m10, out float m11, out float m12, out float m13,
         out float m20, out float m21, out float m22, out float m23,
@@ -2740,7 +2740,7 @@ public partial struct float4x4 :
     public float4 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -2774,7 +2774,7 @@ public partial struct float4x4 :
     public float this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -2871,28 +2871,28 @@ public partial struct double2x2 :
     public double m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public double m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public double m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public double m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
@@ -2985,14 +2985,14 @@ public partial struct double2x2 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out double2 c0, out double2 c1)
+    public readonly void Deconstruct(out double2 c0, out double2 c1)
     {
         c0 = this.c0;
         c1 = this.c1;
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out double m00, out double m01,
         out double m10, out double m11
     )
@@ -3008,7 +3008,7 @@ public partial struct double2x2 :
     public double2 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -3034,7 +3034,7 @@ public partial struct double2x2 :
     public double this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -3124,42 +3124,42 @@ public partial struct double2x3 :
     public double m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public double m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public double m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public double m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public double m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public double m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
@@ -3259,7 +3259,7 @@ public partial struct double2x3 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out double2 c0, out double2 c1, out double2 c2)
+    public readonly void Deconstruct(out double2 c0, out double2 c1, out double2 c2)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -3267,7 +3267,7 @@ public partial struct double2x3 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out double m00, out double m01, out double m02,
         out double m10, out double m11, out double m12
     )
@@ -3284,7 +3284,7 @@ public partial struct double2x3 :
     public double2 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -3314,7 +3314,7 @@ public partial struct double2x3 :
     public double this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -3409,56 +3409,56 @@ public partial struct double2x4 :
     public double m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public double m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public double m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public double m03
     {
         [MethodImpl(256 | 512)]
-        get => c3.x;
+        readonly get => c3.x;
         [MethodImpl(256 | 512)]
         set => c3.x = value;
     }
     public double m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public double m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public double m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public double m13
     {
         [MethodImpl(256 | 512)]
-        get => c3.y;
+        readonly get => c3.y;
         [MethodImpl(256 | 512)]
         set => c3.y = value;
     }
@@ -3565,7 +3565,7 @@ public partial struct double2x4 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out double2 c0, out double2 c1, out double2 c2, out double2 c3)
+    public readonly void Deconstruct(out double2 c0, out double2 c1, out double2 c2, out double2 c3)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -3574,7 +3574,7 @@ public partial struct double2x4 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out double m00, out double m01, out double m02, out double m03,
         out double m10, out double m11, out double m12, out double m13
     )
@@ -3592,7 +3592,7 @@ public partial struct double2x4 :
     public double2 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -3626,7 +3626,7 @@ public partial struct double2x4 :
     public double this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -3724,42 +3724,42 @@ public partial struct double3x2 :
     public double m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public double m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public double m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public double m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public double m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public double m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
@@ -3857,14 +3857,14 @@ public partial struct double3x2 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out double3 c0, out double3 c1)
+    public readonly void Deconstruct(out double3 c0, out double3 c1)
     {
         c0 = this.c0;
         c1 = this.c1;
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out double m00, out double m01,
         out double m10, out double m11,
         out double m20, out double m21
@@ -3881,7 +3881,7 @@ public partial struct double3x2 :
     public double3 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -3907,7 +3907,7 @@ public partial struct double3x2 :
     public double this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -3998,63 +3998,63 @@ public partial struct double3x3 :
     public double m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public double m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public double m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public double m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public double m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public double m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public double m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public double m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public double m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
@@ -4159,7 +4159,7 @@ public partial struct double3x3 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out double3 c0, out double3 c1, out double3 c2)
+    public readonly void Deconstruct(out double3 c0, out double3 c1, out double3 c2)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -4167,7 +4167,7 @@ public partial struct double3x3 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out double m00, out double m01, out double m02,
         out double m10, out double m11, out double m12,
         out double m20, out double m21, out double m22
@@ -4185,7 +4185,7 @@ public partial struct double3x3 :
     public double3 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -4215,7 +4215,7 @@ public partial struct double3x3 :
     public double this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -4311,84 +4311,84 @@ public partial struct double3x4 :
     public double m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public double m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public double m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public double m03
     {
         [MethodImpl(256 | 512)]
-        get => c3.x;
+        readonly get => c3.x;
         [MethodImpl(256 | 512)]
         set => c3.x = value;
     }
     public double m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public double m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public double m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public double m13
     {
         [MethodImpl(256 | 512)]
-        get => c3.y;
+        readonly get => c3.y;
         [MethodImpl(256 | 512)]
         set => c3.y = value;
     }
     public double m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public double m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public double m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
     public double m23
     {
         [MethodImpl(256 | 512)]
-        get => c3.z;
+        readonly get => c3.z;
         [MethodImpl(256 | 512)]
         set => c3.z = value;
     }
@@ -4500,7 +4500,7 @@ public partial struct double3x4 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out double3 c0, out double3 c1, out double3 c2, out double3 c3)
+    public readonly void Deconstruct(out double3 c0, out double3 c1, out double3 c2, out double3 c3)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -4509,7 +4509,7 @@ public partial struct double3x4 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out double m00, out double m01, out double m02, out double m03,
         out double m10, out double m11, out double m12, out double m13,
         out double m20, out double m21, out double m22, out double m23
@@ -4528,7 +4528,7 @@ public partial struct double3x4 :
     public double3 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -4562,7 +4562,7 @@ public partial struct double3x4 :
     public double this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -4661,56 +4661,56 @@ public partial struct double4x2 :
     public double m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public double m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public double m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public double m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public double m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public double m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public double m30
     {
         [MethodImpl(256 | 512)]
-        get => c0.w;
+        readonly get => c0.w;
         [MethodImpl(256 | 512)]
         set => c0.w = value;
     }
     public double m31
     {
         [MethodImpl(256 | 512)]
-        get => c1.w;
+        readonly get => c1.w;
         [MethodImpl(256 | 512)]
         set => c1.w = value;
     }
@@ -4813,14 +4813,14 @@ public partial struct double4x2 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out double4 c0, out double4 c1)
+    public readonly void Deconstruct(out double4 c0, out double4 c1)
     {
         c0 = this.c0;
         c1 = this.c1;
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out double m00, out double m01,
         out double m10, out double m11,
         out double m20, out double m21,
@@ -4838,7 +4838,7 @@ public partial struct double4x2 :
     public double4 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -4864,7 +4864,7 @@ public partial struct double4x2 :
     public double this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -4956,84 +4956,84 @@ public partial struct double4x3 :
     public double m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public double m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public double m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public double m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public double m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public double m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public double m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public double m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public double m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
     public double m30
     {
         [MethodImpl(256 | 512)]
-        get => c0.w;
+        readonly get => c0.w;
         [MethodImpl(256 | 512)]
         set => c0.w = value;
     }
     public double m31
     {
         [MethodImpl(256 | 512)]
-        get => c1.w;
+        readonly get => c1.w;
         [MethodImpl(256 | 512)]
         set => c1.w = value;
     }
     public double m32
     {
         [MethodImpl(256 | 512)]
-        get => c2.w;
+        readonly get => c2.w;
         [MethodImpl(256 | 512)]
         set => c2.w = value;
     }
@@ -5143,7 +5143,7 @@ public partial struct double4x3 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out double4 c0, out double4 c1, out double4 c2)
+    public readonly void Deconstruct(out double4 c0, out double4 c1, out double4 c2)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -5151,7 +5151,7 @@ public partial struct double4x3 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out double m00, out double m01, out double m02,
         out double m10, out double m11, out double m12,
         out double m20, out double m21, out double m22,
@@ -5170,7 +5170,7 @@ public partial struct double4x3 :
     public double4 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -5200,7 +5200,7 @@ public partial struct double4x3 :
     public double this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -5297,112 +5297,112 @@ public partial struct double4x4 :
     public double m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public double m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public double m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public double m03
     {
         [MethodImpl(256 | 512)]
-        get => c3.x;
+        readonly get => c3.x;
         [MethodImpl(256 | 512)]
         set => c3.x = value;
     }
     public double m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public double m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public double m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public double m13
     {
         [MethodImpl(256 | 512)]
-        get => c3.y;
+        readonly get => c3.y;
         [MethodImpl(256 | 512)]
         set => c3.y = value;
     }
     public double m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public double m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public double m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
     public double m23
     {
         [MethodImpl(256 | 512)]
-        get => c3.z;
+        readonly get => c3.z;
         [MethodImpl(256 | 512)]
         set => c3.z = value;
     }
     public double m30
     {
         [MethodImpl(256 | 512)]
-        get => c0.w;
+        readonly get => c0.w;
         [MethodImpl(256 | 512)]
         set => c0.w = value;
     }
     public double m31
     {
         [MethodImpl(256 | 512)]
-        get => c1.w;
+        readonly get => c1.w;
         [MethodImpl(256 | 512)]
         set => c1.w = value;
     }
     public double m32
     {
         [MethodImpl(256 | 512)]
-        get => c2.w;
+        readonly get => c2.w;
         [MethodImpl(256 | 512)]
         set => c2.w = value;
     }
     public double m33
     {
         [MethodImpl(256 | 512)]
-        get => c3.w;
+        readonly get => c3.w;
         [MethodImpl(256 | 512)]
         set => c3.w = value;
     }
@@ -5519,7 +5519,7 @@ public partial struct double4x4 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out double4 c0, out double4 c1, out double4 c2, out double4 c3)
+    public readonly void Deconstruct(out double4 c0, out double4 c1, out double4 c2, out double4 c3)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -5528,7 +5528,7 @@ public partial struct double4x4 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out double m00, out double m01, out double m02, out double m03,
         out double m10, out double m11, out double m12, out double m13,
         out double m20, out double m21, out double m22, out double m23,
@@ -5548,7 +5548,7 @@ public partial struct double4x4 :
     public double4 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -5582,7 +5582,7 @@ public partial struct double4x4 :
     public double this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -5679,28 +5679,28 @@ public partial struct short2x2 :
     public short m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public short m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public short m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public short m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
@@ -5793,14 +5793,14 @@ public partial struct short2x2 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out short2 c0, out short2 c1)
+    public readonly void Deconstruct(out short2 c0, out short2 c1)
     {
         c0 = this.c0;
         c1 = this.c1;
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out short m00, out short m01,
         out short m10, out short m11
     )
@@ -5816,7 +5816,7 @@ public partial struct short2x2 :
     public short2 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -5842,7 +5842,7 @@ public partial struct short2x2 :
     public short this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -5932,42 +5932,42 @@ public partial struct short2x3 :
     public short m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public short m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public short m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public short m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public short m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public short m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
@@ -6067,7 +6067,7 @@ public partial struct short2x3 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out short2 c0, out short2 c1, out short2 c2)
+    public readonly void Deconstruct(out short2 c0, out short2 c1, out short2 c2)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -6075,7 +6075,7 @@ public partial struct short2x3 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out short m00, out short m01, out short m02,
         out short m10, out short m11, out short m12
     )
@@ -6092,7 +6092,7 @@ public partial struct short2x3 :
     public short2 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -6122,7 +6122,7 @@ public partial struct short2x3 :
     public short this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -6217,56 +6217,56 @@ public partial struct short2x4 :
     public short m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public short m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public short m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public short m03
     {
         [MethodImpl(256 | 512)]
-        get => c3.x;
+        readonly get => c3.x;
         [MethodImpl(256 | 512)]
         set => c3.x = value;
     }
     public short m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public short m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public short m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public short m13
     {
         [MethodImpl(256 | 512)]
-        get => c3.y;
+        readonly get => c3.y;
         [MethodImpl(256 | 512)]
         set => c3.y = value;
     }
@@ -6373,7 +6373,7 @@ public partial struct short2x4 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out short2 c0, out short2 c1, out short2 c2, out short2 c3)
+    public readonly void Deconstruct(out short2 c0, out short2 c1, out short2 c2, out short2 c3)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -6382,7 +6382,7 @@ public partial struct short2x4 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out short m00, out short m01, out short m02, out short m03,
         out short m10, out short m11, out short m12, out short m13
     )
@@ -6400,7 +6400,7 @@ public partial struct short2x4 :
     public short2 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -6434,7 +6434,7 @@ public partial struct short2x4 :
     public short this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -6532,42 +6532,42 @@ public partial struct short3x2 :
     public short m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public short m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public short m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public short m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public short m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public short m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
@@ -6665,14 +6665,14 @@ public partial struct short3x2 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out short3 c0, out short3 c1)
+    public readonly void Deconstruct(out short3 c0, out short3 c1)
     {
         c0 = this.c0;
         c1 = this.c1;
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out short m00, out short m01,
         out short m10, out short m11,
         out short m20, out short m21
@@ -6689,7 +6689,7 @@ public partial struct short3x2 :
     public short3 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -6715,7 +6715,7 @@ public partial struct short3x2 :
     public short this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -6806,63 +6806,63 @@ public partial struct short3x3 :
     public short m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public short m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public short m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public short m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public short m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public short m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public short m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public short m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public short m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
@@ -6967,7 +6967,7 @@ public partial struct short3x3 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out short3 c0, out short3 c1, out short3 c2)
+    public readonly void Deconstruct(out short3 c0, out short3 c1, out short3 c2)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -6975,7 +6975,7 @@ public partial struct short3x3 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out short m00, out short m01, out short m02,
         out short m10, out short m11, out short m12,
         out short m20, out short m21, out short m22
@@ -6993,7 +6993,7 @@ public partial struct short3x3 :
     public short3 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -7023,7 +7023,7 @@ public partial struct short3x3 :
     public short this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -7119,84 +7119,84 @@ public partial struct short3x4 :
     public short m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public short m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public short m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public short m03
     {
         [MethodImpl(256 | 512)]
-        get => c3.x;
+        readonly get => c3.x;
         [MethodImpl(256 | 512)]
         set => c3.x = value;
     }
     public short m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public short m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public short m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public short m13
     {
         [MethodImpl(256 | 512)]
-        get => c3.y;
+        readonly get => c3.y;
         [MethodImpl(256 | 512)]
         set => c3.y = value;
     }
     public short m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public short m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public short m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
     public short m23
     {
         [MethodImpl(256 | 512)]
-        get => c3.z;
+        readonly get => c3.z;
         [MethodImpl(256 | 512)]
         set => c3.z = value;
     }
@@ -7308,7 +7308,7 @@ public partial struct short3x4 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out short3 c0, out short3 c1, out short3 c2, out short3 c3)
+    public readonly void Deconstruct(out short3 c0, out short3 c1, out short3 c2, out short3 c3)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -7317,7 +7317,7 @@ public partial struct short3x4 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out short m00, out short m01, out short m02, out short m03,
         out short m10, out short m11, out short m12, out short m13,
         out short m20, out short m21, out short m22, out short m23
@@ -7336,7 +7336,7 @@ public partial struct short3x4 :
     public short3 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -7370,7 +7370,7 @@ public partial struct short3x4 :
     public short this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -7469,56 +7469,56 @@ public partial struct short4x2 :
     public short m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public short m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public short m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public short m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public short m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public short m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public short m30
     {
         [MethodImpl(256 | 512)]
-        get => c0.w;
+        readonly get => c0.w;
         [MethodImpl(256 | 512)]
         set => c0.w = value;
     }
     public short m31
     {
         [MethodImpl(256 | 512)]
-        get => c1.w;
+        readonly get => c1.w;
         [MethodImpl(256 | 512)]
         set => c1.w = value;
     }
@@ -7621,14 +7621,14 @@ public partial struct short4x2 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out short4 c0, out short4 c1)
+    public readonly void Deconstruct(out short4 c0, out short4 c1)
     {
         c0 = this.c0;
         c1 = this.c1;
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out short m00, out short m01,
         out short m10, out short m11,
         out short m20, out short m21,
@@ -7646,7 +7646,7 @@ public partial struct short4x2 :
     public short4 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -7672,7 +7672,7 @@ public partial struct short4x2 :
     public short this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -7764,84 +7764,84 @@ public partial struct short4x3 :
     public short m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public short m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public short m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public short m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public short m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public short m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public short m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public short m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public short m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
     public short m30
     {
         [MethodImpl(256 | 512)]
-        get => c0.w;
+        readonly get => c0.w;
         [MethodImpl(256 | 512)]
         set => c0.w = value;
     }
     public short m31
     {
         [MethodImpl(256 | 512)]
-        get => c1.w;
+        readonly get => c1.w;
         [MethodImpl(256 | 512)]
         set => c1.w = value;
     }
     public short m32
     {
         [MethodImpl(256 | 512)]
-        get => c2.w;
+        readonly get => c2.w;
         [MethodImpl(256 | 512)]
         set => c2.w = value;
     }
@@ -7951,7 +7951,7 @@ public partial struct short4x3 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out short4 c0, out short4 c1, out short4 c2)
+    public readonly void Deconstruct(out short4 c0, out short4 c1, out short4 c2)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -7959,7 +7959,7 @@ public partial struct short4x3 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out short m00, out short m01, out short m02,
         out short m10, out short m11, out short m12,
         out short m20, out short m21, out short m22,
@@ -7978,7 +7978,7 @@ public partial struct short4x3 :
     public short4 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -8008,7 +8008,7 @@ public partial struct short4x3 :
     public short this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -8105,112 +8105,112 @@ public partial struct short4x4 :
     public short m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public short m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public short m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public short m03
     {
         [MethodImpl(256 | 512)]
-        get => c3.x;
+        readonly get => c3.x;
         [MethodImpl(256 | 512)]
         set => c3.x = value;
     }
     public short m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public short m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public short m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public short m13
     {
         [MethodImpl(256 | 512)]
-        get => c3.y;
+        readonly get => c3.y;
         [MethodImpl(256 | 512)]
         set => c3.y = value;
     }
     public short m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public short m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public short m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
     public short m23
     {
         [MethodImpl(256 | 512)]
-        get => c3.z;
+        readonly get => c3.z;
         [MethodImpl(256 | 512)]
         set => c3.z = value;
     }
     public short m30
     {
         [MethodImpl(256 | 512)]
-        get => c0.w;
+        readonly get => c0.w;
         [MethodImpl(256 | 512)]
         set => c0.w = value;
     }
     public short m31
     {
         [MethodImpl(256 | 512)]
-        get => c1.w;
+        readonly get => c1.w;
         [MethodImpl(256 | 512)]
         set => c1.w = value;
     }
     public short m32
     {
         [MethodImpl(256 | 512)]
-        get => c2.w;
+        readonly get => c2.w;
         [MethodImpl(256 | 512)]
         set => c2.w = value;
     }
     public short m33
     {
         [MethodImpl(256 | 512)]
-        get => c3.w;
+        readonly get => c3.w;
         [MethodImpl(256 | 512)]
         set => c3.w = value;
     }
@@ -8327,7 +8327,7 @@ public partial struct short4x4 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out short4 c0, out short4 c1, out short4 c2, out short4 c3)
+    public readonly void Deconstruct(out short4 c0, out short4 c1, out short4 c2, out short4 c3)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -8336,7 +8336,7 @@ public partial struct short4x4 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out short m00, out short m01, out short m02, out short m03,
         out short m10, out short m11, out short m12, out short m13,
         out short m20, out short m21, out short m22, out short m23,
@@ -8356,7 +8356,7 @@ public partial struct short4x4 :
     public short4 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -8390,7 +8390,7 @@ public partial struct short4x4 :
     public short this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -8487,28 +8487,28 @@ public partial struct ushort2x2 :
     public ushort m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public ushort m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public ushort m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public ushort m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
@@ -8601,14 +8601,14 @@ public partial struct ushort2x2 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out ushort2 c0, out ushort2 c1)
+    public readonly void Deconstruct(out ushort2 c0, out ushort2 c1)
     {
         c0 = this.c0;
         c1 = this.c1;
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out ushort m00, out ushort m01,
         out ushort m10, out ushort m11
     )
@@ -8624,7 +8624,7 @@ public partial struct ushort2x2 :
     public ushort2 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -8650,7 +8650,7 @@ public partial struct ushort2x2 :
     public ushort this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -8740,42 +8740,42 @@ public partial struct ushort2x3 :
     public ushort m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public ushort m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public ushort m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public ushort m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public ushort m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public ushort m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
@@ -8875,7 +8875,7 @@ public partial struct ushort2x3 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out ushort2 c0, out ushort2 c1, out ushort2 c2)
+    public readonly void Deconstruct(out ushort2 c0, out ushort2 c1, out ushort2 c2)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -8883,7 +8883,7 @@ public partial struct ushort2x3 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out ushort m00, out ushort m01, out ushort m02,
         out ushort m10, out ushort m11, out ushort m12
     )
@@ -8900,7 +8900,7 @@ public partial struct ushort2x3 :
     public ushort2 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -8930,7 +8930,7 @@ public partial struct ushort2x3 :
     public ushort this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -9025,56 +9025,56 @@ public partial struct ushort2x4 :
     public ushort m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public ushort m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public ushort m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public ushort m03
     {
         [MethodImpl(256 | 512)]
-        get => c3.x;
+        readonly get => c3.x;
         [MethodImpl(256 | 512)]
         set => c3.x = value;
     }
     public ushort m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public ushort m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public ushort m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public ushort m13
     {
         [MethodImpl(256 | 512)]
-        get => c3.y;
+        readonly get => c3.y;
         [MethodImpl(256 | 512)]
         set => c3.y = value;
     }
@@ -9181,7 +9181,7 @@ public partial struct ushort2x4 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out ushort2 c0, out ushort2 c1, out ushort2 c2, out ushort2 c3)
+    public readonly void Deconstruct(out ushort2 c0, out ushort2 c1, out ushort2 c2, out ushort2 c3)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -9190,7 +9190,7 @@ public partial struct ushort2x4 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out ushort m00, out ushort m01, out ushort m02, out ushort m03,
         out ushort m10, out ushort m11, out ushort m12, out ushort m13
     )
@@ -9208,7 +9208,7 @@ public partial struct ushort2x4 :
     public ushort2 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -9242,7 +9242,7 @@ public partial struct ushort2x4 :
     public ushort this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -9340,42 +9340,42 @@ public partial struct ushort3x2 :
     public ushort m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public ushort m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public ushort m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public ushort m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public ushort m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public ushort m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
@@ -9473,14 +9473,14 @@ public partial struct ushort3x2 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out ushort3 c0, out ushort3 c1)
+    public readonly void Deconstruct(out ushort3 c0, out ushort3 c1)
     {
         c0 = this.c0;
         c1 = this.c1;
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out ushort m00, out ushort m01,
         out ushort m10, out ushort m11,
         out ushort m20, out ushort m21
@@ -9497,7 +9497,7 @@ public partial struct ushort3x2 :
     public ushort3 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -9523,7 +9523,7 @@ public partial struct ushort3x2 :
     public ushort this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -9614,63 +9614,63 @@ public partial struct ushort3x3 :
     public ushort m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public ushort m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public ushort m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public ushort m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public ushort m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public ushort m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public ushort m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public ushort m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public ushort m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
@@ -9775,7 +9775,7 @@ public partial struct ushort3x3 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out ushort3 c0, out ushort3 c1, out ushort3 c2)
+    public readonly void Deconstruct(out ushort3 c0, out ushort3 c1, out ushort3 c2)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -9783,7 +9783,7 @@ public partial struct ushort3x3 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out ushort m00, out ushort m01, out ushort m02,
         out ushort m10, out ushort m11, out ushort m12,
         out ushort m20, out ushort m21, out ushort m22
@@ -9801,7 +9801,7 @@ public partial struct ushort3x3 :
     public ushort3 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -9831,7 +9831,7 @@ public partial struct ushort3x3 :
     public ushort this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -9927,84 +9927,84 @@ public partial struct ushort3x4 :
     public ushort m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public ushort m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public ushort m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public ushort m03
     {
         [MethodImpl(256 | 512)]
-        get => c3.x;
+        readonly get => c3.x;
         [MethodImpl(256 | 512)]
         set => c3.x = value;
     }
     public ushort m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public ushort m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public ushort m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public ushort m13
     {
         [MethodImpl(256 | 512)]
-        get => c3.y;
+        readonly get => c3.y;
         [MethodImpl(256 | 512)]
         set => c3.y = value;
     }
     public ushort m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public ushort m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public ushort m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
     public ushort m23
     {
         [MethodImpl(256 | 512)]
-        get => c3.z;
+        readonly get => c3.z;
         [MethodImpl(256 | 512)]
         set => c3.z = value;
     }
@@ -10116,7 +10116,7 @@ public partial struct ushort3x4 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out ushort3 c0, out ushort3 c1, out ushort3 c2, out ushort3 c3)
+    public readonly void Deconstruct(out ushort3 c0, out ushort3 c1, out ushort3 c2, out ushort3 c3)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -10125,7 +10125,7 @@ public partial struct ushort3x4 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out ushort m00, out ushort m01, out ushort m02, out ushort m03,
         out ushort m10, out ushort m11, out ushort m12, out ushort m13,
         out ushort m20, out ushort m21, out ushort m22, out ushort m23
@@ -10144,7 +10144,7 @@ public partial struct ushort3x4 :
     public ushort3 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -10178,7 +10178,7 @@ public partial struct ushort3x4 :
     public ushort this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -10277,56 +10277,56 @@ public partial struct ushort4x2 :
     public ushort m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public ushort m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public ushort m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public ushort m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public ushort m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public ushort m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public ushort m30
     {
         [MethodImpl(256 | 512)]
-        get => c0.w;
+        readonly get => c0.w;
         [MethodImpl(256 | 512)]
         set => c0.w = value;
     }
     public ushort m31
     {
         [MethodImpl(256 | 512)]
-        get => c1.w;
+        readonly get => c1.w;
         [MethodImpl(256 | 512)]
         set => c1.w = value;
     }
@@ -10429,14 +10429,14 @@ public partial struct ushort4x2 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out ushort4 c0, out ushort4 c1)
+    public readonly void Deconstruct(out ushort4 c0, out ushort4 c1)
     {
         c0 = this.c0;
         c1 = this.c1;
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out ushort m00, out ushort m01,
         out ushort m10, out ushort m11,
         out ushort m20, out ushort m21,
@@ -10454,7 +10454,7 @@ public partial struct ushort4x2 :
     public ushort4 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -10480,7 +10480,7 @@ public partial struct ushort4x2 :
     public ushort this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -10572,84 +10572,84 @@ public partial struct ushort4x3 :
     public ushort m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public ushort m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public ushort m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public ushort m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public ushort m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public ushort m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public ushort m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public ushort m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public ushort m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
     public ushort m30
     {
         [MethodImpl(256 | 512)]
-        get => c0.w;
+        readonly get => c0.w;
         [MethodImpl(256 | 512)]
         set => c0.w = value;
     }
     public ushort m31
     {
         [MethodImpl(256 | 512)]
-        get => c1.w;
+        readonly get => c1.w;
         [MethodImpl(256 | 512)]
         set => c1.w = value;
     }
     public ushort m32
     {
         [MethodImpl(256 | 512)]
-        get => c2.w;
+        readonly get => c2.w;
         [MethodImpl(256 | 512)]
         set => c2.w = value;
     }
@@ -10759,7 +10759,7 @@ public partial struct ushort4x3 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out ushort4 c0, out ushort4 c1, out ushort4 c2)
+    public readonly void Deconstruct(out ushort4 c0, out ushort4 c1, out ushort4 c2)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -10767,7 +10767,7 @@ public partial struct ushort4x3 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out ushort m00, out ushort m01, out ushort m02,
         out ushort m10, out ushort m11, out ushort m12,
         out ushort m20, out ushort m21, out ushort m22,
@@ -10786,7 +10786,7 @@ public partial struct ushort4x3 :
     public ushort4 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -10816,7 +10816,7 @@ public partial struct ushort4x3 :
     public ushort this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -10913,112 +10913,112 @@ public partial struct ushort4x4 :
     public ushort m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public ushort m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public ushort m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public ushort m03
     {
         [MethodImpl(256 | 512)]
-        get => c3.x;
+        readonly get => c3.x;
         [MethodImpl(256 | 512)]
         set => c3.x = value;
     }
     public ushort m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public ushort m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public ushort m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public ushort m13
     {
         [MethodImpl(256 | 512)]
-        get => c3.y;
+        readonly get => c3.y;
         [MethodImpl(256 | 512)]
         set => c3.y = value;
     }
     public ushort m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public ushort m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public ushort m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
     public ushort m23
     {
         [MethodImpl(256 | 512)]
-        get => c3.z;
+        readonly get => c3.z;
         [MethodImpl(256 | 512)]
         set => c3.z = value;
     }
     public ushort m30
     {
         [MethodImpl(256 | 512)]
-        get => c0.w;
+        readonly get => c0.w;
         [MethodImpl(256 | 512)]
         set => c0.w = value;
     }
     public ushort m31
     {
         [MethodImpl(256 | 512)]
-        get => c1.w;
+        readonly get => c1.w;
         [MethodImpl(256 | 512)]
         set => c1.w = value;
     }
     public ushort m32
     {
         [MethodImpl(256 | 512)]
-        get => c2.w;
+        readonly get => c2.w;
         [MethodImpl(256 | 512)]
         set => c2.w = value;
     }
     public ushort m33
     {
         [MethodImpl(256 | 512)]
-        get => c3.w;
+        readonly get => c3.w;
         [MethodImpl(256 | 512)]
         set => c3.w = value;
     }
@@ -11135,7 +11135,7 @@ public partial struct ushort4x4 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out ushort4 c0, out ushort4 c1, out ushort4 c2, out ushort4 c3)
+    public readonly void Deconstruct(out ushort4 c0, out ushort4 c1, out ushort4 c2, out ushort4 c3)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -11144,7 +11144,7 @@ public partial struct ushort4x4 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out ushort m00, out ushort m01, out ushort m02, out ushort m03,
         out ushort m10, out ushort m11, out ushort m12, out ushort m13,
         out ushort m20, out ushort m21, out ushort m22, out ushort m23,
@@ -11164,7 +11164,7 @@ public partial struct ushort4x4 :
     public ushort4 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -11198,7 +11198,7 @@ public partial struct ushort4x4 :
     public ushort this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -11295,28 +11295,28 @@ public partial struct int2x2 :
     public int m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public int m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public int m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public int m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
@@ -11409,14 +11409,14 @@ public partial struct int2x2 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out int2 c0, out int2 c1)
+    public readonly void Deconstruct(out int2 c0, out int2 c1)
     {
         c0 = this.c0;
         c1 = this.c1;
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out int m00, out int m01,
         out int m10, out int m11
     )
@@ -11432,7 +11432,7 @@ public partial struct int2x2 :
     public int2 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -11458,7 +11458,7 @@ public partial struct int2x2 :
     public int this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -11548,42 +11548,42 @@ public partial struct int2x3 :
     public int m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public int m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public int m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public int m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public int m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public int m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
@@ -11683,7 +11683,7 @@ public partial struct int2x3 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out int2 c0, out int2 c1, out int2 c2)
+    public readonly void Deconstruct(out int2 c0, out int2 c1, out int2 c2)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -11691,7 +11691,7 @@ public partial struct int2x3 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out int m00, out int m01, out int m02,
         out int m10, out int m11, out int m12
     )
@@ -11708,7 +11708,7 @@ public partial struct int2x3 :
     public int2 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -11738,7 +11738,7 @@ public partial struct int2x3 :
     public int this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -11833,56 +11833,56 @@ public partial struct int2x4 :
     public int m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public int m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public int m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public int m03
     {
         [MethodImpl(256 | 512)]
-        get => c3.x;
+        readonly get => c3.x;
         [MethodImpl(256 | 512)]
         set => c3.x = value;
     }
     public int m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public int m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public int m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public int m13
     {
         [MethodImpl(256 | 512)]
-        get => c3.y;
+        readonly get => c3.y;
         [MethodImpl(256 | 512)]
         set => c3.y = value;
     }
@@ -11989,7 +11989,7 @@ public partial struct int2x4 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out int2 c0, out int2 c1, out int2 c2, out int2 c3)
+    public readonly void Deconstruct(out int2 c0, out int2 c1, out int2 c2, out int2 c3)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -11998,7 +11998,7 @@ public partial struct int2x4 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out int m00, out int m01, out int m02, out int m03,
         out int m10, out int m11, out int m12, out int m13
     )
@@ -12016,7 +12016,7 @@ public partial struct int2x4 :
     public int2 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -12050,7 +12050,7 @@ public partial struct int2x4 :
     public int this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -12148,42 +12148,42 @@ public partial struct int3x2 :
     public int m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public int m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public int m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public int m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public int m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public int m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
@@ -12281,14 +12281,14 @@ public partial struct int3x2 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out int3 c0, out int3 c1)
+    public readonly void Deconstruct(out int3 c0, out int3 c1)
     {
         c0 = this.c0;
         c1 = this.c1;
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out int m00, out int m01,
         out int m10, out int m11,
         out int m20, out int m21
@@ -12305,7 +12305,7 @@ public partial struct int3x2 :
     public int3 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -12331,7 +12331,7 @@ public partial struct int3x2 :
     public int this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -12422,63 +12422,63 @@ public partial struct int3x3 :
     public int m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public int m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public int m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public int m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public int m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public int m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public int m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public int m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public int m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
@@ -12583,7 +12583,7 @@ public partial struct int3x3 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out int3 c0, out int3 c1, out int3 c2)
+    public readonly void Deconstruct(out int3 c0, out int3 c1, out int3 c2)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -12591,7 +12591,7 @@ public partial struct int3x3 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out int m00, out int m01, out int m02,
         out int m10, out int m11, out int m12,
         out int m20, out int m21, out int m22
@@ -12609,7 +12609,7 @@ public partial struct int3x3 :
     public int3 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -12639,7 +12639,7 @@ public partial struct int3x3 :
     public int this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -12735,84 +12735,84 @@ public partial struct int3x4 :
     public int m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public int m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public int m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public int m03
     {
         [MethodImpl(256 | 512)]
-        get => c3.x;
+        readonly get => c3.x;
         [MethodImpl(256 | 512)]
         set => c3.x = value;
     }
     public int m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public int m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public int m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public int m13
     {
         [MethodImpl(256 | 512)]
-        get => c3.y;
+        readonly get => c3.y;
         [MethodImpl(256 | 512)]
         set => c3.y = value;
     }
     public int m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public int m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public int m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
     public int m23
     {
         [MethodImpl(256 | 512)]
-        get => c3.z;
+        readonly get => c3.z;
         [MethodImpl(256 | 512)]
         set => c3.z = value;
     }
@@ -12924,7 +12924,7 @@ public partial struct int3x4 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out int3 c0, out int3 c1, out int3 c2, out int3 c3)
+    public readonly void Deconstruct(out int3 c0, out int3 c1, out int3 c2, out int3 c3)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -12933,7 +12933,7 @@ public partial struct int3x4 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out int m00, out int m01, out int m02, out int m03,
         out int m10, out int m11, out int m12, out int m13,
         out int m20, out int m21, out int m22, out int m23
@@ -12952,7 +12952,7 @@ public partial struct int3x4 :
     public int3 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -12986,7 +12986,7 @@ public partial struct int3x4 :
     public int this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -13085,56 +13085,56 @@ public partial struct int4x2 :
     public int m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public int m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public int m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public int m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public int m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public int m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public int m30
     {
         [MethodImpl(256 | 512)]
-        get => c0.w;
+        readonly get => c0.w;
         [MethodImpl(256 | 512)]
         set => c0.w = value;
     }
     public int m31
     {
         [MethodImpl(256 | 512)]
-        get => c1.w;
+        readonly get => c1.w;
         [MethodImpl(256 | 512)]
         set => c1.w = value;
     }
@@ -13237,14 +13237,14 @@ public partial struct int4x2 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out int4 c0, out int4 c1)
+    public readonly void Deconstruct(out int4 c0, out int4 c1)
     {
         c0 = this.c0;
         c1 = this.c1;
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out int m00, out int m01,
         out int m10, out int m11,
         out int m20, out int m21,
@@ -13262,7 +13262,7 @@ public partial struct int4x2 :
     public int4 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -13288,7 +13288,7 @@ public partial struct int4x2 :
     public int this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -13380,84 +13380,84 @@ public partial struct int4x3 :
     public int m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public int m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public int m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public int m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public int m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public int m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public int m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public int m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public int m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
     public int m30
     {
         [MethodImpl(256 | 512)]
-        get => c0.w;
+        readonly get => c0.w;
         [MethodImpl(256 | 512)]
         set => c0.w = value;
     }
     public int m31
     {
         [MethodImpl(256 | 512)]
-        get => c1.w;
+        readonly get => c1.w;
         [MethodImpl(256 | 512)]
         set => c1.w = value;
     }
     public int m32
     {
         [MethodImpl(256 | 512)]
-        get => c2.w;
+        readonly get => c2.w;
         [MethodImpl(256 | 512)]
         set => c2.w = value;
     }
@@ -13567,7 +13567,7 @@ public partial struct int4x3 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out int4 c0, out int4 c1, out int4 c2)
+    public readonly void Deconstruct(out int4 c0, out int4 c1, out int4 c2)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -13575,7 +13575,7 @@ public partial struct int4x3 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out int m00, out int m01, out int m02,
         out int m10, out int m11, out int m12,
         out int m20, out int m21, out int m22,
@@ -13594,7 +13594,7 @@ public partial struct int4x3 :
     public int4 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -13624,7 +13624,7 @@ public partial struct int4x3 :
     public int this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -13721,112 +13721,112 @@ public partial struct int4x4 :
     public int m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public int m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public int m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public int m03
     {
         [MethodImpl(256 | 512)]
-        get => c3.x;
+        readonly get => c3.x;
         [MethodImpl(256 | 512)]
         set => c3.x = value;
     }
     public int m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public int m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public int m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public int m13
     {
         [MethodImpl(256 | 512)]
-        get => c3.y;
+        readonly get => c3.y;
         [MethodImpl(256 | 512)]
         set => c3.y = value;
     }
     public int m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public int m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public int m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
     public int m23
     {
         [MethodImpl(256 | 512)]
-        get => c3.z;
+        readonly get => c3.z;
         [MethodImpl(256 | 512)]
         set => c3.z = value;
     }
     public int m30
     {
         [MethodImpl(256 | 512)]
-        get => c0.w;
+        readonly get => c0.w;
         [MethodImpl(256 | 512)]
         set => c0.w = value;
     }
     public int m31
     {
         [MethodImpl(256 | 512)]
-        get => c1.w;
+        readonly get => c1.w;
         [MethodImpl(256 | 512)]
         set => c1.w = value;
     }
     public int m32
     {
         [MethodImpl(256 | 512)]
-        get => c2.w;
+        readonly get => c2.w;
         [MethodImpl(256 | 512)]
         set => c2.w = value;
     }
     public int m33
     {
         [MethodImpl(256 | 512)]
-        get => c3.w;
+        readonly get => c3.w;
         [MethodImpl(256 | 512)]
         set => c3.w = value;
     }
@@ -13943,7 +13943,7 @@ public partial struct int4x4 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out int4 c0, out int4 c1, out int4 c2, out int4 c3)
+    public readonly void Deconstruct(out int4 c0, out int4 c1, out int4 c2, out int4 c3)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -13952,7 +13952,7 @@ public partial struct int4x4 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out int m00, out int m01, out int m02, out int m03,
         out int m10, out int m11, out int m12, out int m13,
         out int m20, out int m21, out int m22, out int m23,
@@ -13972,7 +13972,7 @@ public partial struct int4x4 :
     public int4 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -14006,7 +14006,7 @@ public partial struct int4x4 :
     public int this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -14103,28 +14103,28 @@ public partial struct uint2x2 :
     public uint m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public uint m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public uint m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public uint m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
@@ -14217,14 +14217,14 @@ public partial struct uint2x2 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out uint2 c0, out uint2 c1)
+    public readonly void Deconstruct(out uint2 c0, out uint2 c1)
     {
         c0 = this.c0;
         c1 = this.c1;
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out uint m00, out uint m01,
         out uint m10, out uint m11
     )
@@ -14240,7 +14240,7 @@ public partial struct uint2x2 :
     public uint2 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -14266,7 +14266,7 @@ public partial struct uint2x2 :
     public uint this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -14356,42 +14356,42 @@ public partial struct uint2x3 :
     public uint m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public uint m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public uint m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public uint m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public uint m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public uint m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
@@ -14491,7 +14491,7 @@ public partial struct uint2x3 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out uint2 c0, out uint2 c1, out uint2 c2)
+    public readonly void Deconstruct(out uint2 c0, out uint2 c1, out uint2 c2)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -14499,7 +14499,7 @@ public partial struct uint2x3 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out uint m00, out uint m01, out uint m02,
         out uint m10, out uint m11, out uint m12
     )
@@ -14516,7 +14516,7 @@ public partial struct uint2x3 :
     public uint2 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -14546,7 +14546,7 @@ public partial struct uint2x3 :
     public uint this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -14641,56 +14641,56 @@ public partial struct uint2x4 :
     public uint m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public uint m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public uint m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public uint m03
     {
         [MethodImpl(256 | 512)]
-        get => c3.x;
+        readonly get => c3.x;
         [MethodImpl(256 | 512)]
         set => c3.x = value;
     }
     public uint m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public uint m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public uint m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public uint m13
     {
         [MethodImpl(256 | 512)]
-        get => c3.y;
+        readonly get => c3.y;
         [MethodImpl(256 | 512)]
         set => c3.y = value;
     }
@@ -14797,7 +14797,7 @@ public partial struct uint2x4 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out uint2 c0, out uint2 c1, out uint2 c2, out uint2 c3)
+    public readonly void Deconstruct(out uint2 c0, out uint2 c1, out uint2 c2, out uint2 c3)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -14806,7 +14806,7 @@ public partial struct uint2x4 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out uint m00, out uint m01, out uint m02, out uint m03,
         out uint m10, out uint m11, out uint m12, out uint m13
     )
@@ -14824,7 +14824,7 @@ public partial struct uint2x4 :
     public uint2 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -14858,7 +14858,7 @@ public partial struct uint2x4 :
     public uint this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -14956,42 +14956,42 @@ public partial struct uint3x2 :
     public uint m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public uint m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public uint m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public uint m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public uint m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public uint m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
@@ -15089,14 +15089,14 @@ public partial struct uint3x2 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out uint3 c0, out uint3 c1)
+    public readonly void Deconstruct(out uint3 c0, out uint3 c1)
     {
         c0 = this.c0;
         c1 = this.c1;
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out uint m00, out uint m01,
         out uint m10, out uint m11,
         out uint m20, out uint m21
@@ -15113,7 +15113,7 @@ public partial struct uint3x2 :
     public uint3 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -15139,7 +15139,7 @@ public partial struct uint3x2 :
     public uint this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -15230,63 +15230,63 @@ public partial struct uint3x3 :
     public uint m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public uint m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public uint m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public uint m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public uint m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public uint m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public uint m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public uint m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public uint m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
@@ -15391,7 +15391,7 @@ public partial struct uint3x3 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out uint3 c0, out uint3 c1, out uint3 c2)
+    public readonly void Deconstruct(out uint3 c0, out uint3 c1, out uint3 c2)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -15399,7 +15399,7 @@ public partial struct uint3x3 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out uint m00, out uint m01, out uint m02,
         out uint m10, out uint m11, out uint m12,
         out uint m20, out uint m21, out uint m22
@@ -15417,7 +15417,7 @@ public partial struct uint3x3 :
     public uint3 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -15447,7 +15447,7 @@ public partial struct uint3x3 :
     public uint this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -15543,84 +15543,84 @@ public partial struct uint3x4 :
     public uint m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public uint m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public uint m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public uint m03
     {
         [MethodImpl(256 | 512)]
-        get => c3.x;
+        readonly get => c3.x;
         [MethodImpl(256 | 512)]
         set => c3.x = value;
     }
     public uint m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public uint m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public uint m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public uint m13
     {
         [MethodImpl(256 | 512)]
-        get => c3.y;
+        readonly get => c3.y;
         [MethodImpl(256 | 512)]
         set => c3.y = value;
     }
     public uint m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public uint m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public uint m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
     public uint m23
     {
         [MethodImpl(256 | 512)]
-        get => c3.z;
+        readonly get => c3.z;
         [MethodImpl(256 | 512)]
         set => c3.z = value;
     }
@@ -15732,7 +15732,7 @@ public partial struct uint3x4 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out uint3 c0, out uint3 c1, out uint3 c2, out uint3 c3)
+    public readonly void Deconstruct(out uint3 c0, out uint3 c1, out uint3 c2, out uint3 c3)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -15741,7 +15741,7 @@ public partial struct uint3x4 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out uint m00, out uint m01, out uint m02, out uint m03,
         out uint m10, out uint m11, out uint m12, out uint m13,
         out uint m20, out uint m21, out uint m22, out uint m23
@@ -15760,7 +15760,7 @@ public partial struct uint3x4 :
     public uint3 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -15794,7 +15794,7 @@ public partial struct uint3x4 :
     public uint this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -15893,56 +15893,56 @@ public partial struct uint4x2 :
     public uint m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public uint m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public uint m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public uint m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public uint m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public uint m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public uint m30
     {
         [MethodImpl(256 | 512)]
-        get => c0.w;
+        readonly get => c0.w;
         [MethodImpl(256 | 512)]
         set => c0.w = value;
     }
     public uint m31
     {
         [MethodImpl(256 | 512)]
-        get => c1.w;
+        readonly get => c1.w;
         [MethodImpl(256 | 512)]
         set => c1.w = value;
     }
@@ -16045,14 +16045,14 @@ public partial struct uint4x2 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out uint4 c0, out uint4 c1)
+    public readonly void Deconstruct(out uint4 c0, out uint4 c1)
     {
         c0 = this.c0;
         c1 = this.c1;
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out uint m00, out uint m01,
         out uint m10, out uint m11,
         out uint m20, out uint m21,
@@ -16070,7 +16070,7 @@ public partial struct uint4x2 :
     public uint4 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -16096,7 +16096,7 @@ public partial struct uint4x2 :
     public uint this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -16188,84 +16188,84 @@ public partial struct uint4x3 :
     public uint m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public uint m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public uint m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public uint m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public uint m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public uint m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public uint m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public uint m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public uint m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
     public uint m30
     {
         [MethodImpl(256 | 512)]
-        get => c0.w;
+        readonly get => c0.w;
         [MethodImpl(256 | 512)]
         set => c0.w = value;
     }
     public uint m31
     {
         [MethodImpl(256 | 512)]
-        get => c1.w;
+        readonly get => c1.w;
         [MethodImpl(256 | 512)]
         set => c1.w = value;
     }
     public uint m32
     {
         [MethodImpl(256 | 512)]
-        get => c2.w;
+        readonly get => c2.w;
         [MethodImpl(256 | 512)]
         set => c2.w = value;
     }
@@ -16375,7 +16375,7 @@ public partial struct uint4x3 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out uint4 c0, out uint4 c1, out uint4 c2)
+    public readonly void Deconstruct(out uint4 c0, out uint4 c1, out uint4 c2)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -16383,7 +16383,7 @@ public partial struct uint4x3 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out uint m00, out uint m01, out uint m02,
         out uint m10, out uint m11, out uint m12,
         out uint m20, out uint m21, out uint m22,
@@ -16402,7 +16402,7 @@ public partial struct uint4x3 :
     public uint4 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -16432,7 +16432,7 @@ public partial struct uint4x3 :
     public uint this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -16529,112 +16529,112 @@ public partial struct uint4x4 :
     public uint m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public uint m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public uint m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public uint m03
     {
         [MethodImpl(256 | 512)]
-        get => c3.x;
+        readonly get => c3.x;
         [MethodImpl(256 | 512)]
         set => c3.x = value;
     }
     public uint m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public uint m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public uint m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public uint m13
     {
         [MethodImpl(256 | 512)]
-        get => c3.y;
+        readonly get => c3.y;
         [MethodImpl(256 | 512)]
         set => c3.y = value;
     }
     public uint m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public uint m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public uint m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
     public uint m23
     {
         [MethodImpl(256 | 512)]
-        get => c3.z;
+        readonly get => c3.z;
         [MethodImpl(256 | 512)]
         set => c3.z = value;
     }
     public uint m30
     {
         [MethodImpl(256 | 512)]
-        get => c0.w;
+        readonly get => c0.w;
         [MethodImpl(256 | 512)]
         set => c0.w = value;
     }
     public uint m31
     {
         [MethodImpl(256 | 512)]
-        get => c1.w;
+        readonly get => c1.w;
         [MethodImpl(256 | 512)]
         set => c1.w = value;
     }
     public uint m32
     {
         [MethodImpl(256 | 512)]
-        get => c2.w;
+        readonly get => c2.w;
         [MethodImpl(256 | 512)]
         set => c2.w = value;
     }
     public uint m33
     {
         [MethodImpl(256 | 512)]
-        get => c3.w;
+        readonly get => c3.w;
         [MethodImpl(256 | 512)]
         set => c3.w = value;
     }
@@ -16751,7 +16751,7 @@ public partial struct uint4x4 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out uint4 c0, out uint4 c1, out uint4 c2, out uint4 c3)
+    public readonly void Deconstruct(out uint4 c0, out uint4 c1, out uint4 c2, out uint4 c3)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -16760,7 +16760,7 @@ public partial struct uint4x4 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out uint m00, out uint m01, out uint m02, out uint m03,
         out uint m10, out uint m11, out uint m12, out uint m13,
         out uint m20, out uint m21, out uint m22, out uint m23,
@@ -16780,7 +16780,7 @@ public partial struct uint4x4 :
     public uint4 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -16814,7 +16814,7 @@ public partial struct uint4x4 :
     public uint this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -16911,28 +16911,28 @@ public partial struct long2x2 :
     public long m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public long m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public long m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public long m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
@@ -17025,14 +17025,14 @@ public partial struct long2x2 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out long2 c0, out long2 c1)
+    public readonly void Deconstruct(out long2 c0, out long2 c1)
     {
         c0 = this.c0;
         c1 = this.c1;
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out long m00, out long m01,
         out long m10, out long m11
     )
@@ -17048,7 +17048,7 @@ public partial struct long2x2 :
     public long2 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -17074,7 +17074,7 @@ public partial struct long2x2 :
     public long this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -17164,42 +17164,42 @@ public partial struct long2x3 :
     public long m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public long m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public long m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public long m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public long m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public long m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
@@ -17299,7 +17299,7 @@ public partial struct long2x3 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out long2 c0, out long2 c1, out long2 c2)
+    public readonly void Deconstruct(out long2 c0, out long2 c1, out long2 c2)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -17307,7 +17307,7 @@ public partial struct long2x3 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out long m00, out long m01, out long m02,
         out long m10, out long m11, out long m12
     )
@@ -17324,7 +17324,7 @@ public partial struct long2x3 :
     public long2 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -17354,7 +17354,7 @@ public partial struct long2x3 :
     public long this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -17449,56 +17449,56 @@ public partial struct long2x4 :
     public long m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public long m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public long m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public long m03
     {
         [MethodImpl(256 | 512)]
-        get => c3.x;
+        readonly get => c3.x;
         [MethodImpl(256 | 512)]
         set => c3.x = value;
     }
     public long m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public long m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public long m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public long m13
     {
         [MethodImpl(256 | 512)]
-        get => c3.y;
+        readonly get => c3.y;
         [MethodImpl(256 | 512)]
         set => c3.y = value;
     }
@@ -17605,7 +17605,7 @@ public partial struct long2x4 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out long2 c0, out long2 c1, out long2 c2, out long2 c3)
+    public readonly void Deconstruct(out long2 c0, out long2 c1, out long2 c2, out long2 c3)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -17614,7 +17614,7 @@ public partial struct long2x4 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out long m00, out long m01, out long m02, out long m03,
         out long m10, out long m11, out long m12, out long m13
     )
@@ -17632,7 +17632,7 @@ public partial struct long2x4 :
     public long2 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -17666,7 +17666,7 @@ public partial struct long2x4 :
     public long this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -17764,42 +17764,42 @@ public partial struct long3x2 :
     public long m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public long m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public long m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public long m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public long m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public long m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
@@ -17897,14 +17897,14 @@ public partial struct long3x2 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out long3 c0, out long3 c1)
+    public readonly void Deconstruct(out long3 c0, out long3 c1)
     {
         c0 = this.c0;
         c1 = this.c1;
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out long m00, out long m01,
         out long m10, out long m11,
         out long m20, out long m21
@@ -17921,7 +17921,7 @@ public partial struct long3x2 :
     public long3 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -17947,7 +17947,7 @@ public partial struct long3x2 :
     public long this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -18038,63 +18038,63 @@ public partial struct long3x3 :
     public long m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public long m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public long m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public long m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public long m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public long m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public long m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public long m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public long m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
@@ -18199,7 +18199,7 @@ public partial struct long3x3 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out long3 c0, out long3 c1, out long3 c2)
+    public readonly void Deconstruct(out long3 c0, out long3 c1, out long3 c2)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -18207,7 +18207,7 @@ public partial struct long3x3 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out long m00, out long m01, out long m02,
         out long m10, out long m11, out long m12,
         out long m20, out long m21, out long m22
@@ -18225,7 +18225,7 @@ public partial struct long3x3 :
     public long3 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -18255,7 +18255,7 @@ public partial struct long3x3 :
     public long this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -18351,84 +18351,84 @@ public partial struct long3x4 :
     public long m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public long m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public long m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public long m03
     {
         [MethodImpl(256 | 512)]
-        get => c3.x;
+        readonly get => c3.x;
         [MethodImpl(256 | 512)]
         set => c3.x = value;
     }
     public long m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public long m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public long m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public long m13
     {
         [MethodImpl(256 | 512)]
-        get => c3.y;
+        readonly get => c3.y;
         [MethodImpl(256 | 512)]
         set => c3.y = value;
     }
     public long m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public long m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public long m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
     public long m23
     {
         [MethodImpl(256 | 512)]
-        get => c3.z;
+        readonly get => c3.z;
         [MethodImpl(256 | 512)]
         set => c3.z = value;
     }
@@ -18540,7 +18540,7 @@ public partial struct long3x4 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out long3 c0, out long3 c1, out long3 c2, out long3 c3)
+    public readonly void Deconstruct(out long3 c0, out long3 c1, out long3 c2, out long3 c3)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -18549,7 +18549,7 @@ public partial struct long3x4 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out long m00, out long m01, out long m02, out long m03,
         out long m10, out long m11, out long m12, out long m13,
         out long m20, out long m21, out long m22, out long m23
@@ -18568,7 +18568,7 @@ public partial struct long3x4 :
     public long3 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -18602,7 +18602,7 @@ public partial struct long3x4 :
     public long this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -18701,56 +18701,56 @@ public partial struct long4x2 :
     public long m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public long m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public long m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public long m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public long m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public long m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public long m30
     {
         [MethodImpl(256 | 512)]
-        get => c0.w;
+        readonly get => c0.w;
         [MethodImpl(256 | 512)]
         set => c0.w = value;
     }
     public long m31
     {
         [MethodImpl(256 | 512)]
-        get => c1.w;
+        readonly get => c1.w;
         [MethodImpl(256 | 512)]
         set => c1.w = value;
     }
@@ -18853,14 +18853,14 @@ public partial struct long4x2 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out long4 c0, out long4 c1)
+    public readonly void Deconstruct(out long4 c0, out long4 c1)
     {
         c0 = this.c0;
         c1 = this.c1;
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out long m00, out long m01,
         out long m10, out long m11,
         out long m20, out long m21,
@@ -18878,7 +18878,7 @@ public partial struct long4x2 :
     public long4 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -18904,7 +18904,7 @@ public partial struct long4x2 :
     public long this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -18996,84 +18996,84 @@ public partial struct long4x3 :
     public long m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public long m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public long m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public long m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public long m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public long m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public long m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public long m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public long m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
     public long m30
     {
         [MethodImpl(256 | 512)]
-        get => c0.w;
+        readonly get => c0.w;
         [MethodImpl(256 | 512)]
         set => c0.w = value;
     }
     public long m31
     {
         [MethodImpl(256 | 512)]
-        get => c1.w;
+        readonly get => c1.w;
         [MethodImpl(256 | 512)]
         set => c1.w = value;
     }
     public long m32
     {
         [MethodImpl(256 | 512)]
-        get => c2.w;
+        readonly get => c2.w;
         [MethodImpl(256 | 512)]
         set => c2.w = value;
     }
@@ -19183,7 +19183,7 @@ public partial struct long4x3 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out long4 c0, out long4 c1, out long4 c2)
+    public readonly void Deconstruct(out long4 c0, out long4 c1, out long4 c2)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -19191,7 +19191,7 @@ public partial struct long4x3 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out long m00, out long m01, out long m02,
         out long m10, out long m11, out long m12,
         out long m20, out long m21, out long m22,
@@ -19210,7 +19210,7 @@ public partial struct long4x3 :
     public long4 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -19240,7 +19240,7 @@ public partial struct long4x3 :
     public long this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -19337,112 +19337,112 @@ public partial struct long4x4 :
     public long m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public long m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public long m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public long m03
     {
         [MethodImpl(256 | 512)]
-        get => c3.x;
+        readonly get => c3.x;
         [MethodImpl(256 | 512)]
         set => c3.x = value;
     }
     public long m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public long m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public long m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public long m13
     {
         [MethodImpl(256 | 512)]
-        get => c3.y;
+        readonly get => c3.y;
         [MethodImpl(256 | 512)]
         set => c3.y = value;
     }
     public long m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public long m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public long m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
     public long m23
     {
         [MethodImpl(256 | 512)]
-        get => c3.z;
+        readonly get => c3.z;
         [MethodImpl(256 | 512)]
         set => c3.z = value;
     }
     public long m30
     {
         [MethodImpl(256 | 512)]
-        get => c0.w;
+        readonly get => c0.w;
         [MethodImpl(256 | 512)]
         set => c0.w = value;
     }
     public long m31
     {
         [MethodImpl(256 | 512)]
-        get => c1.w;
+        readonly get => c1.w;
         [MethodImpl(256 | 512)]
         set => c1.w = value;
     }
     public long m32
     {
         [MethodImpl(256 | 512)]
-        get => c2.w;
+        readonly get => c2.w;
         [MethodImpl(256 | 512)]
         set => c2.w = value;
     }
     public long m33
     {
         [MethodImpl(256 | 512)]
-        get => c3.w;
+        readonly get => c3.w;
         [MethodImpl(256 | 512)]
         set => c3.w = value;
     }
@@ -19559,7 +19559,7 @@ public partial struct long4x4 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out long4 c0, out long4 c1, out long4 c2, out long4 c3)
+    public readonly void Deconstruct(out long4 c0, out long4 c1, out long4 c2, out long4 c3)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -19568,7 +19568,7 @@ public partial struct long4x4 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out long m00, out long m01, out long m02, out long m03,
         out long m10, out long m11, out long m12, out long m13,
         out long m20, out long m21, out long m22, out long m23,
@@ -19588,7 +19588,7 @@ public partial struct long4x4 :
     public long4 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -19622,7 +19622,7 @@ public partial struct long4x4 :
     public long this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -19719,28 +19719,28 @@ public partial struct ulong2x2 :
     public ulong m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public ulong m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public ulong m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public ulong m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
@@ -19833,14 +19833,14 @@ public partial struct ulong2x2 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out ulong2 c0, out ulong2 c1)
+    public readonly void Deconstruct(out ulong2 c0, out ulong2 c1)
     {
         c0 = this.c0;
         c1 = this.c1;
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out ulong m00, out ulong m01,
         out ulong m10, out ulong m11
     )
@@ -19856,7 +19856,7 @@ public partial struct ulong2x2 :
     public ulong2 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -19882,7 +19882,7 @@ public partial struct ulong2x2 :
     public ulong this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -19972,42 +19972,42 @@ public partial struct ulong2x3 :
     public ulong m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public ulong m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public ulong m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public ulong m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public ulong m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public ulong m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
@@ -20107,7 +20107,7 @@ public partial struct ulong2x3 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out ulong2 c0, out ulong2 c1, out ulong2 c2)
+    public readonly void Deconstruct(out ulong2 c0, out ulong2 c1, out ulong2 c2)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -20115,7 +20115,7 @@ public partial struct ulong2x3 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out ulong m00, out ulong m01, out ulong m02,
         out ulong m10, out ulong m11, out ulong m12
     )
@@ -20132,7 +20132,7 @@ public partial struct ulong2x3 :
     public ulong2 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -20162,7 +20162,7 @@ public partial struct ulong2x3 :
     public ulong this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -20257,56 +20257,56 @@ public partial struct ulong2x4 :
     public ulong m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public ulong m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public ulong m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public ulong m03
     {
         [MethodImpl(256 | 512)]
-        get => c3.x;
+        readonly get => c3.x;
         [MethodImpl(256 | 512)]
         set => c3.x = value;
     }
     public ulong m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public ulong m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public ulong m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public ulong m13
     {
         [MethodImpl(256 | 512)]
-        get => c3.y;
+        readonly get => c3.y;
         [MethodImpl(256 | 512)]
         set => c3.y = value;
     }
@@ -20413,7 +20413,7 @@ public partial struct ulong2x4 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out ulong2 c0, out ulong2 c1, out ulong2 c2, out ulong2 c3)
+    public readonly void Deconstruct(out ulong2 c0, out ulong2 c1, out ulong2 c2, out ulong2 c3)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -20422,7 +20422,7 @@ public partial struct ulong2x4 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out ulong m00, out ulong m01, out ulong m02, out ulong m03,
         out ulong m10, out ulong m11, out ulong m12, out ulong m13
     )
@@ -20440,7 +20440,7 @@ public partial struct ulong2x4 :
     public ulong2 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -20474,7 +20474,7 @@ public partial struct ulong2x4 :
     public ulong this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -20572,42 +20572,42 @@ public partial struct ulong3x2 :
     public ulong m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public ulong m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public ulong m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public ulong m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public ulong m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public ulong m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
@@ -20705,14 +20705,14 @@ public partial struct ulong3x2 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out ulong3 c0, out ulong3 c1)
+    public readonly void Deconstruct(out ulong3 c0, out ulong3 c1)
     {
         c0 = this.c0;
         c1 = this.c1;
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out ulong m00, out ulong m01,
         out ulong m10, out ulong m11,
         out ulong m20, out ulong m21
@@ -20729,7 +20729,7 @@ public partial struct ulong3x2 :
     public ulong3 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -20755,7 +20755,7 @@ public partial struct ulong3x2 :
     public ulong this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -20846,63 +20846,63 @@ public partial struct ulong3x3 :
     public ulong m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public ulong m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public ulong m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public ulong m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public ulong m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public ulong m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public ulong m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public ulong m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public ulong m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
@@ -21007,7 +21007,7 @@ public partial struct ulong3x3 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out ulong3 c0, out ulong3 c1, out ulong3 c2)
+    public readonly void Deconstruct(out ulong3 c0, out ulong3 c1, out ulong3 c2)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -21015,7 +21015,7 @@ public partial struct ulong3x3 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out ulong m00, out ulong m01, out ulong m02,
         out ulong m10, out ulong m11, out ulong m12,
         out ulong m20, out ulong m21, out ulong m22
@@ -21033,7 +21033,7 @@ public partial struct ulong3x3 :
     public ulong3 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -21063,7 +21063,7 @@ public partial struct ulong3x3 :
     public ulong this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -21159,84 +21159,84 @@ public partial struct ulong3x4 :
     public ulong m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public ulong m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public ulong m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public ulong m03
     {
         [MethodImpl(256 | 512)]
-        get => c3.x;
+        readonly get => c3.x;
         [MethodImpl(256 | 512)]
         set => c3.x = value;
     }
     public ulong m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public ulong m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public ulong m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public ulong m13
     {
         [MethodImpl(256 | 512)]
-        get => c3.y;
+        readonly get => c3.y;
         [MethodImpl(256 | 512)]
         set => c3.y = value;
     }
     public ulong m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public ulong m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public ulong m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
     public ulong m23
     {
         [MethodImpl(256 | 512)]
-        get => c3.z;
+        readonly get => c3.z;
         [MethodImpl(256 | 512)]
         set => c3.z = value;
     }
@@ -21348,7 +21348,7 @@ public partial struct ulong3x4 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out ulong3 c0, out ulong3 c1, out ulong3 c2, out ulong3 c3)
+    public readonly void Deconstruct(out ulong3 c0, out ulong3 c1, out ulong3 c2, out ulong3 c3)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -21357,7 +21357,7 @@ public partial struct ulong3x4 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out ulong m00, out ulong m01, out ulong m02, out ulong m03,
         out ulong m10, out ulong m11, out ulong m12, out ulong m13,
         out ulong m20, out ulong m21, out ulong m22, out ulong m23
@@ -21376,7 +21376,7 @@ public partial struct ulong3x4 :
     public ulong3 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -21410,7 +21410,7 @@ public partial struct ulong3x4 :
     public ulong this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -21509,56 +21509,56 @@ public partial struct ulong4x2 :
     public ulong m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public ulong m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public ulong m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public ulong m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public ulong m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public ulong m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public ulong m30
     {
         [MethodImpl(256 | 512)]
-        get => c0.w;
+        readonly get => c0.w;
         [MethodImpl(256 | 512)]
         set => c0.w = value;
     }
     public ulong m31
     {
         [MethodImpl(256 | 512)]
-        get => c1.w;
+        readonly get => c1.w;
         [MethodImpl(256 | 512)]
         set => c1.w = value;
     }
@@ -21661,14 +21661,14 @@ public partial struct ulong4x2 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out ulong4 c0, out ulong4 c1)
+    public readonly void Deconstruct(out ulong4 c0, out ulong4 c1)
     {
         c0 = this.c0;
         c1 = this.c1;
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out ulong m00, out ulong m01,
         out ulong m10, out ulong m11,
         out ulong m20, out ulong m21,
@@ -21686,7 +21686,7 @@ public partial struct ulong4x2 :
     public ulong4 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -21712,7 +21712,7 @@ public partial struct ulong4x2 :
     public ulong this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -21804,84 +21804,84 @@ public partial struct ulong4x3 :
     public ulong m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public ulong m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public ulong m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public ulong m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public ulong m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public ulong m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public ulong m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public ulong m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public ulong m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
     public ulong m30
     {
         [MethodImpl(256 | 512)]
-        get => c0.w;
+        readonly get => c0.w;
         [MethodImpl(256 | 512)]
         set => c0.w = value;
     }
     public ulong m31
     {
         [MethodImpl(256 | 512)]
-        get => c1.w;
+        readonly get => c1.w;
         [MethodImpl(256 | 512)]
         set => c1.w = value;
     }
     public ulong m32
     {
         [MethodImpl(256 | 512)]
-        get => c2.w;
+        readonly get => c2.w;
         [MethodImpl(256 | 512)]
         set => c2.w = value;
     }
@@ -21991,7 +21991,7 @@ public partial struct ulong4x3 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out ulong4 c0, out ulong4 c1, out ulong4 c2)
+    public readonly void Deconstruct(out ulong4 c0, out ulong4 c1, out ulong4 c2)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -21999,7 +21999,7 @@ public partial struct ulong4x3 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out ulong m00, out ulong m01, out ulong m02,
         out ulong m10, out ulong m11, out ulong m12,
         out ulong m20, out ulong m21, out ulong m22,
@@ -22018,7 +22018,7 @@ public partial struct ulong4x3 :
     public ulong4 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -22048,7 +22048,7 @@ public partial struct ulong4x3 :
     public ulong this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -22145,112 +22145,112 @@ public partial struct ulong4x4 :
     public ulong m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public ulong m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public ulong m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public ulong m03
     {
         [MethodImpl(256 | 512)]
-        get => c3.x;
+        readonly get => c3.x;
         [MethodImpl(256 | 512)]
         set => c3.x = value;
     }
     public ulong m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public ulong m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public ulong m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public ulong m13
     {
         [MethodImpl(256 | 512)]
-        get => c3.y;
+        readonly get => c3.y;
         [MethodImpl(256 | 512)]
         set => c3.y = value;
     }
     public ulong m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public ulong m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public ulong m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
     public ulong m23
     {
         [MethodImpl(256 | 512)]
-        get => c3.z;
+        readonly get => c3.z;
         [MethodImpl(256 | 512)]
         set => c3.z = value;
     }
     public ulong m30
     {
         [MethodImpl(256 | 512)]
-        get => c0.w;
+        readonly get => c0.w;
         [MethodImpl(256 | 512)]
         set => c0.w = value;
     }
     public ulong m31
     {
         [MethodImpl(256 | 512)]
-        get => c1.w;
+        readonly get => c1.w;
         [MethodImpl(256 | 512)]
         set => c1.w = value;
     }
     public ulong m32
     {
         [MethodImpl(256 | 512)]
-        get => c2.w;
+        readonly get => c2.w;
         [MethodImpl(256 | 512)]
         set => c2.w = value;
     }
     public ulong m33
     {
         [MethodImpl(256 | 512)]
-        get => c3.w;
+        readonly get => c3.w;
         [MethodImpl(256 | 512)]
         set => c3.w = value;
     }
@@ -22367,7 +22367,7 @@ public partial struct ulong4x4 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out ulong4 c0, out ulong4 c1, out ulong4 c2, out ulong4 c3)
+    public readonly void Deconstruct(out ulong4 c0, out ulong4 c1, out ulong4 c2, out ulong4 c3)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -22376,7 +22376,7 @@ public partial struct ulong4x4 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out ulong m00, out ulong m01, out ulong m02, out ulong m03,
         out ulong m10, out ulong m11, out ulong m12, out ulong m13,
         out ulong m20, out ulong m21, out ulong m22, out ulong m23,
@@ -22396,7 +22396,7 @@ public partial struct ulong4x4 :
     public ulong4 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -22430,7 +22430,7 @@ public partial struct ulong4x4 :
     public ulong this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -22527,28 +22527,28 @@ public partial struct decimal2x2 :
     public decimal m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public decimal m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public decimal m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public decimal m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
@@ -22641,14 +22641,14 @@ public partial struct decimal2x2 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out decimal2 c0, out decimal2 c1)
+    public readonly void Deconstruct(out decimal2 c0, out decimal2 c1)
     {
         c0 = this.c0;
         c1 = this.c1;
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out decimal m00, out decimal m01,
         out decimal m10, out decimal m11
     )
@@ -22664,7 +22664,7 @@ public partial struct decimal2x2 :
     public decimal2 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -22690,7 +22690,7 @@ public partial struct decimal2x2 :
     public decimal this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -22780,42 +22780,42 @@ public partial struct decimal2x3 :
     public decimal m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public decimal m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public decimal m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public decimal m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public decimal m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public decimal m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
@@ -22915,7 +22915,7 @@ public partial struct decimal2x3 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out decimal2 c0, out decimal2 c1, out decimal2 c2)
+    public readonly void Deconstruct(out decimal2 c0, out decimal2 c1, out decimal2 c2)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -22923,7 +22923,7 @@ public partial struct decimal2x3 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out decimal m00, out decimal m01, out decimal m02,
         out decimal m10, out decimal m11, out decimal m12
     )
@@ -22940,7 +22940,7 @@ public partial struct decimal2x3 :
     public decimal2 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -22970,7 +22970,7 @@ public partial struct decimal2x3 :
     public decimal this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -23065,56 +23065,56 @@ public partial struct decimal2x4 :
     public decimal m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public decimal m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public decimal m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public decimal m03
     {
         [MethodImpl(256 | 512)]
-        get => c3.x;
+        readonly get => c3.x;
         [MethodImpl(256 | 512)]
         set => c3.x = value;
     }
     public decimal m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public decimal m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public decimal m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public decimal m13
     {
         [MethodImpl(256 | 512)]
-        get => c3.y;
+        readonly get => c3.y;
         [MethodImpl(256 | 512)]
         set => c3.y = value;
     }
@@ -23221,7 +23221,7 @@ public partial struct decimal2x4 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out decimal2 c0, out decimal2 c1, out decimal2 c2, out decimal2 c3)
+    public readonly void Deconstruct(out decimal2 c0, out decimal2 c1, out decimal2 c2, out decimal2 c3)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -23230,7 +23230,7 @@ public partial struct decimal2x4 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out decimal m00, out decimal m01, out decimal m02, out decimal m03,
         out decimal m10, out decimal m11, out decimal m12, out decimal m13
     )
@@ -23248,7 +23248,7 @@ public partial struct decimal2x4 :
     public decimal2 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -23282,7 +23282,7 @@ public partial struct decimal2x4 :
     public decimal this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -23380,42 +23380,42 @@ public partial struct decimal3x2 :
     public decimal m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public decimal m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public decimal m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public decimal m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public decimal m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public decimal m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
@@ -23513,14 +23513,14 @@ public partial struct decimal3x2 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out decimal3 c0, out decimal3 c1)
+    public readonly void Deconstruct(out decimal3 c0, out decimal3 c1)
     {
         c0 = this.c0;
         c1 = this.c1;
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out decimal m00, out decimal m01,
         out decimal m10, out decimal m11,
         out decimal m20, out decimal m21
@@ -23537,7 +23537,7 @@ public partial struct decimal3x2 :
     public decimal3 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -23563,7 +23563,7 @@ public partial struct decimal3x2 :
     public decimal this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -23654,63 +23654,63 @@ public partial struct decimal3x3 :
     public decimal m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public decimal m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public decimal m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public decimal m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public decimal m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public decimal m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public decimal m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public decimal m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public decimal m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
@@ -23815,7 +23815,7 @@ public partial struct decimal3x3 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out decimal3 c0, out decimal3 c1, out decimal3 c2)
+    public readonly void Deconstruct(out decimal3 c0, out decimal3 c1, out decimal3 c2)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -23823,7 +23823,7 @@ public partial struct decimal3x3 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out decimal m00, out decimal m01, out decimal m02,
         out decimal m10, out decimal m11, out decimal m12,
         out decimal m20, out decimal m21, out decimal m22
@@ -23841,7 +23841,7 @@ public partial struct decimal3x3 :
     public decimal3 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -23871,7 +23871,7 @@ public partial struct decimal3x3 :
     public decimal this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -23967,84 +23967,84 @@ public partial struct decimal3x4 :
     public decimal m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public decimal m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public decimal m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public decimal m03
     {
         [MethodImpl(256 | 512)]
-        get => c3.x;
+        readonly get => c3.x;
         [MethodImpl(256 | 512)]
         set => c3.x = value;
     }
     public decimal m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public decimal m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public decimal m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public decimal m13
     {
         [MethodImpl(256 | 512)]
-        get => c3.y;
+        readonly get => c3.y;
         [MethodImpl(256 | 512)]
         set => c3.y = value;
     }
     public decimal m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public decimal m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public decimal m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
     public decimal m23
     {
         [MethodImpl(256 | 512)]
-        get => c3.z;
+        readonly get => c3.z;
         [MethodImpl(256 | 512)]
         set => c3.z = value;
     }
@@ -24156,7 +24156,7 @@ public partial struct decimal3x4 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out decimal3 c0, out decimal3 c1, out decimal3 c2, out decimal3 c3)
+    public readonly void Deconstruct(out decimal3 c0, out decimal3 c1, out decimal3 c2, out decimal3 c3)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -24165,7 +24165,7 @@ public partial struct decimal3x4 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out decimal m00, out decimal m01, out decimal m02, out decimal m03,
         out decimal m10, out decimal m11, out decimal m12, out decimal m13,
         out decimal m20, out decimal m21, out decimal m22, out decimal m23
@@ -24184,7 +24184,7 @@ public partial struct decimal3x4 :
     public decimal3 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -24218,7 +24218,7 @@ public partial struct decimal3x4 :
     public decimal this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -24317,56 +24317,56 @@ public partial struct decimal4x2 :
     public decimal m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public decimal m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public decimal m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public decimal m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public decimal m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public decimal m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public decimal m30
     {
         [MethodImpl(256 | 512)]
-        get => c0.w;
+        readonly get => c0.w;
         [MethodImpl(256 | 512)]
         set => c0.w = value;
     }
     public decimal m31
     {
         [MethodImpl(256 | 512)]
-        get => c1.w;
+        readonly get => c1.w;
         [MethodImpl(256 | 512)]
         set => c1.w = value;
     }
@@ -24469,14 +24469,14 @@ public partial struct decimal4x2 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out decimal4 c0, out decimal4 c1)
+    public readonly void Deconstruct(out decimal4 c0, out decimal4 c1)
     {
         c0 = this.c0;
         c1 = this.c1;
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out decimal m00, out decimal m01,
         out decimal m10, out decimal m11,
         out decimal m20, out decimal m21,
@@ -24494,7 +24494,7 @@ public partial struct decimal4x2 :
     public decimal4 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -24520,7 +24520,7 @@ public partial struct decimal4x2 :
     public decimal this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -24612,84 +24612,84 @@ public partial struct decimal4x3 :
     public decimal m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public decimal m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public decimal m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public decimal m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public decimal m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public decimal m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public decimal m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public decimal m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public decimal m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
     public decimal m30
     {
         [MethodImpl(256 | 512)]
-        get => c0.w;
+        readonly get => c0.w;
         [MethodImpl(256 | 512)]
         set => c0.w = value;
     }
     public decimal m31
     {
         [MethodImpl(256 | 512)]
-        get => c1.w;
+        readonly get => c1.w;
         [MethodImpl(256 | 512)]
         set => c1.w = value;
     }
     public decimal m32
     {
         [MethodImpl(256 | 512)]
-        get => c2.w;
+        readonly get => c2.w;
         [MethodImpl(256 | 512)]
         set => c2.w = value;
     }
@@ -24799,7 +24799,7 @@ public partial struct decimal4x3 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out decimal4 c0, out decimal4 c1, out decimal4 c2)
+    public readonly void Deconstruct(out decimal4 c0, out decimal4 c1, out decimal4 c2)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -24807,7 +24807,7 @@ public partial struct decimal4x3 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out decimal m00, out decimal m01, out decimal m02,
         out decimal m10, out decimal m11, out decimal m12,
         out decimal m20, out decimal m21, out decimal m22,
@@ -24826,7 +24826,7 @@ public partial struct decimal4x3 :
     public decimal4 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -24856,7 +24856,7 @@ public partial struct decimal4x3 :
     public decimal this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -24953,112 +24953,112 @@ public partial struct decimal4x4 :
     public decimal m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public decimal m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public decimal m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public decimal m03
     {
         [MethodImpl(256 | 512)]
-        get => c3.x;
+        readonly get => c3.x;
         [MethodImpl(256 | 512)]
         set => c3.x = value;
     }
     public decimal m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public decimal m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public decimal m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public decimal m13
     {
         [MethodImpl(256 | 512)]
-        get => c3.y;
+        readonly get => c3.y;
         [MethodImpl(256 | 512)]
         set => c3.y = value;
     }
     public decimal m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public decimal m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public decimal m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
     public decimal m23
     {
         [MethodImpl(256 | 512)]
-        get => c3.z;
+        readonly get => c3.z;
         [MethodImpl(256 | 512)]
         set => c3.z = value;
     }
     public decimal m30
     {
         [MethodImpl(256 | 512)]
-        get => c0.w;
+        readonly get => c0.w;
         [MethodImpl(256 | 512)]
         set => c0.w = value;
     }
     public decimal m31
     {
         [MethodImpl(256 | 512)]
-        get => c1.w;
+        readonly get => c1.w;
         [MethodImpl(256 | 512)]
         set => c1.w = value;
     }
     public decimal m32
     {
         [MethodImpl(256 | 512)]
-        get => c2.w;
+        readonly get => c2.w;
         [MethodImpl(256 | 512)]
         set => c2.w = value;
     }
     public decimal m33
     {
         [MethodImpl(256 | 512)]
-        get => c3.w;
+        readonly get => c3.w;
         [MethodImpl(256 | 512)]
         set => c3.w = value;
     }
@@ -25175,7 +25175,7 @@ public partial struct decimal4x4 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out decimal4 c0, out decimal4 c1, out decimal4 c2, out decimal4 c3)
+    public readonly void Deconstruct(out decimal4 c0, out decimal4 c1, out decimal4 c2, out decimal4 c3)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -25184,7 +25184,7 @@ public partial struct decimal4x4 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out decimal m00, out decimal m01, out decimal m02, out decimal m03,
         out decimal m10, out decimal m11, out decimal m12, out decimal m13,
         out decimal m20, out decimal m21, out decimal m22, out decimal m23,
@@ -25204,7 +25204,7 @@ public partial struct decimal4x4 :
     public decimal4 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -25238,7 +25238,7 @@ public partial struct decimal4x4 :
     public decimal this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -25335,28 +25335,28 @@ public partial struct half2x2 :
     public half m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public half m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public half m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public half m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
@@ -25449,14 +25449,14 @@ public partial struct half2x2 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out half2 c0, out half2 c1)
+    public readonly void Deconstruct(out half2 c0, out half2 c1)
     {
         c0 = this.c0;
         c1 = this.c1;
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out half m00, out half m01,
         out half m10, out half m11
     )
@@ -25472,7 +25472,7 @@ public partial struct half2x2 :
     public half2 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -25498,7 +25498,7 @@ public partial struct half2x2 :
     public half this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -25588,42 +25588,42 @@ public partial struct half2x3 :
     public half m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public half m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public half m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public half m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public half m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public half m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
@@ -25723,7 +25723,7 @@ public partial struct half2x3 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out half2 c0, out half2 c1, out half2 c2)
+    public readonly void Deconstruct(out half2 c0, out half2 c1, out half2 c2)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -25731,7 +25731,7 @@ public partial struct half2x3 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out half m00, out half m01, out half m02,
         out half m10, out half m11, out half m12
     )
@@ -25748,7 +25748,7 @@ public partial struct half2x3 :
     public half2 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -25778,7 +25778,7 @@ public partial struct half2x3 :
     public half this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -25873,56 +25873,56 @@ public partial struct half2x4 :
     public half m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public half m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public half m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public half m03
     {
         [MethodImpl(256 | 512)]
-        get => c3.x;
+        readonly get => c3.x;
         [MethodImpl(256 | 512)]
         set => c3.x = value;
     }
     public half m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public half m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public half m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public half m13
     {
         [MethodImpl(256 | 512)]
-        get => c3.y;
+        readonly get => c3.y;
         [MethodImpl(256 | 512)]
         set => c3.y = value;
     }
@@ -26029,7 +26029,7 @@ public partial struct half2x4 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out half2 c0, out half2 c1, out half2 c2, out half2 c3)
+    public readonly void Deconstruct(out half2 c0, out half2 c1, out half2 c2, out half2 c3)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -26038,7 +26038,7 @@ public partial struct half2x4 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out half m00, out half m01, out half m02, out half m03,
         out half m10, out half m11, out half m12, out half m13
     )
@@ -26056,7 +26056,7 @@ public partial struct half2x4 :
     public half2 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -26090,7 +26090,7 @@ public partial struct half2x4 :
     public half this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -26188,42 +26188,42 @@ public partial struct half3x2 :
     public half m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public half m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public half m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public half m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public half m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public half m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
@@ -26321,14 +26321,14 @@ public partial struct half3x2 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out half3 c0, out half3 c1)
+    public readonly void Deconstruct(out half3 c0, out half3 c1)
     {
         c0 = this.c0;
         c1 = this.c1;
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out half m00, out half m01,
         out half m10, out half m11,
         out half m20, out half m21
@@ -26345,7 +26345,7 @@ public partial struct half3x2 :
     public half3 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -26371,7 +26371,7 @@ public partial struct half3x2 :
     public half this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -26462,63 +26462,63 @@ public partial struct half3x3 :
     public half m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public half m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public half m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public half m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public half m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public half m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public half m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public half m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public half m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
@@ -26623,7 +26623,7 @@ public partial struct half3x3 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out half3 c0, out half3 c1, out half3 c2)
+    public readonly void Deconstruct(out half3 c0, out half3 c1, out half3 c2)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -26631,7 +26631,7 @@ public partial struct half3x3 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out half m00, out half m01, out half m02,
         out half m10, out half m11, out half m12,
         out half m20, out half m21, out half m22
@@ -26649,7 +26649,7 @@ public partial struct half3x3 :
     public half3 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -26679,7 +26679,7 @@ public partial struct half3x3 :
     public half this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -26775,84 +26775,84 @@ public partial struct half3x4 :
     public half m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public half m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public half m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public half m03
     {
         [MethodImpl(256 | 512)]
-        get => c3.x;
+        readonly get => c3.x;
         [MethodImpl(256 | 512)]
         set => c3.x = value;
     }
     public half m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public half m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public half m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public half m13
     {
         [MethodImpl(256 | 512)]
-        get => c3.y;
+        readonly get => c3.y;
         [MethodImpl(256 | 512)]
         set => c3.y = value;
     }
     public half m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public half m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public half m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
     public half m23
     {
         [MethodImpl(256 | 512)]
-        get => c3.z;
+        readonly get => c3.z;
         [MethodImpl(256 | 512)]
         set => c3.z = value;
     }
@@ -26964,7 +26964,7 @@ public partial struct half3x4 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out half3 c0, out half3 c1, out half3 c2, out half3 c3)
+    public readonly void Deconstruct(out half3 c0, out half3 c1, out half3 c2, out half3 c3)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -26973,7 +26973,7 @@ public partial struct half3x4 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out half m00, out half m01, out half m02, out half m03,
         out half m10, out half m11, out half m12, out half m13,
         out half m20, out half m21, out half m22, out half m23
@@ -26992,7 +26992,7 @@ public partial struct half3x4 :
     public half3 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -27026,7 +27026,7 @@ public partial struct half3x4 :
     public half this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -27125,56 +27125,56 @@ public partial struct half4x2 :
     public half m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public half m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public half m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public half m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public half m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public half m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public half m30
     {
         [MethodImpl(256 | 512)]
-        get => c0.w;
+        readonly get => c0.w;
         [MethodImpl(256 | 512)]
         set => c0.w = value;
     }
     public half m31
     {
         [MethodImpl(256 | 512)]
-        get => c1.w;
+        readonly get => c1.w;
         [MethodImpl(256 | 512)]
         set => c1.w = value;
     }
@@ -27277,14 +27277,14 @@ public partial struct half4x2 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out half4 c0, out half4 c1)
+    public readonly void Deconstruct(out half4 c0, out half4 c1)
     {
         c0 = this.c0;
         c1 = this.c1;
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out half m00, out half m01,
         out half m10, out half m11,
         out half m20, out half m21,
@@ -27302,7 +27302,7 @@ public partial struct half4x2 :
     public half4 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -27328,7 +27328,7 @@ public partial struct half4x2 :
     public half this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -27420,84 +27420,84 @@ public partial struct half4x3 :
     public half m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public half m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public half m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public half m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public half m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public half m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public half m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public half m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public half m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
     public half m30
     {
         [MethodImpl(256 | 512)]
-        get => c0.w;
+        readonly get => c0.w;
         [MethodImpl(256 | 512)]
         set => c0.w = value;
     }
     public half m31
     {
         [MethodImpl(256 | 512)]
-        get => c1.w;
+        readonly get => c1.w;
         [MethodImpl(256 | 512)]
         set => c1.w = value;
     }
     public half m32
     {
         [MethodImpl(256 | 512)]
-        get => c2.w;
+        readonly get => c2.w;
         [MethodImpl(256 | 512)]
         set => c2.w = value;
     }
@@ -27607,7 +27607,7 @@ public partial struct half4x3 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out half4 c0, out half4 c1, out half4 c2)
+    public readonly void Deconstruct(out half4 c0, out half4 c1, out half4 c2)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -27615,7 +27615,7 @@ public partial struct half4x3 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out half m00, out half m01, out half m02,
         out half m10, out half m11, out half m12,
         out half m20, out half m21, out half m22,
@@ -27634,7 +27634,7 @@ public partial struct half4x3 :
     public half4 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -27664,7 +27664,7 @@ public partial struct half4x3 :
     public half this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -27761,112 +27761,112 @@ public partial struct half4x4 :
     public half m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public half m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public half m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public half m03
     {
         [MethodImpl(256 | 512)]
-        get => c3.x;
+        readonly get => c3.x;
         [MethodImpl(256 | 512)]
         set => c3.x = value;
     }
     public half m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public half m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public half m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public half m13
     {
         [MethodImpl(256 | 512)]
-        get => c3.y;
+        readonly get => c3.y;
         [MethodImpl(256 | 512)]
         set => c3.y = value;
     }
     public half m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public half m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public half m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
     public half m23
     {
         [MethodImpl(256 | 512)]
-        get => c3.z;
+        readonly get => c3.z;
         [MethodImpl(256 | 512)]
         set => c3.z = value;
     }
     public half m30
     {
         [MethodImpl(256 | 512)]
-        get => c0.w;
+        readonly get => c0.w;
         [MethodImpl(256 | 512)]
         set => c0.w = value;
     }
     public half m31
     {
         [MethodImpl(256 | 512)]
-        get => c1.w;
+        readonly get => c1.w;
         [MethodImpl(256 | 512)]
         set => c1.w = value;
     }
     public half m32
     {
         [MethodImpl(256 | 512)]
-        get => c2.w;
+        readonly get => c2.w;
         [MethodImpl(256 | 512)]
         set => c2.w = value;
     }
     public half m33
     {
         [MethodImpl(256 | 512)]
-        get => c3.w;
+        readonly get => c3.w;
         [MethodImpl(256 | 512)]
         set => c3.w = value;
     }
@@ -27983,7 +27983,7 @@ public partial struct half4x4 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out half4 c0, out half4 c1, out half4 c2, out half4 c3)
+    public readonly void Deconstruct(out half4 c0, out half4 c1, out half4 c2, out half4 c3)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -27992,7 +27992,7 @@ public partial struct half4x4 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out half m00, out half m01, out half m02, out half m03,
         out half m10, out half m11, out half m12, out half m13,
         out half m20, out half m21, out half m22, out half m23,
@@ -28012,7 +28012,7 @@ public partial struct half4x4 :
     public half4 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -28046,7 +28046,7 @@ public partial struct half4x4 :
     public half this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -28143,28 +28143,28 @@ public partial struct b16m2x2 :
     public b16 m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public b16 m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public b16 m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public b16 m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
@@ -28257,14 +28257,14 @@ public partial struct b16m2x2 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out b16v2 c0, out b16v2 c1)
+    public readonly void Deconstruct(out b16v2 c0, out b16v2 c1)
     {
         c0 = this.c0;
         c1 = this.c1;
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out b16 m00, out b16 m01,
         out b16 m10, out b16 m11
     )
@@ -28280,7 +28280,7 @@ public partial struct b16m2x2 :
     public b16v2 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -28306,7 +28306,7 @@ public partial struct b16m2x2 :
     public b16 this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -28396,42 +28396,42 @@ public partial struct b16m2x3 :
     public b16 m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public b16 m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public b16 m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public b16 m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public b16 m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public b16 m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
@@ -28531,7 +28531,7 @@ public partial struct b16m2x3 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out b16v2 c0, out b16v2 c1, out b16v2 c2)
+    public readonly void Deconstruct(out b16v2 c0, out b16v2 c1, out b16v2 c2)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -28539,7 +28539,7 @@ public partial struct b16m2x3 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out b16 m00, out b16 m01, out b16 m02,
         out b16 m10, out b16 m11, out b16 m12
     )
@@ -28556,7 +28556,7 @@ public partial struct b16m2x3 :
     public b16v2 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -28586,7 +28586,7 @@ public partial struct b16m2x3 :
     public b16 this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -28681,56 +28681,56 @@ public partial struct b16m2x4 :
     public b16 m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public b16 m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public b16 m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public b16 m03
     {
         [MethodImpl(256 | 512)]
-        get => c3.x;
+        readonly get => c3.x;
         [MethodImpl(256 | 512)]
         set => c3.x = value;
     }
     public b16 m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public b16 m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public b16 m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public b16 m13
     {
         [MethodImpl(256 | 512)]
-        get => c3.y;
+        readonly get => c3.y;
         [MethodImpl(256 | 512)]
         set => c3.y = value;
     }
@@ -28837,7 +28837,7 @@ public partial struct b16m2x4 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out b16v2 c0, out b16v2 c1, out b16v2 c2, out b16v2 c3)
+    public readonly void Deconstruct(out b16v2 c0, out b16v2 c1, out b16v2 c2, out b16v2 c3)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -28846,7 +28846,7 @@ public partial struct b16m2x4 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out b16 m00, out b16 m01, out b16 m02, out b16 m03,
         out b16 m10, out b16 m11, out b16 m12, out b16 m13
     )
@@ -28864,7 +28864,7 @@ public partial struct b16m2x4 :
     public b16v2 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -28898,7 +28898,7 @@ public partial struct b16m2x4 :
     public b16 this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -28996,42 +28996,42 @@ public partial struct b16m3x2 :
     public b16 m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public b16 m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public b16 m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public b16 m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public b16 m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public b16 m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
@@ -29129,14 +29129,14 @@ public partial struct b16m3x2 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out b16v3 c0, out b16v3 c1)
+    public readonly void Deconstruct(out b16v3 c0, out b16v3 c1)
     {
         c0 = this.c0;
         c1 = this.c1;
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out b16 m00, out b16 m01,
         out b16 m10, out b16 m11,
         out b16 m20, out b16 m21
@@ -29153,7 +29153,7 @@ public partial struct b16m3x2 :
     public b16v3 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -29179,7 +29179,7 @@ public partial struct b16m3x2 :
     public b16 this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -29270,63 +29270,63 @@ public partial struct b16m3x3 :
     public b16 m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public b16 m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public b16 m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public b16 m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public b16 m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public b16 m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public b16 m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public b16 m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public b16 m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
@@ -29431,7 +29431,7 @@ public partial struct b16m3x3 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out b16v3 c0, out b16v3 c1, out b16v3 c2)
+    public readonly void Deconstruct(out b16v3 c0, out b16v3 c1, out b16v3 c2)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -29439,7 +29439,7 @@ public partial struct b16m3x3 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out b16 m00, out b16 m01, out b16 m02,
         out b16 m10, out b16 m11, out b16 m12,
         out b16 m20, out b16 m21, out b16 m22
@@ -29457,7 +29457,7 @@ public partial struct b16m3x3 :
     public b16v3 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -29487,7 +29487,7 @@ public partial struct b16m3x3 :
     public b16 this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -29583,84 +29583,84 @@ public partial struct b16m3x4 :
     public b16 m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public b16 m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public b16 m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public b16 m03
     {
         [MethodImpl(256 | 512)]
-        get => c3.x;
+        readonly get => c3.x;
         [MethodImpl(256 | 512)]
         set => c3.x = value;
     }
     public b16 m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public b16 m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public b16 m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public b16 m13
     {
         [MethodImpl(256 | 512)]
-        get => c3.y;
+        readonly get => c3.y;
         [MethodImpl(256 | 512)]
         set => c3.y = value;
     }
     public b16 m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public b16 m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public b16 m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
     public b16 m23
     {
         [MethodImpl(256 | 512)]
-        get => c3.z;
+        readonly get => c3.z;
         [MethodImpl(256 | 512)]
         set => c3.z = value;
     }
@@ -29772,7 +29772,7 @@ public partial struct b16m3x4 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out b16v3 c0, out b16v3 c1, out b16v3 c2, out b16v3 c3)
+    public readonly void Deconstruct(out b16v3 c0, out b16v3 c1, out b16v3 c2, out b16v3 c3)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -29781,7 +29781,7 @@ public partial struct b16m3x4 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out b16 m00, out b16 m01, out b16 m02, out b16 m03,
         out b16 m10, out b16 m11, out b16 m12, out b16 m13,
         out b16 m20, out b16 m21, out b16 m22, out b16 m23
@@ -29800,7 +29800,7 @@ public partial struct b16m3x4 :
     public b16v3 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -29834,7 +29834,7 @@ public partial struct b16m3x4 :
     public b16 this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -29933,56 +29933,56 @@ public partial struct b16m4x2 :
     public b16 m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public b16 m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public b16 m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public b16 m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public b16 m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public b16 m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public b16 m30
     {
         [MethodImpl(256 | 512)]
-        get => c0.w;
+        readonly get => c0.w;
         [MethodImpl(256 | 512)]
         set => c0.w = value;
     }
     public b16 m31
     {
         [MethodImpl(256 | 512)]
-        get => c1.w;
+        readonly get => c1.w;
         [MethodImpl(256 | 512)]
         set => c1.w = value;
     }
@@ -30085,14 +30085,14 @@ public partial struct b16m4x2 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out b16v4 c0, out b16v4 c1)
+    public readonly void Deconstruct(out b16v4 c0, out b16v4 c1)
     {
         c0 = this.c0;
         c1 = this.c1;
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out b16 m00, out b16 m01,
         out b16 m10, out b16 m11,
         out b16 m20, out b16 m21,
@@ -30110,7 +30110,7 @@ public partial struct b16m4x2 :
     public b16v4 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -30136,7 +30136,7 @@ public partial struct b16m4x2 :
     public b16 this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -30228,84 +30228,84 @@ public partial struct b16m4x3 :
     public b16 m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public b16 m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public b16 m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public b16 m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public b16 m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public b16 m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public b16 m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public b16 m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public b16 m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
     public b16 m30
     {
         [MethodImpl(256 | 512)]
-        get => c0.w;
+        readonly get => c0.w;
         [MethodImpl(256 | 512)]
         set => c0.w = value;
     }
     public b16 m31
     {
         [MethodImpl(256 | 512)]
-        get => c1.w;
+        readonly get => c1.w;
         [MethodImpl(256 | 512)]
         set => c1.w = value;
     }
     public b16 m32
     {
         [MethodImpl(256 | 512)]
-        get => c2.w;
+        readonly get => c2.w;
         [MethodImpl(256 | 512)]
         set => c2.w = value;
     }
@@ -30415,7 +30415,7 @@ public partial struct b16m4x3 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out b16v4 c0, out b16v4 c1, out b16v4 c2)
+    public readonly void Deconstruct(out b16v4 c0, out b16v4 c1, out b16v4 c2)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -30423,7 +30423,7 @@ public partial struct b16m4x3 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out b16 m00, out b16 m01, out b16 m02,
         out b16 m10, out b16 m11, out b16 m12,
         out b16 m20, out b16 m21, out b16 m22,
@@ -30442,7 +30442,7 @@ public partial struct b16m4x3 :
     public b16v4 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -30472,7 +30472,7 @@ public partial struct b16m4x3 :
     public b16 this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -30569,112 +30569,112 @@ public partial struct b16m4x4 :
     public b16 m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public b16 m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public b16 m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public b16 m03
     {
         [MethodImpl(256 | 512)]
-        get => c3.x;
+        readonly get => c3.x;
         [MethodImpl(256 | 512)]
         set => c3.x = value;
     }
     public b16 m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public b16 m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public b16 m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public b16 m13
     {
         [MethodImpl(256 | 512)]
-        get => c3.y;
+        readonly get => c3.y;
         [MethodImpl(256 | 512)]
         set => c3.y = value;
     }
     public b16 m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public b16 m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public b16 m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
     public b16 m23
     {
         [MethodImpl(256 | 512)]
-        get => c3.z;
+        readonly get => c3.z;
         [MethodImpl(256 | 512)]
         set => c3.z = value;
     }
     public b16 m30
     {
         [MethodImpl(256 | 512)]
-        get => c0.w;
+        readonly get => c0.w;
         [MethodImpl(256 | 512)]
         set => c0.w = value;
     }
     public b16 m31
     {
         [MethodImpl(256 | 512)]
-        get => c1.w;
+        readonly get => c1.w;
         [MethodImpl(256 | 512)]
         set => c1.w = value;
     }
     public b16 m32
     {
         [MethodImpl(256 | 512)]
-        get => c2.w;
+        readonly get => c2.w;
         [MethodImpl(256 | 512)]
         set => c2.w = value;
     }
     public b16 m33
     {
         [MethodImpl(256 | 512)]
-        get => c3.w;
+        readonly get => c3.w;
         [MethodImpl(256 | 512)]
         set => c3.w = value;
     }
@@ -30791,7 +30791,7 @@ public partial struct b16m4x4 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out b16v4 c0, out b16v4 c1, out b16v4 c2, out b16v4 c3)
+    public readonly void Deconstruct(out b16v4 c0, out b16v4 c1, out b16v4 c2, out b16v4 c3)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -30800,7 +30800,7 @@ public partial struct b16m4x4 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out b16 m00, out b16 m01, out b16 m02, out b16 m03,
         out b16 m10, out b16 m11, out b16 m12, out b16 m13,
         out b16 m20, out b16 m21, out b16 m22, out b16 m23,
@@ -30820,7 +30820,7 @@ public partial struct b16m4x4 :
     public b16v4 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -30854,7 +30854,7 @@ public partial struct b16m4x4 :
     public b16 this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -30951,28 +30951,28 @@ public partial struct b32m2x2 :
     public b32 m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public b32 m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public b32 m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public b32 m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
@@ -31065,14 +31065,14 @@ public partial struct b32m2x2 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out b32v2 c0, out b32v2 c1)
+    public readonly void Deconstruct(out b32v2 c0, out b32v2 c1)
     {
         c0 = this.c0;
         c1 = this.c1;
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out b32 m00, out b32 m01,
         out b32 m10, out b32 m11
     )
@@ -31088,7 +31088,7 @@ public partial struct b32m2x2 :
     public b32v2 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -31114,7 +31114,7 @@ public partial struct b32m2x2 :
     public b32 this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -31204,42 +31204,42 @@ public partial struct b32m2x3 :
     public b32 m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public b32 m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public b32 m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public b32 m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public b32 m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public b32 m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
@@ -31339,7 +31339,7 @@ public partial struct b32m2x3 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out b32v2 c0, out b32v2 c1, out b32v2 c2)
+    public readonly void Deconstruct(out b32v2 c0, out b32v2 c1, out b32v2 c2)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -31347,7 +31347,7 @@ public partial struct b32m2x3 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out b32 m00, out b32 m01, out b32 m02,
         out b32 m10, out b32 m11, out b32 m12
     )
@@ -31364,7 +31364,7 @@ public partial struct b32m2x3 :
     public b32v2 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -31394,7 +31394,7 @@ public partial struct b32m2x3 :
     public b32 this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -31489,56 +31489,56 @@ public partial struct b32m2x4 :
     public b32 m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public b32 m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public b32 m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public b32 m03
     {
         [MethodImpl(256 | 512)]
-        get => c3.x;
+        readonly get => c3.x;
         [MethodImpl(256 | 512)]
         set => c3.x = value;
     }
     public b32 m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public b32 m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public b32 m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public b32 m13
     {
         [MethodImpl(256 | 512)]
-        get => c3.y;
+        readonly get => c3.y;
         [MethodImpl(256 | 512)]
         set => c3.y = value;
     }
@@ -31645,7 +31645,7 @@ public partial struct b32m2x4 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out b32v2 c0, out b32v2 c1, out b32v2 c2, out b32v2 c3)
+    public readonly void Deconstruct(out b32v2 c0, out b32v2 c1, out b32v2 c2, out b32v2 c3)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -31654,7 +31654,7 @@ public partial struct b32m2x4 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out b32 m00, out b32 m01, out b32 m02, out b32 m03,
         out b32 m10, out b32 m11, out b32 m12, out b32 m13
     )
@@ -31672,7 +31672,7 @@ public partial struct b32m2x4 :
     public b32v2 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -31706,7 +31706,7 @@ public partial struct b32m2x4 :
     public b32 this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -31804,42 +31804,42 @@ public partial struct b32m3x2 :
     public b32 m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public b32 m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public b32 m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public b32 m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public b32 m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public b32 m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
@@ -31937,14 +31937,14 @@ public partial struct b32m3x2 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out b32v3 c0, out b32v3 c1)
+    public readonly void Deconstruct(out b32v3 c0, out b32v3 c1)
     {
         c0 = this.c0;
         c1 = this.c1;
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out b32 m00, out b32 m01,
         out b32 m10, out b32 m11,
         out b32 m20, out b32 m21
@@ -31961,7 +31961,7 @@ public partial struct b32m3x2 :
     public b32v3 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -31987,7 +31987,7 @@ public partial struct b32m3x2 :
     public b32 this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -32078,63 +32078,63 @@ public partial struct b32m3x3 :
     public b32 m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public b32 m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public b32 m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public b32 m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public b32 m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public b32 m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public b32 m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public b32 m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public b32 m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
@@ -32239,7 +32239,7 @@ public partial struct b32m3x3 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out b32v3 c0, out b32v3 c1, out b32v3 c2)
+    public readonly void Deconstruct(out b32v3 c0, out b32v3 c1, out b32v3 c2)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -32247,7 +32247,7 @@ public partial struct b32m3x3 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out b32 m00, out b32 m01, out b32 m02,
         out b32 m10, out b32 m11, out b32 m12,
         out b32 m20, out b32 m21, out b32 m22
@@ -32265,7 +32265,7 @@ public partial struct b32m3x3 :
     public b32v3 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -32295,7 +32295,7 @@ public partial struct b32m3x3 :
     public b32 this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -32391,84 +32391,84 @@ public partial struct b32m3x4 :
     public b32 m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public b32 m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public b32 m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public b32 m03
     {
         [MethodImpl(256 | 512)]
-        get => c3.x;
+        readonly get => c3.x;
         [MethodImpl(256 | 512)]
         set => c3.x = value;
     }
     public b32 m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public b32 m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public b32 m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public b32 m13
     {
         [MethodImpl(256 | 512)]
-        get => c3.y;
+        readonly get => c3.y;
         [MethodImpl(256 | 512)]
         set => c3.y = value;
     }
     public b32 m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public b32 m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public b32 m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
     public b32 m23
     {
         [MethodImpl(256 | 512)]
-        get => c3.z;
+        readonly get => c3.z;
         [MethodImpl(256 | 512)]
         set => c3.z = value;
     }
@@ -32580,7 +32580,7 @@ public partial struct b32m3x4 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out b32v3 c0, out b32v3 c1, out b32v3 c2, out b32v3 c3)
+    public readonly void Deconstruct(out b32v3 c0, out b32v3 c1, out b32v3 c2, out b32v3 c3)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -32589,7 +32589,7 @@ public partial struct b32m3x4 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out b32 m00, out b32 m01, out b32 m02, out b32 m03,
         out b32 m10, out b32 m11, out b32 m12, out b32 m13,
         out b32 m20, out b32 m21, out b32 m22, out b32 m23
@@ -32608,7 +32608,7 @@ public partial struct b32m3x4 :
     public b32v3 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -32642,7 +32642,7 @@ public partial struct b32m3x4 :
     public b32 this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -32741,56 +32741,56 @@ public partial struct b32m4x2 :
     public b32 m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public b32 m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public b32 m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public b32 m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public b32 m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public b32 m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public b32 m30
     {
         [MethodImpl(256 | 512)]
-        get => c0.w;
+        readonly get => c0.w;
         [MethodImpl(256 | 512)]
         set => c0.w = value;
     }
     public b32 m31
     {
         [MethodImpl(256 | 512)]
-        get => c1.w;
+        readonly get => c1.w;
         [MethodImpl(256 | 512)]
         set => c1.w = value;
     }
@@ -32893,14 +32893,14 @@ public partial struct b32m4x2 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out b32v4 c0, out b32v4 c1)
+    public readonly void Deconstruct(out b32v4 c0, out b32v4 c1)
     {
         c0 = this.c0;
         c1 = this.c1;
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out b32 m00, out b32 m01,
         out b32 m10, out b32 m11,
         out b32 m20, out b32 m21,
@@ -32918,7 +32918,7 @@ public partial struct b32m4x2 :
     public b32v4 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -32944,7 +32944,7 @@ public partial struct b32m4x2 :
     public b32 this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -33036,84 +33036,84 @@ public partial struct b32m4x3 :
     public b32 m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public b32 m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public b32 m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public b32 m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public b32 m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public b32 m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public b32 m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public b32 m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public b32 m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
     public b32 m30
     {
         [MethodImpl(256 | 512)]
-        get => c0.w;
+        readonly get => c0.w;
         [MethodImpl(256 | 512)]
         set => c0.w = value;
     }
     public b32 m31
     {
         [MethodImpl(256 | 512)]
-        get => c1.w;
+        readonly get => c1.w;
         [MethodImpl(256 | 512)]
         set => c1.w = value;
     }
     public b32 m32
     {
         [MethodImpl(256 | 512)]
-        get => c2.w;
+        readonly get => c2.w;
         [MethodImpl(256 | 512)]
         set => c2.w = value;
     }
@@ -33223,7 +33223,7 @@ public partial struct b32m4x3 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out b32v4 c0, out b32v4 c1, out b32v4 c2)
+    public readonly void Deconstruct(out b32v4 c0, out b32v4 c1, out b32v4 c2)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -33231,7 +33231,7 @@ public partial struct b32m4x3 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out b32 m00, out b32 m01, out b32 m02,
         out b32 m10, out b32 m11, out b32 m12,
         out b32 m20, out b32 m21, out b32 m22,
@@ -33250,7 +33250,7 @@ public partial struct b32m4x3 :
     public b32v4 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -33280,7 +33280,7 @@ public partial struct b32m4x3 :
     public b32 this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -33377,112 +33377,112 @@ public partial struct b32m4x4 :
     public b32 m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public b32 m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public b32 m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public b32 m03
     {
         [MethodImpl(256 | 512)]
-        get => c3.x;
+        readonly get => c3.x;
         [MethodImpl(256 | 512)]
         set => c3.x = value;
     }
     public b32 m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public b32 m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public b32 m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public b32 m13
     {
         [MethodImpl(256 | 512)]
-        get => c3.y;
+        readonly get => c3.y;
         [MethodImpl(256 | 512)]
         set => c3.y = value;
     }
     public b32 m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public b32 m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public b32 m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
     public b32 m23
     {
         [MethodImpl(256 | 512)]
-        get => c3.z;
+        readonly get => c3.z;
         [MethodImpl(256 | 512)]
         set => c3.z = value;
     }
     public b32 m30
     {
         [MethodImpl(256 | 512)]
-        get => c0.w;
+        readonly get => c0.w;
         [MethodImpl(256 | 512)]
         set => c0.w = value;
     }
     public b32 m31
     {
         [MethodImpl(256 | 512)]
-        get => c1.w;
+        readonly get => c1.w;
         [MethodImpl(256 | 512)]
         set => c1.w = value;
     }
     public b32 m32
     {
         [MethodImpl(256 | 512)]
-        get => c2.w;
+        readonly get => c2.w;
         [MethodImpl(256 | 512)]
         set => c2.w = value;
     }
     public b32 m33
     {
         [MethodImpl(256 | 512)]
-        get => c3.w;
+        readonly get => c3.w;
         [MethodImpl(256 | 512)]
         set => c3.w = value;
     }
@@ -33599,7 +33599,7 @@ public partial struct b32m4x4 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out b32v4 c0, out b32v4 c1, out b32v4 c2, out b32v4 c3)
+    public readonly void Deconstruct(out b32v4 c0, out b32v4 c1, out b32v4 c2, out b32v4 c3)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -33608,7 +33608,7 @@ public partial struct b32m4x4 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out b32 m00, out b32 m01, out b32 m02, out b32 m03,
         out b32 m10, out b32 m11, out b32 m12, out b32 m13,
         out b32 m20, out b32 m21, out b32 m22, out b32 m23,
@@ -33628,7 +33628,7 @@ public partial struct b32m4x4 :
     public b32v4 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -33662,7 +33662,7 @@ public partial struct b32m4x4 :
     public b32 this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -33759,28 +33759,28 @@ public partial struct b64m2x2 :
     public b64 m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public b64 m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public b64 m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public b64 m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
@@ -33873,14 +33873,14 @@ public partial struct b64m2x2 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out b64v2 c0, out b64v2 c1)
+    public readonly void Deconstruct(out b64v2 c0, out b64v2 c1)
     {
         c0 = this.c0;
         c1 = this.c1;
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out b64 m00, out b64 m01,
         out b64 m10, out b64 m11
     )
@@ -33896,7 +33896,7 @@ public partial struct b64m2x2 :
     public b64v2 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -33922,7 +33922,7 @@ public partial struct b64m2x2 :
     public b64 this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -34012,42 +34012,42 @@ public partial struct b64m2x3 :
     public b64 m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public b64 m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public b64 m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public b64 m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public b64 m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public b64 m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
@@ -34147,7 +34147,7 @@ public partial struct b64m2x3 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out b64v2 c0, out b64v2 c1, out b64v2 c2)
+    public readonly void Deconstruct(out b64v2 c0, out b64v2 c1, out b64v2 c2)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -34155,7 +34155,7 @@ public partial struct b64m2x3 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out b64 m00, out b64 m01, out b64 m02,
         out b64 m10, out b64 m11, out b64 m12
     )
@@ -34172,7 +34172,7 @@ public partial struct b64m2x3 :
     public b64v2 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -34202,7 +34202,7 @@ public partial struct b64m2x3 :
     public b64 this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -34297,56 +34297,56 @@ public partial struct b64m2x4 :
     public b64 m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public b64 m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public b64 m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public b64 m03
     {
         [MethodImpl(256 | 512)]
-        get => c3.x;
+        readonly get => c3.x;
         [MethodImpl(256 | 512)]
         set => c3.x = value;
     }
     public b64 m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public b64 m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public b64 m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public b64 m13
     {
         [MethodImpl(256 | 512)]
-        get => c3.y;
+        readonly get => c3.y;
         [MethodImpl(256 | 512)]
         set => c3.y = value;
     }
@@ -34453,7 +34453,7 @@ public partial struct b64m2x4 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out b64v2 c0, out b64v2 c1, out b64v2 c2, out b64v2 c3)
+    public readonly void Deconstruct(out b64v2 c0, out b64v2 c1, out b64v2 c2, out b64v2 c3)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -34462,7 +34462,7 @@ public partial struct b64m2x4 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out b64 m00, out b64 m01, out b64 m02, out b64 m03,
         out b64 m10, out b64 m11, out b64 m12, out b64 m13
     )
@@ -34480,7 +34480,7 @@ public partial struct b64m2x4 :
     public b64v2 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -34514,7 +34514,7 @@ public partial struct b64m2x4 :
     public b64 this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -34612,42 +34612,42 @@ public partial struct b64m3x2 :
     public b64 m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public b64 m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public b64 m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public b64 m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public b64 m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public b64 m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
@@ -34745,14 +34745,14 @@ public partial struct b64m3x2 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out b64v3 c0, out b64v3 c1)
+    public readonly void Deconstruct(out b64v3 c0, out b64v3 c1)
     {
         c0 = this.c0;
         c1 = this.c1;
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out b64 m00, out b64 m01,
         out b64 m10, out b64 m11,
         out b64 m20, out b64 m21
@@ -34769,7 +34769,7 @@ public partial struct b64m3x2 :
     public b64v3 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -34795,7 +34795,7 @@ public partial struct b64m3x2 :
     public b64 this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -34886,63 +34886,63 @@ public partial struct b64m3x3 :
     public b64 m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public b64 m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public b64 m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public b64 m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public b64 m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public b64 m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public b64 m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public b64 m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public b64 m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
@@ -35047,7 +35047,7 @@ public partial struct b64m3x3 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out b64v3 c0, out b64v3 c1, out b64v3 c2)
+    public readonly void Deconstruct(out b64v3 c0, out b64v3 c1, out b64v3 c2)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -35055,7 +35055,7 @@ public partial struct b64m3x3 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out b64 m00, out b64 m01, out b64 m02,
         out b64 m10, out b64 m11, out b64 m12,
         out b64 m20, out b64 m21, out b64 m22
@@ -35073,7 +35073,7 @@ public partial struct b64m3x3 :
     public b64v3 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -35103,7 +35103,7 @@ public partial struct b64m3x3 :
     public b64 this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -35199,84 +35199,84 @@ public partial struct b64m3x4 :
     public b64 m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public b64 m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public b64 m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public b64 m03
     {
         [MethodImpl(256 | 512)]
-        get => c3.x;
+        readonly get => c3.x;
         [MethodImpl(256 | 512)]
         set => c3.x = value;
     }
     public b64 m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public b64 m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public b64 m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public b64 m13
     {
         [MethodImpl(256 | 512)]
-        get => c3.y;
+        readonly get => c3.y;
         [MethodImpl(256 | 512)]
         set => c3.y = value;
     }
     public b64 m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public b64 m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public b64 m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
     public b64 m23
     {
         [MethodImpl(256 | 512)]
-        get => c3.z;
+        readonly get => c3.z;
         [MethodImpl(256 | 512)]
         set => c3.z = value;
     }
@@ -35388,7 +35388,7 @@ public partial struct b64m3x4 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out b64v3 c0, out b64v3 c1, out b64v3 c2, out b64v3 c3)
+    public readonly void Deconstruct(out b64v3 c0, out b64v3 c1, out b64v3 c2, out b64v3 c3)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -35397,7 +35397,7 @@ public partial struct b64m3x4 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out b64 m00, out b64 m01, out b64 m02, out b64 m03,
         out b64 m10, out b64 m11, out b64 m12, out b64 m13,
         out b64 m20, out b64 m21, out b64 m22, out b64 m23
@@ -35416,7 +35416,7 @@ public partial struct b64m3x4 :
     public b64v3 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -35450,7 +35450,7 @@ public partial struct b64m3x4 :
     public b64 this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -35549,56 +35549,56 @@ public partial struct b64m4x2 :
     public b64 m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public b64 m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public b64 m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public b64 m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public b64 m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public b64 m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public b64 m30
     {
         [MethodImpl(256 | 512)]
-        get => c0.w;
+        readonly get => c0.w;
         [MethodImpl(256 | 512)]
         set => c0.w = value;
     }
     public b64 m31
     {
         [MethodImpl(256 | 512)]
-        get => c1.w;
+        readonly get => c1.w;
         [MethodImpl(256 | 512)]
         set => c1.w = value;
     }
@@ -35701,14 +35701,14 @@ public partial struct b64m4x2 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out b64v4 c0, out b64v4 c1)
+    public readonly void Deconstruct(out b64v4 c0, out b64v4 c1)
     {
         c0 = this.c0;
         c1 = this.c1;
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out b64 m00, out b64 m01,
         out b64 m10, out b64 m11,
         out b64 m20, out b64 m21,
@@ -35726,7 +35726,7 @@ public partial struct b64m4x2 :
     public b64v4 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -35752,7 +35752,7 @@ public partial struct b64m4x2 :
     public b64 this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -35844,84 +35844,84 @@ public partial struct b64m4x3 :
     public b64 m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public b64 m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public b64 m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public b64 m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public b64 m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public b64 m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public b64 m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public b64 m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public b64 m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
     public b64 m30
     {
         [MethodImpl(256 | 512)]
-        get => c0.w;
+        readonly get => c0.w;
         [MethodImpl(256 | 512)]
         set => c0.w = value;
     }
     public b64 m31
     {
         [MethodImpl(256 | 512)]
-        get => c1.w;
+        readonly get => c1.w;
         [MethodImpl(256 | 512)]
         set => c1.w = value;
     }
     public b64 m32
     {
         [MethodImpl(256 | 512)]
-        get => c2.w;
+        readonly get => c2.w;
         [MethodImpl(256 | 512)]
         set => c2.w = value;
     }
@@ -36031,7 +36031,7 @@ public partial struct b64m4x3 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out b64v4 c0, out b64v4 c1, out b64v4 c2)
+    public readonly void Deconstruct(out b64v4 c0, out b64v4 c1, out b64v4 c2)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -36039,7 +36039,7 @@ public partial struct b64m4x3 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out b64 m00, out b64 m01, out b64 m02,
         out b64 m10, out b64 m11, out b64 m12,
         out b64 m20, out b64 m21, out b64 m22,
@@ -36058,7 +36058,7 @@ public partial struct b64m4x3 :
     public b64v4 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -36088,7 +36088,7 @@ public partial struct b64m4x3 :
     public b64 this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],
@@ -36185,112 +36185,112 @@ public partial struct b64m4x4 :
     public b64 m00
     {
         [MethodImpl(256 | 512)]
-        get => c0.x;
+        readonly get => c0.x;
         [MethodImpl(256 | 512)]
         set => c0.x = value;
     }
     public b64 m01
     {
         [MethodImpl(256 | 512)]
-        get => c1.x;
+        readonly get => c1.x;
         [MethodImpl(256 | 512)]
         set => c1.x = value;
     }
     public b64 m02
     {
         [MethodImpl(256 | 512)]
-        get => c2.x;
+        readonly get => c2.x;
         [MethodImpl(256 | 512)]
         set => c2.x = value;
     }
     public b64 m03
     {
         [MethodImpl(256 | 512)]
-        get => c3.x;
+        readonly get => c3.x;
         [MethodImpl(256 | 512)]
         set => c3.x = value;
     }
     public b64 m10
     {
         [MethodImpl(256 | 512)]
-        get => c0.y;
+        readonly get => c0.y;
         [MethodImpl(256 | 512)]
         set => c0.y = value;
     }
     public b64 m11
     {
         [MethodImpl(256 | 512)]
-        get => c1.y;
+        readonly get => c1.y;
         [MethodImpl(256 | 512)]
         set => c1.y = value;
     }
     public b64 m12
     {
         [MethodImpl(256 | 512)]
-        get => c2.y;
+        readonly get => c2.y;
         [MethodImpl(256 | 512)]
         set => c2.y = value;
     }
     public b64 m13
     {
         [MethodImpl(256 | 512)]
-        get => c3.y;
+        readonly get => c3.y;
         [MethodImpl(256 | 512)]
         set => c3.y = value;
     }
     public b64 m20
     {
         [MethodImpl(256 | 512)]
-        get => c0.z;
+        readonly get => c0.z;
         [MethodImpl(256 | 512)]
         set => c0.z = value;
     }
     public b64 m21
     {
         [MethodImpl(256 | 512)]
-        get => c1.z;
+        readonly get => c1.z;
         [MethodImpl(256 | 512)]
         set => c1.z = value;
     }
     public b64 m22
     {
         [MethodImpl(256 | 512)]
-        get => c2.z;
+        readonly get => c2.z;
         [MethodImpl(256 | 512)]
         set => c2.z = value;
     }
     public b64 m23
     {
         [MethodImpl(256 | 512)]
-        get => c3.z;
+        readonly get => c3.z;
         [MethodImpl(256 | 512)]
         set => c3.z = value;
     }
     public b64 m30
     {
         [MethodImpl(256 | 512)]
-        get => c0.w;
+        readonly get => c0.w;
         [MethodImpl(256 | 512)]
         set => c0.w = value;
     }
     public b64 m31
     {
         [MethodImpl(256 | 512)]
-        get => c1.w;
+        readonly get => c1.w;
         [MethodImpl(256 | 512)]
         set => c1.w = value;
     }
     public b64 m32
     {
         [MethodImpl(256 | 512)]
-        get => c2.w;
+        readonly get => c2.w;
         [MethodImpl(256 | 512)]
         set => c2.w = value;
     }
     public b64 m33
     {
         [MethodImpl(256 | 512)]
-        get => c3.w;
+        readonly get => c3.w;
         [MethodImpl(256 | 512)]
         set => c3.w = value;
     }
@@ -36407,7 +36407,7 @@ public partial struct b64m4x4 :
     #region deconstruct
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(out b64v4 c0, out b64v4 c1, out b64v4 c2, out b64v4 c3)
+    public readonly void Deconstruct(out b64v4 c0, out b64v4 c1, out b64v4 c2, out b64v4 c3)
     {
         c0 = this.c0;
         c1 = this.c1;
@@ -36416,7 +36416,7 @@ public partial struct b64m4x4 :
     }
     
     [MethodImpl(256 | 512)]
-    public void Deconstruct(
+    public readonly void Deconstruct(
         out b64 m00, out b64 m01, out b64 m02, out b64 m03,
         out b64 m10, out b64 m11, out b64 m12, out b64 m13,
         out b64 m20, out b64 m21, out b64 m22, out b64 m23,
@@ -36436,7 +36436,7 @@ public partial struct b64m4x4 :
     public b64v4 this[int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0,
             1 => c1,
@@ -36470,7 +36470,7 @@ public partial struct b64m4x4 :
     public b64 this[int r, int c]
     {
         [MethodImpl(256 | 512)]
-        get => c switch
+        readonly get => c switch
         {
             0 => c0[r],
             1 => c1[r],

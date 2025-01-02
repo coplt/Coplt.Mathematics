@@ -9,7 +9,7 @@ namespace Coplt.Mathematics;
     foreach (var typ in Typ.Typs)
     {
         if (typ.size * 8 >= 128) continue;
-        
+
         for (var i = 2; i <= 4; i++)
         {
             var typeName = $"{typ.name}{i}";
@@ -25,7 +25,6 @@ namespace Coplt.Mathematics;
 #region <#= typeName #>
 
 public partial struct <#= typeName #> : IComparable<<#= typeName #>>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<<#= typeName #>, <#= typeName #>, bool>
 <#
             if (bTyp.name != null)
@@ -35,17 +34,15 @@ public partial struct <#= typeName #> : IComparable<<#= typeName #>>, IComparabl
 <#
             }
 #>
-    #endif
 {
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is <#= typeName #> other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(<#= typeName #>)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<<#= typeName #>, <#= typeName #>, bool>.operator <(<#= typeName #> left, <#= typeName #> right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -57,121 +54,227 @@ public partial struct <#= typeName #> : IComparable<<#= typeName #>>, IComparabl
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<<#= typeName #>, <#= typeName #>, bool>.operator >=(<#= typeName #> left, <#= typeName #> right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
+    [MethodImpl(256 | 512)]
+    public readonly int CompareTo(<#= typeName #> other)
+    {
 <#
             if (typ.simd)
             {
 #>
-    #if NET8_0_OR_GREATER
-    [MethodImpl(256 | 512)]
-    public int CompareTo(<#= typeName #> other)
-    {
-        if (Vector<#= bitSize #>.LessThanAny(vector, other.vector)) return -1;
-        if (Vector<#= bitSize #>.GreaterThanAny(vector, other.vector)) return 1;
-        return 0;
-    }
-    
-    [MethodImpl(256 | 512)]
-    public static <#= bTypeName #> operator <(<#= typeName #> left, <#= typeName #> right) => 
-        new(Vector<#= bitSize #>.LessThan(left.vector, right.vector).As<#= bTyp.Type #>()<#
-                    if (i == 3)
-                    {
-#> & Vector<#= bitSize #>.Create(-1, -1, -1, 0).As<#= bTyp.Type #>()<#
-                    }
-#>);
-    [MethodImpl(256 | 512)]
-    public static <#= bTypeName #> operator >(<#= typeName #> left, <#= typeName #> right) => 
-        new(Vector<#= bitSize #>.GreaterThan(left.vector, right.vector).As<#= bTyp.Type #>()<#
-                    if (i == 3)
-                    {
-#> & Vector<#= bitSize #>.Create(-1, -1, -1, 0).As<#= bTyp.Type #>()<#
-                    }
-#>);
-    [MethodImpl(256 | 512)]
-    public static <#= bTypeName #> operator <=(<#= typeName #> left, <#= typeName #> right) => 
-        new(Vector<#= bitSize #>.LessThanOrEqual(left.vector, right.vector).As<#= bTyp.Type #>()<#
-                    if (i == 3)
-                    {
-#> & Vector<#= bitSize #>.Create(-1, -1, -1, 0).As<#= bTyp.Type #>()<#
-                    }
-#>);
-    [MethodImpl(256 | 512)]
-    public static <#= bTypeName #> operator >=(<#= typeName #> left, <#= typeName #> right) => 
-        new(Vector<#= bitSize #>.GreaterThanOrEqual(left.vector, right.vector).As<#= bTyp.Type #>()<#
-                    if (i == 3)
-                    {
-#> & Vector<#= bitSize #>.Create(-1, -1, -1, 0).As<#= bTyp.Type #>()<#
-                    }
-#>);
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAll(<#= typeName #> other) => (this < other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(<#= typeName #> other) => (this > other).all();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(<#= typeName #> other) => (this <= other).all();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(<#= typeName #> other) => (this >= other).all();
-    
-    [MethodImpl(256 | 512)]
-    public bool LessThanAny(<#= typeName #> other) => (this < other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(<#= typeName #> other) => (this > other).any();
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(<#= typeName #> other) => (this <= other).any();
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(<#= typeName #> other) => (this >= other).any();
-    #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+        {
+            if (Vector<#= bitSize #>.LessThanAny(vector, other.vector)) return -1;
+            if (Vector<#= bitSize #>.GreaterThanAny(vector, other.vector)) return 1;
+            return 0;
+        }
 <#
             }
 #>
-    [MethodImpl(256 | 512)]
-    public int CompareTo(<#= typeName #> other)
-    {
         if (<#= string.Join(" || ", Enumerable.Range(0, i).Select(n => $"{Typ.xyzw[n]} < other.{Typ.xyzw[n]}")) #>) return -1;
         if (<#= string.Join(" || ", Enumerable.Range(0, i).Select(n => $"{Typ.xyzw[n]} > other.{Typ.xyzw[n]}")) #>) return 1;
         return 0;
     }
 
     [MethodImpl(256 | 512)]
-    public static <#= bTypeName #> operator <(<#= typeName #> left, <#= typeName #> right) =>
-        new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"left.{Typ.xyzw[n]} < right.{Typ.xyzw[n]}")) #>);
-    [MethodImpl(256 | 512)]
-    public static <#= bTypeName #> operator >(<#= typeName #> left, <#= typeName #> right) =>
-        new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"left.{Typ.xyzw[n]} > right.{Typ.xyzw[n]}")) #>);
-    [MethodImpl(256 | 512)]
-    public static <#= bTypeName #> operator <=(<#= typeName #> left, <#= typeName #> right) =>
-        new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"left.{Typ.xyzw[n]} <= right.{Typ.xyzw[n]}")) #>);
-    [MethodImpl(256 | 512)]
-    public static <#= bTypeName #> operator >=(<#= typeName #> left, <#= typeName #> right) =>
-        new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"left.{Typ.xyzw[n]} >= right.{Typ.xyzw[n]}")) #>);
-
-    [MethodImpl(256 | 512)]
-    public bool LessThanAll(<#= typeName #> other) => <#= string.Join(" && ", Enumerable.Range(0, i).Select(n => $"{Typ.xyzw[n]} < other.{Typ.xyzw[n]}")) #>;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(<#= typeName #> other) => <#= string.Join(" && ", Enumerable.Range(0, i).Select(n => $"{Typ.xyzw[n]} > other.{Typ.xyzw[n]}")) #>;
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(<#= typeName #> other) => <#= string.Join(" && ", Enumerable.Range(0, i).Select(n => $"{Typ.xyzw[n]} <= other.{Typ.xyzw[n]}")) #>;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(<#= typeName #> other) => <#= string.Join(" && ", Enumerable.Range(0, i).Select(n => $"{Typ.xyzw[n]} >= other.{Typ.xyzw[n]}")) #>;
-
-    [MethodImpl(256 | 512)]
-    public bool LessThanAny(<#= typeName #> other) => <#= string.Join(" || ", Enumerable.Range(0, i).Select(n => $"{Typ.xyzw[n]} < other.{Typ.xyzw[n]}")) #>;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(<#= typeName #> other) => <#= string.Join(" || ", Enumerable.Range(0, i).Select(n => $"{Typ.xyzw[n]} > other.{Typ.xyzw[n]}")) #>;
-    [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(<#= typeName #> other) => <#= string.Join(" || ", Enumerable.Range(0, i).Select(n => $"{Typ.xyzw[n]} <= other.{Typ.xyzw[n]}")) #>;
-    [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(<#= typeName #> other) => <#= string.Join(" || ", Enumerable.Range(0, i).Select(n => $"{Typ.xyzw[n]} >= other.{Typ.xyzw[n]}")) #>;
+    public static <#= bTypeName #> operator <(<#= typeName #> left, <#= typeName #> right)
+    {
 <#
             if (typ.simd)
             {
 #>
-    #endif // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return new(Vector<#= bitSize #>.LessThan(left.vector, right.vector).As<#= bTyp.Type #>()<#
+                if (i == 3)
+                {
+#> & Vector<#= bitSize #>.Create(-1, -1, -1, 0).As<#= bTyp.Type #>()<#
+                }
+#>);
 <#
             }
 #>
+        return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"left.{Typ.xyzw[n]} < right.{Typ.xyzw[n]}")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= bTypeName #> operator >(<#= typeName #> left, <#= typeName #> right)
+    {
+<#
+            if (typ.simd)
+            {
+#>
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return new(Vector<#= bitSize #>.GreaterThan(left.vector, right.vector).As<#= bTyp.Type #>()<#
+                if (i == 3)
+                {
+#> & Vector<#= bitSize #>.Create(-1, -1, -1, 0).As<#= bTyp.Type #>()<#
+                }
+#>);
+<#
+            }
+#>
+        return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"left.{Typ.xyzw[n]} > right.{Typ.xyzw[n]}")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= bTypeName #> operator <=(<#= typeName #> left, <#= typeName #> right)
+    {
+<#
+            if (typ.simd)
+            {
+#>
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return new(Vector<#= bitSize #>.LessThanOrEqual(left.vector, right.vector).As<#= bTyp.Type #>()<#
+                if (i == 3)
+                {
+#> & Vector<#= bitSize #>.Create(-1, -1, -1, 0).As<#= bTyp.Type #>()<#
+                }
+#>);
+<#
+            }
+#>
+        return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"left.{Typ.xyzw[n]} <= right.{Typ.xyzw[n]}")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= bTypeName #> operator >=(<#= typeName #> left, <#= typeName #> right)
+    {
+<#
+            if (typ.simd)
+            {
+#>
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return new(Vector<#= bitSize #>.GreaterThanOrEqual(left.vector, right.vector).As<#= bTyp.Type #>()<#
+                if (i == 3)
+                {
+#> & Vector<#= bitSize #>.Create(-1, -1, -1, 0).As<#= bTyp.Type #>()<#
+                }
+#>);
+<#
+            }
+#>
+        return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"left.{Typ.xyzw[n]} >= right.{Typ.xyzw[n]}")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanAll(<#= typeName #> other)
+    {
+<#
+            if (typ.simd)
+            {
+#>
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return Vector<#= bitSize #>.LessThanAll(vector, other.vector);
+<#
+            }
+#>
+        return <#= string.Join(" && ", Enumerable.Range(0, i).Select(n => $"{Typ.xyzw[n]} < other.{Typ.xyzw[n]}")) #>;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanAll(<#= typeName #> other)
+    {
+<#
+            if (typ.simd)
+            {
+#>
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return Vector<#= bitSize #>.GreaterThanAll(vector, other.vector);
+<#
+            }
+#>
+        return <#= string.Join(" && ", Enumerable.Range(0, i).Select(n => $"{Typ.xyzw[n]} > other.{Typ.xyzw[n]}")) #>;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAll(<#= typeName #> other)
+    {
+<#
+            if (typ.simd)
+            {
+#>
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return Vector<#= bitSize #>.LessThanOrEqualAll(vector, other.vector);
+<#
+            }
+#>
+        return <#= string.Join(" && ", Enumerable.Range(0, i).Select(n => $"{Typ.xyzw[n]} <= other.{Typ.xyzw[n]}")) #>;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAll(<#= typeName #> other)
+    {
+<#
+            if (typ.simd)
+            {
+#>
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return Vector<#= bitSize #>.GreaterThanOrEqualAll(vector, other.vector);
+<#
+            }
+#>
+        return <#= string.Join(" && ", Enumerable.Range(0, i).Select(n => $"{Typ.xyzw[n]} >= other.{Typ.xyzw[n]}")) #>;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanAny(<#= typeName #> other)
+    {
+<#
+            if (typ.simd)
+            {
+#>
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return Vector<#= bitSize #>.LessThanAll(vector, other.vector);
+<#
+            }
+#>
+        return <#= string.Join(" || ", Enumerable.Range(0, i).Select(n => $"{Typ.xyzw[n]} < other.{Typ.xyzw[n]}")) #>;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanAny(<#= typeName #> other)
+    {
+<#
+            if (typ.simd)
+            {
+#>
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return Vector<#= bitSize #>.GreaterThanAny(vector, other.vector);
+<#
+            }
+#>
+        return <#= string.Join(" || ", Enumerable.Range(0, i).Select(n => $"{Typ.xyzw[n]} > other.{Typ.xyzw[n]}")) #>;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool LessThanOrEqualAny(<#= typeName #> other)
+    {
+<#
+            if (typ.simd)
+            {
+#>
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return Vector<#= bitSize #>.LessThanOrEqualAny(vector, other.vector);
+<#
+            }
+#>
+        return <#= string.Join(" || ", Enumerable.Range(0, i).Select(n => $"{Typ.xyzw[n]} <= other.{Typ.xyzw[n]}")) #>;
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly bool GreaterThanOrEqualAny(<#= typeName #> other)
+    {
+<#
+            if (typ.simd)
+            {
+#>
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return Vector<#= bitSize #>.GreaterThanOrEqualAny(vector, other.vector);
+<#
+            }
+#>
+        return <#= string.Join(" || ", Enumerable.Range(0, i).Select(n => $"{Typ.xyzw[n]} >= other.{Typ.xyzw[n]}")) #>;
+    }
 
 }
 

@@ -35,13 +35,14 @@ public partial struct float2x2
     );
 }
 
+[Ex]
 public static partial class math
 {
     /// <summary>Returns the determinant of a float2x2 matrix</summary>
     /// <param name="m">Matrix to use when computing determinant</param>
     /// <returns>The determinant of the matrix</returns>
     [MethodImpl(256 | 512)]
-    public static float2x2 inverse(this float2x2 m)
+    public static float2x2 inverse([This] float2x2 m)
     {
         var a = m.c0.x;
         var b = m.c1.x;
@@ -55,7 +56,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static float determinant(this float2x2 m)
+    public static float determinant([This] float2x2 m)
     {
         var a = m.c0.x;
         var b = m.c1.x;
@@ -102,13 +103,14 @@ public partial struct double2x2
     );
 }
 
+[Ex]
 public static partial class math
 {
     /// <summary>Returns the determinant of a double2x2 matrix</summary>
     /// <param name="m">Matrix to use when computing determinant</param>
     /// <returns>The determinant of the matrix</returns>
     [MethodImpl(256 | 512)]
-    public static double2x2 inverse(this double2x2 m)
+    public static double2x2 inverse([This] double2x2 m)
     {
         var a = m.c0.x;
         var b = m.c1.x;
@@ -122,7 +124,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static double determinant(this double2x2 m)
+    public static double determinant([This] double2x2 m)
     {
         var a = m.c0.x;
         var b = m.c1.x;
@@ -159,6 +161,7 @@ public partial struct short2x2
     );
 }
 
+[Ex]
 public static partial class math
 {
 }
@@ -188,6 +191,7 @@ public partial struct ushort2x2
     );
 }
 
+[Ex]
 public static partial class math
 {
 }
@@ -217,6 +221,7 @@ public partial struct int2x2
     );
 }
 
+[Ex]
 public static partial class math
 {
 }
@@ -246,6 +251,7 @@ public partial struct uint2x2
     );
 }
 
+[Ex]
 public static partial class math
 {
 }
@@ -275,6 +281,7 @@ public partial struct long2x2
     );
 }
 
+[Ex]
 public static partial class math
 {
 }
@@ -304,6 +311,7 @@ public partial struct ulong2x2
     );
 }
 
+[Ex]
 public static partial class math
 {
 }
@@ -333,13 +341,14 @@ public partial struct decimal2x2
     );
 }
 
+[Ex]
 public static partial class math
 {
     /// <summary>Returns the determinant of a decimal2x2 matrix</summary>
     /// <param name="m">Matrix to use when computing determinant</param>
     /// <returns>The determinant of the matrix</returns>
     [MethodImpl(256 | 512)]
-    public static decimal2x2 inverse(this decimal2x2 m)
+    public static decimal2x2 inverse([This] decimal2x2 m)
     {
         var a = m.c0.x;
         var b = m.c1.x;
@@ -353,7 +362,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal determinant(this decimal2x2 m)
+    public static decimal determinant([This] decimal2x2 m)
     {
         var a = m.c0.x;
         var b = m.c1.x;
@@ -400,13 +409,14 @@ public partial struct half2x2
     );
 }
 
+[Ex]
 public static partial class math
 {
     /// <summary>Returns the determinant of a half2x2 matrix</summary>
     /// <param name="m">Matrix to use when computing determinant</param>
     /// <returns>The determinant of the matrix</returns>
     [MethodImpl(256 | 512)]
-    public static half2x2 inverse(this half2x2 m)
+    public static half2x2 inverse([This] half2x2 m)
     {
         var a = m.c0.x;
         var b = m.c1.x;
@@ -420,7 +430,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static half determinant(this half2x2 m)
+    public static half determinant([This] half2x2 m)
     {
         var a = m.c0.x;
         var b = m.c1.x;

@@ -319,6 +319,7 @@ public partial struct <#= typeName #>
     public static explicit operator <#= typeName #>(<#= typeName4x4 #> m4x4) => new(m4x4);
 }
 
+[Ex]
 public static partial class math
 {
 <#
@@ -330,7 +331,7 @@ public static partial class math
     /// <param name="m">Matrix to invert</param>
     /// <returns>The inverted matrix</returns>
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> inverse(this <#= typeName #> m)
+    public static <#= typeName #> inverse([This] <#= typeName #> m)
     {
         var (c0, c1, c2) = m;
         // var t0 = new <#= vecTypeName #>(c1.x, c2.x, c0.x);
@@ -353,7 +354,7 @@ public static partial class math
     /// <param name="m">Matrix to use when computing determinant</param>
     /// <returns>The determinant of the matrix</returns>
     [MethodImpl(256 | 512)]
-    public static <#= typ.compType #> determinant(this <#= typeName #> m)
+    public static <#= typ.compType #> determinant([This] <#= typeName #> m)
     {
         var (c0, c1, c2) = m;
 

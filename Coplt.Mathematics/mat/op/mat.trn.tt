@@ -31,60 +31,62 @@ namespace Coplt.Mathematics;
 
 #region <#= typeName #>
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static <#= t_typeName #> transpose(this <#= typeName #> mat)
+    public static <#= t_typeName #> transpose([This] <#= typeName #> mat)
     {
 <#
                 if (has_simd)
                 {
 #>
-        #if NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+        {
 <#
                     if ((n == m && (n == 3 || n == 4)) || (n == 2 && m == 4) || (n == 4 && m == 2))
                     {
 #>
-        var r = simd_matrix.Transpose<#= simd_method_suffix #>(<#= string.Join(", ", Enumerable.Range(0, m).Select(j => $"mat.c{j}.vector")) #>);
-        return new(<#= string.Join(", ", Enumerable.Range(0, n).Select(j => $"new(r.c{j})")) #>);
+            var r = simd_matrix.Transpose<#= simd_method_suffix #>(<#= string.Join(", ", Enumerable.Range(0, m).Select(j => $"mat.c{j}.vector")) #>);
+            return new(<#= string.Join(", ", Enumerable.Range(0, n).Select(j => $"new(r.c{j})")) #>);
 <#
                     }
                     else if (n == 3 && m == 4)
                     {
 #>
-        var r = simd_matrix.Transpose4x4(<#= string.Join(", ", Enumerable.Range(0, m).Select(j => $"mat.c{j}.vector")) #>);
-        return new(<#= string.Join(", ", Enumerable.Range(0, n).Select(j => $"new(r.c{j})")) #>);
+            var r = simd_matrix.Transpose4x4(<#= string.Join(", ", Enumerable.Range(0, m).Select(j => $"mat.c{j}.vector")) #>);
+            return new(<#= string.Join(", ", Enumerable.Range(0, n).Select(j => $"new(r.c{j})")) #>);
 <#
                     }
                     else if (n == 4 && m == 3)
                     {
 #>
-        var r = simd_matrix.Transpose4x4(<#= string.Join(", ", Enumerable.Range(0, m).Select(j => $"mat.c{j}.vector")) #>, default);
-        return new(<#= string.Join(", ", Enumerable.Range(0, n).Select(j => $"new(r.c{j})")) #>);
+            var r = simd_matrix.Transpose4x4(<#= string.Join(", ", Enumerable.Range(0, m).Select(j => $"mat.c{j}.vector")) #>, default);
+            return new(<#= string.Join(", ", Enumerable.Range(0, n).Select(j => $"new(r.c{j})")) #>);
 <#
                     }
                     else if (n == 2 && m == 3)
                     {
 #>
-        var r = simd_matrix.Transpose2x4To4x2(<#= string.Join(", ", Enumerable.Range(0, m).Select(j => $"mat.c{j}.vector")) #>, default);
-        return new(<#= string.Join(", ", Enumerable.Range(0, n).Select(j => $"new(r.c{j})")) #>);
+            var r = simd_matrix.Transpose2x4To4x2(<#= string.Join(", ", Enumerable.Range(0, m).Select(j => $"mat.c{j}.vector")) #>, default);
+            return new(<#= string.Join(", ", Enumerable.Range(0, n).Select(j => $"new(r.c{j})")) #>);
 <#
                     }
                     else if (n == 3 && m == 2)
                     {
 #>
-        var r = simd_matrix.Transpose4x2To2x4(<#= string.Join(", ", Enumerable.Range(0, m).Select(j => $"mat.c{j}.vector")) #>);
-        return new(<#= string.Join(", ", Enumerable.Range(0, n).Select(j => $"new(r.c{j})")) #>);
+            var r = simd_matrix.Transpose4x2To2x4(<#= string.Join(", ", Enumerable.Range(0, m).Select(j => $"mat.c{j}.vector")) #>);
+            return new(<#= string.Join(", ", Enumerable.Range(0, n).Select(j => $"new(r.c{j})")) #>);
 <#
                     }
                     else
                     {
 #>
-        throw new NotSupportedException("Source Generator Error");
+            throw new NotSupportedException("Source Generator Error");
 <#
                     }
 #>
-        #else // NET8_0_OR_GREATER
+        }
 <#
                 }
 #>
@@ -98,14 +100,6 @@ public static partial class math
                 }
 #>
         );
-<#
-                if (has_simd)
-                {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-                }
-#>
     }
 }
 

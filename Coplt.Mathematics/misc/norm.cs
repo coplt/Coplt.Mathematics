@@ -9,10 +9,8 @@ namespace Coplt.Mathematics.Numerics;
 /// </summary>
 [Serializable]
 public readonly partial struct inorm8 : IEquatable<inorm8>, IComparable<inorm8>, IComparable
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<inorm8, inorm8, bool>
     , IComparisonOperators<inorm8, inorm8, bool>
-    #endif
 {
     private readonly i8 inner;
 
@@ -121,10 +119,8 @@ public readonly partial struct inorm8 : IEquatable<inorm8>, IComparable<inorm8>,
 /// </summary>
 [Serializable]
 public readonly partial struct inorm16 : IEquatable<inorm16>, IComparable<inorm16>, IComparable
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<inorm16, inorm16, bool>
     , IComparisonOperators<inorm16, inorm16, bool>
-    #endif
 {
     private readonly i16 inner;
 
@@ -233,10 +229,8 @@ public readonly partial struct inorm16 : IEquatable<inorm16>, IComparable<inorm1
 /// </summary>
 [Serializable]
 public readonly partial struct inorm32 : IEquatable<inorm32>, IComparable<inorm32>, IComparable
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<inorm32, inorm32, bool>
     , IComparisonOperators<inorm32, inorm32, bool>
-    #endif
 {
     private readonly i32 inner;
 
@@ -345,10 +339,8 @@ public readonly partial struct inorm32 : IEquatable<inorm32>, IComparable<inorm3
 /// </summary>
 [Serializable]
 public readonly partial struct inorm64 : IEquatable<inorm64>, IComparable<inorm64>, IComparable
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<inorm64, inorm64, bool>
     , IComparisonOperators<inorm64, inorm64, bool>
-    #endif
 {
     private readonly i64 inner;
 
@@ -457,10 +449,8 @@ public readonly partial struct inorm64 : IEquatable<inorm64>, IComparable<inorm6
 /// </summary>
 [Serializable]
 public readonly partial struct unorm8 : IEquatable<unorm8>, IComparable<unorm8>, IComparable
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<unorm8, unorm8, bool>
     , IComparisonOperators<unorm8, unorm8, bool>
-    #endif
 {
     private readonly u8 inner;
 
@@ -569,10 +559,8 @@ public readonly partial struct unorm8 : IEquatable<unorm8>, IComparable<unorm8>,
 /// </summary>
 [Serializable]
 public readonly partial struct unorm16 : IEquatable<unorm16>, IComparable<unorm16>, IComparable
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<unorm16, unorm16, bool>
     , IComparisonOperators<unorm16, unorm16, bool>
-    #endif
 {
     private readonly u16 inner;
 
@@ -681,10 +669,8 @@ public readonly partial struct unorm16 : IEquatable<unorm16>, IComparable<unorm1
 /// </summary>
 [Serializable]
 public readonly partial struct unorm32 : IEquatable<unorm32>, IComparable<unorm32>, IComparable
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<unorm32, unorm32, bool>
     , IComparisonOperators<unorm32, unorm32, bool>
-    #endif
 {
     private readonly u32 inner;
 
@@ -793,10 +779,8 @@ public readonly partial struct unorm32 : IEquatable<unorm32>, IComparable<unorm3
 /// </summary>
 [Serializable]
 public readonly partial struct unorm64 : IEquatable<unorm64>, IComparable<unorm64>, IComparable
-    #if NET8_0_OR_GREATER
     , IEqualityOperators<unorm64, unorm64, bool>
     , IComparisonOperators<unorm64, unorm64, bool>
-    #endif
 {
     private readonly u64 inner;
 

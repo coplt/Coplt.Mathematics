@@ -25,7 +25,6 @@ namespace Coplt.Mathematics;
 #region <#= typeName #>
 
 public partial struct <#= typeName #> : IVectorBitops
-    #if NET8_0_OR_GREATER
     , IBitwiseOperators<<#= typeName #>, <#= typeName #>, <#= typeName #>>
 <#
             if (typ.shift)
@@ -35,7 +34,6 @@ public partial struct <#= typeName #> : IVectorBitops
 <#
             }
 #>
-    #endif
 {
     [MethodImpl(256 | 512)]
     public static <#= typeName #> operator ~(<#= typeName #> a)
@@ -44,26 +42,17 @@ public partial struct <#= typeName #> : IVectorBitops
             if (typ.simd)
             {
 #>
-        #if NET8_0_OR_GREATER
-        return new(~a.vector<#
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return new(~a.vector<#
                     if (i == 3)
                     {
 #> & Vector<#= bitSize #>.Create(-1, -1, -1, 0).As<#= typ.Type #>()<#
                     }
 #>);
-        #else // NET8_0_OR_GREATER
 <#
             }
 #>
         return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.BitNot()")) #>);
-<#
-            if (typ.simd)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-            }
-#>
     }
 
     [MethodImpl(256 | 512)]
@@ -73,21 +62,12 @@ public partial struct <#= typeName #> : IVectorBitops
             if (typ.simd)
             {
 #>
-        #if NET8_0_OR_GREATER
-        return new(a.vector | b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return new(a.vector | b.vector);
 <#
             }
 #>
         return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.BitOr(b.{Typ.xyzw[n]})")) #>);
-<#
-            if (typ.simd)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-            }
-#>
     }
 
     [MethodImpl(256 | 512)]
@@ -97,21 +77,12 @@ public partial struct <#= typeName #> : IVectorBitops
             if (typ.simd)
             {
 #>
-        #if NET8_0_OR_GREATER
-        return new(a.vector & b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return new(a.vector & b.vector);
 <#
             }
 #>
         return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.BitAnd(b.{Typ.xyzw[n]})")) #>);
-<#
-            if (typ.simd)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-            }
-#>
     }
 
     [MethodImpl(256 | 512)]
@@ -121,21 +92,12 @@ public partial struct <#= typeName #> : IVectorBitops
             if (typ.simd)
             {
 #>
-        #if NET8_0_OR_GREATER
-        return new(a.vector ^ b.vector);
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return new(a.vector ^ b.vector);
 <#
             }
 #>
         return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.BitXor(b.{Typ.xyzw[n]})")) #>);
-<#
-            if (typ.simd)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-            }
-#>
     }
 <#
             if (typ.shift)
@@ -149,21 +111,12 @@ public partial struct <#= typeName #> : IVectorBitops
                 if (typ.simd)
                 {
 #>
-        #if NET8_0_OR_GREATER
-        return new(a.vector << b);
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return new(a.vector << b);
 <#
                 }
 #>
         return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.BitShiftLeft(b)")) #>);
-<#
-                if (typ.simd)
-                {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-                }
-#>
     }
 
     [MethodImpl(256 | 512)]
@@ -173,21 +126,12 @@ public partial struct <#= typeName #> : IVectorBitops
                 if (typ.simd)
                 {
 #>
-        #if NET8_0_OR_GREATER
-        return new(a.vector >> b);
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return new(a.vector >> b);
 <#
                 }
 #>
         return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.BitShiftRight(b)")) #>);
-<#
-                if (typ.simd)
-                {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-                }
-#>
     }
 
     [MethodImpl(256 | 512)]
@@ -197,22 +141,13 @@ public partial struct <#= typeName #> : IVectorBitops
                 if (typ.simd)
                 {
 #>
-        #if NET8_0_OR_GREATER
-        return new(a.vector >>> b);
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return new(a.vector >>> b);
 <#
                 }
 #>
         return new(<#=
                         string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.BitShiftRightUnsigned(b)")) #>);
-<#
-                if (typ.simd)
-                {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-                }
-#>
     }
 <#
             }
@@ -228,26 +163,17 @@ public static partial class math
             if (typ.simd)
             {
 #>
-        #if NET8_0_OR_GREATER
-        return new(Vector<#= bitSize #>.AndNot(a.vector, b.vector)<#
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return new(Vector<#= bitSize #>.AndNot(a.vector, b.vector)<#
                     if (i == 3)
                     {
 #> & Vector<#= bitSize #>.Create(-1, -1, -1, 0).As<#= typ.Type #>()<#
                     }
 #>);
-        #else // NET8_0_OR_GREATER
 <#
             }
 #>
         return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.andnot(b.{Typ.xyzw[n]})")) #>);
-<#
-            if (typ.simd)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-            }
-#>
     }
 <#
             if (typ.size == 2)

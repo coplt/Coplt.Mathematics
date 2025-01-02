@@ -8,30 +8,31 @@ public partial struct float2x2
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float2x2 ceil(this float2x2 a) => 
+    public static float2x2 ceil([This] float2x2 a) => 
         new(a.c0.ceil(), a.c1.ceil());
 
     [MethodImpl(256 | 512)]
-    public static float2x2 floor(this float2x2 a) => 
+    public static float2x2 floor([This] float2x2 a) => 
         new(a.c0.floor(), a.c1.floor());
 
     [MethodImpl(256 | 512)]
-    public static float2x2 round(this float2x2 a) => 
+    public static float2x2 round([This] float2x2 a) => 
         new(a.c0.round(), a.c1.round());
 
     [MethodImpl(256 | 512)]
-    public static float2x2 trunc(this float2x2 a) => 
+    public static float2x2 trunc([This] float2x2 a) => 
         new(a.c0.trunc(), a.c1.trunc());
 
     [MethodImpl(256 | 512)]
-    public static float2x2 frac(this float2x2 a) => 
+    public static float2x2 frac([This] float2x2 a) => 
         new(a.c0.frac(), a.c1.frac());
 
     [MethodImpl(256 | 512)]
-    public static float2x2 modf(this float2x2 a, out float2x2 i)
+    public static float2x2 modf([This] float2x2 a, out float2x2 i)
     {
         float2x2 r = new(a.c0.modf(out var i0), a.c1.modf(out var i1));
         i = new(i0, i1);
@@ -39,24 +40,28 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static float2x2 rcp(this float2x2 a) => 
+    public static float2x2 rcp([This] float2x2 a) => 
         new(a.c0.rcp(), a.c1.rcp());
 
     [MethodImpl(256 | 512)]
-    public static float2x2 saturate(this float2x2 a) => 
+    public static float2x2 saturate([This] float2x2 a) => 
         new(a.c0.saturate(), a.c1.saturate());
 
     [MethodImpl(256 | 512)]
-    public static float2x2 smoothstep(this float2x2 a, float2x2 min, float2x2 max) => 
+    public static float2x2 smoothstep(float2x2 min, float2x2 max, [This] float2x2 a) => 
         new(a.c0.smoothstep(min.c0, max.c0), a.c1.smoothstep(min.c1, max.c1));
 
     [MethodImpl(256 | 512)]
-    public static float2x2 radians(this float2x2 a) => 
+    public static float2x2 radians([This] float2x2 a) => 
         new(a.c0.radians(), a.c1.radians());
 
     [MethodImpl(256 | 512)]
-    public static float2x2 degrees(this float2x2 a) => 
+    public static float2x2 degrees([This] float2x2 a) => 
         new(a.c0.degrees(), a.c1.degrees());
+
+    [MethodImpl(256 | 512)]
+    public static float2x2 wrap([This] float2x2 x, float2x2 min, float2x2 max) => 
+        new(x.c0.wrap(min.c0, max.c0), x.c1.wrap(min.c1, max.c1));
 }
 
 #endregion // float2x2
@@ -67,30 +72,31 @@ public partial struct float2x3
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float2x3 ceil(this float2x3 a) => 
+    public static float2x3 ceil([This] float2x3 a) => 
         new(a.c0.ceil(), a.c1.ceil(), a.c2.ceil());
 
     [MethodImpl(256 | 512)]
-    public static float2x3 floor(this float2x3 a) => 
+    public static float2x3 floor([This] float2x3 a) => 
         new(a.c0.floor(), a.c1.floor(), a.c2.floor());
 
     [MethodImpl(256 | 512)]
-    public static float2x3 round(this float2x3 a) => 
+    public static float2x3 round([This] float2x3 a) => 
         new(a.c0.round(), a.c1.round(), a.c2.round());
 
     [MethodImpl(256 | 512)]
-    public static float2x3 trunc(this float2x3 a) => 
+    public static float2x3 trunc([This] float2x3 a) => 
         new(a.c0.trunc(), a.c1.trunc(), a.c2.trunc());
 
     [MethodImpl(256 | 512)]
-    public static float2x3 frac(this float2x3 a) => 
+    public static float2x3 frac([This] float2x3 a) => 
         new(a.c0.frac(), a.c1.frac(), a.c2.frac());
 
     [MethodImpl(256 | 512)]
-    public static float2x3 modf(this float2x3 a, out float2x3 i)
+    public static float2x3 modf([This] float2x3 a, out float2x3 i)
     {
         float2x3 r = new(a.c0.modf(out var i0), a.c1.modf(out var i1), a.c2.modf(out var i2));
         i = new(i0, i1, i2);
@@ -98,24 +104,28 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static float2x3 rcp(this float2x3 a) => 
+    public static float2x3 rcp([This] float2x3 a) => 
         new(a.c0.rcp(), a.c1.rcp(), a.c2.rcp());
 
     [MethodImpl(256 | 512)]
-    public static float2x3 saturate(this float2x3 a) => 
+    public static float2x3 saturate([This] float2x3 a) => 
         new(a.c0.saturate(), a.c1.saturate(), a.c2.saturate());
 
     [MethodImpl(256 | 512)]
-    public static float2x3 smoothstep(this float2x3 a, float2x3 min, float2x3 max) => 
+    public static float2x3 smoothstep(float2x3 min, float2x3 max, [This] float2x3 a) => 
         new(a.c0.smoothstep(min.c0, max.c0), a.c1.smoothstep(min.c1, max.c1), a.c2.smoothstep(min.c2, max.c2));
 
     [MethodImpl(256 | 512)]
-    public static float2x3 radians(this float2x3 a) => 
+    public static float2x3 radians([This] float2x3 a) => 
         new(a.c0.radians(), a.c1.radians(), a.c2.radians());
 
     [MethodImpl(256 | 512)]
-    public static float2x3 degrees(this float2x3 a) => 
+    public static float2x3 degrees([This] float2x3 a) => 
         new(a.c0.degrees(), a.c1.degrees(), a.c2.degrees());
+
+    [MethodImpl(256 | 512)]
+    public static float2x3 wrap([This] float2x3 x, float2x3 min, float2x3 max) => 
+        new(x.c0.wrap(min.c0, max.c0), x.c1.wrap(min.c1, max.c1), x.c2.wrap(min.c2, max.c2));
 }
 
 #endregion // float2x3
@@ -126,30 +136,31 @@ public partial struct float2x4
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float2x4 ceil(this float2x4 a) => 
+    public static float2x4 ceil([This] float2x4 a) => 
         new(a.c0.ceil(), a.c1.ceil(), a.c2.ceil(), a.c3.ceil());
 
     [MethodImpl(256 | 512)]
-    public static float2x4 floor(this float2x4 a) => 
+    public static float2x4 floor([This] float2x4 a) => 
         new(a.c0.floor(), a.c1.floor(), a.c2.floor(), a.c3.floor());
 
     [MethodImpl(256 | 512)]
-    public static float2x4 round(this float2x4 a) => 
+    public static float2x4 round([This] float2x4 a) => 
         new(a.c0.round(), a.c1.round(), a.c2.round(), a.c3.round());
 
     [MethodImpl(256 | 512)]
-    public static float2x4 trunc(this float2x4 a) => 
+    public static float2x4 trunc([This] float2x4 a) => 
         new(a.c0.trunc(), a.c1.trunc(), a.c2.trunc(), a.c3.trunc());
 
     [MethodImpl(256 | 512)]
-    public static float2x4 frac(this float2x4 a) => 
+    public static float2x4 frac([This] float2x4 a) => 
         new(a.c0.frac(), a.c1.frac(), a.c2.frac(), a.c3.frac());
 
     [MethodImpl(256 | 512)]
-    public static float2x4 modf(this float2x4 a, out float2x4 i)
+    public static float2x4 modf([This] float2x4 a, out float2x4 i)
     {
         float2x4 r = new(a.c0.modf(out var i0), a.c1.modf(out var i1), a.c2.modf(out var i2), a.c3.modf(out var i3));
         i = new(i0, i1, i2, i3);
@@ -157,24 +168,28 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static float2x4 rcp(this float2x4 a) => 
+    public static float2x4 rcp([This] float2x4 a) => 
         new(a.c0.rcp(), a.c1.rcp(), a.c2.rcp(), a.c3.rcp());
 
     [MethodImpl(256 | 512)]
-    public static float2x4 saturate(this float2x4 a) => 
+    public static float2x4 saturate([This] float2x4 a) => 
         new(a.c0.saturate(), a.c1.saturate(), a.c2.saturate(), a.c3.saturate());
 
     [MethodImpl(256 | 512)]
-    public static float2x4 smoothstep(this float2x4 a, float2x4 min, float2x4 max) => 
+    public static float2x4 smoothstep(float2x4 min, float2x4 max, [This] float2x4 a) => 
         new(a.c0.smoothstep(min.c0, max.c0), a.c1.smoothstep(min.c1, max.c1), a.c2.smoothstep(min.c2, max.c2), a.c3.smoothstep(min.c3, max.c3));
 
     [MethodImpl(256 | 512)]
-    public static float2x4 radians(this float2x4 a) => 
+    public static float2x4 radians([This] float2x4 a) => 
         new(a.c0.radians(), a.c1.radians(), a.c2.radians(), a.c3.radians());
 
     [MethodImpl(256 | 512)]
-    public static float2x4 degrees(this float2x4 a) => 
+    public static float2x4 degrees([This] float2x4 a) => 
         new(a.c0.degrees(), a.c1.degrees(), a.c2.degrees(), a.c3.degrees());
+
+    [MethodImpl(256 | 512)]
+    public static float2x4 wrap([This] float2x4 x, float2x4 min, float2x4 max) => 
+        new(x.c0.wrap(min.c0, max.c0), x.c1.wrap(min.c1, max.c1), x.c2.wrap(min.c2, max.c2), x.c3.wrap(min.c3, max.c3));
 }
 
 #endregion // float2x4
@@ -185,30 +200,31 @@ public partial struct float3x2
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float3x2 ceil(this float3x2 a) => 
+    public static float3x2 ceil([This] float3x2 a) => 
         new(a.c0.ceil(), a.c1.ceil());
 
     [MethodImpl(256 | 512)]
-    public static float3x2 floor(this float3x2 a) => 
+    public static float3x2 floor([This] float3x2 a) => 
         new(a.c0.floor(), a.c1.floor());
 
     [MethodImpl(256 | 512)]
-    public static float3x2 round(this float3x2 a) => 
+    public static float3x2 round([This] float3x2 a) => 
         new(a.c0.round(), a.c1.round());
 
     [MethodImpl(256 | 512)]
-    public static float3x2 trunc(this float3x2 a) => 
+    public static float3x2 trunc([This] float3x2 a) => 
         new(a.c0.trunc(), a.c1.trunc());
 
     [MethodImpl(256 | 512)]
-    public static float3x2 frac(this float3x2 a) => 
+    public static float3x2 frac([This] float3x2 a) => 
         new(a.c0.frac(), a.c1.frac());
 
     [MethodImpl(256 | 512)]
-    public static float3x2 modf(this float3x2 a, out float3x2 i)
+    public static float3x2 modf([This] float3x2 a, out float3x2 i)
     {
         float3x2 r = new(a.c0.modf(out var i0), a.c1.modf(out var i1));
         i = new(i0, i1);
@@ -216,24 +232,28 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static float3x2 rcp(this float3x2 a) => 
+    public static float3x2 rcp([This] float3x2 a) => 
         new(a.c0.rcp(), a.c1.rcp());
 
     [MethodImpl(256 | 512)]
-    public static float3x2 saturate(this float3x2 a) => 
+    public static float3x2 saturate([This] float3x2 a) => 
         new(a.c0.saturate(), a.c1.saturate());
 
     [MethodImpl(256 | 512)]
-    public static float3x2 smoothstep(this float3x2 a, float3x2 min, float3x2 max) => 
+    public static float3x2 smoothstep(float3x2 min, float3x2 max, [This] float3x2 a) => 
         new(a.c0.smoothstep(min.c0, max.c0), a.c1.smoothstep(min.c1, max.c1));
 
     [MethodImpl(256 | 512)]
-    public static float3x2 radians(this float3x2 a) => 
+    public static float3x2 radians([This] float3x2 a) => 
         new(a.c0.radians(), a.c1.radians());
 
     [MethodImpl(256 | 512)]
-    public static float3x2 degrees(this float3x2 a) => 
+    public static float3x2 degrees([This] float3x2 a) => 
         new(a.c0.degrees(), a.c1.degrees());
+
+    [MethodImpl(256 | 512)]
+    public static float3x2 wrap([This] float3x2 x, float3x2 min, float3x2 max) => 
+        new(x.c0.wrap(min.c0, max.c0), x.c1.wrap(min.c1, max.c1));
 }
 
 #endregion // float3x2
@@ -244,30 +264,31 @@ public partial struct float3x3
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float3x3 ceil(this float3x3 a) => 
+    public static float3x3 ceil([This] float3x3 a) => 
         new(a.c0.ceil(), a.c1.ceil(), a.c2.ceil());
 
     [MethodImpl(256 | 512)]
-    public static float3x3 floor(this float3x3 a) => 
+    public static float3x3 floor([This] float3x3 a) => 
         new(a.c0.floor(), a.c1.floor(), a.c2.floor());
 
     [MethodImpl(256 | 512)]
-    public static float3x3 round(this float3x3 a) => 
+    public static float3x3 round([This] float3x3 a) => 
         new(a.c0.round(), a.c1.round(), a.c2.round());
 
     [MethodImpl(256 | 512)]
-    public static float3x3 trunc(this float3x3 a) => 
+    public static float3x3 trunc([This] float3x3 a) => 
         new(a.c0.trunc(), a.c1.trunc(), a.c2.trunc());
 
     [MethodImpl(256 | 512)]
-    public static float3x3 frac(this float3x3 a) => 
+    public static float3x3 frac([This] float3x3 a) => 
         new(a.c0.frac(), a.c1.frac(), a.c2.frac());
 
     [MethodImpl(256 | 512)]
-    public static float3x3 modf(this float3x3 a, out float3x3 i)
+    public static float3x3 modf([This] float3x3 a, out float3x3 i)
     {
         float3x3 r = new(a.c0.modf(out var i0), a.c1.modf(out var i1), a.c2.modf(out var i2));
         i = new(i0, i1, i2);
@@ -275,24 +296,28 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static float3x3 rcp(this float3x3 a) => 
+    public static float3x3 rcp([This] float3x3 a) => 
         new(a.c0.rcp(), a.c1.rcp(), a.c2.rcp());
 
     [MethodImpl(256 | 512)]
-    public static float3x3 saturate(this float3x3 a) => 
+    public static float3x3 saturate([This] float3x3 a) => 
         new(a.c0.saturate(), a.c1.saturate(), a.c2.saturate());
 
     [MethodImpl(256 | 512)]
-    public static float3x3 smoothstep(this float3x3 a, float3x3 min, float3x3 max) => 
+    public static float3x3 smoothstep(float3x3 min, float3x3 max, [This] float3x3 a) => 
         new(a.c0.smoothstep(min.c0, max.c0), a.c1.smoothstep(min.c1, max.c1), a.c2.smoothstep(min.c2, max.c2));
 
     [MethodImpl(256 | 512)]
-    public static float3x3 radians(this float3x3 a) => 
+    public static float3x3 radians([This] float3x3 a) => 
         new(a.c0.radians(), a.c1.radians(), a.c2.radians());
 
     [MethodImpl(256 | 512)]
-    public static float3x3 degrees(this float3x3 a) => 
+    public static float3x3 degrees([This] float3x3 a) => 
         new(a.c0.degrees(), a.c1.degrees(), a.c2.degrees());
+
+    [MethodImpl(256 | 512)]
+    public static float3x3 wrap([This] float3x3 x, float3x3 min, float3x3 max) => 
+        new(x.c0.wrap(min.c0, max.c0), x.c1.wrap(min.c1, max.c1), x.c2.wrap(min.c2, max.c2));
 }
 
 #endregion // float3x3
@@ -303,30 +328,31 @@ public partial struct float3x4
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float3x4 ceil(this float3x4 a) => 
+    public static float3x4 ceil([This] float3x4 a) => 
         new(a.c0.ceil(), a.c1.ceil(), a.c2.ceil(), a.c3.ceil());
 
     [MethodImpl(256 | 512)]
-    public static float3x4 floor(this float3x4 a) => 
+    public static float3x4 floor([This] float3x4 a) => 
         new(a.c0.floor(), a.c1.floor(), a.c2.floor(), a.c3.floor());
 
     [MethodImpl(256 | 512)]
-    public static float3x4 round(this float3x4 a) => 
+    public static float3x4 round([This] float3x4 a) => 
         new(a.c0.round(), a.c1.round(), a.c2.round(), a.c3.round());
 
     [MethodImpl(256 | 512)]
-    public static float3x4 trunc(this float3x4 a) => 
+    public static float3x4 trunc([This] float3x4 a) => 
         new(a.c0.trunc(), a.c1.trunc(), a.c2.trunc(), a.c3.trunc());
 
     [MethodImpl(256 | 512)]
-    public static float3x4 frac(this float3x4 a) => 
+    public static float3x4 frac([This] float3x4 a) => 
         new(a.c0.frac(), a.c1.frac(), a.c2.frac(), a.c3.frac());
 
     [MethodImpl(256 | 512)]
-    public static float3x4 modf(this float3x4 a, out float3x4 i)
+    public static float3x4 modf([This] float3x4 a, out float3x4 i)
     {
         float3x4 r = new(a.c0.modf(out var i0), a.c1.modf(out var i1), a.c2.modf(out var i2), a.c3.modf(out var i3));
         i = new(i0, i1, i2, i3);
@@ -334,24 +360,28 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static float3x4 rcp(this float3x4 a) => 
+    public static float3x4 rcp([This] float3x4 a) => 
         new(a.c0.rcp(), a.c1.rcp(), a.c2.rcp(), a.c3.rcp());
 
     [MethodImpl(256 | 512)]
-    public static float3x4 saturate(this float3x4 a) => 
+    public static float3x4 saturate([This] float3x4 a) => 
         new(a.c0.saturate(), a.c1.saturate(), a.c2.saturate(), a.c3.saturate());
 
     [MethodImpl(256 | 512)]
-    public static float3x4 smoothstep(this float3x4 a, float3x4 min, float3x4 max) => 
+    public static float3x4 smoothstep(float3x4 min, float3x4 max, [This] float3x4 a) => 
         new(a.c0.smoothstep(min.c0, max.c0), a.c1.smoothstep(min.c1, max.c1), a.c2.smoothstep(min.c2, max.c2), a.c3.smoothstep(min.c3, max.c3));
 
     [MethodImpl(256 | 512)]
-    public static float3x4 radians(this float3x4 a) => 
+    public static float3x4 radians([This] float3x4 a) => 
         new(a.c0.radians(), a.c1.radians(), a.c2.radians(), a.c3.radians());
 
     [MethodImpl(256 | 512)]
-    public static float3x4 degrees(this float3x4 a) => 
+    public static float3x4 degrees([This] float3x4 a) => 
         new(a.c0.degrees(), a.c1.degrees(), a.c2.degrees(), a.c3.degrees());
+
+    [MethodImpl(256 | 512)]
+    public static float3x4 wrap([This] float3x4 x, float3x4 min, float3x4 max) => 
+        new(x.c0.wrap(min.c0, max.c0), x.c1.wrap(min.c1, max.c1), x.c2.wrap(min.c2, max.c2), x.c3.wrap(min.c3, max.c3));
 }
 
 #endregion // float3x4
@@ -362,30 +392,31 @@ public partial struct float4x2
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float4x2 ceil(this float4x2 a) => 
+    public static float4x2 ceil([This] float4x2 a) => 
         new(a.c0.ceil(), a.c1.ceil());
 
     [MethodImpl(256 | 512)]
-    public static float4x2 floor(this float4x2 a) => 
+    public static float4x2 floor([This] float4x2 a) => 
         new(a.c0.floor(), a.c1.floor());
 
     [MethodImpl(256 | 512)]
-    public static float4x2 round(this float4x2 a) => 
+    public static float4x2 round([This] float4x2 a) => 
         new(a.c0.round(), a.c1.round());
 
     [MethodImpl(256 | 512)]
-    public static float4x2 trunc(this float4x2 a) => 
+    public static float4x2 trunc([This] float4x2 a) => 
         new(a.c0.trunc(), a.c1.trunc());
 
     [MethodImpl(256 | 512)]
-    public static float4x2 frac(this float4x2 a) => 
+    public static float4x2 frac([This] float4x2 a) => 
         new(a.c0.frac(), a.c1.frac());
 
     [MethodImpl(256 | 512)]
-    public static float4x2 modf(this float4x2 a, out float4x2 i)
+    public static float4x2 modf([This] float4x2 a, out float4x2 i)
     {
         float4x2 r = new(a.c0.modf(out var i0), a.c1.modf(out var i1));
         i = new(i0, i1);
@@ -393,24 +424,28 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static float4x2 rcp(this float4x2 a) => 
+    public static float4x2 rcp([This] float4x2 a) => 
         new(a.c0.rcp(), a.c1.rcp());
 
     [MethodImpl(256 | 512)]
-    public static float4x2 saturate(this float4x2 a) => 
+    public static float4x2 saturate([This] float4x2 a) => 
         new(a.c0.saturate(), a.c1.saturate());
 
     [MethodImpl(256 | 512)]
-    public static float4x2 smoothstep(this float4x2 a, float4x2 min, float4x2 max) => 
+    public static float4x2 smoothstep(float4x2 min, float4x2 max, [This] float4x2 a) => 
         new(a.c0.smoothstep(min.c0, max.c0), a.c1.smoothstep(min.c1, max.c1));
 
     [MethodImpl(256 | 512)]
-    public static float4x2 radians(this float4x2 a) => 
+    public static float4x2 radians([This] float4x2 a) => 
         new(a.c0.radians(), a.c1.radians());
 
     [MethodImpl(256 | 512)]
-    public static float4x2 degrees(this float4x2 a) => 
+    public static float4x2 degrees([This] float4x2 a) => 
         new(a.c0.degrees(), a.c1.degrees());
+
+    [MethodImpl(256 | 512)]
+    public static float4x2 wrap([This] float4x2 x, float4x2 min, float4x2 max) => 
+        new(x.c0.wrap(min.c0, max.c0), x.c1.wrap(min.c1, max.c1));
 }
 
 #endregion // float4x2
@@ -421,30 +456,31 @@ public partial struct float4x3
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float4x3 ceil(this float4x3 a) => 
+    public static float4x3 ceil([This] float4x3 a) => 
         new(a.c0.ceil(), a.c1.ceil(), a.c2.ceil());
 
     [MethodImpl(256 | 512)]
-    public static float4x3 floor(this float4x3 a) => 
+    public static float4x3 floor([This] float4x3 a) => 
         new(a.c0.floor(), a.c1.floor(), a.c2.floor());
 
     [MethodImpl(256 | 512)]
-    public static float4x3 round(this float4x3 a) => 
+    public static float4x3 round([This] float4x3 a) => 
         new(a.c0.round(), a.c1.round(), a.c2.round());
 
     [MethodImpl(256 | 512)]
-    public static float4x3 trunc(this float4x3 a) => 
+    public static float4x3 trunc([This] float4x3 a) => 
         new(a.c0.trunc(), a.c1.trunc(), a.c2.trunc());
 
     [MethodImpl(256 | 512)]
-    public static float4x3 frac(this float4x3 a) => 
+    public static float4x3 frac([This] float4x3 a) => 
         new(a.c0.frac(), a.c1.frac(), a.c2.frac());
 
     [MethodImpl(256 | 512)]
-    public static float4x3 modf(this float4x3 a, out float4x3 i)
+    public static float4x3 modf([This] float4x3 a, out float4x3 i)
     {
         float4x3 r = new(a.c0.modf(out var i0), a.c1.modf(out var i1), a.c2.modf(out var i2));
         i = new(i0, i1, i2);
@@ -452,24 +488,28 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static float4x3 rcp(this float4x3 a) => 
+    public static float4x3 rcp([This] float4x3 a) => 
         new(a.c0.rcp(), a.c1.rcp(), a.c2.rcp());
 
     [MethodImpl(256 | 512)]
-    public static float4x3 saturate(this float4x3 a) => 
+    public static float4x3 saturate([This] float4x3 a) => 
         new(a.c0.saturate(), a.c1.saturate(), a.c2.saturate());
 
     [MethodImpl(256 | 512)]
-    public static float4x3 smoothstep(this float4x3 a, float4x3 min, float4x3 max) => 
+    public static float4x3 smoothstep(float4x3 min, float4x3 max, [This] float4x3 a) => 
         new(a.c0.smoothstep(min.c0, max.c0), a.c1.smoothstep(min.c1, max.c1), a.c2.smoothstep(min.c2, max.c2));
 
     [MethodImpl(256 | 512)]
-    public static float4x3 radians(this float4x3 a) => 
+    public static float4x3 radians([This] float4x3 a) => 
         new(a.c0.radians(), a.c1.radians(), a.c2.radians());
 
     [MethodImpl(256 | 512)]
-    public static float4x3 degrees(this float4x3 a) => 
+    public static float4x3 degrees([This] float4x3 a) => 
         new(a.c0.degrees(), a.c1.degrees(), a.c2.degrees());
+
+    [MethodImpl(256 | 512)]
+    public static float4x3 wrap([This] float4x3 x, float4x3 min, float4x3 max) => 
+        new(x.c0.wrap(min.c0, max.c0), x.c1.wrap(min.c1, max.c1), x.c2.wrap(min.c2, max.c2));
 }
 
 #endregion // float4x3
@@ -480,30 +520,31 @@ public partial struct float4x4
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float4x4 ceil(this float4x4 a) => 
+    public static float4x4 ceil([This] float4x4 a) => 
         new(a.c0.ceil(), a.c1.ceil(), a.c2.ceil(), a.c3.ceil());
 
     [MethodImpl(256 | 512)]
-    public static float4x4 floor(this float4x4 a) => 
+    public static float4x4 floor([This] float4x4 a) => 
         new(a.c0.floor(), a.c1.floor(), a.c2.floor(), a.c3.floor());
 
     [MethodImpl(256 | 512)]
-    public static float4x4 round(this float4x4 a) => 
+    public static float4x4 round([This] float4x4 a) => 
         new(a.c0.round(), a.c1.round(), a.c2.round(), a.c3.round());
 
     [MethodImpl(256 | 512)]
-    public static float4x4 trunc(this float4x4 a) => 
+    public static float4x4 trunc([This] float4x4 a) => 
         new(a.c0.trunc(), a.c1.trunc(), a.c2.trunc(), a.c3.trunc());
 
     [MethodImpl(256 | 512)]
-    public static float4x4 frac(this float4x4 a) => 
+    public static float4x4 frac([This] float4x4 a) => 
         new(a.c0.frac(), a.c1.frac(), a.c2.frac(), a.c3.frac());
 
     [MethodImpl(256 | 512)]
-    public static float4x4 modf(this float4x4 a, out float4x4 i)
+    public static float4x4 modf([This] float4x4 a, out float4x4 i)
     {
         float4x4 r = new(a.c0.modf(out var i0), a.c1.modf(out var i1), a.c2.modf(out var i2), a.c3.modf(out var i3));
         i = new(i0, i1, i2, i3);
@@ -511,24 +552,28 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static float4x4 rcp(this float4x4 a) => 
+    public static float4x4 rcp([This] float4x4 a) => 
         new(a.c0.rcp(), a.c1.rcp(), a.c2.rcp(), a.c3.rcp());
 
     [MethodImpl(256 | 512)]
-    public static float4x4 saturate(this float4x4 a) => 
+    public static float4x4 saturate([This] float4x4 a) => 
         new(a.c0.saturate(), a.c1.saturate(), a.c2.saturate(), a.c3.saturate());
 
     [MethodImpl(256 | 512)]
-    public static float4x4 smoothstep(this float4x4 a, float4x4 min, float4x4 max) => 
+    public static float4x4 smoothstep(float4x4 min, float4x4 max, [This] float4x4 a) => 
         new(a.c0.smoothstep(min.c0, max.c0), a.c1.smoothstep(min.c1, max.c1), a.c2.smoothstep(min.c2, max.c2), a.c3.smoothstep(min.c3, max.c3));
 
     [MethodImpl(256 | 512)]
-    public static float4x4 radians(this float4x4 a) => 
+    public static float4x4 radians([This] float4x4 a) => 
         new(a.c0.radians(), a.c1.radians(), a.c2.radians(), a.c3.radians());
 
     [MethodImpl(256 | 512)]
-    public static float4x4 degrees(this float4x4 a) => 
+    public static float4x4 degrees([This] float4x4 a) => 
         new(a.c0.degrees(), a.c1.degrees(), a.c2.degrees(), a.c3.degrees());
+
+    [MethodImpl(256 | 512)]
+    public static float4x4 wrap([This] float4x4 x, float4x4 min, float4x4 max) => 
+        new(x.c0.wrap(min.c0, max.c0), x.c1.wrap(min.c1, max.c1), x.c2.wrap(min.c2, max.c2), x.c3.wrap(min.c3, max.c3));
 }
 
 #endregion // float4x4
@@ -539,30 +584,31 @@ public partial struct double2x2
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double2x2 ceil(this double2x2 a) => 
+    public static double2x2 ceil([This] double2x2 a) => 
         new(a.c0.ceil(), a.c1.ceil());
 
     [MethodImpl(256 | 512)]
-    public static double2x2 floor(this double2x2 a) => 
+    public static double2x2 floor([This] double2x2 a) => 
         new(a.c0.floor(), a.c1.floor());
 
     [MethodImpl(256 | 512)]
-    public static double2x2 round(this double2x2 a) => 
+    public static double2x2 round([This] double2x2 a) => 
         new(a.c0.round(), a.c1.round());
 
     [MethodImpl(256 | 512)]
-    public static double2x2 trunc(this double2x2 a) => 
+    public static double2x2 trunc([This] double2x2 a) => 
         new(a.c0.trunc(), a.c1.trunc());
 
     [MethodImpl(256 | 512)]
-    public static double2x2 frac(this double2x2 a) => 
+    public static double2x2 frac([This] double2x2 a) => 
         new(a.c0.frac(), a.c1.frac());
 
     [MethodImpl(256 | 512)]
-    public static double2x2 modf(this double2x2 a, out double2x2 i)
+    public static double2x2 modf([This] double2x2 a, out double2x2 i)
     {
         double2x2 r = new(a.c0.modf(out var i0), a.c1.modf(out var i1));
         i = new(i0, i1);
@@ -570,24 +616,28 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static double2x2 rcp(this double2x2 a) => 
+    public static double2x2 rcp([This] double2x2 a) => 
         new(a.c0.rcp(), a.c1.rcp());
 
     [MethodImpl(256 | 512)]
-    public static double2x2 saturate(this double2x2 a) => 
+    public static double2x2 saturate([This] double2x2 a) => 
         new(a.c0.saturate(), a.c1.saturate());
 
     [MethodImpl(256 | 512)]
-    public static double2x2 smoothstep(this double2x2 a, double2x2 min, double2x2 max) => 
+    public static double2x2 smoothstep(double2x2 min, double2x2 max, [This] double2x2 a) => 
         new(a.c0.smoothstep(min.c0, max.c0), a.c1.smoothstep(min.c1, max.c1));
 
     [MethodImpl(256 | 512)]
-    public static double2x2 radians(this double2x2 a) => 
+    public static double2x2 radians([This] double2x2 a) => 
         new(a.c0.radians(), a.c1.radians());
 
     [MethodImpl(256 | 512)]
-    public static double2x2 degrees(this double2x2 a) => 
+    public static double2x2 degrees([This] double2x2 a) => 
         new(a.c0.degrees(), a.c1.degrees());
+
+    [MethodImpl(256 | 512)]
+    public static double2x2 wrap([This] double2x2 x, double2x2 min, double2x2 max) => 
+        new(x.c0.wrap(min.c0, max.c0), x.c1.wrap(min.c1, max.c1));
 }
 
 #endregion // double2x2
@@ -598,30 +648,31 @@ public partial struct double2x3
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double2x3 ceil(this double2x3 a) => 
+    public static double2x3 ceil([This] double2x3 a) => 
         new(a.c0.ceil(), a.c1.ceil(), a.c2.ceil());
 
     [MethodImpl(256 | 512)]
-    public static double2x3 floor(this double2x3 a) => 
+    public static double2x3 floor([This] double2x3 a) => 
         new(a.c0.floor(), a.c1.floor(), a.c2.floor());
 
     [MethodImpl(256 | 512)]
-    public static double2x3 round(this double2x3 a) => 
+    public static double2x3 round([This] double2x3 a) => 
         new(a.c0.round(), a.c1.round(), a.c2.round());
 
     [MethodImpl(256 | 512)]
-    public static double2x3 trunc(this double2x3 a) => 
+    public static double2x3 trunc([This] double2x3 a) => 
         new(a.c0.trunc(), a.c1.trunc(), a.c2.trunc());
 
     [MethodImpl(256 | 512)]
-    public static double2x3 frac(this double2x3 a) => 
+    public static double2x3 frac([This] double2x3 a) => 
         new(a.c0.frac(), a.c1.frac(), a.c2.frac());
 
     [MethodImpl(256 | 512)]
-    public static double2x3 modf(this double2x3 a, out double2x3 i)
+    public static double2x3 modf([This] double2x3 a, out double2x3 i)
     {
         double2x3 r = new(a.c0.modf(out var i0), a.c1.modf(out var i1), a.c2.modf(out var i2));
         i = new(i0, i1, i2);
@@ -629,24 +680,28 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static double2x3 rcp(this double2x3 a) => 
+    public static double2x3 rcp([This] double2x3 a) => 
         new(a.c0.rcp(), a.c1.rcp(), a.c2.rcp());
 
     [MethodImpl(256 | 512)]
-    public static double2x3 saturate(this double2x3 a) => 
+    public static double2x3 saturate([This] double2x3 a) => 
         new(a.c0.saturate(), a.c1.saturate(), a.c2.saturate());
 
     [MethodImpl(256 | 512)]
-    public static double2x3 smoothstep(this double2x3 a, double2x3 min, double2x3 max) => 
+    public static double2x3 smoothstep(double2x3 min, double2x3 max, [This] double2x3 a) => 
         new(a.c0.smoothstep(min.c0, max.c0), a.c1.smoothstep(min.c1, max.c1), a.c2.smoothstep(min.c2, max.c2));
 
     [MethodImpl(256 | 512)]
-    public static double2x3 radians(this double2x3 a) => 
+    public static double2x3 radians([This] double2x3 a) => 
         new(a.c0.radians(), a.c1.radians(), a.c2.radians());
 
     [MethodImpl(256 | 512)]
-    public static double2x3 degrees(this double2x3 a) => 
+    public static double2x3 degrees([This] double2x3 a) => 
         new(a.c0.degrees(), a.c1.degrees(), a.c2.degrees());
+
+    [MethodImpl(256 | 512)]
+    public static double2x3 wrap([This] double2x3 x, double2x3 min, double2x3 max) => 
+        new(x.c0.wrap(min.c0, max.c0), x.c1.wrap(min.c1, max.c1), x.c2.wrap(min.c2, max.c2));
 }
 
 #endregion // double2x3
@@ -657,30 +712,31 @@ public partial struct double2x4
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double2x4 ceil(this double2x4 a) => 
+    public static double2x4 ceil([This] double2x4 a) => 
         new(a.c0.ceil(), a.c1.ceil(), a.c2.ceil(), a.c3.ceil());
 
     [MethodImpl(256 | 512)]
-    public static double2x4 floor(this double2x4 a) => 
+    public static double2x4 floor([This] double2x4 a) => 
         new(a.c0.floor(), a.c1.floor(), a.c2.floor(), a.c3.floor());
 
     [MethodImpl(256 | 512)]
-    public static double2x4 round(this double2x4 a) => 
+    public static double2x4 round([This] double2x4 a) => 
         new(a.c0.round(), a.c1.round(), a.c2.round(), a.c3.round());
 
     [MethodImpl(256 | 512)]
-    public static double2x4 trunc(this double2x4 a) => 
+    public static double2x4 trunc([This] double2x4 a) => 
         new(a.c0.trunc(), a.c1.trunc(), a.c2.trunc(), a.c3.trunc());
 
     [MethodImpl(256 | 512)]
-    public static double2x4 frac(this double2x4 a) => 
+    public static double2x4 frac([This] double2x4 a) => 
         new(a.c0.frac(), a.c1.frac(), a.c2.frac(), a.c3.frac());
 
     [MethodImpl(256 | 512)]
-    public static double2x4 modf(this double2x4 a, out double2x4 i)
+    public static double2x4 modf([This] double2x4 a, out double2x4 i)
     {
         double2x4 r = new(a.c0.modf(out var i0), a.c1.modf(out var i1), a.c2.modf(out var i2), a.c3.modf(out var i3));
         i = new(i0, i1, i2, i3);
@@ -688,24 +744,28 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static double2x4 rcp(this double2x4 a) => 
+    public static double2x4 rcp([This] double2x4 a) => 
         new(a.c0.rcp(), a.c1.rcp(), a.c2.rcp(), a.c3.rcp());
 
     [MethodImpl(256 | 512)]
-    public static double2x4 saturate(this double2x4 a) => 
+    public static double2x4 saturate([This] double2x4 a) => 
         new(a.c0.saturate(), a.c1.saturate(), a.c2.saturate(), a.c3.saturate());
 
     [MethodImpl(256 | 512)]
-    public static double2x4 smoothstep(this double2x4 a, double2x4 min, double2x4 max) => 
+    public static double2x4 smoothstep(double2x4 min, double2x4 max, [This] double2x4 a) => 
         new(a.c0.smoothstep(min.c0, max.c0), a.c1.smoothstep(min.c1, max.c1), a.c2.smoothstep(min.c2, max.c2), a.c3.smoothstep(min.c3, max.c3));
 
     [MethodImpl(256 | 512)]
-    public static double2x4 radians(this double2x4 a) => 
+    public static double2x4 radians([This] double2x4 a) => 
         new(a.c0.radians(), a.c1.radians(), a.c2.radians(), a.c3.radians());
 
     [MethodImpl(256 | 512)]
-    public static double2x4 degrees(this double2x4 a) => 
+    public static double2x4 degrees([This] double2x4 a) => 
         new(a.c0.degrees(), a.c1.degrees(), a.c2.degrees(), a.c3.degrees());
+
+    [MethodImpl(256 | 512)]
+    public static double2x4 wrap([This] double2x4 x, double2x4 min, double2x4 max) => 
+        new(x.c0.wrap(min.c0, max.c0), x.c1.wrap(min.c1, max.c1), x.c2.wrap(min.c2, max.c2), x.c3.wrap(min.c3, max.c3));
 }
 
 #endregion // double2x4
@@ -716,30 +776,31 @@ public partial struct double3x2
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double3x2 ceil(this double3x2 a) => 
+    public static double3x2 ceil([This] double3x2 a) => 
         new(a.c0.ceil(), a.c1.ceil());
 
     [MethodImpl(256 | 512)]
-    public static double3x2 floor(this double3x2 a) => 
+    public static double3x2 floor([This] double3x2 a) => 
         new(a.c0.floor(), a.c1.floor());
 
     [MethodImpl(256 | 512)]
-    public static double3x2 round(this double3x2 a) => 
+    public static double3x2 round([This] double3x2 a) => 
         new(a.c0.round(), a.c1.round());
 
     [MethodImpl(256 | 512)]
-    public static double3x2 trunc(this double3x2 a) => 
+    public static double3x2 trunc([This] double3x2 a) => 
         new(a.c0.trunc(), a.c1.trunc());
 
     [MethodImpl(256 | 512)]
-    public static double3x2 frac(this double3x2 a) => 
+    public static double3x2 frac([This] double3x2 a) => 
         new(a.c0.frac(), a.c1.frac());
 
     [MethodImpl(256 | 512)]
-    public static double3x2 modf(this double3x2 a, out double3x2 i)
+    public static double3x2 modf([This] double3x2 a, out double3x2 i)
     {
         double3x2 r = new(a.c0.modf(out var i0), a.c1.modf(out var i1));
         i = new(i0, i1);
@@ -747,24 +808,28 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static double3x2 rcp(this double3x2 a) => 
+    public static double3x2 rcp([This] double3x2 a) => 
         new(a.c0.rcp(), a.c1.rcp());
 
     [MethodImpl(256 | 512)]
-    public static double3x2 saturate(this double3x2 a) => 
+    public static double3x2 saturate([This] double3x2 a) => 
         new(a.c0.saturate(), a.c1.saturate());
 
     [MethodImpl(256 | 512)]
-    public static double3x2 smoothstep(this double3x2 a, double3x2 min, double3x2 max) => 
+    public static double3x2 smoothstep(double3x2 min, double3x2 max, [This] double3x2 a) => 
         new(a.c0.smoothstep(min.c0, max.c0), a.c1.smoothstep(min.c1, max.c1));
 
     [MethodImpl(256 | 512)]
-    public static double3x2 radians(this double3x2 a) => 
+    public static double3x2 radians([This] double3x2 a) => 
         new(a.c0.radians(), a.c1.radians());
 
     [MethodImpl(256 | 512)]
-    public static double3x2 degrees(this double3x2 a) => 
+    public static double3x2 degrees([This] double3x2 a) => 
         new(a.c0.degrees(), a.c1.degrees());
+
+    [MethodImpl(256 | 512)]
+    public static double3x2 wrap([This] double3x2 x, double3x2 min, double3x2 max) => 
+        new(x.c0.wrap(min.c0, max.c0), x.c1.wrap(min.c1, max.c1));
 }
 
 #endregion // double3x2
@@ -775,30 +840,31 @@ public partial struct double3x3
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double3x3 ceil(this double3x3 a) => 
+    public static double3x3 ceil([This] double3x3 a) => 
         new(a.c0.ceil(), a.c1.ceil(), a.c2.ceil());
 
     [MethodImpl(256 | 512)]
-    public static double3x3 floor(this double3x3 a) => 
+    public static double3x3 floor([This] double3x3 a) => 
         new(a.c0.floor(), a.c1.floor(), a.c2.floor());
 
     [MethodImpl(256 | 512)]
-    public static double3x3 round(this double3x3 a) => 
+    public static double3x3 round([This] double3x3 a) => 
         new(a.c0.round(), a.c1.round(), a.c2.round());
 
     [MethodImpl(256 | 512)]
-    public static double3x3 trunc(this double3x3 a) => 
+    public static double3x3 trunc([This] double3x3 a) => 
         new(a.c0.trunc(), a.c1.trunc(), a.c2.trunc());
 
     [MethodImpl(256 | 512)]
-    public static double3x3 frac(this double3x3 a) => 
+    public static double3x3 frac([This] double3x3 a) => 
         new(a.c0.frac(), a.c1.frac(), a.c2.frac());
 
     [MethodImpl(256 | 512)]
-    public static double3x3 modf(this double3x3 a, out double3x3 i)
+    public static double3x3 modf([This] double3x3 a, out double3x3 i)
     {
         double3x3 r = new(a.c0.modf(out var i0), a.c1.modf(out var i1), a.c2.modf(out var i2));
         i = new(i0, i1, i2);
@@ -806,24 +872,28 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static double3x3 rcp(this double3x3 a) => 
+    public static double3x3 rcp([This] double3x3 a) => 
         new(a.c0.rcp(), a.c1.rcp(), a.c2.rcp());
 
     [MethodImpl(256 | 512)]
-    public static double3x3 saturate(this double3x3 a) => 
+    public static double3x3 saturate([This] double3x3 a) => 
         new(a.c0.saturate(), a.c1.saturate(), a.c2.saturate());
 
     [MethodImpl(256 | 512)]
-    public static double3x3 smoothstep(this double3x3 a, double3x3 min, double3x3 max) => 
+    public static double3x3 smoothstep(double3x3 min, double3x3 max, [This] double3x3 a) => 
         new(a.c0.smoothstep(min.c0, max.c0), a.c1.smoothstep(min.c1, max.c1), a.c2.smoothstep(min.c2, max.c2));
 
     [MethodImpl(256 | 512)]
-    public static double3x3 radians(this double3x3 a) => 
+    public static double3x3 radians([This] double3x3 a) => 
         new(a.c0.radians(), a.c1.radians(), a.c2.radians());
 
     [MethodImpl(256 | 512)]
-    public static double3x3 degrees(this double3x3 a) => 
+    public static double3x3 degrees([This] double3x3 a) => 
         new(a.c0.degrees(), a.c1.degrees(), a.c2.degrees());
+
+    [MethodImpl(256 | 512)]
+    public static double3x3 wrap([This] double3x3 x, double3x3 min, double3x3 max) => 
+        new(x.c0.wrap(min.c0, max.c0), x.c1.wrap(min.c1, max.c1), x.c2.wrap(min.c2, max.c2));
 }
 
 #endregion // double3x3
@@ -834,30 +904,31 @@ public partial struct double3x4
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double3x4 ceil(this double3x4 a) => 
+    public static double3x4 ceil([This] double3x4 a) => 
         new(a.c0.ceil(), a.c1.ceil(), a.c2.ceil(), a.c3.ceil());
 
     [MethodImpl(256 | 512)]
-    public static double3x4 floor(this double3x4 a) => 
+    public static double3x4 floor([This] double3x4 a) => 
         new(a.c0.floor(), a.c1.floor(), a.c2.floor(), a.c3.floor());
 
     [MethodImpl(256 | 512)]
-    public static double3x4 round(this double3x4 a) => 
+    public static double3x4 round([This] double3x4 a) => 
         new(a.c0.round(), a.c1.round(), a.c2.round(), a.c3.round());
 
     [MethodImpl(256 | 512)]
-    public static double3x4 trunc(this double3x4 a) => 
+    public static double3x4 trunc([This] double3x4 a) => 
         new(a.c0.trunc(), a.c1.trunc(), a.c2.trunc(), a.c3.trunc());
 
     [MethodImpl(256 | 512)]
-    public static double3x4 frac(this double3x4 a) => 
+    public static double3x4 frac([This] double3x4 a) => 
         new(a.c0.frac(), a.c1.frac(), a.c2.frac(), a.c3.frac());
 
     [MethodImpl(256 | 512)]
-    public static double3x4 modf(this double3x4 a, out double3x4 i)
+    public static double3x4 modf([This] double3x4 a, out double3x4 i)
     {
         double3x4 r = new(a.c0.modf(out var i0), a.c1.modf(out var i1), a.c2.modf(out var i2), a.c3.modf(out var i3));
         i = new(i0, i1, i2, i3);
@@ -865,24 +936,28 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static double3x4 rcp(this double3x4 a) => 
+    public static double3x4 rcp([This] double3x4 a) => 
         new(a.c0.rcp(), a.c1.rcp(), a.c2.rcp(), a.c3.rcp());
 
     [MethodImpl(256 | 512)]
-    public static double3x4 saturate(this double3x4 a) => 
+    public static double3x4 saturate([This] double3x4 a) => 
         new(a.c0.saturate(), a.c1.saturate(), a.c2.saturate(), a.c3.saturate());
 
     [MethodImpl(256 | 512)]
-    public static double3x4 smoothstep(this double3x4 a, double3x4 min, double3x4 max) => 
+    public static double3x4 smoothstep(double3x4 min, double3x4 max, [This] double3x4 a) => 
         new(a.c0.smoothstep(min.c0, max.c0), a.c1.smoothstep(min.c1, max.c1), a.c2.smoothstep(min.c2, max.c2), a.c3.smoothstep(min.c3, max.c3));
 
     [MethodImpl(256 | 512)]
-    public static double3x4 radians(this double3x4 a) => 
+    public static double3x4 radians([This] double3x4 a) => 
         new(a.c0.radians(), a.c1.radians(), a.c2.radians(), a.c3.radians());
 
     [MethodImpl(256 | 512)]
-    public static double3x4 degrees(this double3x4 a) => 
+    public static double3x4 degrees([This] double3x4 a) => 
         new(a.c0.degrees(), a.c1.degrees(), a.c2.degrees(), a.c3.degrees());
+
+    [MethodImpl(256 | 512)]
+    public static double3x4 wrap([This] double3x4 x, double3x4 min, double3x4 max) => 
+        new(x.c0.wrap(min.c0, max.c0), x.c1.wrap(min.c1, max.c1), x.c2.wrap(min.c2, max.c2), x.c3.wrap(min.c3, max.c3));
 }
 
 #endregion // double3x4
@@ -893,30 +968,31 @@ public partial struct double4x2
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double4x2 ceil(this double4x2 a) => 
+    public static double4x2 ceil([This] double4x2 a) => 
         new(a.c0.ceil(), a.c1.ceil());
 
     [MethodImpl(256 | 512)]
-    public static double4x2 floor(this double4x2 a) => 
+    public static double4x2 floor([This] double4x2 a) => 
         new(a.c0.floor(), a.c1.floor());
 
     [MethodImpl(256 | 512)]
-    public static double4x2 round(this double4x2 a) => 
+    public static double4x2 round([This] double4x2 a) => 
         new(a.c0.round(), a.c1.round());
 
     [MethodImpl(256 | 512)]
-    public static double4x2 trunc(this double4x2 a) => 
+    public static double4x2 trunc([This] double4x2 a) => 
         new(a.c0.trunc(), a.c1.trunc());
 
     [MethodImpl(256 | 512)]
-    public static double4x2 frac(this double4x2 a) => 
+    public static double4x2 frac([This] double4x2 a) => 
         new(a.c0.frac(), a.c1.frac());
 
     [MethodImpl(256 | 512)]
-    public static double4x2 modf(this double4x2 a, out double4x2 i)
+    public static double4x2 modf([This] double4x2 a, out double4x2 i)
     {
         double4x2 r = new(a.c0.modf(out var i0), a.c1.modf(out var i1));
         i = new(i0, i1);
@@ -924,24 +1000,28 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static double4x2 rcp(this double4x2 a) => 
+    public static double4x2 rcp([This] double4x2 a) => 
         new(a.c0.rcp(), a.c1.rcp());
 
     [MethodImpl(256 | 512)]
-    public static double4x2 saturate(this double4x2 a) => 
+    public static double4x2 saturate([This] double4x2 a) => 
         new(a.c0.saturate(), a.c1.saturate());
 
     [MethodImpl(256 | 512)]
-    public static double4x2 smoothstep(this double4x2 a, double4x2 min, double4x2 max) => 
+    public static double4x2 smoothstep(double4x2 min, double4x2 max, [This] double4x2 a) => 
         new(a.c0.smoothstep(min.c0, max.c0), a.c1.smoothstep(min.c1, max.c1));
 
     [MethodImpl(256 | 512)]
-    public static double4x2 radians(this double4x2 a) => 
+    public static double4x2 radians([This] double4x2 a) => 
         new(a.c0.radians(), a.c1.radians());
 
     [MethodImpl(256 | 512)]
-    public static double4x2 degrees(this double4x2 a) => 
+    public static double4x2 degrees([This] double4x2 a) => 
         new(a.c0.degrees(), a.c1.degrees());
+
+    [MethodImpl(256 | 512)]
+    public static double4x2 wrap([This] double4x2 x, double4x2 min, double4x2 max) => 
+        new(x.c0.wrap(min.c0, max.c0), x.c1.wrap(min.c1, max.c1));
 }
 
 #endregion // double4x2
@@ -952,30 +1032,31 @@ public partial struct double4x3
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double4x3 ceil(this double4x3 a) => 
+    public static double4x3 ceil([This] double4x3 a) => 
         new(a.c0.ceil(), a.c1.ceil(), a.c2.ceil());
 
     [MethodImpl(256 | 512)]
-    public static double4x3 floor(this double4x3 a) => 
+    public static double4x3 floor([This] double4x3 a) => 
         new(a.c0.floor(), a.c1.floor(), a.c2.floor());
 
     [MethodImpl(256 | 512)]
-    public static double4x3 round(this double4x3 a) => 
+    public static double4x3 round([This] double4x3 a) => 
         new(a.c0.round(), a.c1.round(), a.c2.round());
 
     [MethodImpl(256 | 512)]
-    public static double4x3 trunc(this double4x3 a) => 
+    public static double4x3 trunc([This] double4x3 a) => 
         new(a.c0.trunc(), a.c1.trunc(), a.c2.trunc());
 
     [MethodImpl(256 | 512)]
-    public static double4x3 frac(this double4x3 a) => 
+    public static double4x3 frac([This] double4x3 a) => 
         new(a.c0.frac(), a.c1.frac(), a.c2.frac());
 
     [MethodImpl(256 | 512)]
-    public static double4x3 modf(this double4x3 a, out double4x3 i)
+    public static double4x3 modf([This] double4x3 a, out double4x3 i)
     {
         double4x3 r = new(a.c0.modf(out var i0), a.c1.modf(out var i1), a.c2.modf(out var i2));
         i = new(i0, i1, i2);
@@ -983,24 +1064,28 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static double4x3 rcp(this double4x3 a) => 
+    public static double4x3 rcp([This] double4x3 a) => 
         new(a.c0.rcp(), a.c1.rcp(), a.c2.rcp());
 
     [MethodImpl(256 | 512)]
-    public static double4x3 saturate(this double4x3 a) => 
+    public static double4x3 saturate([This] double4x3 a) => 
         new(a.c0.saturate(), a.c1.saturate(), a.c2.saturate());
 
     [MethodImpl(256 | 512)]
-    public static double4x3 smoothstep(this double4x3 a, double4x3 min, double4x3 max) => 
+    public static double4x3 smoothstep(double4x3 min, double4x3 max, [This] double4x3 a) => 
         new(a.c0.smoothstep(min.c0, max.c0), a.c1.smoothstep(min.c1, max.c1), a.c2.smoothstep(min.c2, max.c2));
 
     [MethodImpl(256 | 512)]
-    public static double4x3 radians(this double4x3 a) => 
+    public static double4x3 radians([This] double4x3 a) => 
         new(a.c0.radians(), a.c1.radians(), a.c2.radians());
 
     [MethodImpl(256 | 512)]
-    public static double4x3 degrees(this double4x3 a) => 
+    public static double4x3 degrees([This] double4x3 a) => 
         new(a.c0.degrees(), a.c1.degrees(), a.c2.degrees());
+
+    [MethodImpl(256 | 512)]
+    public static double4x3 wrap([This] double4x3 x, double4x3 min, double4x3 max) => 
+        new(x.c0.wrap(min.c0, max.c0), x.c1.wrap(min.c1, max.c1), x.c2.wrap(min.c2, max.c2));
 }
 
 #endregion // double4x3
@@ -1011,30 +1096,31 @@ public partial struct double4x4
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double4x4 ceil(this double4x4 a) => 
+    public static double4x4 ceil([This] double4x4 a) => 
         new(a.c0.ceil(), a.c1.ceil(), a.c2.ceil(), a.c3.ceil());
 
     [MethodImpl(256 | 512)]
-    public static double4x4 floor(this double4x4 a) => 
+    public static double4x4 floor([This] double4x4 a) => 
         new(a.c0.floor(), a.c1.floor(), a.c2.floor(), a.c3.floor());
 
     [MethodImpl(256 | 512)]
-    public static double4x4 round(this double4x4 a) => 
+    public static double4x4 round([This] double4x4 a) => 
         new(a.c0.round(), a.c1.round(), a.c2.round(), a.c3.round());
 
     [MethodImpl(256 | 512)]
-    public static double4x4 trunc(this double4x4 a) => 
+    public static double4x4 trunc([This] double4x4 a) => 
         new(a.c0.trunc(), a.c1.trunc(), a.c2.trunc(), a.c3.trunc());
 
     [MethodImpl(256 | 512)]
-    public static double4x4 frac(this double4x4 a) => 
+    public static double4x4 frac([This] double4x4 a) => 
         new(a.c0.frac(), a.c1.frac(), a.c2.frac(), a.c3.frac());
 
     [MethodImpl(256 | 512)]
-    public static double4x4 modf(this double4x4 a, out double4x4 i)
+    public static double4x4 modf([This] double4x4 a, out double4x4 i)
     {
         double4x4 r = new(a.c0.modf(out var i0), a.c1.modf(out var i1), a.c2.modf(out var i2), a.c3.modf(out var i3));
         i = new(i0, i1, i2, i3);
@@ -1042,24 +1128,28 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static double4x4 rcp(this double4x4 a) => 
+    public static double4x4 rcp([This] double4x4 a) => 
         new(a.c0.rcp(), a.c1.rcp(), a.c2.rcp(), a.c3.rcp());
 
     [MethodImpl(256 | 512)]
-    public static double4x4 saturate(this double4x4 a) => 
+    public static double4x4 saturate([This] double4x4 a) => 
         new(a.c0.saturate(), a.c1.saturate(), a.c2.saturate(), a.c3.saturate());
 
     [MethodImpl(256 | 512)]
-    public static double4x4 smoothstep(this double4x4 a, double4x4 min, double4x4 max) => 
+    public static double4x4 smoothstep(double4x4 min, double4x4 max, [This] double4x4 a) => 
         new(a.c0.smoothstep(min.c0, max.c0), a.c1.smoothstep(min.c1, max.c1), a.c2.smoothstep(min.c2, max.c2), a.c3.smoothstep(min.c3, max.c3));
 
     [MethodImpl(256 | 512)]
-    public static double4x4 radians(this double4x4 a) => 
+    public static double4x4 radians([This] double4x4 a) => 
         new(a.c0.radians(), a.c1.radians(), a.c2.radians(), a.c3.radians());
 
     [MethodImpl(256 | 512)]
-    public static double4x4 degrees(this double4x4 a) => 
+    public static double4x4 degrees([This] double4x4 a) => 
         new(a.c0.degrees(), a.c1.degrees(), a.c2.degrees(), a.c3.degrees());
+
+    [MethodImpl(256 | 512)]
+    public static double4x4 wrap([This] double4x4 x, double4x4 min, double4x4 max) => 
+        new(x.c0.wrap(min.c0, max.c0), x.c1.wrap(min.c1, max.c1), x.c2.wrap(min.c2, max.c2), x.c3.wrap(min.c3, max.c3));
 }
 
 #endregion // double4x4
@@ -1070,30 +1160,31 @@ public partial struct decimal2x2
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static decimal2x2 ceil(this decimal2x2 a) => 
+    public static decimal2x2 ceil([This] decimal2x2 a) => 
         new(a.c0.ceil(), a.c1.ceil());
 
     [MethodImpl(256 | 512)]
-    public static decimal2x2 floor(this decimal2x2 a) => 
+    public static decimal2x2 floor([This] decimal2x2 a) => 
         new(a.c0.floor(), a.c1.floor());
 
     [MethodImpl(256 | 512)]
-    public static decimal2x2 round(this decimal2x2 a) => 
+    public static decimal2x2 round([This] decimal2x2 a) => 
         new(a.c0.round(), a.c1.round());
 
     [MethodImpl(256 | 512)]
-    public static decimal2x2 trunc(this decimal2x2 a) => 
+    public static decimal2x2 trunc([This] decimal2x2 a) => 
         new(a.c0.trunc(), a.c1.trunc());
 
     [MethodImpl(256 | 512)]
-    public static decimal2x2 frac(this decimal2x2 a) => 
+    public static decimal2x2 frac([This] decimal2x2 a) => 
         new(a.c0.frac(), a.c1.frac());
 
     [MethodImpl(256 | 512)]
-    public static decimal2x2 modf(this decimal2x2 a, out decimal2x2 i)
+    public static decimal2x2 modf([This] decimal2x2 a, out decimal2x2 i)
     {
         decimal2x2 r = new(a.c0.modf(out var i0), a.c1.modf(out var i1));
         i = new(i0, i1);
@@ -1101,24 +1192,28 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal2x2 rcp(this decimal2x2 a) => 
+    public static decimal2x2 rcp([This] decimal2x2 a) => 
         new(a.c0.rcp(), a.c1.rcp());
 
     [MethodImpl(256 | 512)]
-    public static decimal2x2 saturate(this decimal2x2 a) => 
+    public static decimal2x2 saturate([This] decimal2x2 a) => 
         new(a.c0.saturate(), a.c1.saturate());
 
     [MethodImpl(256 | 512)]
-    public static decimal2x2 smoothstep(this decimal2x2 a, decimal2x2 min, decimal2x2 max) => 
+    public static decimal2x2 smoothstep(decimal2x2 min, decimal2x2 max, [This] decimal2x2 a) => 
         new(a.c0.smoothstep(min.c0, max.c0), a.c1.smoothstep(min.c1, max.c1));
 
     [MethodImpl(256 | 512)]
-    public static decimal2x2 radians(this decimal2x2 a) => 
+    public static decimal2x2 radians([This] decimal2x2 a) => 
         new(a.c0.radians(), a.c1.radians());
 
     [MethodImpl(256 | 512)]
-    public static decimal2x2 degrees(this decimal2x2 a) => 
+    public static decimal2x2 degrees([This] decimal2x2 a) => 
         new(a.c0.degrees(), a.c1.degrees());
+
+    [MethodImpl(256 | 512)]
+    public static decimal2x2 wrap([This] decimal2x2 x, decimal2x2 min, decimal2x2 max) => 
+        new(x.c0.wrap(min.c0, max.c0), x.c1.wrap(min.c1, max.c1));
 }
 
 #endregion // decimal2x2
@@ -1129,30 +1224,31 @@ public partial struct decimal2x3
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static decimal2x3 ceil(this decimal2x3 a) => 
+    public static decimal2x3 ceil([This] decimal2x3 a) => 
         new(a.c0.ceil(), a.c1.ceil(), a.c2.ceil());
 
     [MethodImpl(256 | 512)]
-    public static decimal2x3 floor(this decimal2x3 a) => 
+    public static decimal2x3 floor([This] decimal2x3 a) => 
         new(a.c0.floor(), a.c1.floor(), a.c2.floor());
 
     [MethodImpl(256 | 512)]
-    public static decimal2x3 round(this decimal2x3 a) => 
+    public static decimal2x3 round([This] decimal2x3 a) => 
         new(a.c0.round(), a.c1.round(), a.c2.round());
 
     [MethodImpl(256 | 512)]
-    public static decimal2x3 trunc(this decimal2x3 a) => 
+    public static decimal2x3 trunc([This] decimal2x3 a) => 
         new(a.c0.trunc(), a.c1.trunc(), a.c2.trunc());
 
     [MethodImpl(256 | 512)]
-    public static decimal2x3 frac(this decimal2x3 a) => 
+    public static decimal2x3 frac([This] decimal2x3 a) => 
         new(a.c0.frac(), a.c1.frac(), a.c2.frac());
 
     [MethodImpl(256 | 512)]
-    public static decimal2x3 modf(this decimal2x3 a, out decimal2x3 i)
+    public static decimal2x3 modf([This] decimal2x3 a, out decimal2x3 i)
     {
         decimal2x3 r = new(a.c0.modf(out var i0), a.c1.modf(out var i1), a.c2.modf(out var i2));
         i = new(i0, i1, i2);
@@ -1160,24 +1256,28 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal2x3 rcp(this decimal2x3 a) => 
+    public static decimal2x3 rcp([This] decimal2x3 a) => 
         new(a.c0.rcp(), a.c1.rcp(), a.c2.rcp());
 
     [MethodImpl(256 | 512)]
-    public static decimal2x3 saturate(this decimal2x3 a) => 
+    public static decimal2x3 saturate([This] decimal2x3 a) => 
         new(a.c0.saturate(), a.c1.saturate(), a.c2.saturate());
 
     [MethodImpl(256 | 512)]
-    public static decimal2x3 smoothstep(this decimal2x3 a, decimal2x3 min, decimal2x3 max) => 
+    public static decimal2x3 smoothstep(decimal2x3 min, decimal2x3 max, [This] decimal2x3 a) => 
         new(a.c0.smoothstep(min.c0, max.c0), a.c1.smoothstep(min.c1, max.c1), a.c2.smoothstep(min.c2, max.c2));
 
     [MethodImpl(256 | 512)]
-    public static decimal2x3 radians(this decimal2x3 a) => 
+    public static decimal2x3 radians([This] decimal2x3 a) => 
         new(a.c0.radians(), a.c1.radians(), a.c2.radians());
 
     [MethodImpl(256 | 512)]
-    public static decimal2x3 degrees(this decimal2x3 a) => 
+    public static decimal2x3 degrees([This] decimal2x3 a) => 
         new(a.c0.degrees(), a.c1.degrees(), a.c2.degrees());
+
+    [MethodImpl(256 | 512)]
+    public static decimal2x3 wrap([This] decimal2x3 x, decimal2x3 min, decimal2x3 max) => 
+        new(x.c0.wrap(min.c0, max.c0), x.c1.wrap(min.c1, max.c1), x.c2.wrap(min.c2, max.c2));
 }
 
 #endregion // decimal2x3
@@ -1188,30 +1288,31 @@ public partial struct decimal2x4
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static decimal2x4 ceil(this decimal2x4 a) => 
+    public static decimal2x4 ceil([This] decimal2x4 a) => 
         new(a.c0.ceil(), a.c1.ceil(), a.c2.ceil(), a.c3.ceil());
 
     [MethodImpl(256 | 512)]
-    public static decimal2x4 floor(this decimal2x4 a) => 
+    public static decimal2x4 floor([This] decimal2x4 a) => 
         new(a.c0.floor(), a.c1.floor(), a.c2.floor(), a.c3.floor());
 
     [MethodImpl(256 | 512)]
-    public static decimal2x4 round(this decimal2x4 a) => 
+    public static decimal2x4 round([This] decimal2x4 a) => 
         new(a.c0.round(), a.c1.round(), a.c2.round(), a.c3.round());
 
     [MethodImpl(256 | 512)]
-    public static decimal2x4 trunc(this decimal2x4 a) => 
+    public static decimal2x4 trunc([This] decimal2x4 a) => 
         new(a.c0.trunc(), a.c1.trunc(), a.c2.trunc(), a.c3.trunc());
 
     [MethodImpl(256 | 512)]
-    public static decimal2x4 frac(this decimal2x4 a) => 
+    public static decimal2x4 frac([This] decimal2x4 a) => 
         new(a.c0.frac(), a.c1.frac(), a.c2.frac(), a.c3.frac());
 
     [MethodImpl(256 | 512)]
-    public static decimal2x4 modf(this decimal2x4 a, out decimal2x4 i)
+    public static decimal2x4 modf([This] decimal2x4 a, out decimal2x4 i)
     {
         decimal2x4 r = new(a.c0.modf(out var i0), a.c1.modf(out var i1), a.c2.modf(out var i2), a.c3.modf(out var i3));
         i = new(i0, i1, i2, i3);
@@ -1219,24 +1320,28 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal2x4 rcp(this decimal2x4 a) => 
+    public static decimal2x4 rcp([This] decimal2x4 a) => 
         new(a.c0.rcp(), a.c1.rcp(), a.c2.rcp(), a.c3.rcp());
 
     [MethodImpl(256 | 512)]
-    public static decimal2x4 saturate(this decimal2x4 a) => 
+    public static decimal2x4 saturate([This] decimal2x4 a) => 
         new(a.c0.saturate(), a.c1.saturate(), a.c2.saturate(), a.c3.saturate());
 
     [MethodImpl(256 | 512)]
-    public static decimal2x4 smoothstep(this decimal2x4 a, decimal2x4 min, decimal2x4 max) => 
+    public static decimal2x4 smoothstep(decimal2x4 min, decimal2x4 max, [This] decimal2x4 a) => 
         new(a.c0.smoothstep(min.c0, max.c0), a.c1.smoothstep(min.c1, max.c1), a.c2.smoothstep(min.c2, max.c2), a.c3.smoothstep(min.c3, max.c3));
 
     [MethodImpl(256 | 512)]
-    public static decimal2x4 radians(this decimal2x4 a) => 
+    public static decimal2x4 radians([This] decimal2x4 a) => 
         new(a.c0.radians(), a.c1.radians(), a.c2.radians(), a.c3.radians());
 
     [MethodImpl(256 | 512)]
-    public static decimal2x4 degrees(this decimal2x4 a) => 
+    public static decimal2x4 degrees([This] decimal2x4 a) => 
         new(a.c0.degrees(), a.c1.degrees(), a.c2.degrees(), a.c3.degrees());
+
+    [MethodImpl(256 | 512)]
+    public static decimal2x4 wrap([This] decimal2x4 x, decimal2x4 min, decimal2x4 max) => 
+        new(x.c0.wrap(min.c0, max.c0), x.c1.wrap(min.c1, max.c1), x.c2.wrap(min.c2, max.c2), x.c3.wrap(min.c3, max.c3));
 }
 
 #endregion // decimal2x4
@@ -1247,30 +1352,31 @@ public partial struct decimal3x2
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static decimal3x2 ceil(this decimal3x2 a) => 
+    public static decimal3x2 ceil([This] decimal3x2 a) => 
         new(a.c0.ceil(), a.c1.ceil());
 
     [MethodImpl(256 | 512)]
-    public static decimal3x2 floor(this decimal3x2 a) => 
+    public static decimal3x2 floor([This] decimal3x2 a) => 
         new(a.c0.floor(), a.c1.floor());
 
     [MethodImpl(256 | 512)]
-    public static decimal3x2 round(this decimal3x2 a) => 
+    public static decimal3x2 round([This] decimal3x2 a) => 
         new(a.c0.round(), a.c1.round());
 
     [MethodImpl(256 | 512)]
-    public static decimal3x2 trunc(this decimal3x2 a) => 
+    public static decimal3x2 trunc([This] decimal3x2 a) => 
         new(a.c0.trunc(), a.c1.trunc());
 
     [MethodImpl(256 | 512)]
-    public static decimal3x2 frac(this decimal3x2 a) => 
+    public static decimal3x2 frac([This] decimal3x2 a) => 
         new(a.c0.frac(), a.c1.frac());
 
     [MethodImpl(256 | 512)]
-    public static decimal3x2 modf(this decimal3x2 a, out decimal3x2 i)
+    public static decimal3x2 modf([This] decimal3x2 a, out decimal3x2 i)
     {
         decimal3x2 r = new(a.c0.modf(out var i0), a.c1.modf(out var i1));
         i = new(i0, i1);
@@ -1278,24 +1384,28 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal3x2 rcp(this decimal3x2 a) => 
+    public static decimal3x2 rcp([This] decimal3x2 a) => 
         new(a.c0.rcp(), a.c1.rcp());
 
     [MethodImpl(256 | 512)]
-    public static decimal3x2 saturate(this decimal3x2 a) => 
+    public static decimal3x2 saturate([This] decimal3x2 a) => 
         new(a.c0.saturate(), a.c1.saturate());
 
     [MethodImpl(256 | 512)]
-    public static decimal3x2 smoothstep(this decimal3x2 a, decimal3x2 min, decimal3x2 max) => 
+    public static decimal3x2 smoothstep(decimal3x2 min, decimal3x2 max, [This] decimal3x2 a) => 
         new(a.c0.smoothstep(min.c0, max.c0), a.c1.smoothstep(min.c1, max.c1));
 
     [MethodImpl(256 | 512)]
-    public static decimal3x2 radians(this decimal3x2 a) => 
+    public static decimal3x2 radians([This] decimal3x2 a) => 
         new(a.c0.radians(), a.c1.radians());
 
     [MethodImpl(256 | 512)]
-    public static decimal3x2 degrees(this decimal3x2 a) => 
+    public static decimal3x2 degrees([This] decimal3x2 a) => 
         new(a.c0.degrees(), a.c1.degrees());
+
+    [MethodImpl(256 | 512)]
+    public static decimal3x2 wrap([This] decimal3x2 x, decimal3x2 min, decimal3x2 max) => 
+        new(x.c0.wrap(min.c0, max.c0), x.c1.wrap(min.c1, max.c1));
 }
 
 #endregion // decimal3x2
@@ -1306,30 +1416,31 @@ public partial struct decimal3x3
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static decimal3x3 ceil(this decimal3x3 a) => 
+    public static decimal3x3 ceil([This] decimal3x3 a) => 
         new(a.c0.ceil(), a.c1.ceil(), a.c2.ceil());
 
     [MethodImpl(256 | 512)]
-    public static decimal3x3 floor(this decimal3x3 a) => 
+    public static decimal3x3 floor([This] decimal3x3 a) => 
         new(a.c0.floor(), a.c1.floor(), a.c2.floor());
 
     [MethodImpl(256 | 512)]
-    public static decimal3x3 round(this decimal3x3 a) => 
+    public static decimal3x3 round([This] decimal3x3 a) => 
         new(a.c0.round(), a.c1.round(), a.c2.round());
 
     [MethodImpl(256 | 512)]
-    public static decimal3x3 trunc(this decimal3x3 a) => 
+    public static decimal3x3 trunc([This] decimal3x3 a) => 
         new(a.c0.trunc(), a.c1.trunc(), a.c2.trunc());
 
     [MethodImpl(256 | 512)]
-    public static decimal3x3 frac(this decimal3x3 a) => 
+    public static decimal3x3 frac([This] decimal3x3 a) => 
         new(a.c0.frac(), a.c1.frac(), a.c2.frac());
 
     [MethodImpl(256 | 512)]
-    public static decimal3x3 modf(this decimal3x3 a, out decimal3x3 i)
+    public static decimal3x3 modf([This] decimal3x3 a, out decimal3x3 i)
     {
         decimal3x3 r = new(a.c0.modf(out var i0), a.c1.modf(out var i1), a.c2.modf(out var i2));
         i = new(i0, i1, i2);
@@ -1337,24 +1448,28 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal3x3 rcp(this decimal3x3 a) => 
+    public static decimal3x3 rcp([This] decimal3x3 a) => 
         new(a.c0.rcp(), a.c1.rcp(), a.c2.rcp());
 
     [MethodImpl(256 | 512)]
-    public static decimal3x3 saturate(this decimal3x3 a) => 
+    public static decimal3x3 saturate([This] decimal3x3 a) => 
         new(a.c0.saturate(), a.c1.saturate(), a.c2.saturate());
 
     [MethodImpl(256 | 512)]
-    public static decimal3x3 smoothstep(this decimal3x3 a, decimal3x3 min, decimal3x3 max) => 
+    public static decimal3x3 smoothstep(decimal3x3 min, decimal3x3 max, [This] decimal3x3 a) => 
         new(a.c0.smoothstep(min.c0, max.c0), a.c1.smoothstep(min.c1, max.c1), a.c2.smoothstep(min.c2, max.c2));
 
     [MethodImpl(256 | 512)]
-    public static decimal3x3 radians(this decimal3x3 a) => 
+    public static decimal3x3 radians([This] decimal3x3 a) => 
         new(a.c0.radians(), a.c1.radians(), a.c2.radians());
 
     [MethodImpl(256 | 512)]
-    public static decimal3x3 degrees(this decimal3x3 a) => 
+    public static decimal3x3 degrees([This] decimal3x3 a) => 
         new(a.c0.degrees(), a.c1.degrees(), a.c2.degrees());
+
+    [MethodImpl(256 | 512)]
+    public static decimal3x3 wrap([This] decimal3x3 x, decimal3x3 min, decimal3x3 max) => 
+        new(x.c0.wrap(min.c0, max.c0), x.c1.wrap(min.c1, max.c1), x.c2.wrap(min.c2, max.c2));
 }
 
 #endregion // decimal3x3
@@ -1365,30 +1480,31 @@ public partial struct decimal3x4
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static decimal3x4 ceil(this decimal3x4 a) => 
+    public static decimal3x4 ceil([This] decimal3x4 a) => 
         new(a.c0.ceil(), a.c1.ceil(), a.c2.ceil(), a.c3.ceil());
 
     [MethodImpl(256 | 512)]
-    public static decimal3x4 floor(this decimal3x4 a) => 
+    public static decimal3x4 floor([This] decimal3x4 a) => 
         new(a.c0.floor(), a.c1.floor(), a.c2.floor(), a.c3.floor());
 
     [MethodImpl(256 | 512)]
-    public static decimal3x4 round(this decimal3x4 a) => 
+    public static decimal3x4 round([This] decimal3x4 a) => 
         new(a.c0.round(), a.c1.round(), a.c2.round(), a.c3.round());
 
     [MethodImpl(256 | 512)]
-    public static decimal3x4 trunc(this decimal3x4 a) => 
+    public static decimal3x4 trunc([This] decimal3x4 a) => 
         new(a.c0.trunc(), a.c1.trunc(), a.c2.trunc(), a.c3.trunc());
 
     [MethodImpl(256 | 512)]
-    public static decimal3x4 frac(this decimal3x4 a) => 
+    public static decimal3x4 frac([This] decimal3x4 a) => 
         new(a.c0.frac(), a.c1.frac(), a.c2.frac(), a.c3.frac());
 
     [MethodImpl(256 | 512)]
-    public static decimal3x4 modf(this decimal3x4 a, out decimal3x4 i)
+    public static decimal3x4 modf([This] decimal3x4 a, out decimal3x4 i)
     {
         decimal3x4 r = new(a.c0.modf(out var i0), a.c1.modf(out var i1), a.c2.modf(out var i2), a.c3.modf(out var i3));
         i = new(i0, i1, i2, i3);
@@ -1396,24 +1512,28 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal3x4 rcp(this decimal3x4 a) => 
+    public static decimal3x4 rcp([This] decimal3x4 a) => 
         new(a.c0.rcp(), a.c1.rcp(), a.c2.rcp(), a.c3.rcp());
 
     [MethodImpl(256 | 512)]
-    public static decimal3x4 saturate(this decimal3x4 a) => 
+    public static decimal3x4 saturate([This] decimal3x4 a) => 
         new(a.c0.saturate(), a.c1.saturate(), a.c2.saturate(), a.c3.saturate());
 
     [MethodImpl(256 | 512)]
-    public static decimal3x4 smoothstep(this decimal3x4 a, decimal3x4 min, decimal3x4 max) => 
+    public static decimal3x4 smoothstep(decimal3x4 min, decimal3x4 max, [This] decimal3x4 a) => 
         new(a.c0.smoothstep(min.c0, max.c0), a.c1.smoothstep(min.c1, max.c1), a.c2.smoothstep(min.c2, max.c2), a.c3.smoothstep(min.c3, max.c3));
 
     [MethodImpl(256 | 512)]
-    public static decimal3x4 radians(this decimal3x4 a) => 
+    public static decimal3x4 radians([This] decimal3x4 a) => 
         new(a.c0.radians(), a.c1.radians(), a.c2.radians(), a.c3.radians());
 
     [MethodImpl(256 | 512)]
-    public static decimal3x4 degrees(this decimal3x4 a) => 
+    public static decimal3x4 degrees([This] decimal3x4 a) => 
         new(a.c0.degrees(), a.c1.degrees(), a.c2.degrees(), a.c3.degrees());
+
+    [MethodImpl(256 | 512)]
+    public static decimal3x4 wrap([This] decimal3x4 x, decimal3x4 min, decimal3x4 max) => 
+        new(x.c0.wrap(min.c0, max.c0), x.c1.wrap(min.c1, max.c1), x.c2.wrap(min.c2, max.c2), x.c3.wrap(min.c3, max.c3));
 }
 
 #endregion // decimal3x4
@@ -1424,30 +1544,31 @@ public partial struct decimal4x2
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static decimal4x2 ceil(this decimal4x2 a) => 
+    public static decimal4x2 ceil([This] decimal4x2 a) => 
         new(a.c0.ceil(), a.c1.ceil());
 
     [MethodImpl(256 | 512)]
-    public static decimal4x2 floor(this decimal4x2 a) => 
+    public static decimal4x2 floor([This] decimal4x2 a) => 
         new(a.c0.floor(), a.c1.floor());
 
     [MethodImpl(256 | 512)]
-    public static decimal4x2 round(this decimal4x2 a) => 
+    public static decimal4x2 round([This] decimal4x2 a) => 
         new(a.c0.round(), a.c1.round());
 
     [MethodImpl(256 | 512)]
-    public static decimal4x2 trunc(this decimal4x2 a) => 
+    public static decimal4x2 trunc([This] decimal4x2 a) => 
         new(a.c0.trunc(), a.c1.trunc());
 
     [MethodImpl(256 | 512)]
-    public static decimal4x2 frac(this decimal4x2 a) => 
+    public static decimal4x2 frac([This] decimal4x2 a) => 
         new(a.c0.frac(), a.c1.frac());
 
     [MethodImpl(256 | 512)]
-    public static decimal4x2 modf(this decimal4x2 a, out decimal4x2 i)
+    public static decimal4x2 modf([This] decimal4x2 a, out decimal4x2 i)
     {
         decimal4x2 r = new(a.c0.modf(out var i0), a.c1.modf(out var i1));
         i = new(i0, i1);
@@ -1455,24 +1576,28 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal4x2 rcp(this decimal4x2 a) => 
+    public static decimal4x2 rcp([This] decimal4x2 a) => 
         new(a.c0.rcp(), a.c1.rcp());
 
     [MethodImpl(256 | 512)]
-    public static decimal4x2 saturate(this decimal4x2 a) => 
+    public static decimal4x2 saturate([This] decimal4x2 a) => 
         new(a.c0.saturate(), a.c1.saturate());
 
     [MethodImpl(256 | 512)]
-    public static decimal4x2 smoothstep(this decimal4x2 a, decimal4x2 min, decimal4x2 max) => 
+    public static decimal4x2 smoothstep(decimal4x2 min, decimal4x2 max, [This] decimal4x2 a) => 
         new(a.c0.smoothstep(min.c0, max.c0), a.c1.smoothstep(min.c1, max.c1));
 
     [MethodImpl(256 | 512)]
-    public static decimal4x2 radians(this decimal4x2 a) => 
+    public static decimal4x2 radians([This] decimal4x2 a) => 
         new(a.c0.radians(), a.c1.radians());
 
     [MethodImpl(256 | 512)]
-    public static decimal4x2 degrees(this decimal4x2 a) => 
+    public static decimal4x2 degrees([This] decimal4x2 a) => 
         new(a.c0.degrees(), a.c1.degrees());
+
+    [MethodImpl(256 | 512)]
+    public static decimal4x2 wrap([This] decimal4x2 x, decimal4x2 min, decimal4x2 max) => 
+        new(x.c0.wrap(min.c0, max.c0), x.c1.wrap(min.c1, max.c1));
 }
 
 #endregion // decimal4x2
@@ -1483,30 +1608,31 @@ public partial struct decimal4x3
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static decimal4x3 ceil(this decimal4x3 a) => 
+    public static decimal4x3 ceil([This] decimal4x3 a) => 
         new(a.c0.ceil(), a.c1.ceil(), a.c2.ceil());
 
     [MethodImpl(256 | 512)]
-    public static decimal4x3 floor(this decimal4x3 a) => 
+    public static decimal4x3 floor([This] decimal4x3 a) => 
         new(a.c0.floor(), a.c1.floor(), a.c2.floor());
 
     [MethodImpl(256 | 512)]
-    public static decimal4x3 round(this decimal4x3 a) => 
+    public static decimal4x3 round([This] decimal4x3 a) => 
         new(a.c0.round(), a.c1.round(), a.c2.round());
 
     [MethodImpl(256 | 512)]
-    public static decimal4x3 trunc(this decimal4x3 a) => 
+    public static decimal4x3 trunc([This] decimal4x3 a) => 
         new(a.c0.trunc(), a.c1.trunc(), a.c2.trunc());
 
     [MethodImpl(256 | 512)]
-    public static decimal4x3 frac(this decimal4x3 a) => 
+    public static decimal4x3 frac([This] decimal4x3 a) => 
         new(a.c0.frac(), a.c1.frac(), a.c2.frac());
 
     [MethodImpl(256 | 512)]
-    public static decimal4x3 modf(this decimal4x3 a, out decimal4x3 i)
+    public static decimal4x3 modf([This] decimal4x3 a, out decimal4x3 i)
     {
         decimal4x3 r = new(a.c0.modf(out var i0), a.c1.modf(out var i1), a.c2.modf(out var i2));
         i = new(i0, i1, i2);
@@ -1514,24 +1640,28 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal4x3 rcp(this decimal4x3 a) => 
+    public static decimal4x3 rcp([This] decimal4x3 a) => 
         new(a.c0.rcp(), a.c1.rcp(), a.c2.rcp());
 
     [MethodImpl(256 | 512)]
-    public static decimal4x3 saturate(this decimal4x3 a) => 
+    public static decimal4x3 saturate([This] decimal4x3 a) => 
         new(a.c0.saturate(), a.c1.saturate(), a.c2.saturate());
 
     [MethodImpl(256 | 512)]
-    public static decimal4x3 smoothstep(this decimal4x3 a, decimal4x3 min, decimal4x3 max) => 
+    public static decimal4x3 smoothstep(decimal4x3 min, decimal4x3 max, [This] decimal4x3 a) => 
         new(a.c0.smoothstep(min.c0, max.c0), a.c1.smoothstep(min.c1, max.c1), a.c2.smoothstep(min.c2, max.c2));
 
     [MethodImpl(256 | 512)]
-    public static decimal4x3 radians(this decimal4x3 a) => 
+    public static decimal4x3 radians([This] decimal4x3 a) => 
         new(a.c0.radians(), a.c1.radians(), a.c2.radians());
 
     [MethodImpl(256 | 512)]
-    public static decimal4x3 degrees(this decimal4x3 a) => 
+    public static decimal4x3 degrees([This] decimal4x3 a) => 
         new(a.c0.degrees(), a.c1.degrees(), a.c2.degrees());
+
+    [MethodImpl(256 | 512)]
+    public static decimal4x3 wrap([This] decimal4x3 x, decimal4x3 min, decimal4x3 max) => 
+        new(x.c0.wrap(min.c0, max.c0), x.c1.wrap(min.c1, max.c1), x.c2.wrap(min.c2, max.c2));
 }
 
 #endregion // decimal4x3
@@ -1542,30 +1672,31 @@ public partial struct decimal4x4
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static decimal4x4 ceil(this decimal4x4 a) => 
+    public static decimal4x4 ceil([This] decimal4x4 a) => 
         new(a.c0.ceil(), a.c1.ceil(), a.c2.ceil(), a.c3.ceil());
 
     [MethodImpl(256 | 512)]
-    public static decimal4x4 floor(this decimal4x4 a) => 
+    public static decimal4x4 floor([This] decimal4x4 a) => 
         new(a.c0.floor(), a.c1.floor(), a.c2.floor(), a.c3.floor());
 
     [MethodImpl(256 | 512)]
-    public static decimal4x4 round(this decimal4x4 a) => 
+    public static decimal4x4 round([This] decimal4x4 a) => 
         new(a.c0.round(), a.c1.round(), a.c2.round(), a.c3.round());
 
     [MethodImpl(256 | 512)]
-    public static decimal4x4 trunc(this decimal4x4 a) => 
+    public static decimal4x4 trunc([This] decimal4x4 a) => 
         new(a.c0.trunc(), a.c1.trunc(), a.c2.trunc(), a.c3.trunc());
 
     [MethodImpl(256 | 512)]
-    public static decimal4x4 frac(this decimal4x4 a) => 
+    public static decimal4x4 frac([This] decimal4x4 a) => 
         new(a.c0.frac(), a.c1.frac(), a.c2.frac(), a.c3.frac());
 
     [MethodImpl(256 | 512)]
-    public static decimal4x4 modf(this decimal4x4 a, out decimal4x4 i)
+    public static decimal4x4 modf([This] decimal4x4 a, out decimal4x4 i)
     {
         decimal4x4 r = new(a.c0.modf(out var i0), a.c1.modf(out var i1), a.c2.modf(out var i2), a.c3.modf(out var i3));
         i = new(i0, i1, i2, i3);
@@ -1573,24 +1704,28 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal4x4 rcp(this decimal4x4 a) => 
+    public static decimal4x4 rcp([This] decimal4x4 a) => 
         new(a.c0.rcp(), a.c1.rcp(), a.c2.rcp(), a.c3.rcp());
 
     [MethodImpl(256 | 512)]
-    public static decimal4x4 saturate(this decimal4x4 a) => 
+    public static decimal4x4 saturate([This] decimal4x4 a) => 
         new(a.c0.saturate(), a.c1.saturate(), a.c2.saturate(), a.c3.saturate());
 
     [MethodImpl(256 | 512)]
-    public static decimal4x4 smoothstep(this decimal4x4 a, decimal4x4 min, decimal4x4 max) => 
+    public static decimal4x4 smoothstep(decimal4x4 min, decimal4x4 max, [This] decimal4x4 a) => 
         new(a.c0.smoothstep(min.c0, max.c0), a.c1.smoothstep(min.c1, max.c1), a.c2.smoothstep(min.c2, max.c2), a.c3.smoothstep(min.c3, max.c3));
 
     [MethodImpl(256 | 512)]
-    public static decimal4x4 radians(this decimal4x4 a) => 
+    public static decimal4x4 radians([This] decimal4x4 a) => 
         new(a.c0.radians(), a.c1.radians(), a.c2.radians(), a.c3.radians());
 
     [MethodImpl(256 | 512)]
-    public static decimal4x4 degrees(this decimal4x4 a) => 
+    public static decimal4x4 degrees([This] decimal4x4 a) => 
         new(a.c0.degrees(), a.c1.degrees(), a.c2.degrees(), a.c3.degrees());
+
+    [MethodImpl(256 | 512)]
+    public static decimal4x4 wrap([This] decimal4x4 x, decimal4x4 min, decimal4x4 max) => 
+        new(x.c0.wrap(min.c0, max.c0), x.c1.wrap(min.c1, max.c1), x.c2.wrap(min.c2, max.c2), x.c3.wrap(min.c3, max.c3));
 }
 
 #endregion // decimal4x4
@@ -1601,30 +1736,31 @@ public partial struct half2x2
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half2x2 ceil(this half2x2 a) => 
+    public static half2x2 ceil([This] half2x2 a) => 
         new(a.c0.ceil(), a.c1.ceil());
 
     [MethodImpl(256 | 512)]
-    public static half2x2 floor(this half2x2 a) => 
+    public static half2x2 floor([This] half2x2 a) => 
         new(a.c0.floor(), a.c1.floor());
 
     [MethodImpl(256 | 512)]
-    public static half2x2 round(this half2x2 a) => 
+    public static half2x2 round([This] half2x2 a) => 
         new(a.c0.round(), a.c1.round());
 
     [MethodImpl(256 | 512)]
-    public static half2x2 trunc(this half2x2 a) => 
+    public static half2x2 trunc([This] half2x2 a) => 
         new(a.c0.trunc(), a.c1.trunc());
 
     [MethodImpl(256 | 512)]
-    public static half2x2 frac(this half2x2 a) => 
+    public static half2x2 frac([This] half2x2 a) => 
         new(a.c0.frac(), a.c1.frac());
 
     [MethodImpl(256 | 512)]
-    public static half2x2 modf(this half2x2 a, out half2x2 i)
+    public static half2x2 modf([This] half2x2 a, out half2x2 i)
     {
         half2x2 r = new(a.c0.modf(out var i0), a.c1.modf(out var i1));
         i = new(i0, i1);
@@ -1632,24 +1768,28 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static half2x2 rcp(this half2x2 a) => 
+    public static half2x2 rcp([This] half2x2 a) => 
         new(a.c0.rcp(), a.c1.rcp());
 
     [MethodImpl(256 | 512)]
-    public static half2x2 saturate(this half2x2 a) => 
+    public static half2x2 saturate([This] half2x2 a) => 
         new(a.c0.saturate(), a.c1.saturate());
 
     [MethodImpl(256 | 512)]
-    public static half2x2 smoothstep(this half2x2 a, half2x2 min, half2x2 max) => 
+    public static half2x2 smoothstep(half2x2 min, half2x2 max, [This] half2x2 a) => 
         new(a.c0.smoothstep(min.c0, max.c0), a.c1.smoothstep(min.c1, max.c1));
 
     [MethodImpl(256 | 512)]
-    public static half2x2 radians(this half2x2 a) => 
+    public static half2x2 radians([This] half2x2 a) => 
         new(a.c0.radians(), a.c1.radians());
 
     [MethodImpl(256 | 512)]
-    public static half2x2 degrees(this half2x2 a) => 
+    public static half2x2 degrees([This] half2x2 a) => 
         new(a.c0.degrees(), a.c1.degrees());
+
+    [MethodImpl(256 | 512)]
+    public static half2x2 wrap([This] half2x2 x, half2x2 min, half2x2 max) => 
+        new(x.c0.wrap(min.c0, max.c0), x.c1.wrap(min.c1, max.c1));
 }
 
 #endregion // half2x2
@@ -1660,30 +1800,31 @@ public partial struct half2x3
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half2x3 ceil(this half2x3 a) => 
+    public static half2x3 ceil([This] half2x3 a) => 
         new(a.c0.ceil(), a.c1.ceil(), a.c2.ceil());
 
     [MethodImpl(256 | 512)]
-    public static half2x3 floor(this half2x3 a) => 
+    public static half2x3 floor([This] half2x3 a) => 
         new(a.c0.floor(), a.c1.floor(), a.c2.floor());
 
     [MethodImpl(256 | 512)]
-    public static half2x3 round(this half2x3 a) => 
+    public static half2x3 round([This] half2x3 a) => 
         new(a.c0.round(), a.c1.round(), a.c2.round());
 
     [MethodImpl(256 | 512)]
-    public static half2x3 trunc(this half2x3 a) => 
+    public static half2x3 trunc([This] half2x3 a) => 
         new(a.c0.trunc(), a.c1.trunc(), a.c2.trunc());
 
     [MethodImpl(256 | 512)]
-    public static half2x3 frac(this half2x3 a) => 
+    public static half2x3 frac([This] half2x3 a) => 
         new(a.c0.frac(), a.c1.frac(), a.c2.frac());
 
     [MethodImpl(256 | 512)]
-    public static half2x3 modf(this half2x3 a, out half2x3 i)
+    public static half2x3 modf([This] half2x3 a, out half2x3 i)
     {
         half2x3 r = new(a.c0.modf(out var i0), a.c1.modf(out var i1), a.c2.modf(out var i2));
         i = new(i0, i1, i2);
@@ -1691,24 +1832,28 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static half2x3 rcp(this half2x3 a) => 
+    public static half2x3 rcp([This] half2x3 a) => 
         new(a.c0.rcp(), a.c1.rcp(), a.c2.rcp());
 
     [MethodImpl(256 | 512)]
-    public static half2x3 saturate(this half2x3 a) => 
+    public static half2x3 saturate([This] half2x3 a) => 
         new(a.c0.saturate(), a.c1.saturate(), a.c2.saturate());
 
     [MethodImpl(256 | 512)]
-    public static half2x3 smoothstep(this half2x3 a, half2x3 min, half2x3 max) => 
+    public static half2x3 smoothstep(half2x3 min, half2x3 max, [This] half2x3 a) => 
         new(a.c0.smoothstep(min.c0, max.c0), a.c1.smoothstep(min.c1, max.c1), a.c2.smoothstep(min.c2, max.c2));
 
     [MethodImpl(256 | 512)]
-    public static half2x3 radians(this half2x3 a) => 
+    public static half2x3 radians([This] half2x3 a) => 
         new(a.c0.radians(), a.c1.radians(), a.c2.radians());
 
     [MethodImpl(256 | 512)]
-    public static half2x3 degrees(this half2x3 a) => 
+    public static half2x3 degrees([This] half2x3 a) => 
         new(a.c0.degrees(), a.c1.degrees(), a.c2.degrees());
+
+    [MethodImpl(256 | 512)]
+    public static half2x3 wrap([This] half2x3 x, half2x3 min, half2x3 max) => 
+        new(x.c0.wrap(min.c0, max.c0), x.c1.wrap(min.c1, max.c1), x.c2.wrap(min.c2, max.c2));
 }
 
 #endregion // half2x3
@@ -1719,30 +1864,31 @@ public partial struct half2x4
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half2x4 ceil(this half2x4 a) => 
+    public static half2x4 ceil([This] half2x4 a) => 
         new(a.c0.ceil(), a.c1.ceil(), a.c2.ceil(), a.c3.ceil());
 
     [MethodImpl(256 | 512)]
-    public static half2x4 floor(this half2x4 a) => 
+    public static half2x4 floor([This] half2x4 a) => 
         new(a.c0.floor(), a.c1.floor(), a.c2.floor(), a.c3.floor());
 
     [MethodImpl(256 | 512)]
-    public static half2x4 round(this half2x4 a) => 
+    public static half2x4 round([This] half2x4 a) => 
         new(a.c0.round(), a.c1.round(), a.c2.round(), a.c3.round());
 
     [MethodImpl(256 | 512)]
-    public static half2x4 trunc(this half2x4 a) => 
+    public static half2x4 trunc([This] half2x4 a) => 
         new(a.c0.trunc(), a.c1.trunc(), a.c2.trunc(), a.c3.trunc());
 
     [MethodImpl(256 | 512)]
-    public static half2x4 frac(this half2x4 a) => 
+    public static half2x4 frac([This] half2x4 a) => 
         new(a.c0.frac(), a.c1.frac(), a.c2.frac(), a.c3.frac());
 
     [MethodImpl(256 | 512)]
-    public static half2x4 modf(this half2x4 a, out half2x4 i)
+    public static half2x4 modf([This] half2x4 a, out half2x4 i)
     {
         half2x4 r = new(a.c0.modf(out var i0), a.c1.modf(out var i1), a.c2.modf(out var i2), a.c3.modf(out var i3));
         i = new(i0, i1, i2, i3);
@@ -1750,24 +1896,28 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static half2x4 rcp(this half2x4 a) => 
+    public static half2x4 rcp([This] half2x4 a) => 
         new(a.c0.rcp(), a.c1.rcp(), a.c2.rcp(), a.c3.rcp());
 
     [MethodImpl(256 | 512)]
-    public static half2x4 saturate(this half2x4 a) => 
+    public static half2x4 saturate([This] half2x4 a) => 
         new(a.c0.saturate(), a.c1.saturate(), a.c2.saturate(), a.c3.saturate());
 
     [MethodImpl(256 | 512)]
-    public static half2x4 smoothstep(this half2x4 a, half2x4 min, half2x4 max) => 
+    public static half2x4 smoothstep(half2x4 min, half2x4 max, [This] half2x4 a) => 
         new(a.c0.smoothstep(min.c0, max.c0), a.c1.smoothstep(min.c1, max.c1), a.c2.smoothstep(min.c2, max.c2), a.c3.smoothstep(min.c3, max.c3));
 
     [MethodImpl(256 | 512)]
-    public static half2x4 radians(this half2x4 a) => 
+    public static half2x4 radians([This] half2x4 a) => 
         new(a.c0.radians(), a.c1.radians(), a.c2.radians(), a.c3.radians());
 
     [MethodImpl(256 | 512)]
-    public static half2x4 degrees(this half2x4 a) => 
+    public static half2x4 degrees([This] half2x4 a) => 
         new(a.c0.degrees(), a.c1.degrees(), a.c2.degrees(), a.c3.degrees());
+
+    [MethodImpl(256 | 512)]
+    public static half2x4 wrap([This] half2x4 x, half2x4 min, half2x4 max) => 
+        new(x.c0.wrap(min.c0, max.c0), x.c1.wrap(min.c1, max.c1), x.c2.wrap(min.c2, max.c2), x.c3.wrap(min.c3, max.c3));
 }
 
 #endregion // half2x4
@@ -1778,30 +1928,31 @@ public partial struct half3x2
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half3x2 ceil(this half3x2 a) => 
+    public static half3x2 ceil([This] half3x2 a) => 
         new(a.c0.ceil(), a.c1.ceil());
 
     [MethodImpl(256 | 512)]
-    public static half3x2 floor(this half3x2 a) => 
+    public static half3x2 floor([This] half3x2 a) => 
         new(a.c0.floor(), a.c1.floor());
 
     [MethodImpl(256 | 512)]
-    public static half3x2 round(this half3x2 a) => 
+    public static half3x2 round([This] half3x2 a) => 
         new(a.c0.round(), a.c1.round());
 
     [MethodImpl(256 | 512)]
-    public static half3x2 trunc(this half3x2 a) => 
+    public static half3x2 trunc([This] half3x2 a) => 
         new(a.c0.trunc(), a.c1.trunc());
 
     [MethodImpl(256 | 512)]
-    public static half3x2 frac(this half3x2 a) => 
+    public static half3x2 frac([This] half3x2 a) => 
         new(a.c0.frac(), a.c1.frac());
 
     [MethodImpl(256 | 512)]
-    public static half3x2 modf(this half3x2 a, out half3x2 i)
+    public static half3x2 modf([This] half3x2 a, out half3x2 i)
     {
         half3x2 r = new(a.c0.modf(out var i0), a.c1.modf(out var i1));
         i = new(i0, i1);
@@ -1809,24 +1960,28 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static half3x2 rcp(this half3x2 a) => 
+    public static half3x2 rcp([This] half3x2 a) => 
         new(a.c0.rcp(), a.c1.rcp());
 
     [MethodImpl(256 | 512)]
-    public static half3x2 saturate(this half3x2 a) => 
+    public static half3x2 saturate([This] half3x2 a) => 
         new(a.c0.saturate(), a.c1.saturate());
 
     [MethodImpl(256 | 512)]
-    public static half3x2 smoothstep(this half3x2 a, half3x2 min, half3x2 max) => 
+    public static half3x2 smoothstep(half3x2 min, half3x2 max, [This] half3x2 a) => 
         new(a.c0.smoothstep(min.c0, max.c0), a.c1.smoothstep(min.c1, max.c1));
 
     [MethodImpl(256 | 512)]
-    public static half3x2 radians(this half3x2 a) => 
+    public static half3x2 radians([This] half3x2 a) => 
         new(a.c0.radians(), a.c1.radians());
 
     [MethodImpl(256 | 512)]
-    public static half3x2 degrees(this half3x2 a) => 
+    public static half3x2 degrees([This] half3x2 a) => 
         new(a.c0.degrees(), a.c1.degrees());
+
+    [MethodImpl(256 | 512)]
+    public static half3x2 wrap([This] half3x2 x, half3x2 min, half3x2 max) => 
+        new(x.c0.wrap(min.c0, max.c0), x.c1.wrap(min.c1, max.c1));
 }
 
 #endregion // half3x2
@@ -1837,30 +1992,31 @@ public partial struct half3x3
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half3x3 ceil(this half3x3 a) => 
+    public static half3x3 ceil([This] half3x3 a) => 
         new(a.c0.ceil(), a.c1.ceil(), a.c2.ceil());
 
     [MethodImpl(256 | 512)]
-    public static half3x3 floor(this half3x3 a) => 
+    public static half3x3 floor([This] half3x3 a) => 
         new(a.c0.floor(), a.c1.floor(), a.c2.floor());
 
     [MethodImpl(256 | 512)]
-    public static half3x3 round(this half3x3 a) => 
+    public static half3x3 round([This] half3x3 a) => 
         new(a.c0.round(), a.c1.round(), a.c2.round());
 
     [MethodImpl(256 | 512)]
-    public static half3x3 trunc(this half3x3 a) => 
+    public static half3x3 trunc([This] half3x3 a) => 
         new(a.c0.trunc(), a.c1.trunc(), a.c2.trunc());
 
     [MethodImpl(256 | 512)]
-    public static half3x3 frac(this half3x3 a) => 
+    public static half3x3 frac([This] half3x3 a) => 
         new(a.c0.frac(), a.c1.frac(), a.c2.frac());
 
     [MethodImpl(256 | 512)]
-    public static half3x3 modf(this half3x3 a, out half3x3 i)
+    public static half3x3 modf([This] half3x3 a, out half3x3 i)
     {
         half3x3 r = new(a.c0.modf(out var i0), a.c1.modf(out var i1), a.c2.modf(out var i2));
         i = new(i0, i1, i2);
@@ -1868,24 +2024,28 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static half3x3 rcp(this half3x3 a) => 
+    public static half3x3 rcp([This] half3x3 a) => 
         new(a.c0.rcp(), a.c1.rcp(), a.c2.rcp());
 
     [MethodImpl(256 | 512)]
-    public static half3x3 saturate(this half3x3 a) => 
+    public static half3x3 saturate([This] half3x3 a) => 
         new(a.c0.saturate(), a.c1.saturate(), a.c2.saturate());
 
     [MethodImpl(256 | 512)]
-    public static half3x3 smoothstep(this half3x3 a, half3x3 min, half3x3 max) => 
+    public static half3x3 smoothstep(half3x3 min, half3x3 max, [This] half3x3 a) => 
         new(a.c0.smoothstep(min.c0, max.c0), a.c1.smoothstep(min.c1, max.c1), a.c2.smoothstep(min.c2, max.c2));
 
     [MethodImpl(256 | 512)]
-    public static half3x3 radians(this half3x3 a) => 
+    public static half3x3 radians([This] half3x3 a) => 
         new(a.c0.radians(), a.c1.radians(), a.c2.radians());
 
     [MethodImpl(256 | 512)]
-    public static half3x3 degrees(this half3x3 a) => 
+    public static half3x3 degrees([This] half3x3 a) => 
         new(a.c0.degrees(), a.c1.degrees(), a.c2.degrees());
+
+    [MethodImpl(256 | 512)]
+    public static half3x3 wrap([This] half3x3 x, half3x3 min, half3x3 max) => 
+        new(x.c0.wrap(min.c0, max.c0), x.c1.wrap(min.c1, max.c1), x.c2.wrap(min.c2, max.c2));
 }
 
 #endregion // half3x3
@@ -1896,30 +2056,31 @@ public partial struct half3x4
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half3x4 ceil(this half3x4 a) => 
+    public static half3x4 ceil([This] half3x4 a) => 
         new(a.c0.ceil(), a.c1.ceil(), a.c2.ceil(), a.c3.ceil());
 
     [MethodImpl(256 | 512)]
-    public static half3x4 floor(this half3x4 a) => 
+    public static half3x4 floor([This] half3x4 a) => 
         new(a.c0.floor(), a.c1.floor(), a.c2.floor(), a.c3.floor());
 
     [MethodImpl(256 | 512)]
-    public static half3x4 round(this half3x4 a) => 
+    public static half3x4 round([This] half3x4 a) => 
         new(a.c0.round(), a.c1.round(), a.c2.round(), a.c3.round());
 
     [MethodImpl(256 | 512)]
-    public static half3x4 trunc(this half3x4 a) => 
+    public static half3x4 trunc([This] half3x4 a) => 
         new(a.c0.trunc(), a.c1.trunc(), a.c2.trunc(), a.c3.trunc());
 
     [MethodImpl(256 | 512)]
-    public static half3x4 frac(this half3x4 a) => 
+    public static half3x4 frac([This] half3x4 a) => 
         new(a.c0.frac(), a.c1.frac(), a.c2.frac(), a.c3.frac());
 
     [MethodImpl(256 | 512)]
-    public static half3x4 modf(this half3x4 a, out half3x4 i)
+    public static half3x4 modf([This] half3x4 a, out half3x4 i)
     {
         half3x4 r = new(a.c0.modf(out var i0), a.c1.modf(out var i1), a.c2.modf(out var i2), a.c3.modf(out var i3));
         i = new(i0, i1, i2, i3);
@@ -1927,24 +2088,28 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static half3x4 rcp(this half3x4 a) => 
+    public static half3x4 rcp([This] half3x4 a) => 
         new(a.c0.rcp(), a.c1.rcp(), a.c2.rcp(), a.c3.rcp());
 
     [MethodImpl(256 | 512)]
-    public static half3x4 saturate(this half3x4 a) => 
+    public static half3x4 saturate([This] half3x4 a) => 
         new(a.c0.saturate(), a.c1.saturate(), a.c2.saturate(), a.c3.saturate());
 
     [MethodImpl(256 | 512)]
-    public static half3x4 smoothstep(this half3x4 a, half3x4 min, half3x4 max) => 
+    public static half3x4 smoothstep(half3x4 min, half3x4 max, [This] half3x4 a) => 
         new(a.c0.smoothstep(min.c0, max.c0), a.c1.smoothstep(min.c1, max.c1), a.c2.smoothstep(min.c2, max.c2), a.c3.smoothstep(min.c3, max.c3));
 
     [MethodImpl(256 | 512)]
-    public static half3x4 radians(this half3x4 a) => 
+    public static half3x4 radians([This] half3x4 a) => 
         new(a.c0.radians(), a.c1.radians(), a.c2.radians(), a.c3.radians());
 
     [MethodImpl(256 | 512)]
-    public static half3x4 degrees(this half3x4 a) => 
+    public static half3x4 degrees([This] half3x4 a) => 
         new(a.c0.degrees(), a.c1.degrees(), a.c2.degrees(), a.c3.degrees());
+
+    [MethodImpl(256 | 512)]
+    public static half3x4 wrap([This] half3x4 x, half3x4 min, half3x4 max) => 
+        new(x.c0.wrap(min.c0, max.c0), x.c1.wrap(min.c1, max.c1), x.c2.wrap(min.c2, max.c2), x.c3.wrap(min.c3, max.c3));
 }
 
 #endregion // half3x4
@@ -1955,30 +2120,31 @@ public partial struct half4x2
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half4x2 ceil(this half4x2 a) => 
+    public static half4x2 ceil([This] half4x2 a) => 
         new(a.c0.ceil(), a.c1.ceil());
 
     [MethodImpl(256 | 512)]
-    public static half4x2 floor(this half4x2 a) => 
+    public static half4x2 floor([This] half4x2 a) => 
         new(a.c0.floor(), a.c1.floor());
 
     [MethodImpl(256 | 512)]
-    public static half4x2 round(this half4x2 a) => 
+    public static half4x2 round([This] half4x2 a) => 
         new(a.c0.round(), a.c1.round());
 
     [MethodImpl(256 | 512)]
-    public static half4x2 trunc(this half4x2 a) => 
+    public static half4x2 trunc([This] half4x2 a) => 
         new(a.c0.trunc(), a.c1.trunc());
 
     [MethodImpl(256 | 512)]
-    public static half4x2 frac(this half4x2 a) => 
+    public static half4x2 frac([This] half4x2 a) => 
         new(a.c0.frac(), a.c1.frac());
 
     [MethodImpl(256 | 512)]
-    public static half4x2 modf(this half4x2 a, out half4x2 i)
+    public static half4x2 modf([This] half4x2 a, out half4x2 i)
     {
         half4x2 r = new(a.c0.modf(out var i0), a.c1.modf(out var i1));
         i = new(i0, i1);
@@ -1986,24 +2152,28 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static half4x2 rcp(this half4x2 a) => 
+    public static half4x2 rcp([This] half4x2 a) => 
         new(a.c0.rcp(), a.c1.rcp());
 
     [MethodImpl(256 | 512)]
-    public static half4x2 saturate(this half4x2 a) => 
+    public static half4x2 saturate([This] half4x2 a) => 
         new(a.c0.saturate(), a.c1.saturate());
 
     [MethodImpl(256 | 512)]
-    public static half4x2 smoothstep(this half4x2 a, half4x2 min, half4x2 max) => 
+    public static half4x2 smoothstep(half4x2 min, half4x2 max, [This] half4x2 a) => 
         new(a.c0.smoothstep(min.c0, max.c0), a.c1.smoothstep(min.c1, max.c1));
 
     [MethodImpl(256 | 512)]
-    public static half4x2 radians(this half4x2 a) => 
+    public static half4x2 radians([This] half4x2 a) => 
         new(a.c0.radians(), a.c1.radians());
 
     [MethodImpl(256 | 512)]
-    public static half4x2 degrees(this half4x2 a) => 
+    public static half4x2 degrees([This] half4x2 a) => 
         new(a.c0.degrees(), a.c1.degrees());
+
+    [MethodImpl(256 | 512)]
+    public static half4x2 wrap([This] half4x2 x, half4x2 min, half4x2 max) => 
+        new(x.c0.wrap(min.c0, max.c0), x.c1.wrap(min.c1, max.c1));
 }
 
 #endregion // half4x2
@@ -2014,30 +2184,31 @@ public partial struct half4x3
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half4x3 ceil(this half4x3 a) => 
+    public static half4x3 ceil([This] half4x3 a) => 
         new(a.c0.ceil(), a.c1.ceil(), a.c2.ceil());
 
     [MethodImpl(256 | 512)]
-    public static half4x3 floor(this half4x3 a) => 
+    public static half4x3 floor([This] half4x3 a) => 
         new(a.c0.floor(), a.c1.floor(), a.c2.floor());
 
     [MethodImpl(256 | 512)]
-    public static half4x3 round(this half4x3 a) => 
+    public static half4x3 round([This] half4x3 a) => 
         new(a.c0.round(), a.c1.round(), a.c2.round());
 
     [MethodImpl(256 | 512)]
-    public static half4x3 trunc(this half4x3 a) => 
+    public static half4x3 trunc([This] half4x3 a) => 
         new(a.c0.trunc(), a.c1.trunc(), a.c2.trunc());
 
     [MethodImpl(256 | 512)]
-    public static half4x3 frac(this half4x3 a) => 
+    public static half4x3 frac([This] half4x3 a) => 
         new(a.c0.frac(), a.c1.frac(), a.c2.frac());
 
     [MethodImpl(256 | 512)]
-    public static half4x3 modf(this half4x3 a, out half4x3 i)
+    public static half4x3 modf([This] half4x3 a, out half4x3 i)
     {
         half4x3 r = new(a.c0.modf(out var i0), a.c1.modf(out var i1), a.c2.modf(out var i2));
         i = new(i0, i1, i2);
@@ -2045,24 +2216,28 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static half4x3 rcp(this half4x3 a) => 
+    public static half4x3 rcp([This] half4x3 a) => 
         new(a.c0.rcp(), a.c1.rcp(), a.c2.rcp());
 
     [MethodImpl(256 | 512)]
-    public static half4x3 saturate(this half4x3 a) => 
+    public static half4x3 saturate([This] half4x3 a) => 
         new(a.c0.saturate(), a.c1.saturate(), a.c2.saturate());
 
     [MethodImpl(256 | 512)]
-    public static half4x3 smoothstep(this half4x3 a, half4x3 min, half4x3 max) => 
+    public static half4x3 smoothstep(half4x3 min, half4x3 max, [This] half4x3 a) => 
         new(a.c0.smoothstep(min.c0, max.c0), a.c1.smoothstep(min.c1, max.c1), a.c2.smoothstep(min.c2, max.c2));
 
     [MethodImpl(256 | 512)]
-    public static half4x3 radians(this half4x3 a) => 
+    public static half4x3 radians([This] half4x3 a) => 
         new(a.c0.radians(), a.c1.radians(), a.c2.radians());
 
     [MethodImpl(256 | 512)]
-    public static half4x3 degrees(this half4x3 a) => 
+    public static half4x3 degrees([This] half4x3 a) => 
         new(a.c0.degrees(), a.c1.degrees(), a.c2.degrees());
+
+    [MethodImpl(256 | 512)]
+    public static half4x3 wrap([This] half4x3 x, half4x3 min, half4x3 max) => 
+        new(x.c0.wrap(min.c0, max.c0), x.c1.wrap(min.c1, max.c1), x.c2.wrap(min.c2, max.c2));
 }
 
 #endregion // half4x3
@@ -2073,30 +2248,31 @@ public partial struct half4x4
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half4x4 ceil(this half4x4 a) => 
+    public static half4x4 ceil([This] half4x4 a) => 
         new(a.c0.ceil(), a.c1.ceil(), a.c2.ceil(), a.c3.ceil());
 
     [MethodImpl(256 | 512)]
-    public static half4x4 floor(this half4x4 a) => 
+    public static half4x4 floor([This] half4x4 a) => 
         new(a.c0.floor(), a.c1.floor(), a.c2.floor(), a.c3.floor());
 
     [MethodImpl(256 | 512)]
-    public static half4x4 round(this half4x4 a) => 
+    public static half4x4 round([This] half4x4 a) => 
         new(a.c0.round(), a.c1.round(), a.c2.round(), a.c3.round());
 
     [MethodImpl(256 | 512)]
-    public static half4x4 trunc(this half4x4 a) => 
+    public static half4x4 trunc([This] half4x4 a) => 
         new(a.c0.trunc(), a.c1.trunc(), a.c2.trunc(), a.c3.trunc());
 
     [MethodImpl(256 | 512)]
-    public static half4x4 frac(this half4x4 a) => 
+    public static half4x4 frac([This] half4x4 a) => 
         new(a.c0.frac(), a.c1.frac(), a.c2.frac(), a.c3.frac());
 
     [MethodImpl(256 | 512)]
-    public static half4x4 modf(this half4x4 a, out half4x4 i)
+    public static half4x4 modf([This] half4x4 a, out half4x4 i)
     {
         half4x4 r = new(a.c0.modf(out var i0), a.c1.modf(out var i1), a.c2.modf(out var i2), a.c3.modf(out var i3));
         i = new(i0, i1, i2, i3);
@@ -2104,24 +2280,28 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static half4x4 rcp(this half4x4 a) => 
+    public static half4x4 rcp([This] half4x4 a) => 
         new(a.c0.rcp(), a.c1.rcp(), a.c2.rcp(), a.c3.rcp());
 
     [MethodImpl(256 | 512)]
-    public static half4x4 saturate(this half4x4 a) => 
+    public static half4x4 saturate([This] half4x4 a) => 
         new(a.c0.saturate(), a.c1.saturate(), a.c2.saturate(), a.c3.saturate());
 
     [MethodImpl(256 | 512)]
-    public static half4x4 smoothstep(this half4x4 a, half4x4 min, half4x4 max) => 
+    public static half4x4 smoothstep(half4x4 min, half4x4 max, [This] half4x4 a) => 
         new(a.c0.smoothstep(min.c0, max.c0), a.c1.smoothstep(min.c1, max.c1), a.c2.smoothstep(min.c2, max.c2), a.c3.smoothstep(min.c3, max.c3));
 
     [MethodImpl(256 | 512)]
-    public static half4x4 radians(this half4x4 a) => 
+    public static half4x4 radians([This] half4x4 a) => 
         new(a.c0.radians(), a.c1.radians(), a.c2.radians(), a.c3.radians());
 
     [MethodImpl(256 | 512)]
-    public static half4x4 degrees(this half4x4 a) => 
+    public static half4x4 degrees([This] half4x4 a) => 
         new(a.c0.degrees(), a.c1.degrees(), a.c2.degrees(), a.c3.degrees());
+
+    [MethodImpl(256 | 512)]
+    public static half4x4 wrap([This] half4x4 x, half4x4 min, half4x4 max) => 
+        new(x.c0.wrap(min.c0, max.c0), x.c1.wrap(min.c1, max.c1), x.c2.wrap(min.c2, max.c2), x.c3.wrap(min.c3, max.c3));
 }
 
 #endregion // half4x4

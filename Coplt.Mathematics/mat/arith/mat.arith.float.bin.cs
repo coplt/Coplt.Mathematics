@@ -8,86 +8,87 @@ public partial struct float2x2
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m2x2 isNaN(this float2x2 a) => 
+    public static b32m2x2 isNaN([This] float2x2 a) => 
         new(a.c0.isNaN(), a.c1.isNaN());
 
     [MethodImpl(256 | 512)]
-    public static b32m2x2 isFinite(this float2x2 a) => 
+    public static b32m2x2 isFinite([This] float2x2 a) => 
         new(a.c0.isFinite(), a.c1.isFinite());
 
     [MethodImpl(256 | 512)]
-    public static b32m2x2 isInf(this float2x2 a) => 
+    public static b32m2x2 isInf([This] float2x2 a) => 
         new(a.c0.isInf(), a.c1.isInf());
 
     [MethodImpl(256 | 512)]
-    public static b32m2x2 isPosInf(this float2x2 a) => 
+    public static b32m2x2 isPosInf([This] float2x2 a) => 
         new(a.c0.isPosInf(), a.c1.isPosInf());
 
     [MethodImpl(256 | 512)]
-    public static b32m2x2 isNegInf(this float2x2 a) => 
+    public static b32m2x2 isNegInf([This] float2x2 a) => 
         new(a.c0.isNegInf(), a.c1.isNegInf());
 
     [MethodImpl(256 | 512)]
-    public static float2x2 log(this float2x2 a) => 
+    public static float2x2 log([This] float2x2 a) => 
         new(a.c0.log(), a.c1.log());
 
     [MethodImpl(256 | 512)]
-    public static float2x2 log2(this float2x2 a) => 
+    public static float2x2 log2([This] float2x2 a) => 
         new(a.c0.log2(), a.c1.log2());
 
     [MethodImpl(256 | 512)]
-    public static float2x2 log(this float2x2 a, float2x2 b) => 
+    public static float2x2 log([This] float2x2 a, float2x2 b) => 
         new(a.c0.log(b.c0), a.c1.log(b.c1));
 
     [MethodImpl(256 | 512)]
-    public static float2x2 log10(this float2x2 a) => 
+    public static float2x2 log10([This] float2x2 a) => 
         new(a.c0.log10(), a.c1.log10());
 
     [MethodImpl(256 | 512)]
-    public static float2x2 exp(this float2x2 a) => 
+    public static float2x2 exp([This] float2x2 a) => 
         new(a.c0.exp(), a.c1.exp());
 
     [MethodImpl(256 | 512)]
-    public static float2x2 exp2(this float2x2 a) => 
+    public static float2x2 exp2([This] float2x2 a) => 
         new(a.c0.exp2(), a.c1.exp2());
 
     [MethodImpl(256 | 512)]
-    public static float2x2 exp10(this float2x2 a) => 
+    public static float2x2 exp10([This] float2x2 a) => 
         new(a.c0.exp10(), a.c1.exp10());
 
     [MethodImpl(256 | 512)]
-    public static float2x2 pow(this float2x2 a, float2x2 b) => 
+    public static float2x2 pow([This] float2x2 a, float2x2 b) => 
         new(a.c0.pow(b.c0), a.c1.pow(b.c1));
 
     [MethodImpl(256 | 512)]
-    public static float2x2 pow(this float2x2 a, float2 b) => 
+    public static float2x2 pow([This] float2x2 a, float2 b) => 
         new(a.c0.pow(b), a.c1.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static float2x2 pow(this float2x2 a, float b) => 
+    public static float2x2 pow([This] float2x2 a, float b) => 
         new(a.c0.pow(b), a.c1.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static float2x2 sqrt(this float2x2 a) => 
+    public static float2x2 sqrt([This] float2x2 a) => 
         new(a.c0.sqrt(), a.c1.sqrt());
 
     [MethodImpl(256 | 512)]
-    public static float2x2 rsqrt(this float2x2 a) => 
+    public static float2x2 rsqrt([This] float2x2 a) => 
         new(a.c0.rsqrt(), a.c1.rsqrt());
 
     [MethodImpl(256 | 512)]
-    public static float2x2 sin(this float2x2 a) => 
+    public static float2x2 sin([This] float2x2 a) => 
         new(a.c0.sin(), a.c1.sin());
 
     [MethodImpl(256 | 512)]
-    public static float2x2 cos(this float2x2 a) => 
+    public static float2x2 cos([This] float2x2 a) => 
         new(a.c0.cos(), a.c1.cos());
 
     [MethodImpl(256 | 512)]
-    public static (float2x2 sin, float2x2 cos) sincos(this float2x2 a)
+    public static (float2x2 sin, float2x2 cos) sincos([This] float2x2 a)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -98,7 +99,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static void sincos(this float2x2 a, out float2x2 sin, out float2x2 cos)
+    public static void sincos([This] float2x2 a, out float2x2 sin, out float2x2 cos)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -107,48 +108,52 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static float2x2 tan(this float2x2 a) => 
+    public static float2x2 tan([This] float2x2 a) => 
         new(a.c0.tan(), a.c1.tan());
 
     [MethodImpl(256 | 512)]
-    public static float2x2 asin(this float2x2 a) => 
+    public static float2x2 asin([This] float2x2 a) => 
         new(a.c0.asin(), a.c1.asin());
 
     [MethodImpl(256 | 512)]
-    public static float2x2 acos(this float2x2 a) => 
+    public static float2x2 acos([This] float2x2 a) => 
         new(a.c0.acos(), a.c1.acos());
 
     [MethodImpl(256 | 512)]
-    public static float2x2 atan(this float2x2 a) => 
+    public static float2x2 atan([This] float2x2 a) => 
         new(a.c0.atan(), a.c1.atan());
 
     [MethodImpl(256 | 512)]
-    public static float2x2 atan2(this float2x2 a, float2x2 b) => 
+    public static float2x2 atan2([This] float2x2 a, float2x2 b) => 
         new(a.c0.atan2(b.c0), a.c1.atan2(b.c1));
 
     [MethodImpl(256 | 512)]
-    public static float2x2 sinh(this float2x2 a) => 
+    public static float2x2 sinh([This] float2x2 a) => 
         new(a.c0.sinh(), a.c1.sinh());
 
     [MethodImpl(256 | 512)]
-    public static float2x2 cosh(this float2x2 a) => 
+    public static float2x2 cosh([This] float2x2 a) => 
         new(a.c0.cosh(), a.c1.cosh());
 
     [MethodImpl(256 | 512)]
-    public static float2x2 tanh(this float2x2 a) => 
+    public static float2x2 tanh([This] float2x2 a) => 
         new(a.c0.tanh(), a.c1.tanh());
 
     [MethodImpl(256 | 512)]
-    public static float2x2 asinh(this float2x2 a) => 
+    public static float2x2 asinh([This] float2x2 a) => 
         new(a.c0.asinh(), a.c1.asinh());
 
     [MethodImpl(256 | 512)]
-    public static float2x2 acosh(this float2x2 a) => 
+    public static float2x2 acosh([This] float2x2 a) => 
         new(a.c0.acosh(), a.c1.acosh());
 
     [MethodImpl(256 | 512)]
-    public static float2x2 atanh(this float2x2 a) => 
+    public static float2x2 atanh([This] float2x2 a) => 
         new(a.c0.atanh(), a.c1.atanh());
+
+    [MethodImpl(256 | 512)]
+    public static float2x2 step(float2x2 threshold, [This] float2x2 a) =>
+        new(a.c0.step(threshold.c0), a.c1.step(threshold.c1));
 }
 
 #endregion // float2x2
@@ -159,86 +164,87 @@ public partial struct float2x3
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m2x3 isNaN(this float2x3 a) => 
+    public static b32m2x3 isNaN([This] float2x3 a) => 
         new(a.c0.isNaN(), a.c1.isNaN(), a.c2.isNaN());
 
     [MethodImpl(256 | 512)]
-    public static b32m2x3 isFinite(this float2x3 a) => 
+    public static b32m2x3 isFinite([This] float2x3 a) => 
         new(a.c0.isFinite(), a.c1.isFinite(), a.c2.isFinite());
 
     [MethodImpl(256 | 512)]
-    public static b32m2x3 isInf(this float2x3 a) => 
+    public static b32m2x3 isInf([This] float2x3 a) => 
         new(a.c0.isInf(), a.c1.isInf(), a.c2.isInf());
 
     [MethodImpl(256 | 512)]
-    public static b32m2x3 isPosInf(this float2x3 a) => 
+    public static b32m2x3 isPosInf([This] float2x3 a) => 
         new(a.c0.isPosInf(), a.c1.isPosInf(), a.c2.isPosInf());
 
     [MethodImpl(256 | 512)]
-    public static b32m2x3 isNegInf(this float2x3 a) => 
+    public static b32m2x3 isNegInf([This] float2x3 a) => 
         new(a.c0.isNegInf(), a.c1.isNegInf(), a.c2.isNegInf());
 
     [MethodImpl(256 | 512)]
-    public static float2x3 log(this float2x3 a) => 
+    public static float2x3 log([This] float2x3 a) => 
         new(a.c0.log(), a.c1.log(), a.c2.log());
 
     [MethodImpl(256 | 512)]
-    public static float2x3 log2(this float2x3 a) => 
+    public static float2x3 log2([This] float2x3 a) => 
         new(a.c0.log2(), a.c1.log2(), a.c2.log2());
 
     [MethodImpl(256 | 512)]
-    public static float2x3 log(this float2x3 a, float2x3 b) => 
+    public static float2x3 log([This] float2x3 a, float2x3 b) => 
         new(a.c0.log(b.c0), a.c1.log(b.c1), a.c2.log(b.c2));
 
     [MethodImpl(256 | 512)]
-    public static float2x3 log10(this float2x3 a) => 
+    public static float2x3 log10([This] float2x3 a) => 
         new(a.c0.log10(), a.c1.log10(), a.c2.log10());
 
     [MethodImpl(256 | 512)]
-    public static float2x3 exp(this float2x3 a) => 
+    public static float2x3 exp([This] float2x3 a) => 
         new(a.c0.exp(), a.c1.exp(), a.c2.exp());
 
     [MethodImpl(256 | 512)]
-    public static float2x3 exp2(this float2x3 a) => 
+    public static float2x3 exp2([This] float2x3 a) => 
         new(a.c0.exp2(), a.c1.exp2(), a.c2.exp2());
 
     [MethodImpl(256 | 512)]
-    public static float2x3 exp10(this float2x3 a) => 
+    public static float2x3 exp10([This] float2x3 a) => 
         new(a.c0.exp10(), a.c1.exp10(), a.c2.exp10());
 
     [MethodImpl(256 | 512)]
-    public static float2x3 pow(this float2x3 a, float2x3 b) => 
+    public static float2x3 pow([This] float2x3 a, float2x3 b) => 
         new(a.c0.pow(b.c0), a.c1.pow(b.c1), a.c2.pow(b.c2));
 
     [MethodImpl(256 | 512)]
-    public static float2x3 pow(this float2x3 a, float2 b) => 
+    public static float2x3 pow([This] float2x3 a, float2 b) => 
         new(a.c0.pow(b), a.c1.pow(b), a.c2.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static float2x3 pow(this float2x3 a, float b) => 
+    public static float2x3 pow([This] float2x3 a, float b) => 
         new(a.c0.pow(b), a.c1.pow(b), a.c2.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static float2x3 sqrt(this float2x3 a) => 
+    public static float2x3 sqrt([This] float2x3 a) => 
         new(a.c0.sqrt(), a.c1.sqrt(), a.c2.sqrt());
 
     [MethodImpl(256 | 512)]
-    public static float2x3 rsqrt(this float2x3 a) => 
+    public static float2x3 rsqrt([This] float2x3 a) => 
         new(a.c0.rsqrt(), a.c1.rsqrt(), a.c2.rsqrt());
 
     [MethodImpl(256 | 512)]
-    public static float2x3 sin(this float2x3 a) => 
+    public static float2x3 sin([This] float2x3 a) => 
         new(a.c0.sin(), a.c1.sin(), a.c2.sin());
 
     [MethodImpl(256 | 512)]
-    public static float2x3 cos(this float2x3 a) => 
+    public static float2x3 cos([This] float2x3 a) => 
         new(a.c0.cos(), a.c1.cos(), a.c2.cos());
 
     [MethodImpl(256 | 512)]
-    public static (float2x3 sin, float2x3 cos) sincos(this float2x3 a)
+    public static (float2x3 sin, float2x3 cos) sincos([This] float2x3 a)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -250,7 +256,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static void sincos(this float2x3 a, out float2x3 sin, out float2x3 cos)
+    public static void sincos([This] float2x3 a, out float2x3 sin, out float2x3 cos)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -260,48 +266,52 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static float2x3 tan(this float2x3 a) => 
+    public static float2x3 tan([This] float2x3 a) => 
         new(a.c0.tan(), a.c1.tan(), a.c2.tan());
 
     [MethodImpl(256 | 512)]
-    public static float2x3 asin(this float2x3 a) => 
+    public static float2x3 asin([This] float2x3 a) => 
         new(a.c0.asin(), a.c1.asin(), a.c2.asin());
 
     [MethodImpl(256 | 512)]
-    public static float2x3 acos(this float2x3 a) => 
+    public static float2x3 acos([This] float2x3 a) => 
         new(a.c0.acos(), a.c1.acos(), a.c2.acos());
 
     [MethodImpl(256 | 512)]
-    public static float2x3 atan(this float2x3 a) => 
+    public static float2x3 atan([This] float2x3 a) => 
         new(a.c0.atan(), a.c1.atan(), a.c2.atan());
 
     [MethodImpl(256 | 512)]
-    public static float2x3 atan2(this float2x3 a, float2x3 b) => 
+    public static float2x3 atan2([This] float2x3 a, float2x3 b) => 
         new(a.c0.atan2(b.c0), a.c1.atan2(b.c1), a.c2.atan2(b.c2));
 
     [MethodImpl(256 | 512)]
-    public static float2x3 sinh(this float2x3 a) => 
+    public static float2x3 sinh([This] float2x3 a) => 
         new(a.c0.sinh(), a.c1.sinh(), a.c2.sinh());
 
     [MethodImpl(256 | 512)]
-    public static float2x3 cosh(this float2x3 a) => 
+    public static float2x3 cosh([This] float2x3 a) => 
         new(a.c0.cosh(), a.c1.cosh(), a.c2.cosh());
 
     [MethodImpl(256 | 512)]
-    public static float2x3 tanh(this float2x3 a) => 
+    public static float2x3 tanh([This] float2x3 a) => 
         new(a.c0.tanh(), a.c1.tanh(), a.c2.tanh());
 
     [MethodImpl(256 | 512)]
-    public static float2x3 asinh(this float2x3 a) => 
+    public static float2x3 asinh([This] float2x3 a) => 
         new(a.c0.asinh(), a.c1.asinh(), a.c2.asinh());
 
     [MethodImpl(256 | 512)]
-    public static float2x3 acosh(this float2x3 a) => 
+    public static float2x3 acosh([This] float2x3 a) => 
         new(a.c0.acosh(), a.c1.acosh(), a.c2.acosh());
 
     [MethodImpl(256 | 512)]
-    public static float2x3 atanh(this float2x3 a) => 
+    public static float2x3 atanh([This] float2x3 a) => 
         new(a.c0.atanh(), a.c1.atanh(), a.c2.atanh());
+
+    [MethodImpl(256 | 512)]
+    public static float2x3 step(float2x3 threshold, [This] float2x3 a) =>
+        new(a.c0.step(threshold.c0), a.c1.step(threshold.c1), a.c2.step(threshold.c2));
 }
 
 #endregion // float2x3
@@ -312,86 +322,87 @@ public partial struct float2x4
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m2x4 isNaN(this float2x4 a) => 
+    public static b32m2x4 isNaN([This] float2x4 a) => 
         new(a.c0.isNaN(), a.c1.isNaN(), a.c2.isNaN(), a.c3.isNaN());
 
     [MethodImpl(256 | 512)]
-    public static b32m2x4 isFinite(this float2x4 a) => 
+    public static b32m2x4 isFinite([This] float2x4 a) => 
         new(a.c0.isFinite(), a.c1.isFinite(), a.c2.isFinite(), a.c3.isFinite());
 
     [MethodImpl(256 | 512)]
-    public static b32m2x4 isInf(this float2x4 a) => 
+    public static b32m2x4 isInf([This] float2x4 a) => 
         new(a.c0.isInf(), a.c1.isInf(), a.c2.isInf(), a.c3.isInf());
 
     [MethodImpl(256 | 512)]
-    public static b32m2x4 isPosInf(this float2x4 a) => 
+    public static b32m2x4 isPosInf([This] float2x4 a) => 
         new(a.c0.isPosInf(), a.c1.isPosInf(), a.c2.isPosInf(), a.c3.isPosInf());
 
     [MethodImpl(256 | 512)]
-    public static b32m2x4 isNegInf(this float2x4 a) => 
+    public static b32m2x4 isNegInf([This] float2x4 a) => 
         new(a.c0.isNegInf(), a.c1.isNegInf(), a.c2.isNegInf(), a.c3.isNegInf());
 
     [MethodImpl(256 | 512)]
-    public static float2x4 log(this float2x4 a) => 
+    public static float2x4 log([This] float2x4 a) => 
         new(a.c0.log(), a.c1.log(), a.c2.log(), a.c3.log());
 
     [MethodImpl(256 | 512)]
-    public static float2x4 log2(this float2x4 a) => 
+    public static float2x4 log2([This] float2x4 a) => 
         new(a.c0.log2(), a.c1.log2(), a.c2.log2(), a.c3.log2());
 
     [MethodImpl(256 | 512)]
-    public static float2x4 log(this float2x4 a, float2x4 b) => 
+    public static float2x4 log([This] float2x4 a, float2x4 b) => 
         new(a.c0.log(b.c0), a.c1.log(b.c1), a.c2.log(b.c2), a.c3.log(b.c3));
 
     [MethodImpl(256 | 512)]
-    public static float2x4 log10(this float2x4 a) => 
+    public static float2x4 log10([This] float2x4 a) => 
         new(a.c0.log10(), a.c1.log10(), a.c2.log10(), a.c3.log10());
 
     [MethodImpl(256 | 512)]
-    public static float2x4 exp(this float2x4 a) => 
+    public static float2x4 exp([This] float2x4 a) => 
         new(a.c0.exp(), a.c1.exp(), a.c2.exp(), a.c3.exp());
 
     [MethodImpl(256 | 512)]
-    public static float2x4 exp2(this float2x4 a) => 
+    public static float2x4 exp2([This] float2x4 a) => 
         new(a.c0.exp2(), a.c1.exp2(), a.c2.exp2(), a.c3.exp2());
 
     [MethodImpl(256 | 512)]
-    public static float2x4 exp10(this float2x4 a) => 
+    public static float2x4 exp10([This] float2x4 a) => 
         new(a.c0.exp10(), a.c1.exp10(), a.c2.exp10(), a.c3.exp10());
 
     [MethodImpl(256 | 512)]
-    public static float2x4 pow(this float2x4 a, float2x4 b) => 
+    public static float2x4 pow([This] float2x4 a, float2x4 b) => 
         new(a.c0.pow(b.c0), a.c1.pow(b.c1), a.c2.pow(b.c2), a.c3.pow(b.c3));
 
     [MethodImpl(256 | 512)]
-    public static float2x4 pow(this float2x4 a, float2 b) => 
+    public static float2x4 pow([This] float2x4 a, float2 b) => 
         new(a.c0.pow(b), a.c1.pow(b), a.c2.pow(b), a.c3.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static float2x4 pow(this float2x4 a, float b) => 
+    public static float2x4 pow([This] float2x4 a, float b) => 
         new(a.c0.pow(b), a.c1.pow(b), a.c2.pow(b), a.c3.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static float2x4 sqrt(this float2x4 a) => 
+    public static float2x4 sqrt([This] float2x4 a) => 
         new(a.c0.sqrt(), a.c1.sqrt(), a.c2.sqrt(), a.c3.sqrt());
 
     [MethodImpl(256 | 512)]
-    public static float2x4 rsqrt(this float2x4 a) => 
+    public static float2x4 rsqrt([This] float2x4 a) => 
         new(a.c0.rsqrt(), a.c1.rsqrt(), a.c2.rsqrt(), a.c3.rsqrt());
 
     [MethodImpl(256 | 512)]
-    public static float2x4 sin(this float2x4 a) => 
+    public static float2x4 sin([This] float2x4 a) => 
         new(a.c0.sin(), a.c1.sin(), a.c2.sin(), a.c3.sin());
 
     [MethodImpl(256 | 512)]
-    public static float2x4 cos(this float2x4 a) => 
+    public static float2x4 cos([This] float2x4 a) => 
         new(a.c0.cos(), a.c1.cos(), a.c2.cos(), a.c3.cos());
 
     [MethodImpl(256 | 512)]
-    public static (float2x4 sin, float2x4 cos) sincos(this float2x4 a)
+    public static (float2x4 sin, float2x4 cos) sincos([This] float2x4 a)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -404,7 +415,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static void sincos(this float2x4 a, out float2x4 sin, out float2x4 cos)
+    public static void sincos([This] float2x4 a, out float2x4 sin, out float2x4 cos)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -415,48 +426,52 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static float2x4 tan(this float2x4 a) => 
+    public static float2x4 tan([This] float2x4 a) => 
         new(a.c0.tan(), a.c1.tan(), a.c2.tan(), a.c3.tan());
 
     [MethodImpl(256 | 512)]
-    public static float2x4 asin(this float2x4 a) => 
+    public static float2x4 asin([This] float2x4 a) => 
         new(a.c0.asin(), a.c1.asin(), a.c2.asin(), a.c3.asin());
 
     [MethodImpl(256 | 512)]
-    public static float2x4 acos(this float2x4 a) => 
+    public static float2x4 acos([This] float2x4 a) => 
         new(a.c0.acos(), a.c1.acos(), a.c2.acos(), a.c3.acos());
 
     [MethodImpl(256 | 512)]
-    public static float2x4 atan(this float2x4 a) => 
+    public static float2x4 atan([This] float2x4 a) => 
         new(a.c0.atan(), a.c1.atan(), a.c2.atan(), a.c3.atan());
 
     [MethodImpl(256 | 512)]
-    public static float2x4 atan2(this float2x4 a, float2x4 b) => 
+    public static float2x4 atan2([This] float2x4 a, float2x4 b) => 
         new(a.c0.atan2(b.c0), a.c1.atan2(b.c1), a.c2.atan2(b.c2), a.c3.atan2(b.c3));
 
     [MethodImpl(256 | 512)]
-    public static float2x4 sinh(this float2x4 a) => 
+    public static float2x4 sinh([This] float2x4 a) => 
         new(a.c0.sinh(), a.c1.sinh(), a.c2.sinh(), a.c3.sinh());
 
     [MethodImpl(256 | 512)]
-    public static float2x4 cosh(this float2x4 a) => 
+    public static float2x4 cosh([This] float2x4 a) => 
         new(a.c0.cosh(), a.c1.cosh(), a.c2.cosh(), a.c3.cosh());
 
     [MethodImpl(256 | 512)]
-    public static float2x4 tanh(this float2x4 a) => 
+    public static float2x4 tanh([This] float2x4 a) => 
         new(a.c0.tanh(), a.c1.tanh(), a.c2.tanh(), a.c3.tanh());
 
     [MethodImpl(256 | 512)]
-    public static float2x4 asinh(this float2x4 a) => 
+    public static float2x4 asinh([This] float2x4 a) => 
         new(a.c0.asinh(), a.c1.asinh(), a.c2.asinh(), a.c3.asinh());
 
     [MethodImpl(256 | 512)]
-    public static float2x4 acosh(this float2x4 a) => 
+    public static float2x4 acosh([This] float2x4 a) => 
         new(a.c0.acosh(), a.c1.acosh(), a.c2.acosh(), a.c3.acosh());
 
     [MethodImpl(256 | 512)]
-    public static float2x4 atanh(this float2x4 a) => 
+    public static float2x4 atanh([This] float2x4 a) => 
         new(a.c0.atanh(), a.c1.atanh(), a.c2.atanh(), a.c3.atanh());
+
+    [MethodImpl(256 | 512)]
+    public static float2x4 step(float2x4 threshold, [This] float2x4 a) =>
+        new(a.c0.step(threshold.c0), a.c1.step(threshold.c1), a.c2.step(threshold.c2), a.c3.step(threshold.c3));
 }
 
 #endregion // float2x4
@@ -467,86 +482,87 @@ public partial struct float3x2
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m3x2 isNaN(this float3x2 a) => 
+    public static b32m3x2 isNaN([This] float3x2 a) => 
         new(a.c0.isNaN(), a.c1.isNaN());
 
     [MethodImpl(256 | 512)]
-    public static b32m3x2 isFinite(this float3x2 a) => 
+    public static b32m3x2 isFinite([This] float3x2 a) => 
         new(a.c0.isFinite(), a.c1.isFinite());
 
     [MethodImpl(256 | 512)]
-    public static b32m3x2 isInf(this float3x2 a) => 
+    public static b32m3x2 isInf([This] float3x2 a) => 
         new(a.c0.isInf(), a.c1.isInf());
 
     [MethodImpl(256 | 512)]
-    public static b32m3x2 isPosInf(this float3x2 a) => 
+    public static b32m3x2 isPosInf([This] float3x2 a) => 
         new(a.c0.isPosInf(), a.c1.isPosInf());
 
     [MethodImpl(256 | 512)]
-    public static b32m3x2 isNegInf(this float3x2 a) => 
+    public static b32m3x2 isNegInf([This] float3x2 a) => 
         new(a.c0.isNegInf(), a.c1.isNegInf());
 
     [MethodImpl(256 | 512)]
-    public static float3x2 log(this float3x2 a) => 
+    public static float3x2 log([This] float3x2 a) => 
         new(a.c0.log(), a.c1.log());
 
     [MethodImpl(256 | 512)]
-    public static float3x2 log2(this float3x2 a) => 
+    public static float3x2 log2([This] float3x2 a) => 
         new(a.c0.log2(), a.c1.log2());
 
     [MethodImpl(256 | 512)]
-    public static float3x2 log(this float3x2 a, float3x2 b) => 
+    public static float3x2 log([This] float3x2 a, float3x2 b) => 
         new(a.c0.log(b.c0), a.c1.log(b.c1));
 
     [MethodImpl(256 | 512)]
-    public static float3x2 log10(this float3x2 a) => 
+    public static float3x2 log10([This] float3x2 a) => 
         new(a.c0.log10(), a.c1.log10());
 
     [MethodImpl(256 | 512)]
-    public static float3x2 exp(this float3x2 a) => 
+    public static float3x2 exp([This] float3x2 a) => 
         new(a.c0.exp(), a.c1.exp());
 
     [MethodImpl(256 | 512)]
-    public static float3x2 exp2(this float3x2 a) => 
+    public static float3x2 exp2([This] float3x2 a) => 
         new(a.c0.exp2(), a.c1.exp2());
 
     [MethodImpl(256 | 512)]
-    public static float3x2 exp10(this float3x2 a) => 
+    public static float3x2 exp10([This] float3x2 a) => 
         new(a.c0.exp10(), a.c1.exp10());
 
     [MethodImpl(256 | 512)]
-    public static float3x2 pow(this float3x2 a, float3x2 b) => 
+    public static float3x2 pow([This] float3x2 a, float3x2 b) => 
         new(a.c0.pow(b.c0), a.c1.pow(b.c1));
 
     [MethodImpl(256 | 512)]
-    public static float3x2 pow(this float3x2 a, float3 b) => 
+    public static float3x2 pow([This] float3x2 a, float3 b) => 
         new(a.c0.pow(b), a.c1.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static float3x2 pow(this float3x2 a, float b) => 
+    public static float3x2 pow([This] float3x2 a, float b) => 
         new(a.c0.pow(b), a.c1.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static float3x2 sqrt(this float3x2 a) => 
+    public static float3x2 sqrt([This] float3x2 a) => 
         new(a.c0.sqrt(), a.c1.sqrt());
 
     [MethodImpl(256 | 512)]
-    public static float3x2 rsqrt(this float3x2 a) => 
+    public static float3x2 rsqrt([This] float3x2 a) => 
         new(a.c0.rsqrt(), a.c1.rsqrt());
 
     [MethodImpl(256 | 512)]
-    public static float3x2 sin(this float3x2 a) => 
+    public static float3x2 sin([This] float3x2 a) => 
         new(a.c0.sin(), a.c1.sin());
 
     [MethodImpl(256 | 512)]
-    public static float3x2 cos(this float3x2 a) => 
+    public static float3x2 cos([This] float3x2 a) => 
         new(a.c0.cos(), a.c1.cos());
 
     [MethodImpl(256 | 512)]
-    public static (float3x2 sin, float3x2 cos) sincos(this float3x2 a)
+    public static (float3x2 sin, float3x2 cos) sincos([This] float3x2 a)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -557,7 +573,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static void sincos(this float3x2 a, out float3x2 sin, out float3x2 cos)
+    public static void sincos([This] float3x2 a, out float3x2 sin, out float3x2 cos)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -566,48 +582,52 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static float3x2 tan(this float3x2 a) => 
+    public static float3x2 tan([This] float3x2 a) => 
         new(a.c0.tan(), a.c1.tan());
 
     [MethodImpl(256 | 512)]
-    public static float3x2 asin(this float3x2 a) => 
+    public static float3x2 asin([This] float3x2 a) => 
         new(a.c0.asin(), a.c1.asin());
 
     [MethodImpl(256 | 512)]
-    public static float3x2 acos(this float3x2 a) => 
+    public static float3x2 acos([This] float3x2 a) => 
         new(a.c0.acos(), a.c1.acos());
 
     [MethodImpl(256 | 512)]
-    public static float3x2 atan(this float3x2 a) => 
+    public static float3x2 atan([This] float3x2 a) => 
         new(a.c0.atan(), a.c1.atan());
 
     [MethodImpl(256 | 512)]
-    public static float3x2 atan2(this float3x2 a, float3x2 b) => 
+    public static float3x2 atan2([This] float3x2 a, float3x2 b) => 
         new(a.c0.atan2(b.c0), a.c1.atan2(b.c1));
 
     [MethodImpl(256 | 512)]
-    public static float3x2 sinh(this float3x2 a) => 
+    public static float3x2 sinh([This] float3x2 a) => 
         new(a.c0.sinh(), a.c1.sinh());
 
     [MethodImpl(256 | 512)]
-    public static float3x2 cosh(this float3x2 a) => 
+    public static float3x2 cosh([This] float3x2 a) => 
         new(a.c0.cosh(), a.c1.cosh());
 
     [MethodImpl(256 | 512)]
-    public static float3x2 tanh(this float3x2 a) => 
+    public static float3x2 tanh([This] float3x2 a) => 
         new(a.c0.tanh(), a.c1.tanh());
 
     [MethodImpl(256 | 512)]
-    public static float3x2 asinh(this float3x2 a) => 
+    public static float3x2 asinh([This] float3x2 a) => 
         new(a.c0.asinh(), a.c1.asinh());
 
     [MethodImpl(256 | 512)]
-    public static float3x2 acosh(this float3x2 a) => 
+    public static float3x2 acosh([This] float3x2 a) => 
         new(a.c0.acosh(), a.c1.acosh());
 
     [MethodImpl(256 | 512)]
-    public static float3x2 atanh(this float3x2 a) => 
+    public static float3x2 atanh([This] float3x2 a) => 
         new(a.c0.atanh(), a.c1.atanh());
+
+    [MethodImpl(256 | 512)]
+    public static float3x2 step(float3x2 threshold, [This] float3x2 a) =>
+        new(a.c0.step(threshold.c0), a.c1.step(threshold.c1));
 }
 
 #endregion // float3x2
@@ -618,86 +638,87 @@ public partial struct float3x3
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m3x3 isNaN(this float3x3 a) => 
+    public static b32m3x3 isNaN([This] float3x3 a) => 
         new(a.c0.isNaN(), a.c1.isNaN(), a.c2.isNaN());
 
     [MethodImpl(256 | 512)]
-    public static b32m3x3 isFinite(this float3x3 a) => 
+    public static b32m3x3 isFinite([This] float3x3 a) => 
         new(a.c0.isFinite(), a.c1.isFinite(), a.c2.isFinite());
 
     [MethodImpl(256 | 512)]
-    public static b32m3x3 isInf(this float3x3 a) => 
+    public static b32m3x3 isInf([This] float3x3 a) => 
         new(a.c0.isInf(), a.c1.isInf(), a.c2.isInf());
 
     [MethodImpl(256 | 512)]
-    public static b32m3x3 isPosInf(this float3x3 a) => 
+    public static b32m3x3 isPosInf([This] float3x3 a) => 
         new(a.c0.isPosInf(), a.c1.isPosInf(), a.c2.isPosInf());
 
     [MethodImpl(256 | 512)]
-    public static b32m3x3 isNegInf(this float3x3 a) => 
+    public static b32m3x3 isNegInf([This] float3x3 a) => 
         new(a.c0.isNegInf(), a.c1.isNegInf(), a.c2.isNegInf());
 
     [MethodImpl(256 | 512)]
-    public static float3x3 log(this float3x3 a) => 
+    public static float3x3 log([This] float3x3 a) => 
         new(a.c0.log(), a.c1.log(), a.c2.log());
 
     [MethodImpl(256 | 512)]
-    public static float3x3 log2(this float3x3 a) => 
+    public static float3x3 log2([This] float3x3 a) => 
         new(a.c0.log2(), a.c1.log2(), a.c2.log2());
 
     [MethodImpl(256 | 512)]
-    public static float3x3 log(this float3x3 a, float3x3 b) => 
+    public static float3x3 log([This] float3x3 a, float3x3 b) => 
         new(a.c0.log(b.c0), a.c1.log(b.c1), a.c2.log(b.c2));
 
     [MethodImpl(256 | 512)]
-    public static float3x3 log10(this float3x3 a) => 
+    public static float3x3 log10([This] float3x3 a) => 
         new(a.c0.log10(), a.c1.log10(), a.c2.log10());
 
     [MethodImpl(256 | 512)]
-    public static float3x3 exp(this float3x3 a) => 
+    public static float3x3 exp([This] float3x3 a) => 
         new(a.c0.exp(), a.c1.exp(), a.c2.exp());
 
     [MethodImpl(256 | 512)]
-    public static float3x3 exp2(this float3x3 a) => 
+    public static float3x3 exp2([This] float3x3 a) => 
         new(a.c0.exp2(), a.c1.exp2(), a.c2.exp2());
 
     [MethodImpl(256 | 512)]
-    public static float3x3 exp10(this float3x3 a) => 
+    public static float3x3 exp10([This] float3x3 a) => 
         new(a.c0.exp10(), a.c1.exp10(), a.c2.exp10());
 
     [MethodImpl(256 | 512)]
-    public static float3x3 pow(this float3x3 a, float3x3 b) => 
+    public static float3x3 pow([This] float3x3 a, float3x3 b) => 
         new(a.c0.pow(b.c0), a.c1.pow(b.c1), a.c2.pow(b.c2));
 
     [MethodImpl(256 | 512)]
-    public static float3x3 pow(this float3x3 a, float3 b) => 
+    public static float3x3 pow([This] float3x3 a, float3 b) => 
         new(a.c0.pow(b), a.c1.pow(b), a.c2.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static float3x3 pow(this float3x3 a, float b) => 
+    public static float3x3 pow([This] float3x3 a, float b) => 
         new(a.c0.pow(b), a.c1.pow(b), a.c2.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static float3x3 sqrt(this float3x3 a) => 
+    public static float3x3 sqrt([This] float3x3 a) => 
         new(a.c0.sqrt(), a.c1.sqrt(), a.c2.sqrt());
 
     [MethodImpl(256 | 512)]
-    public static float3x3 rsqrt(this float3x3 a) => 
+    public static float3x3 rsqrt([This] float3x3 a) => 
         new(a.c0.rsqrt(), a.c1.rsqrt(), a.c2.rsqrt());
 
     [MethodImpl(256 | 512)]
-    public static float3x3 sin(this float3x3 a) => 
+    public static float3x3 sin([This] float3x3 a) => 
         new(a.c0.sin(), a.c1.sin(), a.c2.sin());
 
     [MethodImpl(256 | 512)]
-    public static float3x3 cos(this float3x3 a) => 
+    public static float3x3 cos([This] float3x3 a) => 
         new(a.c0.cos(), a.c1.cos(), a.c2.cos());
 
     [MethodImpl(256 | 512)]
-    public static (float3x3 sin, float3x3 cos) sincos(this float3x3 a)
+    public static (float3x3 sin, float3x3 cos) sincos([This] float3x3 a)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -709,7 +730,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static void sincos(this float3x3 a, out float3x3 sin, out float3x3 cos)
+    public static void sincos([This] float3x3 a, out float3x3 sin, out float3x3 cos)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -719,48 +740,52 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static float3x3 tan(this float3x3 a) => 
+    public static float3x3 tan([This] float3x3 a) => 
         new(a.c0.tan(), a.c1.tan(), a.c2.tan());
 
     [MethodImpl(256 | 512)]
-    public static float3x3 asin(this float3x3 a) => 
+    public static float3x3 asin([This] float3x3 a) => 
         new(a.c0.asin(), a.c1.asin(), a.c2.asin());
 
     [MethodImpl(256 | 512)]
-    public static float3x3 acos(this float3x3 a) => 
+    public static float3x3 acos([This] float3x3 a) => 
         new(a.c0.acos(), a.c1.acos(), a.c2.acos());
 
     [MethodImpl(256 | 512)]
-    public static float3x3 atan(this float3x3 a) => 
+    public static float3x3 atan([This] float3x3 a) => 
         new(a.c0.atan(), a.c1.atan(), a.c2.atan());
 
     [MethodImpl(256 | 512)]
-    public static float3x3 atan2(this float3x3 a, float3x3 b) => 
+    public static float3x3 atan2([This] float3x3 a, float3x3 b) => 
         new(a.c0.atan2(b.c0), a.c1.atan2(b.c1), a.c2.atan2(b.c2));
 
     [MethodImpl(256 | 512)]
-    public static float3x3 sinh(this float3x3 a) => 
+    public static float3x3 sinh([This] float3x3 a) => 
         new(a.c0.sinh(), a.c1.sinh(), a.c2.sinh());
 
     [MethodImpl(256 | 512)]
-    public static float3x3 cosh(this float3x3 a) => 
+    public static float3x3 cosh([This] float3x3 a) => 
         new(a.c0.cosh(), a.c1.cosh(), a.c2.cosh());
 
     [MethodImpl(256 | 512)]
-    public static float3x3 tanh(this float3x3 a) => 
+    public static float3x3 tanh([This] float3x3 a) => 
         new(a.c0.tanh(), a.c1.tanh(), a.c2.tanh());
 
     [MethodImpl(256 | 512)]
-    public static float3x3 asinh(this float3x3 a) => 
+    public static float3x3 asinh([This] float3x3 a) => 
         new(a.c0.asinh(), a.c1.asinh(), a.c2.asinh());
 
     [MethodImpl(256 | 512)]
-    public static float3x3 acosh(this float3x3 a) => 
+    public static float3x3 acosh([This] float3x3 a) => 
         new(a.c0.acosh(), a.c1.acosh(), a.c2.acosh());
 
     [MethodImpl(256 | 512)]
-    public static float3x3 atanh(this float3x3 a) => 
+    public static float3x3 atanh([This] float3x3 a) => 
         new(a.c0.atanh(), a.c1.atanh(), a.c2.atanh());
+
+    [MethodImpl(256 | 512)]
+    public static float3x3 step(float3x3 threshold, [This] float3x3 a) =>
+        new(a.c0.step(threshold.c0), a.c1.step(threshold.c1), a.c2.step(threshold.c2));
 }
 
 #endregion // float3x3
@@ -771,86 +796,87 @@ public partial struct float3x4
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m3x4 isNaN(this float3x4 a) => 
+    public static b32m3x4 isNaN([This] float3x4 a) => 
         new(a.c0.isNaN(), a.c1.isNaN(), a.c2.isNaN(), a.c3.isNaN());
 
     [MethodImpl(256 | 512)]
-    public static b32m3x4 isFinite(this float3x4 a) => 
+    public static b32m3x4 isFinite([This] float3x4 a) => 
         new(a.c0.isFinite(), a.c1.isFinite(), a.c2.isFinite(), a.c3.isFinite());
 
     [MethodImpl(256 | 512)]
-    public static b32m3x4 isInf(this float3x4 a) => 
+    public static b32m3x4 isInf([This] float3x4 a) => 
         new(a.c0.isInf(), a.c1.isInf(), a.c2.isInf(), a.c3.isInf());
 
     [MethodImpl(256 | 512)]
-    public static b32m3x4 isPosInf(this float3x4 a) => 
+    public static b32m3x4 isPosInf([This] float3x4 a) => 
         new(a.c0.isPosInf(), a.c1.isPosInf(), a.c2.isPosInf(), a.c3.isPosInf());
 
     [MethodImpl(256 | 512)]
-    public static b32m3x4 isNegInf(this float3x4 a) => 
+    public static b32m3x4 isNegInf([This] float3x4 a) => 
         new(a.c0.isNegInf(), a.c1.isNegInf(), a.c2.isNegInf(), a.c3.isNegInf());
 
     [MethodImpl(256 | 512)]
-    public static float3x4 log(this float3x4 a) => 
+    public static float3x4 log([This] float3x4 a) => 
         new(a.c0.log(), a.c1.log(), a.c2.log(), a.c3.log());
 
     [MethodImpl(256 | 512)]
-    public static float3x4 log2(this float3x4 a) => 
+    public static float3x4 log2([This] float3x4 a) => 
         new(a.c0.log2(), a.c1.log2(), a.c2.log2(), a.c3.log2());
 
     [MethodImpl(256 | 512)]
-    public static float3x4 log(this float3x4 a, float3x4 b) => 
+    public static float3x4 log([This] float3x4 a, float3x4 b) => 
         new(a.c0.log(b.c0), a.c1.log(b.c1), a.c2.log(b.c2), a.c3.log(b.c3));
 
     [MethodImpl(256 | 512)]
-    public static float3x4 log10(this float3x4 a) => 
+    public static float3x4 log10([This] float3x4 a) => 
         new(a.c0.log10(), a.c1.log10(), a.c2.log10(), a.c3.log10());
 
     [MethodImpl(256 | 512)]
-    public static float3x4 exp(this float3x4 a) => 
+    public static float3x4 exp([This] float3x4 a) => 
         new(a.c0.exp(), a.c1.exp(), a.c2.exp(), a.c3.exp());
 
     [MethodImpl(256 | 512)]
-    public static float3x4 exp2(this float3x4 a) => 
+    public static float3x4 exp2([This] float3x4 a) => 
         new(a.c0.exp2(), a.c1.exp2(), a.c2.exp2(), a.c3.exp2());
 
     [MethodImpl(256 | 512)]
-    public static float3x4 exp10(this float3x4 a) => 
+    public static float3x4 exp10([This] float3x4 a) => 
         new(a.c0.exp10(), a.c1.exp10(), a.c2.exp10(), a.c3.exp10());
 
     [MethodImpl(256 | 512)]
-    public static float3x4 pow(this float3x4 a, float3x4 b) => 
+    public static float3x4 pow([This] float3x4 a, float3x4 b) => 
         new(a.c0.pow(b.c0), a.c1.pow(b.c1), a.c2.pow(b.c2), a.c3.pow(b.c3));
 
     [MethodImpl(256 | 512)]
-    public static float3x4 pow(this float3x4 a, float3 b) => 
+    public static float3x4 pow([This] float3x4 a, float3 b) => 
         new(a.c0.pow(b), a.c1.pow(b), a.c2.pow(b), a.c3.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static float3x4 pow(this float3x4 a, float b) => 
+    public static float3x4 pow([This] float3x4 a, float b) => 
         new(a.c0.pow(b), a.c1.pow(b), a.c2.pow(b), a.c3.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static float3x4 sqrt(this float3x4 a) => 
+    public static float3x4 sqrt([This] float3x4 a) => 
         new(a.c0.sqrt(), a.c1.sqrt(), a.c2.sqrt(), a.c3.sqrt());
 
     [MethodImpl(256 | 512)]
-    public static float3x4 rsqrt(this float3x4 a) => 
+    public static float3x4 rsqrt([This] float3x4 a) => 
         new(a.c0.rsqrt(), a.c1.rsqrt(), a.c2.rsqrt(), a.c3.rsqrt());
 
     [MethodImpl(256 | 512)]
-    public static float3x4 sin(this float3x4 a) => 
+    public static float3x4 sin([This] float3x4 a) => 
         new(a.c0.sin(), a.c1.sin(), a.c2.sin(), a.c3.sin());
 
     [MethodImpl(256 | 512)]
-    public static float3x4 cos(this float3x4 a) => 
+    public static float3x4 cos([This] float3x4 a) => 
         new(a.c0.cos(), a.c1.cos(), a.c2.cos(), a.c3.cos());
 
     [MethodImpl(256 | 512)]
-    public static (float3x4 sin, float3x4 cos) sincos(this float3x4 a)
+    public static (float3x4 sin, float3x4 cos) sincos([This] float3x4 a)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -863,7 +889,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static void sincos(this float3x4 a, out float3x4 sin, out float3x4 cos)
+    public static void sincos([This] float3x4 a, out float3x4 sin, out float3x4 cos)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -874,48 +900,52 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static float3x4 tan(this float3x4 a) => 
+    public static float3x4 tan([This] float3x4 a) => 
         new(a.c0.tan(), a.c1.tan(), a.c2.tan(), a.c3.tan());
 
     [MethodImpl(256 | 512)]
-    public static float3x4 asin(this float3x4 a) => 
+    public static float3x4 asin([This] float3x4 a) => 
         new(a.c0.asin(), a.c1.asin(), a.c2.asin(), a.c3.asin());
 
     [MethodImpl(256 | 512)]
-    public static float3x4 acos(this float3x4 a) => 
+    public static float3x4 acos([This] float3x4 a) => 
         new(a.c0.acos(), a.c1.acos(), a.c2.acos(), a.c3.acos());
 
     [MethodImpl(256 | 512)]
-    public static float3x4 atan(this float3x4 a) => 
+    public static float3x4 atan([This] float3x4 a) => 
         new(a.c0.atan(), a.c1.atan(), a.c2.atan(), a.c3.atan());
 
     [MethodImpl(256 | 512)]
-    public static float3x4 atan2(this float3x4 a, float3x4 b) => 
+    public static float3x4 atan2([This] float3x4 a, float3x4 b) => 
         new(a.c0.atan2(b.c0), a.c1.atan2(b.c1), a.c2.atan2(b.c2), a.c3.atan2(b.c3));
 
     [MethodImpl(256 | 512)]
-    public static float3x4 sinh(this float3x4 a) => 
+    public static float3x4 sinh([This] float3x4 a) => 
         new(a.c0.sinh(), a.c1.sinh(), a.c2.sinh(), a.c3.sinh());
 
     [MethodImpl(256 | 512)]
-    public static float3x4 cosh(this float3x4 a) => 
+    public static float3x4 cosh([This] float3x4 a) => 
         new(a.c0.cosh(), a.c1.cosh(), a.c2.cosh(), a.c3.cosh());
 
     [MethodImpl(256 | 512)]
-    public static float3x4 tanh(this float3x4 a) => 
+    public static float3x4 tanh([This] float3x4 a) => 
         new(a.c0.tanh(), a.c1.tanh(), a.c2.tanh(), a.c3.tanh());
 
     [MethodImpl(256 | 512)]
-    public static float3x4 asinh(this float3x4 a) => 
+    public static float3x4 asinh([This] float3x4 a) => 
         new(a.c0.asinh(), a.c1.asinh(), a.c2.asinh(), a.c3.asinh());
 
     [MethodImpl(256 | 512)]
-    public static float3x4 acosh(this float3x4 a) => 
+    public static float3x4 acosh([This] float3x4 a) => 
         new(a.c0.acosh(), a.c1.acosh(), a.c2.acosh(), a.c3.acosh());
 
     [MethodImpl(256 | 512)]
-    public static float3x4 atanh(this float3x4 a) => 
+    public static float3x4 atanh([This] float3x4 a) => 
         new(a.c0.atanh(), a.c1.atanh(), a.c2.atanh(), a.c3.atanh());
+
+    [MethodImpl(256 | 512)]
+    public static float3x4 step(float3x4 threshold, [This] float3x4 a) =>
+        new(a.c0.step(threshold.c0), a.c1.step(threshold.c1), a.c2.step(threshold.c2), a.c3.step(threshold.c3));
 }
 
 #endregion // float3x4
@@ -926,86 +956,87 @@ public partial struct float4x2
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m4x2 isNaN(this float4x2 a) => 
+    public static b32m4x2 isNaN([This] float4x2 a) => 
         new(a.c0.isNaN(), a.c1.isNaN());
 
     [MethodImpl(256 | 512)]
-    public static b32m4x2 isFinite(this float4x2 a) => 
+    public static b32m4x2 isFinite([This] float4x2 a) => 
         new(a.c0.isFinite(), a.c1.isFinite());
 
     [MethodImpl(256 | 512)]
-    public static b32m4x2 isInf(this float4x2 a) => 
+    public static b32m4x2 isInf([This] float4x2 a) => 
         new(a.c0.isInf(), a.c1.isInf());
 
     [MethodImpl(256 | 512)]
-    public static b32m4x2 isPosInf(this float4x2 a) => 
+    public static b32m4x2 isPosInf([This] float4x2 a) => 
         new(a.c0.isPosInf(), a.c1.isPosInf());
 
     [MethodImpl(256 | 512)]
-    public static b32m4x2 isNegInf(this float4x2 a) => 
+    public static b32m4x2 isNegInf([This] float4x2 a) => 
         new(a.c0.isNegInf(), a.c1.isNegInf());
 
     [MethodImpl(256 | 512)]
-    public static float4x2 log(this float4x2 a) => 
+    public static float4x2 log([This] float4x2 a) => 
         new(a.c0.log(), a.c1.log());
 
     [MethodImpl(256 | 512)]
-    public static float4x2 log2(this float4x2 a) => 
+    public static float4x2 log2([This] float4x2 a) => 
         new(a.c0.log2(), a.c1.log2());
 
     [MethodImpl(256 | 512)]
-    public static float4x2 log(this float4x2 a, float4x2 b) => 
+    public static float4x2 log([This] float4x2 a, float4x2 b) => 
         new(a.c0.log(b.c0), a.c1.log(b.c1));
 
     [MethodImpl(256 | 512)]
-    public static float4x2 log10(this float4x2 a) => 
+    public static float4x2 log10([This] float4x2 a) => 
         new(a.c0.log10(), a.c1.log10());
 
     [MethodImpl(256 | 512)]
-    public static float4x2 exp(this float4x2 a) => 
+    public static float4x2 exp([This] float4x2 a) => 
         new(a.c0.exp(), a.c1.exp());
 
     [MethodImpl(256 | 512)]
-    public static float4x2 exp2(this float4x2 a) => 
+    public static float4x2 exp2([This] float4x2 a) => 
         new(a.c0.exp2(), a.c1.exp2());
 
     [MethodImpl(256 | 512)]
-    public static float4x2 exp10(this float4x2 a) => 
+    public static float4x2 exp10([This] float4x2 a) => 
         new(a.c0.exp10(), a.c1.exp10());
 
     [MethodImpl(256 | 512)]
-    public static float4x2 pow(this float4x2 a, float4x2 b) => 
+    public static float4x2 pow([This] float4x2 a, float4x2 b) => 
         new(a.c0.pow(b.c0), a.c1.pow(b.c1));
 
     [MethodImpl(256 | 512)]
-    public static float4x2 pow(this float4x2 a, float4 b) => 
+    public static float4x2 pow([This] float4x2 a, float4 b) => 
         new(a.c0.pow(b), a.c1.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static float4x2 pow(this float4x2 a, float b) => 
+    public static float4x2 pow([This] float4x2 a, float b) => 
         new(a.c0.pow(b), a.c1.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static float4x2 sqrt(this float4x2 a) => 
+    public static float4x2 sqrt([This] float4x2 a) => 
         new(a.c0.sqrt(), a.c1.sqrt());
 
     [MethodImpl(256 | 512)]
-    public static float4x2 rsqrt(this float4x2 a) => 
+    public static float4x2 rsqrt([This] float4x2 a) => 
         new(a.c0.rsqrt(), a.c1.rsqrt());
 
     [MethodImpl(256 | 512)]
-    public static float4x2 sin(this float4x2 a) => 
+    public static float4x2 sin([This] float4x2 a) => 
         new(a.c0.sin(), a.c1.sin());
 
     [MethodImpl(256 | 512)]
-    public static float4x2 cos(this float4x2 a) => 
+    public static float4x2 cos([This] float4x2 a) => 
         new(a.c0.cos(), a.c1.cos());
 
     [MethodImpl(256 | 512)]
-    public static (float4x2 sin, float4x2 cos) sincos(this float4x2 a)
+    public static (float4x2 sin, float4x2 cos) sincos([This] float4x2 a)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -1016,7 +1047,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static void sincos(this float4x2 a, out float4x2 sin, out float4x2 cos)
+    public static void sincos([This] float4x2 a, out float4x2 sin, out float4x2 cos)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -1025,48 +1056,52 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static float4x2 tan(this float4x2 a) => 
+    public static float4x2 tan([This] float4x2 a) => 
         new(a.c0.tan(), a.c1.tan());
 
     [MethodImpl(256 | 512)]
-    public static float4x2 asin(this float4x2 a) => 
+    public static float4x2 asin([This] float4x2 a) => 
         new(a.c0.asin(), a.c1.asin());
 
     [MethodImpl(256 | 512)]
-    public static float4x2 acos(this float4x2 a) => 
+    public static float4x2 acos([This] float4x2 a) => 
         new(a.c0.acos(), a.c1.acos());
 
     [MethodImpl(256 | 512)]
-    public static float4x2 atan(this float4x2 a) => 
+    public static float4x2 atan([This] float4x2 a) => 
         new(a.c0.atan(), a.c1.atan());
 
     [MethodImpl(256 | 512)]
-    public static float4x2 atan2(this float4x2 a, float4x2 b) => 
+    public static float4x2 atan2([This] float4x2 a, float4x2 b) => 
         new(a.c0.atan2(b.c0), a.c1.atan2(b.c1));
 
     [MethodImpl(256 | 512)]
-    public static float4x2 sinh(this float4x2 a) => 
+    public static float4x2 sinh([This] float4x2 a) => 
         new(a.c0.sinh(), a.c1.sinh());
 
     [MethodImpl(256 | 512)]
-    public static float4x2 cosh(this float4x2 a) => 
+    public static float4x2 cosh([This] float4x2 a) => 
         new(a.c0.cosh(), a.c1.cosh());
 
     [MethodImpl(256 | 512)]
-    public static float4x2 tanh(this float4x2 a) => 
+    public static float4x2 tanh([This] float4x2 a) => 
         new(a.c0.tanh(), a.c1.tanh());
 
     [MethodImpl(256 | 512)]
-    public static float4x2 asinh(this float4x2 a) => 
+    public static float4x2 asinh([This] float4x2 a) => 
         new(a.c0.asinh(), a.c1.asinh());
 
     [MethodImpl(256 | 512)]
-    public static float4x2 acosh(this float4x2 a) => 
+    public static float4x2 acosh([This] float4x2 a) => 
         new(a.c0.acosh(), a.c1.acosh());
 
     [MethodImpl(256 | 512)]
-    public static float4x2 atanh(this float4x2 a) => 
+    public static float4x2 atanh([This] float4x2 a) => 
         new(a.c0.atanh(), a.c1.atanh());
+
+    [MethodImpl(256 | 512)]
+    public static float4x2 step(float4x2 threshold, [This] float4x2 a) =>
+        new(a.c0.step(threshold.c0), a.c1.step(threshold.c1));
 }
 
 #endregion // float4x2
@@ -1077,86 +1112,87 @@ public partial struct float4x3
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m4x3 isNaN(this float4x3 a) => 
+    public static b32m4x3 isNaN([This] float4x3 a) => 
         new(a.c0.isNaN(), a.c1.isNaN(), a.c2.isNaN());
 
     [MethodImpl(256 | 512)]
-    public static b32m4x3 isFinite(this float4x3 a) => 
+    public static b32m4x3 isFinite([This] float4x3 a) => 
         new(a.c0.isFinite(), a.c1.isFinite(), a.c2.isFinite());
 
     [MethodImpl(256 | 512)]
-    public static b32m4x3 isInf(this float4x3 a) => 
+    public static b32m4x3 isInf([This] float4x3 a) => 
         new(a.c0.isInf(), a.c1.isInf(), a.c2.isInf());
 
     [MethodImpl(256 | 512)]
-    public static b32m4x3 isPosInf(this float4x3 a) => 
+    public static b32m4x3 isPosInf([This] float4x3 a) => 
         new(a.c0.isPosInf(), a.c1.isPosInf(), a.c2.isPosInf());
 
     [MethodImpl(256 | 512)]
-    public static b32m4x3 isNegInf(this float4x3 a) => 
+    public static b32m4x3 isNegInf([This] float4x3 a) => 
         new(a.c0.isNegInf(), a.c1.isNegInf(), a.c2.isNegInf());
 
     [MethodImpl(256 | 512)]
-    public static float4x3 log(this float4x3 a) => 
+    public static float4x3 log([This] float4x3 a) => 
         new(a.c0.log(), a.c1.log(), a.c2.log());
 
     [MethodImpl(256 | 512)]
-    public static float4x3 log2(this float4x3 a) => 
+    public static float4x3 log2([This] float4x3 a) => 
         new(a.c0.log2(), a.c1.log2(), a.c2.log2());
 
     [MethodImpl(256 | 512)]
-    public static float4x3 log(this float4x3 a, float4x3 b) => 
+    public static float4x3 log([This] float4x3 a, float4x3 b) => 
         new(a.c0.log(b.c0), a.c1.log(b.c1), a.c2.log(b.c2));
 
     [MethodImpl(256 | 512)]
-    public static float4x3 log10(this float4x3 a) => 
+    public static float4x3 log10([This] float4x3 a) => 
         new(a.c0.log10(), a.c1.log10(), a.c2.log10());
 
     [MethodImpl(256 | 512)]
-    public static float4x3 exp(this float4x3 a) => 
+    public static float4x3 exp([This] float4x3 a) => 
         new(a.c0.exp(), a.c1.exp(), a.c2.exp());
 
     [MethodImpl(256 | 512)]
-    public static float4x3 exp2(this float4x3 a) => 
+    public static float4x3 exp2([This] float4x3 a) => 
         new(a.c0.exp2(), a.c1.exp2(), a.c2.exp2());
 
     [MethodImpl(256 | 512)]
-    public static float4x3 exp10(this float4x3 a) => 
+    public static float4x3 exp10([This] float4x3 a) => 
         new(a.c0.exp10(), a.c1.exp10(), a.c2.exp10());
 
     [MethodImpl(256 | 512)]
-    public static float4x3 pow(this float4x3 a, float4x3 b) => 
+    public static float4x3 pow([This] float4x3 a, float4x3 b) => 
         new(a.c0.pow(b.c0), a.c1.pow(b.c1), a.c2.pow(b.c2));
 
     [MethodImpl(256 | 512)]
-    public static float4x3 pow(this float4x3 a, float4 b) => 
+    public static float4x3 pow([This] float4x3 a, float4 b) => 
         new(a.c0.pow(b), a.c1.pow(b), a.c2.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static float4x3 pow(this float4x3 a, float b) => 
+    public static float4x3 pow([This] float4x3 a, float b) => 
         new(a.c0.pow(b), a.c1.pow(b), a.c2.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static float4x3 sqrt(this float4x3 a) => 
+    public static float4x3 sqrt([This] float4x3 a) => 
         new(a.c0.sqrt(), a.c1.sqrt(), a.c2.sqrt());
 
     [MethodImpl(256 | 512)]
-    public static float4x3 rsqrt(this float4x3 a) => 
+    public static float4x3 rsqrt([This] float4x3 a) => 
         new(a.c0.rsqrt(), a.c1.rsqrt(), a.c2.rsqrt());
 
     [MethodImpl(256 | 512)]
-    public static float4x3 sin(this float4x3 a) => 
+    public static float4x3 sin([This] float4x3 a) => 
         new(a.c0.sin(), a.c1.sin(), a.c2.sin());
 
     [MethodImpl(256 | 512)]
-    public static float4x3 cos(this float4x3 a) => 
+    public static float4x3 cos([This] float4x3 a) => 
         new(a.c0.cos(), a.c1.cos(), a.c2.cos());
 
     [MethodImpl(256 | 512)]
-    public static (float4x3 sin, float4x3 cos) sincos(this float4x3 a)
+    public static (float4x3 sin, float4x3 cos) sincos([This] float4x3 a)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -1168,7 +1204,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static void sincos(this float4x3 a, out float4x3 sin, out float4x3 cos)
+    public static void sincos([This] float4x3 a, out float4x3 sin, out float4x3 cos)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -1178,48 +1214,52 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static float4x3 tan(this float4x3 a) => 
+    public static float4x3 tan([This] float4x3 a) => 
         new(a.c0.tan(), a.c1.tan(), a.c2.tan());
 
     [MethodImpl(256 | 512)]
-    public static float4x3 asin(this float4x3 a) => 
+    public static float4x3 asin([This] float4x3 a) => 
         new(a.c0.asin(), a.c1.asin(), a.c2.asin());
 
     [MethodImpl(256 | 512)]
-    public static float4x3 acos(this float4x3 a) => 
+    public static float4x3 acos([This] float4x3 a) => 
         new(a.c0.acos(), a.c1.acos(), a.c2.acos());
 
     [MethodImpl(256 | 512)]
-    public static float4x3 atan(this float4x3 a) => 
+    public static float4x3 atan([This] float4x3 a) => 
         new(a.c0.atan(), a.c1.atan(), a.c2.atan());
 
     [MethodImpl(256 | 512)]
-    public static float4x3 atan2(this float4x3 a, float4x3 b) => 
+    public static float4x3 atan2([This] float4x3 a, float4x3 b) => 
         new(a.c0.atan2(b.c0), a.c1.atan2(b.c1), a.c2.atan2(b.c2));
 
     [MethodImpl(256 | 512)]
-    public static float4x3 sinh(this float4x3 a) => 
+    public static float4x3 sinh([This] float4x3 a) => 
         new(a.c0.sinh(), a.c1.sinh(), a.c2.sinh());
 
     [MethodImpl(256 | 512)]
-    public static float4x3 cosh(this float4x3 a) => 
+    public static float4x3 cosh([This] float4x3 a) => 
         new(a.c0.cosh(), a.c1.cosh(), a.c2.cosh());
 
     [MethodImpl(256 | 512)]
-    public static float4x3 tanh(this float4x3 a) => 
+    public static float4x3 tanh([This] float4x3 a) => 
         new(a.c0.tanh(), a.c1.tanh(), a.c2.tanh());
 
     [MethodImpl(256 | 512)]
-    public static float4x3 asinh(this float4x3 a) => 
+    public static float4x3 asinh([This] float4x3 a) => 
         new(a.c0.asinh(), a.c1.asinh(), a.c2.asinh());
 
     [MethodImpl(256 | 512)]
-    public static float4x3 acosh(this float4x3 a) => 
+    public static float4x3 acosh([This] float4x3 a) => 
         new(a.c0.acosh(), a.c1.acosh(), a.c2.acosh());
 
     [MethodImpl(256 | 512)]
-    public static float4x3 atanh(this float4x3 a) => 
+    public static float4x3 atanh([This] float4x3 a) => 
         new(a.c0.atanh(), a.c1.atanh(), a.c2.atanh());
+
+    [MethodImpl(256 | 512)]
+    public static float4x3 step(float4x3 threshold, [This] float4x3 a) =>
+        new(a.c0.step(threshold.c0), a.c1.step(threshold.c1), a.c2.step(threshold.c2));
 }
 
 #endregion // float4x3
@@ -1230,86 +1270,87 @@ public partial struct float4x4
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b32m4x4 isNaN(this float4x4 a) => 
+    public static b32m4x4 isNaN([This] float4x4 a) => 
         new(a.c0.isNaN(), a.c1.isNaN(), a.c2.isNaN(), a.c3.isNaN());
 
     [MethodImpl(256 | 512)]
-    public static b32m4x4 isFinite(this float4x4 a) => 
+    public static b32m4x4 isFinite([This] float4x4 a) => 
         new(a.c0.isFinite(), a.c1.isFinite(), a.c2.isFinite(), a.c3.isFinite());
 
     [MethodImpl(256 | 512)]
-    public static b32m4x4 isInf(this float4x4 a) => 
+    public static b32m4x4 isInf([This] float4x4 a) => 
         new(a.c0.isInf(), a.c1.isInf(), a.c2.isInf(), a.c3.isInf());
 
     [MethodImpl(256 | 512)]
-    public static b32m4x4 isPosInf(this float4x4 a) => 
+    public static b32m4x4 isPosInf([This] float4x4 a) => 
         new(a.c0.isPosInf(), a.c1.isPosInf(), a.c2.isPosInf(), a.c3.isPosInf());
 
     [MethodImpl(256 | 512)]
-    public static b32m4x4 isNegInf(this float4x4 a) => 
+    public static b32m4x4 isNegInf([This] float4x4 a) => 
         new(a.c0.isNegInf(), a.c1.isNegInf(), a.c2.isNegInf(), a.c3.isNegInf());
 
     [MethodImpl(256 | 512)]
-    public static float4x4 log(this float4x4 a) => 
+    public static float4x4 log([This] float4x4 a) => 
         new(a.c0.log(), a.c1.log(), a.c2.log(), a.c3.log());
 
     [MethodImpl(256 | 512)]
-    public static float4x4 log2(this float4x4 a) => 
+    public static float4x4 log2([This] float4x4 a) => 
         new(a.c0.log2(), a.c1.log2(), a.c2.log2(), a.c3.log2());
 
     [MethodImpl(256 | 512)]
-    public static float4x4 log(this float4x4 a, float4x4 b) => 
+    public static float4x4 log([This] float4x4 a, float4x4 b) => 
         new(a.c0.log(b.c0), a.c1.log(b.c1), a.c2.log(b.c2), a.c3.log(b.c3));
 
     [MethodImpl(256 | 512)]
-    public static float4x4 log10(this float4x4 a) => 
+    public static float4x4 log10([This] float4x4 a) => 
         new(a.c0.log10(), a.c1.log10(), a.c2.log10(), a.c3.log10());
 
     [MethodImpl(256 | 512)]
-    public static float4x4 exp(this float4x4 a) => 
+    public static float4x4 exp([This] float4x4 a) => 
         new(a.c0.exp(), a.c1.exp(), a.c2.exp(), a.c3.exp());
 
     [MethodImpl(256 | 512)]
-    public static float4x4 exp2(this float4x4 a) => 
+    public static float4x4 exp2([This] float4x4 a) => 
         new(a.c0.exp2(), a.c1.exp2(), a.c2.exp2(), a.c3.exp2());
 
     [MethodImpl(256 | 512)]
-    public static float4x4 exp10(this float4x4 a) => 
+    public static float4x4 exp10([This] float4x4 a) => 
         new(a.c0.exp10(), a.c1.exp10(), a.c2.exp10(), a.c3.exp10());
 
     [MethodImpl(256 | 512)]
-    public static float4x4 pow(this float4x4 a, float4x4 b) => 
+    public static float4x4 pow([This] float4x4 a, float4x4 b) => 
         new(a.c0.pow(b.c0), a.c1.pow(b.c1), a.c2.pow(b.c2), a.c3.pow(b.c3));
 
     [MethodImpl(256 | 512)]
-    public static float4x4 pow(this float4x4 a, float4 b) => 
+    public static float4x4 pow([This] float4x4 a, float4 b) => 
         new(a.c0.pow(b), a.c1.pow(b), a.c2.pow(b), a.c3.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static float4x4 pow(this float4x4 a, float b) => 
+    public static float4x4 pow([This] float4x4 a, float b) => 
         new(a.c0.pow(b), a.c1.pow(b), a.c2.pow(b), a.c3.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static float4x4 sqrt(this float4x4 a) => 
+    public static float4x4 sqrt([This] float4x4 a) => 
         new(a.c0.sqrt(), a.c1.sqrt(), a.c2.sqrt(), a.c3.sqrt());
 
     [MethodImpl(256 | 512)]
-    public static float4x4 rsqrt(this float4x4 a) => 
+    public static float4x4 rsqrt([This] float4x4 a) => 
         new(a.c0.rsqrt(), a.c1.rsqrt(), a.c2.rsqrt(), a.c3.rsqrt());
 
     [MethodImpl(256 | 512)]
-    public static float4x4 sin(this float4x4 a) => 
+    public static float4x4 sin([This] float4x4 a) => 
         new(a.c0.sin(), a.c1.sin(), a.c2.sin(), a.c3.sin());
 
     [MethodImpl(256 | 512)]
-    public static float4x4 cos(this float4x4 a) => 
+    public static float4x4 cos([This] float4x4 a) => 
         new(a.c0.cos(), a.c1.cos(), a.c2.cos(), a.c3.cos());
 
     [MethodImpl(256 | 512)]
-    public static (float4x4 sin, float4x4 cos) sincos(this float4x4 a)
+    public static (float4x4 sin, float4x4 cos) sincos([This] float4x4 a)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -1322,7 +1363,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static void sincos(this float4x4 a, out float4x4 sin, out float4x4 cos)
+    public static void sincos([This] float4x4 a, out float4x4 sin, out float4x4 cos)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -1333,48 +1374,52 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static float4x4 tan(this float4x4 a) => 
+    public static float4x4 tan([This] float4x4 a) => 
         new(a.c0.tan(), a.c1.tan(), a.c2.tan(), a.c3.tan());
 
     [MethodImpl(256 | 512)]
-    public static float4x4 asin(this float4x4 a) => 
+    public static float4x4 asin([This] float4x4 a) => 
         new(a.c0.asin(), a.c1.asin(), a.c2.asin(), a.c3.asin());
 
     [MethodImpl(256 | 512)]
-    public static float4x4 acos(this float4x4 a) => 
+    public static float4x4 acos([This] float4x4 a) => 
         new(a.c0.acos(), a.c1.acos(), a.c2.acos(), a.c3.acos());
 
     [MethodImpl(256 | 512)]
-    public static float4x4 atan(this float4x4 a) => 
+    public static float4x4 atan([This] float4x4 a) => 
         new(a.c0.atan(), a.c1.atan(), a.c2.atan(), a.c3.atan());
 
     [MethodImpl(256 | 512)]
-    public static float4x4 atan2(this float4x4 a, float4x4 b) => 
+    public static float4x4 atan2([This] float4x4 a, float4x4 b) => 
         new(a.c0.atan2(b.c0), a.c1.atan2(b.c1), a.c2.atan2(b.c2), a.c3.atan2(b.c3));
 
     [MethodImpl(256 | 512)]
-    public static float4x4 sinh(this float4x4 a) => 
+    public static float4x4 sinh([This] float4x4 a) => 
         new(a.c0.sinh(), a.c1.sinh(), a.c2.sinh(), a.c3.sinh());
 
     [MethodImpl(256 | 512)]
-    public static float4x4 cosh(this float4x4 a) => 
+    public static float4x4 cosh([This] float4x4 a) => 
         new(a.c0.cosh(), a.c1.cosh(), a.c2.cosh(), a.c3.cosh());
 
     [MethodImpl(256 | 512)]
-    public static float4x4 tanh(this float4x4 a) => 
+    public static float4x4 tanh([This] float4x4 a) => 
         new(a.c0.tanh(), a.c1.tanh(), a.c2.tanh(), a.c3.tanh());
 
     [MethodImpl(256 | 512)]
-    public static float4x4 asinh(this float4x4 a) => 
+    public static float4x4 asinh([This] float4x4 a) => 
         new(a.c0.asinh(), a.c1.asinh(), a.c2.asinh(), a.c3.asinh());
 
     [MethodImpl(256 | 512)]
-    public static float4x4 acosh(this float4x4 a) => 
+    public static float4x4 acosh([This] float4x4 a) => 
         new(a.c0.acosh(), a.c1.acosh(), a.c2.acosh(), a.c3.acosh());
 
     [MethodImpl(256 | 512)]
-    public static float4x4 atanh(this float4x4 a) => 
+    public static float4x4 atanh([This] float4x4 a) => 
         new(a.c0.atanh(), a.c1.atanh(), a.c2.atanh(), a.c3.atanh());
+
+    [MethodImpl(256 | 512)]
+    public static float4x4 step(float4x4 threshold, [This] float4x4 a) =>
+        new(a.c0.step(threshold.c0), a.c1.step(threshold.c1), a.c2.step(threshold.c2), a.c3.step(threshold.c3));
 }
 
 #endregion // float4x4
@@ -1385,86 +1430,87 @@ public partial struct double2x2
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m2x2 isNaN(this double2x2 a) => 
+    public static b64m2x2 isNaN([This] double2x2 a) => 
         new(a.c0.isNaN(), a.c1.isNaN());
 
     [MethodImpl(256 | 512)]
-    public static b64m2x2 isFinite(this double2x2 a) => 
+    public static b64m2x2 isFinite([This] double2x2 a) => 
         new(a.c0.isFinite(), a.c1.isFinite());
 
     [MethodImpl(256 | 512)]
-    public static b64m2x2 isInf(this double2x2 a) => 
+    public static b64m2x2 isInf([This] double2x2 a) => 
         new(a.c0.isInf(), a.c1.isInf());
 
     [MethodImpl(256 | 512)]
-    public static b64m2x2 isPosInf(this double2x2 a) => 
+    public static b64m2x2 isPosInf([This] double2x2 a) => 
         new(a.c0.isPosInf(), a.c1.isPosInf());
 
     [MethodImpl(256 | 512)]
-    public static b64m2x2 isNegInf(this double2x2 a) => 
+    public static b64m2x2 isNegInf([This] double2x2 a) => 
         new(a.c0.isNegInf(), a.c1.isNegInf());
 
     [MethodImpl(256 | 512)]
-    public static double2x2 log(this double2x2 a) => 
+    public static double2x2 log([This] double2x2 a) => 
         new(a.c0.log(), a.c1.log());
 
     [MethodImpl(256 | 512)]
-    public static double2x2 log2(this double2x2 a) => 
+    public static double2x2 log2([This] double2x2 a) => 
         new(a.c0.log2(), a.c1.log2());
 
     [MethodImpl(256 | 512)]
-    public static double2x2 log(this double2x2 a, double2x2 b) => 
+    public static double2x2 log([This] double2x2 a, double2x2 b) => 
         new(a.c0.log(b.c0), a.c1.log(b.c1));
 
     [MethodImpl(256 | 512)]
-    public static double2x2 log10(this double2x2 a) => 
+    public static double2x2 log10([This] double2x2 a) => 
         new(a.c0.log10(), a.c1.log10());
 
     [MethodImpl(256 | 512)]
-    public static double2x2 exp(this double2x2 a) => 
+    public static double2x2 exp([This] double2x2 a) => 
         new(a.c0.exp(), a.c1.exp());
 
     [MethodImpl(256 | 512)]
-    public static double2x2 exp2(this double2x2 a) => 
+    public static double2x2 exp2([This] double2x2 a) => 
         new(a.c0.exp2(), a.c1.exp2());
 
     [MethodImpl(256 | 512)]
-    public static double2x2 exp10(this double2x2 a) => 
+    public static double2x2 exp10([This] double2x2 a) => 
         new(a.c0.exp10(), a.c1.exp10());
 
     [MethodImpl(256 | 512)]
-    public static double2x2 pow(this double2x2 a, double2x2 b) => 
+    public static double2x2 pow([This] double2x2 a, double2x2 b) => 
         new(a.c0.pow(b.c0), a.c1.pow(b.c1));
 
     [MethodImpl(256 | 512)]
-    public static double2x2 pow(this double2x2 a, double2 b) => 
+    public static double2x2 pow([This] double2x2 a, double2 b) => 
         new(a.c0.pow(b), a.c1.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static double2x2 pow(this double2x2 a, double b) => 
+    public static double2x2 pow([This] double2x2 a, double b) => 
         new(a.c0.pow(b), a.c1.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static double2x2 sqrt(this double2x2 a) => 
+    public static double2x2 sqrt([This] double2x2 a) => 
         new(a.c0.sqrt(), a.c1.sqrt());
 
     [MethodImpl(256 | 512)]
-    public static double2x2 rsqrt(this double2x2 a) => 
+    public static double2x2 rsqrt([This] double2x2 a) => 
         new(a.c0.rsqrt(), a.c1.rsqrt());
 
     [MethodImpl(256 | 512)]
-    public static double2x2 sin(this double2x2 a) => 
+    public static double2x2 sin([This] double2x2 a) => 
         new(a.c0.sin(), a.c1.sin());
 
     [MethodImpl(256 | 512)]
-    public static double2x2 cos(this double2x2 a) => 
+    public static double2x2 cos([This] double2x2 a) => 
         new(a.c0.cos(), a.c1.cos());
 
     [MethodImpl(256 | 512)]
-    public static (double2x2 sin, double2x2 cos) sincos(this double2x2 a)
+    public static (double2x2 sin, double2x2 cos) sincos([This] double2x2 a)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -1475,7 +1521,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static void sincos(this double2x2 a, out double2x2 sin, out double2x2 cos)
+    public static void sincos([This] double2x2 a, out double2x2 sin, out double2x2 cos)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -1484,48 +1530,52 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static double2x2 tan(this double2x2 a) => 
+    public static double2x2 tan([This] double2x2 a) => 
         new(a.c0.tan(), a.c1.tan());
 
     [MethodImpl(256 | 512)]
-    public static double2x2 asin(this double2x2 a) => 
+    public static double2x2 asin([This] double2x2 a) => 
         new(a.c0.asin(), a.c1.asin());
 
     [MethodImpl(256 | 512)]
-    public static double2x2 acos(this double2x2 a) => 
+    public static double2x2 acos([This] double2x2 a) => 
         new(a.c0.acos(), a.c1.acos());
 
     [MethodImpl(256 | 512)]
-    public static double2x2 atan(this double2x2 a) => 
+    public static double2x2 atan([This] double2x2 a) => 
         new(a.c0.atan(), a.c1.atan());
 
     [MethodImpl(256 | 512)]
-    public static double2x2 atan2(this double2x2 a, double2x2 b) => 
+    public static double2x2 atan2([This] double2x2 a, double2x2 b) => 
         new(a.c0.atan2(b.c0), a.c1.atan2(b.c1));
 
     [MethodImpl(256 | 512)]
-    public static double2x2 sinh(this double2x2 a) => 
+    public static double2x2 sinh([This] double2x2 a) => 
         new(a.c0.sinh(), a.c1.sinh());
 
     [MethodImpl(256 | 512)]
-    public static double2x2 cosh(this double2x2 a) => 
+    public static double2x2 cosh([This] double2x2 a) => 
         new(a.c0.cosh(), a.c1.cosh());
 
     [MethodImpl(256 | 512)]
-    public static double2x2 tanh(this double2x2 a) => 
+    public static double2x2 tanh([This] double2x2 a) => 
         new(a.c0.tanh(), a.c1.tanh());
 
     [MethodImpl(256 | 512)]
-    public static double2x2 asinh(this double2x2 a) => 
+    public static double2x2 asinh([This] double2x2 a) => 
         new(a.c0.asinh(), a.c1.asinh());
 
     [MethodImpl(256 | 512)]
-    public static double2x2 acosh(this double2x2 a) => 
+    public static double2x2 acosh([This] double2x2 a) => 
         new(a.c0.acosh(), a.c1.acosh());
 
     [MethodImpl(256 | 512)]
-    public static double2x2 atanh(this double2x2 a) => 
+    public static double2x2 atanh([This] double2x2 a) => 
         new(a.c0.atanh(), a.c1.atanh());
+
+    [MethodImpl(256 | 512)]
+    public static double2x2 step(double2x2 threshold, [This] double2x2 a) =>
+        new(a.c0.step(threshold.c0), a.c1.step(threshold.c1));
 }
 
 #endregion // double2x2
@@ -1536,86 +1586,87 @@ public partial struct double2x3
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m2x3 isNaN(this double2x3 a) => 
+    public static b64m2x3 isNaN([This] double2x3 a) => 
         new(a.c0.isNaN(), a.c1.isNaN(), a.c2.isNaN());
 
     [MethodImpl(256 | 512)]
-    public static b64m2x3 isFinite(this double2x3 a) => 
+    public static b64m2x3 isFinite([This] double2x3 a) => 
         new(a.c0.isFinite(), a.c1.isFinite(), a.c2.isFinite());
 
     [MethodImpl(256 | 512)]
-    public static b64m2x3 isInf(this double2x3 a) => 
+    public static b64m2x3 isInf([This] double2x3 a) => 
         new(a.c0.isInf(), a.c1.isInf(), a.c2.isInf());
 
     [MethodImpl(256 | 512)]
-    public static b64m2x3 isPosInf(this double2x3 a) => 
+    public static b64m2x3 isPosInf([This] double2x3 a) => 
         new(a.c0.isPosInf(), a.c1.isPosInf(), a.c2.isPosInf());
 
     [MethodImpl(256 | 512)]
-    public static b64m2x3 isNegInf(this double2x3 a) => 
+    public static b64m2x3 isNegInf([This] double2x3 a) => 
         new(a.c0.isNegInf(), a.c1.isNegInf(), a.c2.isNegInf());
 
     [MethodImpl(256 | 512)]
-    public static double2x3 log(this double2x3 a) => 
+    public static double2x3 log([This] double2x3 a) => 
         new(a.c0.log(), a.c1.log(), a.c2.log());
 
     [MethodImpl(256 | 512)]
-    public static double2x3 log2(this double2x3 a) => 
+    public static double2x3 log2([This] double2x3 a) => 
         new(a.c0.log2(), a.c1.log2(), a.c2.log2());
 
     [MethodImpl(256 | 512)]
-    public static double2x3 log(this double2x3 a, double2x3 b) => 
+    public static double2x3 log([This] double2x3 a, double2x3 b) => 
         new(a.c0.log(b.c0), a.c1.log(b.c1), a.c2.log(b.c2));
 
     [MethodImpl(256 | 512)]
-    public static double2x3 log10(this double2x3 a) => 
+    public static double2x3 log10([This] double2x3 a) => 
         new(a.c0.log10(), a.c1.log10(), a.c2.log10());
 
     [MethodImpl(256 | 512)]
-    public static double2x3 exp(this double2x3 a) => 
+    public static double2x3 exp([This] double2x3 a) => 
         new(a.c0.exp(), a.c1.exp(), a.c2.exp());
 
     [MethodImpl(256 | 512)]
-    public static double2x3 exp2(this double2x3 a) => 
+    public static double2x3 exp2([This] double2x3 a) => 
         new(a.c0.exp2(), a.c1.exp2(), a.c2.exp2());
 
     [MethodImpl(256 | 512)]
-    public static double2x3 exp10(this double2x3 a) => 
+    public static double2x3 exp10([This] double2x3 a) => 
         new(a.c0.exp10(), a.c1.exp10(), a.c2.exp10());
 
     [MethodImpl(256 | 512)]
-    public static double2x3 pow(this double2x3 a, double2x3 b) => 
+    public static double2x3 pow([This] double2x3 a, double2x3 b) => 
         new(a.c0.pow(b.c0), a.c1.pow(b.c1), a.c2.pow(b.c2));
 
     [MethodImpl(256 | 512)]
-    public static double2x3 pow(this double2x3 a, double2 b) => 
+    public static double2x3 pow([This] double2x3 a, double2 b) => 
         new(a.c0.pow(b), a.c1.pow(b), a.c2.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static double2x3 pow(this double2x3 a, double b) => 
+    public static double2x3 pow([This] double2x3 a, double b) => 
         new(a.c0.pow(b), a.c1.pow(b), a.c2.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static double2x3 sqrt(this double2x3 a) => 
+    public static double2x3 sqrt([This] double2x3 a) => 
         new(a.c0.sqrt(), a.c1.sqrt(), a.c2.sqrt());
 
     [MethodImpl(256 | 512)]
-    public static double2x3 rsqrt(this double2x3 a) => 
+    public static double2x3 rsqrt([This] double2x3 a) => 
         new(a.c0.rsqrt(), a.c1.rsqrt(), a.c2.rsqrt());
 
     [MethodImpl(256 | 512)]
-    public static double2x3 sin(this double2x3 a) => 
+    public static double2x3 sin([This] double2x3 a) => 
         new(a.c0.sin(), a.c1.sin(), a.c2.sin());
 
     [MethodImpl(256 | 512)]
-    public static double2x3 cos(this double2x3 a) => 
+    public static double2x3 cos([This] double2x3 a) => 
         new(a.c0.cos(), a.c1.cos(), a.c2.cos());
 
     [MethodImpl(256 | 512)]
-    public static (double2x3 sin, double2x3 cos) sincos(this double2x3 a)
+    public static (double2x3 sin, double2x3 cos) sincos([This] double2x3 a)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -1627,7 +1678,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static void sincos(this double2x3 a, out double2x3 sin, out double2x3 cos)
+    public static void sincos([This] double2x3 a, out double2x3 sin, out double2x3 cos)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -1637,48 +1688,52 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static double2x3 tan(this double2x3 a) => 
+    public static double2x3 tan([This] double2x3 a) => 
         new(a.c0.tan(), a.c1.tan(), a.c2.tan());
 
     [MethodImpl(256 | 512)]
-    public static double2x3 asin(this double2x3 a) => 
+    public static double2x3 asin([This] double2x3 a) => 
         new(a.c0.asin(), a.c1.asin(), a.c2.asin());
 
     [MethodImpl(256 | 512)]
-    public static double2x3 acos(this double2x3 a) => 
+    public static double2x3 acos([This] double2x3 a) => 
         new(a.c0.acos(), a.c1.acos(), a.c2.acos());
 
     [MethodImpl(256 | 512)]
-    public static double2x3 atan(this double2x3 a) => 
+    public static double2x3 atan([This] double2x3 a) => 
         new(a.c0.atan(), a.c1.atan(), a.c2.atan());
 
     [MethodImpl(256 | 512)]
-    public static double2x3 atan2(this double2x3 a, double2x3 b) => 
+    public static double2x3 atan2([This] double2x3 a, double2x3 b) => 
         new(a.c0.atan2(b.c0), a.c1.atan2(b.c1), a.c2.atan2(b.c2));
 
     [MethodImpl(256 | 512)]
-    public static double2x3 sinh(this double2x3 a) => 
+    public static double2x3 sinh([This] double2x3 a) => 
         new(a.c0.sinh(), a.c1.sinh(), a.c2.sinh());
 
     [MethodImpl(256 | 512)]
-    public static double2x3 cosh(this double2x3 a) => 
+    public static double2x3 cosh([This] double2x3 a) => 
         new(a.c0.cosh(), a.c1.cosh(), a.c2.cosh());
 
     [MethodImpl(256 | 512)]
-    public static double2x3 tanh(this double2x3 a) => 
+    public static double2x3 tanh([This] double2x3 a) => 
         new(a.c0.tanh(), a.c1.tanh(), a.c2.tanh());
 
     [MethodImpl(256 | 512)]
-    public static double2x3 asinh(this double2x3 a) => 
+    public static double2x3 asinh([This] double2x3 a) => 
         new(a.c0.asinh(), a.c1.asinh(), a.c2.asinh());
 
     [MethodImpl(256 | 512)]
-    public static double2x3 acosh(this double2x3 a) => 
+    public static double2x3 acosh([This] double2x3 a) => 
         new(a.c0.acosh(), a.c1.acosh(), a.c2.acosh());
 
     [MethodImpl(256 | 512)]
-    public static double2x3 atanh(this double2x3 a) => 
+    public static double2x3 atanh([This] double2x3 a) => 
         new(a.c0.atanh(), a.c1.atanh(), a.c2.atanh());
+
+    [MethodImpl(256 | 512)]
+    public static double2x3 step(double2x3 threshold, [This] double2x3 a) =>
+        new(a.c0.step(threshold.c0), a.c1.step(threshold.c1), a.c2.step(threshold.c2));
 }
 
 #endregion // double2x3
@@ -1689,86 +1744,87 @@ public partial struct double2x4
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m2x4 isNaN(this double2x4 a) => 
+    public static b64m2x4 isNaN([This] double2x4 a) => 
         new(a.c0.isNaN(), a.c1.isNaN(), a.c2.isNaN(), a.c3.isNaN());
 
     [MethodImpl(256 | 512)]
-    public static b64m2x4 isFinite(this double2x4 a) => 
+    public static b64m2x4 isFinite([This] double2x4 a) => 
         new(a.c0.isFinite(), a.c1.isFinite(), a.c2.isFinite(), a.c3.isFinite());
 
     [MethodImpl(256 | 512)]
-    public static b64m2x4 isInf(this double2x4 a) => 
+    public static b64m2x4 isInf([This] double2x4 a) => 
         new(a.c0.isInf(), a.c1.isInf(), a.c2.isInf(), a.c3.isInf());
 
     [MethodImpl(256 | 512)]
-    public static b64m2x4 isPosInf(this double2x4 a) => 
+    public static b64m2x4 isPosInf([This] double2x4 a) => 
         new(a.c0.isPosInf(), a.c1.isPosInf(), a.c2.isPosInf(), a.c3.isPosInf());
 
     [MethodImpl(256 | 512)]
-    public static b64m2x4 isNegInf(this double2x4 a) => 
+    public static b64m2x4 isNegInf([This] double2x4 a) => 
         new(a.c0.isNegInf(), a.c1.isNegInf(), a.c2.isNegInf(), a.c3.isNegInf());
 
     [MethodImpl(256 | 512)]
-    public static double2x4 log(this double2x4 a) => 
+    public static double2x4 log([This] double2x4 a) => 
         new(a.c0.log(), a.c1.log(), a.c2.log(), a.c3.log());
 
     [MethodImpl(256 | 512)]
-    public static double2x4 log2(this double2x4 a) => 
+    public static double2x4 log2([This] double2x4 a) => 
         new(a.c0.log2(), a.c1.log2(), a.c2.log2(), a.c3.log2());
 
     [MethodImpl(256 | 512)]
-    public static double2x4 log(this double2x4 a, double2x4 b) => 
+    public static double2x4 log([This] double2x4 a, double2x4 b) => 
         new(a.c0.log(b.c0), a.c1.log(b.c1), a.c2.log(b.c2), a.c3.log(b.c3));
 
     [MethodImpl(256 | 512)]
-    public static double2x4 log10(this double2x4 a) => 
+    public static double2x4 log10([This] double2x4 a) => 
         new(a.c0.log10(), a.c1.log10(), a.c2.log10(), a.c3.log10());
 
     [MethodImpl(256 | 512)]
-    public static double2x4 exp(this double2x4 a) => 
+    public static double2x4 exp([This] double2x4 a) => 
         new(a.c0.exp(), a.c1.exp(), a.c2.exp(), a.c3.exp());
 
     [MethodImpl(256 | 512)]
-    public static double2x4 exp2(this double2x4 a) => 
+    public static double2x4 exp2([This] double2x4 a) => 
         new(a.c0.exp2(), a.c1.exp2(), a.c2.exp2(), a.c3.exp2());
 
     [MethodImpl(256 | 512)]
-    public static double2x4 exp10(this double2x4 a) => 
+    public static double2x4 exp10([This] double2x4 a) => 
         new(a.c0.exp10(), a.c1.exp10(), a.c2.exp10(), a.c3.exp10());
 
     [MethodImpl(256 | 512)]
-    public static double2x4 pow(this double2x4 a, double2x4 b) => 
+    public static double2x4 pow([This] double2x4 a, double2x4 b) => 
         new(a.c0.pow(b.c0), a.c1.pow(b.c1), a.c2.pow(b.c2), a.c3.pow(b.c3));
 
     [MethodImpl(256 | 512)]
-    public static double2x4 pow(this double2x4 a, double2 b) => 
+    public static double2x4 pow([This] double2x4 a, double2 b) => 
         new(a.c0.pow(b), a.c1.pow(b), a.c2.pow(b), a.c3.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static double2x4 pow(this double2x4 a, double b) => 
+    public static double2x4 pow([This] double2x4 a, double b) => 
         new(a.c0.pow(b), a.c1.pow(b), a.c2.pow(b), a.c3.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static double2x4 sqrt(this double2x4 a) => 
+    public static double2x4 sqrt([This] double2x4 a) => 
         new(a.c0.sqrt(), a.c1.sqrt(), a.c2.sqrt(), a.c3.sqrt());
 
     [MethodImpl(256 | 512)]
-    public static double2x4 rsqrt(this double2x4 a) => 
+    public static double2x4 rsqrt([This] double2x4 a) => 
         new(a.c0.rsqrt(), a.c1.rsqrt(), a.c2.rsqrt(), a.c3.rsqrt());
 
     [MethodImpl(256 | 512)]
-    public static double2x4 sin(this double2x4 a) => 
+    public static double2x4 sin([This] double2x4 a) => 
         new(a.c0.sin(), a.c1.sin(), a.c2.sin(), a.c3.sin());
 
     [MethodImpl(256 | 512)]
-    public static double2x4 cos(this double2x4 a) => 
+    public static double2x4 cos([This] double2x4 a) => 
         new(a.c0.cos(), a.c1.cos(), a.c2.cos(), a.c3.cos());
 
     [MethodImpl(256 | 512)]
-    public static (double2x4 sin, double2x4 cos) sincos(this double2x4 a)
+    public static (double2x4 sin, double2x4 cos) sincos([This] double2x4 a)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -1781,7 +1837,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static void sincos(this double2x4 a, out double2x4 sin, out double2x4 cos)
+    public static void sincos([This] double2x4 a, out double2x4 sin, out double2x4 cos)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -1792,48 +1848,52 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static double2x4 tan(this double2x4 a) => 
+    public static double2x4 tan([This] double2x4 a) => 
         new(a.c0.tan(), a.c1.tan(), a.c2.tan(), a.c3.tan());
 
     [MethodImpl(256 | 512)]
-    public static double2x4 asin(this double2x4 a) => 
+    public static double2x4 asin([This] double2x4 a) => 
         new(a.c0.asin(), a.c1.asin(), a.c2.asin(), a.c3.asin());
 
     [MethodImpl(256 | 512)]
-    public static double2x4 acos(this double2x4 a) => 
+    public static double2x4 acos([This] double2x4 a) => 
         new(a.c0.acos(), a.c1.acos(), a.c2.acos(), a.c3.acos());
 
     [MethodImpl(256 | 512)]
-    public static double2x4 atan(this double2x4 a) => 
+    public static double2x4 atan([This] double2x4 a) => 
         new(a.c0.atan(), a.c1.atan(), a.c2.atan(), a.c3.atan());
 
     [MethodImpl(256 | 512)]
-    public static double2x4 atan2(this double2x4 a, double2x4 b) => 
+    public static double2x4 atan2([This] double2x4 a, double2x4 b) => 
         new(a.c0.atan2(b.c0), a.c1.atan2(b.c1), a.c2.atan2(b.c2), a.c3.atan2(b.c3));
 
     [MethodImpl(256 | 512)]
-    public static double2x4 sinh(this double2x4 a) => 
+    public static double2x4 sinh([This] double2x4 a) => 
         new(a.c0.sinh(), a.c1.sinh(), a.c2.sinh(), a.c3.sinh());
 
     [MethodImpl(256 | 512)]
-    public static double2x4 cosh(this double2x4 a) => 
+    public static double2x4 cosh([This] double2x4 a) => 
         new(a.c0.cosh(), a.c1.cosh(), a.c2.cosh(), a.c3.cosh());
 
     [MethodImpl(256 | 512)]
-    public static double2x4 tanh(this double2x4 a) => 
+    public static double2x4 tanh([This] double2x4 a) => 
         new(a.c0.tanh(), a.c1.tanh(), a.c2.tanh(), a.c3.tanh());
 
     [MethodImpl(256 | 512)]
-    public static double2x4 asinh(this double2x4 a) => 
+    public static double2x4 asinh([This] double2x4 a) => 
         new(a.c0.asinh(), a.c1.asinh(), a.c2.asinh(), a.c3.asinh());
 
     [MethodImpl(256 | 512)]
-    public static double2x4 acosh(this double2x4 a) => 
+    public static double2x4 acosh([This] double2x4 a) => 
         new(a.c0.acosh(), a.c1.acosh(), a.c2.acosh(), a.c3.acosh());
 
     [MethodImpl(256 | 512)]
-    public static double2x4 atanh(this double2x4 a) => 
+    public static double2x4 atanh([This] double2x4 a) => 
         new(a.c0.atanh(), a.c1.atanh(), a.c2.atanh(), a.c3.atanh());
+
+    [MethodImpl(256 | 512)]
+    public static double2x4 step(double2x4 threshold, [This] double2x4 a) =>
+        new(a.c0.step(threshold.c0), a.c1.step(threshold.c1), a.c2.step(threshold.c2), a.c3.step(threshold.c3));
 }
 
 #endregion // double2x4
@@ -1844,86 +1904,87 @@ public partial struct double3x2
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m3x2 isNaN(this double3x2 a) => 
+    public static b64m3x2 isNaN([This] double3x2 a) => 
         new(a.c0.isNaN(), a.c1.isNaN());
 
     [MethodImpl(256 | 512)]
-    public static b64m3x2 isFinite(this double3x2 a) => 
+    public static b64m3x2 isFinite([This] double3x2 a) => 
         new(a.c0.isFinite(), a.c1.isFinite());
 
     [MethodImpl(256 | 512)]
-    public static b64m3x2 isInf(this double3x2 a) => 
+    public static b64m3x2 isInf([This] double3x2 a) => 
         new(a.c0.isInf(), a.c1.isInf());
 
     [MethodImpl(256 | 512)]
-    public static b64m3x2 isPosInf(this double3x2 a) => 
+    public static b64m3x2 isPosInf([This] double3x2 a) => 
         new(a.c0.isPosInf(), a.c1.isPosInf());
 
     [MethodImpl(256 | 512)]
-    public static b64m3x2 isNegInf(this double3x2 a) => 
+    public static b64m3x2 isNegInf([This] double3x2 a) => 
         new(a.c0.isNegInf(), a.c1.isNegInf());
 
     [MethodImpl(256 | 512)]
-    public static double3x2 log(this double3x2 a) => 
+    public static double3x2 log([This] double3x2 a) => 
         new(a.c0.log(), a.c1.log());
 
     [MethodImpl(256 | 512)]
-    public static double3x2 log2(this double3x2 a) => 
+    public static double3x2 log2([This] double3x2 a) => 
         new(a.c0.log2(), a.c1.log2());
 
     [MethodImpl(256 | 512)]
-    public static double3x2 log(this double3x2 a, double3x2 b) => 
+    public static double3x2 log([This] double3x2 a, double3x2 b) => 
         new(a.c0.log(b.c0), a.c1.log(b.c1));
 
     [MethodImpl(256 | 512)]
-    public static double3x2 log10(this double3x2 a) => 
+    public static double3x2 log10([This] double3x2 a) => 
         new(a.c0.log10(), a.c1.log10());
 
     [MethodImpl(256 | 512)]
-    public static double3x2 exp(this double3x2 a) => 
+    public static double3x2 exp([This] double3x2 a) => 
         new(a.c0.exp(), a.c1.exp());
 
     [MethodImpl(256 | 512)]
-    public static double3x2 exp2(this double3x2 a) => 
+    public static double3x2 exp2([This] double3x2 a) => 
         new(a.c0.exp2(), a.c1.exp2());
 
     [MethodImpl(256 | 512)]
-    public static double3x2 exp10(this double3x2 a) => 
+    public static double3x2 exp10([This] double3x2 a) => 
         new(a.c0.exp10(), a.c1.exp10());
 
     [MethodImpl(256 | 512)]
-    public static double3x2 pow(this double3x2 a, double3x2 b) => 
+    public static double3x2 pow([This] double3x2 a, double3x2 b) => 
         new(a.c0.pow(b.c0), a.c1.pow(b.c1));
 
     [MethodImpl(256 | 512)]
-    public static double3x2 pow(this double3x2 a, double3 b) => 
+    public static double3x2 pow([This] double3x2 a, double3 b) => 
         new(a.c0.pow(b), a.c1.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static double3x2 pow(this double3x2 a, double b) => 
+    public static double3x2 pow([This] double3x2 a, double b) => 
         new(a.c0.pow(b), a.c1.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static double3x2 sqrt(this double3x2 a) => 
+    public static double3x2 sqrt([This] double3x2 a) => 
         new(a.c0.sqrt(), a.c1.sqrt());
 
     [MethodImpl(256 | 512)]
-    public static double3x2 rsqrt(this double3x2 a) => 
+    public static double3x2 rsqrt([This] double3x2 a) => 
         new(a.c0.rsqrt(), a.c1.rsqrt());
 
     [MethodImpl(256 | 512)]
-    public static double3x2 sin(this double3x2 a) => 
+    public static double3x2 sin([This] double3x2 a) => 
         new(a.c0.sin(), a.c1.sin());
 
     [MethodImpl(256 | 512)]
-    public static double3x2 cos(this double3x2 a) => 
+    public static double3x2 cos([This] double3x2 a) => 
         new(a.c0.cos(), a.c1.cos());
 
     [MethodImpl(256 | 512)]
-    public static (double3x2 sin, double3x2 cos) sincos(this double3x2 a)
+    public static (double3x2 sin, double3x2 cos) sincos([This] double3x2 a)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -1934,7 +1995,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static void sincos(this double3x2 a, out double3x2 sin, out double3x2 cos)
+    public static void sincos([This] double3x2 a, out double3x2 sin, out double3x2 cos)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -1943,48 +2004,52 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static double3x2 tan(this double3x2 a) => 
+    public static double3x2 tan([This] double3x2 a) => 
         new(a.c0.tan(), a.c1.tan());
 
     [MethodImpl(256 | 512)]
-    public static double3x2 asin(this double3x2 a) => 
+    public static double3x2 asin([This] double3x2 a) => 
         new(a.c0.asin(), a.c1.asin());
 
     [MethodImpl(256 | 512)]
-    public static double3x2 acos(this double3x2 a) => 
+    public static double3x2 acos([This] double3x2 a) => 
         new(a.c0.acos(), a.c1.acos());
 
     [MethodImpl(256 | 512)]
-    public static double3x2 atan(this double3x2 a) => 
+    public static double3x2 atan([This] double3x2 a) => 
         new(a.c0.atan(), a.c1.atan());
 
     [MethodImpl(256 | 512)]
-    public static double3x2 atan2(this double3x2 a, double3x2 b) => 
+    public static double3x2 atan2([This] double3x2 a, double3x2 b) => 
         new(a.c0.atan2(b.c0), a.c1.atan2(b.c1));
 
     [MethodImpl(256 | 512)]
-    public static double3x2 sinh(this double3x2 a) => 
+    public static double3x2 sinh([This] double3x2 a) => 
         new(a.c0.sinh(), a.c1.sinh());
 
     [MethodImpl(256 | 512)]
-    public static double3x2 cosh(this double3x2 a) => 
+    public static double3x2 cosh([This] double3x2 a) => 
         new(a.c0.cosh(), a.c1.cosh());
 
     [MethodImpl(256 | 512)]
-    public static double3x2 tanh(this double3x2 a) => 
+    public static double3x2 tanh([This] double3x2 a) => 
         new(a.c0.tanh(), a.c1.tanh());
 
     [MethodImpl(256 | 512)]
-    public static double3x2 asinh(this double3x2 a) => 
+    public static double3x2 asinh([This] double3x2 a) => 
         new(a.c0.asinh(), a.c1.asinh());
 
     [MethodImpl(256 | 512)]
-    public static double3x2 acosh(this double3x2 a) => 
+    public static double3x2 acosh([This] double3x2 a) => 
         new(a.c0.acosh(), a.c1.acosh());
 
     [MethodImpl(256 | 512)]
-    public static double3x2 atanh(this double3x2 a) => 
+    public static double3x2 atanh([This] double3x2 a) => 
         new(a.c0.atanh(), a.c1.atanh());
+
+    [MethodImpl(256 | 512)]
+    public static double3x2 step(double3x2 threshold, [This] double3x2 a) =>
+        new(a.c0.step(threshold.c0), a.c1.step(threshold.c1));
 }
 
 #endregion // double3x2
@@ -1995,86 +2060,87 @@ public partial struct double3x3
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m3x3 isNaN(this double3x3 a) => 
+    public static b64m3x3 isNaN([This] double3x3 a) => 
         new(a.c0.isNaN(), a.c1.isNaN(), a.c2.isNaN());
 
     [MethodImpl(256 | 512)]
-    public static b64m3x3 isFinite(this double3x3 a) => 
+    public static b64m3x3 isFinite([This] double3x3 a) => 
         new(a.c0.isFinite(), a.c1.isFinite(), a.c2.isFinite());
 
     [MethodImpl(256 | 512)]
-    public static b64m3x3 isInf(this double3x3 a) => 
+    public static b64m3x3 isInf([This] double3x3 a) => 
         new(a.c0.isInf(), a.c1.isInf(), a.c2.isInf());
 
     [MethodImpl(256 | 512)]
-    public static b64m3x3 isPosInf(this double3x3 a) => 
+    public static b64m3x3 isPosInf([This] double3x3 a) => 
         new(a.c0.isPosInf(), a.c1.isPosInf(), a.c2.isPosInf());
 
     [MethodImpl(256 | 512)]
-    public static b64m3x3 isNegInf(this double3x3 a) => 
+    public static b64m3x3 isNegInf([This] double3x3 a) => 
         new(a.c0.isNegInf(), a.c1.isNegInf(), a.c2.isNegInf());
 
     [MethodImpl(256 | 512)]
-    public static double3x3 log(this double3x3 a) => 
+    public static double3x3 log([This] double3x3 a) => 
         new(a.c0.log(), a.c1.log(), a.c2.log());
 
     [MethodImpl(256 | 512)]
-    public static double3x3 log2(this double3x3 a) => 
+    public static double3x3 log2([This] double3x3 a) => 
         new(a.c0.log2(), a.c1.log2(), a.c2.log2());
 
     [MethodImpl(256 | 512)]
-    public static double3x3 log(this double3x3 a, double3x3 b) => 
+    public static double3x3 log([This] double3x3 a, double3x3 b) => 
         new(a.c0.log(b.c0), a.c1.log(b.c1), a.c2.log(b.c2));
 
     [MethodImpl(256 | 512)]
-    public static double3x3 log10(this double3x3 a) => 
+    public static double3x3 log10([This] double3x3 a) => 
         new(a.c0.log10(), a.c1.log10(), a.c2.log10());
 
     [MethodImpl(256 | 512)]
-    public static double3x3 exp(this double3x3 a) => 
+    public static double3x3 exp([This] double3x3 a) => 
         new(a.c0.exp(), a.c1.exp(), a.c2.exp());
 
     [MethodImpl(256 | 512)]
-    public static double3x3 exp2(this double3x3 a) => 
+    public static double3x3 exp2([This] double3x3 a) => 
         new(a.c0.exp2(), a.c1.exp2(), a.c2.exp2());
 
     [MethodImpl(256 | 512)]
-    public static double3x3 exp10(this double3x3 a) => 
+    public static double3x3 exp10([This] double3x3 a) => 
         new(a.c0.exp10(), a.c1.exp10(), a.c2.exp10());
 
     [MethodImpl(256 | 512)]
-    public static double3x3 pow(this double3x3 a, double3x3 b) => 
+    public static double3x3 pow([This] double3x3 a, double3x3 b) => 
         new(a.c0.pow(b.c0), a.c1.pow(b.c1), a.c2.pow(b.c2));
 
     [MethodImpl(256 | 512)]
-    public static double3x3 pow(this double3x3 a, double3 b) => 
+    public static double3x3 pow([This] double3x3 a, double3 b) => 
         new(a.c0.pow(b), a.c1.pow(b), a.c2.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static double3x3 pow(this double3x3 a, double b) => 
+    public static double3x3 pow([This] double3x3 a, double b) => 
         new(a.c0.pow(b), a.c1.pow(b), a.c2.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static double3x3 sqrt(this double3x3 a) => 
+    public static double3x3 sqrt([This] double3x3 a) => 
         new(a.c0.sqrt(), a.c1.sqrt(), a.c2.sqrt());
 
     [MethodImpl(256 | 512)]
-    public static double3x3 rsqrt(this double3x3 a) => 
+    public static double3x3 rsqrt([This] double3x3 a) => 
         new(a.c0.rsqrt(), a.c1.rsqrt(), a.c2.rsqrt());
 
     [MethodImpl(256 | 512)]
-    public static double3x3 sin(this double3x3 a) => 
+    public static double3x3 sin([This] double3x3 a) => 
         new(a.c0.sin(), a.c1.sin(), a.c2.sin());
 
     [MethodImpl(256 | 512)]
-    public static double3x3 cos(this double3x3 a) => 
+    public static double3x3 cos([This] double3x3 a) => 
         new(a.c0.cos(), a.c1.cos(), a.c2.cos());
 
     [MethodImpl(256 | 512)]
-    public static (double3x3 sin, double3x3 cos) sincos(this double3x3 a)
+    public static (double3x3 sin, double3x3 cos) sincos([This] double3x3 a)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -2086,7 +2152,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static void sincos(this double3x3 a, out double3x3 sin, out double3x3 cos)
+    public static void sincos([This] double3x3 a, out double3x3 sin, out double3x3 cos)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -2096,48 +2162,52 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static double3x3 tan(this double3x3 a) => 
+    public static double3x3 tan([This] double3x3 a) => 
         new(a.c0.tan(), a.c1.tan(), a.c2.tan());
 
     [MethodImpl(256 | 512)]
-    public static double3x3 asin(this double3x3 a) => 
+    public static double3x3 asin([This] double3x3 a) => 
         new(a.c0.asin(), a.c1.asin(), a.c2.asin());
 
     [MethodImpl(256 | 512)]
-    public static double3x3 acos(this double3x3 a) => 
+    public static double3x3 acos([This] double3x3 a) => 
         new(a.c0.acos(), a.c1.acos(), a.c2.acos());
 
     [MethodImpl(256 | 512)]
-    public static double3x3 atan(this double3x3 a) => 
+    public static double3x3 atan([This] double3x3 a) => 
         new(a.c0.atan(), a.c1.atan(), a.c2.atan());
 
     [MethodImpl(256 | 512)]
-    public static double3x3 atan2(this double3x3 a, double3x3 b) => 
+    public static double3x3 atan2([This] double3x3 a, double3x3 b) => 
         new(a.c0.atan2(b.c0), a.c1.atan2(b.c1), a.c2.atan2(b.c2));
 
     [MethodImpl(256 | 512)]
-    public static double3x3 sinh(this double3x3 a) => 
+    public static double3x3 sinh([This] double3x3 a) => 
         new(a.c0.sinh(), a.c1.sinh(), a.c2.sinh());
 
     [MethodImpl(256 | 512)]
-    public static double3x3 cosh(this double3x3 a) => 
+    public static double3x3 cosh([This] double3x3 a) => 
         new(a.c0.cosh(), a.c1.cosh(), a.c2.cosh());
 
     [MethodImpl(256 | 512)]
-    public static double3x3 tanh(this double3x3 a) => 
+    public static double3x3 tanh([This] double3x3 a) => 
         new(a.c0.tanh(), a.c1.tanh(), a.c2.tanh());
 
     [MethodImpl(256 | 512)]
-    public static double3x3 asinh(this double3x3 a) => 
+    public static double3x3 asinh([This] double3x3 a) => 
         new(a.c0.asinh(), a.c1.asinh(), a.c2.asinh());
 
     [MethodImpl(256 | 512)]
-    public static double3x3 acosh(this double3x3 a) => 
+    public static double3x3 acosh([This] double3x3 a) => 
         new(a.c0.acosh(), a.c1.acosh(), a.c2.acosh());
 
     [MethodImpl(256 | 512)]
-    public static double3x3 atanh(this double3x3 a) => 
+    public static double3x3 atanh([This] double3x3 a) => 
         new(a.c0.atanh(), a.c1.atanh(), a.c2.atanh());
+
+    [MethodImpl(256 | 512)]
+    public static double3x3 step(double3x3 threshold, [This] double3x3 a) =>
+        new(a.c0.step(threshold.c0), a.c1.step(threshold.c1), a.c2.step(threshold.c2));
 }
 
 #endregion // double3x3
@@ -2148,86 +2218,87 @@ public partial struct double3x4
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m3x4 isNaN(this double3x4 a) => 
+    public static b64m3x4 isNaN([This] double3x4 a) => 
         new(a.c0.isNaN(), a.c1.isNaN(), a.c2.isNaN(), a.c3.isNaN());
 
     [MethodImpl(256 | 512)]
-    public static b64m3x4 isFinite(this double3x4 a) => 
+    public static b64m3x4 isFinite([This] double3x4 a) => 
         new(a.c0.isFinite(), a.c1.isFinite(), a.c2.isFinite(), a.c3.isFinite());
 
     [MethodImpl(256 | 512)]
-    public static b64m3x4 isInf(this double3x4 a) => 
+    public static b64m3x4 isInf([This] double3x4 a) => 
         new(a.c0.isInf(), a.c1.isInf(), a.c2.isInf(), a.c3.isInf());
 
     [MethodImpl(256 | 512)]
-    public static b64m3x4 isPosInf(this double3x4 a) => 
+    public static b64m3x4 isPosInf([This] double3x4 a) => 
         new(a.c0.isPosInf(), a.c1.isPosInf(), a.c2.isPosInf(), a.c3.isPosInf());
 
     [MethodImpl(256 | 512)]
-    public static b64m3x4 isNegInf(this double3x4 a) => 
+    public static b64m3x4 isNegInf([This] double3x4 a) => 
         new(a.c0.isNegInf(), a.c1.isNegInf(), a.c2.isNegInf(), a.c3.isNegInf());
 
     [MethodImpl(256 | 512)]
-    public static double3x4 log(this double3x4 a) => 
+    public static double3x4 log([This] double3x4 a) => 
         new(a.c0.log(), a.c1.log(), a.c2.log(), a.c3.log());
 
     [MethodImpl(256 | 512)]
-    public static double3x4 log2(this double3x4 a) => 
+    public static double3x4 log2([This] double3x4 a) => 
         new(a.c0.log2(), a.c1.log2(), a.c2.log2(), a.c3.log2());
 
     [MethodImpl(256 | 512)]
-    public static double3x4 log(this double3x4 a, double3x4 b) => 
+    public static double3x4 log([This] double3x4 a, double3x4 b) => 
         new(a.c0.log(b.c0), a.c1.log(b.c1), a.c2.log(b.c2), a.c3.log(b.c3));
 
     [MethodImpl(256 | 512)]
-    public static double3x4 log10(this double3x4 a) => 
+    public static double3x4 log10([This] double3x4 a) => 
         new(a.c0.log10(), a.c1.log10(), a.c2.log10(), a.c3.log10());
 
     [MethodImpl(256 | 512)]
-    public static double3x4 exp(this double3x4 a) => 
+    public static double3x4 exp([This] double3x4 a) => 
         new(a.c0.exp(), a.c1.exp(), a.c2.exp(), a.c3.exp());
 
     [MethodImpl(256 | 512)]
-    public static double3x4 exp2(this double3x4 a) => 
+    public static double3x4 exp2([This] double3x4 a) => 
         new(a.c0.exp2(), a.c1.exp2(), a.c2.exp2(), a.c3.exp2());
 
     [MethodImpl(256 | 512)]
-    public static double3x4 exp10(this double3x4 a) => 
+    public static double3x4 exp10([This] double3x4 a) => 
         new(a.c0.exp10(), a.c1.exp10(), a.c2.exp10(), a.c3.exp10());
 
     [MethodImpl(256 | 512)]
-    public static double3x4 pow(this double3x4 a, double3x4 b) => 
+    public static double3x4 pow([This] double3x4 a, double3x4 b) => 
         new(a.c0.pow(b.c0), a.c1.pow(b.c1), a.c2.pow(b.c2), a.c3.pow(b.c3));
 
     [MethodImpl(256 | 512)]
-    public static double3x4 pow(this double3x4 a, double3 b) => 
+    public static double3x4 pow([This] double3x4 a, double3 b) => 
         new(a.c0.pow(b), a.c1.pow(b), a.c2.pow(b), a.c3.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static double3x4 pow(this double3x4 a, double b) => 
+    public static double3x4 pow([This] double3x4 a, double b) => 
         new(a.c0.pow(b), a.c1.pow(b), a.c2.pow(b), a.c3.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static double3x4 sqrt(this double3x4 a) => 
+    public static double3x4 sqrt([This] double3x4 a) => 
         new(a.c0.sqrt(), a.c1.sqrt(), a.c2.sqrt(), a.c3.sqrt());
 
     [MethodImpl(256 | 512)]
-    public static double3x4 rsqrt(this double3x4 a) => 
+    public static double3x4 rsqrt([This] double3x4 a) => 
         new(a.c0.rsqrt(), a.c1.rsqrt(), a.c2.rsqrt(), a.c3.rsqrt());
 
     [MethodImpl(256 | 512)]
-    public static double3x4 sin(this double3x4 a) => 
+    public static double3x4 sin([This] double3x4 a) => 
         new(a.c0.sin(), a.c1.sin(), a.c2.sin(), a.c3.sin());
 
     [MethodImpl(256 | 512)]
-    public static double3x4 cos(this double3x4 a) => 
+    public static double3x4 cos([This] double3x4 a) => 
         new(a.c0.cos(), a.c1.cos(), a.c2.cos(), a.c3.cos());
 
     [MethodImpl(256 | 512)]
-    public static (double3x4 sin, double3x4 cos) sincos(this double3x4 a)
+    public static (double3x4 sin, double3x4 cos) sincos([This] double3x4 a)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -2240,7 +2311,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static void sincos(this double3x4 a, out double3x4 sin, out double3x4 cos)
+    public static void sincos([This] double3x4 a, out double3x4 sin, out double3x4 cos)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -2251,48 +2322,52 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static double3x4 tan(this double3x4 a) => 
+    public static double3x4 tan([This] double3x4 a) => 
         new(a.c0.tan(), a.c1.tan(), a.c2.tan(), a.c3.tan());
 
     [MethodImpl(256 | 512)]
-    public static double3x4 asin(this double3x4 a) => 
+    public static double3x4 asin([This] double3x4 a) => 
         new(a.c0.asin(), a.c1.asin(), a.c2.asin(), a.c3.asin());
 
     [MethodImpl(256 | 512)]
-    public static double3x4 acos(this double3x4 a) => 
+    public static double3x4 acos([This] double3x4 a) => 
         new(a.c0.acos(), a.c1.acos(), a.c2.acos(), a.c3.acos());
 
     [MethodImpl(256 | 512)]
-    public static double3x4 atan(this double3x4 a) => 
+    public static double3x4 atan([This] double3x4 a) => 
         new(a.c0.atan(), a.c1.atan(), a.c2.atan(), a.c3.atan());
 
     [MethodImpl(256 | 512)]
-    public static double3x4 atan2(this double3x4 a, double3x4 b) => 
+    public static double3x4 atan2([This] double3x4 a, double3x4 b) => 
         new(a.c0.atan2(b.c0), a.c1.atan2(b.c1), a.c2.atan2(b.c2), a.c3.atan2(b.c3));
 
     [MethodImpl(256 | 512)]
-    public static double3x4 sinh(this double3x4 a) => 
+    public static double3x4 sinh([This] double3x4 a) => 
         new(a.c0.sinh(), a.c1.sinh(), a.c2.sinh(), a.c3.sinh());
 
     [MethodImpl(256 | 512)]
-    public static double3x4 cosh(this double3x4 a) => 
+    public static double3x4 cosh([This] double3x4 a) => 
         new(a.c0.cosh(), a.c1.cosh(), a.c2.cosh(), a.c3.cosh());
 
     [MethodImpl(256 | 512)]
-    public static double3x4 tanh(this double3x4 a) => 
+    public static double3x4 tanh([This] double3x4 a) => 
         new(a.c0.tanh(), a.c1.tanh(), a.c2.tanh(), a.c3.tanh());
 
     [MethodImpl(256 | 512)]
-    public static double3x4 asinh(this double3x4 a) => 
+    public static double3x4 asinh([This] double3x4 a) => 
         new(a.c0.asinh(), a.c1.asinh(), a.c2.asinh(), a.c3.asinh());
 
     [MethodImpl(256 | 512)]
-    public static double3x4 acosh(this double3x4 a) => 
+    public static double3x4 acosh([This] double3x4 a) => 
         new(a.c0.acosh(), a.c1.acosh(), a.c2.acosh(), a.c3.acosh());
 
     [MethodImpl(256 | 512)]
-    public static double3x4 atanh(this double3x4 a) => 
+    public static double3x4 atanh([This] double3x4 a) => 
         new(a.c0.atanh(), a.c1.atanh(), a.c2.atanh(), a.c3.atanh());
+
+    [MethodImpl(256 | 512)]
+    public static double3x4 step(double3x4 threshold, [This] double3x4 a) =>
+        new(a.c0.step(threshold.c0), a.c1.step(threshold.c1), a.c2.step(threshold.c2), a.c3.step(threshold.c3));
 }
 
 #endregion // double3x4
@@ -2303,86 +2378,87 @@ public partial struct double4x2
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m4x2 isNaN(this double4x2 a) => 
+    public static b64m4x2 isNaN([This] double4x2 a) => 
         new(a.c0.isNaN(), a.c1.isNaN());
 
     [MethodImpl(256 | 512)]
-    public static b64m4x2 isFinite(this double4x2 a) => 
+    public static b64m4x2 isFinite([This] double4x2 a) => 
         new(a.c0.isFinite(), a.c1.isFinite());
 
     [MethodImpl(256 | 512)]
-    public static b64m4x2 isInf(this double4x2 a) => 
+    public static b64m4x2 isInf([This] double4x2 a) => 
         new(a.c0.isInf(), a.c1.isInf());
 
     [MethodImpl(256 | 512)]
-    public static b64m4x2 isPosInf(this double4x2 a) => 
+    public static b64m4x2 isPosInf([This] double4x2 a) => 
         new(a.c0.isPosInf(), a.c1.isPosInf());
 
     [MethodImpl(256 | 512)]
-    public static b64m4x2 isNegInf(this double4x2 a) => 
+    public static b64m4x2 isNegInf([This] double4x2 a) => 
         new(a.c0.isNegInf(), a.c1.isNegInf());
 
     [MethodImpl(256 | 512)]
-    public static double4x2 log(this double4x2 a) => 
+    public static double4x2 log([This] double4x2 a) => 
         new(a.c0.log(), a.c1.log());
 
     [MethodImpl(256 | 512)]
-    public static double4x2 log2(this double4x2 a) => 
+    public static double4x2 log2([This] double4x2 a) => 
         new(a.c0.log2(), a.c1.log2());
 
     [MethodImpl(256 | 512)]
-    public static double4x2 log(this double4x2 a, double4x2 b) => 
+    public static double4x2 log([This] double4x2 a, double4x2 b) => 
         new(a.c0.log(b.c0), a.c1.log(b.c1));
 
     [MethodImpl(256 | 512)]
-    public static double4x2 log10(this double4x2 a) => 
+    public static double4x2 log10([This] double4x2 a) => 
         new(a.c0.log10(), a.c1.log10());
 
     [MethodImpl(256 | 512)]
-    public static double4x2 exp(this double4x2 a) => 
+    public static double4x2 exp([This] double4x2 a) => 
         new(a.c0.exp(), a.c1.exp());
 
     [MethodImpl(256 | 512)]
-    public static double4x2 exp2(this double4x2 a) => 
+    public static double4x2 exp2([This] double4x2 a) => 
         new(a.c0.exp2(), a.c1.exp2());
 
     [MethodImpl(256 | 512)]
-    public static double4x2 exp10(this double4x2 a) => 
+    public static double4x2 exp10([This] double4x2 a) => 
         new(a.c0.exp10(), a.c1.exp10());
 
     [MethodImpl(256 | 512)]
-    public static double4x2 pow(this double4x2 a, double4x2 b) => 
+    public static double4x2 pow([This] double4x2 a, double4x2 b) => 
         new(a.c0.pow(b.c0), a.c1.pow(b.c1));
 
     [MethodImpl(256 | 512)]
-    public static double4x2 pow(this double4x2 a, double4 b) => 
+    public static double4x2 pow([This] double4x2 a, double4 b) => 
         new(a.c0.pow(b), a.c1.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static double4x2 pow(this double4x2 a, double b) => 
+    public static double4x2 pow([This] double4x2 a, double b) => 
         new(a.c0.pow(b), a.c1.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static double4x2 sqrt(this double4x2 a) => 
+    public static double4x2 sqrt([This] double4x2 a) => 
         new(a.c0.sqrt(), a.c1.sqrt());
 
     [MethodImpl(256 | 512)]
-    public static double4x2 rsqrt(this double4x2 a) => 
+    public static double4x2 rsqrt([This] double4x2 a) => 
         new(a.c0.rsqrt(), a.c1.rsqrt());
 
     [MethodImpl(256 | 512)]
-    public static double4x2 sin(this double4x2 a) => 
+    public static double4x2 sin([This] double4x2 a) => 
         new(a.c0.sin(), a.c1.sin());
 
     [MethodImpl(256 | 512)]
-    public static double4x2 cos(this double4x2 a) => 
+    public static double4x2 cos([This] double4x2 a) => 
         new(a.c0.cos(), a.c1.cos());
 
     [MethodImpl(256 | 512)]
-    public static (double4x2 sin, double4x2 cos) sincos(this double4x2 a)
+    public static (double4x2 sin, double4x2 cos) sincos([This] double4x2 a)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -2393,7 +2469,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static void sincos(this double4x2 a, out double4x2 sin, out double4x2 cos)
+    public static void sincos([This] double4x2 a, out double4x2 sin, out double4x2 cos)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -2402,48 +2478,52 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static double4x2 tan(this double4x2 a) => 
+    public static double4x2 tan([This] double4x2 a) => 
         new(a.c0.tan(), a.c1.tan());
 
     [MethodImpl(256 | 512)]
-    public static double4x2 asin(this double4x2 a) => 
+    public static double4x2 asin([This] double4x2 a) => 
         new(a.c0.asin(), a.c1.asin());
 
     [MethodImpl(256 | 512)]
-    public static double4x2 acos(this double4x2 a) => 
+    public static double4x2 acos([This] double4x2 a) => 
         new(a.c0.acos(), a.c1.acos());
 
     [MethodImpl(256 | 512)]
-    public static double4x2 atan(this double4x2 a) => 
+    public static double4x2 atan([This] double4x2 a) => 
         new(a.c0.atan(), a.c1.atan());
 
     [MethodImpl(256 | 512)]
-    public static double4x2 atan2(this double4x2 a, double4x2 b) => 
+    public static double4x2 atan2([This] double4x2 a, double4x2 b) => 
         new(a.c0.atan2(b.c0), a.c1.atan2(b.c1));
 
     [MethodImpl(256 | 512)]
-    public static double4x2 sinh(this double4x2 a) => 
+    public static double4x2 sinh([This] double4x2 a) => 
         new(a.c0.sinh(), a.c1.sinh());
 
     [MethodImpl(256 | 512)]
-    public static double4x2 cosh(this double4x2 a) => 
+    public static double4x2 cosh([This] double4x2 a) => 
         new(a.c0.cosh(), a.c1.cosh());
 
     [MethodImpl(256 | 512)]
-    public static double4x2 tanh(this double4x2 a) => 
+    public static double4x2 tanh([This] double4x2 a) => 
         new(a.c0.tanh(), a.c1.tanh());
 
     [MethodImpl(256 | 512)]
-    public static double4x2 asinh(this double4x2 a) => 
+    public static double4x2 asinh([This] double4x2 a) => 
         new(a.c0.asinh(), a.c1.asinh());
 
     [MethodImpl(256 | 512)]
-    public static double4x2 acosh(this double4x2 a) => 
+    public static double4x2 acosh([This] double4x2 a) => 
         new(a.c0.acosh(), a.c1.acosh());
 
     [MethodImpl(256 | 512)]
-    public static double4x2 atanh(this double4x2 a) => 
+    public static double4x2 atanh([This] double4x2 a) => 
         new(a.c0.atanh(), a.c1.atanh());
+
+    [MethodImpl(256 | 512)]
+    public static double4x2 step(double4x2 threshold, [This] double4x2 a) =>
+        new(a.c0.step(threshold.c0), a.c1.step(threshold.c1));
 }
 
 #endregion // double4x2
@@ -2454,86 +2534,87 @@ public partial struct double4x3
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m4x3 isNaN(this double4x3 a) => 
+    public static b64m4x3 isNaN([This] double4x3 a) => 
         new(a.c0.isNaN(), a.c1.isNaN(), a.c2.isNaN());
 
     [MethodImpl(256 | 512)]
-    public static b64m4x3 isFinite(this double4x3 a) => 
+    public static b64m4x3 isFinite([This] double4x3 a) => 
         new(a.c0.isFinite(), a.c1.isFinite(), a.c2.isFinite());
 
     [MethodImpl(256 | 512)]
-    public static b64m4x3 isInf(this double4x3 a) => 
+    public static b64m4x3 isInf([This] double4x3 a) => 
         new(a.c0.isInf(), a.c1.isInf(), a.c2.isInf());
 
     [MethodImpl(256 | 512)]
-    public static b64m4x3 isPosInf(this double4x3 a) => 
+    public static b64m4x3 isPosInf([This] double4x3 a) => 
         new(a.c0.isPosInf(), a.c1.isPosInf(), a.c2.isPosInf());
 
     [MethodImpl(256 | 512)]
-    public static b64m4x3 isNegInf(this double4x3 a) => 
+    public static b64m4x3 isNegInf([This] double4x3 a) => 
         new(a.c0.isNegInf(), a.c1.isNegInf(), a.c2.isNegInf());
 
     [MethodImpl(256 | 512)]
-    public static double4x3 log(this double4x3 a) => 
+    public static double4x3 log([This] double4x3 a) => 
         new(a.c0.log(), a.c1.log(), a.c2.log());
 
     [MethodImpl(256 | 512)]
-    public static double4x3 log2(this double4x3 a) => 
+    public static double4x3 log2([This] double4x3 a) => 
         new(a.c0.log2(), a.c1.log2(), a.c2.log2());
 
     [MethodImpl(256 | 512)]
-    public static double4x3 log(this double4x3 a, double4x3 b) => 
+    public static double4x3 log([This] double4x3 a, double4x3 b) => 
         new(a.c0.log(b.c0), a.c1.log(b.c1), a.c2.log(b.c2));
 
     [MethodImpl(256 | 512)]
-    public static double4x3 log10(this double4x3 a) => 
+    public static double4x3 log10([This] double4x3 a) => 
         new(a.c0.log10(), a.c1.log10(), a.c2.log10());
 
     [MethodImpl(256 | 512)]
-    public static double4x3 exp(this double4x3 a) => 
+    public static double4x3 exp([This] double4x3 a) => 
         new(a.c0.exp(), a.c1.exp(), a.c2.exp());
 
     [MethodImpl(256 | 512)]
-    public static double4x3 exp2(this double4x3 a) => 
+    public static double4x3 exp2([This] double4x3 a) => 
         new(a.c0.exp2(), a.c1.exp2(), a.c2.exp2());
 
     [MethodImpl(256 | 512)]
-    public static double4x3 exp10(this double4x3 a) => 
+    public static double4x3 exp10([This] double4x3 a) => 
         new(a.c0.exp10(), a.c1.exp10(), a.c2.exp10());
 
     [MethodImpl(256 | 512)]
-    public static double4x3 pow(this double4x3 a, double4x3 b) => 
+    public static double4x3 pow([This] double4x3 a, double4x3 b) => 
         new(a.c0.pow(b.c0), a.c1.pow(b.c1), a.c2.pow(b.c2));
 
     [MethodImpl(256 | 512)]
-    public static double4x3 pow(this double4x3 a, double4 b) => 
+    public static double4x3 pow([This] double4x3 a, double4 b) => 
         new(a.c0.pow(b), a.c1.pow(b), a.c2.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static double4x3 pow(this double4x3 a, double b) => 
+    public static double4x3 pow([This] double4x3 a, double b) => 
         new(a.c0.pow(b), a.c1.pow(b), a.c2.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static double4x3 sqrt(this double4x3 a) => 
+    public static double4x3 sqrt([This] double4x3 a) => 
         new(a.c0.sqrt(), a.c1.sqrt(), a.c2.sqrt());
 
     [MethodImpl(256 | 512)]
-    public static double4x3 rsqrt(this double4x3 a) => 
+    public static double4x3 rsqrt([This] double4x3 a) => 
         new(a.c0.rsqrt(), a.c1.rsqrt(), a.c2.rsqrt());
 
     [MethodImpl(256 | 512)]
-    public static double4x3 sin(this double4x3 a) => 
+    public static double4x3 sin([This] double4x3 a) => 
         new(a.c0.sin(), a.c1.sin(), a.c2.sin());
 
     [MethodImpl(256 | 512)]
-    public static double4x3 cos(this double4x3 a) => 
+    public static double4x3 cos([This] double4x3 a) => 
         new(a.c0.cos(), a.c1.cos(), a.c2.cos());
 
     [MethodImpl(256 | 512)]
-    public static (double4x3 sin, double4x3 cos) sincos(this double4x3 a)
+    public static (double4x3 sin, double4x3 cos) sincos([This] double4x3 a)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -2545,7 +2626,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static void sincos(this double4x3 a, out double4x3 sin, out double4x3 cos)
+    public static void sincos([This] double4x3 a, out double4x3 sin, out double4x3 cos)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -2555,48 +2636,52 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static double4x3 tan(this double4x3 a) => 
+    public static double4x3 tan([This] double4x3 a) => 
         new(a.c0.tan(), a.c1.tan(), a.c2.tan());
 
     [MethodImpl(256 | 512)]
-    public static double4x3 asin(this double4x3 a) => 
+    public static double4x3 asin([This] double4x3 a) => 
         new(a.c0.asin(), a.c1.asin(), a.c2.asin());
 
     [MethodImpl(256 | 512)]
-    public static double4x3 acos(this double4x3 a) => 
+    public static double4x3 acos([This] double4x3 a) => 
         new(a.c0.acos(), a.c1.acos(), a.c2.acos());
 
     [MethodImpl(256 | 512)]
-    public static double4x3 atan(this double4x3 a) => 
+    public static double4x3 atan([This] double4x3 a) => 
         new(a.c0.atan(), a.c1.atan(), a.c2.atan());
 
     [MethodImpl(256 | 512)]
-    public static double4x3 atan2(this double4x3 a, double4x3 b) => 
+    public static double4x3 atan2([This] double4x3 a, double4x3 b) => 
         new(a.c0.atan2(b.c0), a.c1.atan2(b.c1), a.c2.atan2(b.c2));
 
     [MethodImpl(256 | 512)]
-    public static double4x3 sinh(this double4x3 a) => 
+    public static double4x3 sinh([This] double4x3 a) => 
         new(a.c0.sinh(), a.c1.sinh(), a.c2.sinh());
 
     [MethodImpl(256 | 512)]
-    public static double4x3 cosh(this double4x3 a) => 
+    public static double4x3 cosh([This] double4x3 a) => 
         new(a.c0.cosh(), a.c1.cosh(), a.c2.cosh());
 
     [MethodImpl(256 | 512)]
-    public static double4x3 tanh(this double4x3 a) => 
+    public static double4x3 tanh([This] double4x3 a) => 
         new(a.c0.tanh(), a.c1.tanh(), a.c2.tanh());
 
     [MethodImpl(256 | 512)]
-    public static double4x3 asinh(this double4x3 a) => 
+    public static double4x3 asinh([This] double4x3 a) => 
         new(a.c0.asinh(), a.c1.asinh(), a.c2.asinh());
 
     [MethodImpl(256 | 512)]
-    public static double4x3 acosh(this double4x3 a) => 
+    public static double4x3 acosh([This] double4x3 a) => 
         new(a.c0.acosh(), a.c1.acosh(), a.c2.acosh());
 
     [MethodImpl(256 | 512)]
-    public static double4x3 atanh(this double4x3 a) => 
+    public static double4x3 atanh([This] double4x3 a) => 
         new(a.c0.atanh(), a.c1.atanh(), a.c2.atanh());
+
+    [MethodImpl(256 | 512)]
+    public static double4x3 step(double4x3 threshold, [This] double4x3 a) =>
+        new(a.c0.step(threshold.c0), a.c1.step(threshold.c1), a.c2.step(threshold.c2));
 }
 
 #endregion // double4x3
@@ -2607,86 +2692,87 @@ public partial struct double4x4
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b64m4x4 isNaN(this double4x4 a) => 
+    public static b64m4x4 isNaN([This] double4x4 a) => 
         new(a.c0.isNaN(), a.c1.isNaN(), a.c2.isNaN(), a.c3.isNaN());
 
     [MethodImpl(256 | 512)]
-    public static b64m4x4 isFinite(this double4x4 a) => 
+    public static b64m4x4 isFinite([This] double4x4 a) => 
         new(a.c0.isFinite(), a.c1.isFinite(), a.c2.isFinite(), a.c3.isFinite());
 
     [MethodImpl(256 | 512)]
-    public static b64m4x4 isInf(this double4x4 a) => 
+    public static b64m4x4 isInf([This] double4x4 a) => 
         new(a.c0.isInf(), a.c1.isInf(), a.c2.isInf(), a.c3.isInf());
 
     [MethodImpl(256 | 512)]
-    public static b64m4x4 isPosInf(this double4x4 a) => 
+    public static b64m4x4 isPosInf([This] double4x4 a) => 
         new(a.c0.isPosInf(), a.c1.isPosInf(), a.c2.isPosInf(), a.c3.isPosInf());
 
     [MethodImpl(256 | 512)]
-    public static b64m4x4 isNegInf(this double4x4 a) => 
+    public static b64m4x4 isNegInf([This] double4x4 a) => 
         new(a.c0.isNegInf(), a.c1.isNegInf(), a.c2.isNegInf(), a.c3.isNegInf());
 
     [MethodImpl(256 | 512)]
-    public static double4x4 log(this double4x4 a) => 
+    public static double4x4 log([This] double4x4 a) => 
         new(a.c0.log(), a.c1.log(), a.c2.log(), a.c3.log());
 
     [MethodImpl(256 | 512)]
-    public static double4x4 log2(this double4x4 a) => 
+    public static double4x4 log2([This] double4x4 a) => 
         new(a.c0.log2(), a.c1.log2(), a.c2.log2(), a.c3.log2());
 
     [MethodImpl(256 | 512)]
-    public static double4x4 log(this double4x4 a, double4x4 b) => 
+    public static double4x4 log([This] double4x4 a, double4x4 b) => 
         new(a.c0.log(b.c0), a.c1.log(b.c1), a.c2.log(b.c2), a.c3.log(b.c3));
 
     [MethodImpl(256 | 512)]
-    public static double4x4 log10(this double4x4 a) => 
+    public static double4x4 log10([This] double4x4 a) => 
         new(a.c0.log10(), a.c1.log10(), a.c2.log10(), a.c3.log10());
 
     [MethodImpl(256 | 512)]
-    public static double4x4 exp(this double4x4 a) => 
+    public static double4x4 exp([This] double4x4 a) => 
         new(a.c0.exp(), a.c1.exp(), a.c2.exp(), a.c3.exp());
 
     [MethodImpl(256 | 512)]
-    public static double4x4 exp2(this double4x4 a) => 
+    public static double4x4 exp2([This] double4x4 a) => 
         new(a.c0.exp2(), a.c1.exp2(), a.c2.exp2(), a.c3.exp2());
 
     [MethodImpl(256 | 512)]
-    public static double4x4 exp10(this double4x4 a) => 
+    public static double4x4 exp10([This] double4x4 a) => 
         new(a.c0.exp10(), a.c1.exp10(), a.c2.exp10(), a.c3.exp10());
 
     [MethodImpl(256 | 512)]
-    public static double4x4 pow(this double4x4 a, double4x4 b) => 
+    public static double4x4 pow([This] double4x4 a, double4x4 b) => 
         new(a.c0.pow(b.c0), a.c1.pow(b.c1), a.c2.pow(b.c2), a.c3.pow(b.c3));
 
     [MethodImpl(256 | 512)]
-    public static double4x4 pow(this double4x4 a, double4 b) => 
+    public static double4x4 pow([This] double4x4 a, double4 b) => 
         new(a.c0.pow(b), a.c1.pow(b), a.c2.pow(b), a.c3.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static double4x4 pow(this double4x4 a, double b) => 
+    public static double4x4 pow([This] double4x4 a, double b) => 
         new(a.c0.pow(b), a.c1.pow(b), a.c2.pow(b), a.c3.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static double4x4 sqrt(this double4x4 a) => 
+    public static double4x4 sqrt([This] double4x4 a) => 
         new(a.c0.sqrt(), a.c1.sqrt(), a.c2.sqrt(), a.c3.sqrt());
 
     [MethodImpl(256 | 512)]
-    public static double4x4 rsqrt(this double4x4 a) => 
+    public static double4x4 rsqrt([This] double4x4 a) => 
         new(a.c0.rsqrt(), a.c1.rsqrt(), a.c2.rsqrt(), a.c3.rsqrt());
 
     [MethodImpl(256 | 512)]
-    public static double4x4 sin(this double4x4 a) => 
+    public static double4x4 sin([This] double4x4 a) => 
         new(a.c0.sin(), a.c1.sin(), a.c2.sin(), a.c3.sin());
 
     [MethodImpl(256 | 512)]
-    public static double4x4 cos(this double4x4 a) => 
+    public static double4x4 cos([This] double4x4 a) => 
         new(a.c0.cos(), a.c1.cos(), a.c2.cos(), a.c3.cos());
 
     [MethodImpl(256 | 512)]
-    public static (double4x4 sin, double4x4 cos) sincos(this double4x4 a)
+    public static (double4x4 sin, double4x4 cos) sincos([This] double4x4 a)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -2699,7 +2785,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static void sincos(this double4x4 a, out double4x4 sin, out double4x4 cos)
+    public static void sincos([This] double4x4 a, out double4x4 sin, out double4x4 cos)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -2710,48 +2796,52 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static double4x4 tan(this double4x4 a) => 
+    public static double4x4 tan([This] double4x4 a) => 
         new(a.c0.tan(), a.c1.tan(), a.c2.tan(), a.c3.tan());
 
     [MethodImpl(256 | 512)]
-    public static double4x4 asin(this double4x4 a) => 
+    public static double4x4 asin([This] double4x4 a) => 
         new(a.c0.asin(), a.c1.asin(), a.c2.asin(), a.c3.asin());
 
     [MethodImpl(256 | 512)]
-    public static double4x4 acos(this double4x4 a) => 
+    public static double4x4 acos([This] double4x4 a) => 
         new(a.c0.acos(), a.c1.acos(), a.c2.acos(), a.c3.acos());
 
     [MethodImpl(256 | 512)]
-    public static double4x4 atan(this double4x4 a) => 
+    public static double4x4 atan([This] double4x4 a) => 
         new(a.c0.atan(), a.c1.atan(), a.c2.atan(), a.c3.atan());
 
     [MethodImpl(256 | 512)]
-    public static double4x4 atan2(this double4x4 a, double4x4 b) => 
+    public static double4x4 atan2([This] double4x4 a, double4x4 b) => 
         new(a.c0.atan2(b.c0), a.c1.atan2(b.c1), a.c2.atan2(b.c2), a.c3.atan2(b.c3));
 
     [MethodImpl(256 | 512)]
-    public static double4x4 sinh(this double4x4 a) => 
+    public static double4x4 sinh([This] double4x4 a) => 
         new(a.c0.sinh(), a.c1.sinh(), a.c2.sinh(), a.c3.sinh());
 
     [MethodImpl(256 | 512)]
-    public static double4x4 cosh(this double4x4 a) => 
+    public static double4x4 cosh([This] double4x4 a) => 
         new(a.c0.cosh(), a.c1.cosh(), a.c2.cosh(), a.c3.cosh());
 
     [MethodImpl(256 | 512)]
-    public static double4x4 tanh(this double4x4 a) => 
+    public static double4x4 tanh([This] double4x4 a) => 
         new(a.c0.tanh(), a.c1.tanh(), a.c2.tanh(), a.c3.tanh());
 
     [MethodImpl(256 | 512)]
-    public static double4x4 asinh(this double4x4 a) => 
+    public static double4x4 asinh([This] double4x4 a) => 
         new(a.c0.asinh(), a.c1.asinh(), a.c2.asinh(), a.c3.asinh());
 
     [MethodImpl(256 | 512)]
-    public static double4x4 acosh(this double4x4 a) => 
+    public static double4x4 acosh([This] double4x4 a) => 
         new(a.c0.acosh(), a.c1.acosh(), a.c2.acosh(), a.c3.acosh());
 
     [MethodImpl(256 | 512)]
-    public static double4x4 atanh(this double4x4 a) => 
+    public static double4x4 atanh([This] double4x4 a) => 
         new(a.c0.atanh(), a.c1.atanh(), a.c2.atanh(), a.c3.atanh());
+
+    [MethodImpl(256 | 512)]
+    public static double4x4 step(double4x4 threshold, [This] double4x4 a) =>
+        new(a.c0.step(threshold.c0), a.c1.step(threshold.c1), a.c2.step(threshold.c2), a.c3.step(threshold.c3));
 }
 
 #endregion // double4x4
@@ -2762,86 +2852,87 @@ public partial struct half2x2
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m2x2 isNaN(this half2x2 a) => 
+    public static b16m2x2 isNaN([This] half2x2 a) => 
         new(a.c0.isNaN(), a.c1.isNaN());
 
     [MethodImpl(256 | 512)]
-    public static b16m2x2 isFinite(this half2x2 a) => 
+    public static b16m2x2 isFinite([This] half2x2 a) => 
         new(a.c0.isFinite(), a.c1.isFinite());
 
     [MethodImpl(256 | 512)]
-    public static b16m2x2 isInf(this half2x2 a) => 
+    public static b16m2x2 isInf([This] half2x2 a) => 
         new(a.c0.isInf(), a.c1.isInf());
 
     [MethodImpl(256 | 512)]
-    public static b16m2x2 isPosInf(this half2x2 a) => 
+    public static b16m2x2 isPosInf([This] half2x2 a) => 
         new(a.c0.isPosInf(), a.c1.isPosInf());
 
     [MethodImpl(256 | 512)]
-    public static b16m2x2 isNegInf(this half2x2 a) => 
+    public static b16m2x2 isNegInf([This] half2x2 a) => 
         new(a.c0.isNegInf(), a.c1.isNegInf());
 
     [MethodImpl(256 | 512)]
-    public static half2x2 log(this half2x2 a) => 
+    public static half2x2 log([This] half2x2 a) => 
         new(a.c0.log(), a.c1.log());
 
     [MethodImpl(256 | 512)]
-    public static half2x2 log2(this half2x2 a) => 
+    public static half2x2 log2([This] half2x2 a) => 
         new(a.c0.log2(), a.c1.log2());
 
     [MethodImpl(256 | 512)]
-    public static half2x2 log(this half2x2 a, half2x2 b) => 
+    public static half2x2 log([This] half2x2 a, half2x2 b) => 
         new(a.c0.log(b.c0), a.c1.log(b.c1));
 
     [MethodImpl(256 | 512)]
-    public static half2x2 log10(this half2x2 a) => 
+    public static half2x2 log10([This] half2x2 a) => 
         new(a.c0.log10(), a.c1.log10());
 
     [MethodImpl(256 | 512)]
-    public static half2x2 exp(this half2x2 a) => 
+    public static half2x2 exp([This] half2x2 a) => 
         new(a.c0.exp(), a.c1.exp());
 
     [MethodImpl(256 | 512)]
-    public static half2x2 exp2(this half2x2 a) => 
+    public static half2x2 exp2([This] half2x2 a) => 
         new(a.c0.exp2(), a.c1.exp2());
 
     [MethodImpl(256 | 512)]
-    public static half2x2 exp10(this half2x2 a) => 
+    public static half2x2 exp10([This] half2x2 a) => 
         new(a.c0.exp10(), a.c1.exp10());
 
     [MethodImpl(256 | 512)]
-    public static half2x2 pow(this half2x2 a, half2x2 b) => 
+    public static half2x2 pow([This] half2x2 a, half2x2 b) => 
         new(a.c0.pow(b.c0), a.c1.pow(b.c1));
 
     [MethodImpl(256 | 512)]
-    public static half2x2 pow(this half2x2 a, half2 b) => 
+    public static half2x2 pow([This] half2x2 a, half2 b) => 
         new(a.c0.pow(b), a.c1.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static half2x2 pow(this half2x2 a, half b) => 
+    public static half2x2 pow([This] half2x2 a, half b) => 
         new(a.c0.pow(b), a.c1.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static half2x2 sqrt(this half2x2 a) => 
+    public static half2x2 sqrt([This] half2x2 a) => 
         new(a.c0.sqrt(), a.c1.sqrt());
 
     [MethodImpl(256 | 512)]
-    public static half2x2 rsqrt(this half2x2 a) => 
+    public static half2x2 rsqrt([This] half2x2 a) => 
         new(a.c0.rsqrt(), a.c1.rsqrt());
 
     [MethodImpl(256 | 512)]
-    public static half2x2 sin(this half2x2 a) => 
+    public static half2x2 sin([This] half2x2 a) => 
         new(a.c0.sin(), a.c1.sin());
 
     [MethodImpl(256 | 512)]
-    public static half2x2 cos(this half2x2 a) => 
+    public static half2x2 cos([This] half2x2 a) => 
         new(a.c0.cos(), a.c1.cos());
 
     [MethodImpl(256 | 512)]
-    public static (half2x2 sin, half2x2 cos) sincos(this half2x2 a)
+    public static (half2x2 sin, half2x2 cos) sincos([This] half2x2 a)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -2852,7 +2943,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static void sincos(this half2x2 a, out half2x2 sin, out half2x2 cos)
+    public static void sincos([This] half2x2 a, out half2x2 sin, out half2x2 cos)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -2861,48 +2952,52 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static half2x2 tan(this half2x2 a) => 
+    public static half2x2 tan([This] half2x2 a) => 
         new(a.c0.tan(), a.c1.tan());
 
     [MethodImpl(256 | 512)]
-    public static half2x2 asin(this half2x2 a) => 
+    public static half2x2 asin([This] half2x2 a) => 
         new(a.c0.asin(), a.c1.asin());
 
     [MethodImpl(256 | 512)]
-    public static half2x2 acos(this half2x2 a) => 
+    public static half2x2 acos([This] half2x2 a) => 
         new(a.c0.acos(), a.c1.acos());
 
     [MethodImpl(256 | 512)]
-    public static half2x2 atan(this half2x2 a) => 
+    public static half2x2 atan([This] half2x2 a) => 
         new(a.c0.atan(), a.c1.atan());
 
     [MethodImpl(256 | 512)]
-    public static half2x2 atan2(this half2x2 a, half2x2 b) => 
+    public static half2x2 atan2([This] half2x2 a, half2x2 b) => 
         new(a.c0.atan2(b.c0), a.c1.atan2(b.c1));
 
     [MethodImpl(256 | 512)]
-    public static half2x2 sinh(this half2x2 a) => 
+    public static half2x2 sinh([This] half2x2 a) => 
         new(a.c0.sinh(), a.c1.sinh());
 
     [MethodImpl(256 | 512)]
-    public static half2x2 cosh(this half2x2 a) => 
+    public static half2x2 cosh([This] half2x2 a) => 
         new(a.c0.cosh(), a.c1.cosh());
 
     [MethodImpl(256 | 512)]
-    public static half2x2 tanh(this half2x2 a) => 
+    public static half2x2 tanh([This] half2x2 a) => 
         new(a.c0.tanh(), a.c1.tanh());
 
     [MethodImpl(256 | 512)]
-    public static half2x2 asinh(this half2x2 a) => 
+    public static half2x2 asinh([This] half2x2 a) => 
         new(a.c0.asinh(), a.c1.asinh());
 
     [MethodImpl(256 | 512)]
-    public static half2x2 acosh(this half2x2 a) => 
+    public static half2x2 acosh([This] half2x2 a) => 
         new(a.c0.acosh(), a.c1.acosh());
 
     [MethodImpl(256 | 512)]
-    public static half2x2 atanh(this half2x2 a) => 
+    public static half2x2 atanh([This] half2x2 a) => 
         new(a.c0.atanh(), a.c1.atanh());
+
+    [MethodImpl(256 | 512)]
+    public static half2x2 step(half2x2 threshold, [This] half2x2 a) =>
+        new(a.c0.step(threshold.c0), a.c1.step(threshold.c1));
 }
 
 #endregion // half2x2
@@ -2913,86 +3008,87 @@ public partial struct half2x3
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m2x3 isNaN(this half2x3 a) => 
+    public static b16m2x3 isNaN([This] half2x3 a) => 
         new(a.c0.isNaN(), a.c1.isNaN(), a.c2.isNaN());
 
     [MethodImpl(256 | 512)]
-    public static b16m2x3 isFinite(this half2x3 a) => 
+    public static b16m2x3 isFinite([This] half2x3 a) => 
         new(a.c0.isFinite(), a.c1.isFinite(), a.c2.isFinite());
 
     [MethodImpl(256 | 512)]
-    public static b16m2x3 isInf(this half2x3 a) => 
+    public static b16m2x3 isInf([This] half2x3 a) => 
         new(a.c0.isInf(), a.c1.isInf(), a.c2.isInf());
 
     [MethodImpl(256 | 512)]
-    public static b16m2x3 isPosInf(this half2x3 a) => 
+    public static b16m2x3 isPosInf([This] half2x3 a) => 
         new(a.c0.isPosInf(), a.c1.isPosInf(), a.c2.isPosInf());
 
     [MethodImpl(256 | 512)]
-    public static b16m2x3 isNegInf(this half2x3 a) => 
+    public static b16m2x3 isNegInf([This] half2x3 a) => 
         new(a.c0.isNegInf(), a.c1.isNegInf(), a.c2.isNegInf());
 
     [MethodImpl(256 | 512)]
-    public static half2x3 log(this half2x3 a) => 
+    public static half2x3 log([This] half2x3 a) => 
         new(a.c0.log(), a.c1.log(), a.c2.log());
 
     [MethodImpl(256 | 512)]
-    public static half2x3 log2(this half2x3 a) => 
+    public static half2x3 log2([This] half2x3 a) => 
         new(a.c0.log2(), a.c1.log2(), a.c2.log2());
 
     [MethodImpl(256 | 512)]
-    public static half2x3 log(this half2x3 a, half2x3 b) => 
+    public static half2x3 log([This] half2x3 a, half2x3 b) => 
         new(a.c0.log(b.c0), a.c1.log(b.c1), a.c2.log(b.c2));
 
     [MethodImpl(256 | 512)]
-    public static half2x3 log10(this half2x3 a) => 
+    public static half2x3 log10([This] half2x3 a) => 
         new(a.c0.log10(), a.c1.log10(), a.c2.log10());
 
     [MethodImpl(256 | 512)]
-    public static half2x3 exp(this half2x3 a) => 
+    public static half2x3 exp([This] half2x3 a) => 
         new(a.c0.exp(), a.c1.exp(), a.c2.exp());
 
     [MethodImpl(256 | 512)]
-    public static half2x3 exp2(this half2x3 a) => 
+    public static half2x3 exp2([This] half2x3 a) => 
         new(a.c0.exp2(), a.c1.exp2(), a.c2.exp2());
 
     [MethodImpl(256 | 512)]
-    public static half2x3 exp10(this half2x3 a) => 
+    public static half2x3 exp10([This] half2x3 a) => 
         new(a.c0.exp10(), a.c1.exp10(), a.c2.exp10());
 
     [MethodImpl(256 | 512)]
-    public static half2x3 pow(this half2x3 a, half2x3 b) => 
+    public static half2x3 pow([This] half2x3 a, half2x3 b) => 
         new(a.c0.pow(b.c0), a.c1.pow(b.c1), a.c2.pow(b.c2));
 
     [MethodImpl(256 | 512)]
-    public static half2x3 pow(this half2x3 a, half2 b) => 
+    public static half2x3 pow([This] half2x3 a, half2 b) => 
         new(a.c0.pow(b), a.c1.pow(b), a.c2.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static half2x3 pow(this half2x3 a, half b) => 
+    public static half2x3 pow([This] half2x3 a, half b) => 
         new(a.c0.pow(b), a.c1.pow(b), a.c2.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static half2x3 sqrt(this half2x3 a) => 
+    public static half2x3 sqrt([This] half2x3 a) => 
         new(a.c0.sqrt(), a.c1.sqrt(), a.c2.sqrt());
 
     [MethodImpl(256 | 512)]
-    public static half2x3 rsqrt(this half2x3 a) => 
+    public static half2x3 rsqrt([This] half2x3 a) => 
         new(a.c0.rsqrt(), a.c1.rsqrt(), a.c2.rsqrt());
 
     [MethodImpl(256 | 512)]
-    public static half2x3 sin(this half2x3 a) => 
+    public static half2x3 sin([This] half2x3 a) => 
         new(a.c0.sin(), a.c1.sin(), a.c2.sin());
 
     [MethodImpl(256 | 512)]
-    public static half2x3 cos(this half2x3 a) => 
+    public static half2x3 cos([This] half2x3 a) => 
         new(a.c0.cos(), a.c1.cos(), a.c2.cos());
 
     [MethodImpl(256 | 512)]
-    public static (half2x3 sin, half2x3 cos) sincos(this half2x3 a)
+    public static (half2x3 sin, half2x3 cos) sincos([This] half2x3 a)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -3004,7 +3100,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static void sincos(this half2x3 a, out half2x3 sin, out half2x3 cos)
+    public static void sincos([This] half2x3 a, out half2x3 sin, out half2x3 cos)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -3014,48 +3110,52 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static half2x3 tan(this half2x3 a) => 
+    public static half2x3 tan([This] half2x3 a) => 
         new(a.c0.tan(), a.c1.tan(), a.c2.tan());
 
     [MethodImpl(256 | 512)]
-    public static half2x3 asin(this half2x3 a) => 
+    public static half2x3 asin([This] half2x3 a) => 
         new(a.c0.asin(), a.c1.asin(), a.c2.asin());
 
     [MethodImpl(256 | 512)]
-    public static half2x3 acos(this half2x3 a) => 
+    public static half2x3 acos([This] half2x3 a) => 
         new(a.c0.acos(), a.c1.acos(), a.c2.acos());
 
     [MethodImpl(256 | 512)]
-    public static half2x3 atan(this half2x3 a) => 
+    public static half2x3 atan([This] half2x3 a) => 
         new(a.c0.atan(), a.c1.atan(), a.c2.atan());
 
     [MethodImpl(256 | 512)]
-    public static half2x3 atan2(this half2x3 a, half2x3 b) => 
+    public static half2x3 atan2([This] half2x3 a, half2x3 b) => 
         new(a.c0.atan2(b.c0), a.c1.atan2(b.c1), a.c2.atan2(b.c2));
 
     [MethodImpl(256 | 512)]
-    public static half2x3 sinh(this half2x3 a) => 
+    public static half2x3 sinh([This] half2x3 a) => 
         new(a.c0.sinh(), a.c1.sinh(), a.c2.sinh());
 
     [MethodImpl(256 | 512)]
-    public static half2x3 cosh(this half2x3 a) => 
+    public static half2x3 cosh([This] half2x3 a) => 
         new(a.c0.cosh(), a.c1.cosh(), a.c2.cosh());
 
     [MethodImpl(256 | 512)]
-    public static half2x3 tanh(this half2x3 a) => 
+    public static half2x3 tanh([This] half2x3 a) => 
         new(a.c0.tanh(), a.c1.tanh(), a.c2.tanh());
 
     [MethodImpl(256 | 512)]
-    public static half2x3 asinh(this half2x3 a) => 
+    public static half2x3 asinh([This] half2x3 a) => 
         new(a.c0.asinh(), a.c1.asinh(), a.c2.asinh());
 
     [MethodImpl(256 | 512)]
-    public static half2x3 acosh(this half2x3 a) => 
+    public static half2x3 acosh([This] half2x3 a) => 
         new(a.c0.acosh(), a.c1.acosh(), a.c2.acosh());
 
     [MethodImpl(256 | 512)]
-    public static half2x3 atanh(this half2x3 a) => 
+    public static half2x3 atanh([This] half2x3 a) => 
         new(a.c0.atanh(), a.c1.atanh(), a.c2.atanh());
+
+    [MethodImpl(256 | 512)]
+    public static half2x3 step(half2x3 threshold, [This] half2x3 a) =>
+        new(a.c0.step(threshold.c0), a.c1.step(threshold.c1), a.c2.step(threshold.c2));
 }
 
 #endregion // half2x3
@@ -3066,86 +3166,87 @@ public partial struct half2x4
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m2x4 isNaN(this half2x4 a) => 
+    public static b16m2x4 isNaN([This] half2x4 a) => 
         new(a.c0.isNaN(), a.c1.isNaN(), a.c2.isNaN(), a.c3.isNaN());
 
     [MethodImpl(256 | 512)]
-    public static b16m2x4 isFinite(this half2x4 a) => 
+    public static b16m2x4 isFinite([This] half2x4 a) => 
         new(a.c0.isFinite(), a.c1.isFinite(), a.c2.isFinite(), a.c3.isFinite());
 
     [MethodImpl(256 | 512)]
-    public static b16m2x4 isInf(this half2x4 a) => 
+    public static b16m2x4 isInf([This] half2x4 a) => 
         new(a.c0.isInf(), a.c1.isInf(), a.c2.isInf(), a.c3.isInf());
 
     [MethodImpl(256 | 512)]
-    public static b16m2x4 isPosInf(this half2x4 a) => 
+    public static b16m2x4 isPosInf([This] half2x4 a) => 
         new(a.c0.isPosInf(), a.c1.isPosInf(), a.c2.isPosInf(), a.c3.isPosInf());
 
     [MethodImpl(256 | 512)]
-    public static b16m2x4 isNegInf(this half2x4 a) => 
+    public static b16m2x4 isNegInf([This] half2x4 a) => 
         new(a.c0.isNegInf(), a.c1.isNegInf(), a.c2.isNegInf(), a.c3.isNegInf());
 
     [MethodImpl(256 | 512)]
-    public static half2x4 log(this half2x4 a) => 
+    public static half2x4 log([This] half2x4 a) => 
         new(a.c0.log(), a.c1.log(), a.c2.log(), a.c3.log());
 
     [MethodImpl(256 | 512)]
-    public static half2x4 log2(this half2x4 a) => 
+    public static half2x4 log2([This] half2x4 a) => 
         new(a.c0.log2(), a.c1.log2(), a.c2.log2(), a.c3.log2());
 
     [MethodImpl(256 | 512)]
-    public static half2x4 log(this half2x4 a, half2x4 b) => 
+    public static half2x4 log([This] half2x4 a, half2x4 b) => 
         new(a.c0.log(b.c0), a.c1.log(b.c1), a.c2.log(b.c2), a.c3.log(b.c3));
 
     [MethodImpl(256 | 512)]
-    public static half2x4 log10(this half2x4 a) => 
+    public static half2x4 log10([This] half2x4 a) => 
         new(a.c0.log10(), a.c1.log10(), a.c2.log10(), a.c3.log10());
 
     [MethodImpl(256 | 512)]
-    public static half2x4 exp(this half2x4 a) => 
+    public static half2x4 exp([This] half2x4 a) => 
         new(a.c0.exp(), a.c1.exp(), a.c2.exp(), a.c3.exp());
 
     [MethodImpl(256 | 512)]
-    public static half2x4 exp2(this half2x4 a) => 
+    public static half2x4 exp2([This] half2x4 a) => 
         new(a.c0.exp2(), a.c1.exp2(), a.c2.exp2(), a.c3.exp2());
 
     [MethodImpl(256 | 512)]
-    public static half2x4 exp10(this half2x4 a) => 
+    public static half2x4 exp10([This] half2x4 a) => 
         new(a.c0.exp10(), a.c1.exp10(), a.c2.exp10(), a.c3.exp10());
 
     [MethodImpl(256 | 512)]
-    public static half2x4 pow(this half2x4 a, half2x4 b) => 
+    public static half2x4 pow([This] half2x4 a, half2x4 b) => 
         new(a.c0.pow(b.c0), a.c1.pow(b.c1), a.c2.pow(b.c2), a.c3.pow(b.c3));
 
     [MethodImpl(256 | 512)]
-    public static half2x4 pow(this half2x4 a, half2 b) => 
+    public static half2x4 pow([This] half2x4 a, half2 b) => 
         new(a.c0.pow(b), a.c1.pow(b), a.c2.pow(b), a.c3.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static half2x4 pow(this half2x4 a, half b) => 
+    public static half2x4 pow([This] half2x4 a, half b) => 
         new(a.c0.pow(b), a.c1.pow(b), a.c2.pow(b), a.c3.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static half2x4 sqrt(this half2x4 a) => 
+    public static half2x4 sqrt([This] half2x4 a) => 
         new(a.c0.sqrt(), a.c1.sqrt(), a.c2.sqrt(), a.c3.sqrt());
 
     [MethodImpl(256 | 512)]
-    public static half2x4 rsqrt(this half2x4 a) => 
+    public static half2x4 rsqrt([This] half2x4 a) => 
         new(a.c0.rsqrt(), a.c1.rsqrt(), a.c2.rsqrt(), a.c3.rsqrt());
 
     [MethodImpl(256 | 512)]
-    public static half2x4 sin(this half2x4 a) => 
+    public static half2x4 sin([This] half2x4 a) => 
         new(a.c0.sin(), a.c1.sin(), a.c2.sin(), a.c3.sin());
 
     [MethodImpl(256 | 512)]
-    public static half2x4 cos(this half2x4 a) => 
+    public static half2x4 cos([This] half2x4 a) => 
         new(a.c0.cos(), a.c1.cos(), a.c2.cos(), a.c3.cos());
 
     [MethodImpl(256 | 512)]
-    public static (half2x4 sin, half2x4 cos) sincos(this half2x4 a)
+    public static (half2x4 sin, half2x4 cos) sincos([This] half2x4 a)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -3158,7 +3259,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static void sincos(this half2x4 a, out half2x4 sin, out half2x4 cos)
+    public static void sincos([This] half2x4 a, out half2x4 sin, out half2x4 cos)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -3169,48 +3270,52 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static half2x4 tan(this half2x4 a) => 
+    public static half2x4 tan([This] half2x4 a) => 
         new(a.c0.tan(), a.c1.tan(), a.c2.tan(), a.c3.tan());
 
     [MethodImpl(256 | 512)]
-    public static half2x4 asin(this half2x4 a) => 
+    public static half2x4 asin([This] half2x4 a) => 
         new(a.c0.asin(), a.c1.asin(), a.c2.asin(), a.c3.asin());
 
     [MethodImpl(256 | 512)]
-    public static half2x4 acos(this half2x4 a) => 
+    public static half2x4 acos([This] half2x4 a) => 
         new(a.c0.acos(), a.c1.acos(), a.c2.acos(), a.c3.acos());
 
     [MethodImpl(256 | 512)]
-    public static half2x4 atan(this half2x4 a) => 
+    public static half2x4 atan([This] half2x4 a) => 
         new(a.c0.atan(), a.c1.atan(), a.c2.atan(), a.c3.atan());
 
     [MethodImpl(256 | 512)]
-    public static half2x4 atan2(this half2x4 a, half2x4 b) => 
+    public static half2x4 atan2([This] half2x4 a, half2x4 b) => 
         new(a.c0.atan2(b.c0), a.c1.atan2(b.c1), a.c2.atan2(b.c2), a.c3.atan2(b.c3));
 
     [MethodImpl(256 | 512)]
-    public static half2x4 sinh(this half2x4 a) => 
+    public static half2x4 sinh([This] half2x4 a) => 
         new(a.c0.sinh(), a.c1.sinh(), a.c2.sinh(), a.c3.sinh());
 
     [MethodImpl(256 | 512)]
-    public static half2x4 cosh(this half2x4 a) => 
+    public static half2x4 cosh([This] half2x4 a) => 
         new(a.c0.cosh(), a.c1.cosh(), a.c2.cosh(), a.c3.cosh());
 
     [MethodImpl(256 | 512)]
-    public static half2x4 tanh(this half2x4 a) => 
+    public static half2x4 tanh([This] half2x4 a) => 
         new(a.c0.tanh(), a.c1.tanh(), a.c2.tanh(), a.c3.tanh());
 
     [MethodImpl(256 | 512)]
-    public static half2x4 asinh(this half2x4 a) => 
+    public static half2x4 asinh([This] half2x4 a) => 
         new(a.c0.asinh(), a.c1.asinh(), a.c2.asinh(), a.c3.asinh());
 
     [MethodImpl(256 | 512)]
-    public static half2x4 acosh(this half2x4 a) => 
+    public static half2x4 acosh([This] half2x4 a) => 
         new(a.c0.acosh(), a.c1.acosh(), a.c2.acosh(), a.c3.acosh());
 
     [MethodImpl(256 | 512)]
-    public static half2x4 atanh(this half2x4 a) => 
+    public static half2x4 atanh([This] half2x4 a) => 
         new(a.c0.atanh(), a.c1.atanh(), a.c2.atanh(), a.c3.atanh());
+
+    [MethodImpl(256 | 512)]
+    public static half2x4 step(half2x4 threshold, [This] half2x4 a) =>
+        new(a.c0.step(threshold.c0), a.c1.step(threshold.c1), a.c2.step(threshold.c2), a.c3.step(threshold.c3));
 }
 
 #endregion // half2x4
@@ -3221,86 +3326,87 @@ public partial struct half3x2
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m3x2 isNaN(this half3x2 a) => 
+    public static b16m3x2 isNaN([This] half3x2 a) => 
         new(a.c0.isNaN(), a.c1.isNaN());
 
     [MethodImpl(256 | 512)]
-    public static b16m3x2 isFinite(this half3x2 a) => 
+    public static b16m3x2 isFinite([This] half3x2 a) => 
         new(a.c0.isFinite(), a.c1.isFinite());
 
     [MethodImpl(256 | 512)]
-    public static b16m3x2 isInf(this half3x2 a) => 
+    public static b16m3x2 isInf([This] half3x2 a) => 
         new(a.c0.isInf(), a.c1.isInf());
 
     [MethodImpl(256 | 512)]
-    public static b16m3x2 isPosInf(this half3x2 a) => 
+    public static b16m3x2 isPosInf([This] half3x2 a) => 
         new(a.c0.isPosInf(), a.c1.isPosInf());
 
     [MethodImpl(256 | 512)]
-    public static b16m3x2 isNegInf(this half3x2 a) => 
+    public static b16m3x2 isNegInf([This] half3x2 a) => 
         new(a.c0.isNegInf(), a.c1.isNegInf());
 
     [MethodImpl(256 | 512)]
-    public static half3x2 log(this half3x2 a) => 
+    public static half3x2 log([This] half3x2 a) => 
         new(a.c0.log(), a.c1.log());
 
     [MethodImpl(256 | 512)]
-    public static half3x2 log2(this half3x2 a) => 
+    public static half3x2 log2([This] half3x2 a) => 
         new(a.c0.log2(), a.c1.log2());
 
     [MethodImpl(256 | 512)]
-    public static half3x2 log(this half3x2 a, half3x2 b) => 
+    public static half3x2 log([This] half3x2 a, half3x2 b) => 
         new(a.c0.log(b.c0), a.c1.log(b.c1));
 
     [MethodImpl(256 | 512)]
-    public static half3x2 log10(this half3x2 a) => 
+    public static half3x2 log10([This] half3x2 a) => 
         new(a.c0.log10(), a.c1.log10());
 
     [MethodImpl(256 | 512)]
-    public static half3x2 exp(this half3x2 a) => 
+    public static half3x2 exp([This] half3x2 a) => 
         new(a.c0.exp(), a.c1.exp());
 
     [MethodImpl(256 | 512)]
-    public static half3x2 exp2(this half3x2 a) => 
+    public static half3x2 exp2([This] half3x2 a) => 
         new(a.c0.exp2(), a.c1.exp2());
 
     [MethodImpl(256 | 512)]
-    public static half3x2 exp10(this half3x2 a) => 
+    public static half3x2 exp10([This] half3x2 a) => 
         new(a.c0.exp10(), a.c1.exp10());
 
     [MethodImpl(256 | 512)]
-    public static half3x2 pow(this half3x2 a, half3x2 b) => 
+    public static half3x2 pow([This] half3x2 a, half3x2 b) => 
         new(a.c0.pow(b.c0), a.c1.pow(b.c1));
 
     [MethodImpl(256 | 512)]
-    public static half3x2 pow(this half3x2 a, half3 b) => 
+    public static half3x2 pow([This] half3x2 a, half3 b) => 
         new(a.c0.pow(b), a.c1.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static half3x2 pow(this half3x2 a, half b) => 
+    public static half3x2 pow([This] half3x2 a, half b) => 
         new(a.c0.pow(b), a.c1.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static half3x2 sqrt(this half3x2 a) => 
+    public static half3x2 sqrt([This] half3x2 a) => 
         new(a.c0.sqrt(), a.c1.sqrt());
 
     [MethodImpl(256 | 512)]
-    public static half3x2 rsqrt(this half3x2 a) => 
+    public static half3x2 rsqrt([This] half3x2 a) => 
         new(a.c0.rsqrt(), a.c1.rsqrt());
 
     [MethodImpl(256 | 512)]
-    public static half3x2 sin(this half3x2 a) => 
+    public static half3x2 sin([This] half3x2 a) => 
         new(a.c0.sin(), a.c1.sin());
 
     [MethodImpl(256 | 512)]
-    public static half3x2 cos(this half3x2 a) => 
+    public static half3x2 cos([This] half3x2 a) => 
         new(a.c0.cos(), a.c1.cos());
 
     [MethodImpl(256 | 512)]
-    public static (half3x2 sin, half3x2 cos) sincos(this half3x2 a)
+    public static (half3x2 sin, half3x2 cos) sincos([This] half3x2 a)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -3311,7 +3417,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static void sincos(this half3x2 a, out half3x2 sin, out half3x2 cos)
+    public static void sincos([This] half3x2 a, out half3x2 sin, out half3x2 cos)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -3320,48 +3426,52 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static half3x2 tan(this half3x2 a) => 
+    public static half3x2 tan([This] half3x2 a) => 
         new(a.c0.tan(), a.c1.tan());
 
     [MethodImpl(256 | 512)]
-    public static half3x2 asin(this half3x2 a) => 
+    public static half3x2 asin([This] half3x2 a) => 
         new(a.c0.asin(), a.c1.asin());
 
     [MethodImpl(256 | 512)]
-    public static half3x2 acos(this half3x2 a) => 
+    public static half3x2 acos([This] half3x2 a) => 
         new(a.c0.acos(), a.c1.acos());
 
     [MethodImpl(256 | 512)]
-    public static half3x2 atan(this half3x2 a) => 
+    public static half3x2 atan([This] half3x2 a) => 
         new(a.c0.atan(), a.c1.atan());
 
     [MethodImpl(256 | 512)]
-    public static half3x2 atan2(this half3x2 a, half3x2 b) => 
+    public static half3x2 atan2([This] half3x2 a, half3x2 b) => 
         new(a.c0.atan2(b.c0), a.c1.atan2(b.c1));
 
     [MethodImpl(256 | 512)]
-    public static half3x2 sinh(this half3x2 a) => 
+    public static half3x2 sinh([This] half3x2 a) => 
         new(a.c0.sinh(), a.c1.sinh());
 
     [MethodImpl(256 | 512)]
-    public static half3x2 cosh(this half3x2 a) => 
+    public static half3x2 cosh([This] half3x2 a) => 
         new(a.c0.cosh(), a.c1.cosh());
 
     [MethodImpl(256 | 512)]
-    public static half3x2 tanh(this half3x2 a) => 
+    public static half3x2 tanh([This] half3x2 a) => 
         new(a.c0.tanh(), a.c1.tanh());
 
     [MethodImpl(256 | 512)]
-    public static half3x2 asinh(this half3x2 a) => 
+    public static half3x2 asinh([This] half3x2 a) => 
         new(a.c0.asinh(), a.c1.asinh());
 
     [MethodImpl(256 | 512)]
-    public static half3x2 acosh(this half3x2 a) => 
+    public static half3x2 acosh([This] half3x2 a) => 
         new(a.c0.acosh(), a.c1.acosh());
 
     [MethodImpl(256 | 512)]
-    public static half3x2 atanh(this half3x2 a) => 
+    public static half3x2 atanh([This] half3x2 a) => 
         new(a.c0.atanh(), a.c1.atanh());
+
+    [MethodImpl(256 | 512)]
+    public static half3x2 step(half3x2 threshold, [This] half3x2 a) =>
+        new(a.c0.step(threshold.c0), a.c1.step(threshold.c1));
 }
 
 #endregion // half3x2
@@ -3372,86 +3482,87 @@ public partial struct half3x3
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m3x3 isNaN(this half3x3 a) => 
+    public static b16m3x3 isNaN([This] half3x3 a) => 
         new(a.c0.isNaN(), a.c1.isNaN(), a.c2.isNaN());
 
     [MethodImpl(256 | 512)]
-    public static b16m3x3 isFinite(this half3x3 a) => 
+    public static b16m3x3 isFinite([This] half3x3 a) => 
         new(a.c0.isFinite(), a.c1.isFinite(), a.c2.isFinite());
 
     [MethodImpl(256 | 512)]
-    public static b16m3x3 isInf(this half3x3 a) => 
+    public static b16m3x3 isInf([This] half3x3 a) => 
         new(a.c0.isInf(), a.c1.isInf(), a.c2.isInf());
 
     [MethodImpl(256 | 512)]
-    public static b16m3x3 isPosInf(this half3x3 a) => 
+    public static b16m3x3 isPosInf([This] half3x3 a) => 
         new(a.c0.isPosInf(), a.c1.isPosInf(), a.c2.isPosInf());
 
     [MethodImpl(256 | 512)]
-    public static b16m3x3 isNegInf(this half3x3 a) => 
+    public static b16m3x3 isNegInf([This] half3x3 a) => 
         new(a.c0.isNegInf(), a.c1.isNegInf(), a.c2.isNegInf());
 
     [MethodImpl(256 | 512)]
-    public static half3x3 log(this half3x3 a) => 
+    public static half3x3 log([This] half3x3 a) => 
         new(a.c0.log(), a.c1.log(), a.c2.log());
 
     [MethodImpl(256 | 512)]
-    public static half3x3 log2(this half3x3 a) => 
+    public static half3x3 log2([This] half3x3 a) => 
         new(a.c0.log2(), a.c1.log2(), a.c2.log2());
 
     [MethodImpl(256 | 512)]
-    public static half3x3 log(this half3x3 a, half3x3 b) => 
+    public static half3x3 log([This] half3x3 a, half3x3 b) => 
         new(a.c0.log(b.c0), a.c1.log(b.c1), a.c2.log(b.c2));
 
     [MethodImpl(256 | 512)]
-    public static half3x3 log10(this half3x3 a) => 
+    public static half3x3 log10([This] half3x3 a) => 
         new(a.c0.log10(), a.c1.log10(), a.c2.log10());
 
     [MethodImpl(256 | 512)]
-    public static half3x3 exp(this half3x3 a) => 
+    public static half3x3 exp([This] half3x3 a) => 
         new(a.c0.exp(), a.c1.exp(), a.c2.exp());
 
     [MethodImpl(256 | 512)]
-    public static half3x3 exp2(this half3x3 a) => 
+    public static half3x3 exp2([This] half3x3 a) => 
         new(a.c0.exp2(), a.c1.exp2(), a.c2.exp2());
 
     [MethodImpl(256 | 512)]
-    public static half3x3 exp10(this half3x3 a) => 
+    public static half3x3 exp10([This] half3x3 a) => 
         new(a.c0.exp10(), a.c1.exp10(), a.c2.exp10());
 
     [MethodImpl(256 | 512)]
-    public static half3x3 pow(this half3x3 a, half3x3 b) => 
+    public static half3x3 pow([This] half3x3 a, half3x3 b) => 
         new(a.c0.pow(b.c0), a.c1.pow(b.c1), a.c2.pow(b.c2));
 
     [MethodImpl(256 | 512)]
-    public static half3x3 pow(this half3x3 a, half3 b) => 
+    public static half3x3 pow([This] half3x3 a, half3 b) => 
         new(a.c0.pow(b), a.c1.pow(b), a.c2.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static half3x3 pow(this half3x3 a, half b) => 
+    public static half3x3 pow([This] half3x3 a, half b) => 
         new(a.c0.pow(b), a.c1.pow(b), a.c2.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static half3x3 sqrt(this half3x3 a) => 
+    public static half3x3 sqrt([This] half3x3 a) => 
         new(a.c0.sqrt(), a.c1.sqrt(), a.c2.sqrt());
 
     [MethodImpl(256 | 512)]
-    public static half3x3 rsqrt(this half3x3 a) => 
+    public static half3x3 rsqrt([This] half3x3 a) => 
         new(a.c0.rsqrt(), a.c1.rsqrt(), a.c2.rsqrt());
 
     [MethodImpl(256 | 512)]
-    public static half3x3 sin(this half3x3 a) => 
+    public static half3x3 sin([This] half3x3 a) => 
         new(a.c0.sin(), a.c1.sin(), a.c2.sin());
 
     [MethodImpl(256 | 512)]
-    public static half3x3 cos(this half3x3 a) => 
+    public static half3x3 cos([This] half3x3 a) => 
         new(a.c0.cos(), a.c1.cos(), a.c2.cos());
 
     [MethodImpl(256 | 512)]
-    public static (half3x3 sin, half3x3 cos) sincos(this half3x3 a)
+    public static (half3x3 sin, half3x3 cos) sincos([This] half3x3 a)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -3463,7 +3574,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static void sincos(this half3x3 a, out half3x3 sin, out half3x3 cos)
+    public static void sincos([This] half3x3 a, out half3x3 sin, out half3x3 cos)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -3473,48 +3584,52 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static half3x3 tan(this half3x3 a) => 
+    public static half3x3 tan([This] half3x3 a) => 
         new(a.c0.tan(), a.c1.tan(), a.c2.tan());
 
     [MethodImpl(256 | 512)]
-    public static half3x3 asin(this half3x3 a) => 
+    public static half3x3 asin([This] half3x3 a) => 
         new(a.c0.asin(), a.c1.asin(), a.c2.asin());
 
     [MethodImpl(256 | 512)]
-    public static half3x3 acos(this half3x3 a) => 
+    public static half3x3 acos([This] half3x3 a) => 
         new(a.c0.acos(), a.c1.acos(), a.c2.acos());
 
     [MethodImpl(256 | 512)]
-    public static half3x3 atan(this half3x3 a) => 
+    public static half3x3 atan([This] half3x3 a) => 
         new(a.c0.atan(), a.c1.atan(), a.c2.atan());
 
     [MethodImpl(256 | 512)]
-    public static half3x3 atan2(this half3x3 a, half3x3 b) => 
+    public static half3x3 atan2([This] half3x3 a, half3x3 b) => 
         new(a.c0.atan2(b.c0), a.c1.atan2(b.c1), a.c2.atan2(b.c2));
 
     [MethodImpl(256 | 512)]
-    public static half3x3 sinh(this half3x3 a) => 
+    public static half3x3 sinh([This] half3x3 a) => 
         new(a.c0.sinh(), a.c1.sinh(), a.c2.sinh());
 
     [MethodImpl(256 | 512)]
-    public static half3x3 cosh(this half3x3 a) => 
+    public static half3x3 cosh([This] half3x3 a) => 
         new(a.c0.cosh(), a.c1.cosh(), a.c2.cosh());
 
     [MethodImpl(256 | 512)]
-    public static half3x3 tanh(this half3x3 a) => 
+    public static half3x3 tanh([This] half3x3 a) => 
         new(a.c0.tanh(), a.c1.tanh(), a.c2.tanh());
 
     [MethodImpl(256 | 512)]
-    public static half3x3 asinh(this half3x3 a) => 
+    public static half3x3 asinh([This] half3x3 a) => 
         new(a.c0.asinh(), a.c1.asinh(), a.c2.asinh());
 
     [MethodImpl(256 | 512)]
-    public static half3x3 acosh(this half3x3 a) => 
+    public static half3x3 acosh([This] half3x3 a) => 
         new(a.c0.acosh(), a.c1.acosh(), a.c2.acosh());
 
     [MethodImpl(256 | 512)]
-    public static half3x3 atanh(this half3x3 a) => 
+    public static half3x3 atanh([This] half3x3 a) => 
         new(a.c0.atanh(), a.c1.atanh(), a.c2.atanh());
+
+    [MethodImpl(256 | 512)]
+    public static half3x3 step(half3x3 threshold, [This] half3x3 a) =>
+        new(a.c0.step(threshold.c0), a.c1.step(threshold.c1), a.c2.step(threshold.c2));
 }
 
 #endregion // half3x3
@@ -3525,86 +3640,87 @@ public partial struct half3x4
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m3x4 isNaN(this half3x4 a) => 
+    public static b16m3x4 isNaN([This] half3x4 a) => 
         new(a.c0.isNaN(), a.c1.isNaN(), a.c2.isNaN(), a.c3.isNaN());
 
     [MethodImpl(256 | 512)]
-    public static b16m3x4 isFinite(this half3x4 a) => 
+    public static b16m3x4 isFinite([This] half3x4 a) => 
         new(a.c0.isFinite(), a.c1.isFinite(), a.c2.isFinite(), a.c3.isFinite());
 
     [MethodImpl(256 | 512)]
-    public static b16m3x4 isInf(this half3x4 a) => 
+    public static b16m3x4 isInf([This] half3x4 a) => 
         new(a.c0.isInf(), a.c1.isInf(), a.c2.isInf(), a.c3.isInf());
 
     [MethodImpl(256 | 512)]
-    public static b16m3x4 isPosInf(this half3x4 a) => 
+    public static b16m3x4 isPosInf([This] half3x4 a) => 
         new(a.c0.isPosInf(), a.c1.isPosInf(), a.c2.isPosInf(), a.c3.isPosInf());
 
     [MethodImpl(256 | 512)]
-    public static b16m3x4 isNegInf(this half3x4 a) => 
+    public static b16m3x4 isNegInf([This] half3x4 a) => 
         new(a.c0.isNegInf(), a.c1.isNegInf(), a.c2.isNegInf(), a.c3.isNegInf());
 
     [MethodImpl(256 | 512)]
-    public static half3x4 log(this half3x4 a) => 
+    public static half3x4 log([This] half3x4 a) => 
         new(a.c0.log(), a.c1.log(), a.c2.log(), a.c3.log());
 
     [MethodImpl(256 | 512)]
-    public static half3x4 log2(this half3x4 a) => 
+    public static half3x4 log2([This] half3x4 a) => 
         new(a.c0.log2(), a.c1.log2(), a.c2.log2(), a.c3.log2());
 
     [MethodImpl(256 | 512)]
-    public static half3x4 log(this half3x4 a, half3x4 b) => 
+    public static half3x4 log([This] half3x4 a, half3x4 b) => 
         new(a.c0.log(b.c0), a.c1.log(b.c1), a.c2.log(b.c2), a.c3.log(b.c3));
 
     [MethodImpl(256 | 512)]
-    public static half3x4 log10(this half3x4 a) => 
+    public static half3x4 log10([This] half3x4 a) => 
         new(a.c0.log10(), a.c1.log10(), a.c2.log10(), a.c3.log10());
 
     [MethodImpl(256 | 512)]
-    public static half3x4 exp(this half3x4 a) => 
+    public static half3x4 exp([This] half3x4 a) => 
         new(a.c0.exp(), a.c1.exp(), a.c2.exp(), a.c3.exp());
 
     [MethodImpl(256 | 512)]
-    public static half3x4 exp2(this half3x4 a) => 
+    public static half3x4 exp2([This] half3x4 a) => 
         new(a.c0.exp2(), a.c1.exp2(), a.c2.exp2(), a.c3.exp2());
 
     [MethodImpl(256 | 512)]
-    public static half3x4 exp10(this half3x4 a) => 
+    public static half3x4 exp10([This] half3x4 a) => 
         new(a.c0.exp10(), a.c1.exp10(), a.c2.exp10(), a.c3.exp10());
 
     [MethodImpl(256 | 512)]
-    public static half3x4 pow(this half3x4 a, half3x4 b) => 
+    public static half3x4 pow([This] half3x4 a, half3x4 b) => 
         new(a.c0.pow(b.c0), a.c1.pow(b.c1), a.c2.pow(b.c2), a.c3.pow(b.c3));
 
     [MethodImpl(256 | 512)]
-    public static half3x4 pow(this half3x4 a, half3 b) => 
+    public static half3x4 pow([This] half3x4 a, half3 b) => 
         new(a.c0.pow(b), a.c1.pow(b), a.c2.pow(b), a.c3.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static half3x4 pow(this half3x4 a, half b) => 
+    public static half3x4 pow([This] half3x4 a, half b) => 
         new(a.c0.pow(b), a.c1.pow(b), a.c2.pow(b), a.c3.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static half3x4 sqrt(this half3x4 a) => 
+    public static half3x4 sqrt([This] half3x4 a) => 
         new(a.c0.sqrt(), a.c1.sqrt(), a.c2.sqrt(), a.c3.sqrt());
 
     [MethodImpl(256 | 512)]
-    public static half3x4 rsqrt(this half3x4 a) => 
+    public static half3x4 rsqrt([This] half3x4 a) => 
         new(a.c0.rsqrt(), a.c1.rsqrt(), a.c2.rsqrt(), a.c3.rsqrt());
 
     [MethodImpl(256 | 512)]
-    public static half3x4 sin(this half3x4 a) => 
+    public static half3x4 sin([This] half3x4 a) => 
         new(a.c0.sin(), a.c1.sin(), a.c2.sin(), a.c3.sin());
 
     [MethodImpl(256 | 512)]
-    public static half3x4 cos(this half3x4 a) => 
+    public static half3x4 cos([This] half3x4 a) => 
         new(a.c0.cos(), a.c1.cos(), a.c2.cos(), a.c3.cos());
 
     [MethodImpl(256 | 512)]
-    public static (half3x4 sin, half3x4 cos) sincos(this half3x4 a)
+    public static (half3x4 sin, half3x4 cos) sincos([This] half3x4 a)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -3617,7 +3733,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static void sincos(this half3x4 a, out half3x4 sin, out half3x4 cos)
+    public static void sincos([This] half3x4 a, out half3x4 sin, out half3x4 cos)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -3628,48 +3744,52 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static half3x4 tan(this half3x4 a) => 
+    public static half3x4 tan([This] half3x4 a) => 
         new(a.c0.tan(), a.c1.tan(), a.c2.tan(), a.c3.tan());
 
     [MethodImpl(256 | 512)]
-    public static half3x4 asin(this half3x4 a) => 
+    public static half3x4 asin([This] half3x4 a) => 
         new(a.c0.asin(), a.c1.asin(), a.c2.asin(), a.c3.asin());
 
     [MethodImpl(256 | 512)]
-    public static half3x4 acos(this half3x4 a) => 
+    public static half3x4 acos([This] half3x4 a) => 
         new(a.c0.acos(), a.c1.acos(), a.c2.acos(), a.c3.acos());
 
     [MethodImpl(256 | 512)]
-    public static half3x4 atan(this half3x4 a) => 
+    public static half3x4 atan([This] half3x4 a) => 
         new(a.c0.atan(), a.c1.atan(), a.c2.atan(), a.c3.atan());
 
     [MethodImpl(256 | 512)]
-    public static half3x4 atan2(this half3x4 a, half3x4 b) => 
+    public static half3x4 atan2([This] half3x4 a, half3x4 b) => 
         new(a.c0.atan2(b.c0), a.c1.atan2(b.c1), a.c2.atan2(b.c2), a.c3.atan2(b.c3));
 
     [MethodImpl(256 | 512)]
-    public static half3x4 sinh(this half3x4 a) => 
+    public static half3x4 sinh([This] half3x4 a) => 
         new(a.c0.sinh(), a.c1.sinh(), a.c2.sinh(), a.c3.sinh());
 
     [MethodImpl(256 | 512)]
-    public static half3x4 cosh(this half3x4 a) => 
+    public static half3x4 cosh([This] half3x4 a) => 
         new(a.c0.cosh(), a.c1.cosh(), a.c2.cosh(), a.c3.cosh());
 
     [MethodImpl(256 | 512)]
-    public static half3x4 tanh(this half3x4 a) => 
+    public static half3x4 tanh([This] half3x4 a) => 
         new(a.c0.tanh(), a.c1.tanh(), a.c2.tanh(), a.c3.tanh());
 
     [MethodImpl(256 | 512)]
-    public static half3x4 asinh(this half3x4 a) => 
+    public static half3x4 asinh([This] half3x4 a) => 
         new(a.c0.asinh(), a.c1.asinh(), a.c2.asinh(), a.c3.asinh());
 
     [MethodImpl(256 | 512)]
-    public static half3x4 acosh(this half3x4 a) => 
+    public static half3x4 acosh([This] half3x4 a) => 
         new(a.c0.acosh(), a.c1.acosh(), a.c2.acosh(), a.c3.acosh());
 
     [MethodImpl(256 | 512)]
-    public static half3x4 atanh(this half3x4 a) => 
+    public static half3x4 atanh([This] half3x4 a) => 
         new(a.c0.atanh(), a.c1.atanh(), a.c2.atanh(), a.c3.atanh());
+
+    [MethodImpl(256 | 512)]
+    public static half3x4 step(half3x4 threshold, [This] half3x4 a) =>
+        new(a.c0.step(threshold.c0), a.c1.step(threshold.c1), a.c2.step(threshold.c2), a.c3.step(threshold.c3));
 }
 
 #endregion // half3x4
@@ -3680,86 +3800,87 @@ public partial struct half4x2
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m4x2 isNaN(this half4x2 a) => 
+    public static b16m4x2 isNaN([This] half4x2 a) => 
         new(a.c0.isNaN(), a.c1.isNaN());
 
     [MethodImpl(256 | 512)]
-    public static b16m4x2 isFinite(this half4x2 a) => 
+    public static b16m4x2 isFinite([This] half4x2 a) => 
         new(a.c0.isFinite(), a.c1.isFinite());
 
     [MethodImpl(256 | 512)]
-    public static b16m4x2 isInf(this half4x2 a) => 
+    public static b16m4x2 isInf([This] half4x2 a) => 
         new(a.c0.isInf(), a.c1.isInf());
 
     [MethodImpl(256 | 512)]
-    public static b16m4x2 isPosInf(this half4x2 a) => 
+    public static b16m4x2 isPosInf([This] half4x2 a) => 
         new(a.c0.isPosInf(), a.c1.isPosInf());
 
     [MethodImpl(256 | 512)]
-    public static b16m4x2 isNegInf(this half4x2 a) => 
+    public static b16m4x2 isNegInf([This] half4x2 a) => 
         new(a.c0.isNegInf(), a.c1.isNegInf());
 
     [MethodImpl(256 | 512)]
-    public static half4x2 log(this half4x2 a) => 
+    public static half4x2 log([This] half4x2 a) => 
         new(a.c0.log(), a.c1.log());
 
     [MethodImpl(256 | 512)]
-    public static half4x2 log2(this half4x2 a) => 
+    public static half4x2 log2([This] half4x2 a) => 
         new(a.c0.log2(), a.c1.log2());
 
     [MethodImpl(256 | 512)]
-    public static half4x2 log(this half4x2 a, half4x2 b) => 
+    public static half4x2 log([This] half4x2 a, half4x2 b) => 
         new(a.c0.log(b.c0), a.c1.log(b.c1));
 
     [MethodImpl(256 | 512)]
-    public static half4x2 log10(this half4x2 a) => 
+    public static half4x2 log10([This] half4x2 a) => 
         new(a.c0.log10(), a.c1.log10());
 
     [MethodImpl(256 | 512)]
-    public static half4x2 exp(this half4x2 a) => 
+    public static half4x2 exp([This] half4x2 a) => 
         new(a.c0.exp(), a.c1.exp());
 
     [MethodImpl(256 | 512)]
-    public static half4x2 exp2(this half4x2 a) => 
+    public static half4x2 exp2([This] half4x2 a) => 
         new(a.c0.exp2(), a.c1.exp2());
 
     [MethodImpl(256 | 512)]
-    public static half4x2 exp10(this half4x2 a) => 
+    public static half4x2 exp10([This] half4x2 a) => 
         new(a.c0.exp10(), a.c1.exp10());
 
     [MethodImpl(256 | 512)]
-    public static half4x2 pow(this half4x2 a, half4x2 b) => 
+    public static half4x2 pow([This] half4x2 a, half4x2 b) => 
         new(a.c0.pow(b.c0), a.c1.pow(b.c1));
 
     [MethodImpl(256 | 512)]
-    public static half4x2 pow(this half4x2 a, half4 b) => 
+    public static half4x2 pow([This] half4x2 a, half4 b) => 
         new(a.c0.pow(b), a.c1.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static half4x2 pow(this half4x2 a, half b) => 
+    public static half4x2 pow([This] half4x2 a, half b) => 
         new(a.c0.pow(b), a.c1.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static half4x2 sqrt(this half4x2 a) => 
+    public static half4x2 sqrt([This] half4x2 a) => 
         new(a.c0.sqrt(), a.c1.sqrt());
 
     [MethodImpl(256 | 512)]
-    public static half4x2 rsqrt(this half4x2 a) => 
+    public static half4x2 rsqrt([This] half4x2 a) => 
         new(a.c0.rsqrt(), a.c1.rsqrt());
 
     [MethodImpl(256 | 512)]
-    public static half4x2 sin(this half4x2 a) => 
+    public static half4x2 sin([This] half4x2 a) => 
         new(a.c0.sin(), a.c1.sin());
 
     [MethodImpl(256 | 512)]
-    public static half4x2 cos(this half4x2 a) => 
+    public static half4x2 cos([This] half4x2 a) => 
         new(a.c0.cos(), a.c1.cos());
 
     [MethodImpl(256 | 512)]
-    public static (half4x2 sin, half4x2 cos) sincos(this half4x2 a)
+    public static (half4x2 sin, half4x2 cos) sincos([This] half4x2 a)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -3770,7 +3891,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static void sincos(this half4x2 a, out half4x2 sin, out half4x2 cos)
+    public static void sincos([This] half4x2 a, out half4x2 sin, out half4x2 cos)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -3779,48 +3900,52 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static half4x2 tan(this half4x2 a) => 
+    public static half4x2 tan([This] half4x2 a) => 
         new(a.c0.tan(), a.c1.tan());
 
     [MethodImpl(256 | 512)]
-    public static half4x2 asin(this half4x2 a) => 
+    public static half4x2 asin([This] half4x2 a) => 
         new(a.c0.asin(), a.c1.asin());
 
     [MethodImpl(256 | 512)]
-    public static half4x2 acos(this half4x2 a) => 
+    public static half4x2 acos([This] half4x2 a) => 
         new(a.c0.acos(), a.c1.acos());
 
     [MethodImpl(256 | 512)]
-    public static half4x2 atan(this half4x2 a) => 
+    public static half4x2 atan([This] half4x2 a) => 
         new(a.c0.atan(), a.c1.atan());
 
     [MethodImpl(256 | 512)]
-    public static half4x2 atan2(this half4x2 a, half4x2 b) => 
+    public static half4x2 atan2([This] half4x2 a, half4x2 b) => 
         new(a.c0.atan2(b.c0), a.c1.atan2(b.c1));
 
     [MethodImpl(256 | 512)]
-    public static half4x2 sinh(this half4x2 a) => 
+    public static half4x2 sinh([This] half4x2 a) => 
         new(a.c0.sinh(), a.c1.sinh());
 
     [MethodImpl(256 | 512)]
-    public static half4x2 cosh(this half4x2 a) => 
+    public static half4x2 cosh([This] half4x2 a) => 
         new(a.c0.cosh(), a.c1.cosh());
 
     [MethodImpl(256 | 512)]
-    public static half4x2 tanh(this half4x2 a) => 
+    public static half4x2 tanh([This] half4x2 a) => 
         new(a.c0.tanh(), a.c1.tanh());
 
     [MethodImpl(256 | 512)]
-    public static half4x2 asinh(this half4x2 a) => 
+    public static half4x2 asinh([This] half4x2 a) => 
         new(a.c0.asinh(), a.c1.asinh());
 
     [MethodImpl(256 | 512)]
-    public static half4x2 acosh(this half4x2 a) => 
+    public static half4x2 acosh([This] half4x2 a) => 
         new(a.c0.acosh(), a.c1.acosh());
 
     [MethodImpl(256 | 512)]
-    public static half4x2 atanh(this half4x2 a) => 
+    public static half4x2 atanh([This] half4x2 a) => 
         new(a.c0.atanh(), a.c1.atanh());
+
+    [MethodImpl(256 | 512)]
+    public static half4x2 step(half4x2 threshold, [This] half4x2 a) =>
+        new(a.c0.step(threshold.c0), a.c1.step(threshold.c1));
 }
 
 #endregion // half4x2
@@ -3831,86 +3956,87 @@ public partial struct half4x3
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m4x3 isNaN(this half4x3 a) => 
+    public static b16m4x3 isNaN([This] half4x3 a) => 
         new(a.c0.isNaN(), a.c1.isNaN(), a.c2.isNaN());
 
     [MethodImpl(256 | 512)]
-    public static b16m4x3 isFinite(this half4x3 a) => 
+    public static b16m4x3 isFinite([This] half4x3 a) => 
         new(a.c0.isFinite(), a.c1.isFinite(), a.c2.isFinite());
 
     [MethodImpl(256 | 512)]
-    public static b16m4x3 isInf(this half4x3 a) => 
+    public static b16m4x3 isInf([This] half4x3 a) => 
         new(a.c0.isInf(), a.c1.isInf(), a.c2.isInf());
 
     [MethodImpl(256 | 512)]
-    public static b16m4x3 isPosInf(this half4x3 a) => 
+    public static b16m4x3 isPosInf([This] half4x3 a) => 
         new(a.c0.isPosInf(), a.c1.isPosInf(), a.c2.isPosInf());
 
     [MethodImpl(256 | 512)]
-    public static b16m4x3 isNegInf(this half4x3 a) => 
+    public static b16m4x3 isNegInf([This] half4x3 a) => 
         new(a.c0.isNegInf(), a.c1.isNegInf(), a.c2.isNegInf());
 
     [MethodImpl(256 | 512)]
-    public static half4x3 log(this half4x3 a) => 
+    public static half4x3 log([This] half4x3 a) => 
         new(a.c0.log(), a.c1.log(), a.c2.log());
 
     [MethodImpl(256 | 512)]
-    public static half4x3 log2(this half4x3 a) => 
+    public static half4x3 log2([This] half4x3 a) => 
         new(a.c0.log2(), a.c1.log2(), a.c2.log2());
 
     [MethodImpl(256 | 512)]
-    public static half4x3 log(this half4x3 a, half4x3 b) => 
+    public static half4x3 log([This] half4x3 a, half4x3 b) => 
         new(a.c0.log(b.c0), a.c1.log(b.c1), a.c2.log(b.c2));
 
     [MethodImpl(256 | 512)]
-    public static half4x3 log10(this half4x3 a) => 
+    public static half4x3 log10([This] half4x3 a) => 
         new(a.c0.log10(), a.c1.log10(), a.c2.log10());
 
     [MethodImpl(256 | 512)]
-    public static half4x3 exp(this half4x3 a) => 
+    public static half4x3 exp([This] half4x3 a) => 
         new(a.c0.exp(), a.c1.exp(), a.c2.exp());
 
     [MethodImpl(256 | 512)]
-    public static half4x3 exp2(this half4x3 a) => 
+    public static half4x3 exp2([This] half4x3 a) => 
         new(a.c0.exp2(), a.c1.exp2(), a.c2.exp2());
 
     [MethodImpl(256 | 512)]
-    public static half4x3 exp10(this half4x3 a) => 
+    public static half4x3 exp10([This] half4x3 a) => 
         new(a.c0.exp10(), a.c1.exp10(), a.c2.exp10());
 
     [MethodImpl(256 | 512)]
-    public static half4x3 pow(this half4x3 a, half4x3 b) => 
+    public static half4x3 pow([This] half4x3 a, half4x3 b) => 
         new(a.c0.pow(b.c0), a.c1.pow(b.c1), a.c2.pow(b.c2));
 
     [MethodImpl(256 | 512)]
-    public static half4x3 pow(this half4x3 a, half4 b) => 
+    public static half4x3 pow([This] half4x3 a, half4 b) => 
         new(a.c0.pow(b), a.c1.pow(b), a.c2.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static half4x3 pow(this half4x3 a, half b) => 
+    public static half4x3 pow([This] half4x3 a, half b) => 
         new(a.c0.pow(b), a.c1.pow(b), a.c2.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static half4x3 sqrt(this half4x3 a) => 
+    public static half4x3 sqrt([This] half4x3 a) => 
         new(a.c0.sqrt(), a.c1.sqrt(), a.c2.sqrt());
 
     [MethodImpl(256 | 512)]
-    public static half4x3 rsqrt(this half4x3 a) => 
+    public static half4x3 rsqrt([This] half4x3 a) => 
         new(a.c0.rsqrt(), a.c1.rsqrt(), a.c2.rsqrt());
 
     [MethodImpl(256 | 512)]
-    public static half4x3 sin(this half4x3 a) => 
+    public static half4x3 sin([This] half4x3 a) => 
         new(a.c0.sin(), a.c1.sin(), a.c2.sin());
 
     [MethodImpl(256 | 512)]
-    public static half4x3 cos(this half4x3 a) => 
+    public static half4x3 cos([This] half4x3 a) => 
         new(a.c0.cos(), a.c1.cos(), a.c2.cos());
 
     [MethodImpl(256 | 512)]
-    public static (half4x3 sin, half4x3 cos) sincos(this half4x3 a)
+    public static (half4x3 sin, half4x3 cos) sincos([This] half4x3 a)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -3922,7 +4048,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static void sincos(this half4x3 a, out half4x3 sin, out half4x3 cos)
+    public static void sincos([This] half4x3 a, out half4x3 sin, out half4x3 cos)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -3932,48 +4058,52 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static half4x3 tan(this half4x3 a) => 
+    public static half4x3 tan([This] half4x3 a) => 
         new(a.c0.tan(), a.c1.tan(), a.c2.tan());
 
     [MethodImpl(256 | 512)]
-    public static half4x3 asin(this half4x3 a) => 
+    public static half4x3 asin([This] half4x3 a) => 
         new(a.c0.asin(), a.c1.asin(), a.c2.asin());
 
     [MethodImpl(256 | 512)]
-    public static half4x3 acos(this half4x3 a) => 
+    public static half4x3 acos([This] half4x3 a) => 
         new(a.c0.acos(), a.c1.acos(), a.c2.acos());
 
     [MethodImpl(256 | 512)]
-    public static half4x3 atan(this half4x3 a) => 
+    public static half4x3 atan([This] half4x3 a) => 
         new(a.c0.atan(), a.c1.atan(), a.c2.atan());
 
     [MethodImpl(256 | 512)]
-    public static half4x3 atan2(this half4x3 a, half4x3 b) => 
+    public static half4x3 atan2([This] half4x3 a, half4x3 b) => 
         new(a.c0.atan2(b.c0), a.c1.atan2(b.c1), a.c2.atan2(b.c2));
 
     [MethodImpl(256 | 512)]
-    public static half4x3 sinh(this half4x3 a) => 
+    public static half4x3 sinh([This] half4x3 a) => 
         new(a.c0.sinh(), a.c1.sinh(), a.c2.sinh());
 
     [MethodImpl(256 | 512)]
-    public static half4x3 cosh(this half4x3 a) => 
+    public static half4x3 cosh([This] half4x3 a) => 
         new(a.c0.cosh(), a.c1.cosh(), a.c2.cosh());
 
     [MethodImpl(256 | 512)]
-    public static half4x3 tanh(this half4x3 a) => 
+    public static half4x3 tanh([This] half4x3 a) => 
         new(a.c0.tanh(), a.c1.tanh(), a.c2.tanh());
 
     [MethodImpl(256 | 512)]
-    public static half4x3 asinh(this half4x3 a) => 
+    public static half4x3 asinh([This] half4x3 a) => 
         new(a.c0.asinh(), a.c1.asinh(), a.c2.asinh());
 
     [MethodImpl(256 | 512)]
-    public static half4x3 acosh(this half4x3 a) => 
+    public static half4x3 acosh([This] half4x3 a) => 
         new(a.c0.acosh(), a.c1.acosh(), a.c2.acosh());
 
     [MethodImpl(256 | 512)]
-    public static half4x3 atanh(this half4x3 a) => 
+    public static half4x3 atanh([This] half4x3 a) => 
         new(a.c0.atanh(), a.c1.atanh(), a.c2.atanh());
+
+    [MethodImpl(256 | 512)]
+    public static half4x3 step(half4x3 threshold, [This] half4x3 a) =>
+        new(a.c0.step(threshold.c0), a.c1.step(threshold.c1), a.c2.step(threshold.c2));
 }
 
 #endregion // half4x3
@@ -3984,86 +4114,87 @@ public partial struct half4x4
 {
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static b16m4x4 isNaN(this half4x4 a) => 
+    public static b16m4x4 isNaN([This] half4x4 a) => 
         new(a.c0.isNaN(), a.c1.isNaN(), a.c2.isNaN(), a.c3.isNaN());
 
     [MethodImpl(256 | 512)]
-    public static b16m4x4 isFinite(this half4x4 a) => 
+    public static b16m4x4 isFinite([This] half4x4 a) => 
         new(a.c0.isFinite(), a.c1.isFinite(), a.c2.isFinite(), a.c3.isFinite());
 
     [MethodImpl(256 | 512)]
-    public static b16m4x4 isInf(this half4x4 a) => 
+    public static b16m4x4 isInf([This] half4x4 a) => 
         new(a.c0.isInf(), a.c1.isInf(), a.c2.isInf(), a.c3.isInf());
 
     [MethodImpl(256 | 512)]
-    public static b16m4x4 isPosInf(this half4x4 a) => 
+    public static b16m4x4 isPosInf([This] half4x4 a) => 
         new(a.c0.isPosInf(), a.c1.isPosInf(), a.c2.isPosInf(), a.c3.isPosInf());
 
     [MethodImpl(256 | 512)]
-    public static b16m4x4 isNegInf(this half4x4 a) => 
+    public static b16m4x4 isNegInf([This] half4x4 a) => 
         new(a.c0.isNegInf(), a.c1.isNegInf(), a.c2.isNegInf(), a.c3.isNegInf());
 
     [MethodImpl(256 | 512)]
-    public static half4x4 log(this half4x4 a) => 
+    public static half4x4 log([This] half4x4 a) => 
         new(a.c0.log(), a.c1.log(), a.c2.log(), a.c3.log());
 
     [MethodImpl(256 | 512)]
-    public static half4x4 log2(this half4x4 a) => 
+    public static half4x4 log2([This] half4x4 a) => 
         new(a.c0.log2(), a.c1.log2(), a.c2.log2(), a.c3.log2());
 
     [MethodImpl(256 | 512)]
-    public static half4x4 log(this half4x4 a, half4x4 b) => 
+    public static half4x4 log([This] half4x4 a, half4x4 b) => 
         new(a.c0.log(b.c0), a.c1.log(b.c1), a.c2.log(b.c2), a.c3.log(b.c3));
 
     [MethodImpl(256 | 512)]
-    public static half4x4 log10(this half4x4 a) => 
+    public static half4x4 log10([This] half4x4 a) => 
         new(a.c0.log10(), a.c1.log10(), a.c2.log10(), a.c3.log10());
 
     [MethodImpl(256 | 512)]
-    public static half4x4 exp(this half4x4 a) => 
+    public static half4x4 exp([This] half4x4 a) => 
         new(a.c0.exp(), a.c1.exp(), a.c2.exp(), a.c3.exp());
 
     [MethodImpl(256 | 512)]
-    public static half4x4 exp2(this half4x4 a) => 
+    public static half4x4 exp2([This] half4x4 a) => 
         new(a.c0.exp2(), a.c1.exp2(), a.c2.exp2(), a.c3.exp2());
 
     [MethodImpl(256 | 512)]
-    public static half4x4 exp10(this half4x4 a) => 
+    public static half4x4 exp10([This] half4x4 a) => 
         new(a.c0.exp10(), a.c1.exp10(), a.c2.exp10(), a.c3.exp10());
 
     [MethodImpl(256 | 512)]
-    public static half4x4 pow(this half4x4 a, half4x4 b) => 
+    public static half4x4 pow([This] half4x4 a, half4x4 b) => 
         new(a.c0.pow(b.c0), a.c1.pow(b.c1), a.c2.pow(b.c2), a.c3.pow(b.c3));
 
     [MethodImpl(256 | 512)]
-    public static half4x4 pow(this half4x4 a, half4 b) => 
+    public static half4x4 pow([This] half4x4 a, half4 b) => 
         new(a.c0.pow(b), a.c1.pow(b), a.c2.pow(b), a.c3.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static half4x4 pow(this half4x4 a, half b) => 
+    public static half4x4 pow([This] half4x4 a, half b) => 
         new(a.c0.pow(b), a.c1.pow(b), a.c2.pow(b), a.c3.pow(b));
 
     [MethodImpl(256 | 512)]
-    public static half4x4 sqrt(this half4x4 a) => 
+    public static half4x4 sqrt([This] half4x4 a) => 
         new(a.c0.sqrt(), a.c1.sqrt(), a.c2.sqrt(), a.c3.sqrt());
 
     [MethodImpl(256 | 512)]
-    public static half4x4 rsqrt(this half4x4 a) => 
+    public static half4x4 rsqrt([This] half4x4 a) => 
         new(a.c0.rsqrt(), a.c1.rsqrt(), a.c2.rsqrt(), a.c3.rsqrt());
 
     [MethodImpl(256 | 512)]
-    public static half4x4 sin(this half4x4 a) => 
+    public static half4x4 sin([This] half4x4 a) => 
         new(a.c0.sin(), a.c1.sin(), a.c2.sin(), a.c3.sin());
 
     [MethodImpl(256 | 512)]
-    public static half4x4 cos(this half4x4 a) => 
+    public static half4x4 cos([This] half4x4 a) => 
         new(a.c0.cos(), a.c1.cos(), a.c2.cos(), a.c3.cos());
 
     [MethodImpl(256 | 512)]
-    public static (half4x4 sin, half4x4 cos) sincos(this half4x4 a)
+    public static (half4x4 sin, half4x4 cos) sincos([This] half4x4 a)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -4076,7 +4207,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static void sincos(this half4x4 a, out half4x4 sin, out half4x4 cos)
+    public static void sincos([This] half4x4 a, out half4x4 sin, out half4x4 cos)
     {
         a.c0.sincos(out var s0, out var c0);
         a.c1.sincos(out var s1, out var c1);
@@ -4087,48 +4218,52 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static half4x4 tan(this half4x4 a) => 
+    public static half4x4 tan([This] half4x4 a) => 
         new(a.c0.tan(), a.c1.tan(), a.c2.tan(), a.c3.tan());
 
     [MethodImpl(256 | 512)]
-    public static half4x4 asin(this half4x4 a) => 
+    public static half4x4 asin([This] half4x4 a) => 
         new(a.c0.asin(), a.c1.asin(), a.c2.asin(), a.c3.asin());
 
     [MethodImpl(256 | 512)]
-    public static half4x4 acos(this half4x4 a) => 
+    public static half4x4 acos([This] half4x4 a) => 
         new(a.c0.acos(), a.c1.acos(), a.c2.acos(), a.c3.acos());
 
     [MethodImpl(256 | 512)]
-    public static half4x4 atan(this half4x4 a) => 
+    public static half4x4 atan([This] half4x4 a) => 
         new(a.c0.atan(), a.c1.atan(), a.c2.atan(), a.c3.atan());
 
     [MethodImpl(256 | 512)]
-    public static half4x4 atan2(this half4x4 a, half4x4 b) => 
+    public static half4x4 atan2([This] half4x4 a, half4x4 b) => 
         new(a.c0.atan2(b.c0), a.c1.atan2(b.c1), a.c2.atan2(b.c2), a.c3.atan2(b.c3));
 
     [MethodImpl(256 | 512)]
-    public static half4x4 sinh(this half4x4 a) => 
+    public static half4x4 sinh([This] half4x4 a) => 
         new(a.c0.sinh(), a.c1.sinh(), a.c2.sinh(), a.c3.sinh());
 
     [MethodImpl(256 | 512)]
-    public static half4x4 cosh(this half4x4 a) => 
+    public static half4x4 cosh([This] half4x4 a) => 
         new(a.c0.cosh(), a.c1.cosh(), a.c2.cosh(), a.c3.cosh());
 
     [MethodImpl(256 | 512)]
-    public static half4x4 tanh(this half4x4 a) => 
+    public static half4x4 tanh([This] half4x4 a) => 
         new(a.c0.tanh(), a.c1.tanh(), a.c2.tanh(), a.c3.tanh());
 
     [MethodImpl(256 | 512)]
-    public static half4x4 asinh(this half4x4 a) => 
+    public static half4x4 asinh([This] half4x4 a) => 
         new(a.c0.asinh(), a.c1.asinh(), a.c2.asinh(), a.c3.asinh());
 
     [MethodImpl(256 | 512)]
-    public static half4x4 acosh(this half4x4 a) => 
+    public static half4x4 acosh([This] half4x4 a) => 
         new(a.c0.acosh(), a.c1.acosh(), a.c2.acosh(), a.c3.acosh());
 
     [MethodImpl(256 | 512)]
-    public static half4x4 atanh(this half4x4 a) => 
+    public static half4x4 atanh([This] half4x4 a) => 
         new(a.c0.atanh(), a.c1.atanh(), a.c2.atanh(), a.c3.atanh());
+
+    [MethodImpl(256 | 512)]
+    public static half4x4 step(half4x4 threshold, [This] half4x4 a) =>
+        new(a.c0.step(threshold.c0), a.c1.step(threshold.c1), a.c2.step(threshold.c2), a.c3.step(threshold.c3));
 }
 
 #endregion // half4x4

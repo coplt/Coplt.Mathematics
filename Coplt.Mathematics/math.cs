@@ -1,7 +1,12 @@
 ﻿namespace Coplt.Mathematics;
 
+public static partial class math_ex;
+
+[Ex, ExTo(typeof(math_ex))]
 public static partial class math
 {
+    #region Consts
+
     /// <summary>
     /// <code>e</code>
     /// </summary>
@@ -133,134 +138,64 @@ public static partial class math
     /// <code>The smallest positive normal number representable in a double</code>
     /// </summary>
     public const double D_MinNormal = 2.2250738585072014e-308;
+    
+    
+    /// <summary>
+    /// <code>360 / τ</code>
+    /// </summary>
+    public const decimal M_RadToDeg = 57.295779513082320876798154814105170332405472466564321549160243861m;
+    /// <summary>
+    /// <code>τ / 360</code>
+    /// </summary>
+    public const decimal M_DegToRad = 0.0174532925199432957692369076848861271344287188854172545609719144m;
+
+    #endregion
 
     #region rcp fast
 
     [MethodImpl(256 | 512)]
-    public static float2 rcp_fast(this float2 v)
-    {
-        #if NET8_0_OR_GREATER
-        return new(simd.Rcp(v.vector));
-        #else
-        return rcp(v);
-        #endif
-    }
+    public static float2 rcp_fast([This] float2 v) => new(simd.Rcp(v.vector));
 
     [MethodImpl(256 | 512)]
-    public static float3 rcp_fast(this float3 v)
-    {
-        #if NET8_0_OR_GREATER
-        return new(simd.Rcp(v.vector));
-        #else
-        return rcp(v);
-        #endif
-    }
+    public static float3 rcp_fast([This] float3 v) => new(simd.Rcp(v.vector));
 
     [MethodImpl(256 | 512)]
-    public static float4 rcp_fast(this float4 v)
-    {
-        #if NET8_0_OR_GREATER
-        return new(simd.Rcp(v.vector));
-        #else
-        return rcp(v);
-        #endif
-    }
+    public static float4 rcp_fast([This] float4 v) => new(simd.Rcp(v.vector));
 
     [MethodImpl(256 | 512)]
-    public static double2 rcp_fast(this double2 v)
-    {
-        #if NET8_0_OR_GREATER
-        return new(simd.Rcp(v.vector));
-        #else
-        return rcp(v);
-        #endif
-    }
+    public static double2 rcp_fast([This] double2 v) => new(simd.Rcp(v.vector));
 
     [MethodImpl(256 | 512)]
-    public static double3 rcp_fast(this double3 v)
-    {
-        #if NET8_0_OR_GREATER
-        return new(simd.Rcp(v.vector));
-        #else
-        return rcp(v);
-        #endif
-    }
+    public static double3 rcp_fast([This] double3 v) => new(simd.Rcp(v.vector));
 
     [MethodImpl(256 | 512)]
-    public static double4 rcp_fast(this double4 v)
-    {
-        #if NET8_0_OR_GREATER
-        return new(simd.Rcp(v.vector));
-        #else
-        return rcp(v);
-        #endif
-    }
+    public static double4 rcp_fast([This] double4 v) => new(simd.Rcp(v.vector));
 
     #endregion
 
     #region rsqrt fast
 
     [MethodImpl(256 | 512)]
-    public static float2 rsqrt_fast(this float2 v)
-    {
-        #if NET8_0_OR_GREATER
-        return new(simd.RSqrt(v.vector));
-        #else
-        return rsqrt(v);
-        #endif
-    }
+    public static float2 rsqrt_fast([This] float2 v) => new(simd.RSqrt(v.vector));
 
     [MethodImpl(256 | 512)]
-    public static float3 rsqrt_fast(this float3 v)
-    {
-        #if NET8_0_OR_GREATER
-        return new(simd.RSqrt(v.vector));
-        #else
-        return rsqrt(v);
-        #endif
-    }
+    public static float3 rsqrt_fast([This] float3 v) => new(simd.RSqrt(v.vector));
 
     [MethodImpl(256 | 512)]
-    public static float4 rsqrt_fast(this float4 v)
-    {
-        #if NET8_0_OR_GREATER
-        return new(simd.RSqrt(v.vector));
-        #else
-        return rsqrt(v);
-        #endif
-    }
+    public static float4 rsqrt_fast([This] float4 v) => new(simd.RSqrt(v.vector));
 
     [MethodImpl(256 | 512)]
-    public static double2 rsqrt_fast(this double2 v)
-    {
-        #if NET8_0_OR_GREATER
-        return new(simd.RSqrt(v.vector));
-        #else
-        return rsqrt(v);
-        #endif
-    }
+    public static double2 rsqrt_fast([This] double2 v) => new(simd.RSqrt(v.vector));
 
     [MethodImpl(256 | 512)]
-    public static double3 rsqrt_fast(this double3 v)
-    {
-        #if NET8_0_OR_GREATER
-        return new(simd.RSqrt(v.vector));
-        #else
-        return rsqrt(v);
-        #endif
-    }
+    public static double3 rsqrt_fast([This] double3 v) => new(simd.RSqrt(v.vector));
 
     [MethodImpl(256 | 512)]
-    public static double4 rsqrt_fast(this double4 v)
-    {
-        #if NET8_0_OR_GREATER
-        return new(simd.RSqrt(v.vector));
-        #else
-        return rsqrt(v);
-        #endif
-    }
+    public static double4 rsqrt_fast([This] double4 v) => new(simd.RSqrt(v.vector));
 
     #endregion
+
+    #region Generic Consts
 
     [MethodImpl(256 | 512)]
     internal static T MinNormal<T>() where T : unmanaged
@@ -289,6 +224,10 @@ public static partial class math
         throw new NotSupportedException();
     }
 
+    #endregion
+
+    #region slerp
+
     [MethodImpl(256 | 512)]
     internal static float3 FastOrthogonal(float3 v, bool normalize = true)
     {
@@ -311,7 +250,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 slerp(this float t, float3 a, float3 b)
+    public static float3 slerp(float3 a, float3 b, [This] float t)
     {
         var it = 1f - t; // inverse of t
         var m0 = a.length();
@@ -338,7 +277,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 slerp_unit(this float t, float3 a, float3 b)
+    public static float3 slerp_unit(float3 a, float3 b, [This] float t)
     {
         var d = a.dot(b);
         if (1f - d.abs() <= 1e-6f) // smaller epsilon
@@ -376,7 +315,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 slerp(this float t, double3 a, double3 b)
+    public static double3 slerp(double3 a, double3 b, [This] float t)
     {
         var it = 1 - t; // inverse of t
         var m0 = a.length();
@@ -403,7 +342,7 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 slerp_unit(this float t, double3 a, double3 b)
+    public static double3 slerp_unit(double3 a, double3 b, [This] float t)
     {
         var d = a.dot(b);
         if (1 - d.abs() <= 1e-6) // smaller epsilon
@@ -418,14 +357,19 @@ public static partial class math
         var sjk = sin(one_it_t * th);
         return (sjk.y * a + sjk.z * b) / sjk.x;
     }
+
+    #endregion
 }
 
+public static partial class ctor_ex;
+
+[Ex, ExTo(typeof(ctor_ex))]
 public static partial class ctor
 {
     [MethodImpl(256 | 512)]
-    public static half half(this int v) => (half)v;
+    public static half half([This]int v) => (half)v;
     [MethodImpl(256 | 512)]
-    public static half half(this float v) => (half)v;
+    public static half half([This]float v) => (half)v;
     [MethodImpl(256 | 512)]
-    public static half half(this double v) => (half)v;
+    public static half half([This]double v) => (half)v;
 }

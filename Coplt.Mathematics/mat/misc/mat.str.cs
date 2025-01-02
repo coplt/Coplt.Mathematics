@@ -5,10 +5,8 @@ namespace Coplt.Mathematics;
 #region float2x2
 
 public partial struct float2x2 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"float2x2({{{m00}, {m01}}}, {{{m10}, {m11}}})";
@@ -32,7 +30,6 @@ public partial struct float2x2 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -48,7 +45,6 @@ public partial struct float2x2 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // float2x2
@@ -56,10 +52,8 @@ public partial struct float2x2 : IFormattable
 #region float2x3
 
 public partial struct float2x3 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"float2x3({{{m00}, {m01}, {m02}}}, {{{m10}, {m11}, {m12}}})";
@@ -87,7 +81,6 @@ public partial struct float2x3 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -107,7 +100,6 @@ public partial struct float2x3 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // float2x3
@@ -115,10 +107,8 @@ public partial struct float2x3 : IFormattable
 #region float2x4
 
 public partial struct float2x4 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"float2x4({{{m00}, {m01}, {m02}, {m03}}}, {{{m10}, {m11}, {m12}, {m13}}})";
@@ -150,7 +140,6 @@ public partial struct float2x4 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -174,7 +163,6 @@ public partial struct float2x4 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // float2x4
@@ -182,10 +170,8 @@ public partial struct float2x4 : IFormattable
 #region float3x2
 
 public partial struct float3x2 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"float3x2({{{m00}, {m01}}}, {{{m10}, {m11}}}, {{{m20}, {m21}}})";
@@ -213,7 +199,6 @@ public partial struct float3x2 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -233,7 +218,6 @@ public partial struct float3x2 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // float3x2
@@ -241,10 +225,8 @@ public partial struct float3x2 : IFormattable
 #region float3x3
 
 public partial struct float3x3 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"float3x3({{{m00}, {m01}, {m02}}}, {{{m10}, {m11}, {m12}}}, {{{m20}, {m21}, {m22}}})";
@@ -278,7 +260,6 @@ public partial struct float3x3 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -304,7 +285,6 @@ public partial struct float3x3 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // float3x3
@@ -312,10 +292,8 @@ public partial struct float3x3 : IFormattable
 #region float3x4
 
 public partial struct float3x4 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"float3x4({{{m00}, {m01}, {m02}, {m03}}}, {{{m10}, {m11}, {m12}, {m13}}}, {{{m20}, {m21}, {m22}, {m23}}})";
@@ -355,7 +333,6 @@ public partial struct float3x4 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -387,7 +364,6 @@ public partial struct float3x4 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // float3x4
@@ -395,10 +371,8 @@ public partial struct float3x4 : IFormattable
 #region float4x2
 
 public partial struct float4x2 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"float4x2({{{m00}, {m01}}}, {{{m10}, {m11}}}, {{{m20}, {m21}}}, {{{m30}, {m31}}})";
@@ -430,7 +404,6 @@ public partial struct float4x2 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -454,7 +427,6 @@ public partial struct float4x2 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // float4x2
@@ -462,10 +434,8 @@ public partial struct float4x2 : IFormattable
 #region float4x3
 
 public partial struct float4x3 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"float4x3({{{m00}, {m01}, {m02}}}, {{{m10}, {m11}, {m12}}}, {{{m20}, {m21}, {m22}}}, {{{m30}, {m31}, {m32}}})";
@@ -505,7 +475,6 @@ public partial struct float4x3 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -537,7 +506,6 @@ public partial struct float4x3 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // float4x3
@@ -545,10 +513,8 @@ public partial struct float4x3 : IFormattable
 #region float4x4
 
 public partial struct float4x4 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"float4x4({{{m00}, {m01}, {m02}, {m03}}}, {{{m10}, {m11}, {m12}, {m13}}}, {{{m20}, {m21}, {m22}, {m23}}}, {{{m30}, {m31}, {m32}, {m33}}})";
@@ -596,7 +562,6 @@ public partial struct float4x4 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -636,7 +601,6 @@ public partial struct float4x4 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // float4x4
@@ -644,10 +608,8 @@ public partial struct float4x4 : IFormattable
 #region double2x2
 
 public partial struct double2x2 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"double2x2({{{m00}, {m01}}}, {{{m10}, {m11}}})";
@@ -671,7 +633,6 @@ public partial struct double2x2 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -687,7 +648,6 @@ public partial struct double2x2 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // double2x2
@@ -695,10 +655,8 @@ public partial struct double2x2 : IFormattable
 #region double2x3
 
 public partial struct double2x3 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"double2x3({{{m00}, {m01}, {m02}}}, {{{m10}, {m11}, {m12}}})";
@@ -726,7 +684,6 @@ public partial struct double2x3 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -746,7 +703,6 @@ public partial struct double2x3 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // double2x3
@@ -754,10 +710,8 @@ public partial struct double2x3 : IFormattable
 #region double2x4
 
 public partial struct double2x4 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"double2x4({{{m00}, {m01}, {m02}, {m03}}}, {{{m10}, {m11}, {m12}, {m13}}})";
@@ -789,7 +743,6 @@ public partial struct double2x4 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -813,7 +766,6 @@ public partial struct double2x4 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // double2x4
@@ -821,10 +773,8 @@ public partial struct double2x4 : IFormattable
 #region double3x2
 
 public partial struct double3x2 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"double3x2({{{m00}, {m01}}}, {{{m10}, {m11}}}, {{{m20}, {m21}}})";
@@ -852,7 +802,6 @@ public partial struct double3x2 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -872,7 +821,6 @@ public partial struct double3x2 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // double3x2
@@ -880,10 +828,8 @@ public partial struct double3x2 : IFormattable
 #region double3x3
 
 public partial struct double3x3 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"double3x3({{{m00}, {m01}, {m02}}}, {{{m10}, {m11}, {m12}}}, {{{m20}, {m21}, {m22}}})";
@@ -917,7 +863,6 @@ public partial struct double3x3 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -943,7 +888,6 @@ public partial struct double3x3 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // double3x3
@@ -951,10 +895,8 @@ public partial struct double3x3 : IFormattable
 #region double3x4
 
 public partial struct double3x4 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"double3x4({{{m00}, {m01}, {m02}, {m03}}}, {{{m10}, {m11}, {m12}, {m13}}}, {{{m20}, {m21}, {m22}, {m23}}})";
@@ -994,7 +936,6 @@ public partial struct double3x4 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -1026,7 +967,6 @@ public partial struct double3x4 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // double3x4
@@ -1034,10 +974,8 @@ public partial struct double3x4 : IFormattable
 #region double4x2
 
 public partial struct double4x2 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"double4x2({{{m00}, {m01}}}, {{{m10}, {m11}}}, {{{m20}, {m21}}}, {{{m30}, {m31}}})";
@@ -1069,7 +1007,6 @@ public partial struct double4x2 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -1093,7 +1030,6 @@ public partial struct double4x2 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // double4x2
@@ -1101,10 +1037,8 @@ public partial struct double4x2 : IFormattable
 #region double4x3
 
 public partial struct double4x3 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"double4x3({{{m00}, {m01}, {m02}}}, {{{m10}, {m11}, {m12}}}, {{{m20}, {m21}, {m22}}}, {{{m30}, {m31}, {m32}}})";
@@ -1144,7 +1078,6 @@ public partial struct double4x3 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -1176,7 +1109,6 @@ public partial struct double4x3 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // double4x3
@@ -1184,10 +1116,8 @@ public partial struct double4x3 : IFormattable
 #region double4x4
 
 public partial struct double4x4 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"double4x4({{{m00}, {m01}, {m02}, {m03}}}, {{{m10}, {m11}, {m12}, {m13}}}, {{{m20}, {m21}, {m22}, {m23}}}, {{{m30}, {m31}, {m32}, {m33}}})";
@@ -1235,7 +1165,6 @@ public partial struct double4x4 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -1275,7 +1204,6 @@ public partial struct double4x4 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // double4x4
@@ -1283,10 +1211,8 @@ public partial struct double4x4 : IFormattable
 #region short2x2
 
 public partial struct short2x2 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"short2x2({{{m00}, {m01}}}, {{{m10}, {m11}}})";
@@ -1310,7 +1236,6 @@ public partial struct short2x2 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -1326,7 +1251,6 @@ public partial struct short2x2 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // short2x2
@@ -1334,10 +1258,8 @@ public partial struct short2x2 : IFormattable
 #region short2x3
 
 public partial struct short2x3 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"short2x3({{{m00}, {m01}, {m02}}}, {{{m10}, {m11}, {m12}}})";
@@ -1365,7 +1287,6 @@ public partial struct short2x3 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -1385,7 +1306,6 @@ public partial struct short2x3 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // short2x3
@@ -1393,10 +1313,8 @@ public partial struct short2x3 : IFormattable
 #region short2x4
 
 public partial struct short2x4 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"short2x4({{{m00}, {m01}, {m02}, {m03}}}, {{{m10}, {m11}, {m12}, {m13}}})";
@@ -1428,7 +1346,6 @@ public partial struct short2x4 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -1452,7 +1369,6 @@ public partial struct short2x4 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // short2x4
@@ -1460,10 +1376,8 @@ public partial struct short2x4 : IFormattable
 #region short3x2
 
 public partial struct short3x2 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"short3x2({{{m00}, {m01}}}, {{{m10}, {m11}}}, {{{m20}, {m21}}})";
@@ -1491,7 +1405,6 @@ public partial struct short3x2 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -1511,7 +1424,6 @@ public partial struct short3x2 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // short3x2
@@ -1519,10 +1431,8 @@ public partial struct short3x2 : IFormattable
 #region short3x3
 
 public partial struct short3x3 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"short3x3({{{m00}, {m01}, {m02}}}, {{{m10}, {m11}, {m12}}}, {{{m20}, {m21}, {m22}}})";
@@ -1556,7 +1466,6 @@ public partial struct short3x3 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -1582,7 +1491,6 @@ public partial struct short3x3 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // short3x3
@@ -1590,10 +1498,8 @@ public partial struct short3x3 : IFormattable
 #region short3x4
 
 public partial struct short3x4 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"short3x4({{{m00}, {m01}, {m02}, {m03}}}, {{{m10}, {m11}, {m12}, {m13}}}, {{{m20}, {m21}, {m22}, {m23}}})";
@@ -1633,7 +1539,6 @@ public partial struct short3x4 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -1665,7 +1570,6 @@ public partial struct short3x4 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // short3x4
@@ -1673,10 +1577,8 @@ public partial struct short3x4 : IFormattable
 #region short4x2
 
 public partial struct short4x2 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"short4x2({{{m00}, {m01}}}, {{{m10}, {m11}}}, {{{m20}, {m21}}}, {{{m30}, {m31}}})";
@@ -1708,7 +1610,6 @@ public partial struct short4x2 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -1732,7 +1633,6 @@ public partial struct short4x2 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // short4x2
@@ -1740,10 +1640,8 @@ public partial struct short4x2 : IFormattable
 #region short4x3
 
 public partial struct short4x3 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"short4x3({{{m00}, {m01}, {m02}}}, {{{m10}, {m11}, {m12}}}, {{{m20}, {m21}, {m22}}}, {{{m30}, {m31}, {m32}}})";
@@ -1783,7 +1681,6 @@ public partial struct short4x3 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -1815,7 +1712,6 @@ public partial struct short4x3 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // short4x3
@@ -1823,10 +1719,8 @@ public partial struct short4x3 : IFormattable
 #region short4x4
 
 public partial struct short4x4 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"short4x4({{{m00}, {m01}, {m02}, {m03}}}, {{{m10}, {m11}, {m12}, {m13}}}, {{{m20}, {m21}, {m22}, {m23}}}, {{{m30}, {m31}, {m32}, {m33}}})";
@@ -1874,7 +1768,6 @@ public partial struct short4x4 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -1914,7 +1807,6 @@ public partial struct short4x4 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // short4x4
@@ -1922,10 +1814,8 @@ public partial struct short4x4 : IFormattable
 #region ushort2x2
 
 public partial struct ushort2x2 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"ushort2x2({{{m00}, {m01}}}, {{{m10}, {m11}}})";
@@ -1949,7 +1839,6 @@ public partial struct ushort2x2 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -1965,7 +1854,6 @@ public partial struct ushort2x2 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // ushort2x2
@@ -1973,10 +1861,8 @@ public partial struct ushort2x2 : IFormattable
 #region ushort2x3
 
 public partial struct ushort2x3 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"ushort2x3({{{m00}, {m01}, {m02}}}, {{{m10}, {m11}, {m12}}})";
@@ -2004,7 +1890,6 @@ public partial struct ushort2x3 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -2024,7 +1909,6 @@ public partial struct ushort2x3 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // ushort2x3
@@ -2032,10 +1916,8 @@ public partial struct ushort2x3 : IFormattable
 #region ushort2x4
 
 public partial struct ushort2x4 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"ushort2x4({{{m00}, {m01}, {m02}, {m03}}}, {{{m10}, {m11}, {m12}, {m13}}})";
@@ -2067,7 +1949,6 @@ public partial struct ushort2x4 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -2091,7 +1972,6 @@ public partial struct ushort2x4 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // ushort2x4
@@ -2099,10 +1979,8 @@ public partial struct ushort2x4 : IFormattable
 #region ushort3x2
 
 public partial struct ushort3x2 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"ushort3x2({{{m00}, {m01}}}, {{{m10}, {m11}}}, {{{m20}, {m21}}})";
@@ -2130,7 +2008,6 @@ public partial struct ushort3x2 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -2150,7 +2027,6 @@ public partial struct ushort3x2 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // ushort3x2
@@ -2158,10 +2034,8 @@ public partial struct ushort3x2 : IFormattable
 #region ushort3x3
 
 public partial struct ushort3x3 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"ushort3x3({{{m00}, {m01}, {m02}}}, {{{m10}, {m11}, {m12}}}, {{{m20}, {m21}, {m22}}})";
@@ -2195,7 +2069,6 @@ public partial struct ushort3x3 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -2221,7 +2094,6 @@ public partial struct ushort3x3 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // ushort3x3
@@ -2229,10 +2101,8 @@ public partial struct ushort3x3 : IFormattable
 #region ushort3x4
 
 public partial struct ushort3x4 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"ushort3x4({{{m00}, {m01}, {m02}, {m03}}}, {{{m10}, {m11}, {m12}, {m13}}}, {{{m20}, {m21}, {m22}, {m23}}})";
@@ -2272,7 +2142,6 @@ public partial struct ushort3x4 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -2304,7 +2173,6 @@ public partial struct ushort3x4 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // ushort3x4
@@ -2312,10 +2180,8 @@ public partial struct ushort3x4 : IFormattable
 #region ushort4x2
 
 public partial struct ushort4x2 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"ushort4x2({{{m00}, {m01}}}, {{{m10}, {m11}}}, {{{m20}, {m21}}}, {{{m30}, {m31}}})";
@@ -2347,7 +2213,6 @@ public partial struct ushort4x2 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -2371,7 +2236,6 @@ public partial struct ushort4x2 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // ushort4x2
@@ -2379,10 +2243,8 @@ public partial struct ushort4x2 : IFormattable
 #region ushort4x3
 
 public partial struct ushort4x3 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"ushort4x3({{{m00}, {m01}, {m02}}}, {{{m10}, {m11}, {m12}}}, {{{m20}, {m21}, {m22}}}, {{{m30}, {m31}, {m32}}})";
@@ -2422,7 +2284,6 @@ public partial struct ushort4x3 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -2454,7 +2315,6 @@ public partial struct ushort4x3 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // ushort4x3
@@ -2462,10 +2322,8 @@ public partial struct ushort4x3 : IFormattable
 #region ushort4x4
 
 public partial struct ushort4x4 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"ushort4x4({{{m00}, {m01}, {m02}, {m03}}}, {{{m10}, {m11}, {m12}, {m13}}}, {{{m20}, {m21}, {m22}, {m23}}}, {{{m30}, {m31}, {m32}, {m33}}})";
@@ -2513,7 +2371,6 @@ public partial struct ushort4x4 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -2553,7 +2410,6 @@ public partial struct ushort4x4 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // ushort4x4
@@ -2561,10 +2417,8 @@ public partial struct ushort4x4 : IFormattable
 #region int2x2
 
 public partial struct int2x2 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"int2x2({{{m00}, {m01}}}, {{{m10}, {m11}}})";
@@ -2588,7 +2442,6 @@ public partial struct int2x2 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -2604,7 +2457,6 @@ public partial struct int2x2 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // int2x2
@@ -2612,10 +2464,8 @@ public partial struct int2x2 : IFormattable
 #region int2x3
 
 public partial struct int2x3 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"int2x3({{{m00}, {m01}, {m02}}}, {{{m10}, {m11}, {m12}}})";
@@ -2643,7 +2493,6 @@ public partial struct int2x3 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -2663,7 +2512,6 @@ public partial struct int2x3 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // int2x3
@@ -2671,10 +2519,8 @@ public partial struct int2x3 : IFormattable
 #region int2x4
 
 public partial struct int2x4 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"int2x4({{{m00}, {m01}, {m02}, {m03}}}, {{{m10}, {m11}, {m12}, {m13}}})";
@@ -2706,7 +2552,6 @@ public partial struct int2x4 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -2730,7 +2575,6 @@ public partial struct int2x4 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // int2x4
@@ -2738,10 +2582,8 @@ public partial struct int2x4 : IFormattable
 #region int3x2
 
 public partial struct int3x2 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"int3x2({{{m00}, {m01}}}, {{{m10}, {m11}}}, {{{m20}, {m21}}})";
@@ -2769,7 +2611,6 @@ public partial struct int3x2 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -2789,7 +2630,6 @@ public partial struct int3x2 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // int3x2
@@ -2797,10 +2637,8 @@ public partial struct int3x2 : IFormattable
 #region int3x3
 
 public partial struct int3x3 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"int3x3({{{m00}, {m01}, {m02}}}, {{{m10}, {m11}, {m12}}}, {{{m20}, {m21}, {m22}}})";
@@ -2834,7 +2672,6 @@ public partial struct int3x3 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -2860,7 +2697,6 @@ public partial struct int3x3 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // int3x3
@@ -2868,10 +2704,8 @@ public partial struct int3x3 : IFormattable
 #region int3x4
 
 public partial struct int3x4 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"int3x4({{{m00}, {m01}, {m02}, {m03}}}, {{{m10}, {m11}, {m12}, {m13}}}, {{{m20}, {m21}, {m22}, {m23}}})";
@@ -2911,7 +2745,6 @@ public partial struct int3x4 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -2943,7 +2776,6 @@ public partial struct int3x4 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // int3x4
@@ -2951,10 +2783,8 @@ public partial struct int3x4 : IFormattable
 #region int4x2
 
 public partial struct int4x2 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"int4x2({{{m00}, {m01}}}, {{{m10}, {m11}}}, {{{m20}, {m21}}}, {{{m30}, {m31}}})";
@@ -2986,7 +2816,6 @@ public partial struct int4x2 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -3010,7 +2839,6 @@ public partial struct int4x2 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // int4x2
@@ -3018,10 +2846,8 @@ public partial struct int4x2 : IFormattable
 #region int4x3
 
 public partial struct int4x3 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"int4x3({{{m00}, {m01}, {m02}}}, {{{m10}, {m11}, {m12}}}, {{{m20}, {m21}, {m22}}}, {{{m30}, {m31}, {m32}}})";
@@ -3061,7 +2887,6 @@ public partial struct int4x3 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -3093,7 +2918,6 @@ public partial struct int4x3 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // int4x3
@@ -3101,10 +2925,8 @@ public partial struct int4x3 : IFormattable
 #region int4x4
 
 public partial struct int4x4 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"int4x4({{{m00}, {m01}, {m02}, {m03}}}, {{{m10}, {m11}, {m12}, {m13}}}, {{{m20}, {m21}, {m22}, {m23}}}, {{{m30}, {m31}, {m32}, {m33}}})";
@@ -3152,7 +2974,6 @@ public partial struct int4x4 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -3192,7 +3013,6 @@ public partial struct int4x4 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // int4x4
@@ -3200,10 +3020,8 @@ public partial struct int4x4 : IFormattable
 #region uint2x2
 
 public partial struct uint2x2 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"uint2x2({{{m00}, {m01}}}, {{{m10}, {m11}}})";
@@ -3227,7 +3045,6 @@ public partial struct uint2x2 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -3243,7 +3060,6 @@ public partial struct uint2x2 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // uint2x2
@@ -3251,10 +3067,8 @@ public partial struct uint2x2 : IFormattable
 #region uint2x3
 
 public partial struct uint2x3 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"uint2x3({{{m00}, {m01}, {m02}}}, {{{m10}, {m11}, {m12}}})";
@@ -3282,7 +3096,6 @@ public partial struct uint2x3 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -3302,7 +3115,6 @@ public partial struct uint2x3 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // uint2x3
@@ -3310,10 +3122,8 @@ public partial struct uint2x3 : IFormattable
 #region uint2x4
 
 public partial struct uint2x4 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"uint2x4({{{m00}, {m01}, {m02}, {m03}}}, {{{m10}, {m11}, {m12}, {m13}}})";
@@ -3345,7 +3155,6 @@ public partial struct uint2x4 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -3369,7 +3178,6 @@ public partial struct uint2x4 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // uint2x4
@@ -3377,10 +3185,8 @@ public partial struct uint2x4 : IFormattable
 #region uint3x2
 
 public partial struct uint3x2 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"uint3x2({{{m00}, {m01}}}, {{{m10}, {m11}}}, {{{m20}, {m21}}})";
@@ -3408,7 +3214,6 @@ public partial struct uint3x2 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -3428,7 +3233,6 @@ public partial struct uint3x2 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // uint3x2
@@ -3436,10 +3240,8 @@ public partial struct uint3x2 : IFormattable
 #region uint3x3
 
 public partial struct uint3x3 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"uint3x3({{{m00}, {m01}, {m02}}}, {{{m10}, {m11}, {m12}}}, {{{m20}, {m21}, {m22}}})";
@@ -3473,7 +3275,6 @@ public partial struct uint3x3 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -3499,7 +3300,6 @@ public partial struct uint3x3 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // uint3x3
@@ -3507,10 +3307,8 @@ public partial struct uint3x3 : IFormattable
 #region uint3x4
 
 public partial struct uint3x4 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"uint3x4({{{m00}, {m01}, {m02}, {m03}}}, {{{m10}, {m11}, {m12}, {m13}}}, {{{m20}, {m21}, {m22}, {m23}}})";
@@ -3550,7 +3348,6 @@ public partial struct uint3x4 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -3582,7 +3379,6 @@ public partial struct uint3x4 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // uint3x4
@@ -3590,10 +3386,8 @@ public partial struct uint3x4 : IFormattable
 #region uint4x2
 
 public partial struct uint4x2 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"uint4x2({{{m00}, {m01}}}, {{{m10}, {m11}}}, {{{m20}, {m21}}}, {{{m30}, {m31}}})";
@@ -3625,7 +3419,6 @@ public partial struct uint4x2 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -3649,7 +3442,6 @@ public partial struct uint4x2 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // uint4x2
@@ -3657,10 +3449,8 @@ public partial struct uint4x2 : IFormattable
 #region uint4x3
 
 public partial struct uint4x3 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"uint4x3({{{m00}, {m01}, {m02}}}, {{{m10}, {m11}, {m12}}}, {{{m20}, {m21}, {m22}}}, {{{m30}, {m31}, {m32}}})";
@@ -3700,7 +3490,6 @@ public partial struct uint4x3 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -3732,7 +3521,6 @@ public partial struct uint4x3 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // uint4x3
@@ -3740,10 +3528,8 @@ public partial struct uint4x3 : IFormattable
 #region uint4x4
 
 public partial struct uint4x4 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"uint4x4({{{m00}, {m01}, {m02}, {m03}}}, {{{m10}, {m11}, {m12}, {m13}}}, {{{m20}, {m21}, {m22}, {m23}}}, {{{m30}, {m31}, {m32}, {m33}}})";
@@ -3791,7 +3577,6 @@ public partial struct uint4x4 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -3831,7 +3616,6 @@ public partial struct uint4x4 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // uint4x4
@@ -3839,10 +3623,8 @@ public partial struct uint4x4 : IFormattable
 #region long2x2
 
 public partial struct long2x2 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"long2x2({{{m00}, {m01}}}, {{{m10}, {m11}}})";
@@ -3866,7 +3648,6 @@ public partial struct long2x2 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -3882,7 +3663,6 @@ public partial struct long2x2 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // long2x2
@@ -3890,10 +3670,8 @@ public partial struct long2x2 : IFormattable
 #region long2x3
 
 public partial struct long2x3 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"long2x3({{{m00}, {m01}, {m02}}}, {{{m10}, {m11}, {m12}}})";
@@ -3921,7 +3699,6 @@ public partial struct long2x3 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -3941,7 +3718,6 @@ public partial struct long2x3 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // long2x3
@@ -3949,10 +3725,8 @@ public partial struct long2x3 : IFormattable
 #region long2x4
 
 public partial struct long2x4 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"long2x4({{{m00}, {m01}, {m02}, {m03}}}, {{{m10}, {m11}, {m12}, {m13}}})";
@@ -3984,7 +3758,6 @@ public partial struct long2x4 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -4008,7 +3781,6 @@ public partial struct long2x4 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // long2x4
@@ -4016,10 +3788,8 @@ public partial struct long2x4 : IFormattable
 #region long3x2
 
 public partial struct long3x2 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"long3x2({{{m00}, {m01}}}, {{{m10}, {m11}}}, {{{m20}, {m21}}})";
@@ -4047,7 +3817,6 @@ public partial struct long3x2 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -4067,7 +3836,6 @@ public partial struct long3x2 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // long3x2
@@ -4075,10 +3843,8 @@ public partial struct long3x2 : IFormattable
 #region long3x3
 
 public partial struct long3x3 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"long3x3({{{m00}, {m01}, {m02}}}, {{{m10}, {m11}, {m12}}}, {{{m20}, {m21}, {m22}}})";
@@ -4112,7 +3878,6 @@ public partial struct long3x3 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -4138,7 +3903,6 @@ public partial struct long3x3 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // long3x3
@@ -4146,10 +3910,8 @@ public partial struct long3x3 : IFormattable
 #region long3x4
 
 public partial struct long3x4 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"long3x4({{{m00}, {m01}, {m02}, {m03}}}, {{{m10}, {m11}, {m12}, {m13}}}, {{{m20}, {m21}, {m22}, {m23}}})";
@@ -4189,7 +3951,6 @@ public partial struct long3x4 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -4221,7 +3982,6 @@ public partial struct long3x4 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // long3x4
@@ -4229,10 +3989,8 @@ public partial struct long3x4 : IFormattable
 #region long4x2
 
 public partial struct long4x2 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"long4x2({{{m00}, {m01}}}, {{{m10}, {m11}}}, {{{m20}, {m21}}}, {{{m30}, {m31}}})";
@@ -4264,7 +4022,6 @@ public partial struct long4x2 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -4288,7 +4045,6 @@ public partial struct long4x2 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // long4x2
@@ -4296,10 +4052,8 @@ public partial struct long4x2 : IFormattable
 #region long4x3
 
 public partial struct long4x3 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"long4x3({{{m00}, {m01}, {m02}}}, {{{m10}, {m11}, {m12}}}, {{{m20}, {m21}, {m22}}}, {{{m30}, {m31}, {m32}}})";
@@ -4339,7 +4093,6 @@ public partial struct long4x3 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -4371,7 +4124,6 @@ public partial struct long4x3 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // long4x3
@@ -4379,10 +4131,8 @@ public partial struct long4x3 : IFormattable
 #region long4x4
 
 public partial struct long4x4 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"long4x4({{{m00}, {m01}, {m02}, {m03}}}, {{{m10}, {m11}, {m12}, {m13}}}, {{{m20}, {m21}, {m22}, {m23}}}, {{{m30}, {m31}, {m32}, {m33}}})";
@@ -4430,7 +4180,6 @@ public partial struct long4x4 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -4470,7 +4219,6 @@ public partial struct long4x4 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // long4x4
@@ -4478,10 +4226,8 @@ public partial struct long4x4 : IFormattable
 #region ulong2x2
 
 public partial struct ulong2x2 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"ulong2x2({{{m00}, {m01}}}, {{{m10}, {m11}}})";
@@ -4505,7 +4251,6 @@ public partial struct ulong2x2 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -4521,7 +4266,6 @@ public partial struct ulong2x2 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // ulong2x2
@@ -4529,10 +4273,8 @@ public partial struct ulong2x2 : IFormattable
 #region ulong2x3
 
 public partial struct ulong2x3 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"ulong2x3({{{m00}, {m01}, {m02}}}, {{{m10}, {m11}, {m12}}})";
@@ -4560,7 +4302,6 @@ public partial struct ulong2x3 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -4580,7 +4321,6 @@ public partial struct ulong2x3 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // ulong2x3
@@ -4588,10 +4328,8 @@ public partial struct ulong2x3 : IFormattable
 #region ulong2x4
 
 public partial struct ulong2x4 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"ulong2x4({{{m00}, {m01}, {m02}, {m03}}}, {{{m10}, {m11}, {m12}, {m13}}})";
@@ -4623,7 +4361,6 @@ public partial struct ulong2x4 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -4647,7 +4384,6 @@ public partial struct ulong2x4 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // ulong2x4
@@ -4655,10 +4391,8 @@ public partial struct ulong2x4 : IFormattable
 #region ulong3x2
 
 public partial struct ulong3x2 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"ulong3x2({{{m00}, {m01}}}, {{{m10}, {m11}}}, {{{m20}, {m21}}})";
@@ -4686,7 +4420,6 @@ public partial struct ulong3x2 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -4706,7 +4439,6 @@ public partial struct ulong3x2 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // ulong3x2
@@ -4714,10 +4446,8 @@ public partial struct ulong3x2 : IFormattable
 #region ulong3x3
 
 public partial struct ulong3x3 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"ulong3x3({{{m00}, {m01}, {m02}}}, {{{m10}, {m11}, {m12}}}, {{{m20}, {m21}, {m22}}})";
@@ -4751,7 +4481,6 @@ public partial struct ulong3x3 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -4777,7 +4506,6 @@ public partial struct ulong3x3 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // ulong3x3
@@ -4785,10 +4513,8 @@ public partial struct ulong3x3 : IFormattable
 #region ulong3x4
 
 public partial struct ulong3x4 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"ulong3x4({{{m00}, {m01}, {m02}, {m03}}}, {{{m10}, {m11}, {m12}, {m13}}}, {{{m20}, {m21}, {m22}, {m23}}})";
@@ -4828,7 +4554,6 @@ public partial struct ulong3x4 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -4860,7 +4585,6 @@ public partial struct ulong3x4 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // ulong3x4
@@ -4868,10 +4592,8 @@ public partial struct ulong3x4 : IFormattable
 #region ulong4x2
 
 public partial struct ulong4x2 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"ulong4x2({{{m00}, {m01}}}, {{{m10}, {m11}}}, {{{m20}, {m21}}}, {{{m30}, {m31}}})";
@@ -4903,7 +4625,6 @@ public partial struct ulong4x2 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -4927,7 +4648,6 @@ public partial struct ulong4x2 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // ulong4x2
@@ -4935,10 +4655,8 @@ public partial struct ulong4x2 : IFormattable
 #region ulong4x3
 
 public partial struct ulong4x3 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"ulong4x3({{{m00}, {m01}, {m02}}}, {{{m10}, {m11}, {m12}}}, {{{m20}, {m21}, {m22}}}, {{{m30}, {m31}, {m32}}})";
@@ -4978,7 +4696,6 @@ public partial struct ulong4x3 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -5010,7 +4727,6 @@ public partial struct ulong4x3 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // ulong4x3
@@ -5018,10 +4734,8 @@ public partial struct ulong4x3 : IFormattable
 #region ulong4x4
 
 public partial struct ulong4x4 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"ulong4x4({{{m00}, {m01}, {m02}, {m03}}}, {{{m10}, {m11}, {m12}, {m13}}}, {{{m20}, {m21}, {m22}, {m23}}}, {{{m30}, {m31}, {m32}, {m33}}})";
@@ -5069,7 +4783,6 @@ public partial struct ulong4x4 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -5109,7 +4822,6 @@ public partial struct ulong4x4 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // ulong4x4
@@ -5117,10 +4829,8 @@ public partial struct ulong4x4 : IFormattable
 #region decimal2x2
 
 public partial struct decimal2x2 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"decimal2x2({{{m00}, {m01}}}, {{{m10}, {m11}}})";
@@ -5144,7 +4854,6 @@ public partial struct decimal2x2 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -5160,7 +4869,6 @@ public partial struct decimal2x2 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // decimal2x2
@@ -5168,10 +4876,8 @@ public partial struct decimal2x2 : IFormattable
 #region decimal2x3
 
 public partial struct decimal2x3 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"decimal2x3({{{m00}, {m01}, {m02}}}, {{{m10}, {m11}, {m12}}})";
@@ -5199,7 +4905,6 @@ public partial struct decimal2x3 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -5219,7 +4924,6 @@ public partial struct decimal2x3 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // decimal2x3
@@ -5227,10 +4931,8 @@ public partial struct decimal2x3 : IFormattable
 #region decimal2x4
 
 public partial struct decimal2x4 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"decimal2x4({{{m00}, {m01}, {m02}, {m03}}}, {{{m10}, {m11}, {m12}, {m13}}})";
@@ -5262,7 +4964,6 @@ public partial struct decimal2x4 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -5286,7 +4987,6 @@ public partial struct decimal2x4 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // decimal2x4
@@ -5294,10 +4994,8 @@ public partial struct decimal2x4 : IFormattable
 #region decimal3x2
 
 public partial struct decimal3x2 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"decimal3x2({{{m00}, {m01}}}, {{{m10}, {m11}}}, {{{m20}, {m21}}})";
@@ -5325,7 +5023,6 @@ public partial struct decimal3x2 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -5345,7 +5042,6 @@ public partial struct decimal3x2 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // decimal3x2
@@ -5353,10 +5049,8 @@ public partial struct decimal3x2 : IFormattable
 #region decimal3x3
 
 public partial struct decimal3x3 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"decimal3x3({{{m00}, {m01}, {m02}}}, {{{m10}, {m11}, {m12}}}, {{{m20}, {m21}, {m22}}})";
@@ -5390,7 +5084,6 @@ public partial struct decimal3x3 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -5416,7 +5109,6 @@ public partial struct decimal3x3 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // decimal3x3
@@ -5424,10 +5116,8 @@ public partial struct decimal3x3 : IFormattable
 #region decimal3x4
 
 public partial struct decimal3x4 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"decimal3x4({{{m00}, {m01}, {m02}, {m03}}}, {{{m10}, {m11}, {m12}, {m13}}}, {{{m20}, {m21}, {m22}, {m23}}})";
@@ -5467,7 +5157,6 @@ public partial struct decimal3x4 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -5499,7 +5188,6 @@ public partial struct decimal3x4 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // decimal3x4
@@ -5507,10 +5195,8 @@ public partial struct decimal3x4 : IFormattable
 #region decimal4x2
 
 public partial struct decimal4x2 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"decimal4x2({{{m00}, {m01}}}, {{{m10}, {m11}}}, {{{m20}, {m21}}}, {{{m30}, {m31}}})";
@@ -5542,7 +5228,6 @@ public partial struct decimal4x2 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -5566,7 +5251,6 @@ public partial struct decimal4x2 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // decimal4x2
@@ -5574,10 +5258,8 @@ public partial struct decimal4x2 : IFormattable
 #region decimal4x3
 
 public partial struct decimal4x3 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"decimal4x3({{{m00}, {m01}, {m02}}}, {{{m10}, {m11}, {m12}}}, {{{m20}, {m21}, {m22}}}, {{{m30}, {m31}, {m32}}})";
@@ -5617,7 +5299,6 @@ public partial struct decimal4x3 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -5649,7 +5330,6 @@ public partial struct decimal4x3 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // decimal4x3
@@ -5657,10 +5337,8 @@ public partial struct decimal4x3 : IFormattable
 #region decimal4x4
 
 public partial struct decimal4x4 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"decimal4x4({{{m00}, {m01}, {m02}, {m03}}}, {{{m10}, {m11}, {m12}, {m13}}}, {{{m20}, {m21}, {m22}, {m23}}}, {{{m30}, {m31}, {m32}, {m33}}})";
@@ -5708,7 +5386,6 @@ public partial struct decimal4x4 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -5748,7 +5425,6 @@ public partial struct decimal4x4 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // decimal4x4
@@ -5756,10 +5432,8 @@ public partial struct decimal4x4 : IFormattable
 #region half2x2
 
 public partial struct half2x2 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"half2x2({{{m00}, {m01}}}, {{{m10}, {m11}}})";
@@ -5783,7 +5457,6 @@ public partial struct half2x2 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -5799,7 +5472,6 @@ public partial struct half2x2 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // half2x2
@@ -5807,10 +5479,8 @@ public partial struct half2x2 : IFormattable
 #region half2x3
 
 public partial struct half2x3 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"half2x3({{{m00}, {m01}, {m02}}}, {{{m10}, {m11}, {m12}}})";
@@ -5838,7 +5508,6 @@ public partial struct half2x3 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -5858,7 +5527,6 @@ public partial struct half2x3 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // half2x3
@@ -5866,10 +5534,8 @@ public partial struct half2x3 : IFormattable
 #region half2x4
 
 public partial struct half2x4 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"half2x4({{{m00}, {m01}, {m02}, {m03}}}, {{{m10}, {m11}, {m12}, {m13}}})";
@@ -5901,7 +5567,6 @@ public partial struct half2x4 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -5925,7 +5590,6 @@ public partial struct half2x4 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // half2x4
@@ -5933,10 +5597,8 @@ public partial struct half2x4 : IFormattable
 #region half3x2
 
 public partial struct half3x2 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"half3x2({{{m00}, {m01}}}, {{{m10}, {m11}}}, {{{m20}, {m21}}})";
@@ -5964,7 +5626,6 @@ public partial struct half3x2 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -5984,7 +5645,6 @@ public partial struct half3x2 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // half3x2
@@ -5992,10 +5652,8 @@ public partial struct half3x2 : IFormattable
 #region half3x3
 
 public partial struct half3x3 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"half3x3({{{m00}, {m01}, {m02}}}, {{{m10}, {m11}, {m12}}}, {{{m20}, {m21}, {m22}}})";
@@ -6029,7 +5687,6 @@ public partial struct half3x3 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -6055,7 +5712,6 @@ public partial struct half3x3 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // half3x3
@@ -6063,10 +5719,8 @@ public partial struct half3x3 : IFormattable
 #region half3x4
 
 public partial struct half3x4 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"half3x4({{{m00}, {m01}, {m02}, {m03}}}, {{{m10}, {m11}, {m12}, {m13}}}, {{{m20}, {m21}, {m22}, {m23}}})";
@@ -6106,7 +5760,6 @@ public partial struct half3x4 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -6138,7 +5791,6 @@ public partial struct half3x4 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // half3x4
@@ -6146,10 +5798,8 @@ public partial struct half3x4 : IFormattable
 #region half4x2
 
 public partial struct half4x2 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"half4x2({{{m00}, {m01}}}, {{{m10}, {m11}}}, {{{m20}, {m21}}}, {{{m30}, {m31}}})";
@@ -6181,7 +5831,6 @@ public partial struct half4x2 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -6205,7 +5854,6 @@ public partial struct half4x2 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // half4x2
@@ -6213,10 +5861,8 @@ public partial struct half4x2 : IFormattable
 #region half4x3
 
 public partial struct half4x3 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"half4x3({{{m00}, {m01}, {m02}}}, {{{m10}, {m11}, {m12}}}, {{{m20}, {m21}, {m22}}}, {{{m30}, {m31}, {m32}}})";
@@ -6256,7 +5902,6 @@ public partial struct half4x3 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -6288,7 +5933,6 @@ public partial struct half4x3 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // half4x3
@@ -6296,10 +5940,8 @@ public partial struct half4x3 : IFormattable
 #region half4x4
 
 public partial struct half4x4 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"half4x4({{{m00}, {m01}, {m02}, {m03}}}, {{{m10}, {m11}, {m12}, {m13}}}, {{{m20}, {m21}, {m22}, {m23}}}, {{{m30}, {m31}, {m32}, {m33}}})";
@@ -6347,7 +5989,6 @@ public partial struct half4x4 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -6387,7 +6028,6 @@ public partial struct half4x4 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // half4x4
@@ -6395,10 +6035,8 @@ public partial struct half4x4 : IFormattable
 #region b16m2x2
 
 public partial struct b16m2x2 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"b16m2x2({{{m00}, {m01}}}, {{{m10}, {m11}}})";
@@ -6422,7 +6060,6 @@ public partial struct b16m2x2 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -6438,7 +6075,6 @@ public partial struct b16m2x2 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // b16m2x2
@@ -6446,10 +6082,8 @@ public partial struct b16m2x2 : IFormattable
 #region b16m2x3
 
 public partial struct b16m2x3 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"b16m2x3({{{m00}, {m01}, {m02}}}, {{{m10}, {m11}, {m12}}})";
@@ -6477,7 +6111,6 @@ public partial struct b16m2x3 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -6497,7 +6130,6 @@ public partial struct b16m2x3 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // b16m2x3
@@ -6505,10 +6137,8 @@ public partial struct b16m2x3 : IFormattable
 #region b16m2x4
 
 public partial struct b16m2x4 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"b16m2x4({{{m00}, {m01}, {m02}, {m03}}}, {{{m10}, {m11}, {m12}, {m13}}})";
@@ -6540,7 +6170,6 @@ public partial struct b16m2x4 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -6564,7 +6193,6 @@ public partial struct b16m2x4 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // b16m2x4
@@ -6572,10 +6200,8 @@ public partial struct b16m2x4 : IFormattable
 #region b16m3x2
 
 public partial struct b16m3x2 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"b16m3x2({{{m00}, {m01}}}, {{{m10}, {m11}}}, {{{m20}, {m21}}})";
@@ -6603,7 +6229,6 @@ public partial struct b16m3x2 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -6623,7 +6248,6 @@ public partial struct b16m3x2 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // b16m3x2
@@ -6631,10 +6255,8 @@ public partial struct b16m3x2 : IFormattable
 #region b16m3x3
 
 public partial struct b16m3x3 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"b16m3x3({{{m00}, {m01}, {m02}}}, {{{m10}, {m11}, {m12}}}, {{{m20}, {m21}, {m22}}})";
@@ -6668,7 +6290,6 @@ public partial struct b16m3x3 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -6694,7 +6315,6 @@ public partial struct b16m3x3 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // b16m3x3
@@ -6702,10 +6322,8 @@ public partial struct b16m3x3 : IFormattable
 #region b16m3x4
 
 public partial struct b16m3x4 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"b16m3x4({{{m00}, {m01}, {m02}, {m03}}}, {{{m10}, {m11}, {m12}, {m13}}}, {{{m20}, {m21}, {m22}, {m23}}})";
@@ -6745,7 +6363,6 @@ public partial struct b16m3x4 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -6777,7 +6394,6 @@ public partial struct b16m3x4 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // b16m3x4
@@ -6785,10 +6401,8 @@ public partial struct b16m3x4 : IFormattable
 #region b16m4x2
 
 public partial struct b16m4x2 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"b16m4x2({{{m00}, {m01}}}, {{{m10}, {m11}}}, {{{m20}, {m21}}}, {{{m30}, {m31}}})";
@@ -6820,7 +6434,6 @@ public partial struct b16m4x2 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -6844,7 +6457,6 @@ public partial struct b16m4x2 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // b16m4x2
@@ -6852,10 +6464,8 @@ public partial struct b16m4x2 : IFormattable
 #region b16m4x3
 
 public partial struct b16m4x3 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"b16m4x3({{{m00}, {m01}, {m02}}}, {{{m10}, {m11}, {m12}}}, {{{m20}, {m21}, {m22}}}, {{{m30}, {m31}, {m32}}})";
@@ -6895,7 +6505,6 @@ public partial struct b16m4x3 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -6927,7 +6536,6 @@ public partial struct b16m4x3 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // b16m4x3
@@ -6935,10 +6543,8 @@ public partial struct b16m4x3 : IFormattable
 #region b16m4x4
 
 public partial struct b16m4x4 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"b16m4x4({{{m00}, {m01}, {m02}, {m03}}}, {{{m10}, {m11}, {m12}, {m13}}}, {{{m20}, {m21}, {m22}, {m23}}}, {{{m30}, {m31}, {m32}, {m33}}})";
@@ -6986,7 +6592,6 @@ public partial struct b16m4x4 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -7026,7 +6631,6 @@ public partial struct b16m4x4 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // b16m4x4
@@ -7034,10 +6638,8 @@ public partial struct b16m4x4 : IFormattable
 #region b32m2x2
 
 public partial struct b32m2x2 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"b32m2x2({{{m00}, {m01}}}, {{{m10}, {m11}}})";
@@ -7061,7 +6663,6 @@ public partial struct b32m2x2 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -7077,7 +6678,6 @@ public partial struct b32m2x2 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // b32m2x2
@@ -7085,10 +6685,8 @@ public partial struct b32m2x2 : IFormattable
 #region b32m2x3
 
 public partial struct b32m2x3 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"b32m2x3({{{m00}, {m01}, {m02}}}, {{{m10}, {m11}, {m12}}})";
@@ -7116,7 +6714,6 @@ public partial struct b32m2x3 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -7136,7 +6733,6 @@ public partial struct b32m2x3 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // b32m2x3
@@ -7144,10 +6740,8 @@ public partial struct b32m2x3 : IFormattable
 #region b32m2x4
 
 public partial struct b32m2x4 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"b32m2x4({{{m00}, {m01}, {m02}, {m03}}}, {{{m10}, {m11}, {m12}, {m13}}})";
@@ -7179,7 +6773,6 @@ public partial struct b32m2x4 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -7203,7 +6796,6 @@ public partial struct b32m2x4 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // b32m2x4
@@ -7211,10 +6803,8 @@ public partial struct b32m2x4 : IFormattable
 #region b32m3x2
 
 public partial struct b32m3x2 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"b32m3x2({{{m00}, {m01}}}, {{{m10}, {m11}}}, {{{m20}, {m21}}})";
@@ -7242,7 +6832,6 @@ public partial struct b32m3x2 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -7262,7 +6851,6 @@ public partial struct b32m3x2 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // b32m3x2
@@ -7270,10 +6858,8 @@ public partial struct b32m3x2 : IFormattable
 #region b32m3x3
 
 public partial struct b32m3x3 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"b32m3x3({{{m00}, {m01}, {m02}}}, {{{m10}, {m11}, {m12}}}, {{{m20}, {m21}, {m22}}})";
@@ -7307,7 +6893,6 @@ public partial struct b32m3x3 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -7333,7 +6918,6 @@ public partial struct b32m3x3 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // b32m3x3
@@ -7341,10 +6925,8 @@ public partial struct b32m3x3 : IFormattable
 #region b32m3x4
 
 public partial struct b32m3x4 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"b32m3x4({{{m00}, {m01}, {m02}, {m03}}}, {{{m10}, {m11}, {m12}, {m13}}}, {{{m20}, {m21}, {m22}, {m23}}})";
@@ -7384,7 +6966,6 @@ public partial struct b32m3x4 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -7416,7 +6997,6 @@ public partial struct b32m3x4 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // b32m3x4
@@ -7424,10 +7004,8 @@ public partial struct b32m3x4 : IFormattable
 #region b32m4x2
 
 public partial struct b32m4x2 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"b32m4x2({{{m00}, {m01}}}, {{{m10}, {m11}}}, {{{m20}, {m21}}}, {{{m30}, {m31}}})";
@@ -7459,7 +7037,6 @@ public partial struct b32m4x2 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -7483,7 +7060,6 @@ public partial struct b32m4x2 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // b32m4x2
@@ -7491,10 +7067,8 @@ public partial struct b32m4x2 : IFormattable
 #region b32m4x3
 
 public partial struct b32m4x3 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"b32m4x3({{{m00}, {m01}, {m02}}}, {{{m10}, {m11}, {m12}}}, {{{m20}, {m21}, {m22}}}, {{{m30}, {m31}, {m32}}})";
@@ -7534,7 +7108,6 @@ public partial struct b32m4x3 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -7566,7 +7139,6 @@ public partial struct b32m4x3 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // b32m4x3
@@ -7574,10 +7146,8 @@ public partial struct b32m4x3 : IFormattable
 #region b32m4x4
 
 public partial struct b32m4x4 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"b32m4x4({{{m00}, {m01}, {m02}, {m03}}}, {{{m10}, {m11}, {m12}, {m13}}}, {{{m20}, {m21}, {m22}, {m23}}}, {{{m30}, {m31}, {m32}, {m33}}})";
@@ -7625,7 +7195,6 @@ public partial struct b32m4x4 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -7665,7 +7234,6 @@ public partial struct b32m4x4 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // b32m4x4
@@ -7673,10 +7241,8 @@ public partial struct b32m4x4 : IFormattable
 #region b64m2x2
 
 public partial struct b64m2x2 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"b64m2x2({{{m00}, {m01}}}, {{{m10}, {m11}}})";
@@ -7700,7 +7266,6 @@ public partial struct b64m2x2 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -7716,7 +7281,6 @@ public partial struct b64m2x2 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // b64m2x2
@@ -7724,10 +7288,8 @@ public partial struct b64m2x2 : IFormattable
 #region b64m2x3
 
 public partial struct b64m2x3 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"b64m2x3({{{m00}, {m01}, {m02}}}, {{{m10}, {m11}, {m12}}})";
@@ -7755,7 +7317,6 @@ public partial struct b64m2x3 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -7775,7 +7336,6 @@ public partial struct b64m2x3 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // b64m2x3
@@ -7783,10 +7343,8 @@ public partial struct b64m2x3 : IFormattable
 #region b64m2x4
 
 public partial struct b64m2x4 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"b64m2x4({{{m00}, {m01}, {m02}, {m03}}}, {{{m10}, {m11}, {m12}, {m13}}})";
@@ -7818,7 +7376,6 @@ public partial struct b64m2x4 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -7842,7 +7399,6 @@ public partial struct b64m2x4 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // b64m2x4
@@ -7850,10 +7406,8 @@ public partial struct b64m2x4 : IFormattable
 #region b64m3x2
 
 public partial struct b64m3x2 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"b64m3x2({{{m00}, {m01}}}, {{{m10}, {m11}}}, {{{m20}, {m21}}})";
@@ -7881,7 +7435,6 @@ public partial struct b64m3x2 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -7901,7 +7454,6 @@ public partial struct b64m3x2 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // b64m3x2
@@ -7909,10 +7461,8 @@ public partial struct b64m3x2 : IFormattable
 #region b64m3x3
 
 public partial struct b64m3x3 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"b64m3x3({{{m00}, {m01}, {m02}}}, {{{m10}, {m11}, {m12}}}, {{{m20}, {m21}, {m22}}})";
@@ -7946,7 +7496,6 @@ public partial struct b64m3x3 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -7972,7 +7521,6 @@ public partial struct b64m3x3 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // b64m3x3
@@ -7980,10 +7528,8 @@ public partial struct b64m3x3 : IFormattable
 #region b64m3x4
 
 public partial struct b64m3x4 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"b64m3x4({{{m00}, {m01}, {m02}, {m03}}}, {{{m10}, {m11}, {m12}, {m13}}}, {{{m20}, {m21}, {m22}, {m23}}})";
@@ -8023,7 +7569,6 @@ public partial struct b64m3x4 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -8055,7 +7600,6 @@ public partial struct b64m3x4 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // b64m3x4
@@ -8063,10 +7607,8 @@ public partial struct b64m3x4 : IFormattable
 #region b64m4x2
 
 public partial struct b64m4x2 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"b64m4x2({{{m00}, {m01}}}, {{{m10}, {m11}}}, {{{m20}, {m21}}}, {{{m30}, {m31}}})";
@@ -8098,7 +7640,6 @@ public partial struct b64m4x2 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -8122,7 +7663,6 @@ public partial struct b64m4x2 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // b64m4x2
@@ -8130,10 +7670,8 @@ public partial struct b64m4x2 : IFormattable
 #region b64m4x3
 
 public partial struct b64m4x3 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"b64m4x3({{{m00}, {m01}, {m02}}}, {{{m10}, {m11}, {m12}}}, {{{m20}, {m21}, {m22}}}, {{{m30}, {m31}, {m32}}})";
@@ -8173,7 +7711,6 @@ public partial struct b64m4x3 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -8205,7 +7742,6 @@ public partial struct b64m4x3 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // b64m4x3
@@ -8213,10 +7749,8 @@ public partial struct b64m4x3 : IFormattable
 #region b64m4x4
 
 public partial struct b64m4x4 : IFormattable
-    #if NET8_0_OR_GREATER
     , ISpanFormattable
     , IUtf8SpanFormattable
-    #endif
 {
     [CpuOnly]
     public override string ToString() => $"b64m4x4({{{m00}, {m01}, {m02}, {m03}}}, {{{m10}, {m11}, {m12}, {m13}}}, {{{m20}, {m21}, {m22}, {m23}}}, {{{m30}, {m31}, {m32}, {m33}}})";
@@ -8264,7 +7798,6 @@ public partial struct b64m4x4 : IFormattable
         return true;
     }
 
-    #if NET8_0_OR_GREATER
     [CpuOnly]
     public bool TryFormat(Span<byte> dst, out int nc, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
@@ -8304,7 +7837,6 @@ public partial struct b64m4x4 : IFormattable
         if (!TryFormatPart(ref dst, ref nc, "})"u8)) return false;
         return true;
     }
-    #endif
 }
 
 #endregion // b64m4x4

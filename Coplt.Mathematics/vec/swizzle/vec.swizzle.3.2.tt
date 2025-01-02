@@ -46,24 +46,29 @@ public partial struct <#= typeName #>
             for (var t = 0; t < 2; t++)
             {
 #>
-    public <#= retTypeName #> <#= t == 0 ? xyzw : rgba #>
+    public <#= no_overlap || ordered ? "" : "readonly " #><#= retTypeName #> <#= t == 0 ? xyzw : rgba #>
     {
 <#
                 if (typ.simd)
                 {
-                    WriteLine("#if NET8_0_OR_GREATER");
                     if (ordered && typ.simd)
                     {
 #>
         [MethodImpl(256 | 512)]
-        get => new(vector.GetLower());
+        readonly get => Vector<#= bitSize3 #>.IsHardwareAccelerated ? new(vector.GetLower()) : new(<#= Typ.xyzw[a] #>, <#= Typ.xyzw[b] #>);
 <#
                     }
                     else
                     {
 #>
         [MethodImpl(256 | 512)]
-        get => new(Vector<#= bitSize3 #>.Shuffle(vector, Vector<#= bitSize3 #>.Create(<#= typ.shuffleCast #><#= a #>, <#= b #>, 0, 0)).GetLower());
+        <#= no_overlap ? "readonly " : "" #>get
+        {
+            if (Vector<#= bitSize3 #>.IsHardwareAccelerated)
+                return new(Vector<#= bitSize3 #>.Shuffle(vector, Vector<#= bitSize3 #>.Create(<#= typ.shuffleCast #><#= a #>, <#= b #>, 0, 0)).GetLower());
+            else
+                return new(<#= Typ.xyzw[a] #>, <#= Typ.xyzw[b] #>);
+        }
 <#
                     }
                     if (no_overlap)
@@ -72,39 +77,50 @@ public partial struct <#= typeName #>
                         {
 #>
         [MethodImpl(256 | 512)]
-        set => vector = Vector<#= bitSize3 #>.ConditionalSelect(
-            Vector<#= bitSize3 #>.Create(0, 0, -1, -1).As<#= typ.Type #>(), 
-            vector,
-            value.vector.ToVector<#= bitSize3 #>()
-        );
+        set
+        {
+            if (Vector<#= bitSize3 #>.IsHardwareAccelerated)
+                vector = Vector<#= bitSize3 #>.ConditionalSelect(
+                    Vector<#= bitSize3 #>.Create(0, 0, -1, -1).As<#= typ.Type #>(), 
+                    vector,
+                    value.vector.ToVector<#= bitSize3 #>()
+                );
+            else { <#= Typ.xyzw[a] #> = value.x; <#= Typ.xyzw[b] #> = value.y; }
+        }
 <#
                         }
                         else
                         {
 #>
         [MethodImpl(256 | 512)]
-        set => vector = Vector<#= bitSize3 #>.ConditionalSelect(
-            Vector<#= bitSize3 #>.Create(<#= sel[0] #>, <#= sel[1] #>, <#= sel[2] #>, <#= sel[3] #>).As<#= typ.Type #>(), 
-            vector, 
-            Vector<#= bitSize3 #>.Shuffle(value.vector.ToVector<#= bitSize3 #>(), Vector<#= bitSize3 #>.Create(<#= typ.shuffleCast #><#= inv[0] #>, <#= inv[1] #>, <#= inv[2] #>, <#= inv[3] #>))
-        );
+        set
+        {
+            if (Vector<#= bitSize3 #>.IsHardwareAccelerated)
+                vector = Vector<#= bitSize3 #>.ConditionalSelect(
+                    Vector<#= bitSize3 #>.Create(<#= sel[0] #>, <#= sel[1] #>, <#= sel[2] #>, <#= sel[3] #>).As<#= typ.Type #>(), 
+                    vector, 
+                    Vector<#= bitSize3 #>.Shuffle(value.vector.ToVector<#= bitSize3 #>(), Vector<#= bitSize3 #>.Create(<#= typ.shuffleCast #><#= inv[0] #>, <#= inv[1] #>, <#= inv[2] #>, <#= inv[3] #>))
+                );
+            else { <#= Typ.xyzw[a] #> = value.x; <#= Typ.xyzw[b] #> = value.y; }
+        }
 <#
                         }
                     }
-                    WriteLine("#else // NET8_0_OR_GREATER");
                 }
+                else
+                {
 #>
         [MethodImpl(256 | 512)]
-        get => new(<#= Typ.xyzw[a] #>, <#= Typ.xyzw[b] #>);
+        <#= no_overlap ? "readonly " : "" #>get => new(<#= Typ.xyzw[a] #>, <#= Typ.xyzw[b] #>);
 <#
-                if (no_overlap)
-                {
+                    if (no_overlap)
+                    {
 #>
         [MethodImpl(256 | 512)]
         set { <#= Typ.xyzw[a] #> = value.x; <#= Typ.xyzw[b] #> = value.y; }
 <#
+                    }
                 }
-                if (typ.simd) WriteLine("#endif // NET8_0_OR_GREATER");
 #>
     }
 <#

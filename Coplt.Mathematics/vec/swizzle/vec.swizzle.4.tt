@@ -43,14 +43,14 @@ public partial struct <#= typeName #>
             for (var t = 0; t < 2; t++)
             {
 #>
-    public <#= typeName #> <#= t == 0 ? xyzw : rgba #>
+    public <#= no_overlap || ordered ? "" : "readonly " #><#= typeName #> <#= t == 0 ? xyzw : rgba #>
     {
 <#
                 if (ordered)
                 {
 #>
         [MethodImpl(256 | 512)]
-        get => this;
+        readonly get => this;
         [MethodImpl(256 | 512)]
         set => this = value;
 <#
@@ -59,18 +59,19 @@ public partial struct <#= typeName #>
                 {
                     if (typ.simd)
                     {
-                        WriteLine("#if NET8_0_OR_GREATER");
 #>
         [MethodImpl(256 | 512)]
-        get => new(Vector<#= bitSize4 #>.Shuffle(vector, Vector<#= bitSize4 #>.Create(<#= typ.shuffleCast #><#= a #>, <#= b #>, <#= c #>, <#= d #>)));
+        <#= no_overlap ? "readonly " : "" #>get => new(Vector<#= bitSize4 #>.Shuffle(vector, Vector<#= bitSize4 #>.Create(<#= typ.shuffleCast #><#= a #>, <#= b #>, <#= c #>, <#= d #>)));
 <#
-                        WriteLine("#else // NET8_0_OR_GREATER");
                     }
+                    else
+                    {
 #>
         [MethodImpl(256 | 512)]
-        get => new(<#= Typ.xyzw[a] #>, <#= Typ.xyzw[b] #>, <#= Typ.xyzw[c] #>, <#= Typ.xyzw[d] #>);
+        <#= no_overlap ? "readonly " : "" #>get => new(<#= Typ.xyzw[a] #>, <#= Typ.xyzw[b] #>, <#= Typ.xyzw[c] #>, <#= Typ.xyzw[d] #>);
 <#
-                    if (typ.simd) WriteLine("#endif // NET8_0_OR_GREATER");
+                    }
+
                     if (no_overlap)
                     {
 #>

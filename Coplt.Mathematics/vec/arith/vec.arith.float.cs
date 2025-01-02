@@ -64,136 +64,117 @@ public partial struct float2
     }
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float2 mod(this float2 a, float2 b)
+    public static float2 mod([This] float2 a, float2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Mod(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(simd.Mod(a.vector, b.vector));
         return new(a.x.mod(b.x), a.y.mod(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 ceil(this float2 a)
+    public static float2 ceil([This] float2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector64.Ceiling(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(Vector64.Ceiling(a.vector));
         return new(a.x.ceil(), a.y.ceil());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 floor(this float2 a)
+    public static float2 floor([This] float2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector64.Floor(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(Vector64.Floor(a.vector));
         return new(a.x.floor(), a.y.floor());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 round(this float2 a)
+    public static float2 round([This] float2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Round(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(simd.Round(a.vector));
         return new(a.x.round(), a.y.round());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 trunc(this float2 a)
+    public static float2 trunc([This] float2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.RoundToZero(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(simd.RoundToZero(a.vector));
         return new(a.x.trunc(), a.y.trunc());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 frac(this float2 a)
+    public static float2 frac([This] float2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector - Vector64.Floor(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(a.vector - Vector64.Floor(a.vector));
         return new(a.x.frac(), a.y.frac());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 modf(this float2 a, out float2 i)
+    public static float2 modf([This] float2 a, out float2 i)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd.ModF(a.vector, out var iv);
-        i = new(iv);
-        return new(r);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return new(simd.ModF(a.vector, out i.vector));
         float2 r = new(a.x.modf(out var i0), a.y.modf(out var i1));
         i = new(i0, i1);
         return r;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 rcp(this float2 a)
+    public static float2 rcp([This] float2 a)
     {
-        #if NET8_0_OR_GREATER
-        return float2.One / a;
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return float2.One / a;
         return new(a.x.rcp(), a.y.rcp());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 saturate(this float2 a)
+    public static float2 saturate([This] float2 a)
     {
-        #if NET8_0_OR_GREATER
-        return a.clamp(default, float2.One);
-        #else // NET8_0_OR_GREATER
+        if (Vector64.IsHardwareAccelerated)
+            return a.clamp(default, float2.One);
         return new(a.x.saturate(), a.y.saturate());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 smoothstep(this float2 a, float2 min, float2 max)
+    public static float2 smoothstep(float2 min, float2 max, [This] float2 a)
     {
         var t = saturate((a - min) / (max - min));
         return t * t * (3.0f - (2.0f * t));
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 reflect(this float2 i, float2 n) => i - 2f * n * dot(i, n);
+    public static float2 reflect([This] float2 i, float2 n) => i - 2f * n * dot(i, n);
 
     [MethodImpl(256 | 512)]
-    public static float2 project(this float2 a, float2 onto) =>
+    public static float2 project([This] float2 a, float2 onto) =>
         (float)(dot(a, onto) / dot(onto, onto)) * onto;
 
     [MethodImpl(256 | 512)]
-    public static float2 projectOnPlane(this float2 a, float2 plane_normal) => 
+    public static float2 projectOnPlane([This] float2 a, float2 plane_normal) => 
         a - project(a, plane_normal);
 
     [MethodImpl(256 | 512)]
-    public static float2 projectNormalized(this float2 a, float2 onto) =>
+    public static float2 projectNormalized([This] float2 a, float2 onto) =>
         (float)(dot(a, onto)) * onto;
 
     [MethodImpl(256 | 512)]
-    public static float2 projectOnPlaneNormalized(this float2 a, float2 plane_normal) => 
+    public static float2 projectOnPlaneNormalized([This] float2 a, float2 plane_normal) => 
         a - projectNormalized(a, plane_normal);
 
     [MethodImpl(256 | 512)]
-    public static float2 radians(this float2 a) => a * float2.DegToRad;
+    public static float2 radians([This] float2 a) => a * float2.DegToRad;
 
     [MethodImpl(256 | 512)]
-    public static float2 degrees(this float2 a) => a * float2.RadToDeg;
+    public static float2 degrees([This] float2 a) => a * float2.RadToDeg;
 
     [MethodImpl(256 | 512)]
-    public static float2 wrap(this float2 x, float2 min, float2 max)
+    public static float2 wrap([This] float2 x, float2 min, float2 max)
     {
         var range = max - min;
         return min + ((x - min) % range + range) % range;
@@ -264,136 +245,117 @@ public partial struct float3
     }
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float3 mod(this float3 a, float3 b)
+    public static float3 mod([This] float3 a, float3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Mod(a.vector, b.vector) & Vector128.Create(-1, -1, -1, 0).AsSingle());
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Mod(a.vector, b.vector) & Vector128.Create(-1, -1, -1, 0).AsSingle());
         return new(a.x.mod(b.x), a.y.mod(b.y), a.z.mod(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 ceil(this float3 a)
+    public static float3 ceil([This] float3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Ceiling(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Ceiling(a.vector));
         return new(a.x.ceil(), a.y.ceil(), a.z.ceil());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 floor(this float3 a)
+    public static float3 floor([This] float3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Floor(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Floor(a.vector));
         return new(a.x.floor(), a.y.floor(), a.z.floor());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 round(this float3 a)
+    public static float3 round([This] float3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Round(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Round(a.vector));
         return new(a.x.round(), a.y.round(), a.z.round());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 trunc(this float3 a)
+    public static float3 trunc([This] float3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.RoundToZero(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.RoundToZero(a.vector));
         return new(a.x.trunc(), a.y.trunc(), a.z.trunc());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 frac(this float3 a)
+    public static float3 frac([This] float3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector - Vector128.Floor(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector - Vector128.Floor(a.vector));
         return new(a.x.frac(), a.y.frac(), a.z.frac());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 modf(this float3 a, out float3 i)
+    public static float3 modf([This] float3 a, out float3 i)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd.ModF(a.vector, out var iv);
-        i = new(iv);
-        return new(r);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.ModF(a.vector, out i.vector));
         float3 r = new(a.x.modf(out var i0), a.y.modf(out var i1), a.z.modf(out var i2));
         i = new(i0, i1, i2);
         return r;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 rcp(this float3 a)
+    public static float3 rcp([This] float3 a)
     {
-        #if NET8_0_OR_GREATER
-        return float3.One / a;
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return float3.One / a;
         return new(a.x.rcp(), a.y.rcp(), a.z.rcp());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 saturate(this float3 a)
+    public static float3 saturate([This] float3 a)
     {
-        #if NET8_0_OR_GREATER
-        return a.clamp(default, float3.One);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return a.clamp(default, float3.One);
         return new(a.x.saturate(), a.y.saturate(), a.z.saturate());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 smoothstep(this float3 a, float3 min, float3 max)
+    public static float3 smoothstep(float3 min, float3 max, [This] float3 a)
     {
         var t = saturate((a - min) / (max - min));
         return t * t * (3.0f - (2.0f * t));
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 reflect(this float3 i, float3 n) => i - 2f * n * dot(i, n);
+    public static float3 reflect([This] float3 i, float3 n) => i - 2f * n * dot(i, n);
 
     [MethodImpl(256 | 512)]
-    public static float3 project(this float3 a, float3 onto) =>
+    public static float3 project([This] float3 a, float3 onto) =>
         (float)(dot(a, onto) / dot(onto, onto)) * onto;
 
     [MethodImpl(256 | 512)]
-    public static float3 projectOnPlane(this float3 a, float3 plane_normal) => 
+    public static float3 projectOnPlane([This] float3 a, float3 plane_normal) => 
         a - project(a, plane_normal);
 
     [MethodImpl(256 | 512)]
-    public static float3 projectNormalized(this float3 a, float3 onto) =>
+    public static float3 projectNormalized([This] float3 a, float3 onto) =>
         (float)(dot(a, onto)) * onto;
 
     [MethodImpl(256 | 512)]
-    public static float3 projectOnPlaneNormalized(this float3 a, float3 plane_normal) => 
+    public static float3 projectOnPlaneNormalized([This] float3 a, float3 plane_normal) => 
         a - projectNormalized(a, plane_normal);
 
     [MethodImpl(256 | 512)]
-    public static float3 radians(this float3 a) => a * float3.DegToRad;
+    public static float3 radians([This] float3 a) => a * float3.DegToRad;
 
     [MethodImpl(256 | 512)]
-    public static float3 degrees(this float3 a) => a * float3.RadToDeg;
+    public static float3 degrees([This] float3 a) => a * float3.RadToDeg;
 
     [MethodImpl(256 | 512)]
-    public static float3 wrap(this float3 x, float3 min, float3 max)
+    public static float3 wrap([This] float3 x, float3 min, float3 max)
     {
         var range = max - min;
         return min + ((x - min) % range + range) % range;
@@ -464,136 +426,117 @@ public partial struct float4
     }
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static float4 mod(this float4 a, float4 b)
+    public static float4 mod([This] float4 a, float4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Mod(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Mod(a.vector, b.vector));
         return new(a.x.mod(b.x), a.y.mod(b.y), a.z.mod(b.z), a.w.mod(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 ceil(this float4 a)
+    public static float4 ceil([This] float4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Ceiling(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Ceiling(a.vector));
         return new(a.x.ceil(), a.y.ceil(), a.z.ceil(), a.w.ceil());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 floor(this float4 a)
+    public static float4 floor([This] float4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Floor(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Floor(a.vector));
         return new(a.x.floor(), a.y.floor(), a.z.floor(), a.w.floor());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 round(this float4 a)
+    public static float4 round([This] float4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Round(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Round(a.vector));
         return new(a.x.round(), a.y.round(), a.z.round(), a.w.round());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 trunc(this float4 a)
+    public static float4 trunc([This] float4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.RoundToZero(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.RoundToZero(a.vector));
         return new(a.x.trunc(), a.y.trunc(), a.z.trunc(), a.w.trunc());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 frac(this float4 a)
+    public static float4 frac([This] float4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector - Vector128.Floor(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector - Vector128.Floor(a.vector));
         return new(a.x.frac(), a.y.frac(), a.z.frac(), a.w.frac());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 modf(this float4 a, out float4 i)
+    public static float4 modf([This] float4 a, out float4 i)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd.ModF(a.vector, out var iv);
-        i = new(iv);
-        return new(r);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.ModF(a.vector, out i.vector));
         float4 r = new(a.x.modf(out var i0), a.y.modf(out var i1), a.z.modf(out var i2), a.w.modf(out var i3));
         i = new(i0, i1, i2, i3);
         return r;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 rcp(this float4 a)
+    public static float4 rcp([This] float4 a)
     {
-        #if NET8_0_OR_GREATER
-        return float4.One / a;
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return float4.One / a;
         return new(a.x.rcp(), a.y.rcp(), a.z.rcp(), a.w.rcp());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 saturate(this float4 a)
+    public static float4 saturate([This] float4 a)
     {
-        #if NET8_0_OR_GREATER
-        return a.clamp(default, float4.One);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return a.clamp(default, float4.One);
         return new(a.x.saturate(), a.y.saturate(), a.z.saturate(), a.w.saturate());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 smoothstep(this float4 a, float4 min, float4 max)
+    public static float4 smoothstep(float4 min, float4 max, [This] float4 a)
     {
         var t = saturate((a - min) / (max - min));
         return t * t * (3.0f - (2.0f * t));
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 reflect(this float4 i, float4 n) => i - 2f * n * dot(i, n);
+    public static float4 reflect([This] float4 i, float4 n) => i - 2f * n * dot(i, n);
 
     [MethodImpl(256 | 512)]
-    public static float4 project(this float4 a, float4 onto) =>
+    public static float4 project([This] float4 a, float4 onto) =>
         (float)(dot(a, onto) / dot(onto, onto)) * onto;
 
     [MethodImpl(256 | 512)]
-    public static float4 projectOnPlane(this float4 a, float4 plane_normal) => 
+    public static float4 projectOnPlane([This] float4 a, float4 plane_normal) => 
         a - project(a, plane_normal);
 
     [MethodImpl(256 | 512)]
-    public static float4 projectNormalized(this float4 a, float4 onto) =>
+    public static float4 projectNormalized([This] float4 a, float4 onto) =>
         (float)(dot(a, onto)) * onto;
 
     [MethodImpl(256 | 512)]
-    public static float4 projectOnPlaneNormalized(this float4 a, float4 plane_normal) => 
+    public static float4 projectOnPlaneNormalized([This] float4 a, float4 plane_normal) => 
         a - projectNormalized(a, plane_normal);
 
     [MethodImpl(256 | 512)]
-    public static float4 radians(this float4 a) => a * float4.DegToRad;
+    public static float4 radians([This] float4 a) => a * float4.DegToRad;
 
     [MethodImpl(256 | 512)]
-    public static float4 degrees(this float4 a) => a * float4.RadToDeg;
+    public static float4 degrees([This] float4 a) => a * float4.RadToDeg;
 
     [MethodImpl(256 | 512)]
-    public static float4 wrap(this float4 x, float4 min, float4 max)
+    public static float4 wrap([This] float4 x, float4 min, float4 max)
     {
         var range = max - min;
         return min + ((x - min) % range + range) % range;
@@ -664,136 +607,117 @@ public partial struct double2
     }
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double2 mod(this double2 a, double2 b)
+    public static double2 mod([This] double2 a, double2 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Mod(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Mod(a.vector, b.vector));
         return new(a.x.mod(b.x), a.y.mod(b.y));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 ceil(this double2 a)
+    public static double2 ceil([This] double2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Ceiling(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Ceiling(a.vector));
         return new(a.x.ceil(), a.y.ceil());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 floor(this double2 a)
+    public static double2 floor([This] double2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector128.Floor(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(Vector128.Floor(a.vector));
         return new(a.x.floor(), a.y.floor());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 round(this double2 a)
+    public static double2 round([This] double2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Round(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.Round(a.vector));
         return new(a.x.round(), a.y.round());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 trunc(this double2 a)
+    public static double2 trunc([This] double2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.RoundToZero(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.RoundToZero(a.vector));
         return new(a.x.trunc(), a.y.trunc());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 frac(this double2 a)
+    public static double2 frac([This] double2 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector - Vector128.Floor(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(a.vector - Vector128.Floor(a.vector));
         return new(a.x.frac(), a.y.frac());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 modf(this double2 a, out double2 i)
+    public static double2 modf([This] double2 a, out double2 i)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd.ModF(a.vector, out var iv);
-        i = new(iv);
-        return new(r);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.ModF(a.vector, out i.vector));
         double2 r = new(a.x.modf(out var i0), a.y.modf(out var i1));
         i = new(i0, i1);
         return r;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 rcp(this double2 a)
+    public static double2 rcp([This] double2 a)
     {
-        #if NET8_0_OR_GREATER
-        return double2.One / a;
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return double2.One / a;
         return new(a.x.rcp(), a.y.rcp());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 saturate(this double2 a)
+    public static double2 saturate([This] double2 a)
     {
-        #if NET8_0_OR_GREATER
-        return a.clamp(default, double2.One);
-        #else // NET8_0_OR_GREATER
+        if (Vector128.IsHardwareAccelerated)
+            return a.clamp(default, double2.One);
         return new(a.x.saturate(), a.y.saturate());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 smoothstep(this double2 a, double2 min, double2 max)
+    public static double2 smoothstep(double2 min, double2 max, [This] double2 a)
     {
         var t = saturate((a - min) / (max - min));
         return t * t * (3.0 - (2.0 * t));
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 reflect(this double2 i, double2 n) => i - 2 * n * dot(i, n);
+    public static double2 reflect([This] double2 i, double2 n) => i - 2 * n * dot(i, n);
 
     [MethodImpl(256 | 512)]
-    public static double2 project(this double2 a, double2 onto) =>
+    public static double2 project([This] double2 a, double2 onto) =>
         (double)(dot(a, onto) / dot(onto, onto)) * onto;
 
     [MethodImpl(256 | 512)]
-    public static double2 projectOnPlane(this double2 a, double2 plane_normal) => 
+    public static double2 projectOnPlane([This] double2 a, double2 plane_normal) => 
         a - project(a, plane_normal);
 
     [MethodImpl(256 | 512)]
-    public static double2 projectNormalized(this double2 a, double2 onto) =>
+    public static double2 projectNormalized([This] double2 a, double2 onto) =>
         (double)(dot(a, onto)) * onto;
 
     [MethodImpl(256 | 512)]
-    public static double2 projectOnPlaneNormalized(this double2 a, double2 plane_normal) => 
+    public static double2 projectOnPlaneNormalized([This] double2 a, double2 plane_normal) => 
         a - projectNormalized(a, plane_normal);
 
     [MethodImpl(256 | 512)]
-    public static double2 radians(this double2 a) => a * double2.DegToRad;
+    public static double2 radians([This] double2 a) => a * double2.DegToRad;
 
     [MethodImpl(256 | 512)]
-    public static double2 degrees(this double2 a) => a * double2.RadToDeg;
+    public static double2 degrees([This] double2 a) => a * double2.RadToDeg;
 
     [MethodImpl(256 | 512)]
-    public static double2 wrap(this double2 x, double2 min, double2 max)
+    public static double2 wrap([This] double2 x, double2 min, double2 max)
     {
         var range = max - min;
         return min + ((x - min) % range + range) % range;
@@ -864,136 +788,117 @@ public partial struct double3
     }
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double3 mod(this double3 a, double3 b)
+    public static double3 mod([This] double3 a, double3 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Mod(a.vector, b.vector) & Vector256.Create(-1, -1, -1, 0).AsDouble());
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Mod(a.vector, b.vector) & Vector256.Create(-1, -1, -1, 0).AsDouble());
         return new(a.x.mod(b.x), a.y.mod(b.y), a.z.mod(b.z));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 ceil(this double3 a)
+    public static double3 ceil([This] double3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.Ceiling(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.Ceiling(a.vector));
         return new(a.x.ceil(), a.y.ceil(), a.z.ceil());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 floor(this double3 a)
+    public static double3 floor([This] double3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.Floor(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.Floor(a.vector));
         return new(a.x.floor(), a.y.floor(), a.z.floor());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 round(this double3 a)
+    public static double3 round([This] double3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Round(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Round(a.vector));
         return new(a.x.round(), a.y.round(), a.z.round());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 trunc(this double3 a)
+    public static double3 trunc([This] double3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.RoundToZero(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.RoundToZero(a.vector));
         return new(a.x.trunc(), a.y.trunc(), a.z.trunc());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 frac(this double3 a)
+    public static double3 frac([This] double3 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector - Vector256.Floor(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector - Vector256.Floor(a.vector));
         return new(a.x.frac(), a.y.frac(), a.z.frac());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 modf(this double3 a, out double3 i)
+    public static double3 modf([This] double3 a, out double3 i)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd.ModF(a.vector, out var iv);
-        i = new(iv);
-        return new(r);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.ModF(a.vector, out i.vector));
         double3 r = new(a.x.modf(out var i0), a.y.modf(out var i1), a.z.modf(out var i2));
         i = new(i0, i1, i2);
         return r;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 rcp(this double3 a)
+    public static double3 rcp([This] double3 a)
     {
-        #if NET8_0_OR_GREATER
-        return double3.One / a;
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return double3.One / a;
         return new(a.x.rcp(), a.y.rcp(), a.z.rcp());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 saturate(this double3 a)
+    public static double3 saturate([This] double3 a)
     {
-        #if NET8_0_OR_GREATER
-        return a.clamp(default, double3.One);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return a.clamp(default, double3.One);
         return new(a.x.saturate(), a.y.saturate(), a.z.saturate());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 smoothstep(this double3 a, double3 min, double3 max)
+    public static double3 smoothstep(double3 min, double3 max, [This] double3 a)
     {
         var t = saturate((a - min) / (max - min));
         return t * t * (3.0 - (2.0 * t));
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 reflect(this double3 i, double3 n) => i - 2 * n * dot(i, n);
+    public static double3 reflect([This] double3 i, double3 n) => i - 2 * n * dot(i, n);
 
     [MethodImpl(256 | 512)]
-    public static double3 project(this double3 a, double3 onto) =>
+    public static double3 project([This] double3 a, double3 onto) =>
         (double)(dot(a, onto) / dot(onto, onto)) * onto;
 
     [MethodImpl(256 | 512)]
-    public static double3 projectOnPlane(this double3 a, double3 plane_normal) => 
+    public static double3 projectOnPlane([This] double3 a, double3 plane_normal) => 
         a - project(a, plane_normal);
 
     [MethodImpl(256 | 512)]
-    public static double3 projectNormalized(this double3 a, double3 onto) =>
+    public static double3 projectNormalized([This] double3 a, double3 onto) =>
         (double)(dot(a, onto)) * onto;
 
     [MethodImpl(256 | 512)]
-    public static double3 projectOnPlaneNormalized(this double3 a, double3 plane_normal) => 
+    public static double3 projectOnPlaneNormalized([This] double3 a, double3 plane_normal) => 
         a - projectNormalized(a, plane_normal);
 
     [MethodImpl(256 | 512)]
-    public static double3 radians(this double3 a) => a * double3.DegToRad;
+    public static double3 radians([This] double3 a) => a * double3.DegToRad;
 
     [MethodImpl(256 | 512)]
-    public static double3 degrees(this double3 a) => a * double3.RadToDeg;
+    public static double3 degrees([This] double3 a) => a * double3.RadToDeg;
 
     [MethodImpl(256 | 512)]
-    public static double3 wrap(this double3 x, double3 min, double3 max)
+    public static double3 wrap([This] double3 x, double3 min, double3 max)
     {
         var range = max - min;
         return min + ((x - min) % range + range) % range;
@@ -1064,136 +969,117 @@ public partial struct double4
     }
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static double4 mod(this double4 a, double4 b)
+    public static double4 mod([This] double4 a, double4 b)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Mod(a.vector, b.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Mod(a.vector, b.vector));
         return new(a.x.mod(b.x), a.y.mod(b.y), a.z.mod(b.z), a.w.mod(b.w));
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 ceil(this double4 a)
+    public static double4 ceil([This] double4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.Ceiling(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.Ceiling(a.vector));
         return new(a.x.ceil(), a.y.ceil(), a.z.ceil(), a.w.ceil());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 floor(this double4 a)
+    public static double4 floor([This] double4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(Vector256.Floor(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(Vector256.Floor(a.vector));
         return new(a.x.floor(), a.y.floor(), a.z.floor(), a.w.floor());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 round(this double4 a)
+    public static double4 round([This] double4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.Round(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.Round(a.vector));
         return new(a.x.round(), a.y.round(), a.z.round(), a.w.round());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 trunc(this double4 a)
+    public static double4 trunc([This] double4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(simd.RoundToZero(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.RoundToZero(a.vector));
         return new(a.x.trunc(), a.y.trunc(), a.z.trunc(), a.w.trunc());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 frac(this double4 a)
+    public static double4 frac([This] double4 a)
     {
-        #if NET8_0_OR_GREATER
-        return new(a.vector - Vector256.Floor(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(a.vector - Vector256.Floor(a.vector));
         return new(a.x.frac(), a.y.frac(), a.z.frac(), a.w.frac());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 modf(this double4 a, out double4 i)
+    public static double4 modf([This] double4 a, out double4 i)
     {
-        #if NET8_0_OR_GREATER
-        var r = simd.ModF(a.vector, out var iv);
-        i = new(iv);
-        return new(r);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.ModF(a.vector, out i.vector));
         double4 r = new(a.x.modf(out var i0), a.y.modf(out var i1), a.z.modf(out var i2), a.w.modf(out var i3));
         i = new(i0, i1, i2, i3);
         return r;
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 rcp(this double4 a)
+    public static double4 rcp([This] double4 a)
     {
-        #if NET8_0_OR_GREATER
-        return double4.One / a;
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return double4.One / a;
         return new(a.x.rcp(), a.y.rcp(), a.z.rcp(), a.w.rcp());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 saturate(this double4 a)
+    public static double4 saturate([This] double4 a)
     {
-        #if NET8_0_OR_GREATER
-        return a.clamp(default, double4.One);
-        #else // NET8_0_OR_GREATER
+        if (Vector256.IsHardwareAccelerated)
+            return a.clamp(default, double4.One);
         return new(a.x.saturate(), a.y.saturate(), a.z.saturate(), a.w.saturate());
-        #endif // NET8_0_OR_GREATER
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 smoothstep(this double4 a, double4 min, double4 max)
+    public static double4 smoothstep(double4 min, double4 max, [This] double4 a)
     {
         var t = saturate((a - min) / (max - min));
         return t * t * (3.0 - (2.0 * t));
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 reflect(this double4 i, double4 n) => i - 2 * n * dot(i, n);
+    public static double4 reflect([This] double4 i, double4 n) => i - 2 * n * dot(i, n);
 
     [MethodImpl(256 | 512)]
-    public static double4 project(this double4 a, double4 onto) =>
+    public static double4 project([This] double4 a, double4 onto) =>
         (double)(dot(a, onto) / dot(onto, onto)) * onto;
 
     [MethodImpl(256 | 512)]
-    public static double4 projectOnPlane(this double4 a, double4 plane_normal) => 
+    public static double4 projectOnPlane([This] double4 a, double4 plane_normal) => 
         a - project(a, plane_normal);
 
     [MethodImpl(256 | 512)]
-    public static double4 projectNormalized(this double4 a, double4 onto) =>
+    public static double4 projectNormalized([This] double4 a, double4 onto) =>
         (double)(dot(a, onto)) * onto;
 
     [MethodImpl(256 | 512)]
-    public static double4 projectOnPlaneNormalized(this double4 a, double4 plane_normal) => 
+    public static double4 projectOnPlaneNormalized([This] double4 a, double4 plane_normal) => 
         a - projectNormalized(a, plane_normal);
 
     [MethodImpl(256 | 512)]
-    public static double4 radians(this double4 a) => a * double4.DegToRad;
+    public static double4 radians([This] double4 a) => a * double4.DegToRad;
 
     [MethodImpl(256 | 512)]
-    public static double4 degrees(this double4 a) => a * double4.RadToDeg;
+    public static double4 degrees([This] double4 a) => a * double4.RadToDeg;
 
     [MethodImpl(256 | 512)]
-    public static double4 wrap(this double4 x, double4 min, double4 max)
+    public static double4 wrap([This] double4 x, double4 min, double4 max)
     {
         var range = max - min;
         return min + ((x - min) % range + range) % range;
@@ -1264,46 +1150,47 @@ public partial struct decimal2
     }
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static decimal2 mod(this decimal2 a, decimal2 b)
+    public static decimal2 mod([This] decimal2 a, decimal2 b)
     {
         return new(a.x.mod(b.x), a.y.mod(b.y));
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal2 ceil(this decimal2 a)
+    public static decimal2 ceil([This] decimal2 a)
     {
         return new(a.x.ceil(), a.y.ceil());
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal2 floor(this decimal2 a)
+    public static decimal2 floor([This] decimal2 a)
     {
         return new(a.x.floor(), a.y.floor());
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal2 round(this decimal2 a)
+    public static decimal2 round([This] decimal2 a)
     {
         return new(a.x.round(), a.y.round());
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal2 trunc(this decimal2 a)
+    public static decimal2 trunc([This] decimal2 a)
     {
         return new(a.x.trunc(), a.y.trunc());
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal2 frac(this decimal2 a)
+    public static decimal2 frac([This] decimal2 a)
     {
         return new(a.x.frac(), a.y.frac());
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal2 modf(this decimal2 a, out decimal2 i)
+    public static decimal2 modf([This] decimal2 a, out decimal2 i)
     {
         decimal2 r = new(a.x.modf(out var i0), a.y.modf(out var i1));
         i = new(i0, i1);
@@ -1311,51 +1198,51 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal2 rcp(this decimal2 a)
+    public static decimal2 rcp([This] decimal2 a)
     {
         return new(a.x.rcp(), a.y.rcp());
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal2 saturate(this decimal2 a)
+    public static decimal2 saturate([This] decimal2 a)
     {
         return new(a.x.saturate(), a.y.saturate());
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal2 smoothstep(this decimal2 a, decimal2 min, decimal2 max)
+    public static decimal2 smoothstep(decimal2 min, decimal2 max, [This] decimal2 a)
     {
         var t = saturate((a - min) / (max - min));
         return t * t * (3.0m - (2.0m * t));
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal2 reflect(this decimal2 i, decimal2 n) => i - 2m * n * dot(i, n);
+    public static decimal2 reflect([This] decimal2 i, decimal2 n) => i - 2m * n * dot(i, n);
 
     [MethodImpl(256 | 512)]
-    public static decimal2 project(this decimal2 a, decimal2 onto) =>
+    public static decimal2 project([This] decimal2 a, decimal2 onto) =>
         (decimal)(dot(a, onto) / dot(onto, onto)) * onto;
 
     [MethodImpl(256 | 512)]
-    public static decimal2 projectOnPlane(this decimal2 a, decimal2 plane_normal) => 
+    public static decimal2 projectOnPlane([This] decimal2 a, decimal2 plane_normal) => 
         a - project(a, plane_normal);
 
     [MethodImpl(256 | 512)]
-    public static decimal2 projectNormalized(this decimal2 a, decimal2 onto) =>
+    public static decimal2 projectNormalized([This] decimal2 a, decimal2 onto) =>
         (decimal)(dot(a, onto)) * onto;
 
     [MethodImpl(256 | 512)]
-    public static decimal2 projectOnPlaneNormalized(this decimal2 a, decimal2 plane_normal) => 
+    public static decimal2 projectOnPlaneNormalized([This] decimal2 a, decimal2 plane_normal) => 
         a - projectNormalized(a, plane_normal);
 
     [MethodImpl(256 | 512)]
-    public static decimal2 radians(this decimal2 a) => a * decimal2.DegToRad;
+    public static decimal2 radians([This] decimal2 a) => a * decimal2.DegToRad;
 
     [MethodImpl(256 | 512)]
-    public static decimal2 degrees(this decimal2 a) => a * decimal2.RadToDeg;
+    public static decimal2 degrees([This] decimal2 a) => a * decimal2.RadToDeg;
 
     [MethodImpl(256 | 512)]
-    public static decimal2 wrap(this decimal2 x, decimal2 min, decimal2 max)
+    public static decimal2 wrap([This] decimal2 x, decimal2 min, decimal2 max)
     {
         var range = max - min;
         return min + ((x - min) % range + range) % range;
@@ -1426,46 +1313,47 @@ public partial struct decimal3
     }
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static decimal3 mod(this decimal3 a, decimal3 b)
+    public static decimal3 mod([This] decimal3 a, decimal3 b)
     {
         return new(a.x.mod(b.x), a.y.mod(b.y), a.z.mod(b.z));
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal3 ceil(this decimal3 a)
+    public static decimal3 ceil([This] decimal3 a)
     {
         return new(a.x.ceil(), a.y.ceil(), a.z.ceil());
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal3 floor(this decimal3 a)
+    public static decimal3 floor([This] decimal3 a)
     {
         return new(a.x.floor(), a.y.floor(), a.z.floor());
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal3 round(this decimal3 a)
+    public static decimal3 round([This] decimal3 a)
     {
         return new(a.x.round(), a.y.round(), a.z.round());
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal3 trunc(this decimal3 a)
+    public static decimal3 trunc([This] decimal3 a)
     {
         return new(a.x.trunc(), a.y.trunc(), a.z.trunc());
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal3 frac(this decimal3 a)
+    public static decimal3 frac([This] decimal3 a)
     {
         return new(a.x.frac(), a.y.frac(), a.z.frac());
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal3 modf(this decimal3 a, out decimal3 i)
+    public static decimal3 modf([This] decimal3 a, out decimal3 i)
     {
         decimal3 r = new(a.x.modf(out var i0), a.y.modf(out var i1), a.z.modf(out var i2));
         i = new(i0, i1, i2);
@@ -1473,51 +1361,51 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal3 rcp(this decimal3 a)
+    public static decimal3 rcp([This] decimal3 a)
     {
         return new(a.x.rcp(), a.y.rcp(), a.z.rcp());
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal3 saturate(this decimal3 a)
+    public static decimal3 saturate([This] decimal3 a)
     {
         return new(a.x.saturate(), a.y.saturate(), a.z.saturate());
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal3 smoothstep(this decimal3 a, decimal3 min, decimal3 max)
+    public static decimal3 smoothstep(decimal3 min, decimal3 max, [This] decimal3 a)
     {
         var t = saturate((a - min) / (max - min));
         return t * t * (3.0m - (2.0m * t));
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal3 reflect(this decimal3 i, decimal3 n) => i - 2m * n * dot(i, n);
+    public static decimal3 reflect([This] decimal3 i, decimal3 n) => i - 2m * n * dot(i, n);
 
     [MethodImpl(256 | 512)]
-    public static decimal3 project(this decimal3 a, decimal3 onto) =>
+    public static decimal3 project([This] decimal3 a, decimal3 onto) =>
         (decimal)(dot(a, onto) / dot(onto, onto)) * onto;
 
     [MethodImpl(256 | 512)]
-    public static decimal3 projectOnPlane(this decimal3 a, decimal3 plane_normal) => 
+    public static decimal3 projectOnPlane([This] decimal3 a, decimal3 plane_normal) => 
         a - project(a, plane_normal);
 
     [MethodImpl(256 | 512)]
-    public static decimal3 projectNormalized(this decimal3 a, decimal3 onto) =>
+    public static decimal3 projectNormalized([This] decimal3 a, decimal3 onto) =>
         (decimal)(dot(a, onto)) * onto;
 
     [MethodImpl(256 | 512)]
-    public static decimal3 projectOnPlaneNormalized(this decimal3 a, decimal3 plane_normal) => 
+    public static decimal3 projectOnPlaneNormalized([This] decimal3 a, decimal3 plane_normal) => 
         a - projectNormalized(a, plane_normal);
 
     [MethodImpl(256 | 512)]
-    public static decimal3 radians(this decimal3 a) => a * decimal3.DegToRad;
+    public static decimal3 radians([This] decimal3 a) => a * decimal3.DegToRad;
 
     [MethodImpl(256 | 512)]
-    public static decimal3 degrees(this decimal3 a) => a * decimal3.RadToDeg;
+    public static decimal3 degrees([This] decimal3 a) => a * decimal3.RadToDeg;
 
     [MethodImpl(256 | 512)]
-    public static decimal3 wrap(this decimal3 x, decimal3 min, decimal3 max)
+    public static decimal3 wrap([This] decimal3 x, decimal3 min, decimal3 max)
     {
         var range = max - min;
         return min + ((x - min) % range + range) % range;
@@ -1588,46 +1476,47 @@ public partial struct decimal4
     }
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static decimal4 mod(this decimal4 a, decimal4 b)
+    public static decimal4 mod([This] decimal4 a, decimal4 b)
     {
         return new(a.x.mod(b.x), a.y.mod(b.y), a.z.mod(b.z), a.w.mod(b.w));
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal4 ceil(this decimal4 a)
+    public static decimal4 ceil([This] decimal4 a)
     {
         return new(a.x.ceil(), a.y.ceil(), a.z.ceil(), a.w.ceil());
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal4 floor(this decimal4 a)
+    public static decimal4 floor([This] decimal4 a)
     {
         return new(a.x.floor(), a.y.floor(), a.z.floor(), a.w.floor());
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal4 round(this decimal4 a)
+    public static decimal4 round([This] decimal4 a)
     {
         return new(a.x.round(), a.y.round(), a.z.round(), a.w.round());
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal4 trunc(this decimal4 a)
+    public static decimal4 trunc([This] decimal4 a)
     {
         return new(a.x.trunc(), a.y.trunc(), a.z.trunc(), a.w.trunc());
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal4 frac(this decimal4 a)
+    public static decimal4 frac([This] decimal4 a)
     {
         return new(a.x.frac(), a.y.frac(), a.z.frac(), a.w.frac());
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal4 modf(this decimal4 a, out decimal4 i)
+    public static decimal4 modf([This] decimal4 a, out decimal4 i)
     {
         decimal4 r = new(a.x.modf(out var i0), a.y.modf(out var i1), a.z.modf(out var i2), a.w.modf(out var i3));
         i = new(i0, i1, i2, i3);
@@ -1635,51 +1524,51 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal4 rcp(this decimal4 a)
+    public static decimal4 rcp([This] decimal4 a)
     {
         return new(a.x.rcp(), a.y.rcp(), a.z.rcp(), a.w.rcp());
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal4 saturate(this decimal4 a)
+    public static decimal4 saturate([This] decimal4 a)
     {
         return new(a.x.saturate(), a.y.saturate(), a.z.saturate(), a.w.saturate());
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal4 smoothstep(this decimal4 a, decimal4 min, decimal4 max)
+    public static decimal4 smoothstep(decimal4 min, decimal4 max, [This] decimal4 a)
     {
         var t = saturate((a - min) / (max - min));
         return t * t * (3.0m - (2.0m * t));
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal4 reflect(this decimal4 i, decimal4 n) => i - 2m * n * dot(i, n);
+    public static decimal4 reflect([This] decimal4 i, decimal4 n) => i - 2m * n * dot(i, n);
 
     [MethodImpl(256 | 512)]
-    public static decimal4 project(this decimal4 a, decimal4 onto) =>
+    public static decimal4 project([This] decimal4 a, decimal4 onto) =>
         (decimal)(dot(a, onto) / dot(onto, onto)) * onto;
 
     [MethodImpl(256 | 512)]
-    public static decimal4 projectOnPlane(this decimal4 a, decimal4 plane_normal) => 
+    public static decimal4 projectOnPlane([This] decimal4 a, decimal4 plane_normal) => 
         a - project(a, plane_normal);
 
     [MethodImpl(256 | 512)]
-    public static decimal4 projectNormalized(this decimal4 a, decimal4 onto) =>
+    public static decimal4 projectNormalized([This] decimal4 a, decimal4 onto) =>
         (decimal)(dot(a, onto)) * onto;
 
     [MethodImpl(256 | 512)]
-    public static decimal4 projectOnPlaneNormalized(this decimal4 a, decimal4 plane_normal) => 
+    public static decimal4 projectOnPlaneNormalized([This] decimal4 a, decimal4 plane_normal) => 
         a - projectNormalized(a, plane_normal);
 
     [MethodImpl(256 | 512)]
-    public static decimal4 radians(this decimal4 a) => a * decimal4.DegToRad;
+    public static decimal4 radians([This] decimal4 a) => a * decimal4.DegToRad;
 
     [MethodImpl(256 | 512)]
-    public static decimal4 degrees(this decimal4 a) => a * decimal4.RadToDeg;
+    public static decimal4 degrees([This] decimal4 a) => a * decimal4.RadToDeg;
 
     [MethodImpl(256 | 512)]
-    public static decimal4 wrap(this decimal4 x, decimal4 min, decimal4 max)
+    public static decimal4 wrap([This] decimal4 x, decimal4 min, decimal4 max)
     {
         var range = max - min;
         return min + ((x - min) % range + range) % range;
@@ -1750,46 +1639,47 @@ public partial struct half2
     }
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half2 mod(this half2 a, half2 b)
+    public static half2 mod([This] half2 a, half2 b)
     {
         return new(a.x.mod(b.x), a.y.mod(b.y));
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 ceil(this half2 a)
+    public static half2 ceil([This] half2 a)
     {
         return new(a.x.ceil(), a.y.ceil());
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 floor(this half2 a)
+    public static half2 floor([This] half2 a)
     {
         return new(a.x.floor(), a.y.floor());
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 round(this half2 a)
+    public static half2 round([This] half2 a)
     {
         return new(a.x.round(), a.y.round());
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 trunc(this half2 a)
+    public static half2 trunc([This] half2 a)
     {
         return new(a.x.trunc(), a.y.trunc());
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 frac(this half2 a)
+    public static half2 frac([This] half2 a)
     {
         return new(a.x.frac(), a.y.frac());
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 modf(this half2 a, out half2 i)
+    public static half2 modf([This] half2 a, out half2 i)
     {
         half2 r = new(a.x.modf(out var i0), a.y.modf(out var i1));
         i = new(i0, i1);
@@ -1797,51 +1687,51 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 rcp(this half2 a)
+    public static half2 rcp([This] half2 a)
     {
         return new(a.x.rcp(), a.y.rcp());
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 saturate(this half2 a)
+    public static half2 saturate([This] half2 a)
     {
         return new(a.x.saturate(), a.y.saturate());
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 smoothstep(this half2 a, half2 min, half2 max)
+    public static half2 smoothstep(half2 min, half2 max, [This] half2 a)
     {
         var t = saturate((a - min) / (max - min));
         return t * t * (3.0f.half() - (2.0f.half() * t));
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 reflect(this half2 i, half2 n) => i - 2f.half() * n * dot(i, n);
+    public static half2 reflect([This] half2 i, half2 n) => i - 2f.half() * n * dot(i, n);
 
     [MethodImpl(256 | 512)]
-    public static half2 project(this half2 a, half2 onto) =>
+    public static half2 project([This] half2 a, half2 onto) =>
         (half)(dot(a, onto) / dot(onto, onto)) * onto;
 
     [MethodImpl(256 | 512)]
-    public static half2 projectOnPlane(this half2 a, half2 plane_normal) => 
+    public static half2 projectOnPlane([This] half2 a, half2 plane_normal) => 
         a - project(a, plane_normal);
 
     [MethodImpl(256 | 512)]
-    public static half2 projectNormalized(this half2 a, half2 onto) =>
+    public static half2 projectNormalized([This] half2 a, half2 onto) =>
         (half)(dot(a, onto)) * onto;
 
     [MethodImpl(256 | 512)]
-    public static half2 projectOnPlaneNormalized(this half2 a, half2 plane_normal) => 
+    public static half2 projectOnPlaneNormalized([This] half2 a, half2 plane_normal) => 
         a - projectNormalized(a, plane_normal);
 
     [MethodImpl(256 | 512)]
-    public static half2 radians(this half2 a) => a * half2.DegToRad;
+    public static half2 radians([This] half2 a) => a * half2.DegToRad;
 
     [MethodImpl(256 | 512)]
-    public static half2 degrees(this half2 a) => a * half2.RadToDeg;
+    public static half2 degrees([This] half2 a) => a * half2.RadToDeg;
 
     [MethodImpl(256 | 512)]
-    public static half2 wrap(this half2 x, half2 min, half2 max)
+    public static half2 wrap([This] half2 x, half2 min, half2 max)
     {
         var range = max - min;
         return min + ((x - min) % range + range) % range;
@@ -1912,46 +1802,47 @@ public partial struct half3
     }
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half3 mod(this half3 a, half3 b)
+    public static half3 mod([This] half3 a, half3 b)
     {
         return new(a.x.mod(b.x), a.y.mod(b.y), a.z.mod(b.z));
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 ceil(this half3 a)
+    public static half3 ceil([This] half3 a)
     {
         return new(a.x.ceil(), a.y.ceil(), a.z.ceil());
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 floor(this half3 a)
+    public static half3 floor([This] half3 a)
     {
         return new(a.x.floor(), a.y.floor(), a.z.floor());
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 round(this half3 a)
+    public static half3 round([This] half3 a)
     {
         return new(a.x.round(), a.y.round(), a.z.round());
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 trunc(this half3 a)
+    public static half3 trunc([This] half3 a)
     {
         return new(a.x.trunc(), a.y.trunc(), a.z.trunc());
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 frac(this half3 a)
+    public static half3 frac([This] half3 a)
     {
         return new(a.x.frac(), a.y.frac(), a.z.frac());
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 modf(this half3 a, out half3 i)
+    public static half3 modf([This] half3 a, out half3 i)
     {
         half3 r = new(a.x.modf(out var i0), a.y.modf(out var i1), a.z.modf(out var i2));
         i = new(i0, i1, i2);
@@ -1959,51 +1850,51 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 rcp(this half3 a)
+    public static half3 rcp([This] half3 a)
     {
         return new(a.x.rcp(), a.y.rcp(), a.z.rcp());
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 saturate(this half3 a)
+    public static half3 saturate([This] half3 a)
     {
         return new(a.x.saturate(), a.y.saturate(), a.z.saturate());
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 smoothstep(this half3 a, half3 min, half3 max)
+    public static half3 smoothstep(half3 min, half3 max, [This] half3 a)
     {
         var t = saturate((a - min) / (max - min));
         return t * t * (3.0f.half() - (2.0f.half() * t));
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 reflect(this half3 i, half3 n) => i - 2f.half() * n * dot(i, n);
+    public static half3 reflect([This] half3 i, half3 n) => i - 2f.half() * n * dot(i, n);
 
     [MethodImpl(256 | 512)]
-    public static half3 project(this half3 a, half3 onto) =>
+    public static half3 project([This] half3 a, half3 onto) =>
         (half)(dot(a, onto) / dot(onto, onto)) * onto;
 
     [MethodImpl(256 | 512)]
-    public static half3 projectOnPlane(this half3 a, half3 plane_normal) => 
+    public static half3 projectOnPlane([This] half3 a, half3 plane_normal) => 
         a - project(a, plane_normal);
 
     [MethodImpl(256 | 512)]
-    public static half3 projectNormalized(this half3 a, half3 onto) =>
+    public static half3 projectNormalized([This] half3 a, half3 onto) =>
         (half)(dot(a, onto)) * onto;
 
     [MethodImpl(256 | 512)]
-    public static half3 projectOnPlaneNormalized(this half3 a, half3 plane_normal) => 
+    public static half3 projectOnPlaneNormalized([This] half3 a, half3 plane_normal) => 
         a - projectNormalized(a, plane_normal);
 
     [MethodImpl(256 | 512)]
-    public static half3 radians(this half3 a) => a * half3.DegToRad;
+    public static half3 radians([This] half3 a) => a * half3.DegToRad;
 
     [MethodImpl(256 | 512)]
-    public static half3 degrees(this half3 a) => a * half3.RadToDeg;
+    public static half3 degrees([This] half3 a) => a * half3.RadToDeg;
 
     [MethodImpl(256 | 512)]
-    public static half3 wrap(this half3 x, half3 min, half3 max)
+    public static half3 wrap([This] half3 x, half3 min, half3 max)
     {
         var range = max - min;
         return min + ((x - min) % range + range) % range;
@@ -2074,46 +1965,47 @@ public partial struct half4
     }
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static half4 mod(this half4 a, half4 b)
+    public static half4 mod([This] half4 a, half4 b)
     {
         return new(a.x.mod(b.x), a.y.mod(b.y), a.z.mod(b.z), a.w.mod(b.w));
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 ceil(this half4 a)
+    public static half4 ceil([This] half4 a)
     {
         return new(a.x.ceil(), a.y.ceil(), a.z.ceil(), a.w.ceil());
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 floor(this half4 a)
+    public static half4 floor([This] half4 a)
     {
         return new(a.x.floor(), a.y.floor(), a.z.floor(), a.w.floor());
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 round(this half4 a)
+    public static half4 round([This] half4 a)
     {
         return new(a.x.round(), a.y.round(), a.z.round(), a.w.round());
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 trunc(this half4 a)
+    public static half4 trunc([This] half4 a)
     {
         return new(a.x.trunc(), a.y.trunc(), a.z.trunc(), a.w.trunc());
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 frac(this half4 a)
+    public static half4 frac([This] half4 a)
     {
         return new(a.x.frac(), a.y.frac(), a.z.frac(), a.w.frac());
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 modf(this half4 a, out half4 i)
+    public static half4 modf([This] half4 a, out half4 i)
     {
         half4 r = new(a.x.modf(out var i0), a.y.modf(out var i1), a.z.modf(out var i2), a.w.modf(out var i3));
         i = new(i0, i1, i2, i3);
@@ -2121,51 +2013,51 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 rcp(this half4 a)
+    public static half4 rcp([This] half4 a)
     {
         return new(a.x.rcp(), a.y.rcp(), a.z.rcp(), a.w.rcp());
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 saturate(this half4 a)
+    public static half4 saturate([This] half4 a)
     {
         return new(a.x.saturate(), a.y.saturate(), a.z.saturate(), a.w.saturate());
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 smoothstep(this half4 a, half4 min, half4 max)
+    public static half4 smoothstep(half4 min, half4 max, [This] half4 a)
     {
         var t = saturate((a - min) / (max - min));
         return t * t * (3.0f.half() - (2.0f.half() * t));
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 reflect(this half4 i, half4 n) => i - 2f.half() * n * dot(i, n);
+    public static half4 reflect([This] half4 i, half4 n) => i - 2f.half() * n * dot(i, n);
 
     [MethodImpl(256 | 512)]
-    public static half4 project(this half4 a, half4 onto) =>
+    public static half4 project([This] half4 a, half4 onto) =>
         (half)(dot(a, onto) / dot(onto, onto)) * onto;
 
     [MethodImpl(256 | 512)]
-    public static half4 projectOnPlane(this half4 a, half4 plane_normal) => 
+    public static half4 projectOnPlane([This] half4 a, half4 plane_normal) => 
         a - project(a, plane_normal);
 
     [MethodImpl(256 | 512)]
-    public static half4 projectNormalized(this half4 a, half4 onto) =>
+    public static half4 projectNormalized([This] half4 a, half4 onto) =>
         (half)(dot(a, onto)) * onto;
 
     [MethodImpl(256 | 512)]
-    public static half4 projectOnPlaneNormalized(this half4 a, half4 plane_normal) => 
+    public static half4 projectOnPlaneNormalized([This] half4 a, half4 plane_normal) => 
         a - projectNormalized(a, plane_normal);
 
     [MethodImpl(256 | 512)]
-    public static half4 radians(this half4 a) => a * half4.DegToRad;
+    public static half4 radians([This] half4 a) => a * half4.DegToRad;
 
     [MethodImpl(256 | 512)]
-    public static half4 degrees(this half4 a) => a * half4.RadToDeg;
+    public static half4 degrees([This] half4 a) => a * half4.RadToDeg;
 
     [MethodImpl(256 | 512)]
-    public static half4 wrap(this half4 x, half4 min, half4 max)
+    public static half4 wrap([This] half4 x, half4 min, half4 max)
     {
         var range = max - min;
         return min + ((x - min) % range + range) % range;

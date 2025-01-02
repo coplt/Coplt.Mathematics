@@ -81,267 +81,185 @@ public partial struct <#= typeName #>
     }
 }
 
+[Ex]
 public static partial class math
 {
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> mod(this <#= typeName #> a, <#= typeName #> b)
+    public static <#= typeName #> mod([This] <#= typeName #> a, <#= typeName #> b)
     {
 <#
             if (typ.simd)
             {
 #>
-        #if NET8_0_OR_GREATER
-        return new(simd.Mod(a.vector, b.vector)<#
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return new(simd.Mod(a.vector, b.vector)<#
                 if (i == 3 && typ.f)
                 {
 #> & Vector<#= bitSize #>.Create(-1, -1, -1, 0).As<#= typ.Type #>()<#
                 }
 #>);
-        #else // NET8_0_OR_GREATER
 <#
             }
 #>
         return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.mod(b.{Typ.xyzw[n]})")) #>);
-<#
-            if (typ.simd)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-            }
-#>
     }
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> ceil(this <#= typeName #> a)
+    public static <#= typeName #> ceil([This] <#= typeName #> a)
     {
 <#
             if (typ.simd)
             {
 #>
-        #if NET8_0_OR_GREATER
-        return new(Vector<#= bitSize #>.Ceiling(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return new(Vector<#= bitSize #>.Ceiling(a.vector));
 <#
             }
 #>
         return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.ceil()")) #>);
-<#
-            if (typ.simd)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-            }
-#>
     }
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> floor(this <#= typeName #> a)
+    public static <#= typeName #> floor([This] <#= typeName #> a)
     {
 <#
             if (typ.simd)
             {
 #>
-        #if NET8_0_OR_GREATER
-        return new(Vector<#= bitSize #>.Floor(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return new(Vector<#= bitSize #>.Floor(a.vector));
 <#
             }
 #>
         return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.floor()")) #>);
-<#
-            if (typ.simd)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-            }
-#>
     }
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> round(this <#= typeName #> a)
+    public static <#= typeName #> round([This] <#= typeName #> a)
     {
 <#
             if (typ.simd)
             {
 #>
-        #if NET8_0_OR_GREATER
-        return new(simd.Round(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return new(simd.Round(a.vector));
 <#
             }
 #>
         return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.round()")) #>);
-<#
-            if (typ.simd)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-            }
-#>
     }
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> trunc(this <#= typeName #> a)
+    public static <#= typeName #> trunc([This] <#= typeName #> a)
     {
 <#
             if (typ.simd)
             {
 #>
-        #if NET8_0_OR_GREATER
-        return new(simd.RoundToZero(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return new(simd.RoundToZero(a.vector));
 <#
             }
 #>
         return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.trunc()")) #>);
-<#
-            if (typ.simd)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-            }
-#>
     }
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> frac(this <#= typeName #> a)
+    public static <#= typeName #> frac([This] <#= typeName #> a)
     {
 <#
             if (typ.simd)
             {
 #>
-        #if NET8_0_OR_GREATER
-        return new(a.vector - Vector<#= bitSize #>.Floor(a.vector));
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return new(a.vector - Vector<#= bitSize #>.Floor(a.vector));
 <#
             }
 #>
         return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.frac()")) #>);
-<#
-            if (typ.simd)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-            }
-#>
     }
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> modf(this <#= typeName #> a, out <#= typeName #> i)
+    public static <#= typeName #> modf([This] <#= typeName #> a, out <#= typeName #> i)
     {
 <#
             if (typ.simd)
             {
 #>
-        #if NET8_0_OR_GREATER
-        var r = simd.ModF(a.vector, out var iv);
-        i = new(iv);
-        return new(r);
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return new(simd.ModF(a.vector, out i.vector));
 <#
             }
 #>
         <#= typeName #> r = new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.modf(out var i{n})")) #>);
         i = new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"i{n}")) #>);
         return r;
-<#
-            if (typ.simd)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-            }
-#>
     }
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> rcp(this <#= typeName #> a)
+    public static <#= typeName #> rcp([This] <#= typeName #> a)
     {
 <#
             if (typ.simd)
             {
 #>
-        #if NET8_0_OR_GREATER
-        return <#= typeName #>.One / a;
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return <#= typeName #>.One / a;
 <#
             }
 #>
         return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.rcp()")) #>);
-<#
-            if (typ.simd)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-            }
-#>
     }
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> saturate(this <#= typeName #> a)
+    public static <#= typeName #> saturate([This] <#= typeName #> a)
     {
 <#
             if (typ.simd)
             {
 #>
-        #if NET8_0_OR_GREATER
-        return a.clamp(default, <#= typeName #>.One);
-        #else // NET8_0_OR_GREATER
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return a.clamp(default, <#= typeName #>.One);
 <#
             }
 #>
         return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.saturate()")) #>);
-<#
-            if (typ.simd)
-            {
-#>
-        #endif // NET8_0_OR_GREATER
-<#
-            }
-#>
     }
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> smoothstep(this <#= typeName #> a, <#= typeName #> min, <#= typeName #> max)
+    public static <#= typeName #> smoothstep(<#= typeName #> min, <#= typeName #> max, [This] <#= typeName #> a)
     {
         var t = saturate((a - min) / (max - min));
         return t * t * (3.0<#= typ.suffix #> - (2.0<#= typ.suffix #> * t));
     }
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> reflect(this <#= typeName #> i, <#= typeName #> n) => i - 2<#= typ.suffix #> * n * dot(i, n);
+    public static <#= typeName #> reflect([This] <#= typeName #> i, <#= typeName #> n) => i - 2<#= typ.suffix #> * n * dot(i, n);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> project(this <#= typeName #> a, <#= typeName #> onto) =>
+    public static <#= typeName #> project([This] <#= typeName #> a, <#= typeName #> onto) =>
         (<#= typ.simdComp #>)(dot(a, onto) / dot(onto, onto)) * onto;
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> projectOnPlane(this <#= typeName #> a, <#= typeName #> plane_normal) => 
+    public static <#= typeName #> projectOnPlane([This] <#= typeName #> a, <#= typeName #> plane_normal) => 
         a - project(a, plane_normal);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> projectNormalized(this <#= typeName #> a, <#= typeName #> onto) =>
+    public static <#= typeName #> projectNormalized([This] <#= typeName #> a, <#= typeName #> onto) =>
         (<#= typ.simdComp #>)(dot(a, onto)) * onto;
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> projectOnPlaneNormalized(this <#= typeName #> a, <#= typeName #> plane_normal) => 
+    public static <#= typeName #> projectOnPlaneNormalized([This] <#= typeName #> a, <#= typeName #> plane_normal) => 
         a - projectNormalized(a, plane_normal);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> radians(this <#= typeName #> a) => a * <#= typeName #>.DegToRad;
+    public static <#= typeName #> radians([This] <#= typeName #> a) => a * <#= typeName #>.DegToRad;
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> degrees(this <#= typeName #> a) => a * <#= typeName #>.RadToDeg;
+    public static <#= typeName #> degrees([This] <#= typeName #> a) => a * <#= typeName #>.RadToDeg;
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> wrap(this <#= typeName #> x, <#= typeName #> min, <#= typeName #> max)
+    public static <#= typeName #> wrap([This] <#= typeName #> x, <#= typeName #> min, <#= typeName #> max)
     {
         var range = max - min;
         return min + ((x - min) % range + range) % range;

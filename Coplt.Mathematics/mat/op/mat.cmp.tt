@@ -29,7 +29,6 @@ namespace Coplt.Mathematics;
 #region <#= typeName #>
 
 public partial struct <#= typeName #> : IComparable<<#= typeName #>>, IComparable
-    #if NET8_0_OR_GREATER
     , IComparisonOperators<<#= typeName #>, <#= typeName #>, bool>
 <#
             if (bTyp.name != null)
@@ -39,16 +38,14 @@ public partial struct <#= typeName #> : IComparable<<#= typeName #>>, IComparabl
 <#
             }
 #>
-    #endif
 {
     [MethodImpl(256 | 512)]
-    public int CompareTo(object? obj)
+    public readonly int CompareTo(object? obj)
     {
         if (ReferenceEquals(null, obj)) return 1;
         return obj is <#= typeName #> other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(<#= typeName #>)}");
     }
 
-    #if NET8_0_OR_GREATER
     static bool IComparisonOperators<<#= typeName #>, <#= typeName #>, bool>.operator <(<#= typeName #> left, <#= typeName #> right) => 
         left.LessThanAll(right);
     [MethodImpl(256 | 512)]
@@ -60,10 +57,9 @@ public partial struct <#= typeName #> : IComparable<<#= typeName #>>, IComparabl
     [MethodImpl(256 | 512)]
     static bool IComparisonOperators<<#= typeName #>, <#= typeName #>, bool>.operator >=(<#= typeName #> left, <#= typeName #> right) => 
         left.GreaterThanOrEqualAll(right);
-    #endif
 
     [MethodImpl(256 | 512)]
-    public int CompareTo(<#= typeName #> other)
+    public readonly int CompareTo(<#= typeName #> other)
     {
 <#
                 for (int c = 0; c < m; c++)
@@ -90,22 +86,22 @@ public partial struct <#= typeName #> : IComparable<<#= typeName #>>, IComparabl
         new(<#= string.Join(", ", Enumerable.Range(0, m).Select(c => $"left.c{c} >= right.c{c}")) #>);
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAll(<#= typeName #> other) => <#= string.Join(" && ", Enumerable.Range(0, m).Select(c => $"c{c}.LessThanAll(other.c{c})")) #>;
+    public readonly bool LessThanAll(<#= typeName #> other) => <#= string.Join(" && ", Enumerable.Range(0, m).Select(c => $"c{c}.LessThanAll(other.c{c})")) #>;
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAll(<#= typeName #> other) => <#= string.Join(" && ", Enumerable.Range(0, m).Select(c => $"c{c}.GreaterThanAll(other.c{c})")) #>;
+    public readonly bool GreaterThanAll(<#= typeName #> other) => <#= string.Join(" && ", Enumerable.Range(0, m).Select(c => $"c{c}.GreaterThanAll(other.c{c})")) #>;
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAll(<#= typeName #> other) => <#= string.Join(" && ", Enumerable.Range(0, m).Select(c => $"c{c}.LessThanOrEqualAll(other.c{c})")) #>;
+    public readonly bool LessThanOrEqualAll(<#= typeName #> other) => <#= string.Join(" && ", Enumerable.Range(0, m).Select(c => $"c{c}.LessThanOrEqualAll(other.c{c})")) #>;
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAll(<#= typeName #> other) => <#= string.Join(" && ", Enumerable.Range(0, m).Select(c => $"c{c}.GreaterThanOrEqualAll(other.c{c})")) #>;
+    public readonly bool GreaterThanOrEqualAll(<#= typeName #> other) => <#= string.Join(" && ", Enumerable.Range(0, m).Select(c => $"c{c}.GreaterThanOrEqualAll(other.c{c})")) #>;
 
     [MethodImpl(256 | 512)]
-    public bool LessThanAny(<#= typeName #> other) => <#= string.Join(" || ", Enumerable.Range(0, m).Select(c => $"c{c}.LessThanAny(other.c{c})")) #>;
+    public readonly bool LessThanAny(<#= typeName #> other) => <#= string.Join(" || ", Enumerable.Range(0, m).Select(c => $"c{c}.LessThanAny(other.c{c})")) #>;
     [MethodImpl(256 | 512)]
-    public bool GreaterThanAny(<#= typeName #> other) => <#= string.Join(" || ", Enumerable.Range(0, m).Select(c => $"c{c}.GreaterThanAny(other.c{c})")) #>;
+    public readonly bool GreaterThanAny(<#= typeName #> other) => <#= string.Join(" || ", Enumerable.Range(0, m).Select(c => $"c{c}.GreaterThanAny(other.c{c})")) #>;
     [MethodImpl(256 | 512)]
-    public bool LessThanOrEqualAny(<#= typeName #> other) => <#= string.Join(" || ", Enumerable.Range(0, m).Select(c => $"c{c}.LessThanOrEqualAny(other.c{c})")) #>;
+    public readonly bool LessThanOrEqualAny(<#= typeName #> other) => <#= string.Join(" || ", Enumerable.Range(0, m).Select(c => $"c{c}.LessThanOrEqualAny(other.c{c})")) #>;
     [MethodImpl(256 | 512)]
-    public bool GreaterThanOrEqualAny(<#= typeName #> other) => <#= string.Join(" || ", Enumerable.Range(0, m).Select(c => $"c{c}.GreaterThanOrEqualAny(other.c{c})")) #>;
+    public readonly bool GreaterThanOrEqualAny(<#= typeName #> other) => <#= string.Join(" || ", Enumerable.Range(0, m).Select(c => $"c{c}.GreaterThanOrEqualAny(other.c{c})")) #>;
 }
 
 #endregion // <#= typeName #>
