@@ -308,11 +308,27 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float cmin([This] float2 a)
     {
+        if (Vector128.IsHardwareAccelerated || Vector64.IsHardwareAccelerated)
+            return simd.CMin(a.vector);
         return a.x.min(a.y);
     }
 
     [MethodImpl(256 | 512)]
     public static float cmax([This] float2 a)
+    {
+        if (Vector128.IsHardwareAccelerated || Vector64.IsHardwareAccelerated)
+            return simd.CMax(a.vector);
+        return a.x.max(a.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float cminsafe([This] float2 a)
+    {
+        return a.x.min(a.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float cmaxsafe([This] float2 a)
     {
         return a.x.max(a.y);
     }
@@ -629,11 +645,27 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float cmin([This] float3 a)
     {
+        if (Vector128.IsHardwareAccelerated || Vector64.IsHardwareAccelerated)
+            return simd.CMin3(a.vector);
         return a.x.min(a.y).min(a.z);
     }
 
     [MethodImpl(256 | 512)]
     public static float cmax([This] float3 a)
+    {
+        if (Vector128.IsHardwareAccelerated || Vector64.IsHardwareAccelerated)
+            return simd.CMax3(a.vector);
+        return a.x.max(a.y).max(a.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float cminsafe([This] float3 a)
+    {
+        return a.x.min(a.y).min(a.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float cmaxsafe([This] float3 a)
     {
         return a.x.max(a.y).max(a.z);
     }
@@ -947,11 +979,27 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float cmin([This] float4 a)
     {
+        if (Vector128.IsHardwareAccelerated || Vector64.IsHardwareAccelerated)
+            return simd.CMin(a.vector);
         return a.x.min(a.y).min(a.z).min(a.w);
     }
 
     [MethodImpl(256 | 512)]
     public static float cmax([This] float4 a)
+    {
+        if (Vector128.IsHardwareAccelerated || Vector64.IsHardwareAccelerated)
+            return simd.CMax(a.vector);
+        return a.x.max(a.y).max(a.z).max(a.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float cminsafe([This] float4 a)
+    {
+        return a.x.min(a.y).min(a.z).min(a.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float cmaxsafe([This] float4 a)
     {
         return a.x.max(a.y).max(a.z).max(a.w);
     }
@@ -1265,11 +1313,27 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double cmin([This] double2 a)
     {
+        if (Vector256.IsHardwareAccelerated || Vector128.IsHardwareAccelerated)
+            return simd.CMin(a.vector);
         return a.x.min(a.y);
     }
 
     [MethodImpl(256 | 512)]
     public static double cmax([This] double2 a)
+    {
+        if (Vector256.IsHardwareAccelerated || Vector128.IsHardwareAccelerated)
+            return simd.CMax(a.vector);
+        return a.x.max(a.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double cminsafe([This] double2 a)
+    {
+        return a.x.min(a.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double cmaxsafe([This] double2 a)
     {
         return a.x.max(a.y);
     }
@@ -1586,11 +1650,27 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double cmin([This] double3 a)
     {
+        if (Vector256.IsHardwareAccelerated || Vector128.IsHardwareAccelerated)
+            return simd.CMin3(a.vector);
         return a.x.min(a.y).min(a.z);
     }
 
     [MethodImpl(256 | 512)]
     public static double cmax([This] double3 a)
+    {
+        if (Vector256.IsHardwareAccelerated || Vector128.IsHardwareAccelerated)
+            return simd.CMax3(a.vector);
+        return a.x.max(a.y).max(a.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double cminsafe([This] double3 a)
+    {
+        return a.x.min(a.y).min(a.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double cmaxsafe([This] double3 a)
     {
         return a.x.max(a.y).max(a.z);
     }
@@ -1904,11 +1984,27 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double cmin([This] double4 a)
     {
+        if (Vector256.IsHardwareAccelerated || Vector128.IsHardwareAccelerated)
+            return simd.CMin(a.vector);
         return a.x.min(a.y).min(a.z).min(a.w);
     }
 
     [MethodImpl(256 | 512)]
     public static double cmax([This] double4 a)
+    {
+        if (Vector256.IsHardwareAccelerated || Vector128.IsHardwareAccelerated)
+            return simd.CMax(a.vector);
+        return a.x.max(a.y).max(a.z).max(a.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double cminsafe([This] double4 a)
+    {
+        return a.x.min(a.y).min(a.z).min(a.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double cmaxsafe([This] double4 a)
     {
         return a.x.max(a.y).max(a.z).max(a.w);
     }
@@ -2179,6 +2275,18 @@ public static partial class math
 
     [MethodImpl(256 | 512)]
     public static short cmax([This] short2 a)
+    {
+        return a.x.max(a.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static short cminsafe([This] short2 a)
+    {
+        return a.x.min(a.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static short cmaxsafe([This] short2 a)
     {
         return a.x.max(a.y);
     }
@@ -2455,6 +2563,18 @@ public static partial class math
     {
         return a.x.max(a.y).max(a.z);
     }
+
+    [MethodImpl(256 | 512)]
+    public static short cminsafe([This] short3 a)
+    {
+        return a.x.min(a.y).min(a.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static short cmaxsafe([This] short3 a)
+    {
+        return a.x.max(a.y).max(a.z);
+    }
 }
 
 #endregion // short3
@@ -2725,6 +2845,18 @@ public static partial class math
     {
         return a.x.max(a.y).max(a.z).max(a.w);
     }
+
+    [MethodImpl(256 | 512)]
+    public static short cminsafe([This] short4 a)
+    {
+        return a.x.min(a.y).min(a.z).min(a.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static short cmaxsafe([This] short4 a)
+    {
+        return a.x.max(a.y).max(a.z).max(a.w);
+    }
 }
 
 #endregion // short4
@@ -2987,6 +3119,18 @@ public static partial class math
 
     [MethodImpl(256 | 512)]
     public static ushort cmax([This] ushort2 a)
+    {
+        return a.x.max(a.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static ushort cminsafe([This] ushort2 a)
+    {
+        return a.x.min(a.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static ushort cmaxsafe([This] ushort2 a)
     {
         return a.x.max(a.y);
     }
@@ -3258,6 +3402,18 @@ public static partial class math
     {
         return a.x.max(a.y).max(a.z);
     }
+
+    [MethodImpl(256 | 512)]
+    public static ushort cminsafe([This] ushort3 a)
+    {
+        return a.x.min(a.y).min(a.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static ushort cmaxsafe([This] ushort3 a)
+    {
+        return a.x.max(a.y).max(a.z);
+    }
 }
 
 #endregion // ushort3
@@ -3520,6 +3676,18 @@ public static partial class math
 
     [MethodImpl(256 | 512)]
     public static ushort cmax([This] ushort4 a)
+    {
+        return a.x.max(a.y).max(a.z).max(a.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static ushort cminsafe([This] ushort4 a)
+    {
+        return a.x.min(a.y).min(a.z).min(a.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static ushort cmaxsafe([This] ushort4 a)
     {
         return a.x.max(a.y).max(a.z).max(a.w);
     }
@@ -3823,12 +3991,32 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int cmin([This] int2 a)
     {
+        if (Vector128.IsHardwareAccelerated || Vector64.IsHardwareAccelerated)
+            return simd.CMin(a.vector);
         return a.x.min(a.y);
     }
 
     [MethodImpl(256 | 512)]
     public static int cmax([This] int2 a)
     {
+        if (Vector128.IsHardwareAccelerated || Vector64.IsHardwareAccelerated)
+            return simd.CMax(a.vector);
+        return a.x.max(a.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static int cminsafe([This] int2 a)
+    {
+        if (Vector128.IsHardwareAccelerated || Vector64.IsHardwareAccelerated)
+            return simd.CMin(a.vector);
+        return a.x.min(a.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static int cmaxsafe([This] int2 a)
+    {
+        if (Vector128.IsHardwareAccelerated || Vector64.IsHardwareAccelerated)
+            return simd.CMax(a.vector);
         return a.x.max(a.y);
     }
 }
@@ -4134,12 +4322,32 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int cmin([This] int3 a)
     {
+        if (Vector128.IsHardwareAccelerated || Vector64.IsHardwareAccelerated)
+            return simd.CMin3(a.vector);
         return a.x.min(a.y).min(a.z);
     }
 
     [MethodImpl(256 | 512)]
     public static int cmax([This] int3 a)
     {
+        if (Vector128.IsHardwareAccelerated || Vector64.IsHardwareAccelerated)
+            return simd.CMax3(a.vector);
+        return a.x.max(a.y).max(a.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static int cminsafe([This] int3 a)
+    {
+        if (Vector128.IsHardwareAccelerated || Vector64.IsHardwareAccelerated)
+            return simd.CMin3(a.vector);
+        return a.x.min(a.y).min(a.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static int cmaxsafe([This] int3 a)
+    {
+        if (Vector128.IsHardwareAccelerated || Vector64.IsHardwareAccelerated)
+            return simd.CMax3(a.vector);
         return a.x.max(a.y).max(a.z);
     }
 }
@@ -4442,12 +4650,32 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int cmin([This] int4 a)
     {
+        if (Vector128.IsHardwareAccelerated || Vector64.IsHardwareAccelerated)
+            return simd.CMin(a.vector);
         return a.x.min(a.y).min(a.z).min(a.w);
     }
 
     [MethodImpl(256 | 512)]
     public static int cmax([This] int4 a)
     {
+        if (Vector128.IsHardwareAccelerated || Vector64.IsHardwareAccelerated)
+            return simd.CMax(a.vector);
+        return a.x.max(a.y).max(a.z).max(a.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static int cminsafe([This] int4 a)
+    {
+        if (Vector128.IsHardwareAccelerated || Vector64.IsHardwareAccelerated)
+            return simd.CMin(a.vector);
+        return a.x.min(a.y).min(a.z).min(a.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static int cmaxsafe([This] int4 a)
+    {
+        if (Vector128.IsHardwareAccelerated || Vector64.IsHardwareAccelerated)
+            return simd.CMax(a.vector);
         return a.x.max(a.y).max(a.z).max(a.w);
     }
 }
@@ -4743,12 +4971,32 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint cmin([This] uint2 a)
     {
+        if (Vector128.IsHardwareAccelerated || Vector64.IsHardwareAccelerated)
+            return simd.CMin(a.vector);
         return a.x.min(a.y);
     }
 
     [MethodImpl(256 | 512)]
     public static uint cmax([This] uint2 a)
     {
+        if (Vector128.IsHardwareAccelerated || Vector64.IsHardwareAccelerated)
+            return simd.CMax(a.vector);
+        return a.x.max(a.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static uint cminsafe([This] uint2 a)
+    {
+        if (Vector128.IsHardwareAccelerated || Vector64.IsHardwareAccelerated)
+            return simd.CMin(a.vector);
+        return a.x.min(a.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static uint cmaxsafe([This] uint2 a)
+    {
+        if (Vector128.IsHardwareAccelerated || Vector64.IsHardwareAccelerated)
+            return simd.CMax(a.vector);
         return a.x.max(a.y);
     }
 }
@@ -5047,12 +5295,32 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint cmin([This] uint3 a)
     {
+        if (Vector128.IsHardwareAccelerated || Vector64.IsHardwareAccelerated)
+            return simd.CMin3(a.vector);
         return a.x.min(a.y).min(a.z);
     }
 
     [MethodImpl(256 | 512)]
     public static uint cmax([This] uint3 a)
     {
+        if (Vector128.IsHardwareAccelerated || Vector64.IsHardwareAccelerated)
+            return simd.CMax3(a.vector);
+        return a.x.max(a.y).max(a.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static uint cminsafe([This] uint3 a)
+    {
+        if (Vector128.IsHardwareAccelerated || Vector64.IsHardwareAccelerated)
+            return simd.CMin3(a.vector);
+        return a.x.min(a.y).min(a.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static uint cmaxsafe([This] uint3 a)
+    {
+        if (Vector128.IsHardwareAccelerated || Vector64.IsHardwareAccelerated)
+            return simd.CMax3(a.vector);
         return a.x.max(a.y).max(a.z);
     }
 }
@@ -5348,12 +5616,32 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint cmin([This] uint4 a)
     {
+        if (Vector128.IsHardwareAccelerated || Vector64.IsHardwareAccelerated)
+            return simd.CMin(a.vector);
         return a.x.min(a.y).min(a.z).min(a.w);
     }
 
     [MethodImpl(256 | 512)]
     public static uint cmax([This] uint4 a)
     {
+        if (Vector128.IsHardwareAccelerated || Vector64.IsHardwareAccelerated)
+            return simd.CMax(a.vector);
+        return a.x.max(a.y).max(a.z).max(a.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static uint cminsafe([This] uint4 a)
+    {
+        if (Vector128.IsHardwareAccelerated || Vector64.IsHardwareAccelerated)
+            return simd.CMin(a.vector);
+        return a.x.min(a.y).min(a.z).min(a.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static uint cmaxsafe([This] uint4 a)
+    {
+        if (Vector128.IsHardwareAccelerated || Vector64.IsHardwareAccelerated)
+            return simd.CMax(a.vector);
         return a.x.max(a.y).max(a.z).max(a.w);
     }
 }
@@ -5656,12 +5944,32 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long cmin([This] long2 a)
     {
+        if (Vector256.IsHardwareAccelerated || Vector128.IsHardwareAccelerated)
+            return simd.CMin(a.vector);
         return a.x.min(a.y);
     }
 
     [MethodImpl(256 | 512)]
     public static long cmax([This] long2 a)
     {
+        if (Vector256.IsHardwareAccelerated || Vector128.IsHardwareAccelerated)
+            return simd.CMax(a.vector);
+        return a.x.max(a.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static long cminsafe([This] long2 a)
+    {
+        if (Vector256.IsHardwareAccelerated || Vector128.IsHardwareAccelerated)
+            return simd.CMin(a.vector);
+        return a.x.min(a.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static long cmaxsafe([This] long2 a)
+    {
+        if (Vector256.IsHardwareAccelerated || Vector128.IsHardwareAccelerated)
+            return simd.CMax(a.vector);
         return a.x.max(a.y);
     }
 }
@@ -5967,12 +6275,32 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long cmin([This] long3 a)
     {
+        if (Vector256.IsHardwareAccelerated || Vector128.IsHardwareAccelerated)
+            return simd.CMin3(a.vector);
         return a.x.min(a.y).min(a.z);
     }
 
     [MethodImpl(256 | 512)]
     public static long cmax([This] long3 a)
     {
+        if (Vector256.IsHardwareAccelerated || Vector128.IsHardwareAccelerated)
+            return simd.CMax3(a.vector);
+        return a.x.max(a.y).max(a.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static long cminsafe([This] long3 a)
+    {
+        if (Vector256.IsHardwareAccelerated || Vector128.IsHardwareAccelerated)
+            return simd.CMin3(a.vector);
+        return a.x.min(a.y).min(a.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static long cmaxsafe([This] long3 a)
+    {
+        if (Vector256.IsHardwareAccelerated || Vector128.IsHardwareAccelerated)
+            return simd.CMax3(a.vector);
         return a.x.max(a.y).max(a.z);
     }
 }
@@ -6275,12 +6603,32 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long cmin([This] long4 a)
     {
+        if (Vector256.IsHardwareAccelerated || Vector128.IsHardwareAccelerated)
+            return simd.CMin(a.vector);
         return a.x.min(a.y).min(a.z).min(a.w);
     }
 
     [MethodImpl(256 | 512)]
     public static long cmax([This] long4 a)
     {
+        if (Vector256.IsHardwareAccelerated || Vector128.IsHardwareAccelerated)
+            return simd.CMax(a.vector);
+        return a.x.max(a.y).max(a.z).max(a.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static long cminsafe([This] long4 a)
+    {
+        if (Vector256.IsHardwareAccelerated || Vector128.IsHardwareAccelerated)
+            return simd.CMin(a.vector);
+        return a.x.min(a.y).min(a.z).min(a.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static long cmaxsafe([This] long4 a)
+    {
+        if (Vector256.IsHardwareAccelerated || Vector128.IsHardwareAccelerated)
+            return simd.CMax(a.vector);
         return a.x.max(a.y).max(a.z).max(a.w);
     }
 }
@@ -6576,12 +6924,32 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong cmin([This] ulong2 a)
     {
+        if (Vector256.IsHardwareAccelerated || Vector128.IsHardwareAccelerated)
+            return simd.CMin(a.vector);
         return a.x.min(a.y);
     }
 
     [MethodImpl(256 | 512)]
     public static ulong cmax([This] ulong2 a)
     {
+        if (Vector256.IsHardwareAccelerated || Vector128.IsHardwareAccelerated)
+            return simd.CMax(a.vector);
+        return a.x.max(a.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static ulong cminsafe([This] ulong2 a)
+    {
+        if (Vector256.IsHardwareAccelerated || Vector128.IsHardwareAccelerated)
+            return simd.CMin(a.vector);
+        return a.x.min(a.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static ulong cmaxsafe([This] ulong2 a)
+    {
+        if (Vector256.IsHardwareAccelerated || Vector128.IsHardwareAccelerated)
+            return simd.CMax(a.vector);
         return a.x.max(a.y);
     }
 }
@@ -6880,12 +7248,32 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong cmin([This] ulong3 a)
     {
+        if (Vector256.IsHardwareAccelerated || Vector128.IsHardwareAccelerated)
+            return simd.CMin3(a.vector);
         return a.x.min(a.y).min(a.z);
     }
 
     [MethodImpl(256 | 512)]
     public static ulong cmax([This] ulong3 a)
     {
+        if (Vector256.IsHardwareAccelerated || Vector128.IsHardwareAccelerated)
+            return simd.CMax3(a.vector);
+        return a.x.max(a.y).max(a.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static ulong cminsafe([This] ulong3 a)
+    {
+        if (Vector256.IsHardwareAccelerated || Vector128.IsHardwareAccelerated)
+            return simd.CMin3(a.vector);
+        return a.x.min(a.y).min(a.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static ulong cmaxsafe([This] ulong3 a)
+    {
+        if (Vector256.IsHardwareAccelerated || Vector128.IsHardwareAccelerated)
+            return simd.CMax3(a.vector);
         return a.x.max(a.y).max(a.z);
     }
 }
@@ -7181,12 +7569,32 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong cmin([This] ulong4 a)
     {
+        if (Vector256.IsHardwareAccelerated || Vector128.IsHardwareAccelerated)
+            return simd.CMin(a.vector);
         return a.x.min(a.y).min(a.z).min(a.w);
     }
 
     [MethodImpl(256 | 512)]
     public static ulong cmax([This] ulong4 a)
     {
+        if (Vector256.IsHardwareAccelerated || Vector128.IsHardwareAccelerated)
+            return simd.CMax(a.vector);
+        return a.x.max(a.y).max(a.z).max(a.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static ulong cminsafe([This] ulong4 a)
+    {
+        if (Vector256.IsHardwareAccelerated || Vector128.IsHardwareAccelerated)
+            return simd.CMin(a.vector);
+        return a.x.min(a.y).min(a.z).min(a.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static ulong cmaxsafe([This] ulong4 a)
+    {
+        if (Vector256.IsHardwareAccelerated || Vector128.IsHardwareAccelerated)
+            return simd.CMax(a.vector);
         return a.x.max(a.y).max(a.z).max(a.w);
     }
 }
@@ -7456,6 +7864,18 @@ public static partial class math
 
     [MethodImpl(256 | 512)]
     public static decimal cmax([This] decimal2 a)
+    {
+        return a.x.max(a.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static decimal cminsafe([This] decimal2 a)
+    {
+        return a.x.min(a.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static decimal cmaxsafe([This] decimal2 a)
     {
         return a.x.max(a.y);
     }
@@ -7732,6 +8152,18 @@ public static partial class math
     {
         return a.x.max(a.y).max(a.z);
     }
+
+    [MethodImpl(256 | 512)]
+    public static decimal cminsafe([This] decimal3 a)
+    {
+        return a.x.min(a.y).min(a.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static decimal cmaxsafe([This] decimal3 a)
+    {
+        return a.x.max(a.y).max(a.z);
+    }
 }
 
 #endregion // decimal3
@@ -8002,6 +8434,18 @@ public static partial class math
     {
         return a.x.max(a.y).max(a.z).max(a.w);
     }
+
+    [MethodImpl(256 | 512)]
+    public static decimal cminsafe([This] decimal4 a)
+    {
+        return a.x.min(a.y).min(a.z).min(a.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static decimal cmaxsafe([This] decimal4 a)
+    {
+        return a.x.max(a.y).max(a.z).max(a.w);
+    }
 }
 
 #endregion // decimal4
@@ -8269,6 +8713,18 @@ public static partial class math
 
     [MethodImpl(256 | 512)]
     public static half cmax([This] half2 a)
+    {
+        return a.x.max(a.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static half cminsafe([This] half2 a)
+    {
+        return a.x.min(a.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static half cmaxsafe([This] half2 a)
     {
         return a.x.max(a.y);
     }
@@ -8545,6 +9001,18 @@ public static partial class math
     {
         return a.x.max(a.y).max(a.z);
     }
+
+    [MethodImpl(256 | 512)]
+    public static half cminsafe([This] half3 a)
+    {
+        return a.x.min(a.y).min(a.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static half cmaxsafe([This] half3 a)
+    {
+        return a.x.max(a.y).max(a.z);
+    }
 }
 
 #endregion // half3
@@ -8812,6 +9280,18 @@ public static partial class math
 
     [MethodImpl(256 | 512)]
     public static half cmax([This] half4 a)
+    {
+        return a.x.max(a.y).max(a.z).max(a.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static half cminsafe([This] half4 a)
+    {
+        return a.x.min(a.y).min(a.z).min(a.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static half cmaxsafe([This] half4 a)
     {
         return a.x.max(a.y).max(a.z).max(a.w);
     }

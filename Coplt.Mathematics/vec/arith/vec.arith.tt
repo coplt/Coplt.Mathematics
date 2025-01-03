@@ -15,7 +15,11 @@ namespace Coplt.Mathematics;
             var typeName = $"{typ.name}{i}";
 
             var byteSize = typ.size * (i is 3 ? 4 : i);
+            var byteSize2 = typ.size * 2;
+            var byteSize4 = typ.size * 4;
             var bitSize = 8 * byteSize;
+            var bitSize2 = 8 * byteSize2;
+            var bitSize4 = 8 * byteSize4;
 #>
 
 #region <#= typeName #>
@@ -45,7 +49,8 @@ public partial struct <#= typeName #>
 <#
                 }
 #>
-        return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"{typ.arithCast}(-a.{Typ.xyzw[n]})")) #>);
+        return new(<#=
+                    string.Join(", ", Enumerable.Range(0, i).Select(n => $"{typ.arithCast}(-a.{Typ.xyzw[n]})")) #>);
     }
 <#
             }
@@ -64,7 +69,8 @@ public partial struct <#= typeName #>
             }
 #>
         return new(<#=
-                string.Join(", ", Enumerable.Range(0, i).Select(n => $"({typ.compType})(a.{Typ.xyzw[n]} + b.{Typ.xyzw[n]})")) #>);
+                string.Join(", ",
+                    Enumerable.Range(0, i).Select(n => $"({typ.compType})(a.{Typ.xyzw[n]} + b.{Typ.xyzw[n]})")) #>);
     }
 
     [MethodImpl(256 | 512)]
@@ -86,7 +92,8 @@ public partial struct <#= typeName #>
             }
 #>
         return new(<#=
-                string.Join(", ", Enumerable.Range(0, i).Select(n => $"({typ.compType})(a.{Typ.xyzw[n]} - b.{Typ.xyzw[n]})")) #>);
+                string.Join(", ",
+                    Enumerable.Range(0, i).Select(n => $"({typ.compType})(a.{Typ.xyzw[n]} - b.{Typ.xyzw[n]})")) #>);
     }
 
     [MethodImpl(256 | 512)]
@@ -108,7 +115,8 @@ public partial struct <#= typeName #>
             }
 #>
         return new(<#=
-                string.Join(", ", Enumerable.Range(0, i).Select(n => $"({typ.compType})(a.{Typ.xyzw[n]} * b.{Typ.xyzw[n]})")) #>);
+                string.Join(", ",
+                    Enumerable.Range(0, i).Select(n => $"({typ.compType})(a.{Typ.xyzw[n]} * b.{Typ.xyzw[n]})")) #>);
     }
 
     [MethodImpl(256 | 512)]
@@ -123,7 +131,8 @@ public partial struct <#= typeName #>
 <#
             }
 #>
-        return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"({typ.compType})(a * b.{Typ.xyzw[n]})")) #>);
+        return new(<#=
+                string.Join(", ", Enumerable.Range(0, i).Select(n => $"({typ.compType})(a * b.{Typ.xyzw[n]})")) #>);
     }
 
     [MethodImpl(256 | 512)]
@@ -138,7 +147,8 @@ public partial struct <#= typeName #>
 <#
             }
 #>
-        return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"({typ.compType})(a.{Typ.xyzw[n]} * b)")) #>);
+        return new(<#=
+                string.Join(", ", Enumerable.Range(0, i).Select(n => $"({typ.compType})(a.{Typ.xyzw[n]} * b)")) #>);
     }
 
     [MethodImpl(256 | 512)]
@@ -159,7 +169,8 @@ public partial struct <#= typeName #>
             }
 #>
         return new(<#=
-                string.Join(", ", Enumerable.Range(0, i).Select(n => $"({typ.compType})(a.{Typ.xyzw[n]} / b.{Typ.xyzw[n]})")) #>);
+                string.Join(", ",
+                    Enumerable.Range(0, i).Select(n => $"({typ.compType})(a.{Typ.xyzw[n]} / b.{Typ.xyzw[n]})")) #>);
     }
 
     [MethodImpl(256 | 512)]
@@ -179,7 +190,8 @@ public partial struct <#= typeName #>
 <#
             }
 #>
-        return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"({typ.compType})(a.{Typ.xyzw[n]} / b)")) #>);
+        return new(<#=
+                string.Join(", ", Enumerable.Range(0, i).Select(n => $"({typ.compType})(a.{Typ.xyzw[n]} / b)")) #>);
     }
 
     [MethodImpl(256 | 512)]
@@ -203,7 +215,8 @@ public partial struct <#= typeName #>
             }
 #>
         return new(<#=
-                string.Join(", ", Enumerable.Range(0, i).Select(n => $"({typ.compType})(a.{Typ.xyzw[n]} % b.{Typ.xyzw[n]})")) #>);
+                string.Join(", ",
+                    Enumerable.Range(0, i).Select(n => $"({typ.compType})(a.{Typ.xyzw[n]} % b.{Typ.xyzw[n]})")) #>);
     }
 
     [MethodImpl(256 | 512)]
@@ -252,7 +265,8 @@ public static partial class math
 <#
             }
 #>
-        return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.abs()")) #>);
+        return new(<#=
+                string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.abs()")) #>);
     }
 
     [MethodImpl(256 | 512)]
@@ -285,7 +299,8 @@ public static partial class math
 <#
             }
 #>
-        return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.sign()")) #>);
+        return new(<#=
+                string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.sign()")) #>);
     }
 
     [MethodImpl(256 | 512)]
@@ -300,7 +315,8 @@ public static partial class math
 <#
             }
 #>
-        return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.min(b.{Typ.xyzw[n]})")) #>);
+        return new(<#=
+                string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.min(b.{Typ.xyzw[n]})")) #>);
     }
 
     [MethodImpl(256 | 512)]
@@ -315,7 +331,8 @@ public static partial class math
 <#
             }
 #>
-        return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.max(b.{Typ.xyzw[n]})")) #>);
+        return new(<#=
+                string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.max(b.{Typ.xyzw[n]})")) #>);
     }
 
     [MethodImpl(256 | 512)]
@@ -331,7 +348,8 @@ public static partial class math
             }
 #>
         return new(<#=
-                string.Join(", ", Enumerable.Range(0, i).Select(n => $"v.{Typ.xyzw[n]}.clamp(min.{Typ.xyzw[n]}, max.{Typ.xyzw[n]})")) #>);
+                string.Join(", ",
+                    Enumerable.Range(0, i).Select(n => $"v.{Typ.xyzw[n]}.clamp(min.{Typ.xyzw[n]}, max.{Typ.xyzw[n]})")) #>);
     }
 
     [MethodImpl(256 | 512)]
@@ -411,7 +429,8 @@ public static partial class math
 <#
             }
 #>
-        return (<#= typ.simdComp #>)(<#= string.Join(" + ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]} * b.{Typ.xyzw[n]}")) #>);
+        return (<#= typ.simdComp #>)(<#=
+                string.Join(" + ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]} * b.{Typ.xyzw[n]}")) #>);
     }
 <#
             if (i == 3)
@@ -436,7 +455,8 @@ public static partial class math
 <#
             }
 #>
-        return (<#= typ.simdComp #>)(<#= string.Join(" + ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]} * a.{Typ.xyzw[n]}")) #>);
+        return (<#= typ.simdComp #>)(<#=
+                string.Join(" + ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]} * a.{Typ.xyzw[n]}")) #>);
     }
 
     [MethodImpl(256 | 512)]
@@ -465,7 +485,8 @@ public static partial class math
             }
 #>
         return new(<#=
-                string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.fma(b.{Typ.xyzw[n]}, c.{Typ.xyzw[n]})")) #>);
+                string.Join(", ",
+                    Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.fma(b.{Typ.xyzw[n]}, c.{Typ.xyzw[n]})")) #>);
     }
 
     /// <summary>
@@ -488,7 +509,8 @@ public static partial class math
             }
 #>
         return new(<#=
-                string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.fms(b.{Typ.xyzw[n]}, c.{Typ.xyzw[n]})")) #>);
+                string.Join(", ",
+                    Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.fms(b.{Typ.xyzw[n]}, c.{Typ.xyzw[n]})")) #>);
     }
 
     /// <summary>
@@ -511,7 +533,8 @@ public static partial class math
             }
 #>
         return new(<#=
-                string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.fnma(b.{Typ.xyzw[n]}, c.{Typ.xyzw[n]})")) #>);
+                string.Join(", ",
+                    Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.fnma(b.{Typ.xyzw[n]}, c.{Typ.xyzw[n]})")) #>);
     }
 
     /// <summary>
@@ -556,19 +579,112 @@ public static partial class math
 <#
             }
 #>
-        return <#= typ.arithCast #>(<#= string.Join(" + ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}")) #>);
+        return <#= typ.arithCast #>(<#=
+                string.Join(" + ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}")) #>);
     }
 
     [MethodImpl(256 | 512)]
     public static <#= typ.compType #> cmin([This] <#= typeName #> a)
     {
-        return a.x<#= string.Join("", Enumerable.Range(1, i - 1).Select(n => $".min(a.{Typ.xyzw[n]})")) #>;
+<#
+            if (typ.simd)
+            {
+                if (i == 4 || i == 2)
+                {
+#>
+        if (Vector<#= bitSize4 #>.IsHardwareAccelerated || Vector<#= bitSize2 #>.IsHardwareAccelerated)
+            return simd.CMin(a.vector);
+<#
+                }
+                else if (i == 3)
+                {
+#>
+        if (Vector<#= bitSize4 #>.IsHardwareAccelerated || Vector<#= bitSize2 #>.IsHardwareAccelerated)
+            return simd.CMin3(a.vector);
+<#
+                }
+            }
+#>
+        return a.x<#=
+                string.Join("", Enumerable.Range(1, i - 1).Select(n => $".min(a.{Typ.xyzw[n]})")) #>;
     }
 
     [MethodImpl(256 | 512)]
     public static <#= typ.compType #> cmax([This] <#= typeName #> a)
     {
-        return a.x<#= string.Join("", Enumerable.Range(1, i - 1).Select(n => $".max(a.{Typ.xyzw[n]})")) #>;
+<#
+            if (typ.simd)
+            {
+                if (i == 4 || i == 2)
+                {
+#>
+        if (Vector<#= bitSize4 #>.IsHardwareAccelerated || Vector<#= bitSize2 #>.IsHardwareAccelerated)
+            return simd.CMax(a.vector);
+<#
+                }
+                else if (i == 3)
+                {
+#>
+        if (Vector<#= bitSize4 #>.IsHardwareAccelerated || Vector<#= bitSize2 #>.IsHardwareAccelerated)
+            return simd.CMax3(a.vector);
+<#
+                }
+            }
+#>
+        return a.x<#=
+                string.Join("", Enumerable.Range(1, i - 1).Select(n => $".max(a.{Typ.xyzw[n]})")) #>;
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typ.compType #> cminsafe([This] <#= typeName #> a)
+    {
+<#
+            if (typ.simd && typ.i)
+            {
+                if (i == 4 || i == 2)
+                {
+#>
+        if (Vector<#= bitSize4 #>.IsHardwareAccelerated || Vector<#= bitSize2 #>.IsHardwareAccelerated)
+            return simd.CMin(a.vector);
+<#
+                }
+                else if (i == 3)
+                {
+#>
+        if (Vector<#= bitSize4 #>.IsHardwareAccelerated || Vector<#= bitSize2 #>.IsHardwareAccelerated)
+            return simd.CMin3(a.vector);
+<#
+                }
+            }
+#>
+        return a.x<#=
+                string.Join("", Enumerable.Range(1, i - 1).Select(n => $".min(a.{Typ.xyzw[n]})")) #>;
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typ.compType #> cmaxsafe([This] <#= typeName #> a)
+    {
+<#
+            if (typ.simd && typ.i)
+            {
+                if (i == 4 || i == 2)
+                {
+#>
+        if (Vector<#= bitSize4 #>.IsHardwareAccelerated || Vector<#= bitSize2 #>.IsHardwareAccelerated)
+            return simd.CMax(a.vector);
+<#
+                }
+                else if (i == 3)
+                {
+#>
+        if (Vector<#= bitSize4 #>.IsHardwareAccelerated || Vector<#= bitSize2 #>.IsHardwareAccelerated)
+            return simd.CMax3(a.vector);
+<#
+                }
+            }
+#>
+        return a.x<#=
+                string.Join("", Enumerable.Range(1, i - 1).Select(n => $".max(a.{Typ.xyzw[n]})")) #>;
     }
 }
 

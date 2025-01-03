@@ -1398,6 +1398,626 @@ public static partial class simd
 
     #endregion
 
+    #region CMin
+
+    [MethodImpl(256 | 512)]
+    public static uint CMin(Vector128<uint> a)
+    {
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var b = Vector128.Shuffle(a, Vector128.Create(2, 3, 0, 1).AsUInt32());
+            var c = Vector128.Min(a, b);
+            var d = Vector128.Shuffle(c, Vector128.Create(1, 0, 3, 2).AsUInt32());
+            var e = Vector128.Min(c, d);
+            return e[0];
+        }
+        return Math.Min(Math.Min(a[0], a[1]), Math.Min(a[2], a[3]));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static int CMin(Vector128<int> a)
+    {
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var b = Vector128.Shuffle(a, Vector128.Create(2, 3, 0, 1));
+            var c = Vector128.Min(a, b);
+            var d = Vector128.Shuffle(c, Vector128.Create(1, 0, 3, 2));
+            var e = Vector128.Min(c, d);
+            return e[0];
+        }
+        return Math.Min(Math.Min(a[0], a[1]), Math.Min(a[2], a[3]));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float CMin(Vector128<float> a)
+    {
+        if (Sse.IsSupported)
+        {
+            var b = Vector128.Shuffle(a, Vector128.Create(2, 3, 0, 1));
+            var c = Sse.Min(a, b);
+            var d = Vector128.Shuffle(c, Vector128.Create(1, 0, 3, 2));
+            var e = Sse.Min(c, d);
+            return e[0];
+        }
+        if (AdvSimd.IsSupported)
+        {
+            var b = Vector128.Shuffle(a, Vector128.Create(2, 3, 0, 1));
+            var c = AdvSimd.Min(a, b);
+            var d = Vector128.Shuffle(c, Vector128.Create(1, 0, 3, 2));
+            var e = AdvSimd.Min(c, d);
+            return e[0];
+        }
+        if (PackedSimd.IsSupported)
+        {
+            var b = Vector128.Shuffle(a, Vector128.Create(2, 3, 0, 1));
+            var c = PackedSimd.Min(a, b);
+            var d = Vector128.Shuffle(c, Vector128.Create(1, 0, 3, 2));
+            var e = PackedSimd.Min(c, d);
+            return e[0];
+        }
+        return Math.Min(Math.Min(a[0], a[1]), Math.Min(a[2], a[3]));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static ulong CMin(Vector256<ulong> a)
+    {
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var b = Vector256.Shuffle(a, Vector256.Create(2, 3, 0, 1).AsUInt64());
+            var c = Vector256.Min(a, b);
+            var d = Vector256.Shuffle(c, Vector256.Create(1, 0, 3, 2).AsUInt64());
+            var e = Vector256.Min(c, d);
+            return e[0];
+        }
+        return Math.Min(Math.Min(a[0], a[1]), Math.Min(a[2], a[3]));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static long CMin(Vector256<long> a)
+    {
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var b = Vector256.Shuffle(a, Vector256.Create(2, 3, 0, 1));
+            var c = Vector256.Min(a, b);
+            var d = Vector256.Shuffle(c, Vector256.Create(1, 0, 3, 2));
+            var e = Vector256.Min(c, d);
+            return e[0];
+        }
+        return Math.Min(Math.Min(a[0], a[1]), Math.Min(a[2], a[3]));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double CMin(Vector256<double> a)
+    {
+        if (Avx.IsSupported)
+        {
+            var b = Vector256.Shuffle(a, Vector256.Create(2, 3, 0, 1));
+            var c = Avx.Min(a, b);
+            var d = Vector256.Shuffle(c, Vector256.Create(1, 0, 3, 2));
+            var e = Avx.Min(c, d);
+            return e[0];
+        }
+        return Math.Min(Math.Min(a[0], a[1]), Math.Min(a[2], a[3]));
+    }
+
+    #endregion
+
+    #region CMax
+
+    [MethodImpl(256 | 512)]
+    public static uint CMax(Vector128<uint> a)
+    {
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var b = Vector128.Shuffle(a, Vector128.Create(2, 3, 0, 1).AsUInt32());
+            var c = Vector128.Max(a, b);
+            var d = Vector128.Shuffle(c, Vector128.Create(1, 0, 3, 2).AsUInt32());
+            var e = Vector128.Max(c, d);
+            return e[0];
+        }
+        return Math.Max(Math.Max(a[0], a[1]), Math.Max(a[2], a[3]));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static int CMax(Vector128<int> a)
+    {
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var b = Vector128.Shuffle(a, Vector128.Create(2, 3, 0, 1));
+            var c = Vector128.Max(a, b);
+            var d = Vector128.Shuffle(c, Vector128.Create(1, 0, 3, 2));
+            var e = Vector128.Max(c, d);
+            return e[0];
+        }
+        return Math.Max(Math.Max(a[0], a[1]), Math.Max(a[2], a[3]));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float CMax(Vector128<float> a)
+    {
+        if (Sse.IsSupported)
+        {
+            var b = Vector128.Shuffle(a, Vector128.Create(2, 3, 0, 1));
+            var c = Sse.Max(a, b);
+            var d = Vector128.Shuffle(c, Vector128.Create(1, 0, 3, 2));
+            var e = Sse.Max(c, d);
+            return e[0];
+        }
+        if (AdvSimd.IsSupported)
+        {
+            var b = Vector128.Shuffle(a, Vector128.Create(2, 3, 0, 1));
+            var c = AdvSimd.Max(a, b);
+            var d = Vector128.Shuffle(c, Vector128.Create(1, 0, 3, 2));
+            var e = AdvSimd.Max(c, d);
+            return e[0];
+        }
+        if (PackedSimd.IsSupported)
+        {
+            var b = Vector128.Shuffle(a, Vector128.Create(2, 3, 0, 1));
+            var c = PackedSimd.Max(a, b);
+            var d = Vector128.Shuffle(c, Vector128.Create(1, 0, 3, 2));
+            var e = PackedSimd.Max(c, d);
+            return e[0];
+        }
+        return Math.Max(Math.Max(a[0], a[1]), Math.Max(a[2], a[3]));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static ulong CMax(Vector256<ulong> a)
+    {
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var b = Vector256.Shuffle(a, Vector256.Create(2, 3, 0, 1).AsUInt64());
+            var c = Vector256.Max(a, b);
+            var d = Vector256.Shuffle(c, Vector256.Create(1, 0, 3, 2).AsUInt64());
+            var e = Vector256.Max(c, d);
+            return e[0];
+        }
+        return Math.Max(Math.Max(a[0], a[1]), Math.Max(a[2], a[3]));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static long CMax(Vector256<long> a)
+    {
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var b = Vector256.Shuffle(a, Vector256.Create(2, 3, 0, 1));
+            var c = Vector256.Max(a, b);
+            var d = Vector256.Shuffle(c, Vector256.Create(1, 0, 3, 2));
+            var e = Vector256.Max(c, d);
+            return e[0];
+        }
+        return Math.Max(Math.Max(a[0], a[1]), Math.Max(a[2], a[3]));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double CMax(Vector256<double> a)
+    {
+        if (Avx.IsSupported)
+        {
+            var b = Vector256.Shuffle(a, Vector256.Create(2, 3, 0, 1));
+            var c = Avx.Max(a, b);
+            var d = Vector256.Shuffle(c, Vector256.Create(1, 0, 3, 2));
+            var e = Avx.Max(c, d);
+            return e[0];
+        }
+        return Math.Max(Math.Max(a[0], a[1]), Math.Max(a[2], a[3]));
+    }
+
+    #endregion
+
+    #region CMin3
+
+    [MethodImpl(256 | 512)]
+    public static uint CMin3(Vector128<uint> a)
+    {
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var b = Vector128.Shuffle(a, Vector128.Create(1, 1, 1, 1).AsUInt32());
+            var c = Vector128.Min(a, b);
+            var d = Vector128.Shuffle(a, Vector128.Create(2, 2, 2, 2).AsUInt32());
+            var e = Vector128.Min(c, d);
+            return e[0];
+        }
+        return Math.Min(Math.Min(a[0], a[1]), a[2]);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static int CMin3(Vector128<int> a)
+    {
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var b = Vector128.Shuffle(a, Vector128.Create(1, 1, 1, 1));
+            var c = Vector128.Min(a, b);
+            var d = Vector128.Shuffle(a, Vector128.Create(2, 2, 2, 2));
+            var e = Vector128.Min(c, d);
+            return e[0];
+        }
+        return Math.Min(Math.Min(a[0], a[1]), a[2]);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float CMin3(Vector128<float> a)
+    {
+        if (Sse.IsSupported)
+        {
+            var b = Vector128.Shuffle(a, Vector128.Create(1, 1, 1, 1));
+            var c = Sse.Min(a, b);
+            var d = Vector128.Shuffle(a, Vector128.Create(2, 2, 2, 2));
+            var e = Sse.Min(c, d);
+            return e[0];
+        }
+        if (AdvSimd.IsSupported)
+        {
+            var b = Vector128.Shuffle(a, Vector128.Create(1, 1, 1, 1));
+            var c = AdvSimd.Min(a, b);
+            var d = Vector128.Shuffle(a, Vector128.Create(2, 2, 2, 2));
+            var e = AdvSimd.Min(c, d);
+            return e[0];
+        }
+        if (PackedSimd.IsSupported)
+        {
+            var b = Vector128.Shuffle(a, Vector128.Create(1, 1, 1, 1));
+            var c = PackedSimd.Min(a, b);
+            var d = Vector128.Shuffle(a, Vector128.Create(2, 2, 2, 2));
+            var e = PackedSimd.Min(c, d);
+            return e[0];
+        }
+        return Math.Min(Math.Min(a[0], a[1]), a[2]);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static ulong CMin3(Vector256<ulong> a)
+    {
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var b = Vector256.Shuffle(a, Vector256.Create(1, 1, 1, 1).AsUInt64());
+            var c = Vector256.Min(a, b);
+            var d = Vector256.Shuffle(a, Vector256.Create(2, 2, 2, 2).AsUInt64());
+            var e = Vector256.Min(c, d);
+            return e[0];
+        }
+        return Math.Min(Math.Min(a[0], a[1]), a[2]);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static long CMin3(Vector256<long> a)
+    {
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var b = Vector256.Shuffle(a, Vector256.Create(1, 1, 1, 1));
+            var c = Vector256.Min(a, b);
+            var d = Vector256.Shuffle(a, Vector256.Create(2, 2, 2, 2));
+            var e = Vector256.Min(c, d);
+            return e[0];
+        }
+        return Math.Min(Math.Min(a[0], a[1]), a[2]);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double CMin3(Vector256<double> a)
+    {
+        if (Avx.IsSupported)
+        {
+            var b = Vector256.Shuffle(a, Vector256.Create(1, 1, 1, 1));
+            var c = Avx.Min(a, b);
+            var d = Vector256.Shuffle(c, Vector256.Create(2, 2, 2, 2));
+            var e = Avx.Min(c, d);
+            return e[0];
+        }
+        return Math.Min(Math.Min(a[0], a[1]), a[2]);
+    }
+
+    #endregion
+
+    #region CMax3
+
+    [MethodImpl(256 | 512)]
+    public static uint CMax3(Vector128<uint> a)
+    {
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var b = Vector128.Shuffle(a, Vector128.Create(1, 1, 1, 1).AsUInt32());
+            var c = Vector128.Max(a, b);
+            var d = Vector128.Shuffle(a, Vector128.Create(2, 2, 2, 2).AsUInt32());
+            var e = Vector128.Max(c, d);
+            return e[0];
+        }
+        return Math.Max(Math.Max(a[0], a[1]), a[2]);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static int CMax3(Vector128<int> a)
+    {
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var b = Vector128.Shuffle(a, Vector128.Create(1, 1, 1, 1));
+            var c = Vector128.Max(a, b);
+            var d = Vector128.Shuffle(a, Vector128.Create(2, 2, 2, 2));
+            var e = Vector128.Max(c, d);
+            return e[0];
+        }
+        return Math.Max(Math.Max(a[0], a[1]), a[2]);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float CMax3(Vector128<float> a)
+    {
+        if (Sse.IsSupported)
+        {
+            var b = Vector128.Shuffle(a, Vector128.Create(1, 1, 1, 1));
+            var c = Sse.Max(a, b);
+            var d = Vector128.Shuffle(a, Vector128.Create(2, 2, 2, 2));
+            var e = Sse.Max(c, d);
+            return e[0];
+        }
+        if (AdvSimd.IsSupported)
+        {
+            var b = Vector128.Shuffle(a, Vector128.Create(1, 1, 1, 1));
+            var c = AdvSimd.Max(a, b);
+            var d = Vector128.Shuffle(a, Vector128.Create(2, 2, 2, 2));
+            var e = AdvSimd.Max(c, d);
+            return e[0];
+        }
+        if (PackedSimd.IsSupported)
+        {
+            var b = Vector128.Shuffle(a, Vector128.Create(1, 1, 1, 1));
+            var c = PackedSimd.Max(a, b);
+            var d = Vector128.Shuffle(a, Vector128.Create(2, 2, 2, 2));
+            var e = PackedSimd.Max(c, d);
+            return e[0];
+        }
+        return Math.Max(Math.Max(a[0], a[1]), a[2]);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static ulong CMax3(Vector256<ulong> a)
+    {
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var b = Vector256.Shuffle(a, Vector256.Create(1, 1, 1, 1).AsUInt64());
+            var c = Vector256.Max(a, b);
+            var d = Vector256.Shuffle(a, Vector256.Create(2, 2, 2, 2).AsUInt64());
+            var e = Vector256.Max(c, d);
+            return e[0];
+        }
+        return Math.Max(Math.Max(a[0], a[1]), a[2]);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static long CMax3(Vector256<long> a)
+    {
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var b = Vector256.Shuffle(a, Vector256.Create(1, 1, 1, 1));
+            var c = Vector256.Max(a, b);
+            var d = Vector256.Shuffle(a, Vector256.Create(2, 2, 2, 2));
+            var e = Vector256.Max(c, d);
+            return e[0];
+        }
+        return Math.Max(Math.Max(a[0], a[1]), a[2]);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double CMax3(Vector256<double> a)
+    {
+        if (Avx.IsSupported)
+        {
+            var b = Vector256.Shuffle(a, Vector256.Create(1, 1, 1, 1));
+            var c = Avx.Max(a, b);
+            var d = Vector256.Shuffle(c, Vector256.Create(2, 2, 2, 2));
+            var e = Avx.Max(c, d);
+            return e[0];
+        }
+        return Math.Max(Math.Max(a[0], a[1]), a[2]);
+    }
+
+    #endregion
+
+    #region CMin2
+
+    [MethodImpl(256 | 512)]
+    public static uint CMin(Vector64<uint> a)
+    {
+        if (Vector64.IsHardwareAccelerated)
+        {
+            var b = Vector64.Shuffle(a, Vector64.Create(1, 0).AsUInt32());
+            var c = Vector64.Min(a, b);
+            return c[0];
+        }
+        return Math.Min(a[0], a[1]);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static int CMin(Vector64<int> a)
+    {
+        if (Vector64.IsHardwareAccelerated)
+        {
+            var b = Vector64.Shuffle(a, Vector64.Create(1, 0));
+            var c = Vector64.Min(a, b);
+            return c[0];
+        }
+        return Math.Min(a[0], a[1]);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float CMin(Vector64<float> a)
+    {
+        if (Sse.IsSupported)
+        {
+            var b = Vector128.Create(a, a);
+            var c = Vector128.Shuffle(b, Vector128.Create(1, 0, 3, 2));
+            var d = Sse.Min(c, b);
+            return d[0];
+        }
+        if (AdvSimd.IsSupported)
+        {
+            var b = Vector64.Shuffle(a, Vector64.Create(1, 0));
+            var c = AdvSimd.Min(a, b);
+            return c[0];
+        }
+        if (PackedSimd.IsSupported)
+        {
+            var b = Vector128.Create(a, a);
+            var c = Vector128.Shuffle(b, Vector128.Create(1, 0, 3, 2));
+            var d = PackedSimd.Min(c, b);
+            return d[0];
+        }
+        return Math.Min(a[0], a[1]);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static ulong CMin(Vector128<ulong> a)
+    {
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var b = Vector128.Shuffle(a, Vector128.Create(1, 0).AsUInt64());
+            var c = Vector128.Min(a, b);
+            return c[0];
+        }
+        return Math.Min(a[0], a[1]);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static long CMin(Vector128<long> a)
+    {
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var b = Vector128.Shuffle(a, Vector128.Create(1, 0));
+            var c = Vector128.Min(a, b);
+            return c[0];
+        }
+        return Math.Min(a[0], a[1]);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double CMin(Vector128<double> a)
+    {
+        if (Sse2.IsSupported)
+        {
+            var b = Vector128.Shuffle(a, Vector128.Create(1, 0));
+            var c = Sse2.Min(a, b);
+            return c[0];
+        }
+        if (AdvSimd.Arm64.IsSupported)
+        {
+            var b = Vector128.Shuffle(a, Vector128.Create(1, 0));
+            var c = AdvSimd.Arm64.Min(a, b);
+            return c[0];
+        }
+        if (PackedSimd.IsSupported)
+        {
+            var b = Vector128.Shuffle(a, Vector128.Create(1, 0));
+            var c = PackedSimd.Min(a, b);
+            return c[0];
+        }
+        return Math.Min(a[0], a[1]);
+    }
+
+    #endregion
+
+    #region CMax2
+
+    [MethodImpl(256 | 512)]
+    public static uint CMax(Vector64<uint> a)
+    {
+        if (Vector64.IsHardwareAccelerated)
+        {
+            var b = Vector64.Shuffle(a, Vector64.Create(1, 0).AsUInt32());
+            var c = Vector64.Max(a, b);
+            return c[0];
+        }
+        return Math.Max(a[0], a[1]);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static int CMax(Vector64<int> a)
+    {
+        if (Vector64.IsHardwareAccelerated)
+        {
+            var b = Vector64.Shuffle(a, Vector64.Create(1, 0));
+            var c = Vector64.Max(a, b);
+            return c[0];
+        }
+        return Math.Max(a[0], a[1]);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float CMax(Vector64<float> a)
+    {
+        if (Sse.IsSupported)
+        {
+            var b = Vector128.Create(a, a);
+            var c = Vector128.Shuffle(b, Vector128.Create(1, 0, 3, 2));
+            var d = Sse.Max(c, b);
+            return d[0];
+        }
+        if (AdvSimd.IsSupported)
+        {
+            var b = Vector64.Shuffle(a, Vector64.Create(1, 0));
+            var c = AdvSimd.Max(a, b);
+            return c[0];
+        }
+        if (PackedSimd.IsSupported)
+        {
+            var b = Vector128.Create(a, a);
+            var c = Vector128.Shuffle(b, Vector128.Create(1, 0, 3, 2));
+            var d = PackedSimd.Max(c, b);
+            return d[0];
+        }
+        return Math.Max(a[0], a[1]);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static ulong CMax(Vector128<ulong> a)
+    {
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var b = Vector128.Shuffle(a, Vector128.Create(1, 0).AsUInt64());
+            var c = Vector128.Max(a, b);
+            return c[0];
+        }
+        return Math.Max(a[0], a[1]);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static long CMax(Vector128<long> a)
+    {
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var b = Vector128.Shuffle(a, Vector128.Create(1, 0));
+            var c = Vector128.Max(a, b);
+            return c[0];
+        }
+        return Math.Max(a[0], a[1]);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double CMax(Vector128<double> a)
+    {
+        if (Sse2.IsSupported)
+        {
+            var b = Vector128.Shuffle(a, Vector128.Create(1, 0));
+            var c = Sse2.Max(a, b);
+            return c[0];
+        }
+        if (AdvSimd.Arm64.IsSupported)
+        {
+            var b = Vector128.Shuffle(a, Vector128.Create(1, 0));
+            var c = AdvSimd.Arm64.Max(a, b);
+            return c[0];
+        }
+        if (PackedSimd.IsSupported)
+        {
+            var b = Vector128.Shuffle(a, Vector128.Create(1, 0));
+            var c = PackedSimd.Max(a, b);
+            return c[0];
+        }
+        return Math.Max(a[0], a[1]);
+    }
+
+    #endregion
+
     #region Log
 
     [MethodImpl(256 | 512)]
