@@ -3783,12 +3783,16 @@ public partial struct int2
     [MethodImpl(256 | 512)]
     public static int2 operator %(int2 a, int2 b)
     {
+        if (Vector64.IsHardwareAccelerated)
+            return a - (a / b) * b;
         return new((int)(a.x % b.x), (int)(a.y % b.y));
     }
 
     [MethodImpl(256 | 512)]
     public static int2 operator %(int2 a, int b)
     {
+        if (Vector64.IsHardwareAccelerated)
+            return a - (a / b) * b;
         return new((int)(a.x % b), (int)(a.y % b));
     }
 
@@ -4093,7 +4097,7 @@ public partial struct int3
     public static int3 operator /(int3 a, int3 b)
     {
         if (Vector128.IsHardwareAccelerated)
-            return new((a.vector / b.vector));
+            return new((a.vector / b.vector.WithElement(3, 1)));
         return new((int)(a.x / b.x), (int)(a.y / b.y), (int)(a.z / b.z));
     }
 
@@ -4111,12 +4115,16 @@ public partial struct int3
     [MethodImpl(256 | 512)]
     public static int3 operator %(int3 a, int3 b)
     {
+        if (Vector128.IsHardwareAccelerated)
+            return a - (a / b) * b;
         return new((int)(a.x % b.x), (int)(a.y % b.y), (int)(a.z % b.z));
     }
 
     [MethodImpl(256 | 512)]
     public static int3 operator %(int3 a, int b)
     {
+        if (Vector128.IsHardwareAccelerated)
+            return a - (a / b) * b;
         return new((int)(a.x % b), (int)(a.y % b), (int)(a.z % b));
     }
 
@@ -4442,12 +4450,16 @@ public partial struct int4
     [MethodImpl(256 | 512)]
     public static int4 operator %(int4 a, int4 b)
     {
+        if (Vector128.IsHardwareAccelerated)
+            return a - (a / b) * b;
         return new((int)(a.x % b.x), (int)(a.y % b.y), (int)(a.z % b.z), (int)(a.w % b.w));
     }
 
     [MethodImpl(256 | 512)]
     public static int4 operator %(int4 a, int b)
     {
+        if (Vector128.IsHardwareAccelerated)
+            return a - (a / b) * b;
         return new((int)(a.x % b), (int)(a.y % b), (int)(a.z % b), (int)(a.w % b));
     }
 
@@ -4763,12 +4775,16 @@ public partial struct uint2
     [MethodImpl(256 | 512)]
     public static uint2 operator %(uint2 a, uint2 b)
     {
+        if (Vector64.IsHardwareAccelerated)
+            return a - (a / b) * b;
         return new((uint)(a.x % b.x), (uint)(a.y % b.y));
     }
 
     [MethodImpl(256 | 512)]
     public static uint2 operator %(uint2 a, uint b)
     {
+        if (Vector64.IsHardwareAccelerated)
+            return a - (a / b) * b;
         return new((uint)(a.x % b), (uint)(a.y % b));
     }
 
@@ -5066,7 +5082,7 @@ public partial struct uint3
     public static uint3 operator /(uint3 a, uint3 b)
     {
         if (Vector128.IsHardwareAccelerated)
-            return new((a.vector / b.vector));
+            return new((a.vector / b.vector.WithElement(3, 1u)));
         return new((uint)(a.x / b.x), (uint)(a.y / b.y), (uint)(a.z / b.z));
     }
 
@@ -5084,12 +5100,16 @@ public partial struct uint3
     [MethodImpl(256 | 512)]
     public static uint3 operator %(uint3 a, uint3 b)
     {
+        if (Vector128.IsHardwareAccelerated)
+            return a - (a / b) * b;
         return new((uint)(a.x % b.x), (uint)(a.y % b.y), (uint)(a.z % b.z));
     }
 
     [MethodImpl(256 | 512)]
     public static uint3 operator %(uint3 a, uint b)
     {
+        if (Vector128.IsHardwareAccelerated)
+            return a - (a / b) * b;
         return new((uint)(a.x % b), (uint)(a.y % b), (uint)(a.z % b));
     }
 
@@ -5408,12 +5428,16 @@ public partial struct uint4
     [MethodImpl(256 | 512)]
     public static uint4 operator %(uint4 a, uint4 b)
     {
+        if (Vector128.IsHardwareAccelerated)
+            return a - (a / b) * b;
         return new((uint)(a.x % b.x), (uint)(a.y % b.y), (uint)(a.z % b.z), (uint)(a.w % b.w));
     }
 
     [MethodImpl(256 | 512)]
     public static uint4 operator %(uint4 a, uint b)
     {
+        if (Vector128.IsHardwareAccelerated)
+            return a - (a / b) * b;
         return new((uint)(a.x % b), (uint)(a.y % b), (uint)(a.z % b), (uint)(a.w % b));
     }
 
@@ -5736,12 +5760,16 @@ public partial struct long2
     [MethodImpl(256 | 512)]
     public static long2 operator %(long2 a, long2 b)
     {
+        if (Vector128.IsHardwareAccelerated)
+            return a - (a / b) * b;
         return new((long)(a.x % b.x), (long)(a.y % b.y));
     }
 
     [MethodImpl(256 | 512)]
     public static long2 operator %(long2 a, long b)
     {
+        if (Vector128.IsHardwareAccelerated)
+            return a - (a / b) * b;
         return new((long)(a.x % b), (long)(a.y % b));
     }
 
@@ -6046,7 +6074,7 @@ public partial struct long3
     public static long3 operator /(long3 a, long3 b)
     {
         if (Vector256.IsHardwareAccelerated)
-            return new((a.vector / b.vector));
+            return new((a.vector / b.vector.WithElement(3, 1L)));
         return new((long)(a.x / b.x), (long)(a.y / b.y), (long)(a.z / b.z));
     }
 
@@ -6064,12 +6092,16 @@ public partial struct long3
     [MethodImpl(256 | 512)]
     public static long3 operator %(long3 a, long3 b)
     {
+        if (Vector256.IsHardwareAccelerated)
+            return a - (a / b) * b;
         return new((long)(a.x % b.x), (long)(a.y % b.y), (long)(a.z % b.z));
     }
 
     [MethodImpl(256 | 512)]
     public static long3 operator %(long3 a, long b)
     {
+        if (Vector256.IsHardwareAccelerated)
+            return a - (a / b) * b;
         return new((long)(a.x % b), (long)(a.y % b), (long)(a.z % b));
     }
 
@@ -6395,12 +6427,16 @@ public partial struct long4
     [MethodImpl(256 | 512)]
     public static long4 operator %(long4 a, long4 b)
     {
+        if (Vector256.IsHardwareAccelerated)
+            return a - (a / b) * b;
         return new((long)(a.x % b.x), (long)(a.y % b.y), (long)(a.z % b.z), (long)(a.w % b.w));
     }
 
     [MethodImpl(256 | 512)]
     public static long4 operator %(long4 a, long b)
     {
+        if (Vector256.IsHardwareAccelerated)
+            return a - (a / b) * b;
         return new((long)(a.x % b), (long)(a.y % b), (long)(a.z % b), (long)(a.w % b));
     }
 
@@ -6716,12 +6752,16 @@ public partial struct ulong2
     [MethodImpl(256 | 512)]
     public static ulong2 operator %(ulong2 a, ulong2 b)
     {
+        if (Vector128.IsHardwareAccelerated)
+            return a - (a / b) * b;
         return new((ulong)(a.x % b.x), (ulong)(a.y % b.y));
     }
 
     [MethodImpl(256 | 512)]
     public static ulong2 operator %(ulong2 a, ulong b)
     {
+        if (Vector128.IsHardwareAccelerated)
+            return a - (a / b) * b;
         return new((ulong)(a.x % b), (ulong)(a.y % b));
     }
 
@@ -7019,7 +7059,7 @@ public partial struct ulong3
     public static ulong3 operator /(ulong3 a, ulong3 b)
     {
         if (Vector256.IsHardwareAccelerated)
-            return new((a.vector / b.vector));
+            return new((a.vector / b.vector.WithElement(3, 1UL)));
         return new((ulong)(a.x / b.x), (ulong)(a.y / b.y), (ulong)(a.z / b.z));
     }
 
@@ -7037,12 +7077,16 @@ public partial struct ulong3
     [MethodImpl(256 | 512)]
     public static ulong3 operator %(ulong3 a, ulong3 b)
     {
+        if (Vector256.IsHardwareAccelerated)
+            return a - (a / b) * b;
         return new((ulong)(a.x % b.x), (ulong)(a.y % b.y), (ulong)(a.z % b.z));
     }
 
     [MethodImpl(256 | 512)]
     public static ulong3 operator %(ulong3 a, ulong b)
     {
+        if (Vector256.IsHardwareAccelerated)
+            return a - (a / b) * b;
         return new((ulong)(a.x % b), (ulong)(a.y % b), (ulong)(a.z % b));
     }
 
@@ -7361,12 +7405,16 @@ public partial struct ulong4
     [MethodImpl(256 | 512)]
     public static ulong4 operator %(ulong4 a, ulong4 b)
     {
+        if (Vector256.IsHardwareAccelerated)
+            return a - (a / b) * b;
         return new((ulong)(a.x % b.x), (ulong)(a.y % b.y), (ulong)(a.z % b.z), (ulong)(a.w % b.w));
     }
 
     [MethodImpl(256 | 512)]
     public static ulong4 operator %(ulong4 a, ulong b)
     {
+        if (Vector256.IsHardwareAccelerated)
+            return a - (a / b) * b;
         return new((ulong)(a.x % b), (ulong)(a.y % b), (ulong)(a.z % b), (ulong)(a.w % b));
     }
 

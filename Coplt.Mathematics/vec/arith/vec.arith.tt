@@ -159,7 +159,12 @@ public partial struct <#= typeName #>
             {
 #>
         if (Vector<#= bitSize #>.IsHardwareAccelerated)
-            return new((a.vector / b.vector)<#
+            return new((a.vector / b.vector<#
+                if (i == 3 && typ.i)
+                {
+#>.WithElement(3, <#= typ.one #>)<#
+                }
+#>)<#
                 if (i == 3 && typ.f)
                 {
 #> & Vector<#= bitSize #>.Create(-1, -1, -1, 0).As<#= typ.Type #>()<#
@@ -213,6 +218,13 @@ public partial struct <#= typeName #>
 #>);
 <#
             }
+            else if (typ.simd && typ.i)
+            {
+#>
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return a - (a / b) * b;
+<#
+            }
 #>
         return new(<#=
                 string.Join(", ",
@@ -233,6 +245,13 @@ public partial struct <#= typeName #>
 #> & Vector<#= bitSize #>.Create(-1, -1, -1, 0).As<#= typ.Type #>()<#
                 }
 #>);
+<#
+            }
+            else if (typ.simd && typ.i)
+            {
+#>
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return a - (a / b) * b;
 <#
             }
 #>
