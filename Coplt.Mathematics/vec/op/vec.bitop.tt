@@ -17,6 +17,12 @@ namespace Coplt.Mathematics;
             var byteSize = typ.size * (i is 3 ? 4 : i);
             var bitSize = 8 * byteSize;
 
+            var uintName = $"{(typ.size == 8 ? "ulong" : "uint")}{i}";
+            var support_shift = bitSize is 128 or 256 && typ.size is 4 or 8;
+            var as_shift_right_type = typ is { f: false, sig: true } ? typ.size == 4 ? "AsInt32" : "AsInt64" : typ.size == 4 ? "AsUInt32" : "AsUInt64";
+            var as_shift_left_type = typ.size == 4 ? "AsUInt32" : "AsUInt64";
+            var shift_3d = i is 3 ? ", true" : "";
+
             var bType = $"b{typ.size * 8}v";
             var bTyp = Typ.Typs.FirstOrDefault(a => a.name == bType);
             var bTypeName = $"{bType}{i}";
@@ -44,10 +50,10 @@ public partial struct <#= typeName #> : IVectorBitops
 #>
         if (Vector<#= bitSize #>.IsHardwareAccelerated)
             return new(~a.vector<#
-                    if (i == 3)
-                    {
+                if (i == 3)
+                {
 #> & Vector<#= bitSize #>.Create(-1, -1, -1, 0).As<#= typ.Type #>()<#
-                    }
+                }
 #>);
 <#
             }
@@ -147,7 +153,55 @@ public partial struct <#= typeName #> : IVectorBitops
                 }
 #>
         return new(<#=
-                        string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.BitShiftRightUnsigned(b)")) #>);
+                    string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.BitShiftRightUnsigned(b)")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> operator <<(<#= typeName #> a, <#= uintName #> b)
+    {
+<#
+                if (typ.simd && support_shift)
+                {
+#>
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return new(simd.ShiftLeft(a.vector.<#= as_shift_left_type #>(), b.vector<#= shift_3d #>).As<#= typ.Type #>());
+<#
+                }
+#>
+        return new(<#=
+                    string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.BitShiftLeft((int)b.{Typ.xyzw[n]})")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> operator >>(<#= typeName #> a, <#= uintName #> b)
+    {
+<#
+                if (typ.simd && support_shift)
+                {
+#>
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return new(simd.ShiftRight(a.vector.<#= as_shift_right_type #>(), b.vector<#= shift_3d #>).As<#= typ.Type #>());
+<#
+                }
+#>
+        return new(<#=
+                    string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.BitShiftRight((int)b.{Typ.xyzw[n]})")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> operator >>>(<#= typeName #> a, <#= uintName #> b)
+    {
+<#
+                if (typ.simd && support_shift)
+                {
+#>
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return new(simd.ShiftRight(a.vector.<#= as_shift_left_type #>(), b.vector<#= shift_3d #>).As<#= typ.Type #>());
+<#
+                }
+#>
+        return new(<#=
+                    string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.BitShiftRightUnsigned((int)b.{Typ.xyzw[n]})")) #>);
     }
 <#
             }
@@ -165,10 +219,10 @@ public static partial class math
 #>
         if (Vector<#= bitSize #>.IsHardwareAccelerated)
             return new(Vector<#= bitSize #>.AndNot(a.vector, b.vector)<#
-                    if (i == 3)
-                    {
+                if (i == 3)
+                {
 #> & Vector<#= bitSize #>.Create(-1, -1, -1, 0).As<#= typ.Type #>()<#
-                    }
+                }
 #>);
 <#
             }

@@ -303,6 +303,95 @@ public static partial class simd
 
     #endregion
 
+    #region Shift
+
+    public static bool IsShiftAccelerated
+    {
+        [MethodImpl(256 | 512)]
+        get => Avx2.IsSupported;
+    }
+
+    #region ShiftLeft
+
+    [MethodImpl(256 | 512)]
+    public static Vector128<uint> ShiftLeft(Vector128<uint> a, Vector128<uint> b, bool _3d = false)
+    {
+        if (Avx2.IsSupported) return Avx2.ShiftLeftLogicalVariable(a, b);
+        if (_3d) return Vector128.Create(a[0] << (int)b[0], a[1] << (int)b[1], a[2] << (int)b[2], 0);
+        return Vector128.Create(a[0] << (int)b[0], a[1] << (int)b[1], a[2] << (int)b[2], a[3] << (int)b[3]);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector128<ulong> ShiftLeft(Vector128<ulong> a, Vector128<ulong> b)
+    {
+        if (Avx2.IsSupported) return Avx2.ShiftLeftLogicalVariable(a, b);
+        return Vector128.Create(a[0] << (int)b[0], a[1] << (int)b[1]);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector256<ulong> ShiftLeft(Vector256<ulong> a, Vector256<ulong> b, bool _3d = false)
+    {
+        if (Avx2.IsSupported) return Avx2.ShiftLeftLogicalVariable(a, b);
+        if (_3d) return Vector256.Create(a[0] << (int)b[0], a[1] << (int)b[1], a[2] << (int)b[2], 0);
+        return Vector256.Create(a[0] << (int)b[0], a[1] << (int)b[1], a[2] << (int)b[2], a[3] << (int)b[3]);
+    }
+
+    #endregion
+
+    #region ShiftRight
+
+    [MethodImpl(256 | 512)]
+    public static Vector128<uint> ShiftRight(Vector128<uint> a, Vector128<uint> b, bool _3d = false)
+    {
+        if (Avx2.IsSupported) return Avx2.ShiftRightLogicalVariable(a, b);
+        if (_3d) return Vector128.Create(a[0] >> (int)b[0], a[1] >> (int)b[1], a[2] >> (int)b[2], 0);
+        return Vector128.Create(a[0] >> (int)b[0], a[1] >> (int)b[1], a[2] >> (int)b[2], a[3] >> (int)b[3]);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector128<ulong> ShiftRight(Vector128<ulong> a, Vector128<ulong> b)
+    {
+        if (Avx2.IsSupported) return Avx2.ShiftRightLogicalVariable(a, b);
+        return Vector128.Create(a[0] >> (int)b[0], a[1] >> (int)b[1]);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector256<ulong> ShiftRight(Vector256<ulong> a, Vector256<ulong> b, bool _3d = false)
+    {
+        if (Avx2.IsSupported) return Avx2.ShiftRightLogicalVariable(a, b);
+        if (_3d) return Vector256.Create(a[0] >> (int)b[0], a[1] >> (int)b[1], a[2] >> (int)b[2], 0);
+        return Vector256.Create(a[0] >> (int)b[0], a[1] >> (int)b[1], a[2] >> (int)b[2], a[3] >> (int)b[3]);
+    }
+
+    #endregion
+
+    #region ShiftRightSigned
+
+    [MethodImpl(256 | 512)]
+    public static Vector128<int> ShiftRight(Vector128<int> a, Vector128<uint> b, bool _3d = false)
+    {
+        if (Avx2.IsSupported) return Avx2.ShiftRightArithmeticVariable(a, b);
+        if (_3d) return Vector128.Create(a[0] >> (int)b[0], a[1] >> (int)b[1], a[2] >> (int)b[2], 0);
+        return Vector128.Create(a[0] >> (int)b[0], a[1] >> (int)b[1], a[2] >> (int)b[2], a[3] >> (int)b[3]);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector128<long> ShiftRight(Vector128<long> a, Vector128<ulong> b)
+    {
+        return Vector128.Create(a[0] >> (int)b[0], a[1] >> (int)b[1]);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector256<long> ShiftRight(Vector256<long> a, Vector256<ulong> b, bool _3d = false)
+    {
+        if (_3d) return Vector256.Create(a[0] >> (int)b[0], a[1] >> (int)b[1], a[2] >> (int)b[2], 0);
+        return Vector256.Create(a[0] >> (int)b[0], a[1] >> (int)b[1], a[2] >> (int)b[2], a[3] >> (int)b[3]);
+    }
+
+    #endregion
+
+    #endregion
+
     #region Round
 
     [MethodImpl(256 | 512)]

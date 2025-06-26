@@ -63,6 +63,24 @@ public partial struct float2 : IVectorBitops
             return new(a.vector >>> b);
         return new(a.x.BitShiftRightUnsigned(b), a.y.BitShiftRightUnsigned(b));
     }
+
+    [MethodImpl(256 | 512)]
+    public static float2 operator <<(float2 a, uint2 b)
+    {
+        return new(a.x.BitShiftLeft((int)b.x), a.y.BitShiftLeft((int)b.y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float2 operator >>(float2 a, uint2 b)
+    {
+        return new(a.x.BitShiftRight((int)b.x), a.y.BitShiftRight((int)b.y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float2 operator >>>(float2 a, uint2 b)
+    {
+        return new(a.x.BitShiftRightUnsigned((int)b.x), a.y.BitShiftRightUnsigned((int)b.y));
+    }
 }
 
 public static partial class math
@@ -156,6 +174,30 @@ public partial struct float3 : IVectorBitops
         if (Vector128.IsHardwareAccelerated)
             return new(a.vector >>> b);
         return new(a.x.BitShiftRightUnsigned(b), a.y.BitShiftRightUnsigned(b), a.z.BitShiftRightUnsigned(b));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float3 operator <<(float3 a, uint3 b)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.ShiftLeft(a.vector.AsUInt32(), b.vector, true).AsSingle());
+        return new(a.x.BitShiftLeft((int)b.x), a.y.BitShiftLeft((int)b.y), a.z.BitShiftLeft((int)b.z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float3 operator >>(float3 a, uint3 b)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.ShiftRight(a.vector.AsUInt32(), b.vector, true).AsSingle());
+        return new(a.x.BitShiftRight((int)b.x), a.y.BitShiftRight((int)b.y), a.z.BitShiftRight((int)b.z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float3 operator >>>(float3 a, uint3 b)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.ShiftRight(a.vector.AsUInt32(), b.vector, true).AsSingle());
+        return new(a.x.BitShiftRightUnsigned((int)b.x), a.y.BitShiftRightUnsigned((int)b.y), a.z.BitShiftRightUnsigned((int)b.z));
     }
 }
 
@@ -251,6 +293,30 @@ public partial struct float4 : IVectorBitops
             return new(a.vector >>> b);
         return new(a.x.BitShiftRightUnsigned(b), a.y.BitShiftRightUnsigned(b), a.z.BitShiftRightUnsigned(b), a.w.BitShiftRightUnsigned(b));
     }
+
+    [MethodImpl(256 | 512)]
+    public static float4 operator <<(float4 a, uint4 b)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.ShiftLeft(a.vector.AsUInt32(), b.vector).AsSingle());
+        return new(a.x.BitShiftLeft((int)b.x), a.y.BitShiftLeft((int)b.y), a.z.BitShiftLeft((int)b.z), a.w.BitShiftLeft((int)b.w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float4 operator >>(float4 a, uint4 b)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.ShiftRight(a.vector.AsUInt32(), b.vector).AsSingle());
+        return new(a.x.BitShiftRight((int)b.x), a.y.BitShiftRight((int)b.y), a.z.BitShiftRight((int)b.z), a.w.BitShiftRight((int)b.w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float4 operator >>>(float4 a, uint4 b)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.ShiftRight(a.vector.AsUInt32(), b.vector).AsSingle());
+        return new(a.x.BitShiftRightUnsigned((int)b.x), a.y.BitShiftRightUnsigned((int)b.y), a.z.BitShiftRightUnsigned((int)b.z), a.w.BitShiftRightUnsigned((int)b.w));
+    }
 }
 
 public static partial class math
@@ -344,6 +410,30 @@ public partial struct double2 : IVectorBitops
         if (Vector128.IsHardwareAccelerated)
             return new(a.vector >>> b);
         return new(a.x.BitShiftRightUnsigned(b), a.y.BitShiftRightUnsigned(b));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double2 operator <<(double2 a, ulong2 b)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.ShiftLeft(a.vector.AsUInt64(), b.vector).AsDouble());
+        return new(a.x.BitShiftLeft((int)b.x), a.y.BitShiftLeft((int)b.y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double2 operator >>(double2 a, ulong2 b)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.ShiftRight(a.vector.AsUInt64(), b.vector).AsDouble());
+        return new(a.x.BitShiftRight((int)b.x), a.y.BitShiftRight((int)b.y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double2 operator >>>(double2 a, ulong2 b)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.ShiftRight(a.vector.AsUInt64(), b.vector).AsDouble());
+        return new(a.x.BitShiftRightUnsigned((int)b.x), a.y.BitShiftRightUnsigned((int)b.y));
     }
 }
 
@@ -439,6 +529,30 @@ public partial struct double3 : IVectorBitops
             return new(a.vector >>> b);
         return new(a.x.BitShiftRightUnsigned(b), a.y.BitShiftRightUnsigned(b), a.z.BitShiftRightUnsigned(b));
     }
+
+    [MethodImpl(256 | 512)]
+    public static double3 operator <<(double3 a, ulong3 b)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.ShiftLeft(a.vector.AsUInt64(), b.vector, true).AsDouble());
+        return new(a.x.BitShiftLeft((int)b.x), a.y.BitShiftLeft((int)b.y), a.z.BitShiftLeft((int)b.z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double3 operator >>(double3 a, ulong3 b)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.ShiftRight(a.vector.AsUInt64(), b.vector, true).AsDouble());
+        return new(a.x.BitShiftRight((int)b.x), a.y.BitShiftRight((int)b.y), a.z.BitShiftRight((int)b.z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double3 operator >>>(double3 a, ulong3 b)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.ShiftRight(a.vector.AsUInt64(), b.vector, true).AsDouble());
+        return new(a.x.BitShiftRightUnsigned((int)b.x), a.y.BitShiftRightUnsigned((int)b.y), a.z.BitShiftRightUnsigned((int)b.z));
+    }
 }
 
 public static partial class math
@@ -533,6 +647,30 @@ public partial struct double4 : IVectorBitops
             return new(a.vector >>> b);
         return new(a.x.BitShiftRightUnsigned(b), a.y.BitShiftRightUnsigned(b), a.z.BitShiftRightUnsigned(b), a.w.BitShiftRightUnsigned(b));
     }
+
+    [MethodImpl(256 | 512)]
+    public static double4 operator <<(double4 a, ulong4 b)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.ShiftLeft(a.vector.AsUInt64(), b.vector).AsDouble());
+        return new(a.x.BitShiftLeft((int)b.x), a.y.BitShiftLeft((int)b.y), a.z.BitShiftLeft((int)b.z), a.w.BitShiftLeft((int)b.w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double4 operator >>(double4 a, ulong4 b)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.ShiftRight(a.vector.AsUInt64(), b.vector).AsDouble());
+        return new(a.x.BitShiftRight((int)b.x), a.y.BitShiftRight((int)b.y), a.z.BitShiftRight((int)b.z), a.w.BitShiftRight((int)b.w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double4 operator >>>(double4 a, ulong4 b)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.ShiftRight(a.vector.AsUInt64(), b.vector).AsDouble());
+        return new(a.x.BitShiftRightUnsigned((int)b.x), a.y.BitShiftRightUnsigned((int)b.y), a.z.BitShiftRightUnsigned((int)b.z), a.w.BitShiftRightUnsigned((int)b.w));
+    }
 }
 
 public static partial class math
@@ -613,6 +751,24 @@ public partial struct short2 : IVectorBitops
     {
         return new(a.x.BitShiftRightUnsigned(b), a.y.BitShiftRightUnsigned(b));
     }
+
+    [MethodImpl(256 | 512)]
+    public static short2 operator <<(short2 a, uint2 b)
+    {
+        return new(a.x.BitShiftLeft((int)b.x), a.y.BitShiftLeft((int)b.y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static short2 operator >>(short2 a, uint2 b)
+    {
+        return new(a.x.BitShiftRight((int)b.x), a.y.BitShiftRight((int)b.y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static short2 operator >>>(short2 a, uint2 b)
+    {
+        return new(a.x.BitShiftRightUnsigned((int)b.x), a.y.BitShiftRightUnsigned((int)b.y));
+    }
 }
 
 public static partial class math
@@ -690,6 +846,24 @@ public partial struct short3 : IVectorBitops
     public static short3 operator >>>(short3 a, int b)
     {
         return new(a.x.BitShiftRightUnsigned(b), a.y.BitShiftRightUnsigned(b), a.z.BitShiftRightUnsigned(b));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static short3 operator <<(short3 a, uint3 b)
+    {
+        return new(a.x.BitShiftLeft((int)b.x), a.y.BitShiftLeft((int)b.y), a.z.BitShiftLeft((int)b.z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static short3 operator >>(short3 a, uint3 b)
+    {
+        return new(a.x.BitShiftRight((int)b.x), a.y.BitShiftRight((int)b.y), a.z.BitShiftRight((int)b.z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static short3 operator >>>(short3 a, uint3 b)
+    {
+        return new(a.x.BitShiftRightUnsigned((int)b.x), a.y.BitShiftRightUnsigned((int)b.y), a.z.BitShiftRightUnsigned((int)b.z));
     }
 }
 
@@ -769,6 +943,24 @@ public partial struct short4 : IVectorBitops
     {
         return new(a.x.BitShiftRightUnsigned(b), a.y.BitShiftRightUnsigned(b), a.z.BitShiftRightUnsigned(b), a.w.BitShiftRightUnsigned(b));
     }
+
+    [MethodImpl(256 | 512)]
+    public static short4 operator <<(short4 a, uint4 b)
+    {
+        return new(a.x.BitShiftLeft((int)b.x), a.y.BitShiftLeft((int)b.y), a.z.BitShiftLeft((int)b.z), a.w.BitShiftLeft((int)b.w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static short4 operator >>(short4 a, uint4 b)
+    {
+        return new(a.x.BitShiftRight((int)b.x), a.y.BitShiftRight((int)b.y), a.z.BitShiftRight((int)b.z), a.w.BitShiftRight((int)b.w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static short4 operator >>>(short4 a, uint4 b)
+    {
+        return new(a.x.BitShiftRightUnsigned((int)b.x), a.y.BitShiftRightUnsigned((int)b.y), a.z.BitShiftRightUnsigned((int)b.z), a.w.BitShiftRightUnsigned((int)b.w));
+    }
 }
 
 public static partial class math
@@ -846,6 +1038,24 @@ public partial struct ushort2 : IVectorBitops
     public static ushort2 operator >>>(ushort2 a, int b)
     {
         return new(a.x.BitShiftRightUnsigned(b), a.y.BitShiftRightUnsigned(b));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static ushort2 operator <<(ushort2 a, uint2 b)
+    {
+        return new(a.x.BitShiftLeft((int)b.x), a.y.BitShiftLeft((int)b.y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static ushort2 operator >>(ushort2 a, uint2 b)
+    {
+        return new(a.x.BitShiftRight((int)b.x), a.y.BitShiftRight((int)b.y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static ushort2 operator >>>(ushort2 a, uint2 b)
+    {
+        return new(a.x.BitShiftRightUnsigned((int)b.x), a.y.BitShiftRightUnsigned((int)b.y));
     }
 }
 
@@ -925,6 +1135,24 @@ public partial struct ushort3 : IVectorBitops
     {
         return new(a.x.BitShiftRightUnsigned(b), a.y.BitShiftRightUnsigned(b), a.z.BitShiftRightUnsigned(b));
     }
+
+    [MethodImpl(256 | 512)]
+    public static ushort3 operator <<(ushort3 a, uint3 b)
+    {
+        return new(a.x.BitShiftLeft((int)b.x), a.y.BitShiftLeft((int)b.y), a.z.BitShiftLeft((int)b.z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static ushort3 operator >>(ushort3 a, uint3 b)
+    {
+        return new(a.x.BitShiftRight((int)b.x), a.y.BitShiftRight((int)b.y), a.z.BitShiftRight((int)b.z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static ushort3 operator >>>(ushort3 a, uint3 b)
+    {
+        return new(a.x.BitShiftRightUnsigned((int)b.x), a.y.BitShiftRightUnsigned((int)b.y), a.z.BitShiftRightUnsigned((int)b.z));
+    }
 }
 
 public static partial class math
@@ -1002,6 +1230,24 @@ public partial struct ushort4 : IVectorBitops
     public static ushort4 operator >>>(ushort4 a, int b)
     {
         return new(a.x.BitShiftRightUnsigned(b), a.y.BitShiftRightUnsigned(b), a.z.BitShiftRightUnsigned(b), a.w.BitShiftRightUnsigned(b));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static ushort4 operator <<(ushort4 a, uint4 b)
+    {
+        return new(a.x.BitShiftLeft((int)b.x), a.y.BitShiftLeft((int)b.y), a.z.BitShiftLeft((int)b.z), a.w.BitShiftLeft((int)b.w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static ushort4 operator >>(ushort4 a, uint4 b)
+    {
+        return new(a.x.BitShiftRight((int)b.x), a.y.BitShiftRight((int)b.y), a.z.BitShiftRight((int)b.z), a.w.BitShiftRight((int)b.w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static ushort4 operator >>>(ushort4 a, uint4 b)
+    {
+        return new(a.x.BitShiftRightUnsigned((int)b.x), a.y.BitShiftRightUnsigned((int)b.y), a.z.BitShiftRightUnsigned((int)b.z), a.w.BitShiftRightUnsigned((int)b.w));
     }
 }
 
@@ -1094,6 +1340,24 @@ public partial struct int2 : IVectorBitops
         if (Vector64.IsHardwareAccelerated)
             return new(a.vector >>> b);
         return new(a.x.BitShiftRightUnsigned(b), a.y.BitShiftRightUnsigned(b));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static int2 operator <<(int2 a, uint2 b)
+    {
+        return new(a.x.BitShiftLeft((int)b.x), a.y.BitShiftLeft((int)b.y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static int2 operator >>(int2 a, uint2 b)
+    {
+        return new(a.x.BitShiftRight((int)b.x), a.y.BitShiftRight((int)b.y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static int2 operator >>>(int2 a, uint2 b)
+    {
+        return new(a.x.BitShiftRightUnsigned((int)b.x), a.y.BitShiftRightUnsigned((int)b.y));
     }
 }
 
@@ -1189,6 +1453,30 @@ public partial struct int3 : IVectorBitops
             return new(a.vector >>> b);
         return new(a.x.BitShiftRightUnsigned(b), a.y.BitShiftRightUnsigned(b), a.z.BitShiftRightUnsigned(b));
     }
+
+    [MethodImpl(256 | 512)]
+    public static int3 operator <<(int3 a, uint3 b)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.ShiftLeft(a.vector.AsUInt32(), b.vector, true).AsInt32());
+        return new(a.x.BitShiftLeft((int)b.x), a.y.BitShiftLeft((int)b.y), a.z.BitShiftLeft((int)b.z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static int3 operator >>(int3 a, uint3 b)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.ShiftRight(a.vector.AsInt32(), b.vector, true).AsInt32());
+        return new(a.x.BitShiftRight((int)b.x), a.y.BitShiftRight((int)b.y), a.z.BitShiftRight((int)b.z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static int3 operator >>>(int3 a, uint3 b)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.ShiftRight(a.vector.AsUInt32(), b.vector, true).AsInt32());
+        return new(a.x.BitShiftRightUnsigned((int)b.x), a.y.BitShiftRightUnsigned((int)b.y), a.z.BitShiftRightUnsigned((int)b.z));
+    }
 }
 
 public static partial class math
@@ -1282,6 +1570,30 @@ public partial struct int4 : IVectorBitops
         if (Vector128.IsHardwareAccelerated)
             return new(a.vector >>> b);
         return new(a.x.BitShiftRightUnsigned(b), a.y.BitShiftRightUnsigned(b), a.z.BitShiftRightUnsigned(b), a.w.BitShiftRightUnsigned(b));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static int4 operator <<(int4 a, uint4 b)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.ShiftLeft(a.vector.AsUInt32(), b.vector).AsInt32());
+        return new(a.x.BitShiftLeft((int)b.x), a.y.BitShiftLeft((int)b.y), a.z.BitShiftLeft((int)b.z), a.w.BitShiftLeft((int)b.w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static int4 operator >>(int4 a, uint4 b)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.ShiftRight(a.vector.AsInt32(), b.vector).AsInt32());
+        return new(a.x.BitShiftRight((int)b.x), a.y.BitShiftRight((int)b.y), a.z.BitShiftRight((int)b.z), a.w.BitShiftRight((int)b.w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static int4 operator >>>(int4 a, uint4 b)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.ShiftRight(a.vector.AsUInt32(), b.vector).AsInt32());
+        return new(a.x.BitShiftRightUnsigned((int)b.x), a.y.BitShiftRightUnsigned((int)b.y), a.z.BitShiftRightUnsigned((int)b.z), a.w.BitShiftRightUnsigned((int)b.w));
     }
 }
 
@@ -1377,6 +1689,24 @@ public partial struct uint2 : IVectorBitops
             return new(a.vector >>> b);
         return new(a.x.BitShiftRightUnsigned(b), a.y.BitShiftRightUnsigned(b));
     }
+
+    [MethodImpl(256 | 512)]
+    public static uint2 operator <<(uint2 a, uint2 b)
+    {
+        return new(a.x.BitShiftLeft((int)b.x), a.y.BitShiftLeft((int)b.y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static uint2 operator >>(uint2 a, uint2 b)
+    {
+        return new(a.x.BitShiftRight((int)b.x), a.y.BitShiftRight((int)b.y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static uint2 operator >>>(uint2 a, uint2 b)
+    {
+        return new(a.x.BitShiftRightUnsigned((int)b.x), a.y.BitShiftRightUnsigned((int)b.y));
+    }
 }
 
 public static partial class math
@@ -1470,6 +1800,30 @@ public partial struct uint3 : IVectorBitops
         if (Vector128.IsHardwareAccelerated)
             return new(a.vector >>> b);
         return new(a.x.BitShiftRightUnsigned(b), a.y.BitShiftRightUnsigned(b), a.z.BitShiftRightUnsigned(b));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static uint3 operator <<(uint3 a, uint3 b)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.ShiftLeft(a.vector.AsUInt32(), b.vector, true).AsUInt32());
+        return new(a.x.BitShiftLeft((int)b.x), a.y.BitShiftLeft((int)b.y), a.z.BitShiftLeft((int)b.z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static uint3 operator >>(uint3 a, uint3 b)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.ShiftRight(a.vector.AsUInt32(), b.vector, true).AsUInt32());
+        return new(a.x.BitShiftRight((int)b.x), a.y.BitShiftRight((int)b.y), a.z.BitShiftRight((int)b.z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static uint3 operator >>>(uint3 a, uint3 b)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.ShiftRight(a.vector.AsUInt32(), b.vector, true).AsUInt32());
+        return new(a.x.BitShiftRightUnsigned((int)b.x), a.y.BitShiftRightUnsigned((int)b.y), a.z.BitShiftRightUnsigned((int)b.z));
     }
 }
 
@@ -1565,6 +1919,30 @@ public partial struct uint4 : IVectorBitops
             return new(a.vector >>> b);
         return new(a.x.BitShiftRightUnsigned(b), a.y.BitShiftRightUnsigned(b), a.z.BitShiftRightUnsigned(b), a.w.BitShiftRightUnsigned(b));
     }
+
+    [MethodImpl(256 | 512)]
+    public static uint4 operator <<(uint4 a, uint4 b)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.ShiftLeft(a.vector.AsUInt32(), b.vector).AsUInt32());
+        return new(a.x.BitShiftLeft((int)b.x), a.y.BitShiftLeft((int)b.y), a.z.BitShiftLeft((int)b.z), a.w.BitShiftLeft((int)b.w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static uint4 operator >>(uint4 a, uint4 b)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.ShiftRight(a.vector.AsUInt32(), b.vector).AsUInt32());
+        return new(a.x.BitShiftRight((int)b.x), a.y.BitShiftRight((int)b.y), a.z.BitShiftRight((int)b.z), a.w.BitShiftRight((int)b.w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static uint4 operator >>>(uint4 a, uint4 b)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.ShiftRight(a.vector.AsUInt32(), b.vector).AsUInt32());
+        return new(a.x.BitShiftRightUnsigned((int)b.x), a.y.BitShiftRightUnsigned((int)b.y), a.z.BitShiftRightUnsigned((int)b.z), a.w.BitShiftRightUnsigned((int)b.w));
+    }
 }
 
 public static partial class math
@@ -1658,6 +2036,30 @@ public partial struct long2 : IVectorBitops
         if (Vector128.IsHardwareAccelerated)
             return new(a.vector >>> b);
         return new(a.x.BitShiftRightUnsigned(b), a.y.BitShiftRightUnsigned(b));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static long2 operator <<(long2 a, ulong2 b)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.ShiftLeft(a.vector.AsUInt64(), b.vector).AsInt64());
+        return new(a.x.BitShiftLeft((int)b.x), a.y.BitShiftLeft((int)b.y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static long2 operator >>(long2 a, ulong2 b)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.ShiftRight(a.vector.AsInt64(), b.vector).AsInt64());
+        return new(a.x.BitShiftRight((int)b.x), a.y.BitShiftRight((int)b.y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static long2 operator >>>(long2 a, ulong2 b)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.ShiftRight(a.vector.AsUInt64(), b.vector).AsInt64());
+        return new(a.x.BitShiftRightUnsigned((int)b.x), a.y.BitShiftRightUnsigned((int)b.y));
     }
 }
 
@@ -1753,6 +2155,30 @@ public partial struct long3 : IVectorBitops
             return new(a.vector >>> b);
         return new(a.x.BitShiftRightUnsigned(b), a.y.BitShiftRightUnsigned(b), a.z.BitShiftRightUnsigned(b));
     }
+
+    [MethodImpl(256 | 512)]
+    public static long3 operator <<(long3 a, ulong3 b)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.ShiftLeft(a.vector.AsUInt64(), b.vector, true).AsInt64());
+        return new(a.x.BitShiftLeft((int)b.x), a.y.BitShiftLeft((int)b.y), a.z.BitShiftLeft((int)b.z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static long3 operator >>(long3 a, ulong3 b)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.ShiftRight(a.vector.AsInt64(), b.vector, true).AsInt64());
+        return new(a.x.BitShiftRight((int)b.x), a.y.BitShiftRight((int)b.y), a.z.BitShiftRight((int)b.z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static long3 operator >>>(long3 a, ulong3 b)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.ShiftRight(a.vector.AsUInt64(), b.vector, true).AsInt64());
+        return new(a.x.BitShiftRightUnsigned((int)b.x), a.y.BitShiftRightUnsigned((int)b.y), a.z.BitShiftRightUnsigned((int)b.z));
+    }
 }
 
 public static partial class math
@@ -1846,6 +2272,30 @@ public partial struct long4 : IVectorBitops
         if (Vector256.IsHardwareAccelerated)
             return new(a.vector >>> b);
         return new(a.x.BitShiftRightUnsigned(b), a.y.BitShiftRightUnsigned(b), a.z.BitShiftRightUnsigned(b), a.w.BitShiftRightUnsigned(b));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static long4 operator <<(long4 a, ulong4 b)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.ShiftLeft(a.vector.AsUInt64(), b.vector).AsInt64());
+        return new(a.x.BitShiftLeft((int)b.x), a.y.BitShiftLeft((int)b.y), a.z.BitShiftLeft((int)b.z), a.w.BitShiftLeft((int)b.w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static long4 operator >>(long4 a, ulong4 b)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.ShiftRight(a.vector.AsInt64(), b.vector).AsInt64());
+        return new(a.x.BitShiftRight((int)b.x), a.y.BitShiftRight((int)b.y), a.z.BitShiftRight((int)b.z), a.w.BitShiftRight((int)b.w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static long4 operator >>>(long4 a, ulong4 b)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.ShiftRight(a.vector.AsUInt64(), b.vector).AsInt64());
+        return new(a.x.BitShiftRightUnsigned((int)b.x), a.y.BitShiftRightUnsigned((int)b.y), a.z.BitShiftRightUnsigned((int)b.z), a.w.BitShiftRightUnsigned((int)b.w));
     }
 }
 
@@ -1941,6 +2391,30 @@ public partial struct ulong2 : IVectorBitops
             return new(a.vector >>> b);
         return new(a.x.BitShiftRightUnsigned(b), a.y.BitShiftRightUnsigned(b));
     }
+
+    [MethodImpl(256 | 512)]
+    public static ulong2 operator <<(ulong2 a, ulong2 b)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.ShiftLeft(a.vector.AsUInt64(), b.vector).AsUInt64());
+        return new(a.x.BitShiftLeft((int)b.x), a.y.BitShiftLeft((int)b.y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static ulong2 operator >>(ulong2 a, ulong2 b)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.ShiftRight(a.vector.AsUInt64(), b.vector).AsUInt64());
+        return new(a.x.BitShiftRight((int)b.x), a.y.BitShiftRight((int)b.y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static ulong2 operator >>>(ulong2 a, ulong2 b)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.ShiftRight(a.vector.AsUInt64(), b.vector).AsUInt64());
+        return new(a.x.BitShiftRightUnsigned((int)b.x), a.y.BitShiftRightUnsigned((int)b.y));
+    }
 }
 
 public static partial class math
@@ -2034,6 +2508,30 @@ public partial struct ulong3 : IVectorBitops
         if (Vector256.IsHardwareAccelerated)
             return new(a.vector >>> b);
         return new(a.x.BitShiftRightUnsigned(b), a.y.BitShiftRightUnsigned(b), a.z.BitShiftRightUnsigned(b));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static ulong3 operator <<(ulong3 a, ulong3 b)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.ShiftLeft(a.vector.AsUInt64(), b.vector, true).AsUInt64());
+        return new(a.x.BitShiftLeft((int)b.x), a.y.BitShiftLeft((int)b.y), a.z.BitShiftLeft((int)b.z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static ulong3 operator >>(ulong3 a, ulong3 b)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.ShiftRight(a.vector.AsUInt64(), b.vector, true).AsUInt64());
+        return new(a.x.BitShiftRight((int)b.x), a.y.BitShiftRight((int)b.y), a.z.BitShiftRight((int)b.z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static ulong3 operator >>>(ulong3 a, ulong3 b)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.ShiftRight(a.vector.AsUInt64(), b.vector, true).AsUInt64());
+        return new(a.x.BitShiftRightUnsigned((int)b.x), a.y.BitShiftRightUnsigned((int)b.y), a.z.BitShiftRightUnsigned((int)b.z));
     }
 }
 
@@ -2129,6 +2627,30 @@ public partial struct ulong4 : IVectorBitops
             return new(a.vector >>> b);
         return new(a.x.BitShiftRightUnsigned(b), a.y.BitShiftRightUnsigned(b), a.z.BitShiftRightUnsigned(b), a.w.BitShiftRightUnsigned(b));
     }
+
+    [MethodImpl(256 | 512)]
+    public static ulong4 operator <<(ulong4 a, ulong4 b)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.ShiftLeft(a.vector.AsUInt64(), b.vector).AsUInt64());
+        return new(a.x.BitShiftLeft((int)b.x), a.y.BitShiftLeft((int)b.y), a.z.BitShiftLeft((int)b.z), a.w.BitShiftLeft((int)b.w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static ulong4 operator >>(ulong4 a, ulong4 b)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.ShiftRight(a.vector.AsUInt64(), b.vector).AsUInt64());
+        return new(a.x.BitShiftRight((int)b.x), a.y.BitShiftRight((int)b.y), a.z.BitShiftRight((int)b.z), a.w.BitShiftRight((int)b.w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static ulong4 operator >>>(ulong4 a, ulong4 b)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.ShiftRight(a.vector.AsUInt64(), b.vector).AsUInt64());
+        return new(a.x.BitShiftRightUnsigned((int)b.x), a.y.BitShiftRightUnsigned((int)b.y), a.z.BitShiftRightUnsigned((int)b.z), a.w.BitShiftRightUnsigned((int)b.w));
+    }
 }
 
 public static partial class math
@@ -2209,6 +2731,24 @@ public partial struct half2 : IVectorBitops
     {
         return new(a.x.BitShiftRightUnsigned(b), a.y.BitShiftRightUnsigned(b));
     }
+
+    [MethodImpl(256 | 512)]
+    public static half2 operator <<(half2 a, uint2 b)
+    {
+        return new(a.x.BitShiftLeft((int)b.x), a.y.BitShiftLeft((int)b.y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static half2 operator >>(half2 a, uint2 b)
+    {
+        return new(a.x.BitShiftRight((int)b.x), a.y.BitShiftRight((int)b.y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static half2 operator >>>(half2 a, uint2 b)
+    {
+        return new(a.x.BitShiftRightUnsigned((int)b.x), a.y.BitShiftRightUnsigned((int)b.y));
+    }
 }
 
 public static partial class math
@@ -2287,6 +2827,24 @@ public partial struct half3 : IVectorBitops
     {
         return new(a.x.BitShiftRightUnsigned(b), a.y.BitShiftRightUnsigned(b), a.z.BitShiftRightUnsigned(b));
     }
+
+    [MethodImpl(256 | 512)]
+    public static half3 operator <<(half3 a, uint3 b)
+    {
+        return new(a.x.BitShiftLeft((int)b.x), a.y.BitShiftLeft((int)b.y), a.z.BitShiftLeft((int)b.z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static half3 operator >>(half3 a, uint3 b)
+    {
+        return new(a.x.BitShiftRight((int)b.x), a.y.BitShiftRight((int)b.y), a.z.BitShiftRight((int)b.z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static half3 operator >>>(half3 a, uint3 b)
+    {
+        return new(a.x.BitShiftRightUnsigned((int)b.x), a.y.BitShiftRightUnsigned((int)b.y), a.z.BitShiftRightUnsigned((int)b.z));
+    }
 }
 
 public static partial class math
@@ -2364,6 +2922,24 @@ public partial struct half4 : IVectorBitops
     public static half4 operator >>>(half4 a, int b)
     {
         return new(a.x.BitShiftRightUnsigned(b), a.y.BitShiftRightUnsigned(b), a.z.BitShiftRightUnsigned(b), a.w.BitShiftRightUnsigned(b));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static half4 operator <<(half4 a, uint4 b)
+    {
+        return new(a.x.BitShiftLeft((int)b.x), a.y.BitShiftLeft((int)b.y), a.z.BitShiftLeft((int)b.z), a.w.BitShiftLeft((int)b.w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static half4 operator >>(half4 a, uint4 b)
+    {
+        return new(a.x.BitShiftRight((int)b.x), a.y.BitShiftRight((int)b.y), a.z.BitShiftRight((int)b.z), a.w.BitShiftRight((int)b.w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static half4 operator >>>(half4 a, uint4 b)
+    {
+        return new(a.x.BitShiftRightUnsigned((int)b.x), a.y.BitShiftRightUnsigned((int)b.y), a.z.BitShiftRightUnsigned((int)b.z), a.w.BitShiftRightUnsigned((int)b.w));
     }
 }
 
