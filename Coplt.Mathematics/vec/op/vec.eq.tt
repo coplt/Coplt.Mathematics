@@ -73,8 +73,19 @@ public partial struct <#= typeName #> : IEquatable<<#= typeName #>>
             {
 #>
         if (Vector<#= bitSize #>.IsHardwareAccelerated)
+<#
+                if (i == 3 && typ.f)
+                {
+#>
+            return xyzx.EqualsAll(other.xyzx);
+<#
+                }
+                else
+                {
+#>
             return Vector<#= bitSize #>.EqualsAll(vector, other.vector);
 <#
+                }
             }
 #>
         return <#
@@ -99,8 +110,19 @@ public partial struct <#= typeName #> : IEquatable<<#= typeName #>>
             {
 #>
         if (Vector<#= bitSize #>.IsHardwareAccelerated)
+<#
+                if (i == 3)
+                {
+#>
+            return xyzx.EqualsAny(other.xyzx);
+<#
+                }
+                else
+                {
+#>
             return Vector<#= bitSize #>.EqualsAny(vector, other.vector);
 <#
+                }
             }
 #>
         return <#
@@ -165,10 +187,10 @@ public partial struct <#= typeName #> : IEquatable<<#= typeName #>>
                     {
 #>
             return new(simd.Ne(vector, other.vector).As<#= bTyp.Type #>()<#
-                    if (i == 3)
-                    {
+                        if (i == 3)
+                        {
 #> & Vector<#= bitSize #>.Create(-1, -1, -1, 0).As<#= bTyp.Type #>()<#
-                    }
+                        }
 #>);
 <#
                     }
@@ -176,14 +198,14 @@ public partial struct <#= typeName #> : IEquatable<<#= typeName #>>
                     {
 #>
             return new(~Vector<#= bitSize #>.Equals(vector, other.vector).As<#= bTyp.Type #>()<#
-                    if (i == 3)
-                    {
+                        if (i == 3)
+                        {
 #> & Vector<#= bitSize #>.Create(-1, -1, -1, 0).As<#= bTyp.Type #>()<#
-                    }
+                        }
 #>);
 <#
                     }
-                    #>
+#>
 <#
                 }
 #>

@@ -94,7 +94,7 @@ public partial struct float3 : IEquatable<float3>
     public readonly bool EqualsAll(float3 other)
     {
         if (Vector128.IsHardwareAccelerated)
-            return Vector128.EqualsAll(vector, other.vector);
+            return xyzx.EqualsAll(other.xyzx);
         return x == other.x && y == other.y && z == other.z;
     }
 
@@ -102,7 +102,7 @@ public partial struct float3 : IEquatable<float3>
     public readonly bool EqualsAny(float3 other)
     {
         if (Vector128.IsHardwareAccelerated)
-            return Vector128.EqualsAny(vector, other.vector);
+            return xyzx.EqualsAny(other.xyzx);
         return x == other.x || y == other.y || z == other.z;
     }
 
@@ -298,7 +298,7 @@ public partial struct double3 : IEquatable<double3>
     public readonly bool EqualsAll(double3 other)
     {
         if (Vector256.IsHardwareAccelerated)
-            return Vector256.EqualsAll(vector, other.vector);
+            return xyzx.EqualsAll(other.xyzx);
         return x == other.x && y == other.y && z == other.z;
     }
 
@@ -306,7 +306,7 @@ public partial struct double3 : IEquatable<double3>
     public readonly bool EqualsAny(double3 other)
     {
         if (Vector256.IsHardwareAccelerated)
-            return Vector256.EqualsAny(vector, other.vector);
+            return xyzx.EqualsAny(other.xyzx);
         return x == other.x || y == other.y || z == other.z;
     }
 
@@ -858,7 +858,7 @@ public partial struct int3 : IEquatable<int3>
     public readonly bool EqualsAny(int3 other)
     {
         if (Vector128.IsHardwareAccelerated)
-            return Vector128.EqualsAny(vector, other.vector);
+            return xyzx.EqualsAny(other.xyzx);
         return x == other.x || y == other.y || z == other.z;
     }
 
@@ -1062,7 +1062,7 @@ public partial struct uint3 : IEquatable<uint3>
     public readonly bool EqualsAny(uint3 other)
     {
         if (Vector128.IsHardwareAccelerated)
-            return Vector128.EqualsAny(vector, other.vector);
+            return xyzx.EqualsAny(other.xyzx);
         return x == other.x || y == other.y || z == other.z;
     }
 
@@ -1266,7 +1266,7 @@ public partial struct long3 : IEquatable<long3>
     public readonly bool EqualsAny(long3 other)
     {
         if (Vector256.IsHardwareAccelerated)
-            return Vector256.EqualsAny(vector, other.vector);
+            return xyzx.EqualsAny(other.xyzx);
         return x == other.x || y == other.y || z == other.z;
     }
 
@@ -1470,7 +1470,7 @@ public partial struct ulong3 : IEquatable<ulong3>
     public readonly bool EqualsAny(ulong3 other)
     {
         if (Vector256.IsHardwareAccelerated)
-            return Vector256.EqualsAny(vector, other.vector);
+            return xyzx.EqualsAny(other.xyzx);
         return x == other.x || y == other.y || z == other.z;
     }
 
@@ -2142,7 +2142,7 @@ public partial struct b32v3 : IEquatable<b32v3>
     public readonly bool EqualsAny(b32v3 other)
     {
         if (Vector128.IsHardwareAccelerated)
-            return Vector128.EqualsAny(vector, other.vector);
+            return xyzx.EqualsAny(other.xyzx);
         return x == other.x || y == other.y || z == other.z;
     }
 
@@ -2346,7 +2346,7 @@ public partial struct b64v3 : IEquatable<b64v3>
     public readonly bool EqualsAny(b64v3 other)
     {
         if (Vector256.IsHardwareAccelerated)
-            return Vector256.EqualsAny(vector, other.vector);
+            return xyzx.EqualsAny(other.xyzx);
         return x == other.x || y == other.y || z == other.z;
     }
 
