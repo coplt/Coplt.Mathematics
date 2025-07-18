@@ -25,7 +25,7 @@ namespace Coplt.Mathematics;
 
 #region <#= typeName #>
 
-public partial struct <#= typeName #>
+public partial record struct <#= typeName #>
 {
     public <#= vecTypeName #> value;
 
@@ -304,6 +304,20 @@ public partial struct <#= typeName #>
             ? new <#= typeName #>(new <#= matTypeName3x3 #>(t, forward.cross(t), forward))
             : new <#= typeName #>(default, default, default, <#= typ.one #>);
     }
+
+    #region Record
+
+    public readonly bool Equals(<#= typeName #> other) => value.Equals(other.value);
+
+    public readonly override int GetHashCode() => value.GetHashCode();
+
+    private bool PrintMembers(System.Text.StringBuilder sb)
+    {
+        sb.Append($"x = {value.x}, y = {value.y}, z = {value.z}, w = {value.w}");
+        return true;
+    }
+
+    #endregion
 }
 
 [Ex]

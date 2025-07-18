@@ -8,7 +8,7 @@ namespace Coplt.Mathematics.Geometries
     /// <remarks>
     /// A plane splits the 3D space in half.  The normal vector points to the positive half and the other half is considered negative.
     /// </remarks>
-    public struct plane
+    public record struct plane
     {
         /// <summary>
         /// A plane in the form Ax + By + Cz + Dw = 0.
@@ -242,6 +242,20 @@ namespace Coplt.Mathematics.Geometries
             var normal = this.normal;
             return point - normal * (normal.dot(point) + distance);
         }
+
+        #region Record
+
+        public readonly bool Equals(plane other) => normal_and_distance.Equals(other.normal_and_distance);
+
+        public readonly override int GetHashCode() => normal_and_distance.GetHashCode();
+
+        private bool PrintMembers(System.Text.StringBuilder sb)
+        {
+            sb.Append($"normal = {normal}, distance = {distance}");
+            return true;
+        }
+
+        #endregion
     }
 }
 

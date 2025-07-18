@@ -4,7 +4,7 @@ namespace Coplt.Mathematics;
 
 #region quaternion
 
-public partial struct quaternion
+public partial record struct quaternion
 {
     public float4 value;
 
@@ -283,6 +283,20 @@ public partial struct quaternion
             ? new quaternion(new float3x3(t, forward.cross(t), forward))
             : new quaternion(default, default, default, 1.0f);
     }
+
+    #region Record
+
+    public readonly bool Equals(quaternion other) => value.Equals(other.value);
+
+    public readonly override int GetHashCode() => value.GetHashCode();
+
+    private bool PrintMembers(System.Text.StringBuilder sb)
+    {
+        sb.Append($"x = {value.x}, y = {value.y}, z = {value.z}, w = {value.w}");
+        return true;
+    }
+
+    #endregion
 }
 
 [Ex]
@@ -627,7 +641,7 @@ internal static partial class svd
 
 #region quaternion_d
 
-public partial struct quaternion_d
+public partial record struct quaternion_d
 {
     public double4 value;
 
@@ -906,6 +920,20 @@ public partial struct quaternion_d
             ? new quaternion_d(new double3x3(t, forward.cross(t), forward))
             : new quaternion_d(default, default, default, 1.0);
     }
+
+    #region Record
+
+    public readonly bool Equals(quaternion_d other) => value.Equals(other.value);
+
+    public readonly override int GetHashCode() => value.GetHashCode();
+
+    private bool PrintMembers(System.Text.StringBuilder sb)
+    {
+        sb.Append($"x = {value.x}, y = {value.y}, z = {value.z}, w = {value.w}");
+        return true;
+    }
+
+    #endregion
 }
 
 [Ex]
@@ -1250,7 +1278,7 @@ internal static partial class svd
 
 #region quaternion_h
 
-public partial struct quaternion_h
+public partial record struct quaternion_h
 {
     public half4 value;
 
@@ -1529,6 +1557,20 @@ public partial struct quaternion_h
             ? new quaternion_h(new half3x3(t, forward.cross(t), forward))
             : new quaternion_h(default, default, default, (half)1.0);
     }
+
+    #region Record
+
+    public readonly bool Equals(quaternion_h other) => value.Equals(other.value);
+
+    public readonly override int GetHashCode() => value.GetHashCode();
+
+    private bool PrintMembers(System.Text.StringBuilder sb)
+    {
+        sb.Append($"x = {value.x}, y = {value.y}, z = {value.z}, w = {value.w}");
+        return true;
+    }
+
+    #endregion
 }
 
 [Ex]

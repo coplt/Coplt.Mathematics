@@ -1,6 +1,6 @@
 ﻿namespace Coplt.Mathematics.Geometries
 {
-    public struct ray
+    public record struct ray
     {
         /// <summary>The origin point of the ray.</summary>
         public float3 origin;
