@@ -129,10 +129,10 @@ public partial struct <#= typeName #>
     public static <#= typeName #> operator/(<#= typeName #> a, <#= typ.compType #> b) => new(a.vector / b);
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> operator%(<#= typeName #> a, <#= typeName #> b) => new(simd_mt.Rem(a.vector, b.vector));
+    public static <#= typeName #> operator%(<#= typeName #> a, <#= typeName #> b) => new(simt.Rem(a.vector, b.vector));
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> operator%(<#= typeName #> a, <#= typ.compType #> b) => new(simd_mt.Rem(a.vector, b));
+    public static <#= typeName #> operator%(<#= typeName #> a, <#= typ.compType #> b) => new(simt.Rem(a.vector, b));
 
 <#
         }

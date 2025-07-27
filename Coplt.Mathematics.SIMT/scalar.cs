@@ -88,10 +88,10 @@ public partial struct float_mt
     public static float_mt operator/(float_mt a, float b) => new(a.vector / b);
 
     [MethodImpl(256 | 512)]
-    public static float_mt operator%(float_mt a, float_mt b) => new(simd_mt.Rem(a.vector, b.vector));
+    public static float_mt operator%(float_mt a, float_mt b) => new(simt.Rem(a.vector, b.vector));
 
     [MethodImpl(256 | 512)]
-    public static float_mt operator%(float_mt a, float b) => new(simd_mt.Rem(a.vector, b));
+    public static float_mt operator%(float_mt a, float b) => new(simt.Rem(a.vector, b));
 
     [MethodImpl(256 | 512)]
     public static float_mt operator~(float_mt a) => new(~a.vector);
@@ -192,10 +192,10 @@ public partial struct int_mt
     public static int_mt operator/(int_mt a, int b) => new(a.vector / b);
 
     [MethodImpl(256 | 512)]
-    public static int_mt operator%(int_mt a, int_mt b) => new(simd_mt.Rem(a.vector, b.vector));
+    public static int_mt operator%(int_mt a, int_mt b) => new(simt.Rem(a.vector, b.vector));
 
     [MethodImpl(256 | 512)]
-    public static int_mt operator%(int_mt a, int b) => new(simd_mt.Rem(a.vector, b));
+    public static int_mt operator%(int_mt a, int b) => new(simt.Rem(a.vector, b));
 
     [MethodImpl(256 | 512)]
     public static int_mt operator~(int_mt a) => new(~a.vector);
@@ -296,10 +296,10 @@ public partial struct uint_mt
     public static uint_mt operator/(uint_mt a, uint b) => new(a.vector / b);
 
     [MethodImpl(256 | 512)]
-    public static uint_mt operator%(uint_mt a, uint_mt b) => new(simd_mt.Rem(a.vector, b.vector));
+    public static uint_mt operator%(uint_mt a, uint_mt b) => new(simt.Rem(a.vector, b.vector));
 
     [MethodImpl(256 | 512)]
-    public static uint_mt operator%(uint_mt a, uint b) => new(simd_mt.Rem(a.vector, b));
+    public static uint_mt operator%(uint_mt a, uint b) => new(simt.Rem(a.vector, b));
 
     [MethodImpl(256 | 512)]
     public static uint_mt operator~(uint_mt a) => new(~a.vector);

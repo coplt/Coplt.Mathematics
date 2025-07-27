@@ -1,6 +1,6 @@
 ﻿namespace Coplt.Mathematics.SIMT;
 
-public static partial class simd_mt
+public static partial class simt
 {
     #region Rem
 
