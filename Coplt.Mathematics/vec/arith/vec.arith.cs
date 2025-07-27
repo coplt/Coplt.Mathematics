@@ -3925,6 +3925,8 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int2 fma([This] int2 a, int2 b, int2 c)
     {
+        if (Vector64.IsHardwareAccelerated)
+            return (a * b) + c;
         return new(a.x.fma(b.x, c.x), a.y.fma(b.y, c.y));
     }
 
@@ -3938,6 +3940,8 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int2 fms([This] int2 a, int2 b, int2 c)
     {
+        if (Vector64.IsHardwareAccelerated)
+            return (a * b) - c;
         return new(a.x.fms(b.x, c.x), a.y.fms(b.y, c.y));
     }
 
@@ -3951,6 +3955,8 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int2 fnma([This] int2 a, int2 b, int2 c)
     {
+        if (Vector64.IsHardwareAccelerated)
+            return c - (a * b);
         return new(a.x.fnma(b.x, c.x), a.y.fnma(b.y, c.y));
     }
 
@@ -4260,6 +4266,8 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int3 fma([This] int3 a, int3 b, int3 c)
     {
+        if (Vector128.IsHardwareAccelerated)
+            return (a * b) + c;
         return new(a.x.fma(b.x, c.x), a.y.fma(b.y, c.y), a.z.fma(b.z, c.z));
     }
 
@@ -4273,6 +4281,8 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int3 fms([This] int3 a, int3 b, int3 c)
     {
+        if (Vector128.IsHardwareAccelerated)
+            return (a * b) - c;
         return new(a.x.fms(b.x, c.x), a.y.fms(b.y, c.y), a.z.fms(b.z, c.z));
     }
 
@@ -4286,6 +4296,8 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int3 fnma([This] int3 a, int3 b, int3 c)
     {
+        if (Vector128.IsHardwareAccelerated)
+            return c - (a * b);
         return new(a.x.fnma(b.x, c.x), a.y.fnma(b.y, c.y), a.z.fnma(b.z, c.z));
     }
 
@@ -4592,6 +4604,8 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 fma([This] int4 a, int4 b, int4 c)
     {
+        if (Vector128.IsHardwareAccelerated)
+            return (a * b) + c;
         return new(a.x.fma(b.x, c.x), a.y.fma(b.y, c.y), a.z.fma(b.z, c.z), a.w.fma(b.w, c.w));
     }
 
@@ -4605,6 +4619,8 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 fms([This] int4 a, int4 b, int4 c)
     {
+        if (Vector128.IsHardwareAccelerated)
+            return (a * b) - c;
         return new(a.x.fms(b.x, c.x), a.y.fms(b.y, c.y), a.z.fms(b.z, c.z), a.w.fms(b.w, c.w));
     }
 
@@ -4618,6 +4634,8 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static int4 fnma([This] int4 a, int4 b, int4 c)
     {
+        if (Vector128.IsHardwareAccelerated)
+            return c - (a * b);
         return new(a.x.fnma(b.x, c.x), a.y.fnma(b.y, c.y), a.z.fnma(b.z, c.z), a.w.fnma(b.w, c.w));
     }
 
@@ -4917,6 +4935,8 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint2 fma([This] uint2 a, uint2 b, uint2 c)
     {
+        if (Vector64.IsHardwareAccelerated)
+            return (a * b) + c;
         return new(a.x.fma(b.x, c.x), a.y.fma(b.y, c.y));
     }
 
@@ -4930,6 +4950,8 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint2 fms([This] uint2 a, uint2 b, uint2 c)
     {
+        if (Vector64.IsHardwareAccelerated)
+            return (a * b) - c;
         return new(a.x.fms(b.x, c.x), a.y.fms(b.y, c.y));
     }
 
@@ -4943,6 +4965,8 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint2 fnma([This] uint2 a, uint2 b, uint2 c)
     {
+        if (Vector64.IsHardwareAccelerated)
+            return c - (a * b);
         return new(a.x.fnma(b.x, c.x), a.y.fnma(b.y, c.y));
     }
 
@@ -5245,6 +5269,8 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint3 fma([This] uint3 a, uint3 b, uint3 c)
     {
+        if (Vector128.IsHardwareAccelerated)
+            return (a * b) + c;
         return new(a.x.fma(b.x, c.x), a.y.fma(b.y, c.y), a.z.fma(b.z, c.z));
     }
 
@@ -5258,6 +5284,8 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint3 fms([This] uint3 a, uint3 b, uint3 c)
     {
+        if (Vector128.IsHardwareAccelerated)
+            return (a * b) - c;
         return new(a.x.fms(b.x, c.x), a.y.fms(b.y, c.y), a.z.fms(b.z, c.z));
     }
 
@@ -5271,6 +5299,8 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint3 fnma([This] uint3 a, uint3 b, uint3 c)
     {
+        if (Vector128.IsHardwareAccelerated)
+            return c - (a * b);
         return new(a.x.fnma(b.x, c.x), a.y.fnma(b.y, c.y), a.z.fnma(b.z, c.z));
     }
 
@@ -5570,6 +5600,8 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 fma([This] uint4 a, uint4 b, uint4 c)
     {
+        if (Vector128.IsHardwareAccelerated)
+            return (a * b) + c;
         return new(a.x.fma(b.x, c.x), a.y.fma(b.y, c.y), a.z.fma(b.z, c.z), a.w.fma(b.w, c.w));
     }
 
@@ -5583,6 +5615,8 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 fms([This] uint4 a, uint4 b, uint4 c)
     {
+        if (Vector128.IsHardwareAccelerated)
+            return (a * b) - c;
         return new(a.x.fms(b.x, c.x), a.y.fms(b.y, c.y), a.z.fms(b.z, c.z), a.w.fms(b.w, c.w));
     }
 
@@ -5596,6 +5630,8 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static uint4 fnma([This] uint4 a, uint4 b, uint4 c)
     {
+        if (Vector128.IsHardwareAccelerated)
+            return c - (a * b);
         return new(a.x.fnma(b.x, c.x), a.y.fnma(b.y, c.y), a.z.fnma(b.z, c.z), a.w.fnma(b.w, c.w));
     }
 
@@ -5902,6 +5938,8 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long2 fma([This] long2 a, long2 b, long2 c)
     {
+        if (Vector128.IsHardwareAccelerated)
+            return (a * b) + c;
         return new(a.x.fma(b.x, c.x), a.y.fma(b.y, c.y));
     }
 
@@ -5915,6 +5953,8 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long2 fms([This] long2 a, long2 b, long2 c)
     {
+        if (Vector128.IsHardwareAccelerated)
+            return (a * b) - c;
         return new(a.x.fms(b.x, c.x), a.y.fms(b.y, c.y));
     }
 
@@ -5928,6 +5968,8 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long2 fnma([This] long2 a, long2 b, long2 c)
     {
+        if (Vector128.IsHardwareAccelerated)
+            return c - (a * b);
         return new(a.x.fnma(b.x, c.x), a.y.fnma(b.y, c.y));
     }
 
@@ -6237,6 +6279,8 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long3 fma([This] long3 a, long3 b, long3 c)
     {
+        if (Vector256.IsHardwareAccelerated)
+            return (a * b) + c;
         return new(a.x.fma(b.x, c.x), a.y.fma(b.y, c.y), a.z.fma(b.z, c.z));
     }
 
@@ -6250,6 +6294,8 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long3 fms([This] long3 a, long3 b, long3 c)
     {
+        if (Vector256.IsHardwareAccelerated)
+            return (a * b) - c;
         return new(a.x.fms(b.x, c.x), a.y.fms(b.y, c.y), a.z.fms(b.z, c.z));
     }
 
@@ -6263,6 +6309,8 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long3 fnma([This] long3 a, long3 b, long3 c)
     {
+        if (Vector256.IsHardwareAccelerated)
+            return c - (a * b);
         return new(a.x.fnma(b.x, c.x), a.y.fnma(b.y, c.y), a.z.fnma(b.z, c.z));
     }
 
@@ -6569,6 +6617,8 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 fma([This] long4 a, long4 b, long4 c)
     {
+        if (Vector256.IsHardwareAccelerated)
+            return (a * b) + c;
         return new(a.x.fma(b.x, c.x), a.y.fma(b.y, c.y), a.z.fma(b.z, c.z), a.w.fma(b.w, c.w));
     }
 
@@ -6582,6 +6632,8 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 fms([This] long4 a, long4 b, long4 c)
     {
+        if (Vector256.IsHardwareAccelerated)
+            return (a * b) - c;
         return new(a.x.fms(b.x, c.x), a.y.fms(b.y, c.y), a.z.fms(b.z, c.z), a.w.fms(b.w, c.w));
     }
 
@@ -6595,6 +6647,8 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static long4 fnma([This] long4 a, long4 b, long4 c)
     {
+        if (Vector256.IsHardwareAccelerated)
+            return c - (a * b);
         return new(a.x.fnma(b.x, c.x), a.y.fnma(b.y, c.y), a.z.fnma(b.z, c.z), a.w.fnma(b.w, c.w));
     }
 
@@ -6894,6 +6948,8 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong2 fma([This] ulong2 a, ulong2 b, ulong2 c)
     {
+        if (Vector128.IsHardwareAccelerated)
+            return (a * b) + c;
         return new(a.x.fma(b.x, c.x), a.y.fma(b.y, c.y));
     }
 
@@ -6907,6 +6963,8 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong2 fms([This] ulong2 a, ulong2 b, ulong2 c)
     {
+        if (Vector128.IsHardwareAccelerated)
+            return (a * b) - c;
         return new(a.x.fms(b.x, c.x), a.y.fms(b.y, c.y));
     }
 
@@ -6920,6 +6978,8 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong2 fnma([This] ulong2 a, ulong2 b, ulong2 c)
     {
+        if (Vector128.IsHardwareAccelerated)
+            return c - (a * b);
         return new(a.x.fnma(b.x, c.x), a.y.fnma(b.y, c.y));
     }
 
@@ -7222,6 +7282,8 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong3 fma([This] ulong3 a, ulong3 b, ulong3 c)
     {
+        if (Vector256.IsHardwareAccelerated)
+            return (a * b) + c;
         return new(a.x.fma(b.x, c.x), a.y.fma(b.y, c.y), a.z.fma(b.z, c.z));
     }
 
@@ -7235,6 +7297,8 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong3 fms([This] ulong3 a, ulong3 b, ulong3 c)
     {
+        if (Vector256.IsHardwareAccelerated)
+            return (a * b) - c;
         return new(a.x.fms(b.x, c.x), a.y.fms(b.y, c.y), a.z.fms(b.z, c.z));
     }
 
@@ -7248,6 +7312,8 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong3 fnma([This] ulong3 a, ulong3 b, ulong3 c)
     {
+        if (Vector256.IsHardwareAccelerated)
+            return c - (a * b);
         return new(a.x.fnma(b.x, c.x), a.y.fnma(b.y, c.y), a.z.fnma(b.z, c.z));
     }
 
@@ -7547,6 +7613,8 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 fma([This] ulong4 a, ulong4 b, ulong4 c)
     {
+        if (Vector256.IsHardwareAccelerated)
+            return (a * b) + c;
         return new(a.x.fma(b.x, c.x), a.y.fma(b.y, c.y), a.z.fma(b.z, c.z), a.w.fma(b.w, c.w));
     }
 
@@ -7560,6 +7628,8 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 fms([This] ulong4 a, ulong4 b, ulong4 c)
     {
+        if (Vector256.IsHardwareAccelerated)
+            return (a * b) - c;
         return new(a.x.fms(b.x, c.x), a.y.fms(b.y, c.y), a.z.fms(b.z, c.z), a.w.fms(b.w, c.w));
     }
 
@@ -7573,6 +7643,8 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static ulong4 fnma([This] ulong4 a, ulong4 b, ulong4 c)
     {
+        if (Vector256.IsHardwareAccelerated)
+            return c - (a * b);
         return new(a.x.fnma(b.x, c.x), a.y.fnma(b.y, c.y), a.z.fnma(b.z, c.z), a.w.fnma(b.w, c.w));
     }
 

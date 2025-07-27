@@ -495,12 +495,22 @@ public static partial class math
     public static <#= typeName #> fma([This] <#= typeName #> a, <#= typeName #> b, <#= typeName #> c)
     {
 <#
-            if (typ.simd && typ.f && typ.bin)
+            if (typ.simd)
             {
+                if (typ.f && typ.bin)
+                {
 #>
         if (Vector<#= bitSize #>.IsHardwareAccelerated)
             return new(simd.Fma(a.vector, b.vector, c.vector));
 <#
+                }
+                else
+                {
+#>
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return (a * b) + c;
+<#
+                }
             }
 #>
         return new(<#=
@@ -519,12 +529,22 @@ public static partial class math
     public static <#= typeName #> fms([This] <#= typeName #> a, <#= typeName #> b, <#= typeName #> c)
     {
 <#
-            if (typ.simd && typ.f && typ.bin)
+            if (typ.simd)
             {
+                if (typ.f && typ.bin)
+                {
 #>
         if (Vector<#= bitSize #>.IsHardwareAccelerated)
             return new(simd.Fms(a.vector, b.vector, c.vector));
 <#
+                }
+                else
+                {
+#>
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return (a * b) - c;
+<#
+                }
             }
 #>
         return new(<#=
@@ -543,12 +563,22 @@ public static partial class math
     public static <#= typeName #> fnma([This] <#= typeName #> a, <#= typeName #> b, <#= typeName #> c)
     {
 <#
-            if (typ.simd && typ.f && typ.bin)
+            if (typ.simd)
             {
+                if (typ.f && typ.bin)
+                {
 #>
         if (Vector<#= bitSize #>.IsHardwareAccelerated)
             return new(simd.Fnma(a.vector, b.vector, c.vector));
 <#
+                }
+                else
+                {
+#>
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return c - (a * b);
+<#
+                }
             }
 #>
         return new(<#=
