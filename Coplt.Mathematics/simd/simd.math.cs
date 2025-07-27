@@ -190,6 +190,26 @@ public static partial class simd_math
 
     #endregion
 
+    #region Vector512<f32>
+
+    [MethodImpl(256 | 512)]
+    public static Vector512<f32> Rem(Vector512<f32> x, Vector512<f32> y)
+    {
+        var div = x / y;
+        var flr = simd.RoundToZero(div);
+        return simd.Fnma(flr, y, x);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector512<f32> Rem(Vector512<f32> x, f32 y)
+    {
+        var div = x / y;
+        var flr = simd.RoundToZero(div);
+        return simd.Fnma(flr, Vector512.Create(y), x);
+    }
+
+    #endregion
+
     #region Vector128<f64>
 
     [MethodImpl(256 | 512)]

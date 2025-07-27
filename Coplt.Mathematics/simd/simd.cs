@@ -634,6 +634,20 @@ public static partial class simd
     }
 
     [MethodImpl(256 | 512)]
+    public static Vector512<float> RoundToZero(Vector512<float> x)
+    {
+        if (Avx512F.IsSupported)
+        {
+            // _MM_FROUND_TO_ZERO | _MM_FROUND_NO_EXC = 11
+            return Avx512F.RoundScale(x, 11);
+        }
+        return Vector512.Create(
+            RoundToZero(x.GetLower()),
+            RoundToZero(x.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
     public static Vector128<double> RoundToZero(Vector128<double> x)
     {
         if (Sse41.IsSupported)
@@ -681,24 +695,12 @@ public static partial class simd
     {
         if (Avx512F.IsSupported)
         {
-            return Avx512F.RoundScale(x, 0x03);
-        }
-        if (Vector256.IsHardwareAccelerated || Vector128.IsHardwareAccelerated)
-        {
-            return Vector512.Create(
-                RoundToZero(x.GetLower()),
-                RoundToZero(x.GetUpper())
-            );
+            // _MM_FROUND_TO_ZERO | _MM_FROUND_NO_EXC = 11
+            return Avx512F.RoundScale(x, 11);
         }
         return Vector512.Create(
-            Math.Round(x.GetElement(0), MidpointRounding.ToZero),
-            Math.Round(x.GetElement(1), MidpointRounding.ToZero),
-            Math.Round(x.GetElement(2), MidpointRounding.ToZero),
-            Math.Round(x.GetElement(3), MidpointRounding.ToZero),
-            Math.Round(x.GetElement(4), MidpointRounding.ToZero),
-            Math.Round(x.GetElement(5), MidpointRounding.ToZero),
-            Math.Round(x.GetElement(6), MidpointRounding.ToZero),
-            Math.Round(x.GetElement(7), MidpointRounding.ToZero)
+            RoundToZero(x.GetLower()),
+            RoundToZero(x.GetUpper())
         );
     }
 
@@ -1222,6 +1224,24 @@ public static partial class simd
 
     /// <returns><code>a * b + c</code></returns>
     [MethodImpl(256 | 512)]
+    public static Vector512<float> Fma(Vector512<float> a, Vector512<float> b, Vector512<float> c)
+    {
+        if (Avx512F.IsSupported)
+        {
+            return Avx512F.FusedMultiplyAdd(a, b, c);
+        }
+        if (X86.Fma.IsSupported)
+        {
+            return Vector512.Create(
+                X86.Fma.MultiplyAdd(a.GetLower(), b.GetLower(), c.GetLower()),
+                X86.Fma.MultiplyAdd(a.GetUpper(), b.GetUpper(), c.GetUpper())
+            );
+        }
+        return a * b + c;
+    }
+
+    /// <returns><code>a * b + c</code></returns>
+    [MethodImpl(256 | 512)]
     public static Vector512<double> Fma(Vector512<double> a, Vector512<double> b, Vector512<double> c)
     {
         if (Avx512F.IsSupported)
@@ -1327,6 +1347,24 @@ public static partial class simd
 
     /// <returns><code>a * b - c</code></returns>
     [MethodImpl(256 | 512)]
+    public static Vector512<float> Fms(Vector512<float> a, Vector512<float> b, Vector512<float> c)
+    {
+        if (Avx512F.IsSupported)
+        {
+            return Avx512F.FusedMultiplySubtract(a, b, c);
+        }
+        if (X86.Fma.IsSupported)
+        {
+            return Vector512.Create(
+                X86.Fma.MultiplySubtract(a.GetLower(), b.GetLower(), c.GetLower()),
+                X86.Fma.MultiplySubtract(a.GetUpper(), b.GetUpper(), c.GetUpper())
+            );
+        }
+        return a * b - c;
+    }
+
+    /// <returns><code>a * b - c</code></returns>
+    [MethodImpl(256 | 512)]
     public static Vector512<double> Fms(Vector512<double> a, Vector512<double> b, Vector512<double> c)
     {
         if (Avx512F.IsSupported)
@@ -1423,6 +1461,24 @@ public static partial class simd
             return Vector256.Create(
                 AdvSimd.Arm64.FusedMultiplySubtract(c.GetLower(), a.GetLower(), b.GetLower()),
                 AdvSimd.Arm64.FusedMultiplySubtract(c.GetUpper(), a.GetUpper(), b.GetUpper())
+            );
+        }
+        return c - a * b;
+    }
+
+    /// <returns><code>c - a * b</code> or <code>-(a * b) + c</code></returns>
+    [MethodImpl(256 | 512)]
+    public static Vector512<float> Fnma(Vector512<float> a, Vector512<float> b, Vector512<float> c)
+    {
+        if (Avx512F.IsSupported)
+        {
+            return Avx512F.FusedMultiplyAddNegated(a, b, c);
+        }
+        if (AdvSimd.IsSupported)
+        {
+            return Vector512.Create(
+                Fnma(a.GetLower(), b.GetLower(), c.GetLower()),
+                Fnma(a.GetUpper(), b.GetUpper(), c.GetUpper())
             );
         }
         return c - a * b;
