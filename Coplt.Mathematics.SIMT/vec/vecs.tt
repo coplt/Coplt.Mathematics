@@ -7,7 +7,7 @@
 namespace Coplt.Mathematics.SIMT;
 
 <#
-    var sizes = new[] { 0, 4, 8, 16 };
+    var sizes = new[] { 4, 8, 16, 32 };
     foreach (var typ in Typ.Typs)
     {
         if (!typ.simd) continue;
@@ -18,11 +18,11 @@ namespace Coplt.Mathematics.SIMT;
             {
                 var byteSize = typ.size * size;
                 var bitSize = 8 * byteSize;
-                var num_vectors = Math.Max(1, size == 0 ? 1 : bitSize / 512);
+                var num_vectors = Math.Max(1, bitSize / 512);
                 bitSize = Math.Min(512, bitSize);
 
-                var typeName = $"{typ.name}{i}_mt{(size == 0 ? "" : size)}";
-                var scalarName = $"{typ.compType}_mt{(size == 0 ? "" : size)}";
+                var typeName = $"{typ.name}{i}_mt{size}";
+                var scalarName = $"{typ.compType}_mt{size}";
                 var simd_typeName = $"{typ.name}{i}";
 #>
 #region <#= typeName #>
@@ -37,31 +37,6 @@ public partial struct <#= typeName #>
         [MethodImpl(256 | 512)]
         get => <#= scalarName #>.LineCount;
     }
-<#
-            if (typ.arith)
-            {
-#>
-
-    public static <#= typeName #> Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static <#= typeName #> One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(<#= typ.one #>);
-    }
-
-    public static <#= typeName #> Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new(<#= typ.two #>);
-    }
-<#
-            }
-#>
 
     #endregion
 
@@ -152,45 +127,6 @@ public partial struct <#= typeName #>
     [MethodImpl(256 | 512)]
     public static implicit operator <#= typeName #>(<#= simd_typeName #> value) => new(value);
 
-<#
-                if (typ.arith)
-                {
-#>
-    [MethodImpl(256 | 512)]
-    public static <#= typeName #> operator-(<#= typeName #> a) => new(<#=
-                        string.Join(", ", Enumerable.Range(0, i).Select(n => $"-a.{Typ.xyzw[n]}")) #>);
-
-    [MethodImpl(256 | 512)]
-    public static <#= typeName #> operator+(<#= typeName #> a, <#= typeName #> b) => new(<#=
-                        string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]} + b.{Typ.xyzw[n]}")) #>);
-
-    [MethodImpl(256 | 512)]
-    public static <#= typeName #> operator-(<#= typeName #> a, <#= typeName #> b) => new(<#=
-                        string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]} - b.{Typ.xyzw[n]}")) #>);
-
-    [MethodImpl(256 | 512)]
-    public static <#= typeName #> operator*(<#= typeName #> a, <#= typeName #> b) => new(<#=
-                        string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]} * b.{Typ.xyzw[n]}")) #>);
-
-    [MethodImpl(256 | 512)]
-    public static <#= typeName #> operator/(<#= typeName #> a, <#= typeName #> b) => new(<#=
-                        string.Join(", ", Enumerable.Range(0, i).Reverse().Select(n => $"a.{Typ.xyzw[n]} / b.{Typ.xyzw[n]}")) #>);
-
-    [MethodImpl(256 | 512)]
-    public static <#= typeName #> operator/(<#= typeName #> a, <#= typ.compType #> b) => new(<#=
-                        string.Join(", ", Enumerable.Range(0, i).Reverse().Select(n => $"a.{Typ.xyzw[n]} / b")) #>);
-
-    [MethodImpl(256 | 512)]
-    public static <#= typeName #> operator%(<#= typeName #> a, <#= typeName #> b) => new(<#=
-                        string.Join(", ", Enumerable.Range(0, i).Reverse().Select(n => $"a.{Typ.xyzw[n]} % b.{Typ.xyzw[n]}")) #>);
-
-    [MethodImpl(256 | 512)]
-    public static <#= typeName #> operator%(<#= typeName #> a, <#= typ.compType #> b) => new(<#=
-                        string.Join(", ", Enumerable.Range(0, i).Reverse().Select(n => $"a.{Typ.xyzw[n]} % b")) #>);
-
-<#
-                }
-#>
     [MethodImpl(256 | 512)]
     public static <#= typeName #> operator~(<#= typeName #> a) => new(<#=
                     string.Join(", ", Enumerable.Range(0, i).Select(n => $"~a.{Typ.xyzw[n]}")) #>);
@@ -203,10 +139,14 @@ public partial struct <#= typeName #>
     public static <#= typeName #> operator&(<#= typeName #> a, <#= typeName #> b) => new(<#=
                     string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]} & b.{Typ.xyzw[n]}")) #>);
 
+    #endregion // Operators
+
+    #region // ToString
+
     public readonly override string ToString() => $"<#= typeName #> {{ <#=
                 string.Join(", ", Enumerable.Range(0, size).Select(l => $"t{l} = {{this[{l}]}}")) #> }}";
-
-    #endregion // Operators
+    
+    #endregion // ToString
 }
 
 #endregion // <#= typeName #>

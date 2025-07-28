@@ -2,141 +2,6 @@
 
 namespace Coplt.Mathematics.SIMT;
 
-#region float2_mt
-
-[CpuOnly]
-public partial struct float2_mt
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => float_mt.LineCount;
-    }
-
-    public static float2_mt Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static float2_mt One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1.0f);
-    }
-
-    public static float2_mt Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new(2.0f);
-    }
-
-    #endregion
-
-    #region Fields
-
-    public float_mt x;
-    public float_mt y;
-
-    #endregion // Fields
-
-    #region Properties
-
-    public float2 this[int index]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-        }
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public float2_mt(float_mt x, float_mt y)
-    {
-        this.x = x;
-        this.y = y;
-    }
-
-    [MethodImpl(256 | 512)]
-    public float2_mt(float value)
-    {
-        y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public float2_mt(float_mt value)
-    {
-        y = x = value;
-    }
-
-    [MethodImpl(256 | 512)]
-    public float2_mt(float2 value)
-    {
-        x = new(value.x);
-        y = new(value.y);
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator float2_mt(float value) => new float_mt(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator float2_mt(float_mt value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator float2_mt(float2 value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt operator-(float2_mt a) => new(-a.x, -a.y);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt operator+(float2_mt a, float2_mt b) => new(a.x + b.x, a.y + b.y);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt operator-(float2_mt a, float2_mt b) => new(a.x - b.x, a.y - b.y);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt operator*(float2_mt a, float2_mt b) => new(a.x * b.x, a.y * b.y);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt operator/(float2_mt a, float2_mt b) => new(a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt operator/(float2_mt a, float b) => new(a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt operator%(float2_mt a, float2_mt b) => new(a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt operator%(float2_mt a, float b) => new(a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt operator~(float2_mt a) => new(~a.x, ~a.y);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt operator|(float2_mt a, float2_mt b) => new(a.x | b.x, a.y | b.y);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt operator&(float2_mt a, float2_mt b) => new(a.x & b.x, a.y & b.y);
-
-    public readonly override string ToString() => $"float2_mt {{  }}";
-
-    #endregion // Operators
-}
-
-#endregion // float2_mt
 #region float2_mt4
 
 [CpuOnly]
@@ -148,24 +13,6 @@ public partial struct float2_mt4
     {
         [MethodImpl(256 | 512)]
         get => float_mt4.LineCount;
-    }
-
-    public static float2_mt4 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static float2_mt4 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1.0f);
-    }
-
-    public static float2_mt4 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new(2.0f);
     }
 
     #endregion
@@ -234,30 +81,6 @@ public partial struct float2_mt4
     public static implicit operator float2_mt4(float2 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt4 operator-(float2_mt4 a) => new(-a.x, -a.y);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt4 operator+(float2_mt4 a, float2_mt4 b) => new(a.x + b.x, a.y + b.y);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt4 operator-(float2_mt4 a, float2_mt4 b) => new(a.x - b.x, a.y - b.y);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt4 operator*(float2_mt4 a, float2_mt4 b) => new(a.x * b.x, a.y * b.y);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt4 operator/(float2_mt4 a, float2_mt4 b) => new(a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt4 operator/(float2_mt4 a, float b) => new(a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt4 operator%(float2_mt4 a, float2_mt4 b) => new(a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt4 operator%(float2_mt4 a, float b) => new(a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static float2_mt4 operator~(float2_mt4 a) => new(~a.x, ~a.y);
 
     [MethodImpl(256 | 512)]
@@ -266,9 +89,13 @@ public partial struct float2_mt4
     [MethodImpl(256 | 512)]
     public static float2_mt4 operator&(float2_mt4 a, float2_mt4 b) => new(a.x & b.x, a.y & b.y);
 
-    public readonly override string ToString() => $"float2_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"float2_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // float2_mt4
@@ -283,24 +110,6 @@ public partial struct float2_mt8
     {
         [MethodImpl(256 | 512)]
         get => float_mt8.LineCount;
-    }
-
-    public static float2_mt8 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static float2_mt8 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1.0f);
-    }
-
-    public static float2_mt8 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new(2.0f);
     }
 
     #endregion
@@ -369,30 +178,6 @@ public partial struct float2_mt8
     public static implicit operator float2_mt8(float2 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt8 operator-(float2_mt8 a) => new(-a.x, -a.y);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt8 operator+(float2_mt8 a, float2_mt8 b) => new(a.x + b.x, a.y + b.y);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt8 operator-(float2_mt8 a, float2_mt8 b) => new(a.x - b.x, a.y - b.y);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt8 operator*(float2_mt8 a, float2_mt8 b) => new(a.x * b.x, a.y * b.y);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt8 operator/(float2_mt8 a, float2_mt8 b) => new(a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt8 operator/(float2_mt8 a, float b) => new(a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt8 operator%(float2_mt8 a, float2_mt8 b) => new(a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt8 operator%(float2_mt8 a, float b) => new(a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static float2_mt8 operator~(float2_mt8 a) => new(~a.x, ~a.y);
 
     [MethodImpl(256 | 512)]
@@ -401,9 +186,13 @@ public partial struct float2_mt8
     [MethodImpl(256 | 512)]
     public static float2_mt8 operator&(float2_mt8 a, float2_mt8 b) => new(a.x & b.x, a.y & b.y);
 
-    public readonly override string ToString() => $"float2_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"float2_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // float2_mt8
@@ -418,24 +207,6 @@ public partial struct float2_mt16
     {
         [MethodImpl(256 | 512)]
         get => float_mt16.LineCount;
-    }
-
-    public static float2_mt16 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static float2_mt16 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1.0f);
-    }
-
-    public static float2_mt16 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new(2.0f);
     }
 
     #endregion
@@ -504,30 +275,6 @@ public partial struct float2_mt16
     public static implicit operator float2_mt16(float2 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static float2_mt16 operator-(float2_mt16 a) => new(-a.x, -a.y);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt16 operator+(float2_mt16 a, float2_mt16 b) => new(a.x + b.x, a.y + b.y);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt16 operator-(float2_mt16 a, float2_mt16 b) => new(a.x - b.x, a.y - b.y);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt16 operator*(float2_mt16 a, float2_mt16 b) => new(a.x * b.x, a.y * b.y);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt16 operator/(float2_mt16 a, float2_mt16 b) => new(a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt16 operator/(float2_mt16 a, float b) => new(a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt16 operator%(float2_mt16 a, float2_mt16 b) => new(a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static float2_mt16 operator%(float2_mt16 a, float b) => new(a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static float2_mt16 operator~(float2_mt16 a) => new(~a.x, ~a.y);
 
     [MethodImpl(256 | 512)]
@@ -536,64 +283,48 @@ public partial struct float2_mt16
     [MethodImpl(256 | 512)]
     public static float2_mt16 operator&(float2_mt16 a, float2_mt16 b) => new(a.x & b.x, a.y & b.y);
 
-    public readonly override string ToString() => $"float2_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"float2_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // float2_mt16
-#region float3_mt
+#region float2_mt32
 
 [CpuOnly]
-public partial struct float3_mt
+public partial struct float2_mt32
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => float_mt.LineCount;
-    }
-
-    public static float3_mt Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static float3_mt One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1.0f);
-    }
-
-    public static float3_mt Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new(2.0f);
+        get => float_mt32.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public float_mt x;
-    public float_mt y;
-    public float_mt z;
+    public float_mt32 x;
+    public float_mt32 y;
 
     #endregion // Fields
 
     #region Properties
 
-    public float3 this[int index]
+    public float2 this[int index]
     {
         [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index]);
+        readonly get => new(x[index], y[index]);
         set 
         {
            x[index] = value.x;
            y[index] = value.y;
-           z[index] = value.z;
         }
     }
 
@@ -602,31 +333,29 @@ public partial struct float3_mt
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public float3_mt(float_mt x, float_mt y, float_mt z)
+    public float2_mt32(float_mt32 x, float_mt32 y)
     {
         this.x = x;
         this.y = y;
-        this.z = z;
     }
 
     [MethodImpl(256 | 512)]
-    public float3_mt(float value)
+    public float2_mt32(float value)
     {
-        z = y = x = value;
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public float3_mt(float_mt value)
+    public float2_mt32(float_mt32 value)
     {
-        z = y = x = value;
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public float3_mt(float3 value)
+    public float2_mt32(float2 value)
     {
         x = new(value.x);
         y = new(value.y);
-        z = new(value.z);
     }
 
     #endregion // Ctor
@@ -634,53 +363,33 @@ public partial struct float3_mt
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator float3_mt(float value) => new float_mt(value);
+    public static implicit operator float2_mt32(float value) => new float_mt32(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator float3_mt(float_mt value) => new(value);
+    public static implicit operator float2_mt32(float_mt32 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator float3_mt(float3 value) => new(value);
+    public static implicit operator float2_mt32(float2 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static float3_mt operator-(float3_mt a) => new(-a.x, -a.y, -a.z);
+    public static float2_mt32 operator~(float2_mt32 a) => new(~a.x, ~a.y);
 
     [MethodImpl(256 | 512)]
-    public static float3_mt operator+(float3_mt a, float3_mt b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
+    public static float2_mt32 operator|(float2_mt32 a, float2_mt32 b) => new(a.x | b.x, a.y | b.y);
 
     [MethodImpl(256 | 512)]
-    public static float3_mt operator-(float3_mt a, float3_mt b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt operator*(float3_mt a, float3_mt b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt operator/(float3_mt a, float3_mt b) => new(a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt operator/(float3_mt a, float b) => new(a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt operator%(float3_mt a, float3_mt b) => new(a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt operator%(float3_mt a, float b) => new(a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt operator~(float3_mt a) => new(~a.x, ~a.y, ~a.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt operator|(float3_mt a, float3_mt b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt operator&(float3_mt a, float3_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
-
-    public readonly override string ToString() => $"float3_mt {{  }}";
+    public static float2_mt32 operator&(float2_mt32 a, float2_mt32 b) => new(a.x & b.x, a.y & b.y);
 
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"float2_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    
+    #endregion // ToString
 }
 
-#endregion // float3_mt
+#endregion // float2_mt32
 #region float3_mt4
 
 [CpuOnly]
@@ -692,24 +401,6 @@ public partial struct float3_mt4
     {
         [MethodImpl(256 | 512)]
         get => float_mt4.LineCount;
-    }
-
-    public static float3_mt4 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static float3_mt4 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1.0f);
-    }
-
-    public static float3_mt4 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new(2.0f);
     }
 
     #endregion
@@ -782,30 +473,6 @@ public partial struct float3_mt4
     public static implicit operator float3_mt4(float3 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static float3_mt4 operator-(float3_mt4 a) => new(-a.x, -a.y, -a.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 operator+(float3_mt4 a, float3_mt4 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 operator-(float3_mt4 a, float3_mt4 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 operator*(float3_mt4 a, float3_mt4 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 operator/(float3_mt4 a, float3_mt4 b) => new(a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 operator/(float3_mt4 a, float b) => new(a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 operator%(float3_mt4 a, float3_mt4 b) => new(a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt4 operator%(float3_mt4 a, float b) => new(a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static float3_mt4 operator~(float3_mt4 a) => new(~a.x, ~a.y, ~a.z);
 
     [MethodImpl(256 | 512)]
@@ -814,9 +481,13 @@ public partial struct float3_mt4
     [MethodImpl(256 | 512)]
     public static float3_mt4 operator&(float3_mt4 a, float3_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
-    public readonly override string ToString() => $"float3_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"float3_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // float3_mt4
@@ -831,24 +502,6 @@ public partial struct float3_mt8
     {
         [MethodImpl(256 | 512)]
         get => float_mt8.LineCount;
-    }
-
-    public static float3_mt8 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static float3_mt8 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1.0f);
-    }
-
-    public static float3_mt8 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new(2.0f);
     }
 
     #endregion
@@ -921,30 +574,6 @@ public partial struct float3_mt8
     public static implicit operator float3_mt8(float3 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static float3_mt8 operator-(float3_mt8 a) => new(-a.x, -a.y, -a.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 operator+(float3_mt8 a, float3_mt8 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 operator-(float3_mt8 a, float3_mt8 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 operator*(float3_mt8 a, float3_mt8 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 operator/(float3_mt8 a, float3_mt8 b) => new(a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 operator/(float3_mt8 a, float b) => new(a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 operator%(float3_mt8 a, float3_mt8 b) => new(a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt8 operator%(float3_mt8 a, float b) => new(a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static float3_mt8 operator~(float3_mt8 a) => new(~a.x, ~a.y, ~a.z);
 
     [MethodImpl(256 | 512)]
@@ -953,9 +582,13 @@ public partial struct float3_mt8
     [MethodImpl(256 | 512)]
     public static float3_mt8 operator&(float3_mt8 a, float3_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
-    public readonly override string ToString() => $"float3_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"float3_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // float3_mt8
@@ -970,24 +603,6 @@ public partial struct float3_mt16
     {
         [MethodImpl(256 | 512)]
         get => float_mt16.LineCount;
-    }
-
-    public static float3_mt16 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static float3_mt16 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1.0f);
-    }
-
-    public static float3_mt16 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new(2.0f);
     }
 
     #endregion
@@ -1060,30 +675,6 @@ public partial struct float3_mt16
     public static implicit operator float3_mt16(float3 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static float3_mt16 operator-(float3_mt16 a) => new(-a.x, -a.y, -a.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 operator+(float3_mt16 a, float3_mt16 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 operator-(float3_mt16 a, float3_mt16 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 operator*(float3_mt16 a, float3_mt16 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 operator/(float3_mt16 a, float3_mt16 b) => new(a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 operator/(float3_mt16 a, float b) => new(a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 operator%(float3_mt16 a, float3_mt16 b) => new(a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static float3_mt16 operator%(float3_mt16 a, float b) => new(a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static float3_mt16 operator~(float3_mt16 a) => new(~a.x, ~a.y, ~a.z);
 
     [MethodImpl(256 | 512)]
@@ -1092,66 +683,50 @@ public partial struct float3_mt16
     [MethodImpl(256 | 512)]
     public static float3_mt16 operator&(float3_mt16 a, float3_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
-    public readonly override string ToString() => $"float3_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"float3_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // float3_mt16
-#region float4_mt
+#region float3_mt32
 
 [CpuOnly]
-public partial struct float4_mt
+public partial struct float3_mt32
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => float_mt.LineCount;
-    }
-
-    public static float4_mt Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static float4_mt One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1.0f);
-    }
-
-    public static float4_mt Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new(2.0f);
+        get => float_mt32.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public float_mt x;
-    public float_mt y;
-    public float_mt z;
-    public float_mt w;
+    public float_mt32 x;
+    public float_mt32 y;
+    public float_mt32 z;
 
     #endregion // Fields
 
     #region Properties
 
-    public float4 this[int index]
+    public float3 this[int index]
     {
         [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index], w[index]);
+        readonly get => new(x[index], y[index], z[index]);
         set 
         {
            x[index] = value.x;
            y[index] = value.y;
            z[index] = value.z;
-           w[index] = value.w;
         }
     }
 
@@ -1160,33 +735,31 @@ public partial struct float4_mt
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public float4_mt(float_mt x, float_mt y, float_mt z, float_mt w)
+    public float3_mt32(float_mt32 x, float_mt32 y, float_mt32 z)
     {
         this.x = x;
         this.y = y;
         this.z = z;
-        this.w = w;
     }
 
     [MethodImpl(256 | 512)]
-    public float4_mt(float value)
+    public float3_mt32(float value)
     {
-        w = z = y = x = value;
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public float4_mt(float_mt value)
+    public float3_mt32(float_mt32 value)
     {
-        w = z = y = x = value;
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public float4_mt(float4 value)
+    public float3_mt32(float3 value)
     {
         x = new(value.x);
         y = new(value.y);
         z = new(value.z);
-        w = new(value.w);
     }
 
     #endregion // Ctor
@@ -1194,53 +767,33 @@ public partial struct float4_mt
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator float4_mt(float value) => new float_mt(value);
+    public static implicit operator float3_mt32(float value) => new float_mt32(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator float4_mt(float_mt value) => new(value);
+    public static implicit operator float3_mt32(float_mt32 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator float4_mt(float4 value) => new(value);
+    public static implicit operator float3_mt32(float3 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static float4_mt operator-(float4_mt a) => new(-a.x, -a.y, -a.z, -a.w);
+    public static float3_mt32 operator~(float3_mt32 a) => new(~a.x, ~a.y, ~a.z);
 
     [MethodImpl(256 | 512)]
-    public static float4_mt operator+(float4_mt a, float4_mt b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
+    public static float3_mt32 operator|(float3_mt32 a, float3_mt32 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
 
     [MethodImpl(256 | 512)]
-    public static float4_mt operator-(float4_mt a, float4_mt b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt operator*(float4_mt a, float4_mt b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt operator/(float4_mt a, float4_mt b) => new(a.w / b.w, a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt operator/(float4_mt a, float b) => new(a.w / b, a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt operator%(float4_mt a, float4_mt b) => new(a.w % b.w, a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt operator%(float4_mt a, float b) => new(a.w % b, a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt operator~(float4_mt a) => new(~a.x, ~a.y, ~a.z, ~a.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt operator|(float4_mt a, float4_mt b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt operator&(float4_mt a, float4_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
-
-    public readonly override string ToString() => $"float4_mt {{  }}";
+    public static float3_mt32 operator&(float3_mt32 a, float3_mt32 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"float3_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    
+    #endregion // ToString
 }
 
-#endregion // float4_mt
+#endregion // float3_mt32
 #region float4_mt4
 
 [CpuOnly]
@@ -1252,24 +805,6 @@ public partial struct float4_mt4
     {
         [MethodImpl(256 | 512)]
         get => float_mt4.LineCount;
-    }
-
-    public static float4_mt4 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static float4_mt4 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1.0f);
-    }
-
-    public static float4_mt4 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new(2.0f);
     }
 
     #endregion
@@ -1346,30 +881,6 @@ public partial struct float4_mt4
     public static implicit operator float4_mt4(float4 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static float4_mt4 operator-(float4_mt4 a) => new(-a.x, -a.y, -a.z, -a.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 operator+(float4_mt4 a, float4_mt4 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 operator-(float4_mt4 a, float4_mt4 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 operator*(float4_mt4 a, float4_mt4 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 operator/(float4_mt4 a, float4_mt4 b) => new(a.w / b.w, a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 operator/(float4_mt4 a, float b) => new(a.w / b, a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 operator%(float4_mt4 a, float4_mt4 b) => new(a.w % b.w, a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt4 operator%(float4_mt4 a, float b) => new(a.w % b, a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static float4_mt4 operator~(float4_mt4 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
 
     [MethodImpl(256 | 512)]
@@ -1378,9 +889,13 @@ public partial struct float4_mt4
     [MethodImpl(256 | 512)]
     public static float4_mt4 operator&(float4_mt4 a, float4_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
-    public readonly override string ToString() => $"float4_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"float4_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // float4_mt4
@@ -1395,24 +910,6 @@ public partial struct float4_mt8
     {
         [MethodImpl(256 | 512)]
         get => float_mt8.LineCount;
-    }
-
-    public static float4_mt8 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static float4_mt8 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1.0f);
-    }
-
-    public static float4_mt8 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new(2.0f);
     }
 
     #endregion
@@ -1489,30 +986,6 @@ public partial struct float4_mt8
     public static implicit operator float4_mt8(float4 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static float4_mt8 operator-(float4_mt8 a) => new(-a.x, -a.y, -a.z, -a.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 operator+(float4_mt8 a, float4_mt8 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 operator-(float4_mt8 a, float4_mt8 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 operator*(float4_mt8 a, float4_mt8 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 operator/(float4_mt8 a, float4_mt8 b) => new(a.w / b.w, a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 operator/(float4_mt8 a, float b) => new(a.w / b, a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 operator%(float4_mt8 a, float4_mt8 b) => new(a.w % b.w, a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt8 operator%(float4_mt8 a, float b) => new(a.w % b, a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static float4_mt8 operator~(float4_mt8 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
 
     [MethodImpl(256 | 512)]
@@ -1521,9 +994,13 @@ public partial struct float4_mt8
     [MethodImpl(256 | 512)]
     public static float4_mt8 operator&(float4_mt8 a, float4_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
-    public readonly override string ToString() => $"float4_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"float4_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // float4_mt8
@@ -1538,24 +1015,6 @@ public partial struct float4_mt16
     {
         [MethodImpl(256 | 512)]
         get => float_mt16.LineCount;
-    }
-
-    public static float4_mt16 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static float4_mt16 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1.0f);
-    }
-
-    public static float4_mt16 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new(2.0f);
     }
 
     #endregion
@@ -1632,30 +1091,6 @@ public partial struct float4_mt16
     public static implicit operator float4_mt16(float4 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static float4_mt16 operator-(float4_mt16 a) => new(-a.x, -a.y, -a.z, -a.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 operator+(float4_mt16 a, float4_mt16 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 operator-(float4_mt16 a, float4_mt16 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 operator*(float4_mt16 a, float4_mt16 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 operator/(float4_mt16 a, float4_mt16 b) => new(a.w / b.w, a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 operator/(float4_mt16 a, float b) => new(a.w / b, a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 operator%(float4_mt16 a, float4_mt16 b) => new(a.w % b.w, a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static float4_mt16 operator%(float4_mt16 a, float b) => new(a.w % b, a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static float4_mt16 operator~(float4_mt16 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
 
     [MethodImpl(256 | 512)]
@@ -1664,62 +1099,52 @@ public partial struct float4_mt16
     [MethodImpl(256 | 512)]
     public static float4_mt16 operator&(float4_mt16 a, float4_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
-    public readonly override string ToString() => $"float4_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"float4_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // float4_mt16
-#region double2_mt
+#region float4_mt32
 
 [CpuOnly]
-public partial struct double2_mt
+public partial struct float4_mt32
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => double_mt.LineCount;
-    }
-
-    public static double2_mt Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static double2_mt One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1.0);
-    }
-
-    public static double2_mt Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new(2.0);
+        get => float_mt32.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public double_mt x;
-    public double_mt y;
+    public float_mt32 x;
+    public float_mt32 y;
+    public float_mt32 z;
+    public float_mt32 w;
 
     #endregion // Fields
 
     #region Properties
 
-    public double2 this[int index]
+    public float4 this[int index]
     {
         [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index]);
+        readonly get => new(x[index], y[index], z[index], w[index]);
         set 
         {
            x[index] = value.x;
            y[index] = value.y;
+           z[index] = value.z;
+           w[index] = value.w;
         }
     }
 
@@ -1728,29 +1153,33 @@ public partial struct double2_mt
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public double2_mt(double_mt x, double_mt y)
+    public float4_mt32(float_mt32 x, float_mt32 y, float_mt32 z, float_mt32 w)
     {
         this.x = x;
         this.y = y;
+        this.z = z;
+        this.w = w;
     }
 
     [MethodImpl(256 | 512)]
-    public double2_mt(double value)
+    public float4_mt32(float value)
     {
-        y = x = value;
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public double2_mt(double_mt value)
+    public float4_mt32(float_mt32 value)
     {
-        y = x = value;
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public double2_mt(double2 value)
+    public float4_mt32(float4 value)
     {
         x = new(value.x);
         y = new(value.y);
+        z = new(value.z);
+        w = new(value.w);
     }
 
     #endregion // Ctor
@@ -1758,53 +1187,33 @@ public partial struct double2_mt
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator double2_mt(double value) => new double_mt(value);
+    public static implicit operator float4_mt32(float value) => new float_mt32(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator double2_mt(double_mt value) => new(value);
+    public static implicit operator float4_mt32(float_mt32 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator double2_mt(double2 value) => new(value);
+    public static implicit operator float4_mt32(float4 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt operator-(double2_mt a) => new(-a.x, -a.y);
+    public static float4_mt32 operator~(float4_mt32 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt operator+(double2_mt a, double2_mt b) => new(a.x + b.x, a.y + b.y);
+    public static float4_mt32 operator|(float4_mt32 a, float4_mt32 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt operator-(double2_mt a, double2_mt b) => new(a.x - b.x, a.y - b.y);
-
-    [MethodImpl(256 | 512)]
-    public static double2_mt operator*(double2_mt a, double2_mt b) => new(a.x * b.x, a.y * b.y);
-
-    [MethodImpl(256 | 512)]
-    public static double2_mt operator/(double2_mt a, double2_mt b) => new(a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static double2_mt operator/(double2_mt a, double b) => new(a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static double2_mt operator%(double2_mt a, double2_mt b) => new(a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static double2_mt operator%(double2_mt a, double b) => new(a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
-    public static double2_mt operator~(double2_mt a) => new(~a.x, ~a.y);
-
-    [MethodImpl(256 | 512)]
-    public static double2_mt operator|(double2_mt a, double2_mt b) => new(a.x | b.x, a.y | b.y);
-
-    [MethodImpl(256 | 512)]
-    public static double2_mt operator&(double2_mt a, double2_mt b) => new(a.x & b.x, a.y & b.y);
-
-    public readonly override string ToString() => $"double2_mt {{  }}";
+    public static float4_mt32 operator&(float4_mt32 a, float4_mt32 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"float4_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    
+    #endregion // ToString
 }
 
-#endregion // double2_mt
+#endregion // float4_mt32
 #region double2_mt4
 
 [CpuOnly]
@@ -1816,24 +1225,6 @@ public partial struct double2_mt4
     {
         [MethodImpl(256 | 512)]
         get => double_mt4.LineCount;
-    }
-
-    public static double2_mt4 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static double2_mt4 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1.0);
-    }
-
-    public static double2_mt4 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new(2.0);
     }
 
     #endregion
@@ -1902,30 +1293,6 @@ public partial struct double2_mt4
     public static implicit operator double2_mt4(double2 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt4 operator-(double2_mt4 a) => new(-a.x, -a.y);
-
-    [MethodImpl(256 | 512)]
-    public static double2_mt4 operator+(double2_mt4 a, double2_mt4 b) => new(a.x + b.x, a.y + b.y);
-
-    [MethodImpl(256 | 512)]
-    public static double2_mt4 operator-(double2_mt4 a, double2_mt4 b) => new(a.x - b.x, a.y - b.y);
-
-    [MethodImpl(256 | 512)]
-    public static double2_mt4 operator*(double2_mt4 a, double2_mt4 b) => new(a.x * b.x, a.y * b.y);
-
-    [MethodImpl(256 | 512)]
-    public static double2_mt4 operator/(double2_mt4 a, double2_mt4 b) => new(a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static double2_mt4 operator/(double2_mt4 a, double b) => new(a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static double2_mt4 operator%(double2_mt4 a, double2_mt4 b) => new(a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static double2_mt4 operator%(double2_mt4 a, double b) => new(a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static double2_mt4 operator~(double2_mt4 a) => new(~a.x, ~a.y);
 
     [MethodImpl(256 | 512)]
@@ -1934,9 +1301,13 @@ public partial struct double2_mt4
     [MethodImpl(256 | 512)]
     public static double2_mt4 operator&(double2_mt4 a, double2_mt4 b) => new(a.x & b.x, a.y & b.y);
 
-    public readonly override string ToString() => $"double2_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"double2_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // double2_mt4
@@ -1951,24 +1322,6 @@ public partial struct double2_mt8
     {
         [MethodImpl(256 | 512)]
         get => double_mt8.LineCount;
-    }
-
-    public static double2_mt8 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static double2_mt8 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1.0);
-    }
-
-    public static double2_mt8 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new(2.0);
     }
 
     #endregion
@@ -2037,30 +1390,6 @@ public partial struct double2_mt8
     public static implicit operator double2_mt8(double2 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt8 operator-(double2_mt8 a) => new(-a.x, -a.y);
-
-    [MethodImpl(256 | 512)]
-    public static double2_mt8 operator+(double2_mt8 a, double2_mt8 b) => new(a.x + b.x, a.y + b.y);
-
-    [MethodImpl(256 | 512)]
-    public static double2_mt8 operator-(double2_mt8 a, double2_mt8 b) => new(a.x - b.x, a.y - b.y);
-
-    [MethodImpl(256 | 512)]
-    public static double2_mt8 operator*(double2_mt8 a, double2_mt8 b) => new(a.x * b.x, a.y * b.y);
-
-    [MethodImpl(256 | 512)]
-    public static double2_mt8 operator/(double2_mt8 a, double2_mt8 b) => new(a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static double2_mt8 operator/(double2_mt8 a, double b) => new(a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static double2_mt8 operator%(double2_mt8 a, double2_mt8 b) => new(a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static double2_mt8 operator%(double2_mt8 a, double b) => new(a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static double2_mt8 operator~(double2_mt8 a) => new(~a.x, ~a.y);
 
     [MethodImpl(256 | 512)]
@@ -2069,9 +1398,13 @@ public partial struct double2_mt8
     [MethodImpl(256 | 512)]
     public static double2_mt8 operator&(double2_mt8 a, double2_mt8 b) => new(a.x & b.x, a.y & b.y);
 
-    public readonly override string ToString() => $"double2_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"double2_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // double2_mt8
@@ -2086,24 +1419,6 @@ public partial struct double2_mt16
     {
         [MethodImpl(256 | 512)]
         get => double_mt16.LineCount;
-    }
-
-    public static double2_mt16 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static double2_mt16 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1.0);
-    }
-
-    public static double2_mt16 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new(2.0);
     }
 
     #endregion
@@ -2172,30 +1487,6 @@ public partial struct double2_mt16
     public static implicit operator double2_mt16(double2 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static double2_mt16 operator-(double2_mt16 a) => new(-a.x, -a.y);
-
-    [MethodImpl(256 | 512)]
-    public static double2_mt16 operator+(double2_mt16 a, double2_mt16 b) => new(a.x + b.x, a.y + b.y);
-
-    [MethodImpl(256 | 512)]
-    public static double2_mt16 operator-(double2_mt16 a, double2_mt16 b) => new(a.x - b.x, a.y - b.y);
-
-    [MethodImpl(256 | 512)]
-    public static double2_mt16 operator*(double2_mt16 a, double2_mt16 b) => new(a.x * b.x, a.y * b.y);
-
-    [MethodImpl(256 | 512)]
-    public static double2_mt16 operator/(double2_mt16 a, double2_mt16 b) => new(a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static double2_mt16 operator/(double2_mt16 a, double b) => new(a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static double2_mt16 operator%(double2_mt16 a, double2_mt16 b) => new(a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static double2_mt16 operator%(double2_mt16 a, double b) => new(a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static double2_mt16 operator~(double2_mt16 a) => new(~a.x, ~a.y);
 
     [MethodImpl(256 | 512)]
@@ -2204,64 +1495,48 @@ public partial struct double2_mt16
     [MethodImpl(256 | 512)]
     public static double2_mt16 operator&(double2_mt16 a, double2_mt16 b) => new(a.x & b.x, a.y & b.y);
 
-    public readonly override string ToString() => $"double2_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"double2_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // double2_mt16
-#region double3_mt
+#region double2_mt32
 
 [CpuOnly]
-public partial struct double3_mt
+public partial struct double2_mt32
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => double_mt.LineCount;
-    }
-
-    public static double3_mt Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static double3_mt One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1.0);
-    }
-
-    public static double3_mt Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new(2.0);
+        get => double_mt32.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public double_mt x;
-    public double_mt y;
-    public double_mt z;
+    public double_mt32 x;
+    public double_mt32 y;
 
     #endregion // Fields
 
     #region Properties
 
-    public double3 this[int index]
+    public double2 this[int index]
     {
         [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index]);
+        readonly get => new(x[index], y[index]);
         set 
         {
            x[index] = value.x;
            y[index] = value.y;
-           z[index] = value.z;
         }
     }
 
@@ -2270,31 +1545,29 @@ public partial struct double3_mt
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public double3_mt(double_mt x, double_mt y, double_mt z)
+    public double2_mt32(double_mt32 x, double_mt32 y)
     {
         this.x = x;
         this.y = y;
-        this.z = z;
     }
 
     [MethodImpl(256 | 512)]
-    public double3_mt(double value)
+    public double2_mt32(double value)
     {
-        z = y = x = value;
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public double3_mt(double_mt value)
+    public double2_mt32(double_mt32 value)
     {
-        z = y = x = value;
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public double3_mt(double3 value)
+    public double2_mt32(double2 value)
     {
         x = new(value.x);
         y = new(value.y);
-        z = new(value.z);
     }
 
     #endregion // Ctor
@@ -2302,53 +1575,33 @@ public partial struct double3_mt
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator double3_mt(double value) => new double_mt(value);
+    public static implicit operator double2_mt32(double value) => new double_mt32(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator double3_mt(double_mt value) => new(value);
+    public static implicit operator double2_mt32(double_mt32 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator double3_mt(double3 value) => new(value);
+    public static implicit operator double2_mt32(double2 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static double3_mt operator-(double3_mt a) => new(-a.x, -a.y, -a.z);
+    public static double2_mt32 operator~(double2_mt32 a) => new(~a.x, ~a.y);
 
     [MethodImpl(256 | 512)]
-    public static double3_mt operator+(double3_mt a, double3_mt b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
+    public static double2_mt32 operator|(double2_mt32 a, double2_mt32 b) => new(a.x | b.x, a.y | b.y);
 
     [MethodImpl(256 | 512)]
-    public static double3_mt operator-(double3_mt a, double3_mt b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt operator*(double3_mt a, double3_mt b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt operator/(double3_mt a, double3_mt b) => new(a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt operator/(double3_mt a, double b) => new(a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt operator%(double3_mt a, double3_mt b) => new(a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt operator%(double3_mt a, double b) => new(a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt operator~(double3_mt a) => new(~a.x, ~a.y, ~a.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt operator|(double3_mt a, double3_mt b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt operator&(double3_mt a, double3_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
-
-    public readonly override string ToString() => $"double3_mt {{  }}";
+    public static double2_mt32 operator&(double2_mt32 a, double2_mt32 b) => new(a.x & b.x, a.y & b.y);
 
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"double2_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    
+    #endregion // ToString
 }
 
-#endregion // double3_mt
+#endregion // double2_mt32
 #region double3_mt4
 
 [CpuOnly]
@@ -2360,24 +1613,6 @@ public partial struct double3_mt4
     {
         [MethodImpl(256 | 512)]
         get => double_mt4.LineCount;
-    }
-
-    public static double3_mt4 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static double3_mt4 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1.0);
-    }
-
-    public static double3_mt4 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new(2.0);
     }
 
     #endregion
@@ -2450,30 +1685,6 @@ public partial struct double3_mt4
     public static implicit operator double3_mt4(double3 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static double3_mt4 operator-(double3_mt4 a) => new(-a.x, -a.y, -a.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 operator+(double3_mt4 a, double3_mt4 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 operator-(double3_mt4 a, double3_mt4 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 operator*(double3_mt4 a, double3_mt4 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 operator/(double3_mt4 a, double3_mt4 b) => new(a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 operator/(double3_mt4 a, double b) => new(a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 operator%(double3_mt4 a, double3_mt4 b) => new(a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt4 operator%(double3_mt4 a, double b) => new(a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static double3_mt4 operator~(double3_mt4 a) => new(~a.x, ~a.y, ~a.z);
 
     [MethodImpl(256 | 512)]
@@ -2482,9 +1693,13 @@ public partial struct double3_mt4
     [MethodImpl(256 | 512)]
     public static double3_mt4 operator&(double3_mt4 a, double3_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
-    public readonly override string ToString() => $"double3_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"double3_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // double3_mt4
@@ -2499,24 +1714,6 @@ public partial struct double3_mt8
     {
         [MethodImpl(256 | 512)]
         get => double_mt8.LineCount;
-    }
-
-    public static double3_mt8 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static double3_mt8 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1.0);
-    }
-
-    public static double3_mt8 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new(2.0);
     }
 
     #endregion
@@ -2589,30 +1786,6 @@ public partial struct double3_mt8
     public static implicit operator double3_mt8(double3 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static double3_mt8 operator-(double3_mt8 a) => new(-a.x, -a.y, -a.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 operator+(double3_mt8 a, double3_mt8 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 operator-(double3_mt8 a, double3_mt8 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 operator*(double3_mt8 a, double3_mt8 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 operator/(double3_mt8 a, double3_mt8 b) => new(a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 operator/(double3_mt8 a, double b) => new(a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 operator%(double3_mt8 a, double3_mt8 b) => new(a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt8 operator%(double3_mt8 a, double b) => new(a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static double3_mt8 operator~(double3_mt8 a) => new(~a.x, ~a.y, ~a.z);
 
     [MethodImpl(256 | 512)]
@@ -2621,9 +1794,13 @@ public partial struct double3_mt8
     [MethodImpl(256 | 512)]
     public static double3_mt8 operator&(double3_mt8 a, double3_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
-    public readonly override string ToString() => $"double3_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"double3_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // double3_mt8
@@ -2638,24 +1815,6 @@ public partial struct double3_mt16
     {
         [MethodImpl(256 | 512)]
         get => double_mt16.LineCount;
-    }
-
-    public static double3_mt16 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static double3_mt16 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1.0);
-    }
-
-    public static double3_mt16 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new(2.0);
     }
 
     #endregion
@@ -2728,30 +1887,6 @@ public partial struct double3_mt16
     public static implicit operator double3_mt16(double3 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static double3_mt16 operator-(double3_mt16 a) => new(-a.x, -a.y, -a.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 operator+(double3_mt16 a, double3_mt16 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 operator-(double3_mt16 a, double3_mt16 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 operator*(double3_mt16 a, double3_mt16 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 operator/(double3_mt16 a, double3_mt16 b) => new(a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 operator/(double3_mt16 a, double b) => new(a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 operator%(double3_mt16 a, double3_mt16 b) => new(a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static double3_mt16 operator%(double3_mt16 a, double b) => new(a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static double3_mt16 operator~(double3_mt16 a) => new(~a.x, ~a.y, ~a.z);
 
     [MethodImpl(256 | 512)]
@@ -2760,66 +1895,50 @@ public partial struct double3_mt16
     [MethodImpl(256 | 512)]
     public static double3_mt16 operator&(double3_mt16 a, double3_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
-    public readonly override string ToString() => $"double3_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"double3_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // double3_mt16
-#region double4_mt
+#region double3_mt32
 
 [CpuOnly]
-public partial struct double4_mt
+public partial struct double3_mt32
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => double_mt.LineCount;
-    }
-
-    public static double4_mt Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static double4_mt One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1.0);
-    }
-
-    public static double4_mt Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new(2.0);
+        get => double_mt32.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public double_mt x;
-    public double_mt y;
-    public double_mt z;
-    public double_mt w;
+    public double_mt32 x;
+    public double_mt32 y;
+    public double_mt32 z;
 
     #endregion // Fields
 
     #region Properties
 
-    public double4 this[int index]
+    public double3 this[int index]
     {
         [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index], w[index]);
+        readonly get => new(x[index], y[index], z[index]);
         set 
         {
            x[index] = value.x;
            y[index] = value.y;
            z[index] = value.z;
-           w[index] = value.w;
         }
     }
 
@@ -2828,33 +1947,31 @@ public partial struct double4_mt
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public double4_mt(double_mt x, double_mt y, double_mt z, double_mt w)
+    public double3_mt32(double_mt32 x, double_mt32 y, double_mt32 z)
     {
         this.x = x;
         this.y = y;
         this.z = z;
-        this.w = w;
     }
 
     [MethodImpl(256 | 512)]
-    public double4_mt(double value)
+    public double3_mt32(double value)
     {
-        w = z = y = x = value;
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public double4_mt(double_mt value)
+    public double3_mt32(double_mt32 value)
     {
-        w = z = y = x = value;
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public double4_mt(double4 value)
+    public double3_mt32(double3 value)
     {
         x = new(value.x);
         y = new(value.y);
         z = new(value.z);
-        w = new(value.w);
     }
 
     #endregion // Ctor
@@ -2862,53 +1979,33 @@ public partial struct double4_mt
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator double4_mt(double value) => new double_mt(value);
+    public static implicit operator double3_mt32(double value) => new double_mt32(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator double4_mt(double_mt value) => new(value);
+    public static implicit operator double3_mt32(double_mt32 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator double4_mt(double4 value) => new(value);
+    public static implicit operator double3_mt32(double3 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static double4_mt operator-(double4_mt a) => new(-a.x, -a.y, -a.z, -a.w);
+    public static double3_mt32 operator~(double3_mt32 a) => new(~a.x, ~a.y, ~a.z);
 
     [MethodImpl(256 | 512)]
-    public static double4_mt operator+(double4_mt a, double4_mt b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
+    public static double3_mt32 operator|(double3_mt32 a, double3_mt32 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
 
     [MethodImpl(256 | 512)]
-    public static double4_mt operator-(double4_mt a, double4_mt b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt operator*(double4_mt a, double4_mt b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt operator/(double4_mt a, double4_mt b) => new(a.w / b.w, a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt operator/(double4_mt a, double b) => new(a.w / b, a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt operator%(double4_mt a, double4_mt b) => new(a.w % b.w, a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt operator%(double4_mt a, double b) => new(a.w % b, a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt operator~(double4_mt a) => new(~a.x, ~a.y, ~a.z, ~a.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt operator|(double4_mt a, double4_mt b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt operator&(double4_mt a, double4_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
-
-    public readonly override string ToString() => $"double4_mt {{  }}";
+    public static double3_mt32 operator&(double3_mt32 a, double3_mt32 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"double3_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    
+    #endregion // ToString
 }
 
-#endregion // double4_mt
+#endregion // double3_mt32
 #region double4_mt4
 
 [CpuOnly]
@@ -2920,24 +2017,6 @@ public partial struct double4_mt4
     {
         [MethodImpl(256 | 512)]
         get => double_mt4.LineCount;
-    }
-
-    public static double4_mt4 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static double4_mt4 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1.0);
-    }
-
-    public static double4_mt4 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new(2.0);
     }
 
     #endregion
@@ -3014,30 +2093,6 @@ public partial struct double4_mt4
     public static implicit operator double4_mt4(double4 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static double4_mt4 operator-(double4_mt4 a) => new(-a.x, -a.y, -a.z, -a.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 operator+(double4_mt4 a, double4_mt4 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 operator-(double4_mt4 a, double4_mt4 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 operator*(double4_mt4 a, double4_mt4 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 operator/(double4_mt4 a, double4_mt4 b) => new(a.w / b.w, a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 operator/(double4_mt4 a, double b) => new(a.w / b, a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 operator%(double4_mt4 a, double4_mt4 b) => new(a.w % b.w, a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt4 operator%(double4_mt4 a, double b) => new(a.w % b, a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static double4_mt4 operator~(double4_mt4 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
 
     [MethodImpl(256 | 512)]
@@ -3046,9 +2101,13 @@ public partial struct double4_mt4
     [MethodImpl(256 | 512)]
     public static double4_mt4 operator&(double4_mt4 a, double4_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
-    public readonly override string ToString() => $"double4_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"double4_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // double4_mt4
@@ -3063,24 +2122,6 @@ public partial struct double4_mt8
     {
         [MethodImpl(256 | 512)]
         get => double_mt8.LineCount;
-    }
-
-    public static double4_mt8 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static double4_mt8 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1.0);
-    }
-
-    public static double4_mt8 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new(2.0);
     }
 
     #endregion
@@ -3157,30 +2198,6 @@ public partial struct double4_mt8
     public static implicit operator double4_mt8(double4 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static double4_mt8 operator-(double4_mt8 a) => new(-a.x, -a.y, -a.z, -a.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 operator+(double4_mt8 a, double4_mt8 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 operator-(double4_mt8 a, double4_mt8 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 operator*(double4_mt8 a, double4_mt8 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 operator/(double4_mt8 a, double4_mt8 b) => new(a.w / b.w, a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 operator/(double4_mt8 a, double b) => new(a.w / b, a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 operator%(double4_mt8 a, double4_mt8 b) => new(a.w % b.w, a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt8 operator%(double4_mt8 a, double b) => new(a.w % b, a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static double4_mt8 operator~(double4_mt8 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
 
     [MethodImpl(256 | 512)]
@@ -3189,9 +2206,13 @@ public partial struct double4_mt8
     [MethodImpl(256 | 512)]
     public static double4_mt8 operator&(double4_mt8 a, double4_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
-    public readonly override string ToString() => $"double4_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"double4_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // double4_mt8
@@ -3206,24 +2227,6 @@ public partial struct double4_mt16
     {
         [MethodImpl(256 | 512)]
         get => double_mt16.LineCount;
-    }
-
-    public static double4_mt16 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static double4_mt16 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1.0);
-    }
-
-    public static double4_mt16 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new(2.0);
     }
 
     #endregion
@@ -3300,30 +2303,6 @@ public partial struct double4_mt16
     public static implicit operator double4_mt16(double4 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static double4_mt16 operator-(double4_mt16 a) => new(-a.x, -a.y, -a.z, -a.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 operator+(double4_mt16 a, double4_mt16 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 operator-(double4_mt16 a, double4_mt16 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 operator*(double4_mt16 a, double4_mt16 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 operator/(double4_mt16 a, double4_mt16 b) => new(a.w / b.w, a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 operator/(double4_mt16 a, double b) => new(a.w / b, a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 operator%(double4_mt16 a, double4_mt16 b) => new(a.w % b.w, a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static double4_mt16 operator%(double4_mt16 a, double b) => new(a.w % b, a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static double4_mt16 operator~(double4_mt16 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
 
     [MethodImpl(256 | 512)]
@@ -3332,62 +2311,52 @@ public partial struct double4_mt16
     [MethodImpl(256 | 512)]
     public static double4_mt16 operator&(double4_mt16 a, double4_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
-    public readonly override string ToString() => $"double4_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"double4_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // double4_mt16
-#region int2_mt
+#region double4_mt32
 
 [CpuOnly]
-public partial struct int2_mt
+public partial struct double4_mt32
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => int_mt.LineCount;
-    }
-
-    public static int2_mt Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static int2_mt One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1);
-    }
-
-    public static int2_mt Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1 + 1));
+        get => double_mt32.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public int_mt x;
-    public int_mt y;
+    public double_mt32 x;
+    public double_mt32 y;
+    public double_mt32 z;
+    public double_mt32 w;
 
     #endregion // Fields
 
     #region Properties
 
-    public int2 this[int index]
+    public double4 this[int index]
     {
         [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index]);
+        readonly get => new(x[index], y[index], z[index], w[index]);
         set 
         {
            x[index] = value.x;
            y[index] = value.y;
+           z[index] = value.z;
+           w[index] = value.w;
         }
     }
 
@@ -3396,29 +2365,33 @@ public partial struct int2_mt
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public int2_mt(int_mt x, int_mt y)
+    public double4_mt32(double_mt32 x, double_mt32 y, double_mt32 z, double_mt32 w)
     {
         this.x = x;
         this.y = y;
+        this.z = z;
+        this.w = w;
     }
 
     [MethodImpl(256 | 512)]
-    public int2_mt(int value)
+    public double4_mt32(double value)
     {
-        y = x = value;
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public int2_mt(int_mt value)
+    public double4_mt32(double_mt32 value)
     {
-        y = x = value;
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public int2_mt(int2 value)
+    public double4_mt32(double4 value)
     {
         x = new(value.x);
         y = new(value.y);
+        z = new(value.z);
+        w = new(value.w);
     }
 
     #endregion // Ctor
@@ -3426,53 +2399,33 @@ public partial struct int2_mt
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator int2_mt(int value) => new int_mt(value);
+    public static implicit operator double4_mt32(double value) => new double_mt32(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator int2_mt(int_mt value) => new(value);
+    public static implicit operator double4_mt32(double_mt32 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator int2_mt(int2 value) => new(value);
+    public static implicit operator double4_mt32(double4 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt operator-(int2_mt a) => new(-a.x, -a.y);
+    public static double4_mt32 operator~(double4_mt32 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt operator+(int2_mt a, int2_mt b) => new(a.x + b.x, a.y + b.y);
+    public static double4_mt32 operator|(double4_mt32 a, double4_mt32 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt operator-(int2_mt a, int2_mt b) => new(a.x - b.x, a.y - b.y);
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt operator*(int2_mt a, int2_mt b) => new(a.x * b.x, a.y * b.y);
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt operator/(int2_mt a, int2_mt b) => new(a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt operator/(int2_mt a, int b) => new(a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt operator%(int2_mt a, int2_mt b) => new(a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt operator%(int2_mt a, int b) => new(a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt operator~(int2_mt a) => new(~a.x, ~a.y);
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt operator|(int2_mt a, int2_mt b) => new(a.x | b.x, a.y | b.y);
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt operator&(int2_mt a, int2_mt b) => new(a.x & b.x, a.y & b.y);
-
-    public readonly override string ToString() => $"int2_mt {{  }}";
+    public static double4_mt32 operator&(double4_mt32 a, double4_mt32 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"double4_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    
+    #endregion // ToString
 }
 
-#endregion // int2_mt
+#endregion // double4_mt32
 #region int2_mt4
 
 [CpuOnly]
@@ -3484,24 +2437,6 @@ public partial struct int2_mt4
     {
         [MethodImpl(256 | 512)]
         get => int_mt4.LineCount;
-    }
-
-    public static int2_mt4 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static int2_mt4 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1);
-    }
-
-    public static int2_mt4 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1 + 1));
     }
 
     #endregion
@@ -3570,30 +2505,6 @@ public partial struct int2_mt4
     public static implicit operator int2_mt4(int2 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt4 operator-(int2_mt4 a) => new(-a.x, -a.y);
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt4 operator+(int2_mt4 a, int2_mt4 b) => new(a.x + b.x, a.y + b.y);
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt4 operator-(int2_mt4 a, int2_mt4 b) => new(a.x - b.x, a.y - b.y);
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt4 operator*(int2_mt4 a, int2_mt4 b) => new(a.x * b.x, a.y * b.y);
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt4 operator/(int2_mt4 a, int2_mt4 b) => new(a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt4 operator/(int2_mt4 a, int b) => new(a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt4 operator%(int2_mt4 a, int2_mt4 b) => new(a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt4 operator%(int2_mt4 a, int b) => new(a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static int2_mt4 operator~(int2_mt4 a) => new(~a.x, ~a.y);
 
     [MethodImpl(256 | 512)]
@@ -3602,9 +2513,13 @@ public partial struct int2_mt4
     [MethodImpl(256 | 512)]
     public static int2_mt4 operator&(int2_mt4 a, int2_mt4 b) => new(a.x & b.x, a.y & b.y);
 
-    public readonly override string ToString() => $"int2_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"int2_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // int2_mt4
@@ -3619,24 +2534,6 @@ public partial struct int2_mt8
     {
         [MethodImpl(256 | 512)]
         get => int_mt8.LineCount;
-    }
-
-    public static int2_mt8 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static int2_mt8 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1);
-    }
-
-    public static int2_mt8 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1 + 1));
     }
 
     #endregion
@@ -3705,30 +2602,6 @@ public partial struct int2_mt8
     public static implicit operator int2_mt8(int2 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt8 operator-(int2_mt8 a) => new(-a.x, -a.y);
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt8 operator+(int2_mt8 a, int2_mt8 b) => new(a.x + b.x, a.y + b.y);
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt8 operator-(int2_mt8 a, int2_mt8 b) => new(a.x - b.x, a.y - b.y);
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt8 operator*(int2_mt8 a, int2_mt8 b) => new(a.x * b.x, a.y * b.y);
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt8 operator/(int2_mt8 a, int2_mt8 b) => new(a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt8 operator/(int2_mt8 a, int b) => new(a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt8 operator%(int2_mt8 a, int2_mt8 b) => new(a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt8 operator%(int2_mt8 a, int b) => new(a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static int2_mt8 operator~(int2_mt8 a) => new(~a.x, ~a.y);
 
     [MethodImpl(256 | 512)]
@@ -3737,9 +2610,13 @@ public partial struct int2_mt8
     [MethodImpl(256 | 512)]
     public static int2_mt8 operator&(int2_mt8 a, int2_mt8 b) => new(a.x & b.x, a.y & b.y);
 
-    public readonly override string ToString() => $"int2_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"int2_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // int2_mt8
@@ -3754,24 +2631,6 @@ public partial struct int2_mt16
     {
         [MethodImpl(256 | 512)]
         get => int_mt16.LineCount;
-    }
-
-    public static int2_mt16 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static int2_mt16 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1);
-    }
-
-    public static int2_mt16 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1 + 1));
     }
 
     #endregion
@@ -3840,30 +2699,6 @@ public partial struct int2_mt16
     public static implicit operator int2_mt16(int2 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static int2_mt16 operator-(int2_mt16 a) => new(-a.x, -a.y);
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt16 operator+(int2_mt16 a, int2_mt16 b) => new(a.x + b.x, a.y + b.y);
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt16 operator-(int2_mt16 a, int2_mt16 b) => new(a.x - b.x, a.y - b.y);
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt16 operator*(int2_mt16 a, int2_mt16 b) => new(a.x * b.x, a.y * b.y);
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt16 operator/(int2_mt16 a, int2_mt16 b) => new(a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt16 operator/(int2_mt16 a, int b) => new(a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt16 operator%(int2_mt16 a, int2_mt16 b) => new(a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt16 operator%(int2_mt16 a, int b) => new(a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static int2_mt16 operator~(int2_mt16 a) => new(~a.x, ~a.y);
 
     [MethodImpl(256 | 512)]
@@ -3872,64 +2707,48 @@ public partial struct int2_mt16
     [MethodImpl(256 | 512)]
     public static int2_mt16 operator&(int2_mt16 a, int2_mt16 b) => new(a.x & b.x, a.y & b.y);
 
-    public readonly override string ToString() => $"int2_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"int2_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // int2_mt16
-#region int3_mt
+#region int2_mt32
 
 [CpuOnly]
-public partial struct int3_mt
+public partial struct int2_mt32
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => int_mt.LineCount;
-    }
-
-    public static int3_mt Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static int3_mt One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1);
-    }
-
-    public static int3_mt Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1 + 1));
+        get => int_mt32.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public int_mt x;
-    public int_mt y;
-    public int_mt z;
+    public int_mt32 x;
+    public int_mt32 y;
 
     #endregion // Fields
 
     #region Properties
 
-    public int3 this[int index]
+    public int2 this[int index]
     {
         [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index]);
+        readonly get => new(x[index], y[index]);
         set 
         {
            x[index] = value.x;
            y[index] = value.y;
-           z[index] = value.z;
         }
     }
 
@@ -3938,31 +2757,29 @@ public partial struct int3_mt
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public int3_mt(int_mt x, int_mt y, int_mt z)
+    public int2_mt32(int_mt32 x, int_mt32 y)
     {
         this.x = x;
         this.y = y;
-        this.z = z;
     }
 
     [MethodImpl(256 | 512)]
-    public int3_mt(int value)
+    public int2_mt32(int value)
     {
-        z = y = x = value;
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public int3_mt(int_mt value)
+    public int2_mt32(int_mt32 value)
     {
-        z = y = x = value;
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public int3_mt(int3 value)
+    public int2_mt32(int2 value)
     {
         x = new(value.x);
         y = new(value.y);
-        z = new(value.z);
     }
 
     #endregion // Ctor
@@ -3970,53 +2787,33 @@ public partial struct int3_mt
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator int3_mt(int value) => new int_mt(value);
+    public static implicit operator int2_mt32(int value) => new int_mt32(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator int3_mt(int_mt value) => new(value);
+    public static implicit operator int2_mt32(int_mt32 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator int3_mt(int3 value) => new(value);
+    public static implicit operator int2_mt32(int2 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static int3_mt operator-(int3_mt a) => new(-a.x, -a.y, -a.z);
+    public static int2_mt32 operator~(int2_mt32 a) => new(~a.x, ~a.y);
 
     [MethodImpl(256 | 512)]
-    public static int3_mt operator+(int3_mt a, int3_mt b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
+    public static int2_mt32 operator|(int2_mt32 a, int2_mt32 b) => new(a.x | b.x, a.y | b.y);
 
     [MethodImpl(256 | 512)]
-    public static int3_mt operator-(int3_mt a, int3_mt b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt operator*(int3_mt a, int3_mt b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt operator/(int3_mt a, int3_mt b) => new(a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt operator/(int3_mt a, int b) => new(a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt operator%(int3_mt a, int3_mt b) => new(a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt operator%(int3_mt a, int b) => new(a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt operator~(int3_mt a) => new(~a.x, ~a.y, ~a.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt operator|(int3_mt a, int3_mt b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt operator&(int3_mt a, int3_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
-
-    public readonly override string ToString() => $"int3_mt {{  }}";
+    public static int2_mt32 operator&(int2_mt32 a, int2_mt32 b) => new(a.x & b.x, a.y & b.y);
 
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"int2_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    
+    #endregion // ToString
 }
 
-#endregion // int3_mt
+#endregion // int2_mt32
 #region int3_mt4
 
 [CpuOnly]
@@ -4028,24 +2825,6 @@ public partial struct int3_mt4
     {
         [MethodImpl(256 | 512)]
         get => int_mt4.LineCount;
-    }
-
-    public static int3_mt4 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static int3_mt4 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1);
-    }
-
-    public static int3_mt4 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1 + 1));
     }
 
     #endregion
@@ -4118,30 +2897,6 @@ public partial struct int3_mt4
     public static implicit operator int3_mt4(int3 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static int3_mt4 operator-(int3_mt4 a) => new(-a.x, -a.y, -a.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 operator+(int3_mt4 a, int3_mt4 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 operator-(int3_mt4 a, int3_mt4 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 operator*(int3_mt4 a, int3_mt4 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 operator/(int3_mt4 a, int3_mt4 b) => new(a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 operator/(int3_mt4 a, int b) => new(a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 operator%(int3_mt4 a, int3_mt4 b) => new(a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt4 operator%(int3_mt4 a, int b) => new(a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static int3_mt4 operator~(int3_mt4 a) => new(~a.x, ~a.y, ~a.z);
 
     [MethodImpl(256 | 512)]
@@ -4150,9 +2905,13 @@ public partial struct int3_mt4
     [MethodImpl(256 | 512)]
     public static int3_mt4 operator&(int3_mt4 a, int3_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
-    public readonly override string ToString() => $"int3_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"int3_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // int3_mt4
@@ -4167,24 +2926,6 @@ public partial struct int3_mt8
     {
         [MethodImpl(256 | 512)]
         get => int_mt8.LineCount;
-    }
-
-    public static int3_mt8 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static int3_mt8 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1);
-    }
-
-    public static int3_mt8 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1 + 1));
     }
 
     #endregion
@@ -4257,30 +2998,6 @@ public partial struct int3_mt8
     public static implicit operator int3_mt8(int3 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static int3_mt8 operator-(int3_mt8 a) => new(-a.x, -a.y, -a.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 operator+(int3_mt8 a, int3_mt8 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 operator-(int3_mt8 a, int3_mt8 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 operator*(int3_mt8 a, int3_mt8 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 operator/(int3_mt8 a, int3_mt8 b) => new(a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 operator/(int3_mt8 a, int b) => new(a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 operator%(int3_mt8 a, int3_mt8 b) => new(a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt8 operator%(int3_mt8 a, int b) => new(a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static int3_mt8 operator~(int3_mt8 a) => new(~a.x, ~a.y, ~a.z);
 
     [MethodImpl(256 | 512)]
@@ -4289,9 +3006,13 @@ public partial struct int3_mt8
     [MethodImpl(256 | 512)]
     public static int3_mt8 operator&(int3_mt8 a, int3_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
-    public readonly override string ToString() => $"int3_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"int3_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // int3_mt8
@@ -4306,24 +3027,6 @@ public partial struct int3_mt16
     {
         [MethodImpl(256 | 512)]
         get => int_mt16.LineCount;
-    }
-
-    public static int3_mt16 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static int3_mt16 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1);
-    }
-
-    public static int3_mt16 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1 + 1));
     }
 
     #endregion
@@ -4396,30 +3099,6 @@ public partial struct int3_mt16
     public static implicit operator int3_mt16(int3 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static int3_mt16 operator-(int3_mt16 a) => new(-a.x, -a.y, -a.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 operator+(int3_mt16 a, int3_mt16 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 operator-(int3_mt16 a, int3_mt16 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 operator*(int3_mt16 a, int3_mt16 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 operator/(int3_mt16 a, int3_mt16 b) => new(a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 operator/(int3_mt16 a, int b) => new(a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 operator%(int3_mt16 a, int3_mt16 b) => new(a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt16 operator%(int3_mt16 a, int b) => new(a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static int3_mt16 operator~(int3_mt16 a) => new(~a.x, ~a.y, ~a.z);
 
     [MethodImpl(256 | 512)]
@@ -4428,66 +3107,50 @@ public partial struct int3_mt16
     [MethodImpl(256 | 512)]
     public static int3_mt16 operator&(int3_mt16 a, int3_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
-    public readonly override string ToString() => $"int3_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"int3_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // int3_mt16
-#region int4_mt
+#region int3_mt32
 
 [CpuOnly]
-public partial struct int4_mt
+public partial struct int3_mt32
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => int_mt.LineCount;
-    }
-
-    public static int4_mt Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static int4_mt One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1);
-    }
-
-    public static int4_mt Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1 + 1));
+        get => int_mt32.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public int_mt x;
-    public int_mt y;
-    public int_mt z;
-    public int_mt w;
+    public int_mt32 x;
+    public int_mt32 y;
+    public int_mt32 z;
 
     #endregion // Fields
 
     #region Properties
 
-    public int4 this[int index]
+    public int3 this[int index]
     {
         [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index], w[index]);
+        readonly get => new(x[index], y[index], z[index]);
         set 
         {
            x[index] = value.x;
            y[index] = value.y;
            z[index] = value.z;
-           w[index] = value.w;
         }
     }
 
@@ -4496,33 +3159,31 @@ public partial struct int4_mt
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public int4_mt(int_mt x, int_mt y, int_mt z, int_mt w)
+    public int3_mt32(int_mt32 x, int_mt32 y, int_mt32 z)
     {
         this.x = x;
         this.y = y;
         this.z = z;
-        this.w = w;
     }
 
     [MethodImpl(256 | 512)]
-    public int4_mt(int value)
+    public int3_mt32(int value)
     {
-        w = z = y = x = value;
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public int4_mt(int_mt value)
+    public int3_mt32(int_mt32 value)
     {
-        w = z = y = x = value;
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public int4_mt(int4 value)
+    public int3_mt32(int3 value)
     {
         x = new(value.x);
         y = new(value.y);
         z = new(value.z);
-        w = new(value.w);
     }
 
     #endregion // Ctor
@@ -4530,53 +3191,33 @@ public partial struct int4_mt
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator int4_mt(int value) => new int_mt(value);
+    public static implicit operator int3_mt32(int value) => new int_mt32(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator int4_mt(int_mt value) => new(value);
+    public static implicit operator int3_mt32(int_mt32 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator int4_mt(int4 value) => new(value);
+    public static implicit operator int3_mt32(int3 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static int4_mt operator-(int4_mt a) => new(-a.x, -a.y, -a.z, -a.w);
+    public static int3_mt32 operator~(int3_mt32 a) => new(~a.x, ~a.y, ~a.z);
 
     [MethodImpl(256 | 512)]
-    public static int4_mt operator+(int4_mt a, int4_mt b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
+    public static int3_mt32 operator|(int3_mt32 a, int3_mt32 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
 
     [MethodImpl(256 | 512)]
-    public static int4_mt operator-(int4_mt a, int4_mt b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt operator*(int4_mt a, int4_mt b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt operator/(int4_mt a, int4_mt b) => new(a.w / b.w, a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt operator/(int4_mt a, int b) => new(a.w / b, a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt operator%(int4_mt a, int4_mt b) => new(a.w % b.w, a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt operator%(int4_mt a, int b) => new(a.w % b, a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt operator~(int4_mt a) => new(~a.x, ~a.y, ~a.z, ~a.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt operator|(int4_mt a, int4_mt b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt operator&(int4_mt a, int4_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
-
-    public readonly override string ToString() => $"int4_mt {{  }}";
+    public static int3_mt32 operator&(int3_mt32 a, int3_mt32 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"int3_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    
+    #endregion // ToString
 }
 
-#endregion // int4_mt
+#endregion // int3_mt32
 #region int4_mt4
 
 [CpuOnly]
@@ -4588,24 +3229,6 @@ public partial struct int4_mt4
     {
         [MethodImpl(256 | 512)]
         get => int_mt4.LineCount;
-    }
-
-    public static int4_mt4 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static int4_mt4 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1);
-    }
-
-    public static int4_mt4 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1 + 1));
     }
 
     #endregion
@@ -4682,30 +3305,6 @@ public partial struct int4_mt4
     public static implicit operator int4_mt4(int4 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static int4_mt4 operator-(int4_mt4 a) => new(-a.x, -a.y, -a.z, -a.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 operator+(int4_mt4 a, int4_mt4 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 operator-(int4_mt4 a, int4_mt4 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 operator*(int4_mt4 a, int4_mt4 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 operator/(int4_mt4 a, int4_mt4 b) => new(a.w / b.w, a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 operator/(int4_mt4 a, int b) => new(a.w / b, a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 operator%(int4_mt4 a, int4_mt4 b) => new(a.w % b.w, a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt4 operator%(int4_mt4 a, int b) => new(a.w % b, a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static int4_mt4 operator~(int4_mt4 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
 
     [MethodImpl(256 | 512)]
@@ -4714,9 +3313,13 @@ public partial struct int4_mt4
     [MethodImpl(256 | 512)]
     public static int4_mt4 operator&(int4_mt4 a, int4_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
-    public readonly override string ToString() => $"int4_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"int4_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // int4_mt4
@@ -4731,24 +3334,6 @@ public partial struct int4_mt8
     {
         [MethodImpl(256 | 512)]
         get => int_mt8.LineCount;
-    }
-
-    public static int4_mt8 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static int4_mt8 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1);
-    }
-
-    public static int4_mt8 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1 + 1));
     }
 
     #endregion
@@ -4825,30 +3410,6 @@ public partial struct int4_mt8
     public static implicit operator int4_mt8(int4 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static int4_mt8 operator-(int4_mt8 a) => new(-a.x, -a.y, -a.z, -a.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 operator+(int4_mt8 a, int4_mt8 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 operator-(int4_mt8 a, int4_mt8 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 operator*(int4_mt8 a, int4_mt8 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 operator/(int4_mt8 a, int4_mt8 b) => new(a.w / b.w, a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 operator/(int4_mt8 a, int b) => new(a.w / b, a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 operator%(int4_mt8 a, int4_mt8 b) => new(a.w % b.w, a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt8 operator%(int4_mt8 a, int b) => new(a.w % b, a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static int4_mt8 operator~(int4_mt8 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
 
     [MethodImpl(256 | 512)]
@@ -4857,9 +3418,13 @@ public partial struct int4_mt8
     [MethodImpl(256 | 512)]
     public static int4_mt8 operator&(int4_mt8 a, int4_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
-    public readonly override string ToString() => $"int4_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"int4_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // int4_mt8
@@ -4874,24 +3439,6 @@ public partial struct int4_mt16
     {
         [MethodImpl(256 | 512)]
         get => int_mt16.LineCount;
-    }
-
-    public static int4_mt16 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static int4_mt16 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1);
-    }
-
-    public static int4_mt16 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1 + 1));
     }
 
     #endregion
@@ -4968,30 +3515,6 @@ public partial struct int4_mt16
     public static implicit operator int4_mt16(int4 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static int4_mt16 operator-(int4_mt16 a) => new(-a.x, -a.y, -a.z, -a.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 operator+(int4_mt16 a, int4_mt16 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 operator-(int4_mt16 a, int4_mt16 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 operator*(int4_mt16 a, int4_mt16 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 operator/(int4_mt16 a, int4_mt16 b) => new(a.w / b.w, a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 operator/(int4_mt16 a, int b) => new(a.w / b, a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 operator%(int4_mt16 a, int4_mt16 b) => new(a.w % b.w, a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt16 operator%(int4_mt16 a, int b) => new(a.w % b, a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static int4_mt16 operator~(int4_mt16 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
 
     [MethodImpl(256 | 512)]
@@ -5000,62 +3523,52 @@ public partial struct int4_mt16
     [MethodImpl(256 | 512)]
     public static int4_mt16 operator&(int4_mt16 a, int4_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
-    public readonly override string ToString() => $"int4_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"int4_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // int4_mt16
-#region uint2_mt
+#region int4_mt32
 
 [CpuOnly]
-public partial struct uint2_mt
+public partial struct int4_mt32
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => uint_mt.LineCount;
-    }
-
-    public static uint2_mt Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static uint2_mt One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1u);
-    }
-
-    public static uint2_mt Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1u + 1u));
+        get => int_mt32.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public uint_mt x;
-    public uint_mt y;
+    public int_mt32 x;
+    public int_mt32 y;
+    public int_mt32 z;
+    public int_mt32 w;
 
     #endregion // Fields
 
     #region Properties
 
-    public uint2 this[int index]
+    public int4 this[int index]
     {
         [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index]);
+        readonly get => new(x[index], y[index], z[index], w[index]);
         set 
         {
            x[index] = value.x;
            y[index] = value.y;
+           z[index] = value.z;
+           w[index] = value.w;
         }
     }
 
@@ -5064,29 +3577,33 @@ public partial struct uint2_mt
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public uint2_mt(uint_mt x, uint_mt y)
+    public int4_mt32(int_mt32 x, int_mt32 y, int_mt32 z, int_mt32 w)
     {
         this.x = x;
         this.y = y;
+        this.z = z;
+        this.w = w;
     }
 
     [MethodImpl(256 | 512)]
-    public uint2_mt(uint value)
+    public int4_mt32(int value)
     {
-        y = x = value;
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public uint2_mt(uint_mt value)
+    public int4_mt32(int_mt32 value)
     {
-        y = x = value;
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public uint2_mt(uint2 value)
+    public int4_mt32(int4 value)
     {
         x = new(value.x);
         y = new(value.y);
+        z = new(value.z);
+        w = new(value.w);
     }
 
     #endregion // Ctor
@@ -5094,53 +3611,33 @@ public partial struct uint2_mt
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator uint2_mt(uint value) => new uint_mt(value);
+    public static implicit operator int4_mt32(int value) => new int_mt32(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator uint2_mt(uint_mt value) => new(value);
+    public static implicit operator int4_mt32(int_mt32 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator uint2_mt(uint2 value) => new(value);
+    public static implicit operator int4_mt32(int4 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt operator-(uint2_mt a) => new(-a.x, -a.y);
+    public static int4_mt32 operator~(int4_mt32 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt operator+(uint2_mt a, uint2_mt b) => new(a.x + b.x, a.y + b.y);
+    public static int4_mt32 operator|(int4_mt32 a, int4_mt32 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt operator-(uint2_mt a, uint2_mt b) => new(a.x - b.x, a.y - b.y);
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt operator*(uint2_mt a, uint2_mt b) => new(a.x * b.x, a.y * b.y);
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt operator/(uint2_mt a, uint2_mt b) => new(a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt operator/(uint2_mt a, uint b) => new(a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt operator%(uint2_mt a, uint2_mt b) => new(a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt operator%(uint2_mt a, uint b) => new(a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt operator~(uint2_mt a) => new(~a.x, ~a.y);
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt operator|(uint2_mt a, uint2_mt b) => new(a.x | b.x, a.y | b.y);
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt operator&(uint2_mt a, uint2_mt b) => new(a.x & b.x, a.y & b.y);
-
-    public readonly override string ToString() => $"uint2_mt {{  }}";
+    public static int4_mt32 operator&(int4_mt32 a, int4_mt32 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"int4_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    
+    #endregion // ToString
 }
 
-#endregion // uint2_mt
+#endregion // int4_mt32
 #region uint2_mt4
 
 [CpuOnly]
@@ -5152,24 +3649,6 @@ public partial struct uint2_mt4
     {
         [MethodImpl(256 | 512)]
         get => uint_mt4.LineCount;
-    }
-
-    public static uint2_mt4 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static uint2_mt4 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1u);
-    }
-
-    public static uint2_mt4 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1u + 1u));
     }
 
     #endregion
@@ -5238,30 +3717,6 @@ public partial struct uint2_mt4
     public static implicit operator uint2_mt4(uint2 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt4 operator-(uint2_mt4 a) => new(-a.x, -a.y);
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt4 operator+(uint2_mt4 a, uint2_mt4 b) => new(a.x + b.x, a.y + b.y);
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt4 operator-(uint2_mt4 a, uint2_mt4 b) => new(a.x - b.x, a.y - b.y);
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt4 operator*(uint2_mt4 a, uint2_mt4 b) => new(a.x * b.x, a.y * b.y);
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt4 operator/(uint2_mt4 a, uint2_mt4 b) => new(a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt4 operator/(uint2_mt4 a, uint b) => new(a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt4 operator%(uint2_mt4 a, uint2_mt4 b) => new(a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt4 operator%(uint2_mt4 a, uint b) => new(a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static uint2_mt4 operator~(uint2_mt4 a) => new(~a.x, ~a.y);
 
     [MethodImpl(256 | 512)]
@@ -5270,9 +3725,13 @@ public partial struct uint2_mt4
     [MethodImpl(256 | 512)]
     public static uint2_mt4 operator&(uint2_mt4 a, uint2_mt4 b) => new(a.x & b.x, a.y & b.y);
 
-    public readonly override string ToString() => $"uint2_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"uint2_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // uint2_mt4
@@ -5287,24 +3746,6 @@ public partial struct uint2_mt8
     {
         [MethodImpl(256 | 512)]
         get => uint_mt8.LineCount;
-    }
-
-    public static uint2_mt8 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static uint2_mt8 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1u);
-    }
-
-    public static uint2_mt8 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1u + 1u));
     }
 
     #endregion
@@ -5373,30 +3814,6 @@ public partial struct uint2_mt8
     public static implicit operator uint2_mt8(uint2 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt8 operator-(uint2_mt8 a) => new(-a.x, -a.y);
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt8 operator+(uint2_mt8 a, uint2_mt8 b) => new(a.x + b.x, a.y + b.y);
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt8 operator-(uint2_mt8 a, uint2_mt8 b) => new(a.x - b.x, a.y - b.y);
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt8 operator*(uint2_mt8 a, uint2_mt8 b) => new(a.x * b.x, a.y * b.y);
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt8 operator/(uint2_mt8 a, uint2_mt8 b) => new(a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt8 operator/(uint2_mt8 a, uint b) => new(a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt8 operator%(uint2_mt8 a, uint2_mt8 b) => new(a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt8 operator%(uint2_mt8 a, uint b) => new(a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static uint2_mt8 operator~(uint2_mt8 a) => new(~a.x, ~a.y);
 
     [MethodImpl(256 | 512)]
@@ -5405,9 +3822,13 @@ public partial struct uint2_mt8
     [MethodImpl(256 | 512)]
     public static uint2_mt8 operator&(uint2_mt8 a, uint2_mt8 b) => new(a.x & b.x, a.y & b.y);
 
-    public readonly override string ToString() => $"uint2_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"uint2_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // uint2_mt8
@@ -5422,24 +3843,6 @@ public partial struct uint2_mt16
     {
         [MethodImpl(256 | 512)]
         get => uint_mt16.LineCount;
-    }
-
-    public static uint2_mt16 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static uint2_mt16 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1u);
-    }
-
-    public static uint2_mt16 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1u + 1u));
     }
 
     #endregion
@@ -5508,30 +3911,6 @@ public partial struct uint2_mt16
     public static implicit operator uint2_mt16(uint2 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static uint2_mt16 operator-(uint2_mt16 a) => new(-a.x, -a.y);
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt16 operator+(uint2_mt16 a, uint2_mt16 b) => new(a.x + b.x, a.y + b.y);
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt16 operator-(uint2_mt16 a, uint2_mt16 b) => new(a.x - b.x, a.y - b.y);
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt16 operator*(uint2_mt16 a, uint2_mt16 b) => new(a.x * b.x, a.y * b.y);
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt16 operator/(uint2_mt16 a, uint2_mt16 b) => new(a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt16 operator/(uint2_mt16 a, uint b) => new(a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt16 operator%(uint2_mt16 a, uint2_mt16 b) => new(a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt16 operator%(uint2_mt16 a, uint b) => new(a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static uint2_mt16 operator~(uint2_mt16 a) => new(~a.x, ~a.y);
 
     [MethodImpl(256 | 512)]
@@ -5540,64 +3919,48 @@ public partial struct uint2_mt16
     [MethodImpl(256 | 512)]
     public static uint2_mt16 operator&(uint2_mt16 a, uint2_mt16 b) => new(a.x & b.x, a.y & b.y);
 
-    public readonly override string ToString() => $"uint2_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"uint2_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // uint2_mt16
-#region uint3_mt
+#region uint2_mt32
 
 [CpuOnly]
-public partial struct uint3_mt
+public partial struct uint2_mt32
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => uint_mt.LineCount;
-    }
-
-    public static uint3_mt Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static uint3_mt One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1u);
-    }
-
-    public static uint3_mt Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1u + 1u));
+        get => uint_mt32.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public uint_mt x;
-    public uint_mt y;
-    public uint_mt z;
+    public uint_mt32 x;
+    public uint_mt32 y;
 
     #endregion // Fields
 
     #region Properties
 
-    public uint3 this[int index]
+    public uint2 this[int index]
     {
         [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index]);
+        readonly get => new(x[index], y[index]);
         set 
         {
            x[index] = value.x;
            y[index] = value.y;
-           z[index] = value.z;
         }
     }
 
@@ -5606,31 +3969,29 @@ public partial struct uint3_mt
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public uint3_mt(uint_mt x, uint_mt y, uint_mt z)
+    public uint2_mt32(uint_mt32 x, uint_mt32 y)
     {
         this.x = x;
         this.y = y;
-        this.z = z;
     }
 
     [MethodImpl(256 | 512)]
-    public uint3_mt(uint value)
+    public uint2_mt32(uint value)
     {
-        z = y = x = value;
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public uint3_mt(uint_mt value)
+    public uint2_mt32(uint_mt32 value)
     {
-        z = y = x = value;
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public uint3_mt(uint3 value)
+    public uint2_mt32(uint2 value)
     {
         x = new(value.x);
         y = new(value.y);
-        z = new(value.z);
     }
 
     #endregion // Ctor
@@ -5638,53 +3999,33 @@ public partial struct uint3_mt
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator uint3_mt(uint value) => new uint_mt(value);
+    public static implicit operator uint2_mt32(uint value) => new uint_mt32(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator uint3_mt(uint_mt value) => new(value);
+    public static implicit operator uint2_mt32(uint_mt32 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator uint3_mt(uint3 value) => new(value);
+    public static implicit operator uint2_mt32(uint2 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static uint3_mt operator-(uint3_mt a) => new(-a.x, -a.y, -a.z);
+    public static uint2_mt32 operator~(uint2_mt32 a) => new(~a.x, ~a.y);
 
     [MethodImpl(256 | 512)]
-    public static uint3_mt operator+(uint3_mt a, uint3_mt b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
+    public static uint2_mt32 operator|(uint2_mt32 a, uint2_mt32 b) => new(a.x | b.x, a.y | b.y);
 
     [MethodImpl(256 | 512)]
-    public static uint3_mt operator-(uint3_mt a, uint3_mt b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt operator*(uint3_mt a, uint3_mt b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt operator/(uint3_mt a, uint3_mt b) => new(a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt operator/(uint3_mt a, uint b) => new(a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt operator%(uint3_mt a, uint3_mt b) => new(a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt operator%(uint3_mt a, uint b) => new(a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt operator~(uint3_mt a) => new(~a.x, ~a.y, ~a.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt operator|(uint3_mt a, uint3_mt b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt operator&(uint3_mt a, uint3_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
-
-    public readonly override string ToString() => $"uint3_mt {{  }}";
+    public static uint2_mt32 operator&(uint2_mt32 a, uint2_mt32 b) => new(a.x & b.x, a.y & b.y);
 
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"uint2_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    
+    #endregion // ToString
 }
 
-#endregion // uint3_mt
+#endregion // uint2_mt32
 #region uint3_mt4
 
 [CpuOnly]
@@ -5696,24 +4037,6 @@ public partial struct uint3_mt4
     {
         [MethodImpl(256 | 512)]
         get => uint_mt4.LineCount;
-    }
-
-    public static uint3_mt4 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static uint3_mt4 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1u);
-    }
-
-    public static uint3_mt4 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1u + 1u));
     }
 
     #endregion
@@ -5786,30 +4109,6 @@ public partial struct uint3_mt4
     public static implicit operator uint3_mt4(uint3 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static uint3_mt4 operator-(uint3_mt4 a) => new(-a.x, -a.y, -a.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 operator+(uint3_mt4 a, uint3_mt4 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 operator-(uint3_mt4 a, uint3_mt4 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 operator*(uint3_mt4 a, uint3_mt4 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 operator/(uint3_mt4 a, uint3_mt4 b) => new(a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 operator/(uint3_mt4 a, uint b) => new(a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 operator%(uint3_mt4 a, uint3_mt4 b) => new(a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt4 operator%(uint3_mt4 a, uint b) => new(a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static uint3_mt4 operator~(uint3_mt4 a) => new(~a.x, ~a.y, ~a.z);
 
     [MethodImpl(256 | 512)]
@@ -5818,9 +4117,13 @@ public partial struct uint3_mt4
     [MethodImpl(256 | 512)]
     public static uint3_mt4 operator&(uint3_mt4 a, uint3_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
-    public readonly override string ToString() => $"uint3_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"uint3_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // uint3_mt4
@@ -5835,24 +4138,6 @@ public partial struct uint3_mt8
     {
         [MethodImpl(256 | 512)]
         get => uint_mt8.LineCount;
-    }
-
-    public static uint3_mt8 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static uint3_mt8 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1u);
-    }
-
-    public static uint3_mt8 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1u + 1u));
     }
 
     #endregion
@@ -5925,30 +4210,6 @@ public partial struct uint3_mt8
     public static implicit operator uint3_mt8(uint3 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static uint3_mt8 operator-(uint3_mt8 a) => new(-a.x, -a.y, -a.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 operator+(uint3_mt8 a, uint3_mt8 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 operator-(uint3_mt8 a, uint3_mt8 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 operator*(uint3_mt8 a, uint3_mt8 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 operator/(uint3_mt8 a, uint3_mt8 b) => new(a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 operator/(uint3_mt8 a, uint b) => new(a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 operator%(uint3_mt8 a, uint3_mt8 b) => new(a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt8 operator%(uint3_mt8 a, uint b) => new(a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static uint3_mt8 operator~(uint3_mt8 a) => new(~a.x, ~a.y, ~a.z);
 
     [MethodImpl(256 | 512)]
@@ -5957,9 +4218,13 @@ public partial struct uint3_mt8
     [MethodImpl(256 | 512)]
     public static uint3_mt8 operator&(uint3_mt8 a, uint3_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
-    public readonly override string ToString() => $"uint3_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"uint3_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // uint3_mt8
@@ -5974,24 +4239,6 @@ public partial struct uint3_mt16
     {
         [MethodImpl(256 | 512)]
         get => uint_mt16.LineCount;
-    }
-
-    public static uint3_mt16 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static uint3_mt16 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1u);
-    }
-
-    public static uint3_mt16 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1u + 1u));
     }
 
     #endregion
@@ -6064,30 +4311,6 @@ public partial struct uint3_mt16
     public static implicit operator uint3_mt16(uint3 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static uint3_mt16 operator-(uint3_mt16 a) => new(-a.x, -a.y, -a.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 operator+(uint3_mt16 a, uint3_mt16 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 operator-(uint3_mt16 a, uint3_mt16 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 operator*(uint3_mt16 a, uint3_mt16 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 operator/(uint3_mt16 a, uint3_mt16 b) => new(a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 operator/(uint3_mt16 a, uint b) => new(a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 operator%(uint3_mt16 a, uint3_mt16 b) => new(a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt16 operator%(uint3_mt16 a, uint b) => new(a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static uint3_mt16 operator~(uint3_mt16 a) => new(~a.x, ~a.y, ~a.z);
 
     [MethodImpl(256 | 512)]
@@ -6096,66 +4319,50 @@ public partial struct uint3_mt16
     [MethodImpl(256 | 512)]
     public static uint3_mt16 operator&(uint3_mt16 a, uint3_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
-    public readonly override string ToString() => $"uint3_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"uint3_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // uint3_mt16
-#region uint4_mt
+#region uint3_mt32
 
 [CpuOnly]
-public partial struct uint4_mt
+public partial struct uint3_mt32
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => uint_mt.LineCount;
-    }
-
-    public static uint4_mt Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static uint4_mt One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1u);
-    }
-
-    public static uint4_mt Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1u + 1u));
+        get => uint_mt32.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public uint_mt x;
-    public uint_mt y;
-    public uint_mt z;
-    public uint_mt w;
+    public uint_mt32 x;
+    public uint_mt32 y;
+    public uint_mt32 z;
 
     #endregion // Fields
 
     #region Properties
 
-    public uint4 this[int index]
+    public uint3 this[int index]
     {
         [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index], w[index]);
+        readonly get => new(x[index], y[index], z[index]);
         set 
         {
            x[index] = value.x;
            y[index] = value.y;
            z[index] = value.z;
-           w[index] = value.w;
         }
     }
 
@@ -6164,33 +4371,31 @@ public partial struct uint4_mt
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public uint4_mt(uint_mt x, uint_mt y, uint_mt z, uint_mt w)
+    public uint3_mt32(uint_mt32 x, uint_mt32 y, uint_mt32 z)
     {
         this.x = x;
         this.y = y;
         this.z = z;
-        this.w = w;
     }
 
     [MethodImpl(256 | 512)]
-    public uint4_mt(uint value)
+    public uint3_mt32(uint value)
     {
-        w = z = y = x = value;
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public uint4_mt(uint_mt value)
+    public uint3_mt32(uint_mt32 value)
     {
-        w = z = y = x = value;
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public uint4_mt(uint4 value)
+    public uint3_mt32(uint3 value)
     {
         x = new(value.x);
         y = new(value.y);
         z = new(value.z);
-        w = new(value.w);
     }
 
     #endregion // Ctor
@@ -6198,53 +4403,33 @@ public partial struct uint4_mt
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator uint4_mt(uint value) => new uint_mt(value);
+    public static implicit operator uint3_mt32(uint value) => new uint_mt32(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator uint4_mt(uint_mt value) => new(value);
+    public static implicit operator uint3_mt32(uint_mt32 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator uint4_mt(uint4 value) => new(value);
+    public static implicit operator uint3_mt32(uint3 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static uint4_mt operator-(uint4_mt a) => new(-a.x, -a.y, -a.z, -a.w);
+    public static uint3_mt32 operator~(uint3_mt32 a) => new(~a.x, ~a.y, ~a.z);
 
     [MethodImpl(256 | 512)]
-    public static uint4_mt operator+(uint4_mt a, uint4_mt b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
+    public static uint3_mt32 operator|(uint3_mt32 a, uint3_mt32 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
 
     [MethodImpl(256 | 512)]
-    public static uint4_mt operator-(uint4_mt a, uint4_mt b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt operator*(uint4_mt a, uint4_mt b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt operator/(uint4_mt a, uint4_mt b) => new(a.w / b.w, a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt operator/(uint4_mt a, uint b) => new(a.w / b, a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt operator%(uint4_mt a, uint4_mt b) => new(a.w % b.w, a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt operator%(uint4_mt a, uint b) => new(a.w % b, a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt operator~(uint4_mt a) => new(~a.x, ~a.y, ~a.z, ~a.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt operator|(uint4_mt a, uint4_mt b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt operator&(uint4_mt a, uint4_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
-
-    public readonly override string ToString() => $"uint4_mt {{  }}";
+    public static uint3_mt32 operator&(uint3_mt32 a, uint3_mt32 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"uint3_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    
+    #endregion // ToString
 }
 
-#endregion // uint4_mt
+#endregion // uint3_mt32
 #region uint4_mt4
 
 [CpuOnly]
@@ -6256,24 +4441,6 @@ public partial struct uint4_mt4
     {
         [MethodImpl(256 | 512)]
         get => uint_mt4.LineCount;
-    }
-
-    public static uint4_mt4 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static uint4_mt4 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1u);
-    }
-
-    public static uint4_mt4 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1u + 1u));
     }
 
     #endregion
@@ -6350,30 +4517,6 @@ public partial struct uint4_mt4
     public static implicit operator uint4_mt4(uint4 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static uint4_mt4 operator-(uint4_mt4 a) => new(-a.x, -a.y, -a.z, -a.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 operator+(uint4_mt4 a, uint4_mt4 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 operator-(uint4_mt4 a, uint4_mt4 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 operator*(uint4_mt4 a, uint4_mt4 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 operator/(uint4_mt4 a, uint4_mt4 b) => new(a.w / b.w, a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 operator/(uint4_mt4 a, uint b) => new(a.w / b, a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 operator%(uint4_mt4 a, uint4_mt4 b) => new(a.w % b.w, a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt4 operator%(uint4_mt4 a, uint b) => new(a.w % b, a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static uint4_mt4 operator~(uint4_mt4 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
 
     [MethodImpl(256 | 512)]
@@ -6382,9 +4525,13 @@ public partial struct uint4_mt4
     [MethodImpl(256 | 512)]
     public static uint4_mt4 operator&(uint4_mt4 a, uint4_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
-    public readonly override string ToString() => $"uint4_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"uint4_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // uint4_mt4
@@ -6399,24 +4546,6 @@ public partial struct uint4_mt8
     {
         [MethodImpl(256 | 512)]
         get => uint_mt8.LineCount;
-    }
-
-    public static uint4_mt8 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static uint4_mt8 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1u);
-    }
-
-    public static uint4_mt8 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1u + 1u));
     }
 
     #endregion
@@ -6493,30 +4622,6 @@ public partial struct uint4_mt8
     public static implicit operator uint4_mt8(uint4 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static uint4_mt8 operator-(uint4_mt8 a) => new(-a.x, -a.y, -a.z, -a.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 operator+(uint4_mt8 a, uint4_mt8 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 operator-(uint4_mt8 a, uint4_mt8 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 operator*(uint4_mt8 a, uint4_mt8 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 operator/(uint4_mt8 a, uint4_mt8 b) => new(a.w / b.w, a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 operator/(uint4_mt8 a, uint b) => new(a.w / b, a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 operator%(uint4_mt8 a, uint4_mt8 b) => new(a.w % b.w, a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt8 operator%(uint4_mt8 a, uint b) => new(a.w % b, a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static uint4_mt8 operator~(uint4_mt8 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
 
     [MethodImpl(256 | 512)]
@@ -6525,9 +4630,13 @@ public partial struct uint4_mt8
     [MethodImpl(256 | 512)]
     public static uint4_mt8 operator&(uint4_mt8 a, uint4_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
-    public readonly override string ToString() => $"uint4_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"uint4_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // uint4_mt8
@@ -6542,24 +4651,6 @@ public partial struct uint4_mt16
     {
         [MethodImpl(256 | 512)]
         get => uint_mt16.LineCount;
-    }
-
-    public static uint4_mt16 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static uint4_mt16 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1u);
-    }
-
-    public static uint4_mt16 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1u + 1u));
     }
 
     #endregion
@@ -6636,30 +4727,6 @@ public partial struct uint4_mt16
     public static implicit operator uint4_mt16(uint4 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static uint4_mt16 operator-(uint4_mt16 a) => new(-a.x, -a.y, -a.z, -a.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 operator+(uint4_mt16 a, uint4_mt16 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 operator-(uint4_mt16 a, uint4_mt16 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 operator*(uint4_mt16 a, uint4_mt16 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 operator/(uint4_mt16 a, uint4_mt16 b) => new(a.w / b.w, a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 operator/(uint4_mt16 a, uint b) => new(a.w / b, a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 operator%(uint4_mt16 a, uint4_mt16 b) => new(a.w % b.w, a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt16 operator%(uint4_mt16 a, uint b) => new(a.w % b, a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static uint4_mt16 operator~(uint4_mt16 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
 
     [MethodImpl(256 | 512)]
@@ -6668,62 +4735,52 @@ public partial struct uint4_mt16
     [MethodImpl(256 | 512)]
     public static uint4_mt16 operator&(uint4_mt16 a, uint4_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
-    public readonly override string ToString() => $"uint4_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"uint4_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // uint4_mt16
-#region long2_mt
+#region uint4_mt32
 
 [CpuOnly]
-public partial struct long2_mt
+public partial struct uint4_mt32
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => long_mt.LineCount;
-    }
-
-    public static long2_mt Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static long2_mt One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1L);
-    }
-
-    public static long2_mt Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1L + 1L));
+        get => uint_mt32.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public long_mt x;
-    public long_mt y;
+    public uint_mt32 x;
+    public uint_mt32 y;
+    public uint_mt32 z;
+    public uint_mt32 w;
 
     #endregion // Fields
 
     #region Properties
 
-    public long2 this[int index]
+    public uint4 this[int index]
     {
         [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index]);
+        readonly get => new(x[index], y[index], z[index], w[index]);
         set 
         {
            x[index] = value.x;
            y[index] = value.y;
+           z[index] = value.z;
+           w[index] = value.w;
         }
     }
 
@@ -6732,29 +4789,33 @@ public partial struct long2_mt
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public long2_mt(long_mt x, long_mt y)
+    public uint4_mt32(uint_mt32 x, uint_mt32 y, uint_mt32 z, uint_mt32 w)
     {
         this.x = x;
         this.y = y;
+        this.z = z;
+        this.w = w;
     }
 
     [MethodImpl(256 | 512)]
-    public long2_mt(long value)
+    public uint4_mt32(uint value)
     {
-        y = x = value;
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public long2_mt(long_mt value)
+    public uint4_mt32(uint_mt32 value)
     {
-        y = x = value;
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public long2_mt(long2 value)
+    public uint4_mt32(uint4 value)
     {
         x = new(value.x);
         y = new(value.y);
+        z = new(value.z);
+        w = new(value.w);
     }
 
     #endregion // Ctor
@@ -6762,53 +4823,33 @@ public partial struct long2_mt
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator long2_mt(long value) => new long_mt(value);
+    public static implicit operator uint4_mt32(uint value) => new uint_mt32(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator long2_mt(long_mt value) => new(value);
+    public static implicit operator uint4_mt32(uint_mt32 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator long2_mt(long2 value) => new(value);
+    public static implicit operator uint4_mt32(uint4 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt operator-(long2_mt a) => new(-a.x, -a.y);
+    public static uint4_mt32 operator~(uint4_mt32 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt operator+(long2_mt a, long2_mt b) => new(a.x + b.x, a.y + b.y);
+    public static uint4_mt32 operator|(uint4_mt32 a, uint4_mt32 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt operator-(long2_mt a, long2_mt b) => new(a.x - b.x, a.y - b.y);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt operator*(long2_mt a, long2_mt b) => new(a.x * b.x, a.y * b.y);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt operator/(long2_mt a, long2_mt b) => new(a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt operator/(long2_mt a, long b) => new(a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt operator%(long2_mt a, long2_mt b) => new(a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt operator%(long2_mt a, long b) => new(a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt operator~(long2_mt a) => new(~a.x, ~a.y);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt operator|(long2_mt a, long2_mt b) => new(a.x | b.x, a.y | b.y);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt operator&(long2_mt a, long2_mt b) => new(a.x & b.x, a.y & b.y);
-
-    public readonly override string ToString() => $"long2_mt {{  }}";
+    public static uint4_mt32 operator&(uint4_mt32 a, uint4_mt32 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"uint4_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    
+    #endregion // ToString
 }
 
-#endregion // long2_mt
+#endregion // uint4_mt32
 #region long2_mt4
 
 [CpuOnly]
@@ -6820,24 +4861,6 @@ public partial struct long2_mt4
     {
         [MethodImpl(256 | 512)]
         get => long_mt4.LineCount;
-    }
-
-    public static long2_mt4 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static long2_mt4 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1L);
-    }
-
-    public static long2_mt4 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1L + 1L));
     }
 
     #endregion
@@ -6906,30 +4929,6 @@ public partial struct long2_mt4
     public static implicit operator long2_mt4(long2 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt4 operator-(long2_mt4 a) => new(-a.x, -a.y);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt4 operator+(long2_mt4 a, long2_mt4 b) => new(a.x + b.x, a.y + b.y);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt4 operator-(long2_mt4 a, long2_mt4 b) => new(a.x - b.x, a.y - b.y);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt4 operator*(long2_mt4 a, long2_mt4 b) => new(a.x * b.x, a.y * b.y);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt4 operator/(long2_mt4 a, long2_mt4 b) => new(a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt4 operator/(long2_mt4 a, long b) => new(a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt4 operator%(long2_mt4 a, long2_mt4 b) => new(a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt4 operator%(long2_mt4 a, long b) => new(a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static long2_mt4 operator~(long2_mt4 a) => new(~a.x, ~a.y);
 
     [MethodImpl(256 | 512)]
@@ -6938,9 +4937,13 @@ public partial struct long2_mt4
     [MethodImpl(256 | 512)]
     public static long2_mt4 operator&(long2_mt4 a, long2_mt4 b) => new(a.x & b.x, a.y & b.y);
 
-    public readonly override string ToString() => $"long2_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"long2_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // long2_mt4
@@ -6955,24 +4958,6 @@ public partial struct long2_mt8
     {
         [MethodImpl(256 | 512)]
         get => long_mt8.LineCount;
-    }
-
-    public static long2_mt8 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static long2_mt8 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1L);
-    }
-
-    public static long2_mt8 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1L + 1L));
     }
 
     #endregion
@@ -7041,30 +5026,6 @@ public partial struct long2_mt8
     public static implicit operator long2_mt8(long2 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt8 operator-(long2_mt8 a) => new(-a.x, -a.y);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt8 operator+(long2_mt8 a, long2_mt8 b) => new(a.x + b.x, a.y + b.y);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt8 operator-(long2_mt8 a, long2_mt8 b) => new(a.x - b.x, a.y - b.y);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt8 operator*(long2_mt8 a, long2_mt8 b) => new(a.x * b.x, a.y * b.y);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt8 operator/(long2_mt8 a, long2_mt8 b) => new(a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt8 operator/(long2_mt8 a, long b) => new(a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt8 operator%(long2_mt8 a, long2_mt8 b) => new(a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt8 operator%(long2_mt8 a, long b) => new(a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static long2_mt8 operator~(long2_mt8 a) => new(~a.x, ~a.y);
 
     [MethodImpl(256 | 512)]
@@ -7073,9 +5034,13 @@ public partial struct long2_mt8
     [MethodImpl(256 | 512)]
     public static long2_mt8 operator&(long2_mt8 a, long2_mt8 b) => new(a.x & b.x, a.y & b.y);
 
-    public readonly override string ToString() => $"long2_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"long2_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // long2_mt8
@@ -7090,24 +5055,6 @@ public partial struct long2_mt16
     {
         [MethodImpl(256 | 512)]
         get => long_mt16.LineCount;
-    }
-
-    public static long2_mt16 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static long2_mt16 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1L);
-    }
-
-    public static long2_mt16 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1L + 1L));
     }
 
     #endregion
@@ -7176,30 +5123,6 @@ public partial struct long2_mt16
     public static implicit operator long2_mt16(long2 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static long2_mt16 operator-(long2_mt16 a) => new(-a.x, -a.y);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 operator+(long2_mt16 a, long2_mt16 b) => new(a.x + b.x, a.y + b.y);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 operator-(long2_mt16 a, long2_mt16 b) => new(a.x - b.x, a.y - b.y);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 operator*(long2_mt16 a, long2_mt16 b) => new(a.x * b.x, a.y * b.y);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 operator/(long2_mt16 a, long2_mt16 b) => new(a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 operator/(long2_mt16 a, long b) => new(a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 operator%(long2_mt16 a, long2_mt16 b) => new(a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt16 operator%(long2_mt16 a, long b) => new(a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static long2_mt16 operator~(long2_mt16 a) => new(~a.x, ~a.y);
 
     [MethodImpl(256 | 512)]
@@ -7208,64 +5131,48 @@ public partial struct long2_mt16
     [MethodImpl(256 | 512)]
     public static long2_mt16 operator&(long2_mt16 a, long2_mt16 b) => new(a.x & b.x, a.y & b.y);
 
-    public readonly override string ToString() => $"long2_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"long2_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // long2_mt16
-#region long3_mt
+#region long2_mt32
 
 [CpuOnly]
-public partial struct long3_mt
+public partial struct long2_mt32
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => long_mt.LineCount;
-    }
-
-    public static long3_mt Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static long3_mt One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1L);
-    }
-
-    public static long3_mt Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1L + 1L));
+        get => long_mt32.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public long_mt x;
-    public long_mt y;
-    public long_mt z;
+    public long_mt32 x;
+    public long_mt32 y;
 
     #endregion // Fields
 
     #region Properties
 
-    public long3 this[int index]
+    public long2 this[int index]
     {
         [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index]);
+        readonly get => new(x[index], y[index]);
         set 
         {
            x[index] = value.x;
            y[index] = value.y;
-           z[index] = value.z;
         }
     }
 
@@ -7274,31 +5181,29 @@ public partial struct long3_mt
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public long3_mt(long_mt x, long_mt y, long_mt z)
+    public long2_mt32(long_mt32 x, long_mt32 y)
     {
         this.x = x;
         this.y = y;
-        this.z = z;
     }
 
     [MethodImpl(256 | 512)]
-    public long3_mt(long value)
+    public long2_mt32(long value)
     {
-        z = y = x = value;
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public long3_mt(long_mt value)
+    public long2_mt32(long_mt32 value)
     {
-        z = y = x = value;
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public long3_mt(long3 value)
+    public long2_mt32(long2 value)
     {
         x = new(value.x);
         y = new(value.y);
-        z = new(value.z);
     }
 
     #endregion // Ctor
@@ -7306,53 +5211,33 @@ public partial struct long3_mt
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator long3_mt(long value) => new long_mt(value);
+    public static implicit operator long2_mt32(long value) => new long_mt32(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator long3_mt(long_mt value) => new(value);
+    public static implicit operator long2_mt32(long_mt32 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator long3_mt(long3 value) => new(value);
+    public static implicit operator long2_mt32(long2 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static long3_mt operator-(long3_mt a) => new(-a.x, -a.y, -a.z);
+    public static long2_mt32 operator~(long2_mt32 a) => new(~a.x, ~a.y);
 
     [MethodImpl(256 | 512)]
-    public static long3_mt operator+(long3_mt a, long3_mt b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
+    public static long2_mt32 operator|(long2_mt32 a, long2_mt32 b) => new(a.x | b.x, a.y | b.y);
 
     [MethodImpl(256 | 512)]
-    public static long3_mt operator-(long3_mt a, long3_mt b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt operator*(long3_mt a, long3_mt b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt operator/(long3_mt a, long3_mt b) => new(a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt operator/(long3_mt a, long b) => new(a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt operator%(long3_mt a, long3_mt b) => new(a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt operator%(long3_mt a, long b) => new(a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt operator~(long3_mt a) => new(~a.x, ~a.y, ~a.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt operator|(long3_mt a, long3_mt b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt operator&(long3_mt a, long3_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
-
-    public readonly override string ToString() => $"long3_mt {{  }}";
+    public static long2_mt32 operator&(long2_mt32 a, long2_mt32 b) => new(a.x & b.x, a.y & b.y);
 
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"long2_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    
+    #endregion // ToString
 }
 
-#endregion // long3_mt
+#endregion // long2_mt32
 #region long3_mt4
 
 [CpuOnly]
@@ -7364,24 +5249,6 @@ public partial struct long3_mt4
     {
         [MethodImpl(256 | 512)]
         get => long_mt4.LineCount;
-    }
-
-    public static long3_mt4 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static long3_mt4 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1L);
-    }
-
-    public static long3_mt4 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1L + 1L));
     }
 
     #endregion
@@ -7454,30 +5321,6 @@ public partial struct long3_mt4
     public static implicit operator long3_mt4(long3 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static long3_mt4 operator-(long3_mt4 a) => new(-a.x, -a.y, -a.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 operator+(long3_mt4 a, long3_mt4 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 operator-(long3_mt4 a, long3_mt4 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 operator*(long3_mt4 a, long3_mt4 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 operator/(long3_mt4 a, long3_mt4 b) => new(a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 operator/(long3_mt4 a, long b) => new(a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 operator%(long3_mt4 a, long3_mt4 b) => new(a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt4 operator%(long3_mt4 a, long b) => new(a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static long3_mt4 operator~(long3_mt4 a) => new(~a.x, ~a.y, ~a.z);
 
     [MethodImpl(256 | 512)]
@@ -7486,9 +5329,13 @@ public partial struct long3_mt4
     [MethodImpl(256 | 512)]
     public static long3_mt4 operator&(long3_mt4 a, long3_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
-    public readonly override string ToString() => $"long3_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"long3_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // long3_mt4
@@ -7503,24 +5350,6 @@ public partial struct long3_mt8
     {
         [MethodImpl(256 | 512)]
         get => long_mt8.LineCount;
-    }
-
-    public static long3_mt8 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static long3_mt8 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1L);
-    }
-
-    public static long3_mt8 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1L + 1L));
     }
 
     #endregion
@@ -7593,30 +5422,6 @@ public partial struct long3_mt8
     public static implicit operator long3_mt8(long3 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static long3_mt8 operator-(long3_mt8 a) => new(-a.x, -a.y, -a.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt8 operator+(long3_mt8 a, long3_mt8 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt8 operator-(long3_mt8 a, long3_mt8 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt8 operator*(long3_mt8 a, long3_mt8 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt8 operator/(long3_mt8 a, long3_mt8 b) => new(a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt8 operator/(long3_mt8 a, long b) => new(a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt8 operator%(long3_mt8 a, long3_mt8 b) => new(a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt8 operator%(long3_mt8 a, long b) => new(a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static long3_mt8 operator~(long3_mt8 a) => new(~a.x, ~a.y, ~a.z);
 
     [MethodImpl(256 | 512)]
@@ -7625,9 +5430,13 @@ public partial struct long3_mt8
     [MethodImpl(256 | 512)]
     public static long3_mt8 operator&(long3_mt8 a, long3_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
-    public readonly override string ToString() => $"long3_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"long3_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // long3_mt8
@@ -7642,24 +5451,6 @@ public partial struct long3_mt16
     {
         [MethodImpl(256 | 512)]
         get => long_mt16.LineCount;
-    }
-
-    public static long3_mt16 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static long3_mt16 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1L);
-    }
-
-    public static long3_mt16 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1L + 1L));
     }
 
     #endregion
@@ -7732,30 +5523,6 @@ public partial struct long3_mt16
     public static implicit operator long3_mt16(long3 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static long3_mt16 operator-(long3_mt16 a) => new(-a.x, -a.y, -a.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 operator+(long3_mt16 a, long3_mt16 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 operator-(long3_mt16 a, long3_mt16 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 operator*(long3_mt16 a, long3_mt16 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 operator/(long3_mt16 a, long3_mt16 b) => new(a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 operator/(long3_mt16 a, long b) => new(a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 operator%(long3_mt16 a, long3_mt16 b) => new(a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt16 operator%(long3_mt16 a, long b) => new(a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static long3_mt16 operator~(long3_mt16 a) => new(~a.x, ~a.y, ~a.z);
 
     [MethodImpl(256 | 512)]
@@ -7764,66 +5531,50 @@ public partial struct long3_mt16
     [MethodImpl(256 | 512)]
     public static long3_mt16 operator&(long3_mt16 a, long3_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
-    public readonly override string ToString() => $"long3_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"long3_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // long3_mt16
-#region long4_mt
+#region long3_mt32
 
 [CpuOnly]
-public partial struct long4_mt
+public partial struct long3_mt32
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => long_mt.LineCount;
-    }
-
-    public static long4_mt Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static long4_mt One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1L);
-    }
-
-    public static long4_mt Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1L + 1L));
+        get => long_mt32.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public long_mt x;
-    public long_mt y;
-    public long_mt z;
-    public long_mt w;
+    public long_mt32 x;
+    public long_mt32 y;
+    public long_mt32 z;
 
     #endregion // Fields
 
     #region Properties
 
-    public long4 this[int index]
+    public long3 this[int index]
     {
         [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index], w[index]);
+        readonly get => new(x[index], y[index], z[index]);
         set 
         {
            x[index] = value.x;
            y[index] = value.y;
            z[index] = value.z;
-           w[index] = value.w;
         }
     }
 
@@ -7832,33 +5583,31 @@ public partial struct long4_mt
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public long4_mt(long_mt x, long_mt y, long_mt z, long_mt w)
+    public long3_mt32(long_mt32 x, long_mt32 y, long_mt32 z)
     {
         this.x = x;
         this.y = y;
         this.z = z;
-        this.w = w;
     }
 
     [MethodImpl(256 | 512)]
-    public long4_mt(long value)
+    public long3_mt32(long value)
     {
-        w = z = y = x = value;
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public long4_mt(long_mt value)
+    public long3_mt32(long_mt32 value)
     {
-        w = z = y = x = value;
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public long4_mt(long4 value)
+    public long3_mt32(long3 value)
     {
         x = new(value.x);
         y = new(value.y);
         z = new(value.z);
-        w = new(value.w);
     }
 
     #endregion // Ctor
@@ -7866,53 +5615,33 @@ public partial struct long4_mt
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator long4_mt(long value) => new long_mt(value);
+    public static implicit operator long3_mt32(long value) => new long_mt32(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator long4_mt(long_mt value) => new(value);
+    public static implicit operator long3_mt32(long_mt32 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator long4_mt(long4 value) => new(value);
+    public static implicit operator long3_mt32(long3 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static long4_mt operator-(long4_mt a) => new(-a.x, -a.y, -a.z, -a.w);
+    public static long3_mt32 operator~(long3_mt32 a) => new(~a.x, ~a.y, ~a.z);
 
     [MethodImpl(256 | 512)]
-    public static long4_mt operator+(long4_mt a, long4_mt b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
+    public static long3_mt32 operator|(long3_mt32 a, long3_mt32 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
 
     [MethodImpl(256 | 512)]
-    public static long4_mt operator-(long4_mt a, long4_mt b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt operator*(long4_mt a, long4_mt b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt operator/(long4_mt a, long4_mt b) => new(a.w / b.w, a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt operator/(long4_mt a, long b) => new(a.w / b, a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt operator%(long4_mt a, long4_mt b) => new(a.w % b.w, a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt operator%(long4_mt a, long b) => new(a.w % b, a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt operator~(long4_mt a) => new(~a.x, ~a.y, ~a.z, ~a.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt operator|(long4_mt a, long4_mt b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt operator&(long4_mt a, long4_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
-
-    public readonly override string ToString() => $"long4_mt {{  }}";
+    public static long3_mt32 operator&(long3_mt32 a, long3_mt32 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"long3_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    
+    #endregion // ToString
 }
 
-#endregion // long4_mt
+#endregion // long3_mt32
 #region long4_mt4
 
 [CpuOnly]
@@ -7924,24 +5653,6 @@ public partial struct long4_mt4
     {
         [MethodImpl(256 | 512)]
         get => long_mt4.LineCount;
-    }
-
-    public static long4_mt4 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static long4_mt4 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1L);
-    }
-
-    public static long4_mt4 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1L + 1L));
     }
 
     #endregion
@@ -8018,30 +5729,6 @@ public partial struct long4_mt4
     public static implicit operator long4_mt4(long4 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static long4_mt4 operator-(long4_mt4 a) => new(-a.x, -a.y, -a.z, -a.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 operator+(long4_mt4 a, long4_mt4 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 operator-(long4_mt4 a, long4_mt4 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 operator*(long4_mt4 a, long4_mt4 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 operator/(long4_mt4 a, long4_mt4 b) => new(a.w / b.w, a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 operator/(long4_mt4 a, long b) => new(a.w / b, a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 operator%(long4_mt4 a, long4_mt4 b) => new(a.w % b.w, a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt4 operator%(long4_mt4 a, long b) => new(a.w % b, a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static long4_mt4 operator~(long4_mt4 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
 
     [MethodImpl(256 | 512)]
@@ -8050,9 +5737,13 @@ public partial struct long4_mt4
     [MethodImpl(256 | 512)]
     public static long4_mt4 operator&(long4_mt4 a, long4_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
-    public readonly override string ToString() => $"long4_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"long4_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // long4_mt4
@@ -8067,24 +5758,6 @@ public partial struct long4_mt8
     {
         [MethodImpl(256 | 512)]
         get => long_mt8.LineCount;
-    }
-
-    public static long4_mt8 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static long4_mt8 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1L);
-    }
-
-    public static long4_mt8 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1L + 1L));
     }
 
     #endregion
@@ -8161,30 +5834,6 @@ public partial struct long4_mt8
     public static implicit operator long4_mt8(long4 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static long4_mt8 operator-(long4_mt8 a) => new(-a.x, -a.y, -a.z, -a.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 operator+(long4_mt8 a, long4_mt8 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 operator-(long4_mt8 a, long4_mt8 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 operator*(long4_mt8 a, long4_mt8 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 operator/(long4_mt8 a, long4_mt8 b) => new(a.w / b.w, a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 operator/(long4_mt8 a, long b) => new(a.w / b, a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 operator%(long4_mt8 a, long4_mt8 b) => new(a.w % b.w, a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt8 operator%(long4_mt8 a, long b) => new(a.w % b, a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static long4_mt8 operator~(long4_mt8 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
 
     [MethodImpl(256 | 512)]
@@ -8193,9 +5842,13 @@ public partial struct long4_mt8
     [MethodImpl(256 | 512)]
     public static long4_mt8 operator&(long4_mt8 a, long4_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
-    public readonly override string ToString() => $"long4_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"long4_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // long4_mt8
@@ -8210,24 +5863,6 @@ public partial struct long4_mt16
     {
         [MethodImpl(256 | 512)]
         get => long_mt16.LineCount;
-    }
-
-    public static long4_mt16 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static long4_mt16 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1L);
-    }
-
-    public static long4_mt16 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1L + 1L));
     }
 
     #endregion
@@ -8304,30 +5939,6 @@ public partial struct long4_mt16
     public static implicit operator long4_mt16(long4 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static long4_mt16 operator-(long4_mt16 a) => new(-a.x, -a.y, -a.z, -a.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 operator+(long4_mt16 a, long4_mt16 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 operator-(long4_mt16 a, long4_mt16 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 operator*(long4_mt16 a, long4_mt16 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 operator/(long4_mt16 a, long4_mt16 b) => new(a.w / b.w, a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 operator/(long4_mt16 a, long b) => new(a.w / b, a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 operator%(long4_mt16 a, long4_mt16 b) => new(a.w % b.w, a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt16 operator%(long4_mt16 a, long b) => new(a.w % b, a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static long4_mt16 operator~(long4_mt16 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
 
     [MethodImpl(256 | 512)]
@@ -8336,62 +5947,52 @@ public partial struct long4_mt16
     [MethodImpl(256 | 512)]
     public static long4_mt16 operator&(long4_mt16 a, long4_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
-    public readonly override string ToString() => $"long4_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"long4_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // long4_mt16
-#region ulong2_mt
+#region long4_mt32
 
 [CpuOnly]
-public partial struct ulong2_mt
+public partial struct long4_mt32
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => ulong_mt.LineCount;
-    }
-
-    public static ulong2_mt Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static ulong2_mt One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1UL);
-    }
-
-    public static ulong2_mt Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1UL + 1UL));
+        get => long_mt32.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public ulong_mt x;
-    public ulong_mt y;
+    public long_mt32 x;
+    public long_mt32 y;
+    public long_mt32 z;
+    public long_mt32 w;
 
     #endregion // Fields
 
     #region Properties
 
-    public ulong2 this[int index]
+    public long4 this[int index]
     {
         [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index]);
+        readonly get => new(x[index], y[index], z[index], w[index]);
         set 
         {
            x[index] = value.x;
            y[index] = value.y;
+           z[index] = value.z;
+           w[index] = value.w;
         }
     }
 
@@ -8400,29 +6001,33 @@ public partial struct ulong2_mt
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public ulong2_mt(ulong_mt x, ulong_mt y)
+    public long4_mt32(long_mt32 x, long_mt32 y, long_mt32 z, long_mt32 w)
     {
         this.x = x;
         this.y = y;
+        this.z = z;
+        this.w = w;
     }
 
     [MethodImpl(256 | 512)]
-    public ulong2_mt(ulong value)
+    public long4_mt32(long value)
     {
-        y = x = value;
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public ulong2_mt(ulong_mt value)
+    public long4_mt32(long_mt32 value)
     {
-        y = x = value;
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public ulong2_mt(ulong2 value)
+    public long4_mt32(long4 value)
     {
         x = new(value.x);
         y = new(value.y);
+        z = new(value.z);
+        w = new(value.w);
     }
 
     #endregion // Ctor
@@ -8430,53 +6035,33 @@ public partial struct ulong2_mt
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator ulong2_mt(ulong value) => new ulong_mt(value);
+    public static implicit operator long4_mt32(long value) => new long_mt32(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator ulong2_mt(ulong_mt value) => new(value);
+    public static implicit operator long4_mt32(long_mt32 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator ulong2_mt(ulong2 value) => new(value);
+    public static implicit operator long4_mt32(long4 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static ulong2_mt operator-(ulong2_mt a) => new(-a.x, -a.y);
+    public static long4_mt32 operator~(long4_mt32 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
 
     [MethodImpl(256 | 512)]
-    public static ulong2_mt operator+(ulong2_mt a, ulong2_mt b) => new(a.x + b.x, a.y + b.y);
+    public static long4_mt32 operator|(long4_mt32 a, long4_mt32 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
 
     [MethodImpl(256 | 512)]
-    public static ulong2_mt operator-(ulong2_mt a, ulong2_mt b) => new(a.x - b.x, a.y - b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt operator*(ulong2_mt a, ulong2_mt b) => new(a.x * b.x, a.y * b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt operator/(ulong2_mt a, ulong2_mt b) => new(a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt operator/(ulong2_mt a, ulong b) => new(a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt operator%(ulong2_mt a, ulong2_mt b) => new(a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt operator%(ulong2_mt a, ulong b) => new(a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt operator~(ulong2_mt a) => new(~a.x, ~a.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt operator|(ulong2_mt a, ulong2_mt b) => new(a.x | b.x, a.y | b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt operator&(ulong2_mt a, ulong2_mt b) => new(a.x & b.x, a.y & b.y);
-
-    public readonly override string ToString() => $"ulong2_mt {{  }}";
+    public static long4_mt32 operator&(long4_mt32 a, long4_mt32 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"long4_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    
+    #endregion // ToString
 }
 
-#endregion // ulong2_mt
+#endregion // long4_mt32
 #region ulong2_mt4
 
 [CpuOnly]
@@ -8488,24 +6073,6 @@ public partial struct ulong2_mt4
     {
         [MethodImpl(256 | 512)]
         get => ulong_mt4.LineCount;
-    }
-
-    public static ulong2_mt4 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static ulong2_mt4 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1UL);
-    }
-
-    public static ulong2_mt4 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1UL + 1UL));
     }
 
     #endregion
@@ -8574,30 +6141,6 @@ public partial struct ulong2_mt4
     public static implicit operator ulong2_mt4(ulong2 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static ulong2_mt4 operator-(ulong2_mt4 a) => new(-a.x, -a.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 operator+(ulong2_mt4 a, ulong2_mt4 b) => new(a.x + b.x, a.y + b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 operator-(ulong2_mt4 a, ulong2_mt4 b) => new(a.x - b.x, a.y - b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 operator*(ulong2_mt4 a, ulong2_mt4 b) => new(a.x * b.x, a.y * b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 operator/(ulong2_mt4 a, ulong2_mt4 b) => new(a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 operator/(ulong2_mt4 a, ulong b) => new(a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 operator%(ulong2_mt4 a, ulong2_mt4 b) => new(a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt4 operator%(ulong2_mt4 a, ulong b) => new(a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static ulong2_mt4 operator~(ulong2_mt4 a) => new(~a.x, ~a.y);
 
     [MethodImpl(256 | 512)]
@@ -8606,9 +6149,13 @@ public partial struct ulong2_mt4
     [MethodImpl(256 | 512)]
     public static ulong2_mt4 operator&(ulong2_mt4 a, ulong2_mt4 b) => new(a.x & b.x, a.y & b.y);
 
-    public readonly override string ToString() => $"ulong2_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"ulong2_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // ulong2_mt4
@@ -8623,24 +6170,6 @@ public partial struct ulong2_mt8
     {
         [MethodImpl(256 | 512)]
         get => ulong_mt8.LineCount;
-    }
-
-    public static ulong2_mt8 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static ulong2_mt8 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1UL);
-    }
-
-    public static ulong2_mt8 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1UL + 1UL));
     }
 
     #endregion
@@ -8709,30 +6238,6 @@ public partial struct ulong2_mt8
     public static implicit operator ulong2_mt8(ulong2 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static ulong2_mt8 operator-(ulong2_mt8 a) => new(-a.x, -a.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 operator+(ulong2_mt8 a, ulong2_mt8 b) => new(a.x + b.x, a.y + b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 operator-(ulong2_mt8 a, ulong2_mt8 b) => new(a.x - b.x, a.y - b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 operator*(ulong2_mt8 a, ulong2_mt8 b) => new(a.x * b.x, a.y * b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 operator/(ulong2_mt8 a, ulong2_mt8 b) => new(a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 operator/(ulong2_mt8 a, ulong b) => new(a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 operator%(ulong2_mt8 a, ulong2_mt8 b) => new(a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt8 operator%(ulong2_mt8 a, ulong b) => new(a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static ulong2_mt8 operator~(ulong2_mt8 a) => new(~a.x, ~a.y);
 
     [MethodImpl(256 | 512)]
@@ -8741,9 +6246,13 @@ public partial struct ulong2_mt8
     [MethodImpl(256 | 512)]
     public static ulong2_mt8 operator&(ulong2_mt8 a, ulong2_mt8 b) => new(a.x & b.x, a.y & b.y);
 
-    public readonly override string ToString() => $"ulong2_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"ulong2_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // ulong2_mt8
@@ -8758,24 +6267,6 @@ public partial struct ulong2_mt16
     {
         [MethodImpl(256 | 512)]
         get => ulong_mt16.LineCount;
-    }
-
-    public static ulong2_mt16 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static ulong2_mt16 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1UL);
-    }
-
-    public static ulong2_mt16 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1UL + 1UL));
     }
 
     #endregion
@@ -8844,30 +6335,6 @@ public partial struct ulong2_mt16
     public static implicit operator ulong2_mt16(ulong2 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static ulong2_mt16 operator-(ulong2_mt16 a) => new(-a.x, -a.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 operator+(ulong2_mt16 a, ulong2_mt16 b) => new(a.x + b.x, a.y + b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 operator-(ulong2_mt16 a, ulong2_mt16 b) => new(a.x - b.x, a.y - b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 operator*(ulong2_mt16 a, ulong2_mt16 b) => new(a.x * b.x, a.y * b.y);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 operator/(ulong2_mt16 a, ulong2_mt16 b) => new(a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 operator/(ulong2_mt16 a, ulong b) => new(a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 operator%(ulong2_mt16 a, ulong2_mt16 b) => new(a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt16 operator%(ulong2_mt16 a, ulong b) => new(a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static ulong2_mt16 operator~(ulong2_mt16 a) => new(~a.x, ~a.y);
 
     [MethodImpl(256 | 512)]
@@ -8876,64 +6343,48 @@ public partial struct ulong2_mt16
     [MethodImpl(256 | 512)]
     public static ulong2_mt16 operator&(ulong2_mt16 a, ulong2_mt16 b) => new(a.x & b.x, a.y & b.y);
 
-    public readonly override string ToString() => $"ulong2_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"ulong2_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // ulong2_mt16
-#region ulong3_mt
+#region ulong2_mt32
 
 [CpuOnly]
-public partial struct ulong3_mt
+public partial struct ulong2_mt32
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => ulong_mt.LineCount;
-    }
-
-    public static ulong3_mt Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static ulong3_mt One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1UL);
-    }
-
-    public static ulong3_mt Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1UL + 1UL));
+        get => ulong_mt32.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public ulong_mt x;
-    public ulong_mt y;
-    public ulong_mt z;
+    public ulong_mt32 x;
+    public ulong_mt32 y;
 
     #endregion // Fields
 
     #region Properties
 
-    public ulong3 this[int index]
+    public ulong2 this[int index]
     {
         [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index]);
+        readonly get => new(x[index], y[index]);
         set 
         {
            x[index] = value.x;
            y[index] = value.y;
-           z[index] = value.z;
         }
     }
 
@@ -8942,31 +6393,29 @@ public partial struct ulong3_mt
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public ulong3_mt(ulong_mt x, ulong_mt y, ulong_mt z)
+    public ulong2_mt32(ulong_mt32 x, ulong_mt32 y)
     {
         this.x = x;
         this.y = y;
-        this.z = z;
     }
 
     [MethodImpl(256 | 512)]
-    public ulong3_mt(ulong value)
+    public ulong2_mt32(ulong value)
     {
-        z = y = x = value;
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public ulong3_mt(ulong_mt value)
+    public ulong2_mt32(ulong_mt32 value)
     {
-        z = y = x = value;
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public ulong3_mt(ulong3 value)
+    public ulong2_mt32(ulong2 value)
     {
         x = new(value.x);
         y = new(value.y);
-        z = new(value.z);
     }
 
     #endregion // Ctor
@@ -8974,53 +6423,33 @@ public partial struct ulong3_mt
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator ulong3_mt(ulong value) => new ulong_mt(value);
+    public static implicit operator ulong2_mt32(ulong value) => new ulong_mt32(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator ulong3_mt(ulong_mt value) => new(value);
+    public static implicit operator ulong2_mt32(ulong_mt32 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator ulong3_mt(ulong3 value) => new(value);
+    public static implicit operator ulong2_mt32(ulong2 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static ulong3_mt operator-(ulong3_mt a) => new(-a.x, -a.y, -a.z);
+    public static ulong2_mt32 operator~(ulong2_mt32 a) => new(~a.x, ~a.y);
 
     [MethodImpl(256 | 512)]
-    public static ulong3_mt operator+(ulong3_mt a, ulong3_mt b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
+    public static ulong2_mt32 operator|(ulong2_mt32 a, ulong2_mt32 b) => new(a.x | b.x, a.y | b.y);
 
     [MethodImpl(256 | 512)]
-    public static ulong3_mt operator-(ulong3_mt a, ulong3_mt b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt operator*(ulong3_mt a, ulong3_mt b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt operator/(ulong3_mt a, ulong3_mt b) => new(a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt operator/(ulong3_mt a, ulong b) => new(a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt operator%(ulong3_mt a, ulong3_mt b) => new(a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt operator%(ulong3_mt a, ulong b) => new(a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt operator~(ulong3_mt a) => new(~a.x, ~a.y, ~a.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt operator|(ulong3_mt a, ulong3_mt b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt operator&(ulong3_mt a, ulong3_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
-
-    public readonly override string ToString() => $"ulong3_mt {{  }}";
+    public static ulong2_mt32 operator&(ulong2_mt32 a, ulong2_mt32 b) => new(a.x & b.x, a.y & b.y);
 
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"ulong2_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    
+    #endregion // ToString
 }
 
-#endregion // ulong3_mt
+#endregion // ulong2_mt32
 #region ulong3_mt4
 
 [CpuOnly]
@@ -9032,24 +6461,6 @@ public partial struct ulong3_mt4
     {
         [MethodImpl(256 | 512)]
         get => ulong_mt4.LineCount;
-    }
-
-    public static ulong3_mt4 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static ulong3_mt4 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1UL);
-    }
-
-    public static ulong3_mt4 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1UL + 1UL));
     }
 
     #endregion
@@ -9122,30 +6533,6 @@ public partial struct ulong3_mt4
     public static implicit operator ulong3_mt4(ulong3 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static ulong3_mt4 operator-(ulong3_mt4 a) => new(-a.x, -a.y, -a.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 operator+(ulong3_mt4 a, ulong3_mt4 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 operator-(ulong3_mt4 a, ulong3_mt4 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 operator*(ulong3_mt4 a, ulong3_mt4 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 operator/(ulong3_mt4 a, ulong3_mt4 b) => new(a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 operator/(ulong3_mt4 a, ulong b) => new(a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 operator%(ulong3_mt4 a, ulong3_mt4 b) => new(a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt4 operator%(ulong3_mt4 a, ulong b) => new(a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static ulong3_mt4 operator~(ulong3_mt4 a) => new(~a.x, ~a.y, ~a.z);
 
     [MethodImpl(256 | 512)]
@@ -9154,9 +6541,13 @@ public partial struct ulong3_mt4
     [MethodImpl(256 | 512)]
     public static ulong3_mt4 operator&(ulong3_mt4 a, ulong3_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
-    public readonly override string ToString() => $"ulong3_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"ulong3_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // ulong3_mt4
@@ -9171,24 +6562,6 @@ public partial struct ulong3_mt8
     {
         [MethodImpl(256 | 512)]
         get => ulong_mt8.LineCount;
-    }
-
-    public static ulong3_mt8 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static ulong3_mt8 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1UL);
-    }
-
-    public static ulong3_mt8 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1UL + 1UL));
     }
 
     #endregion
@@ -9261,30 +6634,6 @@ public partial struct ulong3_mt8
     public static implicit operator ulong3_mt8(ulong3 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static ulong3_mt8 operator-(ulong3_mt8 a) => new(-a.x, -a.y, -a.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 operator+(ulong3_mt8 a, ulong3_mt8 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 operator-(ulong3_mt8 a, ulong3_mt8 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 operator*(ulong3_mt8 a, ulong3_mt8 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 operator/(ulong3_mt8 a, ulong3_mt8 b) => new(a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 operator/(ulong3_mt8 a, ulong b) => new(a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 operator%(ulong3_mt8 a, ulong3_mt8 b) => new(a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt8 operator%(ulong3_mt8 a, ulong b) => new(a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static ulong3_mt8 operator~(ulong3_mt8 a) => new(~a.x, ~a.y, ~a.z);
 
     [MethodImpl(256 | 512)]
@@ -9293,9 +6642,13 @@ public partial struct ulong3_mt8
     [MethodImpl(256 | 512)]
     public static ulong3_mt8 operator&(ulong3_mt8 a, ulong3_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
-    public readonly override string ToString() => $"ulong3_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"ulong3_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // ulong3_mt8
@@ -9310,24 +6663,6 @@ public partial struct ulong3_mt16
     {
         [MethodImpl(256 | 512)]
         get => ulong_mt16.LineCount;
-    }
-
-    public static ulong3_mt16 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static ulong3_mt16 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1UL);
-    }
-
-    public static ulong3_mt16 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1UL + 1UL));
     }
 
     #endregion
@@ -9400,30 +6735,6 @@ public partial struct ulong3_mt16
     public static implicit operator ulong3_mt16(ulong3 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static ulong3_mt16 operator-(ulong3_mt16 a) => new(-a.x, -a.y, -a.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 operator+(ulong3_mt16 a, ulong3_mt16 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 operator-(ulong3_mt16 a, ulong3_mt16 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 operator*(ulong3_mt16 a, ulong3_mt16 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 operator/(ulong3_mt16 a, ulong3_mt16 b) => new(a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 operator/(ulong3_mt16 a, ulong b) => new(a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 operator%(ulong3_mt16 a, ulong3_mt16 b) => new(a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt16 operator%(ulong3_mt16 a, ulong b) => new(a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static ulong3_mt16 operator~(ulong3_mt16 a) => new(~a.x, ~a.y, ~a.z);
 
     [MethodImpl(256 | 512)]
@@ -9432,66 +6743,50 @@ public partial struct ulong3_mt16
     [MethodImpl(256 | 512)]
     public static ulong3_mt16 operator&(ulong3_mt16 a, ulong3_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
-    public readonly override string ToString() => $"ulong3_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"ulong3_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // ulong3_mt16
-#region ulong4_mt
+#region ulong3_mt32
 
 [CpuOnly]
-public partial struct ulong4_mt
+public partial struct ulong3_mt32
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => ulong_mt.LineCount;
-    }
-
-    public static ulong4_mt Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static ulong4_mt One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1UL);
-    }
-
-    public static ulong4_mt Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1UL + 1UL));
+        get => ulong_mt32.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public ulong_mt x;
-    public ulong_mt y;
-    public ulong_mt z;
-    public ulong_mt w;
+    public ulong_mt32 x;
+    public ulong_mt32 y;
+    public ulong_mt32 z;
 
     #endregion // Fields
 
     #region Properties
 
-    public ulong4 this[int index]
+    public ulong3 this[int index]
     {
         [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index], w[index]);
+        readonly get => new(x[index], y[index], z[index]);
         set 
         {
            x[index] = value.x;
            y[index] = value.y;
            z[index] = value.z;
-           w[index] = value.w;
         }
     }
 
@@ -9500,33 +6795,31 @@ public partial struct ulong4_mt
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public ulong4_mt(ulong_mt x, ulong_mt y, ulong_mt z, ulong_mt w)
+    public ulong3_mt32(ulong_mt32 x, ulong_mt32 y, ulong_mt32 z)
     {
         this.x = x;
         this.y = y;
         this.z = z;
-        this.w = w;
     }
 
     [MethodImpl(256 | 512)]
-    public ulong4_mt(ulong value)
+    public ulong3_mt32(ulong value)
     {
-        w = z = y = x = value;
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public ulong4_mt(ulong_mt value)
+    public ulong3_mt32(ulong_mt32 value)
     {
-        w = z = y = x = value;
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public ulong4_mt(ulong4 value)
+    public ulong3_mt32(ulong3 value)
     {
         x = new(value.x);
         y = new(value.y);
         z = new(value.z);
-        w = new(value.w);
     }
 
     #endregion // Ctor
@@ -9534,53 +6827,33 @@ public partial struct ulong4_mt
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator ulong4_mt(ulong value) => new ulong_mt(value);
+    public static implicit operator ulong3_mt32(ulong value) => new ulong_mt32(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator ulong4_mt(ulong_mt value) => new(value);
+    public static implicit operator ulong3_mt32(ulong_mt32 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator ulong4_mt(ulong4 value) => new(value);
+    public static implicit operator ulong3_mt32(ulong3 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static ulong4_mt operator-(ulong4_mt a) => new(-a.x, -a.y, -a.z, -a.w);
+    public static ulong3_mt32 operator~(ulong3_mt32 a) => new(~a.x, ~a.y, ~a.z);
 
     [MethodImpl(256 | 512)]
-    public static ulong4_mt operator+(ulong4_mt a, ulong4_mt b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
+    public static ulong3_mt32 operator|(ulong3_mt32 a, ulong3_mt32 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
 
     [MethodImpl(256 | 512)]
-    public static ulong4_mt operator-(ulong4_mt a, ulong4_mt b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt operator*(ulong4_mt a, ulong4_mt b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt operator/(ulong4_mt a, ulong4_mt b) => new(a.w / b.w, a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt operator/(ulong4_mt a, ulong b) => new(a.w / b, a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt operator%(ulong4_mt a, ulong4_mt b) => new(a.w % b.w, a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt operator%(ulong4_mt a, ulong b) => new(a.w % b, a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt operator~(ulong4_mt a) => new(~a.x, ~a.y, ~a.z, ~a.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt operator|(ulong4_mt a, ulong4_mt b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt operator&(ulong4_mt a, ulong4_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
-
-    public readonly override string ToString() => $"ulong4_mt {{  }}";
+    public static ulong3_mt32 operator&(ulong3_mt32 a, ulong3_mt32 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"ulong3_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    
+    #endregion // ToString
 }
 
-#endregion // ulong4_mt
+#endregion // ulong3_mt32
 #region ulong4_mt4
 
 [CpuOnly]
@@ -9592,24 +6865,6 @@ public partial struct ulong4_mt4
     {
         [MethodImpl(256 | 512)]
         get => ulong_mt4.LineCount;
-    }
-
-    public static ulong4_mt4 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static ulong4_mt4 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1UL);
-    }
-
-    public static ulong4_mt4 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1UL + 1UL));
     }
 
     #endregion
@@ -9686,30 +6941,6 @@ public partial struct ulong4_mt4
     public static implicit operator ulong4_mt4(ulong4 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static ulong4_mt4 operator-(ulong4_mt4 a) => new(-a.x, -a.y, -a.z, -a.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 operator+(ulong4_mt4 a, ulong4_mt4 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 operator-(ulong4_mt4 a, ulong4_mt4 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 operator*(ulong4_mt4 a, ulong4_mt4 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 operator/(ulong4_mt4 a, ulong4_mt4 b) => new(a.w / b.w, a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 operator/(ulong4_mt4 a, ulong b) => new(a.w / b, a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 operator%(ulong4_mt4 a, ulong4_mt4 b) => new(a.w % b.w, a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt4 operator%(ulong4_mt4 a, ulong b) => new(a.w % b, a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static ulong4_mt4 operator~(ulong4_mt4 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
 
     [MethodImpl(256 | 512)]
@@ -9718,9 +6949,13 @@ public partial struct ulong4_mt4
     [MethodImpl(256 | 512)]
     public static ulong4_mt4 operator&(ulong4_mt4 a, ulong4_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
-    public readonly override string ToString() => $"ulong4_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"ulong4_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // ulong4_mt4
@@ -9735,24 +6970,6 @@ public partial struct ulong4_mt8
     {
         [MethodImpl(256 | 512)]
         get => ulong_mt8.LineCount;
-    }
-
-    public static ulong4_mt8 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static ulong4_mt8 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1UL);
-    }
-
-    public static ulong4_mt8 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1UL + 1UL));
     }
 
     #endregion
@@ -9829,30 +7046,6 @@ public partial struct ulong4_mt8
     public static implicit operator ulong4_mt8(ulong4 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static ulong4_mt8 operator-(ulong4_mt8 a) => new(-a.x, -a.y, -a.z, -a.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 operator+(ulong4_mt8 a, ulong4_mt8 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 operator-(ulong4_mt8 a, ulong4_mt8 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 operator*(ulong4_mt8 a, ulong4_mt8 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 operator/(ulong4_mt8 a, ulong4_mt8 b) => new(a.w / b.w, a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 operator/(ulong4_mt8 a, ulong b) => new(a.w / b, a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 operator%(ulong4_mt8 a, ulong4_mt8 b) => new(a.w % b.w, a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt8 operator%(ulong4_mt8 a, ulong b) => new(a.w % b, a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static ulong4_mt8 operator~(ulong4_mt8 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
 
     [MethodImpl(256 | 512)]
@@ -9861,9 +7054,13 @@ public partial struct ulong4_mt8
     [MethodImpl(256 | 512)]
     public static ulong4_mt8 operator&(ulong4_mt8 a, ulong4_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
-    public readonly override string ToString() => $"ulong4_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"ulong4_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // ulong4_mt8
@@ -9878,24 +7075,6 @@ public partial struct ulong4_mt16
     {
         [MethodImpl(256 | 512)]
         get => ulong_mt16.LineCount;
-    }
-
-    public static ulong4_mt16 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static ulong4_mt16 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1UL);
-    }
-
-    public static ulong4_mt16 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1UL + 1UL));
     }
 
     #endregion
@@ -9972,30 +7151,6 @@ public partial struct ulong4_mt16
     public static implicit operator ulong4_mt16(ulong4 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static ulong4_mt16 operator-(ulong4_mt16 a) => new(-a.x, -a.y, -a.z, -a.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 operator+(ulong4_mt16 a, ulong4_mt16 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 operator-(ulong4_mt16 a, ulong4_mt16 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 operator*(ulong4_mt16 a, ulong4_mt16 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 operator/(ulong4_mt16 a, ulong4_mt16 b) => new(a.w / b.w, a.z / b.z, a.y / b.y, a.x / b.x);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 operator/(ulong4_mt16 a, ulong b) => new(a.w / b, a.z / b, a.y / b, a.x / b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 operator%(ulong4_mt16 a, ulong4_mt16 b) => new(a.w % b.w, a.z % b.z, a.y % b.y, a.x % b.x);
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt16 operator%(ulong4_mt16 a, ulong b) => new(a.w % b, a.z % b, a.y % b, a.x % b);
-
-    [MethodImpl(256 | 512)]
     public static ulong4_mt16 operator~(ulong4_mt16 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
 
     [MethodImpl(256 | 512)]
@@ -10004,44 +7159,52 @@ public partial struct ulong4_mt16
     [MethodImpl(256 | 512)]
     public static ulong4_mt16 operator&(ulong4_mt16 a, ulong4_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
-    public readonly override string ToString() => $"ulong4_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"ulong4_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // ulong4_mt16
-#region b32v2_mt
+#region ulong4_mt32
 
 [CpuOnly]
-public partial struct b32v2_mt
+public partial struct ulong4_mt32
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => b32_mt.LineCount;
+        get => ulong_mt32.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public b32_mt x;
-    public b32_mt y;
+    public ulong_mt32 x;
+    public ulong_mt32 y;
+    public ulong_mt32 z;
+    public ulong_mt32 w;
 
     #endregion // Fields
 
     #region Properties
 
-    public b32v2 this[int index]
+    public ulong4 this[int index]
     {
         [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index]);
+        readonly get => new(x[index], y[index], z[index], w[index]);
         set 
         {
            x[index] = value.x;
            y[index] = value.y;
+           z[index] = value.z;
+           w[index] = value.w;
         }
     }
 
@@ -10050,29 +7213,33 @@ public partial struct b32v2_mt
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public b32v2_mt(b32_mt x, b32_mt y)
+    public ulong4_mt32(ulong_mt32 x, ulong_mt32 y, ulong_mt32 z, ulong_mt32 w)
     {
         this.x = x;
         this.y = y;
+        this.z = z;
+        this.w = w;
     }
 
     [MethodImpl(256 | 512)]
-    public b32v2_mt(b32 value)
+    public ulong4_mt32(ulong value)
     {
-        y = x = value;
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public b32v2_mt(b32_mt value)
+    public ulong4_mt32(ulong_mt32 value)
     {
-        y = x = value;
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public b32v2_mt(b32v2 value)
+    public ulong4_mt32(ulong4 value)
     {
         x = new(value.x);
         y = new(value.y);
+        z = new(value.z);
+        w = new(value.w);
     }
 
     #endregion // Ctor
@@ -10080,29 +7247,33 @@ public partial struct b32v2_mt
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator b32v2_mt(b32 value) => new b32_mt(value);
+    public static implicit operator ulong4_mt32(ulong value) => new ulong_mt32(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator b32v2_mt(b32_mt value) => new(value);
+    public static implicit operator ulong4_mt32(ulong_mt32 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator b32v2_mt(b32v2 value) => new(value);
+    public static implicit operator ulong4_mt32(ulong4 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt operator~(b32v2_mt a) => new(~a.x, ~a.y);
+    public static ulong4_mt32 operator~(ulong4_mt32 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt operator|(b32v2_mt a, b32v2_mt b) => new(a.x | b.x, a.y | b.y);
+    public static ulong4_mt32 operator|(ulong4_mt32 a, ulong4_mt32 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
 
     [MethodImpl(256 | 512)]
-    public static b32v2_mt operator&(b32v2_mt a, b32v2_mt b) => new(a.x & b.x, a.y & b.y);
-
-    public readonly override string ToString() => $"b32v2_mt {{  }}";
+    public static ulong4_mt32 operator&(ulong4_mt32 a, ulong4_mt32 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"ulong4_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    
+    #endregion // ToString
 }
 
-#endregion // b32v2_mt
+#endregion // ulong4_mt32
 #region b32v2_mt4
 
 [CpuOnly]
@@ -10190,9 +7361,13 @@ public partial struct b32v2_mt4
     [MethodImpl(256 | 512)]
     public static b32v2_mt4 operator&(b32v2_mt4 a, b32v2_mt4 b) => new(a.x & b.x, a.y & b.y);
 
-    public readonly override string ToString() => $"b32v2_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"b32v2_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // b32v2_mt4
@@ -10283,9 +7458,13 @@ public partial struct b32v2_mt8
     [MethodImpl(256 | 512)]
     public static b32v2_mt8 operator&(b32v2_mt8 a, b32v2_mt8 b) => new(a.x & b.x, a.y & b.y);
 
-    public readonly override string ToString() => $"b32v2_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"b32v2_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // b32v2_mt8
@@ -10376,46 +7555,48 @@ public partial struct b32v2_mt16
     [MethodImpl(256 | 512)]
     public static b32v2_mt16 operator&(b32v2_mt16 a, b32v2_mt16 b) => new(a.x & b.x, a.y & b.y);
 
-    public readonly override string ToString() => $"b32v2_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"b32v2_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // b32v2_mt16
-#region b32v3_mt
+#region b32v2_mt32
 
 [CpuOnly]
-public partial struct b32v3_mt
+public partial struct b32v2_mt32
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => b32_mt.LineCount;
+        get => b32_mt32.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public b32_mt x;
-    public b32_mt y;
-    public b32_mt z;
+    public b32_mt32 x;
+    public b32_mt32 y;
 
     #endregion // Fields
 
     #region Properties
 
-    public b32v3 this[int index]
+    public b32v2 this[int index]
     {
         [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index]);
+        readonly get => new(x[index], y[index]);
         set 
         {
            x[index] = value.x;
            y[index] = value.y;
-           z[index] = value.z;
         }
     }
 
@@ -10424,31 +7605,29 @@ public partial struct b32v3_mt
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public b32v3_mt(b32_mt x, b32_mt y, b32_mt z)
+    public b32v2_mt32(b32_mt32 x, b32_mt32 y)
     {
         this.x = x;
         this.y = y;
-        this.z = z;
     }
 
     [MethodImpl(256 | 512)]
-    public b32v3_mt(b32 value)
+    public b32v2_mt32(b32 value)
     {
-        z = y = x = value;
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public b32v3_mt(b32_mt value)
+    public b32v2_mt32(b32_mt32 value)
     {
-        z = y = x = value;
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public b32v3_mt(b32v3 value)
+    public b32v2_mt32(b32v2 value)
     {
         x = new(value.x);
         y = new(value.y);
-        z = new(value.z);
     }
 
     #endregion // Ctor
@@ -10456,29 +7635,33 @@ public partial struct b32v3_mt
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator b32v3_mt(b32 value) => new b32_mt(value);
+    public static implicit operator b32v2_mt32(b32 value) => new b32_mt32(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator b32v3_mt(b32_mt value) => new(value);
+    public static implicit operator b32v2_mt32(b32_mt32 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator b32v3_mt(b32v3 value) => new(value);
+    public static implicit operator b32v2_mt32(b32v2 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt operator~(b32v3_mt a) => new(~a.x, ~a.y, ~a.z);
+    public static b32v2_mt32 operator~(b32v2_mt32 a) => new(~a.x, ~a.y);
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt operator|(b32v3_mt a, b32v3_mt b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
+    public static b32v2_mt32 operator|(b32v2_mt32 a, b32v2_mt32 b) => new(a.x | b.x, a.y | b.y);
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt operator&(b32v3_mt a, b32v3_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
-
-    public readonly override string ToString() => $"b32v3_mt {{  }}";
+    public static b32v2_mt32 operator&(b32v2_mt32 a, b32v2_mt32 b) => new(a.x & b.x, a.y & b.y);
 
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"b32v2_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    
+    #endregion // ToString
 }
 
-#endregion // b32v3_mt
+#endregion // b32v2_mt32
 #region b32v3_mt4
 
 [CpuOnly]
@@ -10570,9 +7753,13 @@ public partial struct b32v3_mt4
     [MethodImpl(256 | 512)]
     public static b32v3_mt4 operator&(b32v3_mt4 a, b32v3_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
-    public readonly override string ToString() => $"b32v3_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"b32v3_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // b32v3_mt4
@@ -10667,9 +7854,13 @@ public partial struct b32v3_mt8
     [MethodImpl(256 | 512)]
     public static b32v3_mt8 operator&(b32v3_mt8 a, b32v3_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
-    public readonly override string ToString() => $"b32v3_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"b32v3_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // b32v3_mt8
@@ -10764,48 +7955,50 @@ public partial struct b32v3_mt16
     [MethodImpl(256 | 512)]
     public static b32v3_mt16 operator&(b32v3_mt16 a, b32v3_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
-    public readonly override string ToString() => $"b32v3_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"b32v3_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // b32v3_mt16
-#region b32v4_mt
+#region b32v3_mt32
 
 [CpuOnly]
-public partial struct b32v4_mt
+public partial struct b32v3_mt32
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => b32_mt.LineCount;
+        get => b32_mt32.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public b32_mt x;
-    public b32_mt y;
-    public b32_mt z;
-    public b32_mt w;
+    public b32_mt32 x;
+    public b32_mt32 y;
+    public b32_mt32 z;
 
     #endregion // Fields
 
     #region Properties
 
-    public b32v4 this[int index]
+    public b32v3 this[int index]
     {
         [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index], w[index]);
+        readonly get => new(x[index], y[index], z[index]);
         set 
         {
            x[index] = value.x;
            y[index] = value.y;
            z[index] = value.z;
-           w[index] = value.w;
         }
     }
 
@@ -10814,33 +8007,31 @@ public partial struct b32v4_mt
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public b32v4_mt(b32_mt x, b32_mt y, b32_mt z, b32_mt w)
+    public b32v3_mt32(b32_mt32 x, b32_mt32 y, b32_mt32 z)
     {
         this.x = x;
         this.y = y;
         this.z = z;
-        this.w = w;
     }
 
     [MethodImpl(256 | 512)]
-    public b32v4_mt(b32 value)
+    public b32v3_mt32(b32 value)
     {
-        w = z = y = x = value;
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public b32v4_mt(b32_mt value)
+    public b32v3_mt32(b32_mt32 value)
     {
-        w = z = y = x = value;
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public b32v4_mt(b32v4 value)
+    public b32v3_mt32(b32v3 value)
     {
         x = new(value.x);
         y = new(value.y);
         z = new(value.z);
-        w = new(value.w);
     }
 
     #endregion // Ctor
@@ -10848,29 +8039,33 @@ public partial struct b32v4_mt
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator b32v4_mt(b32 value) => new b32_mt(value);
+    public static implicit operator b32v3_mt32(b32 value) => new b32_mt32(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator b32v4_mt(b32_mt value) => new(value);
+    public static implicit operator b32v3_mt32(b32_mt32 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator b32v4_mt(b32v4 value) => new(value);
+    public static implicit operator b32v3_mt32(b32v3 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt operator~(b32v4_mt a) => new(~a.x, ~a.y, ~a.z, ~a.w);
+    public static b32v3_mt32 operator~(b32v3_mt32 a) => new(~a.x, ~a.y, ~a.z);
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt operator|(b32v4_mt a, b32v4_mt b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
+    public static b32v3_mt32 operator|(b32v3_mt32 a, b32v3_mt32 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
 
     [MethodImpl(256 | 512)]
-    public static b32v4_mt operator&(b32v4_mt a, b32v4_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
-
-    public readonly override string ToString() => $"b32v4_mt {{  }}";
+    public static b32v3_mt32 operator&(b32v3_mt32 a, b32v3_mt32 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"b32v3_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    
+    #endregion // ToString
 }
 
-#endregion // b32v4_mt
+#endregion // b32v3_mt32
 #region b32v4_mt4
 
 [CpuOnly]
@@ -10966,9 +8161,13 @@ public partial struct b32v4_mt4
     [MethodImpl(256 | 512)]
     public static b32v4_mt4 operator&(b32v4_mt4 a, b32v4_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
-    public readonly override string ToString() => $"b32v4_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"b32v4_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // b32v4_mt4
@@ -11067,9 +8266,13 @@ public partial struct b32v4_mt8
     [MethodImpl(256 | 512)]
     public static b32v4_mt8 operator&(b32v4_mt8 a, b32v4_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
-    public readonly override string ToString() => $"b32v4_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"b32v4_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // b32v4_mt8
@@ -11168,44 +8371,52 @@ public partial struct b32v4_mt16
     [MethodImpl(256 | 512)]
     public static b32v4_mt16 operator&(b32v4_mt16 a, b32v4_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
-    public readonly override string ToString() => $"b32v4_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"b32v4_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // b32v4_mt16
-#region b64v2_mt
+#region b32v4_mt32
 
 [CpuOnly]
-public partial struct b64v2_mt
+public partial struct b32v4_mt32
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => b64_mt.LineCount;
+        get => b32_mt32.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public b64_mt x;
-    public b64_mt y;
+    public b32_mt32 x;
+    public b32_mt32 y;
+    public b32_mt32 z;
+    public b32_mt32 w;
 
     #endregion // Fields
 
     #region Properties
 
-    public b64v2 this[int index]
+    public b32v4 this[int index]
     {
         [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index]);
+        readonly get => new(x[index], y[index], z[index], w[index]);
         set 
         {
            x[index] = value.x;
            y[index] = value.y;
+           z[index] = value.z;
+           w[index] = value.w;
         }
     }
 
@@ -11214,29 +8425,33 @@ public partial struct b64v2_mt
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public b64v2_mt(b64_mt x, b64_mt y)
+    public b32v4_mt32(b32_mt32 x, b32_mt32 y, b32_mt32 z, b32_mt32 w)
     {
         this.x = x;
         this.y = y;
+        this.z = z;
+        this.w = w;
     }
 
     [MethodImpl(256 | 512)]
-    public b64v2_mt(b64 value)
+    public b32v4_mt32(b32 value)
     {
-        y = x = value;
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public b64v2_mt(b64_mt value)
+    public b32v4_mt32(b32_mt32 value)
     {
-        y = x = value;
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public b64v2_mt(b64v2 value)
+    public b32v4_mt32(b32v4 value)
     {
         x = new(value.x);
         y = new(value.y);
+        z = new(value.z);
+        w = new(value.w);
     }
 
     #endregion // Ctor
@@ -11244,29 +8459,33 @@ public partial struct b64v2_mt
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator b64v2_mt(b64 value) => new b64_mt(value);
+    public static implicit operator b32v4_mt32(b32 value) => new b32_mt32(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator b64v2_mt(b64_mt value) => new(value);
+    public static implicit operator b32v4_mt32(b32_mt32 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator b64v2_mt(b64v2 value) => new(value);
+    public static implicit operator b32v4_mt32(b32v4 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt operator~(b64v2_mt a) => new(~a.x, ~a.y);
+    public static b32v4_mt32 operator~(b32v4_mt32 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt operator|(b64v2_mt a, b64v2_mt b) => new(a.x | b.x, a.y | b.y);
+    public static b32v4_mt32 operator|(b32v4_mt32 a, b32v4_mt32 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
 
     [MethodImpl(256 | 512)]
-    public static b64v2_mt operator&(b64v2_mt a, b64v2_mt b) => new(a.x & b.x, a.y & b.y);
-
-    public readonly override string ToString() => $"b64v2_mt {{  }}";
+    public static b32v4_mt32 operator&(b32v4_mt32 a, b32v4_mt32 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"b32v4_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    
+    #endregion // ToString
 }
 
-#endregion // b64v2_mt
+#endregion // b32v4_mt32
 #region b64v2_mt4
 
 [CpuOnly]
@@ -11354,9 +8573,13 @@ public partial struct b64v2_mt4
     [MethodImpl(256 | 512)]
     public static b64v2_mt4 operator&(b64v2_mt4 a, b64v2_mt4 b) => new(a.x & b.x, a.y & b.y);
 
-    public readonly override string ToString() => $"b64v2_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"b64v2_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // b64v2_mt4
@@ -11447,9 +8670,13 @@ public partial struct b64v2_mt8
     [MethodImpl(256 | 512)]
     public static b64v2_mt8 operator&(b64v2_mt8 a, b64v2_mt8 b) => new(a.x & b.x, a.y & b.y);
 
-    public readonly override string ToString() => $"b64v2_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"b64v2_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // b64v2_mt8
@@ -11540,46 +8767,48 @@ public partial struct b64v2_mt16
     [MethodImpl(256 | 512)]
     public static b64v2_mt16 operator&(b64v2_mt16 a, b64v2_mt16 b) => new(a.x & b.x, a.y & b.y);
 
-    public readonly override string ToString() => $"b64v2_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"b64v2_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // b64v2_mt16
-#region b64v3_mt
+#region b64v2_mt32
 
 [CpuOnly]
-public partial struct b64v3_mt
+public partial struct b64v2_mt32
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => b64_mt.LineCount;
+        get => b64_mt32.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public b64_mt x;
-    public b64_mt y;
-    public b64_mt z;
+    public b64_mt32 x;
+    public b64_mt32 y;
 
     #endregion // Fields
 
     #region Properties
 
-    public b64v3 this[int index]
+    public b64v2 this[int index]
     {
         [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index]);
+        readonly get => new(x[index], y[index]);
         set 
         {
            x[index] = value.x;
            y[index] = value.y;
-           z[index] = value.z;
         }
     }
 
@@ -11588,31 +8817,29 @@ public partial struct b64v3_mt
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public b64v3_mt(b64_mt x, b64_mt y, b64_mt z)
+    public b64v2_mt32(b64_mt32 x, b64_mt32 y)
     {
         this.x = x;
         this.y = y;
-        this.z = z;
     }
 
     [MethodImpl(256 | 512)]
-    public b64v3_mt(b64 value)
+    public b64v2_mt32(b64 value)
     {
-        z = y = x = value;
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public b64v3_mt(b64_mt value)
+    public b64v2_mt32(b64_mt32 value)
     {
-        z = y = x = value;
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public b64v3_mt(b64v3 value)
+    public b64v2_mt32(b64v2 value)
     {
         x = new(value.x);
         y = new(value.y);
-        z = new(value.z);
     }
 
     #endregion // Ctor
@@ -11620,29 +8847,33 @@ public partial struct b64v3_mt
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator b64v3_mt(b64 value) => new b64_mt(value);
+    public static implicit operator b64v2_mt32(b64 value) => new b64_mt32(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator b64v3_mt(b64_mt value) => new(value);
+    public static implicit operator b64v2_mt32(b64_mt32 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator b64v3_mt(b64v3 value) => new(value);
+    public static implicit operator b64v2_mt32(b64v2 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static b64v3_mt operator~(b64v3_mt a) => new(~a.x, ~a.y, ~a.z);
+    public static b64v2_mt32 operator~(b64v2_mt32 a) => new(~a.x, ~a.y);
 
     [MethodImpl(256 | 512)]
-    public static b64v3_mt operator|(b64v3_mt a, b64v3_mt b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
+    public static b64v2_mt32 operator|(b64v2_mt32 a, b64v2_mt32 b) => new(a.x | b.x, a.y | b.y);
 
     [MethodImpl(256 | 512)]
-    public static b64v3_mt operator&(b64v3_mt a, b64v3_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
-
-    public readonly override string ToString() => $"b64v3_mt {{  }}";
+    public static b64v2_mt32 operator&(b64v2_mt32 a, b64v2_mt32 b) => new(a.x & b.x, a.y & b.y);
 
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"b64v2_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    
+    #endregion // ToString
 }
 
-#endregion // b64v3_mt
+#endregion // b64v2_mt32
 #region b64v3_mt4
 
 [CpuOnly]
@@ -11734,9 +8965,13 @@ public partial struct b64v3_mt4
     [MethodImpl(256 | 512)]
     public static b64v3_mt4 operator&(b64v3_mt4 a, b64v3_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
-    public readonly override string ToString() => $"b64v3_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"b64v3_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // b64v3_mt4
@@ -11831,9 +9066,13 @@ public partial struct b64v3_mt8
     [MethodImpl(256 | 512)]
     public static b64v3_mt8 operator&(b64v3_mt8 a, b64v3_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
-    public readonly override string ToString() => $"b64v3_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"b64v3_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // b64v3_mt8
@@ -11928,48 +9167,50 @@ public partial struct b64v3_mt16
     [MethodImpl(256 | 512)]
     public static b64v3_mt16 operator&(b64v3_mt16 a, b64v3_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
-    public readonly override string ToString() => $"b64v3_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"b64v3_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // b64v3_mt16
-#region b64v4_mt
+#region b64v3_mt32
 
 [CpuOnly]
-public partial struct b64v4_mt
+public partial struct b64v3_mt32
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => b64_mt.LineCount;
+        get => b64_mt32.LineCount;
     }
 
     #endregion
 
     #region Fields
 
-    public b64_mt x;
-    public b64_mt y;
-    public b64_mt z;
-    public b64_mt w;
+    public b64_mt32 x;
+    public b64_mt32 y;
+    public b64_mt32 z;
 
     #endregion // Fields
 
     #region Properties
 
-    public b64v4 this[int index]
+    public b64v3 this[int index]
     {
         [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index], w[index]);
+        readonly get => new(x[index], y[index], z[index]);
         set 
         {
            x[index] = value.x;
            y[index] = value.y;
            z[index] = value.z;
-           w[index] = value.w;
         }
     }
 
@@ -11978,33 +9219,31 @@ public partial struct b64v4_mt
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public b64v4_mt(b64_mt x, b64_mt y, b64_mt z, b64_mt w)
+    public b64v3_mt32(b64_mt32 x, b64_mt32 y, b64_mt32 z)
     {
         this.x = x;
         this.y = y;
         this.z = z;
-        this.w = w;
     }
 
     [MethodImpl(256 | 512)]
-    public b64v4_mt(b64 value)
+    public b64v3_mt32(b64 value)
     {
-        w = z = y = x = value;
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public b64v4_mt(b64_mt value)
+    public b64v3_mt32(b64_mt32 value)
     {
-        w = z = y = x = value;
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
-    public b64v4_mt(b64v4 value)
+    public b64v3_mt32(b64v3 value)
     {
         x = new(value.x);
         y = new(value.y);
         z = new(value.z);
-        w = new(value.w);
     }
 
     #endregion // Ctor
@@ -12012,29 +9251,33 @@ public partial struct b64v4_mt
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator b64v4_mt(b64 value) => new b64_mt(value);
+    public static implicit operator b64v3_mt32(b64 value) => new b64_mt32(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator b64v4_mt(b64_mt value) => new(value);
+    public static implicit operator b64v3_mt32(b64_mt32 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static implicit operator b64v4_mt(b64v4 value) => new(value);
+    public static implicit operator b64v3_mt32(b64v3 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static b64v4_mt operator~(b64v4_mt a) => new(~a.x, ~a.y, ~a.z, ~a.w);
+    public static b64v3_mt32 operator~(b64v3_mt32 a) => new(~a.x, ~a.y, ~a.z);
 
     [MethodImpl(256 | 512)]
-    public static b64v4_mt operator|(b64v4_mt a, b64v4_mt b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
+    public static b64v3_mt32 operator|(b64v3_mt32 a, b64v3_mt32 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
 
     [MethodImpl(256 | 512)]
-    public static b64v4_mt operator&(b64v4_mt a, b64v4_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
-
-    public readonly override string ToString() => $"b64v4_mt {{  }}";
+    public static b64v3_mt32 operator&(b64v3_mt32 a, b64v3_mt32 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"b64v3_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    
+    #endregion // ToString
 }
 
-#endregion // b64v4_mt
+#endregion // b64v3_mt32
 #region b64v4_mt4
 
 [CpuOnly]
@@ -12130,9 +9373,13 @@ public partial struct b64v4_mt4
     [MethodImpl(256 | 512)]
     public static b64v4_mt4 operator&(b64v4_mt4 a, b64v4_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
-    public readonly override string ToString() => $"b64v4_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"b64v4_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // b64v4_mt4
@@ -12231,9 +9478,13 @@ public partial struct b64v4_mt8
     [MethodImpl(256 | 512)]
     public static b64v4_mt8 operator&(b64v4_mt8 a, b64v4_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
-    public readonly override string ToString() => $"b64v4_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"b64v4_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // b64v4_mt8
@@ -12332,9 +9583,118 @@ public partial struct b64v4_mt16
     [MethodImpl(256 | 512)]
     public static b64v4_mt16 operator&(b64v4_mt16 a, b64v4_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
-    public readonly override string ToString() => $"b64v4_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
-
     #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"b64v4_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    
+    #endregion // ToString
 }
 
 #endregion // b64v4_mt16
+#region b64v4_mt32
+
+[CpuOnly]
+public partial struct b64v4_mt32
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => b64_mt32.LineCount;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public b64_mt32 x;
+    public b64_mt32 y;
+    public b64_mt32 z;
+    public b64_mt32 w;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public b64v4 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => new(x[index], y[index], z[index], w[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+           w[index] = value.w;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public b64v4_mt32(b64_mt32 x, b64_mt32 y, b64_mt32 z, b64_mt32 w)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b64v4_mt32(b64 value)
+    {
+        w = z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b64v4_mt32(b64_mt32 value)
+    {
+        w = z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b64v4_mt32(b64v4 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+        w = new(value.w);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64v4_mt32(b64 value) => new b64_mt32(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64v4_mt32(b64_mt32 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64v4_mt32(b64v4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator~(b64v4_mt32 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator|(b64v4_mt32 a, b64v4_mt32 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator&(b64v4_mt32 a, b64v4_mt32 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
+
+    #endregion // Operators
+
+    #region // ToString
+
+    public readonly override string ToString() => $"b64v4_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    
+    #endregion // ToString
+}
+
+#endregion // b64v4_mt32

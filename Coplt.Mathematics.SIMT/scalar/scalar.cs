@@ -2,132 +2,6 @@
 
 namespace Coplt.Mathematics.SIMT;
 
-#region float_mt
-
-[CpuOnly]
-public partial struct float_mt
-{
-    #region Constants
-
-    public static int LineCount
-    {
-        [MethodImpl(256 | 512)]
-        get => throw new NotSupportedException("Compile time only");
-    }
-
-    public static float_mt Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static float_mt One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1.0f);
-    }
-
-    public static float_mt Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new(2.0f);
-    }
-
-    #endregion
-
-    #region Properties
-
-    public float this[int index]
-    {
-        [MethodImpl(256 | 512)]
-        readonly get
-        {
-            throw new NotSupportedException("Compile time only");
-        }
-        [MethodImpl(256 | 512)]
-        set
-        {
-            throw new NotSupportedException("Compile time only");
-        }
-    }
-
-    #endregion // Properties
-
-    #region Ctor
-
-    [MethodImpl(256 | 512)]
-    public static float_mt LoadUnsafe(ref readonly float values) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static float_mt LoadUnsafe(params ReadOnlySpan<float> values) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public float_mt(float value)
-    {
-        throw new NotSupportedException("Compile time only");
-    }
-
-    #endregion // Ctor
-
-    #region Operators
-
-    [MethodImpl(256 | 512)]
-    public static implicit operator float_mt(float value) => new(value);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt operator-(float_mt a) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static float_mt operator+(float_mt a, float_mt b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static float_mt operator-(float_mt a, float_mt b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static float_mt operator*(float_mt a, float_mt b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static float_mt operator*(float_mt a, float b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static float_mt operator*(float a, float_mt b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static float_mt operator/(float_mt a, float_mt b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static float_mt operator/(float_mt a, float b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static float_mt operator%(float_mt a, float_mt b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static float_mt operator%(float_mt a, float b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static float_mt operator~(float_mt a) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static float_mt operator|(float_mt a, float_mt b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static float_mt operator&(float_mt a, float_mt b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static float_mt operator<<(float_mt a, int b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static float_mt operator>>(float_mt a, int b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static float_mt operator>>>(float_mt a, int b) => throw new NotSupportedException("Compile time only");
-
-    public readonly override string ToString() => $"float_mt {{  }}";
-
-    #endregion
-}
-
-#endregion // float_mt
 #region float_mt4
 
 [CpuOnly]
@@ -139,24 +13,6 @@ public partial struct float_mt4
     {
         [MethodImpl(256 | 512)]
         get => 4;
-    }
-
-    public static float_mt4 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static float_mt4 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1.0f);
-    }
-
-    public static float_mt4 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new(2.0f);
     }
 
     #endregion
@@ -240,36 +96,6 @@ public partial struct float_mt4
     public static implicit operator float_mt4(float value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static float_mt4 operator-(float_mt4 a) => new(-a.vector);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt4 operator+(float_mt4 a, float_mt4 b) => new(a.vector + b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt4 operator-(float_mt4 a, float_mt4 b) => new(a.vector - b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt4 operator*(float_mt4 a, float_mt4 b) => new(a.vector * b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt4 operator*(float_mt4 a, float b) => new(a.vector * b);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt4 operator*(float a, float_mt4 b) => new(a * b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt4 operator/(float_mt4 a, float_mt4 b) => new(a.vector / b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt4 operator/(float_mt4 a, float b) => new(a.vector / b);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt4 operator%(float_mt4 a, float_mt4 b) => new(simd.Rem(a.vector, b.vector));
-
-    [MethodImpl(256 | 512)]
-    public static float_mt4 operator%(float_mt4 a, float b) => new(simd.Rem(a.vector, b));
-
-    [MethodImpl(256 | 512)]
     public static float_mt4 operator~(float_mt4 a) => new(~a.vector);
 
     [MethodImpl(256 | 512)]
@@ -304,24 +130,6 @@ public partial struct float_mt8
     {
         [MethodImpl(256 | 512)]
         get => 8;
-    }
-
-    public static float_mt8 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static float_mt8 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1.0f);
-    }
-
-    public static float_mt8 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new(2.0f);
     }
 
     #endregion
@@ -405,36 +213,6 @@ public partial struct float_mt8
     public static implicit operator float_mt8(float value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static float_mt8 operator-(float_mt8 a) => new(-a.vector);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt8 operator+(float_mt8 a, float_mt8 b) => new(a.vector + b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt8 operator-(float_mt8 a, float_mt8 b) => new(a.vector - b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt8 operator*(float_mt8 a, float_mt8 b) => new(a.vector * b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt8 operator*(float_mt8 a, float b) => new(a.vector * b);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt8 operator*(float a, float_mt8 b) => new(a * b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt8 operator/(float_mt8 a, float_mt8 b) => new(a.vector / b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt8 operator/(float_mt8 a, float b) => new(a.vector / b);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt8 operator%(float_mt8 a, float_mt8 b) => new(simd.Rem(a.vector, b.vector));
-
-    [MethodImpl(256 | 512)]
-    public static float_mt8 operator%(float_mt8 a, float b) => new(simd.Rem(a.vector, b));
-
-    [MethodImpl(256 | 512)]
     public static float_mt8 operator~(float_mt8 a) => new(~a.vector);
 
     [MethodImpl(256 | 512)]
@@ -469,24 +247,6 @@ public partial struct float_mt16
     {
         [MethodImpl(256 | 512)]
         get => 16;
-    }
-
-    public static float_mt16 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static float_mt16 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1.0f);
-    }
-
-    public static float_mt16 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new(2.0f);
     }
 
     #endregion
@@ -570,36 +330,6 @@ public partial struct float_mt16
     public static implicit operator float_mt16(float value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static float_mt16 operator-(float_mt16 a) => new(-a.vector);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt16 operator+(float_mt16 a, float_mt16 b) => new(a.vector + b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt16 operator-(float_mt16 a, float_mt16 b) => new(a.vector - b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt16 operator*(float_mt16 a, float_mt16 b) => new(a.vector * b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt16 operator*(float_mt16 a, float b) => new(a.vector * b);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt16 operator*(float a, float_mt16 b) => new(a * b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt16 operator/(float_mt16 a, float_mt16 b) => new(a.vector / b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt16 operator/(float_mt16 a, float b) => new(a.vector / b);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt16 operator%(float_mt16 a, float_mt16 b) => new(simd.Rem(a.vector, b.vector));
-
-    [MethodImpl(256 | 512)]
-    public static float_mt16 operator%(float_mt16 a, float b) => new(simd.Rem(a.vector, b));
-
-    [MethodImpl(256 | 512)]
     public static float_mt16 operator~(float_mt16 a) => new(~a.vector);
 
     [MethodImpl(256 | 512)]
@@ -623,52 +353,66 @@ public partial struct float_mt16
 }
 
 #endregion // float_mt16
-#region double_mt
+#region float_mt32
 
 [CpuOnly]
-public partial struct double_mt
+public partial struct float_mt32
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => throw new NotSupportedException("Compile time only");
-    }
-
-    public static double_mt Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static double_mt One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1.0);
-    }
-
-    public static double_mt Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new(2.0);
+        get => 32;
     }
 
     #endregion
 
+    #region Fields
+
+    public Vector512<float> vector0;
+    public Vector512<float> vector1;
+
+    #endregion // Fields
+
     #region Properties
 
-    public double this[int index]
+    [MethodImpl(256 | 512), UnscopedRef]
+    public readonly ref readonly Vector512<float> VectorAtRo(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector0;
+            case 1: return ref vector1;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public ref Vector512<float> VectorAt(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector0;
+            case 1: return ref vector1;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    public float this[int index]
     {
         [MethodImpl(256 | 512)]
         readonly get
         {
-            throw new NotSupportedException("Compile time only");
+            var (q, r) = Math.DivRem(index, Vector512<float>.Count);
+            return VectorAtRo(q)[r];
         }
         [MethodImpl(256 | 512)]
         set
         {
-            throw new NotSupportedException("Compile time only");
+            var (q, r) = Math.DivRem(index, Vector512<float>.Count);
+            ref var vector = ref VectorAt(q);
+            vector = vector.WithElement(r, value);
         }
     }
 
@@ -677,15 +421,31 @@ public partial struct double_mt
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public static double_mt LoadUnsafe(ref readonly double values) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static double_mt LoadUnsafe(params ReadOnlySpan<double> values) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public double_mt(double value)
+    public float_mt32(Vector512<float> vector0, Vector512<float> vector1)
     {
-        throw new NotSupportedException("Compile time only");
+        this.vector0 = vector0;
+        this.vector1 = vector1;
+    }
+
+    [MethodImpl(256 | 512)]
+    private float_mt32(ref readonly float values)
+    {
+        ref var vs = ref Unsafe.AsRef(in values);
+        vector0 = Vector512.LoadUnsafe(in vs);
+        vector1 = Vector512.LoadUnsafe(in Unsafe.Add(ref vs, 32));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt32 LoadUnsafe(ref readonly float values) => new(in values);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt32 LoadUnsafe(params ReadOnlySpan<float> values) => new(in values.GetPinnableReference());
+
+    [MethodImpl(256 | 512)]
+    public float_mt32(float value)
+    {
+        vector0 = Vector512.Create(value);
+        vector1 = Vector512.Create(value);
     }
 
     #endregion // Ctor
@@ -693,62 +453,32 @@ public partial struct double_mt
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator double_mt(double value) => new(value);
+    public static implicit operator float_mt32(float value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static double_mt operator-(double_mt a) => throw new NotSupportedException("Compile time only");
+    public static float_mt32 operator~(float_mt32 a) => new(~a.vector0, ~a.vector1);
 
     [MethodImpl(256 | 512)]
-    public static double_mt operator+(double_mt a, double_mt b) => throw new NotSupportedException("Compile time only");
+    public static float_mt32 operator|(float_mt32 a, float_mt32 b) => new(a.vector0 | b.vector0, a.vector1 | b.vector1);
 
     [MethodImpl(256 | 512)]
-    public static double_mt operator-(double_mt a, double_mt b) => throw new NotSupportedException("Compile time only");
+    public static float_mt32 operator&(float_mt32 a, float_mt32 b) => new(a.vector0 & b.vector0, a.vector1 & b.vector1);
 
     [MethodImpl(256 | 512)]
-    public static double_mt operator*(double_mt a, double_mt b) => throw new NotSupportedException("Compile time only");
+    public static float_mt32 operator<<(float_mt32 a, int b) => new(a.vector0 << b, a.vector1 << b);
 
     [MethodImpl(256 | 512)]
-    public static double_mt operator*(double_mt a, double b) => throw new NotSupportedException("Compile time only");
+    public static float_mt32 operator>>(float_mt32 a, int b) => new(a.vector0 >> b, a.vector1 >> b);
 
     [MethodImpl(256 | 512)]
-    public static double_mt operator*(double a, double_mt b) => throw new NotSupportedException("Compile time only");
+    public static float_mt32 operator>>>(float_mt32 a, int b) => new(a.vector0 >>> b, a.vector1 >>> b);
 
-    [MethodImpl(256 | 512)]
-    public static double_mt operator/(double_mt a, double_mt b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static double_mt operator/(double_mt a, double b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static double_mt operator%(double_mt a, double_mt b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static double_mt operator%(double_mt a, double b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static double_mt operator~(double_mt a) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static double_mt operator|(double_mt a, double_mt b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static double_mt operator&(double_mt a, double_mt b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static double_mt operator<<(double_mt a, int b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static double_mt operator>>(double_mt a, int b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static double_mt operator>>>(double_mt a, int b) => throw new NotSupportedException("Compile time only");
-
-    public readonly override string ToString() => $"double_mt {{  }}";
+    public readonly override string ToString() => $"float_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
 
     #endregion
 }
 
-#endregion // double_mt
+#endregion // float_mt32
 #region double_mt4
 
 [CpuOnly]
@@ -760,24 +490,6 @@ public partial struct double_mt4
     {
         [MethodImpl(256 | 512)]
         get => 4;
-    }
-
-    public static double_mt4 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static double_mt4 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1.0);
-    }
-
-    public static double_mt4 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new(2.0);
     }
 
     #endregion
@@ -861,36 +573,6 @@ public partial struct double_mt4
     public static implicit operator double_mt4(double value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static double_mt4 operator-(double_mt4 a) => new(-a.vector);
-
-    [MethodImpl(256 | 512)]
-    public static double_mt4 operator+(double_mt4 a, double_mt4 b) => new(a.vector + b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static double_mt4 operator-(double_mt4 a, double_mt4 b) => new(a.vector - b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static double_mt4 operator*(double_mt4 a, double_mt4 b) => new(a.vector * b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static double_mt4 operator*(double_mt4 a, double b) => new(a.vector * b);
-
-    [MethodImpl(256 | 512)]
-    public static double_mt4 operator*(double a, double_mt4 b) => new(a * b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static double_mt4 operator/(double_mt4 a, double_mt4 b) => new(a.vector / b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static double_mt4 operator/(double_mt4 a, double b) => new(a.vector / b);
-
-    [MethodImpl(256 | 512)]
-    public static double_mt4 operator%(double_mt4 a, double_mt4 b) => new(simd.Rem(a.vector, b.vector));
-
-    [MethodImpl(256 | 512)]
-    public static double_mt4 operator%(double_mt4 a, double b) => new(simd.Rem(a.vector, b));
-
-    [MethodImpl(256 | 512)]
     public static double_mt4 operator~(double_mt4 a) => new(~a.vector);
 
     [MethodImpl(256 | 512)]
@@ -925,24 +607,6 @@ public partial struct double_mt8
     {
         [MethodImpl(256 | 512)]
         get => 8;
-    }
-
-    public static double_mt8 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static double_mt8 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1.0);
-    }
-
-    public static double_mt8 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new(2.0);
     }
 
     #endregion
@@ -1026,36 +690,6 @@ public partial struct double_mt8
     public static implicit operator double_mt8(double value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static double_mt8 operator-(double_mt8 a) => new(-a.vector);
-
-    [MethodImpl(256 | 512)]
-    public static double_mt8 operator+(double_mt8 a, double_mt8 b) => new(a.vector + b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static double_mt8 operator-(double_mt8 a, double_mt8 b) => new(a.vector - b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static double_mt8 operator*(double_mt8 a, double_mt8 b) => new(a.vector * b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static double_mt8 operator*(double_mt8 a, double b) => new(a.vector * b);
-
-    [MethodImpl(256 | 512)]
-    public static double_mt8 operator*(double a, double_mt8 b) => new(a * b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static double_mt8 operator/(double_mt8 a, double_mt8 b) => new(a.vector / b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static double_mt8 operator/(double_mt8 a, double b) => new(a.vector / b);
-
-    [MethodImpl(256 | 512)]
-    public static double_mt8 operator%(double_mt8 a, double_mt8 b) => new(simd.Rem(a.vector, b.vector));
-
-    [MethodImpl(256 | 512)]
-    public static double_mt8 operator%(double_mt8 a, double b) => new(simd.Rem(a.vector, b));
-
-    [MethodImpl(256 | 512)]
     public static double_mt8 operator~(double_mt8 a) => new(~a.vector);
 
     [MethodImpl(256 | 512)]
@@ -1090,24 +724,6 @@ public partial struct double_mt16
     {
         [MethodImpl(256 | 512)]
         get => 16;
-    }
-
-    public static double_mt16 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static double_mt16 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1.0);
-    }
-
-    public static double_mt16 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new(2.0);
     }
 
     #endregion
@@ -1200,36 +816,6 @@ public partial struct double_mt16
     public static implicit operator double_mt16(double value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static double_mt16 operator-(double_mt16 a) => new(-a.vector0, -a.vector1);
-
-    [MethodImpl(256 | 512)]
-    public static double_mt16 operator+(double_mt16 a, double_mt16 b) => new(a.vector0 + b.vector0, a.vector1 + b.vector1);
-
-    [MethodImpl(256 | 512)]
-    public static double_mt16 operator-(double_mt16 a, double_mt16 b) => new(a.vector0 - b.vector0, a.vector1 - b.vector1);
-
-    [MethodImpl(256 | 512)]
-    public static double_mt16 operator*(double_mt16 a, double_mt16 b) => new(a.vector0 * b.vector0, a.vector1 * b.vector1);
-
-    [MethodImpl(256 | 512)]
-    public static double_mt16 operator*(double_mt16 a, double b) => new(a.vector0 * b, a.vector1 * b);
-
-    [MethodImpl(256 | 512)]
-    public static double_mt16 operator*(double a, double_mt16 b) => new(a * b.vector0, a * b.vector1);
-
-    [MethodImpl(256 | 512)]
-    public static double_mt16 operator/(double_mt16 a, double_mt16 b) => new(a.vector0 / b.vector0, a.vector1 / b.vector1);
-
-    [MethodImpl(256 | 512)]
-    public static double_mt16 operator/(double_mt16 a, double b) => new(a.vector0 / b, a.vector1 / b);
-
-    [MethodImpl(256 | 512)]
-    public static double_mt16 operator%(double_mt16 a, double_mt16 b) => new(simd.Rem(a.vector0, b.vector0), simd.Rem(a.vector1, b.vector1));
-
-    [MethodImpl(256 | 512)]
-    public static double_mt16 operator%(double_mt16 a, double b) => new(simd.Rem(a.vector0, b), simd.Rem(a.vector1, b));
-
-    [MethodImpl(256 | 512)]
     public static double_mt16 operator~(double_mt16 a) => new(~a.vector0, ~a.vector1);
 
     [MethodImpl(256 | 512)]
@@ -1253,52 +839,72 @@ public partial struct double_mt16
 }
 
 #endregion // double_mt16
-#region int_mt
+#region double_mt32
 
 [CpuOnly]
-public partial struct int_mt
+public partial struct double_mt32
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => throw new NotSupportedException("Compile time only");
-    }
-
-    public static int_mt Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static int_mt One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1);
-    }
-
-    public static int_mt Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1 + 1));
+        get => 32;
     }
 
     #endregion
 
+    #region Fields
+
+    public Vector512<double> vector0;
+    public Vector512<double> vector1;
+    public Vector512<double> vector2;
+    public Vector512<double> vector3;
+
+    #endregion // Fields
+
     #region Properties
 
-    public int this[int index]
+    [MethodImpl(256 | 512), UnscopedRef]
+    public readonly ref readonly Vector512<double> VectorAtRo(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector0;
+            case 1: return ref vector1;
+            case 2: return ref vector2;
+            case 3: return ref vector3;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public ref Vector512<double> VectorAt(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector0;
+            case 1: return ref vector1;
+            case 2: return ref vector2;
+            case 3: return ref vector3;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    public double this[int index]
     {
         [MethodImpl(256 | 512)]
         readonly get
         {
-            throw new NotSupportedException("Compile time only");
+            var (q, r) = Math.DivRem(index, Vector512<double>.Count);
+            return VectorAtRo(q)[r];
         }
         [MethodImpl(256 | 512)]
         set
         {
-            throw new NotSupportedException("Compile time only");
+            var (q, r) = Math.DivRem(index, Vector512<double>.Count);
+            ref var vector = ref VectorAt(q);
+            vector = vector.WithElement(r, value);
         }
     }
 
@@ -1307,15 +913,37 @@ public partial struct int_mt
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public static int_mt LoadUnsafe(ref readonly int values) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static int_mt LoadUnsafe(params ReadOnlySpan<int> values) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public int_mt(int value)
+    public double_mt32(Vector512<double> vector0, Vector512<double> vector1, Vector512<double> vector2, Vector512<double> vector3)
     {
-        throw new NotSupportedException("Compile time only");
+        this.vector0 = vector0;
+        this.vector1 = vector1;
+        this.vector2 = vector2;
+        this.vector3 = vector3;
+    }
+
+    [MethodImpl(256 | 512)]
+    private double_mt32(ref readonly double values)
+    {
+        ref var vs = ref Unsafe.AsRef(in values);
+        vector0 = Vector512.LoadUnsafe(in vs);
+        vector1 = Vector512.LoadUnsafe(in Unsafe.Add(ref vs, 32));
+        vector2 = Vector512.LoadUnsafe(in Unsafe.Add(ref vs, 64));
+        vector3 = Vector512.LoadUnsafe(in Unsafe.Add(ref vs, 96));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt32 LoadUnsafe(ref readonly double values) => new(in values);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt32 LoadUnsafe(params ReadOnlySpan<double> values) => new(in values.GetPinnableReference());
+
+    [MethodImpl(256 | 512)]
+    public double_mt32(double value)
+    {
+        vector0 = Vector512.Create(value);
+        vector1 = Vector512.Create(value);
+        vector2 = Vector512.Create(value);
+        vector3 = Vector512.Create(value);
     }
 
     #endregion // Ctor
@@ -1323,62 +951,32 @@ public partial struct int_mt
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator int_mt(int value) => new(value);
+    public static implicit operator double_mt32(double value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static int_mt operator-(int_mt a) => throw new NotSupportedException("Compile time only");
+    public static double_mt32 operator~(double_mt32 a) => new(~a.vector0, ~a.vector1, ~a.vector2, ~a.vector3);
 
     [MethodImpl(256 | 512)]
-    public static int_mt operator+(int_mt a, int_mt b) => throw new NotSupportedException("Compile time only");
+    public static double_mt32 operator|(double_mt32 a, double_mt32 b) => new(a.vector0 | b.vector0, a.vector1 | b.vector1, a.vector2 | b.vector2, a.vector3 | b.vector3);
 
     [MethodImpl(256 | 512)]
-    public static int_mt operator-(int_mt a, int_mt b) => throw new NotSupportedException("Compile time only");
+    public static double_mt32 operator&(double_mt32 a, double_mt32 b) => new(a.vector0 & b.vector0, a.vector1 & b.vector1, a.vector2 & b.vector2, a.vector3 & b.vector3);
 
     [MethodImpl(256 | 512)]
-    public static int_mt operator*(int_mt a, int_mt b) => throw new NotSupportedException("Compile time only");
+    public static double_mt32 operator<<(double_mt32 a, int b) => new(a.vector0 << b, a.vector1 << b, a.vector2 << b, a.vector3 << b);
 
     [MethodImpl(256 | 512)]
-    public static int_mt operator*(int_mt a, int b) => throw new NotSupportedException("Compile time only");
+    public static double_mt32 operator>>(double_mt32 a, int b) => new(a.vector0 >> b, a.vector1 >> b, a.vector2 >> b, a.vector3 >> b);
 
     [MethodImpl(256 | 512)]
-    public static int_mt operator*(int a, int_mt b) => throw new NotSupportedException("Compile time only");
+    public static double_mt32 operator>>>(double_mt32 a, int b) => new(a.vector0 >>> b, a.vector1 >>> b, a.vector2 >>> b, a.vector3 >>> b);
 
-    [MethodImpl(256 | 512)]
-    public static int_mt operator/(int_mt a, int_mt b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static int_mt operator/(int_mt a, int b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static int_mt operator%(int_mt a, int_mt b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static int_mt operator%(int_mt a, int b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static int_mt operator~(int_mt a) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static int_mt operator|(int_mt a, int_mt b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static int_mt operator&(int_mt a, int_mt b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static int_mt operator<<(int_mt a, int b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static int_mt operator>>(int_mt a, int b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static int_mt operator>>>(int_mt a, int b) => throw new NotSupportedException("Compile time only");
-
-    public readonly override string ToString() => $"int_mt {{  }}";
+    public readonly override string ToString() => $"double_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
 
     #endregion
 }
 
-#endregion // int_mt
+#endregion // double_mt32
 #region int_mt4
 
 [CpuOnly]
@@ -1390,24 +988,6 @@ public partial struct int_mt4
     {
         [MethodImpl(256 | 512)]
         get => 4;
-    }
-
-    public static int_mt4 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static int_mt4 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1);
-    }
-
-    public static int_mt4 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1 + 1));
     }
 
     #endregion
@@ -1491,36 +1071,6 @@ public partial struct int_mt4
     public static implicit operator int_mt4(int value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static int_mt4 operator-(int_mt4 a) => new(-a.vector);
-
-    [MethodImpl(256 | 512)]
-    public static int_mt4 operator+(int_mt4 a, int_mt4 b) => new(a.vector + b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static int_mt4 operator-(int_mt4 a, int_mt4 b) => new(a.vector - b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static int_mt4 operator*(int_mt4 a, int_mt4 b) => new(a.vector * b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static int_mt4 operator*(int_mt4 a, int b) => new(a.vector * b);
-
-    [MethodImpl(256 | 512)]
-    public static int_mt4 operator*(int a, int_mt4 b) => new(a * b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static int_mt4 operator/(int_mt4 a, int_mt4 b) => new(a.vector / b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static int_mt4 operator/(int_mt4 a, int b) => new(a.vector / b);
-
-    [MethodImpl(256 | 512)]
-    public static int_mt4 operator%(int_mt4 a, int_mt4 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static int_mt4 operator%(int_mt4 a, int b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
     public static int_mt4 operator~(int_mt4 a) => new(~a.vector);
 
     [MethodImpl(256 | 512)]
@@ -1555,24 +1105,6 @@ public partial struct int_mt8
     {
         [MethodImpl(256 | 512)]
         get => 8;
-    }
-
-    public static int_mt8 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static int_mt8 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1);
-    }
-
-    public static int_mt8 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1 + 1));
     }
 
     #endregion
@@ -1656,36 +1188,6 @@ public partial struct int_mt8
     public static implicit operator int_mt8(int value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static int_mt8 operator-(int_mt8 a) => new(-a.vector);
-
-    [MethodImpl(256 | 512)]
-    public static int_mt8 operator+(int_mt8 a, int_mt8 b) => new(a.vector + b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static int_mt8 operator-(int_mt8 a, int_mt8 b) => new(a.vector - b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static int_mt8 operator*(int_mt8 a, int_mt8 b) => new(a.vector * b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static int_mt8 operator*(int_mt8 a, int b) => new(a.vector * b);
-
-    [MethodImpl(256 | 512)]
-    public static int_mt8 operator*(int a, int_mt8 b) => new(a * b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static int_mt8 operator/(int_mt8 a, int_mt8 b) => new(a.vector / b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static int_mt8 operator/(int_mt8 a, int b) => new(a.vector / b);
-
-    [MethodImpl(256 | 512)]
-    public static int_mt8 operator%(int_mt8 a, int_mt8 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static int_mt8 operator%(int_mt8 a, int b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
     public static int_mt8 operator~(int_mt8 a) => new(~a.vector);
 
     [MethodImpl(256 | 512)]
@@ -1720,24 +1222,6 @@ public partial struct int_mt16
     {
         [MethodImpl(256 | 512)]
         get => 16;
-    }
-
-    public static int_mt16 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static int_mt16 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1);
-    }
-
-    public static int_mt16 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1 + 1));
     }
 
     #endregion
@@ -1821,36 +1305,6 @@ public partial struct int_mt16
     public static implicit operator int_mt16(int value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static int_mt16 operator-(int_mt16 a) => new(-a.vector);
-
-    [MethodImpl(256 | 512)]
-    public static int_mt16 operator+(int_mt16 a, int_mt16 b) => new(a.vector + b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static int_mt16 operator-(int_mt16 a, int_mt16 b) => new(a.vector - b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static int_mt16 operator*(int_mt16 a, int_mt16 b) => new(a.vector * b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static int_mt16 operator*(int_mt16 a, int b) => new(a.vector * b);
-
-    [MethodImpl(256 | 512)]
-    public static int_mt16 operator*(int a, int_mt16 b) => new(a * b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static int_mt16 operator/(int_mt16 a, int_mt16 b) => new(a.vector / b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static int_mt16 operator/(int_mt16 a, int b) => new(a.vector / b);
-
-    [MethodImpl(256 | 512)]
-    public static int_mt16 operator%(int_mt16 a, int_mt16 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static int_mt16 operator%(int_mt16 a, int b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
     public static int_mt16 operator~(int_mt16 a) => new(~a.vector);
 
     [MethodImpl(256 | 512)]
@@ -1874,52 +1328,66 @@ public partial struct int_mt16
 }
 
 #endregion // int_mt16
-#region uint_mt
+#region int_mt32
 
 [CpuOnly]
-public partial struct uint_mt
+public partial struct int_mt32
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => throw new NotSupportedException("Compile time only");
-    }
-
-    public static uint_mt Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static uint_mt One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1u);
-    }
-
-    public static uint_mt Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1u + 1u));
+        get => 32;
     }
 
     #endregion
 
+    #region Fields
+
+    public Vector512<int> vector0;
+    public Vector512<int> vector1;
+
+    #endregion // Fields
+
     #region Properties
 
-    public uint this[int index]
+    [MethodImpl(256 | 512), UnscopedRef]
+    public readonly ref readonly Vector512<int> VectorAtRo(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector0;
+            case 1: return ref vector1;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public ref Vector512<int> VectorAt(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector0;
+            case 1: return ref vector1;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    public int this[int index]
     {
         [MethodImpl(256 | 512)]
         readonly get
         {
-            throw new NotSupportedException("Compile time only");
+            var (q, r) = Math.DivRem(index, Vector512<int>.Count);
+            return VectorAtRo(q)[r];
         }
         [MethodImpl(256 | 512)]
         set
         {
-            throw new NotSupportedException("Compile time only");
+            var (q, r) = Math.DivRem(index, Vector512<int>.Count);
+            ref var vector = ref VectorAt(q);
+            vector = vector.WithElement(r, value);
         }
     }
 
@@ -1928,15 +1396,31 @@ public partial struct uint_mt
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public static uint_mt LoadUnsafe(ref readonly uint values) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt LoadUnsafe(params ReadOnlySpan<uint> values) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public uint_mt(uint value)
+    public int_mt32(Vector512<int> vector0, Vector512<int> vector1)
     {
-        throw new NotSupportedException("Compile time only");
+        this.vector0 = vector0;
+        this.vector1 = vector1;
+    }
+
+    [MethodImpl(256 | 512)]
+    private int_mt32(ref readonly int values)
+    {
+        ref var vs = ref Unsafe.AsRef(in values);
+        vector0 = Vector512.LoadUnsafe(in vs);
+        vector1 = Vector512.LoadUnsafe(in Unsafe.Add(ref vs, 32));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static int_mt32 LoadUnsafe(ref readonly int values) => new(in values);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt32 LoadUnsafe(params ReadOnlySpan<int> values) => new(in values.GetPinnableReference());
+
+    [MethodImpl(256 | 512)]
+    public int_mt32(int value)
+    {
+        vector0 = Vector512.Create(value);
+        vector1 = Vector512.Create(value);
     }
 
     #endregion // Ctor
@@ -1944,62 +1428,32 @@ public partial struct uint_mt
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator uint_mt(uint value) => new(value);
+    public static implicit operator int_mt32(int value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static uint_mt operator-(uint_mt a) => throw new NotSupportedException("Compile time only");
+    public static int_mt32 operator~(int_mt32 a) => new(~a.vector0, ~a.vector1);
 
     [MethodImpl(256 | 512)]
-    public static uint_mt operator+(uint_mt a, uint_mt b) => throw new NotSupportedException("Compile time only");
+    public static int_mt32 operator|(int_mt32 a, int_mt32 b) => new(a.vector0 | b.vector0, a.vector1 | b.vector1);
 
     [MethodImpl(256 | 512)]
-    public static uint_mt operator-(uint_mt a, uint_mt b) => throw new NotSupportedException("Compile time only");
+    public static int_mt32 operator&(int_mt32 a, int_mt32 b) => new(a.vector0 & b.vector0, a.vector1 & b.vector1);
 
     [MethodImpl(256 | 512)]
-    public static uint_mt operator*(uint_mt a, uint_mt b) => throw new NotSupportedException("Compile time only");
+    public static int_mt32 operator<<(int_mt32 a, int b) => new(a.vector0 << b, a.vector1 << b);
 
     [MethodImpl(256 | 512)]
-    public static uint_mt operator*(uint_mt a, uint b) => throw new NotSupportedException("Compile time only");
+    public static int_mt32 operator>>(int_mt32 a, int b) => new(a.vector0 >> b, a.vector1 >> b);
 
     [MethodImpl(256 | 512)]
-    public static uint_mt operator*(uint a, uint_mt b) => throw new NotSupportedException("Compile time only");
+    public static int_mt32 operator>>>(int_mt32 a, int b) => new(a.vector0 >>> b, a.vector1 >>> b);
 
-    [MethodImpl(256 | 512)]
-    public static uint_mt operator/(uint_mt a, uint_mt b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt operator/(uint_mt a, uint b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt operator%(uint_mt a, uint_mt b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt operator%(uint_mt a, uint b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt operator~(uint_mt a) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt operator|(uint_mt a, uint_mt b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt operator&(uint_mt a, uint_mt b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt operator<<(uint_mt a, int b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt operator>>(uint_mt a, int b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt operator>>>(uint_mt a, int b) => throw new NotSupportedException("Compile time only");
-
-    public readonly override string ToString() => $"uint_mt {{  }}";
+    public readonly override string ToString() => $"int_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
 
     #endregion
 }
 
-#endregion // uint_mt
+#endregion // int_mt32
 #region uint_mt4
 
 [CpuOnly]
@@ -2011,24 +1465,6 @@ public partial struct uint_mt4
     {
         [MethodImpl(256 | 512)]
         get => 4;
-    }
-
-    public static uint_mt4 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static uint_mt4 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1u);
-    }
-
-    public static uint_mt4 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1u + 1u));
     }
 
     #endregion
@@ -2112,36 +1548,6 @@ public partial struct uint_mt4
     public static implicit operator uint_mt4(uint value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static uint_mt4 operator-(uint_mt4 a) => new(-a.vector);
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt4 operator+(uint_mt4 a, uint_mt4 b) => new(a.vector + b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt4 operator-(uint_mt4 a, uint_mt4 b) => new(a.vector - b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt4 operator*(uint_mt4 a, uint_mt4 b) => new(a.vector * b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt4 operator*(uint_mt4 a, uint b) => new(a.vector * b);
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt4 operator*(uint a, uint_mt4 b) => new(a * b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt4 operator/(uint_mt4 a, uint_mt4 b) => new(a.vector / b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt4 operator/(uint_mt4 a, uint b) => new(a.vector / b);
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt4 operator%(uint_mt4 a, uint_mt4 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt4 operator%(uint_mt4 a, uint b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
     public static uint_mt4 operator~(uint_mt4 a) => new(~a.vector);
 
     [MethodImpl(256 | 512)]
@@ -2176,24 +1582,6 @@ public partial struct uint_mt8
     {
         [MethodImpl(256 | 512)]
         get => 8;
-    }
-
-    public static uint_mt8 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static uint_mt8 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1u);
-    }
-
-    public static uint_mt8 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1u + 1u));
     }
 
     #endregion
@@ -2277,36 +1665,6 @@ public partial struct uint_mt8
     public static implicit operator uint_mt8(uint value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static uint_mt8 operator-(uint_mt8 a) => new(-a.vector);
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt8 operator+(uint_mt8 a, uint_mt8 b) => new(a.vector + b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt8 operator-(uint_mt8 a, uint_mt8 b) => new(a.vector - b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt8 operator*(uint_mt8 a, uint_mt8 b) => new(a.vector * b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt8 operator*(uint_mt8 a, uint b) => new(a.vector * b);
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt8 operator*(uint a, uint_mt8 b) => new(a * b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt8 operator/(uint_mt8 a, uint_mt8 b) => new(a.vector / b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt8 operator/(uint_mt8 a, uint b) => new(a.vector / b);
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt8 operator%(uint_mt8 a, uint_mt8 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt8 operator%(uint_mt8 a, uint b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
     public static uint_mt8 operator~(uint_mt8 a) => new(~a.vector);
 
     [MethodImpl(256 | 512)]
@@ -2341,24 +1699,6 @@ public partial struct uint_mt16
     {
         [MethodImpl(256 | 512)]
         get => 16;
-    }
-
-    public static uint_mt16 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static uint_mt16 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1u);
-    }
-
-    public static uint_mt16 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1u + 1u));
     }
 
     #endregion
@@ -2442,36 +1782,6 @@ public partial struct uint_mt16
     public static implicit operator uint_mt16(uint value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static uint_mt16 operator-(uint_mt16 a) => new(-a.vector);
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt16 operator+(uint_mt16 a, uint_mt16 b) => new(a.vector + b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt16 operator-(uint_mt16 a, uint_mt16 b) => new(a.vector - b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt16 operator*(uint_mt16 a, uint_mt16 b) => new(a.vector * b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt16 operator*(uint_mt16 a, uint b) => new(a.vector * b);
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt16 operator*(uint a, uint_mt16 b) => new(a * b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt16 operator/(uint_mt16 a, uint_mt16 b) => new(a.vector / b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt16 operator/(uint_mt16 a, uint b) => new(a.vector / b);
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt16 operator%(uint_mt16 a, uint_mt16 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt16 operator%(uint_mt16 a, uint b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
     public static uint_mt16 operator~(uint_mt16 a) => new(~a.vector);
 
     [MethodImpl(256 | 512)]
@@ -2495,52 +1805,66 @@ public partial struct uint_mt16
 }
 
 #endregion // uint_mt16
-#region long_mt
+#region uint_mt32
 
 [CpuOnly]
-public partial struct long_mt
+public partial struct uint_mt32
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => throw new NotSupportedException("Compile time only");
-    }
-
-    public static long_mt Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static long_mt One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1L);
-    }
-
-    public static long_mt Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1L + 1L));
+        get => 32;
     }
 
     #endregion
 
+    #region Fields
+
+    public Vector512<uint> vector0;
+    public Vector512<uint> vector1;
+
+    #endregion // Fields
+
     #region Properties
 
-    public long this[int index]
+    [MethodImpl(256 | 512), UnscopedRef]
+    public readonly ref readonly Vector512<uint> VectorAtRo(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector0;
+            case 1: return ref vector1;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public ref Vector512<uint> VectorAt(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector0;
+            case 1: return ref vector1;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    public uint this[int index]
     {
         [MethodImpl(256 | 512)]
         readonly get
         {
-            throw new NotSupportedException("Compile time only");
+            var (q, r) = Math.DivRem(index, Vector512<uint>.Count);
+            return VectorAtRo(q)[r];
         }
         [MethodImpl(256 | 512)]
         set
         {
-            throw new NotSupportedException("Compile time only");
+            var (q, r) = Math.DivRem(index, Vector512<uint>.Count);
+            ref var vector = ref VectorAt(q);
+            vector = vector.WithElement(r, value);
         }
     }
 
@@ -2549,15 +1873,31 @@ public partial struct long_mt
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public static long_mt LoadUnsafe(ref readonly long values) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static long_mt LoadUnsafe(params ReadOnlySpan<long> values) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public long_mt(long value)
+    public uint_mt32(Vector512<uint> vector0, Vector512<uint> vector1)
     {
-        throw new NotSupportedException("Compile time only");
+        this.vector0 = vector0;
+        this.vector1 = vector1;
+    }
+
+    [MethodImpl(256 | 512)]
+    private uint_mt32(ref readonly uint values)
+    {
+        ref var vs = ref Unsafe.AsRef(in values);
+        vector0 = Vector512.LoadUnsafe(in vs);
+        vector1 = Vector512.LoadUnsafe(in Unsafe.Add(ref vs, 32));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt32 LoadUnsafe(ref readonly uint values) => new(in values);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt32 LoadUnsafe(params ReadOnlySpan<uint> values) => new(in values.GetPinnableReference());
+
+    [MethodImpl(256 | 512)]
+    public uint_mt32(uint value)
+    {
+        vector0 = Vector512.Create(value);
+        vector1 = Vector512.Create(value);
     }
 
     #endregion // Ctor
@@ -2565,62 +1905,32 @@ public partial struct long_mt
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator long_mt(long value) => new(value);
+    public static implicit operator uint_mt32(uint value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static long_mt operator-(long_mt a) => throw new NotSupportedException("Compile time only");
+    public static uint_mt32 operator~(uint_mt32 a) => new(~a.vector0, ~a.vector1);
 
     [MethodImpl(256 | 512)]
-    public static long_mt operator+(long_mt a, long_mt b) => throw new NotSupportedException("Compile time only");
+    public static uint_mt32 operator|(uint_mt32 a, uint_mt32 b) => new(a.vector0 | b.vector0, a.vector1 | b.vector1);
 
     [MethodImpl(256 | 512)]
-    public static long_mt operator-(long_mt a, long_mt b) => throw new NotSupportedException("Compile time only");
+    public static uint_mt32 operator&(uint_mt32 a, uint_mt32 b) => new(a.vector0 & b.vector0, a.vector1 & b.vector1);
 
     [MethodImpl(256 | 512)]
-    public static long_mt operator*(long_mt a, long_mt b) => throw new NotSupportedException("Compile time only");
+    public static uint_mt32 operator<<(uint_mt32 a, int b) => new(a.vector0 << b, a.vector1 << b);
 
     [MethodImpl(256 | 512)]
-    public static long_mt operator*(long_mt a, long b) => throw new NotSupportedException("Compile time only");
+    public static uint_mt32 operator>>(uint_mt32 a, int b) => new(a.vector0 >> b, a.vector1 >> b);
 
     [MethodImpl(256 | 512)]
-    public static long_mt operator*(long a, long_mt b) => throw new NotSupportedException("Compile time only");
+    public static uint_mt32 operator>>>(uint_mt32 a, int b) => new(a.vector0 >>> b, a.vector1 >>> b);
 
-    [MethodImpl(256 | 512)]
-    public static long_mt operator/(long_mt a, long_mt b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static long_mt operator/(long_mt a, long b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static long_mt operator%(long_mt a, long_mt b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static long_mt operator%(long_mt a, long b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static long_mt operator~(long_mt a) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static long_mt operator|(long_mt a, long_mt b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static long_mt operator&(long_mt a, long_mt b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static long_mt operator<<(long_mt a, int b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static long_mt operator>>(long_mt a, int b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static long_mt operator>>>(long_mt a, int b) => throw new NotSupportedException("Compile time only");
-
-    public readonly override string ToString() => $"long_mt {{  }}";
+    public readonly override string ToString() => $"uint_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
 
     #endregion
 }
 
-#endregion // long_mt
+#endregion // uint_mt32
 #region long_mt4
 
 [CpuOnly]
@@ -2632,24 +1942,6 @@ public partial struct long_mt4
     {
         [MethodImpl(256 | 512)]
         get => 4;
-    }
-
-    public static long_mt4 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static long_mt4 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1L);
-    }
-
-    public static long_mt4 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1L + 1L));
     }
 
     #endregion
@@ -2733,36 +2025,6 @@ public partial struct long_mt4
     public static implicit operator long_mt4(long value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static long_mt4 operator-(long_mt4 a) => new(-a.vector);
-
-    [MethodImpl(256 | 512)]
-    public static long_mt4 operator+(long_mt4 a, long_mt4 b) => new(a.vector + b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static long_mt4 operator-(long_mt4 a, long_mt4 b) => new(a.vector - b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static long_mt4 operator*(long_mt4 a, long_mt4 b) => new(a.vector * b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static long_mt4 operator*(long_mt4 a, long b) => new(a.vector * b);
-
-    [MethodImpl(256 | 512)]
-    public static long_mt4 operator*(long a, long_mt4 b) => new(a * b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static long_mt4 operator/(long_mt4 a, long_mt4 b) => new(a.vector / b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static long_mt4 operator/(long_mt4 a, long b) => new(a.vector / b);
-
-    [MethodImpl(256 | 512)]
-    public static long_mt4 operator%(long_mt4 a, long_mt4 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static long_mt4 operator%(long_mt4 a, long b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
     public static long_mt4 operator~(long_mt4 a) => new(~a.vector);
 
     [MethodImpl(256 | 512)]
@@ -2797,24 +2059,6 @@ public partial struct long_mt8
     {
         [MethodImpl(256 | 512)]
         get => 8;
-    }
-
-    public static long_mt8 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static long_mt8 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1L);
-    }
-
-    public static long_mt8 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1L + 1L));
     }
 
     #endregion
@@ -2898,36 +2142,6 @@ public partial struct long_mt8
     public static implicit operator long_mt8(long value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static long_mt8 operator-(long_mt8 a) => new(-a.vector);
-
-    [MethodImpl(256 | 512)]
-    public static long_mt8 operator+(long_mt8 a, long_mt8 b) => new(a.vector + b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static long_mt8 operator-(long_mt8 a, long_mt8 b) => new(a.vector - b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static long_mt8 operator*(long_mt8 a, long_mt8 b) => new(a.vector * b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static long_mt8 operator*(long_mt8 a, long b) => new(a.vector * b);
-
-    [MethodImpl(256 | 512)]
-    public static long_mt8 operator*(long a, long_mt8 b) => new(a * b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static long_mt8 operator/(long_mt8 a, long_mt8 b) => new(a.vector / b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static long_mt8 operator/(long_mt8 a, long b) => new(a.vector / b);
-
-    [MethodImpl(256 | 512)]
-    public static long_mt8 operator%(long_mt8 a, long_mt8 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static long_mt8 operator%(long_mt8 a, long b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
     public static long_mt8 operator~(long_mt8 a) => new(~a.vector);
 
     [MethodImpl(256 | 512)]
@@ -2962,24 +2176,6 @@ public partial struct long_mt16
     {
         [MethodImpl(256 | 512)]
         get => 16;
-    }
-
-    public static long_mt16 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static long_mt16 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1L);
-    }
-
-    public static long_mt16 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1L + 1L));
     }
 
     #endregion
@@ -3072,36 +2268,6 @@ public partial struct long_mt16
     public static implicit operator long_mt16(long value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static long_mt16 operator-(long_mt16 a) => new(-a.vector0, -a.vector1);
-
-    [MethodImpl(256 | 512)]
-    public static long_mt16 operator+(long_mt16 a, long_mt16 b) => new(a.vector0 + b.vector0, a.vector1 + b.vector1);
-
-    [MethodImpl(256 | 512)]
-    public static long_mt16 operator-(long_mt16 a, long_mt16 b) => new(a.vector0 - b.vector0, a.vector1 - b.vector1);
-
-    [MethodImpl(256 | 512)]
-    public static long_mt16 operator*(long_mt16 a, long_mt16 b) => new(a.vector0 * b.vector0, a.vector1 * b.vector1);
-
-    [MethodImpl(256 | 512)]
-    public static long_mt16 operator*(long_mt16 a, long b) => new(a.vector0 * b, a.vector1 * b);
-
-    [MethodImpl(256 | 512)]
-    public static long_mt16 operator*(long a, long_mt16 b) => new(a * b.vector0, a * b.vector1);
-
-    [MethodImpl(256 | 512)]
-    public static long_mt16 operator/(long_mt16 a, long_mt16 b) => new(a.vector0 / b.vector0, a.vector1 / b.vector1);
-
-    [MethodImpl(256 | 512)]
-    public static long_mt16 operator/(long_mt16 a, long b) => new(a.vector0 / b, a.vector1 / b);
-
-    [MethodImpl(256 | 512)]
-    public static long_mt16 operator%(long_mt16 a, long_mt16 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static long_mt16 operator%(long_mt16 a, long b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
     public static long_mt16 operator~(long_mt16 a) => new(~a.vector0, ~a.vector1);
 
     [MethodImpl(256 | 512)]
@@ -3125,52 +2291,72 @@ public partial struct long_mt16
 }
 
 #endregion // long_mt16
-#region ulong_mt
+#region long_mt32
 
 [CpuOnly]
-public partial struct ulong_mt
+public partial struct long_mt32
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => throw new NotSupportedException("Compile time only");
-    }
-
-    public static ulong_mt Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static ulong_mt One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1UL);
-    }
-
-    public static ulong_mt Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1UL + 1UL));
+        get => 32;
     }
 
     #endregion
 
+    #region Fields
+
+    public Vector512<long> vector0;
+    public Vector512<long> vector1;
+    public Vector512<long> vector2;
+    public Vector512<long> vector3;
+
+    #endregion // Fields
+
     #region Properties
 
-    public ulong this[int index]
+    [MethodImpl(256 | 512), UnscopedRef]
+    public readonly ref readonly Vector512<long> VectorAtRo(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector0;
+            case 1: return ref vector1;
+            case 2: return ref vector2;
+            case 3: return ref vector3;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public ref Vector512<long> VectorAt(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector0;
+            case 1: return ref vector1;
+            case 2: return ref vector2;
+            case 3: return ref vector3;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    public long this[int index]
     {
         [MethodImpl(256 | 512)]
         readonly get
         {
-            throw new NotSupportedException("Compile time only");
+            var (q, r) = Math.DivRem(index, Vector512<long>.Count);
+            return VectorAtRo(q)[r];
         }
         [MethodImpl(256 | 512)]
         set
         {
-            throw new NotSupportedException("Compile time only");
+            var (q, r) = Math.DivRem(index, Vector512<long>.Count);
+            ref var vector = ref VectorAt(q);
+            vector = vector.WithElement(r, value);
         }
     }
 
@@ -3179,15 +2365,37 @@ public partial struct ulong_mt
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public static ulong_mt LoadUnsafe(ref readonly ulong values) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt LoadUnsafe(params ReadOnlySpan<ulong> values) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public ulong_mt(ulong value)
+    public long_mt32(Vector512<long> vector0, Vector512<long> vector1, Vector512<long> vector2, Vector512<long> vector3)
     {
-        throw new NotSupportedException("Compile time only");
+        this.vector0 = vector0;
+        this.vector1 = vector1;
+        this.vector2 = vector2;
+        this.vector3 = vector3;
+    }
+
+    [MethodImpl(256 | 512)]
+    private long_mt32(ref readonly long values)
+    {
+        ref var vs = ref Unsafe.AsRef(in values);
+        vector0 = Vector512.LoadUnsafe(in vs);
+        vector1 = Vector512.LoadUnsafe(in Unsafe.Add(ref vs, 32));
+        vector2 = Vector512.LoadUnsafe(in Unsafe.Add(ref vs, 64));
+        vector3 = Vector512.LoadUnsafe(in Unsafe.Add(ref vs, 96));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static long_mt32 LoadUnsafe(ref readonly long values) => new(in values);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt32 LoadUnsafe(params ReadOnlySpan<long> values) => new(in values.GetPinnableReference());
+
+    [MethodImpl(256 | 512)]
+    public long_mt32(long value)
+    {
+        vector0 = Vector512.Create(value);
+        vector1 = Vector512.Create(value);
+        vector2 = Vector512.Create(value);
+        vector3 = Vector512.Create(value);
     }
 
     #endregion // Ctor
@@ -3195,62 +2403,32 @@ public partial struct ulong_mt
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator ulong_mt(ulong value) => new(value);
+    public static implicit operator long_mt32(long value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static ulong_mt operator-(ulong_mt a) => throw new NotSupportedException("Compile time only");
+    public static long_mt32 operator~(long_mt32 a) => new(~a.vector0, ~a.vector1, ~a.vector2, ~a.vector3);
 
     [MethodImpl(256 | 512)]
-    public static ulong_mt operator+(ulong_mt a, ulong_mt b) => throw new NotSupportedException("Compile time only");
+    public static long_mt32 operator|(long_mt32 a, long_mt32 b) => new(a.vector0 | b.vector0, a.vector1 | b.vector1, a.vector2 | b.vector2, a.vector3 | b.vector3);
 
     [MethodImpl(256 | 512)]
-    public static ulong_mt operator-(ulong_mt a, ulong_mt b) => throw new NotSupportedException("Compile time only");
+    public static long_mt32 operator&(long_mt32 a, long_mt32 b) => new(a.vector0 & b.vector0, a.vector1 & b.vector1, a.vector2 & b.vector2, a.vector3 & b.vector3);
 
     [MethodImpl(256 | 512)]
-    public static ulong_mt operator*(ulong_mt a, ulong_mt b) => throw new NotSupportedException("Compile time only");
+    public static long_mt32 operator<<(long_mt32 a, int b) => new(a.vector0 << b, a.vector1 << b, a.vector2 << b, a.vector3 << b);
 
     [MethodImpl(256 | 512)]
-    public static ulong_mt operator*(ulong_mt a, ulong b) => throw new NotSupportedException("Compile time only");
+    public static long_mt32 operator>>(long_mt32 a, int b) => new(a.vector0 >> b, a.vector1 >> b, a.vector2 >> b, a.vector3 >> b);
 
     [MethodImpl(256 | 512)]
-    public static ulong_mt operator*(ulong a, ulong_mt b) => throw new NotSupportedException("Compile time only");
+    public static long_mt32 operator>>>(long_mt32 a, int b) => new(a.vector0 >>> b, a.vector1 >>> b, a.vector2 >>> b, a.vector3 >>> b);
 
-    [MethodImpl(256 | 512)]
-    public static ulong_mt operator/(ulong_mt a, ulong_mt b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt operator/(ulong_mt a, ulong b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt operator%(ulong_mt a, ulong_mt b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt operator%(ulong_mt a, ulong b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt operator~(ulong_mt a) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt operator|(ulong_mt a, ulong_mt b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt operator&(ulong_mt a, ulong_mt b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt operator<<(ulong_mt a, int b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt operator>>(ulong_mt a, int b) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt operator>>>(ulong_mt a, int b) => throw new NotSupportedException("Compile time only");
-
-    public readonly override string ToString() => $"ulong_mt {{  }}";
+    public readonly override string ToString() => $"long_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
 
     #endregion
 }
 
-#endregion // ulong_mt
+#endregion // long_mt32
 #region ulong_mt4
 
 [CpuOnly]
@@ -3262,24 +2440,6 @@ public partial struct ulong_mt4
     {
         [MethodImpl(256 | 512)]
         get => 4;
-    }
-
-    public static ulong_mt4 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static ulong_mt4 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1UL);
-    }
-
-    public static ulong_mt4 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1UL + 1UL));
     }
 
     #endregion
@@ -3363,36 +2523,6 @@ public partial struct ulong_mt4
     public static implicit operator ulong_mt4(ulong value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static ulong_mt4 operator-(ulong_mt4 a) => new(-a.vector);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt4 operator+(ulong_mt4 a, ulong_mt4 b) => new(a.vector + b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt4 operator-(ulong_mt4 a, ulong_mt4 b) => new(a.vector - b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt4 operator*(ulong_mt4 a, ulong_mt4 b) => new(a.vector * b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt4 operator*(ulong_mt4 a, ulong b) => new(a.vector * b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt4 operator*(ulong a, ulong_mt4 b) => new(a * b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt4 operator/(ulong_mt4 a, ulong_mt4 b) => new(a.vector / b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt4 operator/(ulong_mt4 a, ulong b) => new(a.vector / b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt4 operator%(ulong_mt4 a, ulong_mt4 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt4 operator%(ulong_mt4 a, ulong b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
     public static ulong_mt4 operator~(ulong_mt4 a) => new(~a.vector);
 
     [MethodImpl(256 | 512)]
@@ -3427,24 +2557,6 @@ public partial struct ulong_mt8
     {
         [MethodImpl(256 | 512)]
         get => 8;
-    }
-
-    public static ulong_mt8 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static ulong_mt8 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1UL);
-    }
-
-    public static ulong_mt8 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1UL + 1UL));
     }
 
     #endregion
@@ -3528,36 +2640,6 @@ public partial struct ulong_mt8
     public static implicit operator ulong_mt8(ulong value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static ulong_mt8 operator-(ulong_mt8 a) => new(-a.vector);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt8 operator+(ulong_mt8 a, ulong_mt8 b) => new(a.vector + b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt8 operator-(ulong_mt8 a, ulong_mt8 b) => new(a.vector - b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt8 operator*(ulong_mt8 a, ulong_mt8 b) => new(a.vector * b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt8 operator*(ulong_mt8 a, ulong b) => new(a.vector * b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt8 operator*(ulong a, ulong_mt8 b) => new(a * b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt8 operator/(ulong_mt8 a, ulong_mt8 b) => new(a.vector / b.vector);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt8 operator/(ulong_mt8 a, ulong b) => new(a.vector / b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt8 operator%(ulong_mt8 a, ulong_mt8 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt8 operator%(ulong_mt8 a, ulong b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
     public static ulong_mt8 operator~(ulong_mt8 a) => new(~a.vector);
 
     [MethodImpl(256 | 512)]
@@ -3592,24 +2674,6 @@ public partial struct ulong_mt16
     {
         [MethodImpl(256 | 512)]
         get => 16;
-    }
-
-    public static ulong_mt16 Zero
-    {
-        [MethodImpl(256 | 512)]
-        get => default;
-    }
-
-    public static ulong_mt16 One
-    {
-        [MethodImpl(256 | 512)]
-        get => new(1UL);
-    }
-
-    public static ulong_mt16 Two
-    {
-        [MethodImpl(256 | 512)]
-        get => new((1UL + 1UL));
     }
 
     #endregion
@@ -3702,36 +2766,6 @@ public partial struct ulong_mt16
     public static implicit operator ulong_mt16(ulong value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static ulong_mt16 operator-(ulong_mt16 a) => new(-a.vector0, -a.vector1);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt16 operator+(ulong_mt16 a, ulong_mt16 b) => new(a.vector0 + b.vector0, a.vector1 + b.vector1);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt16 operator-(ulong_mt16 a, ulong_mt16 b) => new(a.vector0 - b.vector0, a.vector1 - b.vector1);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt16 operator*(ulong_mt16 a, ulong_mt16 b) => new(a.vector0 * b.vector0, a.vector1 * b.vector1);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt16 operator*(ulong_mt16 a, ulong b) => new(a.vector0 * b, a.vector1 * b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt16 operator*(ulong a, ulong_mt16 b) => new(a * b.vector0, a * b.vector1);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt16 operator/(ulong_mt16 a, ulong_mt16 b) => new(a.vector0 / b.vector0, a.vector1 / b.vector1);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt16 operator/(ulong_mt16 a, ulong b) => new(a.vector0 / b, a.vector1 / b);
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt16 operator%(ulong_mt16 a, ulong_mt16 b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt16 operator%(ulong_mt16 a, ulong b) => a - (a / b) * b;
-
-    [MethodImpl(256 | 512)]
     public static ulong_mt16 operator~(ulong_mt16 a) => new(~a.vector0, ~a.vector1);
 
     [MethodImpl(256 | 512)]
@@ -3755,34 +2789,72 @@ public partial struct ulong_mt16
 }
 
 #endregion // ulong_mt16
-#region b32_mt
+#region ulong_mt32
 
 [CpuOnly]
-public partial struct b32_mt
+public partial struct ulong_mt32
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => throw new NotSupportedException("Compile time only");
+        get => 32;
     }
 
     #endregion
 
+    #region Fields
+
+    public Vector512<ulong> vector0;
+    public Vector512<ulong> vector1;
+    public Vector512<ulong> vector2;
+    public Vector512<ulong> vector3;
+
+    #endregion // Fields
+
     #region Properties
 
-    public b32 this[int index]
+    [MethodImpl(256 | 512), UnscopedRef]
+    public readonly ref readonly Vector512<ulong> VectorAtRo(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector0;
+            case 1: return ref vector1;
+            case 2: return ref vector2;
+            case 3: return ref vector3;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public ref Vector512<ulong> VectorAt(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector0;
+            case 1: return ref vector1;
+            case 2: return ref vector2;
+            case 3: return ref vector3;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    public ulong this[int index]
     {
         [MethodImpl(256 | 512)]
         readonly get
         {
-            throw new NotSupportedException("Compile time only");
+            var (q, r) = Math.DivRem(index, Vector512<ulong>.Count);
+            return VectorAtRo(q)[r];
         }
         [MethodImpl(256 | 512)]
         set
         {
-            throw new NotSupportedException("Compile time only");
+            var (q, r) = Math.DivRem(index, Vector512<ulong>.Count);
+            ref var vector = ref VectorAt(q);
+            vector = vector.WithElement(r, value);
         }
     }
 
@@ -3791,15 +2863,37 @@ public partial struct b32_mt
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public static b32_mt LoadUnsafe(ref readonly b32 values) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static b32_mt LoadUnsafe(params ReadOnlySpan<b32> values) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public b32_mt(b32 value)
+    public ulong_mt32(Vector512<ulong> vector0, Vector512<ulong> vector1, Vector512<ulong> vector2, Vector512<ulong> vector3)
     {
-        throw new NotSupportedException("Compile time only");
+        this.vector0 = vector0;
+        this.vector1 = vector1;
+        this.vector2 = vector2;
+        this.vector3 = vector3;
+    }
+
+    [MethodImpl(256 | 512)]
+    private ulong_mt32(ref readonly ulong values)
+    {
+        ref var vs = ref Unsafe.AsRef(in values);
+        vector0 = Vector512.LoadUnsafe(in vs);
+        vector1 = Vector512.LoadUnsafe(in Unsafe.Add(ref vs, 32));
+        vector2 = Vector512.LoadUnsafe(in Unsafe.Add(ref vs, 64));
+        vector3 = Vector512.LoadUnsafe(in Unsafe.Add(ref vs, 96));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt32 LoadUnsafe(ref readonly ulong values) => new(in values);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt32 LoadUnsafe(params ReadOnlySpan<ulong> values) => new(in values.GetPinnableReference());
+
+    [MethodImpl(256 | 512)]
+    public ulong_mt32(ulong value)
+    {
+        vector0 = Vector512.Create(value);
+        vector1 = Vector512.Create(value);
+        vector2 = Vector512.Create(value);
+        vector3 = Vector512.Create(value);
     }
 
     #endregion // Ctor
@@ -3807,32 +2901,32 @@ public partial struct b32_mt
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator b32_mt(b32 value) => new(value);
+    public static implicit operator ulong_mt32(ulong value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static b32_mt operator~(b32_mt a) => throw new NotSupportedException("Compile time only");
+    public static ulong_mt32 operator~(ulong_mt32 a) => new(~a.vector0, ~a.vector1, ~a.vector2, ~a.vector3);
 
     [MethodImpl(256 | 512)]
-    public static b32_mt operator|(b32_mt a, b32_mt b) => throw new NotSupportedException("Compile time only");
+    public static ulong_mt32 operator|(ulong_mt32 a, ulong_mt32 b) => new(a.vector0 | b.vector0, a.vector1 | b.vector1, a.vector2 | b.vector2, a.vector3 | b.vector3);
 
     [MethodImpl(256 | 512)]
-    public static b32_mt operator&(b32_mt a, b32_mt b) => throw new NotSupportedException("Compile time only");
+    public static ulong_mt32 operator&(ulong_mt32 a, ulong_mt32 b) => new(a.vector0 & b.vector0, a.vector1 & b.vector1, a.vector2 & b.vector2, a.vector3 & b.vector3);
 
     [MethodImpl(256 | 512)]
-    public static b32_mt operator<<(b32_mt a, int b) => throw new NotSupportedException("Compile time only");
+    public static ulong_mt32 operator<<(ulong_mt32 a, int b) => new(a.vector0 << b, a.vector1 << b, a.vector2 << b, a.vector3 << b);
 
     [MethodImpl(256 | 512)]
-    public static b32_mt operator>>(b32_mt a, int b) => throw new NotSupportedException("Compile time only");
+    public static ulong_mt32 operator>>(ulong_mt32 a, int b) => new(a.vector0 >> b, a.vector1 >> b, a.vector2 >> b, a.vector3 >> b);
 
     [MethodImpl(256 | 512)]
-    public static b32_mt operator>>>(b32_mt a, int b) => throw new NotSupportedException("Compile time only");
+    public static ulong_mt32 operator>>>(ulong_mt32 a, int b) => new(a.vector0 >>> b, a.vector1 >>> b, a.vector2 >>> b, a.vector3 >>> b);
 
-    public readonly override string ToString() => $"b32_mt {{  }}";
+    public readonly override string ToString() => $"ulong_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
 
     #endregion
 }
 
-#endregion // b32_mt
+#endregion // ulong_mt32
 #region b32_mt4
 
 [CpuOnly]
@@ -4184,34 +3278,66 @@ public partial struct b32_mt16
 }
 
 #endregion // b32_mt16
-#region b64_mt
+#region b32_mt32
 
 [CpuOnly]
-public partial struct b64_mt
+public partial struct b32_mt32
 {
     #region Constants
 
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => throw new NotSupportedException("Compile time only");
+        get => 32;
     }
 
     #endregion
 
+    #region Fields
+
+    public Vector512<uint> vector0;
+    public Vector512<uint> vector1;
+
+    #endregion // Fields
+
     #region Properties
 
-    public b64 this[int index]
+    [MethodImpl(256 | 512), UnscopedRef]
+    public readonly ref readonly Vector512<uint> VectorAtRo(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector0;
+            case 1: return ref vector1;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public ref Vector512<uint> VectorAt(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector0;
+            case 1: return ref vector1;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    public b32 this[int index]
     {
         [MethodImpl(256 | 512)]
         readonly get
         {
-            throw new NotSupportedException("Compile time only");
+            var (q, r) = Math.DivRem(index, Vector512<uint>.Count);
+            return VectorAtRo(q)[r];
         }
         [MethodImpl(256 | 512)]
         set
         {
-            throw new NotSupportedException("Compile time only");
+            var (q, r) = Math.DivRem(index, Vector512<uint>.Count);
+            ref var vector = ref VectorAt(q);
+            vector = vector.WithElement(r, value);
         }
     }
 
@@ -4220,15 +3346,31 @@ public partial struct b64_mt
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public static b64_mt LoadUnsafe(ref readonly b64 values) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public static b64_mt LoadUnsafe(params ReadOnlySpan<b64> values) => throw new NotSupportedException("Compile time only");
-
-    [MethodImpl(256 | 512)]
-    public b64_mt(b64 value)
+    public b32_mt32(Vector512<uint> vector0, Vector512<uint> vector1)
     {
-        throw new NotSupportedException("Compile time only");
+        this.vector0 = vector0;
+        this.vector1 = vector1;
+    }
+
+    [MethodImpl(256 | 512)]
+    private b32_mt32(ref readonly b32 values)
+    {
+        ref var vs = ref Unsafe.AsRef(in values);
+        vector0 = Vector512.LoadUnsafe(in Unsafe.As<b32, uint>(ref vs));
+        vector1 = Vector512.LoadUnsafe(in Unsafe.As<b32, uint>(ref Unsafe.Add(ref vs, 32)));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32_mt32 LoadUnsafe(ref readonly b32 values) => new(in values);
+
+    [MethodImpl(256 | 512)]
+    public static b32_mt32 LoadUnsafe(params ReadOnlySpan<b32> values) => new(in values.GetPinnableReference());
+
+    [MethodImpl(256 | 512)]
+    public b32_mt32(b32 value)
+    {
+        vector0 = Vector512.Create((uint)value);
+        vector1 = Vector512.Create((uint)value);
     }
 
     #endregion // Ctor
@@ -4236,32 +3378,32 @@ public partial struct b64_mt
     #region Operators
 
     [MethodImpl(256 | 512)]
-    public static implicit operator b64_mt(b64 value) => new(value);
+    public static implicit operator b32_mt32(b32 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static b64_mt operator~(b64_mt a) => throw new NotSupportedException("Compile time only");
+    public static b32_mt32 operator~(b32_mt32 a) => new(~a.vector0, ~a.vector1);
 
     [MethodImpl(256 | 512)]
-    public static b64_mt operator|(b64_mt a, b64_mt b) => throw new NotSupportedException("Compile time only");
+    public static b32_mt32 operator|(b32_mt32 a, b32_mt32 b) => new(a.vector0 | b.vector0, a.vector1 | b.vector1);
 
     [MethodImpl(256 | 512)]
-    public static b64_mt operator&(b64_mt a, b64_mt b) => throw new NotSupportedException("Compile time only");
+    public static b32_mt32 operator&(b32_mt32 a, b32_mt32 b) => new(a.vector0 & b.vector0, a.vector1 & b.vector1);
 
     [MethodImpl(256 | 512)]
-    public static b64_mt operator<<(b64_mt a, int b) => throw new NotSupportedException("Compile time only");
+    public static b32_mt32 operator<<(b32_mt32 a, int b) => new(a.vector0 << b, a.vector1 << b);
 
     [MethodImpl(256 | 512)]
-    public static b64_mt operator>>(b64_mt a, int b) => throw new NotSupportedException("Compile time only");
+    public static b32_mt32 operator>>(b32_mt32 a, int b) => new(a.vector0 >> b, a.vector1 >> b);
 
     [MethodImpl(256 | 512)]
-    public static b64_mt operator>>>(b64_mt a, int b) => throw new NotSupportedException("Compile time only");
+    public static b32_mt32 operator>>>(b32_mt32 a, int b) => new(a.vector0 >>> b, a.vector1 >>> b);
 
-    public readonly override string ToString() => $"b64_mt {{  }}";
+    public readonly override string ToString() => $"b32_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
 
     #endregion
 }
 
-#endregion // b64_mt
+#endregion // b32_mt32
 #region b64_mt4
 
 [CpuOnly]
@@ -4622,3 +3764,141 @@ public partial struct b64_mt16
 }
 
 #endregion // b64_mt16
+#region b64_mt32
+
+[CpuOnly]
+public partial struct b64_mt32
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => 32;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public Vector512<ulong> vector0;
+    public Vector512<ulong> vector1;
+    public Vector512<ulong> vector2;
+    public Vector512<ulong> vector3;
+
+    #endregion // Fields
+
+    #region Properties
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public readonly ref readonly Vector512<ulong> VectorAtRo(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector0;
+            case 1: return ref vector1;
+            case 2: return ref vector2;
+            case 3: return ref vector3;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public ref Vector512<ulong> VectorAt(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector0;
+            case 1: return ref vector1;
+            case 2: return ref vector2;
+            case 3: return ref vector3;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    public b64 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get
+        {
+            var (q, r) = Math.DivRem(index, Vector512<ulong>.Count);
+            return VectorAtRo(q)[r];
+        }
+        [MethodImpl(256 | 512)]
+        set
+        {
+            var (q, r) = Math.DivRem(index, Vector512<ulong>.Count);
+            ref var vector = ref VectorAt(q);
+            vector = vector.WithElement(r, value);
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public b64_mt32(Vector512<ulong> vector0, Vector512<ulong> vector1, Vector512<ulong> vector2, Vector512<ulong> vector3)
+    {
+        this.vector0 = vector0;
+        this.vector1 = vector1;
+        this.vector2 = vector2;
+        this.vector3 = vector3;
+    }
+
+    [MethodImpl(256 | 512)]
+    private b64_mt32(ref readonly b64 values)
+    {
+        ref var vs = ref Unsafe.AsRef(in values);
+        vector0 = Vector512.LoadUnsafe(in Unsafe.As<b64, ulong>(ref vs));
+        vector1 = Vector512.LoadUnsafe(in Unsafe.As<b64, ulong>(ref Unsafe.Add(ref vs, 32)));
+        vector2 = Vector512.LoadUnsafe(in Unsafe.As<b64, ulong>(ref Unsafe.Add(ref vs, 64)));
+        vector3 = Vector512.LoadUnsafe(in Unsafe.As<b64, ulong>(ref Unsafe.Add(ref vs, 96)));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt32 LoadUnsafe(ref readonly b64 values) => new(in values);
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt32 LoadUnsafe(params ReadOnlySpan<b64> values) => new(in values.GetPinnableReference());
+
+    [MethodImpl(256 | 512)]
+    public b64_mt32(b64 value)
+    {
+        vector0 = Vector512.Create((ulong)value);
+        vector1 = Vector512.Create((ulong)value);
+        vector2 = Vector512.Create((ulong)value);
+        vector3 = Vector512.Create((ulong)value);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64_mt32(b64 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt32 operator~(b64_mt32 a) => new(~a.vector0, ~a.vector1, ~a.vector2, ~a.vector3);
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt32 operator|(b64_mt32 a, b64_mt32 b) => new(a.vector0 | b.vector0, a.vector1 | b.vector1, a.vector2 | b.vector2, a.vector3 | b.vector3);
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt32 operator&(b64_mt32 a, b64_mt32 b) => new(a.vector0 & b.vector0, a.vector1 & b.vector1, a.vector2 & b.vector2, a.vector3 & b.vector3);
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt32 operator<<(b64_mt32 a, int b) => new(a.vector0 << b, a.vector1 << b, a.vector2 << b, a.vector3 << b);
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt32 operator>>(b64_mt32 a, int b) => new(a.vector0 >> b, a.vector1 >> b, a.vector2 >> b, a.vector3 >> b);
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt32 operator>>>(b64_mt32 a, int b) => new(a.vector0 >>> b, a.vector1 >>> b, a.vector2 >>> b, a.vector3 >>> b);
+
+    public readonly override string ToString() => $"b64_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+
+    #endregion
+}
+
+#endregion // b64_mt32

@@ -1221,6 +1221,28 @@ public static partial class simd
         return Vector256.AndNot(a, c);
     }
 
+    [MethodImpl(256 | 512)]
+    public static Vector512<T> SignInt<T>(Vector512<T> v)
+    {
+        var pos = Vector512.GreaterThan(v, default) & Vector512<T>.One;
+        var neg = Vector512.LessThan(v, default) & -Vector512<T>.One;
+        return pos | neg;
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector512<T> SignUInt<T>(Vector512<T> v)
+    {
+        return Vector512.GreaterThan(v, default) & Vector512<T>.One;
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector512<T> SignFloat<T>(Vector512<T> v)
+    {
+        var a = v & -Vector512<T>.Zero | Vector512<T>.One;
+        var c = Vector512.Equals(v, default);
+        return Vector512.AndNot(a, c);
+    }
+
     #endregion
 
     #region Fma

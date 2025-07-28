@@ -34,6 +34,10 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\SourceGenerator\SourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false"/>
+    </ItemGroup>
+
+    <ItemGroup>
         <TextTemplate Include="**\*.tt"/>
     </ItemGroup>
 
