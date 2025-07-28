@@ -172,7 +172,7 @@ public static partial class math
             {
 #>
         if (Vector<#= bitSize #>.IsHardwareAccelerated)
-            return new(a.vector - Vector<#= bitSize #>.Floor(a.vector));
+            return a - floor(a);
 <#
             }
 #>
@@ -180,18 +180,21 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> modf([This] <#= typeName #> a, out <#= typeName #> i)
+    public static <#= typeName #> modf([This] <#= typeName #> d, out <#= typeName #> i)
     {
 <#
             if (typ.simd)
             {
 #>
         if (Vector<#= bitSize #>.IsHardwareAccelerated)
-            return new(simd.ModF(a.vector, out i.vector));
+        {
+            i = trunc(d);
+            return d - i;
+        }
 <#
             }
 #>
-        <#= typeName #> r = new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.modf(out var i{n})")) #>);
+        <#= typeName #> r = new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"d.{Typ.xyzw[n]}.modf(out var i{n})")) #>);
         i = new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"i{n}")) #>);
         return r;
     }
@@ -204,7 +207,7 @@ public static partial class math
             {
 #>
         if (Vector<#= bitSize #>.IsHardwareAccelerated)
-            return <#= typeName #>.One / a;
+            return new(simd.Rcp(a.vector));
 <#
             }
 #>
@@ -230,7 +233,7 @@ public static partial class math
     public static <#= typeName #> smoothstep(<#= typeName #> min, <#= typeName #> max, [This] <#= typeName #> a)
     {
         var t = saturate((a - min) / (max - min));
-        return t * t * (3.0<#= typ.suffix #> - (2.0<#= typ.suffix #> * t));
+        return t * t * fnma(2.0<#= typ.suffix #>, t, 3.0<#= typ.suffix #>); // (3.0<#= typ.suffix #> - (2.0<#= typ.suffix #> * t))
     }
 
     [MethodImpl(256 | 512)]
@@ -261,8 +264,39 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static <#= typeName #> wrap([This] <#= typeName #> x, <#= typeName #> min, <#= typeName #> max)
     {
-        var range = max - min;
-        return min + ((x - min) % range + range) % range;
+<#
+            if (typ.simd)
+            {
+#>
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+        {
+            var add = select(x >= <#= typeName #>.Zero, min, max);
+            var off = x % (max - min);
+            return add + off;
+        }
+<#
+            }
+#>
+        return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"x.{Typ.xyzw[n]}.wrap(min.{Typ.xyzw[n]}, max.{Typ.xyzw[n]})")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> wrap([This] <#= typeName #> x, <#= typ.compType #> min, <#= typ.compType #> max)
+    {
+<#
+            if (typ.simd)
+            {
+#>
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+        {
+            var add = select(x >= <#= typeName #>.Zero, min, max);
+            var off = x % (max - min);
+            return add + off;
+        }
+<#
+            }
+#>
+        return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"x.{Typ.xyzw[n]}.wrap(min, max)")) #>);
     }
 }
 

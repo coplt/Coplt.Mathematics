@@ -111,16 +111,19 @@ public static partial class math
     public static float2 frac([This] float2 a)
     {
         if (Vector64.IsHardwareAccelerated)
-            return new(a.vector - Vector64.Floor(a.vector));
+            return a - floor(a);
         return new(a.x.frac(), a.y.frac());
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 modf([This] float2 a, out float2 i)
+    public static float2 modf([This] float2 d, out float2 i)
     {
         if (Vector64.IsHardwareAccelerated)
-            return new(simd.ModF(a.vector, out i.vector));
-        float2 r = new(a.x.modf(out var i0), a.y.modf(out var i1));
+        {
+            i = trunc(d);
+            return d - i;
+        }
+        float2 r = new(d.x.modf(out var i0), d.y.modf(out var i1));
         i = new(i0, i1);
         return r;
     }
@@ -129,7 +132,7 @@ public static partial class math
     public static float2 rcp([This] float2 a)
     {
         if (Vector64.IsHardwareAccelerated)
-            return float2.One / a;
+            return new(simd.Rcp(a.vector));
         return new(a.x.rcp(), a.y.rcp());
     }
 
@@ -145,7 +148,7 @@ public static partial class math
     public static float2 smoothstep(float2 min, float2 max, [This] float2 a)
     {
         var t = saturate((a - min) / (max - min));
-        return t * t * (3.0f - (2.0f * t));
+        return t * t * fnma(2.0f, t, 3.0f); // (3.0f - (2.0f * t))
     }
 
     [MethodImpl(256 | 512)]
@@ -176,8 +179,25 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float2 wrap([This] float2 x, float2 min, float2 max)
     {
-        var range = max - min;
-        return min + ((x - min) % range + range) % range;
+        if (Vector64.IsHardwareAccelerated)
+        {
+            var add = select(x >= float2.Zero, min, max);
+            var off = x % (max - min);
+            return add + off;
+        }
+        return new(x.x.wrap(min.x, max.x), x.y.wrap(min.y, max.y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float2 wrap([This] float2 x, float min, float max)
+    {
+        if (Vector64.IsHardwareAccelerated)
+        {
+            var add = select(x >= float2.Zero, min, max);
+            var off = x % (max - min);
+            return add + off;
+        }
+        return new(x.x.wrap(min, max), x.y.wrap(min, max));
     }
 }
 
@@ -292,16 +312,19 @@ public static partial class math
     public static float3 frac([This] float3 a)
     {
         if (Vector128.IsHardwareAccelerated)
-            return new(a.vector - Vector128.Floor(a.vector));
+            return a - floor(a);
         return new(a.x.frac(), a.y.frac(), a.z.frac());
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 modf([This] float3 a, out float3 i)
+    public static float3 modf([This] float3 d, out float3 i)
     {
         if (Vector128.IsHardwareAccelerated)
-            return new(simd.ModF(a.vector, out i.vector));
-        float3 r = new(a.x.modf(out var i0), a.y.modf(out var i1), a.z.modf(out var i2));
+        {
+            i = trunc(d);
+            return d - i;
+        }
+        float3 r = new(d.x.modf(out var i0), d.y.modf(out var i1), d.z.modf(out var i2));
         i = new(i0, i1, i2);
         return r;
     }
@@ -310,7 +333,7 @@ public static partial class math
     public static float3 rcp([This] float3 a)
     {
         if (Vector128.IsHardwareAccelerated)
-            return float3.One / a;
+            return new(simd.Rcp(a.vector));
         return new(a.x.rcp(), a.y.rcp(), a.z.rcp());
     }
 
@@ -326,7 +349,7 @@ public static partial class math
     public static float3 smoothstep(float3 min, float3 max, [This] float3 a)
     {
         var t = saturate((a - min) / (max - min));
-        return t * t * (3.0f - (2.0f * t));
+        return t * t * fnma(2.0f, t, 3.0f); // (3.0f - (2.0f * t))
     }
 
     [MethodImpl(256 | 512)]
@@ -357,8 +380,25 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float3 wrap([This] float3 x, float3 min, float3 max)
     {
-        var range = max - min;
-        return min + ((x - min) % range + range) % range;
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var add = select(x >= float3.Zero, min, max);
+            var off = x % (max - min);
+            return add + off;
+        }
+        return new(x.x.wrap(min.x, max.x), x.y.wrap(min.y, max.y), x.z.wrap(min.z, max.z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float3 wrap([This] float3 x, float min, float max)
+    {
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var add = select(x >= float3.Zero, min, max);
+            var off = x % (max - min);
+            return add + off;
+        }
+        return new(x.x.wrap(min, max), x.y.wrap(min, max), x.z.wrap(min, max));
     }
 }
 
@@ -473,16 +513,19 @@ public static partial class math
     public static float4 frac([This] float4 a)
     {
         if (Vector128.IsHardwareAccelerated)
-            return new(a.vector - Vector128.Floor(a.vector));
+            return a - floor(a);
         return new(a.x.frac(), a.y.frac(), a.z.frac(), a.w.frac());
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 modf([This] float4 a, out float4 i)
+    public static float4 modf([This] float4 d, out float4 i)
     {
         if (Vector128.IsHardwareAccelerated)
-            return new(simd.ModF(a.vector, out i.vector));
-        float4 r = new(a.x.modf(out var i0), a.y.modf(out var i1), a.z.modf(out var i2), a.w.modf(out var i3));
+        {
+            i = trunc(d);
+            return d - i;
+        }
+        float4 r = new(d.x.modf(out var i0), d.y.modf(out var i1), d.z.modf(out var i2), d.w.modf(out var i3));
         i = new(i0, i1, i2, i3);
         return r;
     }
@@ -491,7 +534,7 @@ public static partial class math
     public static float4 rcp([This] float4 a)
     {
         if (Vector128.IsHardwareAccelerated)
-            return float4.One / a;
+            return new(simd.Rcp(a.vector));
         return new(a.x.rcp(), a.y.rcp(), a.z.rcp(), a.w.rcp());
     }
 
@@ -507,7 +550,7 @@ public static partial class math
     public static float4 smoothstep(float4 min, float4 max, [This] float4 a)
     {
         var t = saturate((a - min) / (max - min));
-        return t * t * (3.0f - (2.0f * t));
+        return t * t * fnma(2.0f, t, 3.0f); // (3.0f - (2.0f * t))
     }
 
     [MethodImpl(256 | 512)]
@@ -538,8 +581,25 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float4 wrap([This] float4 x, float4 min, float4 max)
     {
-        var range = max - min;
-        return min + ((x - min) % range + range) % range;
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var add = select(x >= float4.Zero, min, max);
+            var off = x % (max - min);
+            return add + off;
+        }
+        return new(x.x.wrap(min.x, max.x), x.y.wrap(min.y, max.y), x.z.wrap(min.z, max.z), x.w.wrap(min.w, max.w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float4 wrap([This] float4 x, float min, float max)
+    {
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var add = select(x >= float4.Zero, min, max);
+            var off = x % (max - min);
+            return add + off;
+        }
+        return new(x.x.wrap(min, max), x.y.wrap(min, max), x.z.wrap(min, max), x.w.wrap(min, max));
     }
 }
 
@@ -654,16 +714,19 @@ public static partial class math
     public static double2 frac([This] double2 a)
     {
         if (Vector128.IsHardwareAccelerated)
-            return new(a.vector - Vector128.Floor(a.vector));
+            return a - floor(a);
         return new(a.x.frac(), a.y.frac());
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 modf([This] double2 a, out double2 i)
+    public static double2 modf([This] double2 d, out double2 i)
     {
         if (Vector128.IsHardwareAccelerated)
-            return new(simd.ModF(a.vector, out i.vector));
-        double2 r = new(a.x.modf(out var i0), a.y.modf(out var i1));
+        {
+            i = trunc(d);
+            return d - i;
+        }
+        double2 r = new(d.x.modf(out var i0), d.y.modf(out var i1));
         i = new(i0, i1);
         return r;
     }
@@ -672,7 +735,7 @@ public static partial class math
     public static double2 rcp([This] double2 a)
     {
         if (Vector128.IsHardwareAccelerated)
-            return double2.One / a;
+            return new(simd.Rcp(a.vector));
         return new(a.x.rcp(), a.y.rcp());
     }
 
@@ -688,7 +751,7 @@ public static partial class math
     public static double2 smoothstep(double2 min, double2 max, [This] double2 a)
     {
         var t = saturate((a - min) / (max - min));
-        return t * t * (3.0 - (2.0 * t));
+        return t * t * fnma(2.0, t, 3.0); // (3.0 - (2.0 * t))
     }
 
     [MethodImpl(256 | 512)]
@@ -719,8 +782,25 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double2 wrap([This] double2 x, double2 min, double2 max)
     {
-        var range = max - min;
-        return min + ((x - min) % range + range) % range;
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var add = select(x >= double2.Zero, min, max);
+            var off = x % (max - min);
+            return add + off;
+        }
+        return new(x.x.wrap(min.x, max.x), x.y.wrap(min.y, max.y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double2 wrap([This] double2 x, double min, double max)
+    {
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var add = select(x >= double2.Zero, min, max);
+            var off = x % (max - min);
+            return add + off;
+        }
+        return new(x.x.wrap(min, max), x.y.wrap(min, max));
     }
 }
 
@@ -835,16 +915,19 @@ public static partial class math
     public static double3 frac([This] double3 a)
     {
         if (Vector256.IsHardwareAccelerated)
-            return new(a.vector - Vector256.Floor(a.vector));
+            return a - floor(a);
         return new(a.x.frac(), a.y.frac(), a.z.frac());
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 modf([This] double3 a, out double3 i)
+    public static double3 modf([This] double3 d, out double3 i)
     {
         if (Vector256.IsHardwareAccelerated)
-            return new(simd.ModF(a.vector, out i.vector));
-        double3 r = new(a.x.modf(out var i0), a.y.modf(out var i1), a.z.modf(out var i2));
+        {
+            i = trunc(d);
+            return d - i;
+        }
+        double3 r = new(d.x.modf(out var i0), d.y.modf(out var i1), d.z.modf(out var i2));
         i = new(i0, i1, i2);
         return r;
     }
@@ -853,7 +936,7 @@ public static partial class math
     public static double3 rcp([This] double3 a)
     {
         if (Vector256.IsHardwareAccelerated)
-            return double3.One / a;
+            return new(simd.Rcp(a.vector));
         return new(a.x.rcp(), a.y.rcp(), a.z.rcp());
     }
 
@@ -869,7 +952,7 @@ public static partial class math
     public static double3 smoothstep(double3 min, double3 max, [This] double3 a)
     {
         var t = saturate((a - min) / (max - min));
-        return t * t * (3.0 - (2.0 * t));
+        return t * t * fnma(2.0, t, 3.0); // (3.0 - (2.0 * t))
     }
 
     [MethodImpl(256 | 512)]
@@ -900,8 +983,25 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double3 wrap([This] double3 x, double3 min, double3 max)
     {
-        var range = max - min;
-        return min + ((x - min) % range + range) % range;
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var add = select(x >= double3.Zero, min, max);
+            var off = x % (max - min);
+            return add + off;
+        }
+        return new(x.x.wrap(min.x, max.x), x.y.wrap(min.y, max.y), x.z.wrap(min.z, max.z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double3 wrap([This] double3 x, double min, double max)
+    {
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var add = select(x >= double3.Zero, min, max);
+            var off = x % (max - min);
+            return add + off;
+        }
+        return new(x.x.wrap(min, max), x.y.wrap(min, max), x.z.wrap(min, max));
     }
 }
 
@@ -1016,16 +1116,19 @@ public static partial class math
     public static double4 frac([This] double4 a)
     {
         if (Vector256.IsHardwareAccelerated)
-            return new(a.vector - Vector256.Floor(a.vector));
+            return a - floor(a);
         return new(a.x.frac(), a.y.frac(), a.z.frac(), a.w.frac());
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 modf([This] double4 a, out double4 i)
+    public static double4 modf([This] double4 d, out double4 i)
     {
         if (Vector256.IsHardwareAccelerated)
-            return new(simd.ModF(a.vector, out i.vector));
-        double4 r = new(a.x.modf(out var i0), a.y.modf(out var i1), a.z.modf(out var i2), a.w.modf(out var i3));
+        {
+            i = trunc(d);
+            return d - i;
+        }
+        double4 r = new(d.x.modf(out var i0), d.y.modf(out var i1), d.z.modf(out var i2), d.w.modf(out var i3));
         i = new(i0, i1, i2, i3);
         return r;
     }
@@ -1034,7 +1137,7 @@ public static partial class math
     public static double4 rcp([This] double4 a)
     {
         if (Vector256.IsHardwareAccelerated)
-            return double4.One / a;
+            return new(simd.Rcp(a.vector));
         return new(a.x.rcp(), a.y.rcp(), a.z.rcp(), a.w.rcp());
     }
 
@@ -1050,7 +1153,7 @@ public static partial class math
     public static double4 smoothstep(double4 min, double4 max, [This] double4 a)
     {
         var t = saturate((a - min) / (max - min));
-        return t * t * (3.0 - (2.0 * t));
+        return t * t * fnma(2.0, t, 3.0); // (3.0 - (2.0 * t))
     }
 
     [MethodImpl(256 | 512)]
@@ -1081,8 +1184,25 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static double4 wrap([This] double4 x, double4 min, double4 max)
     {
-        var range = max - min;
-        return min + ((x - min) % range + range) % range;
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var add = select(x >= double4.Zero, min, max);
+            var off = x % (max - min);
+            return add + off;
+        }
+        return new(x.x.wrap(min.x, max.x), x.y.wrap(min.y, max.y), x.z.wrap(min.z, max.z), x.w.wrap(min.w, max.w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double4 wrap([This] double4 x, double min, double max)
+    {
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var add = select(x >= double4.Zero, min, max);
+            var off = x % (max - min);
+            return add + off;
+        }
+        return new(x.x.wrap(min, max), x.y.wrap(min, max), x.z.wrap(min, max), x.w.wrap(min, max));
     }
 }
 
@@ -1190,9 +1310,9 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal2 modf([This] decimal2 a, out decimal2 i)
+    public static decimal2 modf([This] decimal2 d, out decimal2 i)
     {
-        decimal2 r = new(a.x.modf(out var i0), a.y.modf(out var i1));
+        decimal2 r = new(d.x.modf(out var i0), d.y.modf(out var i1));
         i = new(i0, i1);
         return r;
     }
@@ -1213,7 +1333,7 @@ public static partial class math
     public static decimal2 smoothstep(decimal2 min, decimal2 max, [This] decimal2 a)
     {
         var t = saturate((a - min) / (max - min));
-        return t * t * (3.0m - (2.0m * t));
+        return t * t * fnma(2.0m, t, 3.0m); // (3.0m - (2.0m * t))
     }
 
     [MethodImpl(256 | 512)]
@@ -1244,8 +1364,13 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static decimal2 wrap([This] decimal2 x, decimal2 min, decimal2 max)
     {
-        var range = max - min;
-        return min + ((x - min) % range + range) % range;
+        return new(x.x.wrap(min.x, max.x), x.y.wrap(min.y, max.y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static decimal2 wrap([This] decimal2 x, decimal min, decimal max)
+    {
+        return new(x.x.wrap(min, max), x.y.wrap(min, max));
     }
 }
 
@@ -1353,9 +1478,9 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal3 modf([This] decimal3 a, out decimal3 i)
+    public static decimal3 modf([This] decimal3 d, out decimal3 i)
     {
-        decimal3 r = new(a.x.modf(out var i0), a.y.modf(out var i1), a.z.modf(out var i2));
+        decimal3 r = new(d.x.modf(out var i0), d.y.modf(out var i1), d.z.modf(out var i2));
         i = new(i0, i1, i2);
         return r;
     }
@@ -1376,7 +1501,7 @@ public static partial class math
     public static decimal3 smoothstep(decimal3 min, decimal3 max, [This] decimal3 a)
     {
         var t = saturate((a - min) / (max - min));
-        return t * t * (3.0m - (2.0m * t));
+        return t * t * fnma(2.0m, t, 3.0m); // (3.0m - (2.0m * t))
     }
 
     [MethodImpl(256 | 512)]
@@ -1407,8 +1532,13 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static decimal3 wrap([This] decimal3 x, decimal3 min, decimal3 max)
     {
-        var range = max - min;
-        return min + ((x - min) % range + range) % range;
+        return new(x.x.wrap(min.x, max.x), x.y.wrap(min.y, max.y), x.z.wrap(min.z, max.z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static decimal3 wrap([This] decimal3 x, decimal min, decimal max)
+    {
+        return new(x.x.wrap(min, max), x.y.wrap(min, max), x.z.wrap(min, max));
     }
 }
 
@@ -1516,9 +1646,9 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal4 modf([This] decimal4 a, out decimal4 i)
+    public static decimal4 modf([This] decimal4 d, out decimal4 i)
     {
-        decimal4 r = new(a.x.modf(out var i0), a.y.modf(out var i1), a.z.modf(out var i2), a.w.modf(out var i3));
+        decimal4 r = new(d.x.modf(out var i0), d.y.modf(out var i1), d.z.modf(out var i2), d.w.modf(out var i3));
         i = new(i0, i1, i2, i3);
         return r;
     }
@@ -1539,7 +1669,7 @@ public static partial class math
     public static decimal4 smoothstep(decimal4 min, decimal4 max, [This] decimal4 a)
     {
         var t = saturate((a - min) / (max - min));
-        return t * t * (3.0m - (2.0m * t));
+        return t * t * fnma(2.0m, t, 3.0m); // (3.0m - (2.0m * t))
     }
 
     [MethodImpl(256 | 512)]
@@ -1570,8 +1700,13 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static decimal4 wrap([This] decimal4 x, decimal4 min, decimal4 max)
     {
-        var range = max - min;
-        return min + ((x - min) % range + range) % range;
+        return new(x.x.wrap(min.x, max.x), x.y.wrap(min.y, max.y), x.z.wrap(min.z, max.z), x.w.wrap(min.w, max.w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static decimal4 wrap([This] decimal4 x, decimal min, decimal max)
+    {
+        return new(x.x.wrap(min, max), x.y.wrap(min, max), x.z.wrap(min, max), x.w.wrap(min, max));
     }
 }
 
@@ -1679,9 +1814,9 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 modf([This] half2 a, out half2 i)
+    public static half2 modf([This] half2 d, out half2 i)
     {
-        half2 r = new(a.x.modf(out var i0), a.y.modf(out var i1));
+        half2 r = new(d.x.modf(out var i0), d.y.modf(out var i1));
         i = new(i0, i1);
         return r;
     }
@@ -1702,7 +1837,7 @@ public static partial class math
     public static half2 smoothstep(half2 min, half2 max, [This] half2 a)
     {
         var t = saturate((a - min) / (max - min));
-        return t * t * (3.0f.half() - (2.0f.half() * t));
+        return t * t * fnma(2.0f.half(), t, 3.0f.half()); // (3.0f.half() - (2.0f.half() * t))
     }
 
     [MethodImpl(256 | 512)]
@@ -1733,8 +1868,13 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static half2 wrap([This] half2 x, half2 min, half2 max)
     {
-        var range = max - min;
-        return min + ((x - min) % range + range) % range;
+        return new(x.x.wrap(min.x, max.x), x.y.wrap(min.y, max.y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static half2 wrap([This] half2 x, half min, half max)
+    {
+        return new(x.x.wrap(min, max), x.y.wrap(min, max));
     }
 }
 
@@ -1842,9 +1982,9 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 modf([This] half3 a, out half3 i)
+    public static half3 modf([This] half3 d, out half3 i)
     {
-        half3 r = new(a.x.modf(out var i0), a.y.modf(out var i1), a.z.modf(out var i2));
+        half3 r = new(d.x.modf(out var i0), d.y.modf(out var i1), d.z.modf(out var i2));
         i = new(i0, i1, i2);
         return r;
     }
@@ -1865,7 +2005,7 @@ public static partial class math
     public static half3 smoothstep(half3 min, half3 max, [This] half3 a)
     {
         var t = saturate((a - min) / (max - min));
-        return t * t * (3.0f.half() - (2.0f.half() * t));
+        return t * t * fnma(2.0f.half(), t, 3.0f.half()); // (3.0f.half() - (2.0f.half() * t))
     }
 
     [MethodImpl(256 | 512)]
@@ -1896,8 +2036,13 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static half3 wrap([This] half3 x, half3 min, half3 max)
     {
-        var range = max - min;
-        return min + ((x - min) % range + range) % range;
+        return new(x.x.wrap(min.x, max.x), x.y.wrap(min.y, max.y), x.z.wrap(min.z, max.z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static half3 wrap([This] half3 x, half min, half max)
+    {
+        return new(x.x.wrap(min, max), x.y.wrap(min, max), x.z.wrap(min, max));
     }
 }
 
@@ -2005,9 +2150,9 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 modf([This] half4 a, out half4 i)
+    public static half4 modf([This] half4 d, out half4 i)
     {
-        half4 r = new(a.x.modf(out var i0), a.y.modf(out var i1), a.z.modf(out var i2), a.w.modf(out var i3));
+        half4 r = new(d.x.modf(out var i0), d.y.modf(out var i1), d.z.modf(out var i2), d.w.modf(out var i3));
         i = new(i0, i1, i2, i3);
         return r;
     }
@@ -2028,7 +2173,7 @@ public static partial class math
     public static half4 smoothstep(half4 min, half4 max, [This] half4 a)
     {
         var t = saturate((a - min) / (max - min));
-        return t * t * (3.0f.half() - (2.0f.half() * t));
+        return t * t * fnma(2.0f.half(), t, 3.0f.half()); // (3.0f.half() - (2.0f.half() * t))
     }
 
     [MethodImpl(256 | 512)]
@@ -2059,8 +2204,13 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static half4 wrap([This] half4 x, half4 min, half4 max)
     {
-        var range = max - min;
-        return min + ((x - min) % range + range) % range;
+        return new(x.x.wrap(min.x, max.x), x.y.wrap(min.y, max.y), x.z.wrap(min.z, max.z), x.w.wrap(min.w, max.w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static half4 wrap([This] half4 x, half min, half max)
+    {
+        return new(x.x.wrap(min, max), x.y.wrap(min, max), x.z.wrap(min, max), x.w.wrap(min, max));
     }
 }
 

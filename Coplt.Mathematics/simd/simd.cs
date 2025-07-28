@@ -532,6 +532,9 @@ public static partial class simd
     [MethodImpl(256 | 512)]
     public static Vector64<float> Round(Vector64<float> x)
     {
+        #if NET9_0_OR_GREATER
+        return Vector64.Round(x);
+        #else
         if (Sse41.IsSupported)
         {
             return Sse41.RoundToNearestInteger(x.ToVector128()).GetLower();
@@ -548,11 +551,15 @@ public static partial class simd
             MathF.Round(x.GetElement(0)),
             MathF.Round(x.GetElement(1))
         );
+        #endif
     }
 
     [MethodImpl(256 | 512)]
     public static Vector128<float> Round(Vector128<float> x)
     {
+        #if NET9_0_OR_GREATER
+        return Vector128.Round(x);
+        #else
         if (Sse41.IsSupported)
         {
             return Sse41.RoundToNearestInteger(x);
@@ -569,11 +576,15 @@ public static partial class simd
             Round(x.GetLower()),
             Round(x.GetUpper())
         );
+        #endif
     }
 
     [MethodImpl(256 | 512)]
     public static Vector256<float> Round(Vector256<float> x)
     {
+        #if NET9_0_OR_GREATER
+        return Vector256.Round(x);
+        #else
         if (Avx.IsSupported)
         {
             return Avx.RoundToNearestInteger(x);
@@ -582,25 +593,32 @@ public static partial class simd
             Round(x.GetLower()),
             Round(x.GetUpper())
         );
+        #endif
     }
 
     [MethodImpl(256 | 512)]
     public static Vector512<float> Round(Vector512<float> x)
     {
+        #if NET9_0_OR_GREATER
+        return Vector512.Round(x);
+        #else
         if (Avx512F.IsSupported)
         {
-            // _MM_FROUND_TO_NEAREST_INT | _MM_FROUND_NO_EXC = 8
-            return Avx512F.RoundScale(x, 8);
+            return Avx512F.RoundScale(x, 0);
         }
         return Vector512.Create(
             Round(x.GetLower()),
             Round(x.GetUpper())
         );
+        #endif
     }
 
     [MethodImpl(256 | 512)]
     public static Vector128<double> Round(Vector128<double> x)
     {
+        #if NET9_0_OR_GREATER
+        return Vector128.Round(x);
+        #else
         if (Sse41.IsSupported)
         {
             return Sse41.RoundToNearestInteger(x);
@@ -617,11 +635,15 @@ public static partial class simd
             Math.Round(x.GetElement(0)),
             Math.Round(x.GetElement(1))
         );
+        #endif
     }
 
     [MethodImpl(256 | 512)]
     public static Vector256<double> Round(Vector256<double> x)
     {
+        #if NET9_0_OR_GREATER
+        return Vector256.Round(x);
+        #else
         if (Avx.IsSupported)
         {
             return Avx.RoundToNearestInteger(x);
@@ -630,20 +652,24 @@ public static partial class simd
             Round(x.GetLower()),
             Round(x.GetUpper())
         );
+        #endif
     }
 
     [MethodImpl(256 | 512)]
     public static Vector512<double> Round(Vector512<double> x)
     {
+        #if NET9_0_OR_GREATER
+        return Vector512.Round(x);
+        #else
         if (Avx512F.IsSupported)
         {
-            // _MM_FROUND_TO_NEAREST_INT | _MM_FROUND_NO_EXC = 8
-            return Avx512F.RoundScale(x, 8);
+            return Avx512F.RoundScale(x, 0);
         }
         return Vector512.Create(
             Round(x.GetLower()),
             Round(x.GetUpper())
         );
+        #endif
     }
 
     public static bool IsRoundF256HardwareAccelerated
@@ -665,6 +691,9 @@ public static partial class simd
     [MethodImpl(256 | 512)]
     public static Vector64<float> RoundToZero(Vector64<float> x)
     {
+        #if NET9_0_OR_GREATER
+        return Vector64.Truncate(x);
+        #else
         if (Sse41.IsSupported)
         {
             return Sse41.RoundToZero(x.ToVector128()).GetLower();
@@ -681,11 +710,15 @@ public static partial class simd
             MathF.Round(x.GetElement(0), MidpointRounding.ToZero),
             MathF.Round(x.GetElement(1), MidpointRounding.ToZero)
         );
+        #endif
     }
 
     [MethodImpl(256 | 512)]
     public static Vector128<float> RoundToZero(Vector128<float> x)
     {
+        #if NET9_0_OR_GREATER
+        return Vector128.Truncate(x);
+        #else
         if (Sse41.IsSupported)
         {
             return Sse41.RoundToZero(x);
@@ -702,11 +735,15 @@ public static partial class simd
             RoundToZero(x.GetLower()),
             RoundToZero(x.GetUpper())
         );
+        #endif
     }
 
     [MethodImpl(256 | 512)]
     public static Vector256<float> RoundToZero(Vector256<float> x)
     {
+        #if NET9_0_OR_GREATER
+        return Vector256.Truncate(x);
+        #else
         if (Avx.IsSupported)
         {
             return Avx.RoundToZero(x);
@@ -715,25 +752,32 @@ public static partial class simd
             RoundToZero(x.GetLower()),
             RoundToZero(x.GetUpper())
         );
+        #endif
     }
 
     [MethodImpl(256 | 512)]
     public static Vector512<float> RoundToZero(Vector512<float> x)
     {
+        #if NET9_0_OR_GREATER
+        return Vector512.Truncate(x);
+        #else
         if (Avx512F.IsSupported)
         {
-            // _MM_FROUND_TO_ZERO | _MM_FROUND_NO_EXC = 11
-            return Avx512F.RoundScale(x, 11);
+            return Avx512F.RoundScale(x, 3);
         }
         return Vector512.Create(
             RoundToZero(x.GetLower()),
             RoundToZero(x.GetUpper())
         );
+        #endif
     }
 
     [MethodImpl(256 | 512)]
     public static Vector128<double> RoundToZero(Vector128<double> x)
     {
+        #if NET9_0_OR_GREATER
+        return Vector128.Truncate(x);
+        #else
         if (Sse41.IsSupported)
         {
             return Sse41.RoundToZero(x);
@@ -750,11 +794,15 @@ public static partial class simd
             Math.Round(x.GetElement(0), MidpointRounding.ToZero),
             Math.Round(x.GetElement(1), MidpointRounding.ToZero)
         );
+        #endif
     }
 
     [MethodImpl(256 | 512)]
     public static Vector256<double> RoundToZero(Vector256<double> x)
     {
+        #if NET9_0_OR_GREATER
+        return Vector256.Truncate(x);
+        #else
         if (Avx.IsSupported)
         {
             return Avx.RoundToZero(x);
@@ -763,20 +811,24 @@ public static partial class simd
             RoundToZero(x.GetLower()),
             RoundToZero(x.GetUpper())
         );
+        #endif
     }
 
     [MethodImpl(256 | 512)]
     public static Vector512<double> RoundToZero(Vector512<double> x)
     {
+        #if NET9_0_OR_GREATER
+        return Vector512.Truncate(x);
+        #else
         if (Avx512F.IsSupported)
         {
-            // _MM_FROUND_TO_ZERO | _MM_FROUND_NO_EXC = 11
-            return Avx512F.RoundScale(x, 11);
+            return Avx512F.RoundScale(x, 3);
         }
         return Vector512.Create(
             RoundToZero(x.GetLower()),
             RoundToZero(x.GetUpper())
         );
+        #endif
     }
 
     #endregion
@@ -3741,6 +3793,19 @@ public static partial class simd
             return simd_math.Tan(a);
         }
         return Vector256.Create(
+            Tan(a.GetLower()),
+            Tan(a.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector512<float> Tan(Vector512<float> a)
+    {
+        if (Vector512.IsHardwareAccelerated)
+        {
+            return simd_math.Tan(a);
+        }
+        return Vector512.Create(
             Tan(a.GetLower()),
             Tan(a.GetUpper())
         );

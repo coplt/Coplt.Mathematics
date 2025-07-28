@@ -76,6 +76,248 @@ public static partial class math_mt
     {
         return new(simd.Mod(a.vector, b.vector));
     }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 ceil([This] float_mt4 a)
+    {
+        return new(Vector128.Ceiling(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 floor([This] float_mt4 a)
+    {
+        return new(Vector128.Floor(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 round([This] float_mt4 a)
+    {
+        return new(simd.Round(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 trunc([This] float_mt4 a)
+    {
+        return new(simd.RoundToZero(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 frac([This] float_mt4 a) => a - floor(a);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 modf([This] float_mt4 d, out float_mt4 i)
+    {
+        i = trunc(d);
+        return d - i;
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 rcp([This] float_mt4 a)
+    {
+        return new(simd.Rcp(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 saturate([This] float_mt4 a) => a.clamp(default, float_mt4.One);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 smoothstep(float_mt4 min, float_mt4 max, [This] float_mt4 a)
+    {
+        var t = saturate((a - min) / (max - min));
+        return t * t * fnma(2.0f, t, 3.0f); // (3.0f - (2.0f * t))
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 radians([This] float_mt4 a) => a * 0.0174532925199432957692369076848861271344287188854172545609719144f;
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 degrees([This] float_mt4 a) => a * 57.295779513082320876798154814105170332405472466564321549160243861f;
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 wrap([This] float_mt4 x, float_mt4 min, float_mt4 max)
+    {
+        var a_vector = Vector128.GreaterThanOrEqual(x.vector, default);
+        var add_vector = Vector128.ConditionalSelect(a_vector, min.vector, max.vector);
+        var add = new float_mt4(add_vector);
+        var off = x % (max - min);
+        return add + off;
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 wrap([This] float_mt4 x, float min, float max)
+    {
+        var a_vector = Vector128.GreaterThanOrEqual(x.vector, default);
+        var add_vector = Vector128.ConditionalSelect(a_vector, Vector128.Create(min), Vector128.Create(max));
+        var add = new float_mt4(add_vector);
+        var off = x % (max - min);
+        return add + off;
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 log([This] float_mt4 a)
+    {
+        return new(simd.Log(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 log2([This] float_mt4 a)
+    {
+        return new(simd.Log2(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 log2([This] float_mt4 a, float_mt4 b) => log(a) / log(b);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 log10([This] float_mt4 a)
+    {
+        return new(simd.Log10(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 exp([This] float_mt4 a)
+    {
+        return new(simd.Exp(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 exp2([This] float_mt4 a)
+    {
+        return new(simd.Exp2(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 exp10([This] float_mt4 a)
+    {
+        return new(simd.Exp10(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 pow([This] float_mt4 a, float_mt4 b)
+    {
+        return new(simd.Pow(a.vector, b.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 pow([This] float_mt4 a, float b)
+    {
+        return new(simd.Pow(a.vector, b));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 sqrt([This] float_mt4 a)
+    {
+        return new(Vector128.Sqrt(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 rsqrt([This] float_mt4 a)
+    {
+        return new(simd.RSqrt(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 sin([This] float_mt4 a)
+    {
+        return new(simd.Sin(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 cos([This] float_mt4 a)
+    {
+        return new(simd.Cos(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static (float_mt4 sin, float_mt4 cos) sincos([This] float_mt4 a)
+    {
+        var (sin_vector, cos_vector) = simd.SinCos(a.vector);
+        return (
+            new(sin_vector),
+            new(cos_vector)
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static void sincos([This] float_mt4 a, out float_mt4 sin, out float_mt4 cos)
+    {
+        var (sin_vector, cos_vector) = simd.SinCos(a.vector);
+        sin = new(sin_vector);
+        cos = new(cos_vector);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 tan([This] float_mt4 a)
+    {
+        return new(simd.Tan(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 asin([This] float_mt4 a)
+    {
+        return new(simd.Asin(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 acos([This] float_mt4 a)
+    {
+        return new(simd.Acos(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 atan([This] float_mt4 a)
+    {
+        return new(simd.Atan(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 atan2([This] float_mt4 a, float_mt4 b)
+    {
+        return new(simd.Atan2(a.vector, b.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 sinh([This] float_mt4 a)
+    {
+        return new(simd.Sinh(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 cosh([This] float_mt4 a)
+    {
+        return new(simd.Cosh(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 tanh([This] float_mt4 a)
+    {
+        return new(simd.Tanh(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 asinh([This] float_mt4 a)
+    {
+        return new(simd.Asinh(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 acosh([This] float_mt4 a)
+    {
+        return new(simd.Acosh(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 atanh([This] float_mt4 a)
+    {
+        return new(simd.Atanh(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 chgsign([This] float_mt4 a, float_mt4 b)
+    {
+        var sig = Unsafe.BitCast<uint, float>(0x8000_0000);
+        return (b & sig) ^ a;
+    }
 }
 
 #endregion // float_mt4
@@ -152,6 +394,248 @@ public static partial class math_mt
     public static float_mt8 mod([This] float_mt8 a, float_mt8 b)
     {
         return new(simd.Mod(a.vector, b.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 ceil([This] float_mt8 a)
+    {
+        return new(Vector256.Ceiling(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 floor([This] float_mt8 a)
+    {
+        return new(Vector256.Floor(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 round([This] float_mt8 a)
+    {
+        return new(simd.Round(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 trunc([This] float_mt8 a)
+    {
+        return new(simd.RoundToZero(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 frac([This] float_mt8 a) => a - floor(a);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 modf([This] float_mt8 d, out float_mt8 i)
+    {
+        i = trunc(d);
+        return d - i;
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 rcp([This] float_mt8 a)
+    {
+        return new(simd.Rcp(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 saturate([This] float_mt8 a) => a.clamp(default, float_mt8.One);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 smoothstep(float_mt8 min, float_mt8 max, [This] float_mt8 a)
+    {
+        var t = saturate((a - min) / (max - min));
+        return t * t * fnma(2.0f, t, 3.0f); // (3.0f - (2.0f * t))
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 radians([This] float_mt8 a) => a * 0.0174532925199432957692369076848861271344287188854172545609719144f;
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 degrees([This] float_mt8 a) => a * 57.295779513082320876798154814105170332405472466564321549160243861f;
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 wrap([This] float_mt8 x, float_mt8 min, float_mt8 max)
+    {
+        var a_vector = Vector256.GreaterThanOrEqual(x.vector, default);
+        var add_vector = Vector256.ConditionalSelect(a_vector, min.vector, max.vector);
+        var add = new float_mt8(add_vector);
+        var off = x % (max - min);
+        return add + off;
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 wrap([This] float_mt8 x, float min, float max)
+    {
+        var a_vector = Vector256.GreaterThanOrEqual(x.vector, default);
+        var add_vector = Vector256.ConditionalSelect(a_vector, Vector256.Create(min), Vector256.Create(max));
+        var add = new float_mt8(add_vector);
+        var off = x % (max - min);
+        return add + off;
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 log([This] float_mt8 a)
+    {
+        return new(simd.Log(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 log2([This] float_mt8 a)
+    {
+        return new(simd.Log2(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 log2([This] float_mt8 a, float_mt8 b) => log(a) / log(b);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 log10([This] float_mt8 a)
+    {
+        return new(simd.Log10(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 exp([This] float_mt8 a)
+    {
+        return new(simd.Exp(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 exp2([This] float_mt8 a)
+    {
+        return new(simd.Exp2(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 exp10([This] float_mt8 a)
+    {
+        return new(simd.Exp10(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 pow([This] float_mt8 a, float_mt8 b)
+    {
+        return new(simd.Pow(a.vector, b.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 pow([This] float_mt8 a, float b)
+    {
+        return new(simd.Pow(a.vector, b));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 sqrt([This] float_mt8 a)
+    {
+        return new(Vector256.Sqrt(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 rsqrt([This] float_mt8 a)
+    {
+        return new(simd.RSqrt(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 sin([This] float_mt8 a)
+    {
+        return new(simd.Sin(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 cos([This] float_mt8 a)
+    {
+        return new(simd.Cos(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static (float_mt8 sin, float_mt8 cos) sincos([This] float_mt8 a)
+    {
+        var (sin_vector, cos_vector) = simd.SinCos(a.vector);
+        return (
+            new(sin_vector),
+            new(cos_vector)
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static void sincos([This] float_mt8 a, out float_mt8 sin, out float_mt8 cos)
+    {
+        var (sin_vector, cos_vector) = simd.SinCos(a.vector);
+        sin = new(sin_vector);
+        cos = new(cos_vector);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 tan([This] float_mt8 a)
+    {
+        return new(simd.Tan(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 asin([This] float_mt8 a)
+    {
+        return new(simd.Asin(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 acos([This] float_mt8 a)
+    {
+        return new(simd.Acos(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 atan([This] float_mt8 a)
+    {
+        return new(simd.Atan(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 atan2([This] float_mt8 a, float_mt8 b)
+    {
+        return new(simd.Atan2(a.vector, b.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 sinh([This] float_mt8 a)
+    {
+        return new(simd.Sinh(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 cosh([This] float_mt8 a)
+    {
+        return new(simd.Cosh(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 tanh([This] float_mt8 a)
+    {
+        return new(simd.Tanh(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 asinh([This] float_mt8 a)
+    {
+        return new(simd.Asinh(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 acosh([This] float_mt8 a)
+    {
+        return new(simd.Acosh(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 atanh([This] float_mt8 a)
+    {
+        return new(simd.Atanh(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 chgsign([This] float_mt8 a, float_mt8 b)
+    {
+        var sig = Unsafe.BitCast<uint, float>(0x8000_0000);
+        return (b & sig) ^ a;
     }
 }
 
@@ -230,6 +714,248 @@ public static partial class math_mt
     {
         return new(simd.Mod(a.vector, b.vector));
     }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 ceil([This] float_mt16 a)
+    {
+        return new(Vector512.Ceiling(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 floor([This] float_mt16 a)
+    {
+        return new(Vector512.Floor(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 round([This] float_mt16 a)
+    {
+        return new(simd.Round(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 trunc([This] float_mt16 a)
+    {
+        return new(simd.RoundToZero(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 frac([This] float_mt16 a) => a - floor(a);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 modf([This] float_mt16 d, out float_mt16 i)
+    {
+        i = trunc(d);
+        return d - i;
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 rcp([This] float_mt16 a)
+    {
+        return new(simd.Rcp(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 saturate([This] float_mt16 a) => a.clamp(default, float_mt16.One);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 smoothstep(float_mt16 min, float_mt16 max, [This] float_mt16 a)
+    {
+        var t = saturate((a - min) / (max - min));
+        return t * t * fnma(2.0f, t, 3.0f); // (3.0f - (2.0f * t))
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 radians([This] float_mt16 a) => a * 0.0174532925199432957692369076848861271344287188854172545609719144f;
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 degrees([This] float_mt16 a) => a * 57.295779513082320876798154814105170332405472466564321549160243861f;
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 wrap([This] float_mt16 x, float_mt16 min, float_mt16 max)
+    {
+        var a_vector = Vector512.GreaterThanOrEqual(x.vector, default);
+        var add_vector = Vector512.ConditionalSelect(a_vector, min.vector, max.vector);
+        var add = new float_mt16(add_vector);
+        var off = x % (max - min);
+        return add + off;
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 wrap([This] float_mt16 x, float min, float max)
+    {
+        var a_vector = Vector512.GreaterThanOrEqual(x.vector, default);
+        var add_vector = Vector512.ConditionalSelect(a_vector, Vector512.Create(min), Vector512.Create(max));
+        var add = new float_mt16(add_vector);
+        var off = x % (max - min);
+        return add + off;
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 log([This] float_mt16 a)
+    {
+        return new(simd.Log(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 log2([This] float_mt16 a)
+    {
+        return new(simd.Log2(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 log2([This] float_mt16 a, float_mt16 b) => log(a) / log(b);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 log10([This] float_mt16 a)
+    {
+        return new(simd.Log10(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 exp([This] float_mt16 a)
+    {
+        return new(simd.Exp(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 exp2([This] float_mt16 a)
+    {
+        return new(simd.Exp2(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 exp10([This] float_mt16 a)
+    {
+        return new(simd.Exp10(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 pow([This] float_mt16 a, float_mt16 b)
+    {
+        return new(simd.Pow(a.vector, b.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 pow([This] float_mt16 a, float b)
+    {
+        return new(simd.Pow(a.vector, b));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 sqrt([This] float_mt16 a)
+    {
+        return new(Vector512.Sqrt(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 rsqrt([This] float_mt16 a)
+    {
+        return new(simd.RSqrt(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 sin([This] float_mt16 a)
+    {
+        return new(simd.Sin(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 cos([This] float_mt16 a)
+    {
+        return new(simd.Cos(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static (float_mt16 sin, float_mt16 cos) sincos([This] float_mt16 a)
+    {
+        var (sin_vector, cos_vector) = simd.SinCos(a.vector);
+        return (
+            new(sin_vector),
+            new(cos_vector)
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static void sincos([This] float_mt16 a, out float_mt16 sin, out float_mt16 cos)
+    {
+        var (sin_vector, cos_vector) = simd.SinCos(a.vector);
+        sin = new(sin_vector);
+        cos = new(cos_vector);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 tan([This] float_mt16 a)
+    {
+        return new(simd.Tan(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 asin([This] float_mt16 a)
+    {
+        return new(simd.Asin(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 acos([This] float_mt16 a)
+    {
+        return new(simd.Acos(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 atan([This] float_mt16 a)
+    {
+        return new(simd.Atan(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 atan2([This] float_mt16 a, float_mt16 b)
+    {
+        return new(simd.Atan2(a.vector, b.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 sinh([This] float_mt16 a)
+    {
+        return new(simd.Sinh(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 cosh([This] float_mt16 a)
+    {
+        return new(simd.Cosh(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 tanh([This] float_mt16 a)
+    {
+        return new(simd.Tanh(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 asinh([This] float_mt16 a)
+    {
+        return new(simd.Asinh(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 acosh([This] float_mt16 a)
+    {
+        return new(simd.Acosh(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 atanh([This] float_mt16 a)
+    {
+        return new(simd.Atanh(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 chgsign([This] float_mt16 a, float_mt16 b)
+    {
+        var sig = Unsafe.BitCast<uint, float>(0x8000_0000);
+        return (b & sig) ^ a;
+    }
 }
 
 #endregion // float_mt16
@@ -306,6 +1032,254 @@ public static partial class math_mt
     public static float_mt32 mod([This] float_mt32 a, float_mt32 b)
     {
         return new(simd.Mod(a.vector0, b.vector0), simd.Mod(a.vector1, b.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt32 ceil([This] float_mt32 a)
+    {
+        return new(Vector512.Ceiling(a.vector0), Vector512.Ceiling(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt32 floor([This] float_mt32 a)
+    {
+        return new(Vector512.Floor(a.vector0), Vector512.Floor(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt32 round([This] float_mt32 a)
+    {
+        return new(simd.Round(a.vector0), simd.Round(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt32 trunc([This] float_mt32 a)
+    {
+        return new(simd.RoundToZero(a.vector0), simd.RoundToZero(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt32 frac([This] float_mt32 a) => a - floor(a);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt32 modf([This] float_mt32 d, out float_mt32 i)
+    {
+        i = trunc(d);
+        return d - i;
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt32 rcp([This] float_mt32 a)
+    {
+        return new(simd.Rcp(a.vector0), simd.Rcp(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt32 saturate([This] float_mt32 a) => a.clamp(default, float_mt32.One);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt32 smoothstep(float_mt32 min, float_mt32 max, [This] float_mt32 a)
+    {
+        var t = saturate((a - min) / (max - min));
+        return t * t * fnma(2.0f, t, 3.0f); // (3.0f - (2.0f * t))
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt32 radians([This] float_mt32 a) => a * 0.0174532925199432957692369076848861271344287188854172545609719144f;
+
+    [MethodImpl(256 | 512)]
+    public static float_mt32 degrees([This] float_mt32 a) => a * 57.295779513082320876798154814105170332405472466564321549160243861f;
+
+    [MethodImpl(256 | 512)]
+    public static float_mt32 wrap([This] float_mt32 x, float_mt32 min, float_mt32 max)
+    {
+        var a_vector0 = Vector512.GreaterThanOrEqual(x.vector0, default);
+        var a_vector1 = Vector512.GreaterThanOrEqual(x.vector1, default);
+        var add_vector0 = Vector512.ConditionalSelect(a_vector0, min.vector0, max.vector0);
+        var add_vector1 = Vector512.ConditionalSelect(a_vector1, min.vector1, max.vector1);
+        var add = new float_mt32(add_vector0, add_vector1);
+        var off = x % (max - min);
+        return add + off;
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt32 wrap([This] float_mt32 x, float min, float max)
+    {
+        var a_vector0 = Vector512.GreaterThanOrEqual(x.vector0, default);
+        var a_vector1 = Vector512.GreaterThanOrEqual(x.vector1, default);
+        var add_vector0 = Vector512.ConditionalSelect(a_vector0, Vector512.Create(min), Vector512.Create(max));
+        var add_vector1 = Vector512.ConditionalSelect(a_vector1, Vector512.Create(min), Vector512.Create(max));
+        var add = new float_mt32(add_vector0, add_vector1);
+        var off = x % (max - min);
+        return add + off;
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt32 log([This] float_mt32 a)
+    {
+        return new(simd.Log(a.vector0), simd.Log(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt32 log2([This] float_mt32 a)
+    {
+        return new(simd.Log2(a.vector0), simd.Log2(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt32 log2([This] float_mt32 a, float_mt32 b) => log(a) / log(b);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt32 log10([This] float_mt32 a)
+    {
+        return new(simd.Log10(a.vector0), simd.Log10(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt32 exp([This] float_mt32 a)
+    {
+        return new(simd.Exp(a.vector0), simd.Exp(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt32 exp2([This] float_mt32 a)
+    {
+        return new(simd.Exp2(a.vector0), simd.Exp2(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt32 exp10([This] float_mt32 a)
+    {
+        return new(simd.Exp10(a.vector0), simd.Exp10(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt32 pow([This] float_mt32 a, float_mt32 b)
+    {
+        return new(simd.Pow(a.vector0, b.vector0), simd.Pow(a.vector1, b.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt32 pow([This] float_mt32 a, float b)
+    {
+        return new(simd.Pow(a.vector0, b), simd.Pow(a.vector1, b));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt32 sqrt([This] float_mt32 a)
+    {
+        return new(Vector512.Sqrt(a.vector0), Vector512.Sqrt(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt32 rsqrt([This] float_mt32 a)
+    {
+        return new(simd.RSqrt(a.vector0), simd.RSqrt(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt32 sin([This] float_mt32 a)
+    {
+        return new(simd.Sin(a.vector0), simd.Sin(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt32 cos([This] float_mt32 a)
+    {
+        return new(simd.Cos(a.vector0), simd.Cos(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static (float_mt32 sin, float_mt32 cos) sincos([This] float_mt32 a)
+    {
+        var (sin_vector0, cos_vector0) = simd.SinCos(a.vector0);
+        var (sin_vector1, cos_vector1) = simd.SinCos(a.vector1);
+        return (
+            new(sin_vector0, sin_vector1),
+            new(cos_vector0, cos_vector1)
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static void sincos([This] float_mt32 a, out float_mt32 sin, out float_mt32 cos)
+    {
+        var (sin_vector0, cos_vector0) = simd.SinCos(a.vector0);
+        var (sin_vector1, cos_vector1) = simd.SinCos(a.vector1);
+        sin = new(sin_vector0, sin_vector1);
+        cos = new(cos_vector0, cos_vector1);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt32 tan([This] float_mt32 a)
+    {
+        return new(simd.Tan(a.vector0), simd.Tan(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt32 asin([This] float_mt32 a)
+    {
+        return new(simd.Asin(a.vector0), simd.Asin(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt32 acos([This] float_mt32 a)
+    {
+        return new(simd.Acos(a.vector0), simd.Acos(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt32 atan([This] float_mt32 a)
+    {
+        return new(simd.Atan(a.vector0), simd.Atan(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt32 atan2([This] float_mt32 a, float_mt32 b)
+    {
+        return new(simd.Atan2(a.vector0, b.vector0), simd.Atan2(a.vector1, b.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt32 sinh([This] float_mt32 a)
+    {
+        return new(simd.Sinh(a.vector0), simd.Sinh(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt32 cosh([This] float_mt32 a)
+    {
+        return new(simd.Cosh(a.vector0), simd.Cosh(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt32 tanh([This] float_mt32 a)
+    {
+        return new(simd.Tanh(a.vector0), simd.Tanh(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt32 asinh([This] float_mt32 a)
+    {
+        return new(simd.Asinh(a.vector0), simd.Asinh(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt32 acosh([This] float_mt32 a)
+    {
+        return new(simd.Acosh(a.vector0), simd.Acosh(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt32 atanh([This] float_mt32 a)
+    {
+        return new(simd.Atanh(a.vector0), simd.Atanh(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt32 chgsign([This] float_mt32 a, float_mt32 b)
+    {
+        var sig = Unsafe.BitCast<uint, float>(0x8000_0000);
+        return (b & sig) ^ a;
     }
 }
 
@@ -384,6 +1358,248 @@ public static partial class math_mt
     {
         return new(simd.Mod(a.vector, b.vector));
     }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 ceil([This] double_mt4 a)
+    {
+        return new(Vector256.Ceiling(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 floor([This] double_mt4 a)
+    {
+        return new(Vector256.Floor(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 round([This] double_mt4 a)
+    {
+        return new(simd.Round(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 trunc([This] double_mt4 a)
+    {
+        return new(simd.RoundToZero(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 frac([This] double_mt4 a) => a - floor(a);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 modf([This] double_mt4 d, out double_mt4 i)
+    {
+        i = trunc(d);
+        return d - i;
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 rcp([This] double_mt4 a)
+    {
+        return new(simd.Rcp(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 saturate([This] double_mt4 a) => a.clamp(default, double_mt4.One);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 smoothstep(double_mt4 min, double_mt4 max, [This] double_mt4 a)
+    {
+        var t = saturate((a - min) / (max - min));
+        return t * t * fnma(2.0, t, 3.0); // (3.0 - (2.0 * t))
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 radians([This] double_mt4 a) => a * 0.0174532925199432957692369076848861271344287188854172545609719144;
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 degrees([This] double_mt4 a) => a * 57.295779513082320876798154814105170332405472466564321549160243861;
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 wrap([This] double_mt4 x, double_mt4 min, double_mt4 max)
+    {
+        var a_vector = Vector256.GreaterThanOrEqual(x.vector, default);
+        var add_vector = Vector256.ConditionalSelect(a_vector, min.vector, max.vector);
+        var add = new double_mt4(add_vector);
+        var off = x % (max - min);
+        return add + off;
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 wrap([This] double_mt4 x, double min, double max)
+    {
+        var a_vector = Vector256.GreaterThanOrEqual(x.vector, default);
+        var add_vector = Vector256.ConditionalSelect(a_vector, Vector256.Create(min), Vector256.Create(max));
+        var add = new double_mt4(add_vector);
+        var off = x % (max - min);
+        return add + off;
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 log([This] double_mt4 a)
+    {
+        return new(simd.Log(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 log2([This] double_mt4 a)
+    {
+        return new(simd.Log2(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 log2([This] double_mt4 a, double_mt4 b) => log(a) / log(b);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 log10([This] double_mt4 a)
+    {
+        return new(simd.Log10(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 exp([This] double_mt4 a)
+    {
+        return new(simd.Exp(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 exp2([This] double_mt4 a)
+    {
+        return new(simd.Exp2(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 exp10([This] double_mt4 a)
+    {
+        return new(simd.Exp10(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 pow([This] double_mt4 a, double_mt4 b)
+    {
+        return new(simd.Pow(a.vector, b.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 pow([This] double_mt4 a, double b)
+    {
+        return new(simd.Pow(a.vector, b));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 sqrt([This] double_mt4 a)
+    {
+        return new(Vector256.Sqrt(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 rsqrt([This] double_mt4 a)
+    {
+        return new(simd.RSqrt(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 sin([This] double_mt4 a)
+    {
+        return new(simd.Sin(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 cos([This] double_mt4 a)
+    {
+        return new(simd.Cos(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static (double_mt4 sin, double_mt4 cos) sincos([This] double_mt4 a)
+    {
+        var (sin_vector, cos_vector) = simd.SinCos(a.vector);
+        return (
+            new(sin_vector),
+            new(cos_vector)
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static void sincos([This] double_mt4 a, out double_mt4 sin, out double_mt4 cos)
+    {
+        var (sin_vector, cos_vector) = simd.SinCos(a.vector);
+        sin = new(sin_vector);
+        cos = new(cos_vector);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 tan([This] double_mt4 a)
+    {
+        return new(simd.Tan(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 asin([This] double_mt4 a)
+    {
+        return new(simd.Asin(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 acos([This] double_mt4 a)
+    {
+        return new(simd.Acos(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 atan([This] double_mt4 a)
+    {
+        return new(simd.Atan(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 atan2([This] double_mt4 a, double_mt4 b)
+    {
+        return new(simd.Atan2(a.vector, b.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 sinh([This] double_mt4 a)
+    {
+        return new(simd.Sinh(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 cosh([This] double_mt4 a)
+    {
+        return new(simd.Cosh(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 tanh([This] double_mt4 a)
+    {
+        return new(simd.Tanh(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 asinh([This] double_mt4 a)
+    {
+        return new(simd.Asinh(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 acosh([This] double_mt4 a)
+    {
+        return new(simd.Acosh(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 atanh([This] double_mt4 a)
+    {
+        return new(simd.Atanh(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 chgsign([This] double_mt4 a, double_mt4 b)
+    {
+        var sig = Unsafe.BitCast<ulong, double>(0x8000_0000_0000_0000);
+        return (b & sig) ^ a;
+    }
 }
 
 #endregion // double_mt4
@@ -460,6 +1676,248 @@ public static partial class math_mt
     public static double_mt8 mod([This] double_mt8 a, double_mt8 b)
     {
         return new(simd.Mod(a.vector, b.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 ceil([This] double_mt8 a)
+    {
+        return new(Vector512.Ceiling(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 floor([This] double_mt8 a)
+    {
+        return new(Vector512.Floor(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 round([This] double_mt8 a)
+    {
+        return new(simd.Round(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 trunc([This] double_mt8 a)
+    {
+        return new(simd.RoundToZero(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 frac([This] double_mt8 a) => a - floor(a);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 modf([This] double_mt8 d, out double_mt8 i)
+    {
+        i = trunc(d);
+        return d - i;
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 rcp([This] double_mt8 a)
+    {
+        return new(simd.Rcp(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 saturate([This] double_mt8 a) => a.clamp(default, double_mt8.One);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 smoothstep(double_mt8 min, double_mt8 max, [This] double_mt8 a)
+    {
+        var t = saturate((a - min) / (max - min));
+        return t * t * fnma(2.0, t, 3.0); // (3.0 - (2.0 * t))
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 radians([This] double_mt8 a) => a * 0.0174532925199432957692369076848861271344287188854172545609719144;
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 degrees([This] double_mt8 a) => a * 57.295779513082320876798154814105170332405472466564321549160243861;
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 wrap([This] double_mt8 x, double_mt8 min, double_mt8 max)
+    {
+        var a_vector = Vector512.GreaterThanOrEqual(x.vector, default);
+        var add_vector = Vector512.ConditionalSelect(a_vector, min.vector, max.vector);
+        var add = new double_mt8(add_vector);
+        var off = x % (max - min);
+        return add + off;
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 wrap([This] double_mt8 x, double min, double max)
+    {
+        var a_vector = Vector512.GreaterThanOrEqual(x.vector, default);
+        var add_vector = Vector512.ConditionalSelect(a_vector, Vector512.Create(min), Vector512.Create(max));
+        var add = new double_mt8(add_vector);
+        var off = x % (max - min);
+        return add + off;
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 log([This] double_mt8 a)
+    {
+        return new(simd.Log(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 log2([This] double_mt8 a)
+    {
+        return new(simd.Log2(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 log2([This] double_mt8 a, double_mt8 b) => log(a) / log(b);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 log10([This] double_mt8 a)
+    {
+        return new(simd.Log10(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 exp([This] double_mt8 a)
+    {
+        return new(simd.Exp(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 exp2([This] double_mt8 a)
+    {
+        return new(simd.Exp2(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 exp10([This] double_mt8 a)
+    {
+        return new(simd.Exp10(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 pow([This] double_mt8 a, double_mt8 b)
+    {
+        return new(simd.Pow(a.vector, b.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 pow([This] double_mt8 a, double b)
+    {
+        return new(simd.Pow(a.vector, b));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 sqrt([This] double_mt8 a)
+    {
+        return new(Vector512.Sqrt(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 rsqrt([This] double_mt8 a)
+    {
+        return new(simd.RSqrt(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 sin([This] double_mt8 a)
+    {
+        return new(simd.Sin(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 cos([This] double_mt8 a)
+    {
+        return new(simd.Cos(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static (double_mt8 sin, double_mt8 cos) sincos([This] double_mt8 a)
+    {
+        var (sin_vector, cos_vector) = simd.SinCos(a.vector);
+        return (
+            new(sin_vector),
+            new(cos_vector)
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static void sincos([This] double_mt8 a, out double_mt8 sin, out double_mt8 cos)
+    {
+        var (sin_vector, cos_vector) = simd.SinCos(a.vector);
+        sin = new(sin_vector);
+        cos = new(cos_vector);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 tan([This] double_mt8 a)
+    {
+        return new(simd.Tan(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 asin([This] double_mt8 a)
+    {
+        return new(simd.Asin(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 acos([This] double_mt8 a)
+    {
+        return new(simd.Acos(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 atan([This] double_mt8 a)
+    {
+        return new(simd.Atan(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 atan2([This] double_mt8 a, double_mt8 b)
+    {
+        return new(simd.Atan2(a.vector, b.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 sinh([This] double_mt8 a)
+    {
+        return new(simd.Sinh(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 cosh([This] double_mt8 a)
+    {
+        return new(simd.Cosh(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 tanh([This] double_mt8 a)
+    {
+        return new(simd.Tanh(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 asinh([This] double_mt8 a)
+    {
+        return new(simd.Asinh(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 acosh([This] double_mt8 a)
+    {
+        return new(simd.Acosh(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 atanh([This] double_mt8 a)
+    {
+        return new(simd.Atanh(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 chgsign([This] double_mt8 a, double_mt8 b)
+    {
+        var sig = Unsafe.BitCast<ulong, double>(0x8000_0000_0000_0000);
+        return (b & sig) ^ a;
     }
 }
 
@@ -538,6 +1996,254 @@ public static partial class math_mt
     {
         return new(simd.Mod(a.vector0, b.vector0), simd.Mod(a.vector1, b.vector1));
     }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 ceil([This] double_mt16 a)
+    {
+        return new(Vector512.Ceiling(a.vector0), Vector512.Ceiling(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 floor([This] double_mt16 a)
+    {
+        return new(Vector512.Floor(a.vector0), Vector512.Floor(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 round([This] double_mt16 a)
+    {
+        return new(simd.Round(a.vector0), simd.Round(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 trunc([This] double_mt16 a)
+    {
+        return new(simd.RoundToZero(a.vector0), simd.RoundToZero(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 frac([This] double_mt16 a) => a - floor(a);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 modf([This] double_mt16 d, out double_mt16 i)
+    {
+        i = trunc(d);
+        return d - i;
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 rcp([This] double_mt16 a)
+    {
+        return new(simd.Rcp(a.vector0), simd.Rcp(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 saturate([This] double_mt16 a) => a.clamp(default, double_mt16.One);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 smoothstep(double_mt16 min, double_mt16 max, [This] double_mt16 a)
+    {
+        var t = saturate((a - min) / (max - min));
+        return t * t * fnma(2.0, t, 3.0); // (3.0 - (2.0 * t))
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 radians([This] double_mt16 a) => a * 0.0174532925199432957692369076848861271344287188854172545609719144;
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 degrees([This] double_mt16 a) => a * 57.295779513082320876798154814105170332405472466564321549160243861;
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 wrap([This] double_mt16 x, double_mt16 min, double_mt16 max)
+    {
+        var a_vector0 = Vector512.GreaterThanOrEqual(x.vector0, default);
+        var a_vector1 = Vector512.GreaterThanOrEqual(x.vector1, default);
+        var add_vector0 = Vector512.ConditionalSelect(a_vector0, min.vector0, max.vector0);
+        var add_vector1 = Vector512.ConditionalSelect(a_vector1, min.vector1, max.vector1);
+        var add = new double_mt16(add_vector0, add_vector1);
+        var off = x % (max - min);
+        return add + off;
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 wrap([This] double_mt16 x, double min, double max)
+    {
+        var a_vector0 = Vector512.GreaterThanOrEqual(x.vector0, default);
+        var a_vector1 = Vector512.GreaterThanOrEqual(x.vector1, default);
+        var add_vector0 = Vector512.ConditionalSelect(a_vector0, Vector512.Create(min), Vector512.Create(max));
+        var add_vector1 = Vector512.ConditionalSelect(a_vector1, Vector512.Create(min), Vector512.Create(max));
+        var add = new double_mt16(add_vector0, add_vector1);
+        var off = x % (max - min);
+        return add + off;
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 log([This] double_mt16 a)
+    {
+        return new(simd.Log(a.vector0), simd.Log(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 log2([This] double_mt16 a)
+    {
+        return new(simd.Log2(a.vector0), simd.Log2(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 log2([This] double_mt16 a, double_mt16 b) => log(a) / log(b);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 log10([This] double_mt16 a)
+    {
+        return new(simd.Log10(a.vector0), simd.Log10(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 exp([This] double_mt16 a)
+    {
+        return new(simd.Exp(a.vector0), simd.Exp(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 exp2([This] double_mt16 a)
+    {
+        return new(simd.Exp2(a.vector0), simd.Exp2(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 exp10([This] double_mt16 a)
+    {
+        return new(simd.Exp10(a.vector0), simd.Exp10(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 pow([This] double_mt16 a, double_mt16 b)
+    {
+        return new(simd.Pow(a.vector0, b.vector0), simd.Pow(a.vector1, b.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 pow([This] double_mt16 a, double b)
+    {
+        return new(simd.Pow(a.vector0, b), simd.Pow(a.vector1, b));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 sqrt([This] double_mt16 a)
+    {
+        return new(Vector512.Sqrt(a.vector0), Vector512.Sqrt(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 rsqrt([This] double_mt16 a)
+    {
+        return new(simd.RSqrt(a.vector0), simd.RSqrt(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 sin([This] double_mt16 a)
+    {
+        return new(simd.Sin(a.vector0), simd.Sin(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 cos([This] double_mt16 a)
+    {
+        return new(simd.Cos(a.vector0), simd.Cos(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static (double_mt16 sin, double_mt16 cos) sincos([This] double_mt16 a)
+    {
+        var (sin_vector0, cos_vector0) = simd.SinCos(a.vector0);
+        var (sin_vector1, cos_vector1) = simd.SinCos(a.vector1);
+        return (
+            new(sin_vector0, sin_vector1),
+            new(cos_vector0, cos_vector1)
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static void sincos([This] double_mt16 a, out double_mt16 sin, out double_mt16 cos)
+    {
+        var (sin_vector0, cos_vector0) = simd.SinCos(a.vector0);
+        var (sin_vector1, cos_vector1) = simd.SinCos(a.vector1);
+        sin = new(sin_vector0, sin_vector1);
+        cos = new(cos_vector0, cos_vector1);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 tan([This] double_mt16 a)
+    {
+        return new(simd.Tan(a.vector0), simd.Tan(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 asin([This] double_mt16 a)
+    {
+        return new(simd.Asin(a.vector0), simd.Asin(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 acos([This] double_mt16 a)
+    {
+        return new(simd.Acos(a.vector0), simd.Acos(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 atan([This] double_mt16 a)
+    {
+        return new(simd.Atan(a.vector0), simd.Atan(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 atan2([This] double_mt16 a, double_mt16 b)
+    {
+        return new(simd.Atan2(a.vector0, b.vector0), simd.Atan2(a.vector1, b.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 sinh([This] double_mt16 a)
+    {
+        return new(simd.Sinh(a.vector0), simd.Sinh(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 cosh([This] double_mt16 a)
+    {
+        return new(simd.Cosh(a.vector0), simd.Cosh(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 tanh([This] double_mt16 a)
+    {
+        return new(simd.Tanh(a.vector0), simd.Tanh(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 asinh([This] double_mt16 a)
+    {
+        return new(simd.Asinh(a.vector0), simd.Asinh(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 acosh([This] double_mt16 a)
+    {
+        return new(simd.Acosh(a.vector0), simd.Acosh(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 atanh([This] double_mt16 a)
+    {
+        return new(simd.Atanh(a.vector0), simd.Atanh(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 chgsign([This] double_mt16 a, double_mt16 b)
+    {
+        var sig = Unsafe.BitCast<ulong, double>(0x8000_0000_0000_0000);
+        return (b & sig) ^ a;
+    }
 }
 
 #endregion // double_mt16
@@ -614,6 +2320,266 @@ public static partial class math_mt
     public static double_mt32 mod([This] double_mt32 a, double_mt32 b)
     {
         return new(simd.Mod(a.vector0, b.vector0), simd.Mod(a.vector1, b.vector1), simd.Mod(a.vector2, b.vector2), simd.Mod(a.vector3, b.vector3));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt32 ceil([This] double_mt32 a)
+    {
+        return new(Vector512.Ceiling(a.vector0), Vector512.Ceiling(a.vector1), Vector512.Ceiling(a.vector2), Vector512.Ceiling(a.vector3));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt32 floor([This] double_mt32 a)
+    {
+        return new(Vector512.Floor(a.vector0), Vector512.Floor(a.vector1), Vector512.Floor(a.vector2), Vector512.Floor(a.vector3));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt32 round([This] double_mt32 a)
+    {
+        return new(simd.Round(a.vector0), simd.Round(a.vector1), simd.Round(a.vector2), simd.Round(a.vector3));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt32 trunc([This] double_mt32 a)
+    {
+        return new(simd.RoundToZero(a.vector0), simd.RoundToZero(a.vector1), simd.RoundToZero(a.vector2), simd.RoundToZero(a.vector3));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt32 frac([This] double_mt32 a) => a - floor(a);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt32 modf([This] double_mt32 d, out double_mt32 i)
+    {
+        i = trunc(d);
+        return d - i;
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt32 rcp([This] double_mt32 a)
+    {
+        return new(simd.Rcp(a.vector0), simd.Rcp(a.vector1), simd.Rcp(a.vector2), simd.Rcp(a.vector3));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt32 saturate([This] double_mt32 a) => a.clamp(default, double_mt32.One);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt32 smoothstep(double_mt32 min, double_mt32 max, [This] double_mt32 a)
+    {
+        var t = saturate((a - min) / (max - min));
+        return t * t * fnma(2.0, t, 3.0); // (3.0 - (2.0 * t))
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt32 radians([This] double_mt32 a) => a * 0.0174532925199432957692369076848861271344287188854172545609719144;
+
+    [MethodImpl(256 | 512)]
+    public static double_mt32 degrees([This] double_mt32 a) => a * 57.295779513082320876798154814105170332405472466564321549160243861;
+
+    [MethodImpl(256 | 512)]
+    public static double_mt32 wrap([This] double_mt32 x, double_mt32 min, double_mt32 max)
+    {
+        var a_vector0 = Vector512.GreaterThanOrEqual(x.vector0, default);
+        var a_vector1 = Vector512.GreaterThanOrEqual(x.vector1, default);
+        var a_vector2 = Vector512.GreaterThanOrEqual(x.vector2, default);
+        var a_vector3 = Vector512.GreaterThanOrEqual(x.vector3, default);
+        var add_vector0 = Vector512.ConditionalSelect(a_vector0, min.vector0, max.vector0);
+        var add_vector1 = Vector512.ConditionalSelect(a_vector1, min.vector1, max.vector1);
+        var add_vector2 = Vector512.ConditionalSelect(a_vector2, min.vector2, max.vector2);
+        var add_vector3 = Vector512.ConditionalSelect(a_vector3, min.vector3, max.vector3);
+        var add = new double_mt32(add_vector0, add_vector1, add_vector2, add_vector3);
+        var off = x % (max - min);
+        return add + off;
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt32 wrap([This] double_mt32 x, double min, double max)
+    {
+        var a_vector0 = Vector512.GreaterThanOrEqual(x.vector0, default);
+        var a_vector1 = Vector512.GreaterThanOrEqual(x.vector1, default);
+        var a_vector2 = Vector512.GreaterThanOrEqual(x.vector2, default);
+        var a_vector3 = Vector512.GreaterThanOrEqual(x.vector3, default);
+        var add_vector0 = Vector512.ConditionalSelect(a_vector0, Vector512.Create(min), Vector512.Create(max));
+        var add_vector1 = Vector512.ConditionalSelect(a_vector1, Vector512.Create(min), Vector512.Create(max));
+        var add_vector2 = Vector512.ConditionalSelect(a_vector2, Vector512.Create(min), Vector512.Create(max));
+        var add_vector3 = Vector512.ConditionalSelect(a_vector3, Vector512.Create(min), Vector512.Create(max));
+        var add = new double_mt32(add_vector0, add_vector1, add_vector2, add_vector3);
+        var off = x % (max - min);
+        return add + off;
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt32 log([This] double_mt32 a)
+    {
+        return new(simd.Log(a.vector0), simd.Log(a.vector1), simd.Log(a.vector2), simd.Log(a.vector3));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt32 log2([This] double_mt32 a)
+    {
+        return new(simd.Log2(a.vector0), simd.Log2(a.vector1), simd.Log2(a.vector2), simd.Log2(a.vector3));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt32 log2([This] double_mt32 a, double_mt32 b) => log(a) / log(b);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt32 log10([This] double_mt32 a)
+    {
+        return new(simd.Log10(a.vector0), simd.Log10(a.vector1), simd.Log10(a.vector2), simd.Log10(a.vector3));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt32 exp([This] double_mt32 a)
+    {
+        return new(simd.Exp(a.vector0), simd.Exp(a.vector1), simd.Exp(a.vector2), simd.Exp(a.vector3));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt32 exp2([This] double_mt32 a)
+    {
+        return new(simd.Exp2(a.vector0), simd.Exp2(a.vector1), simd.Exp2(a.vector2), simd.Exp2(a.vector3));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt32 exp10([This] double_mt32 a)
+    {
+        return new(simd.Exp10(a.vector0), simd.Exp10(a.vector1), simd.Exp10(a.vector2), simd.Exp10(a.vector3));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt32 pow([This] double_mt32 a, double_mt32 b)
+    {
+        return new(simd.Pow(a.vector0, b.vector0), simd.Pow(a.vector1, b.vector1), simd.Pow(a.vector2, b.vector2), simd.Pow(a.vector3, b.vector3));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt32 pow([This] double_mt32 a, double b)
+    {
+        return new(simd.Pow(a.vector0, b), simd.Pow(a.vector1, b), simd.Pow(a.vector2, b), simd.Pow(a.vector3, b));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt32 sqrt([This] double_mt32 a)
+    {
+        return new(Vector512.Sqrt(a.vector0), Vector512.Sqrt(a.vector1), Vector512.Sqrt(a.vector2), Vector512.Sqrt(a.vector3));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt32 rsqrt([This] double_mt32 a)
+    {
+        return new(simd.RSqrt(a.vector0), simd.RSqrt(a.vector1), simd.RSqrt(a.vector2), simd.RSqrt(a.vector3));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt32 sin([This] double_mt32 a)
+    {
+        return new(simd.Sin(a.vector0), simd.Sin(a.vector1), simd.Sin(a.vector2), simd.Sin(a.vector3));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt32 cos([This] double_mt32 a)
+    {
+        return new(simd.Cos(a.vector0), simd.Cos(a.vector1), simd.Cos(a.vector2), simd.Cos(a.vector3));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static (double_mt32 sin, double_mt32 cos) sincos([This] double_mt32 a)
+    {
+        var (sin_vector0, cos_vector0) = simd.SinCos(a.vector0);
+        var (sin_vector1, cos_vector1) = simd.SinCos(a.vector1);
+        var (sin_vector2, cos_vector2) = simd.SinCos(a.vector2);
+        var (sin_vector3, cos_vector3) = simd.SinCos(a.vector3);
+        return (
+            new(sin_vector0, sin_vector1, sin_vector2, sin_vector3),
+            new(cos_vector0, cos_vector1, cos_vector2, cos_vector3)
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static void sincos([This] double_mt32 a, out double_mt32 sin, out double_mt32 cos)
+    {
+        var (sin_vector0, cos_vector0) = simd.SinCos(a.vector0);
+        var (sin_vector1, cos_vector1) = simd.SinCos(a.vector1);
+        var (sin_vector2, cos_vector2) = simd.SinCos(a.vector2);
+        var (sin_vector3, cos_vector3) = simd.SinCos(a.vector3);
+        sin = new(sin_vector0, sin_vector1, sin_vector2, sin_vector3);
+        cos = new(cos_vector0, cos_vector1, cos_vector2, cos_vector3);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt32 tan([This] double_mt32 a)
+    {
+        return new(simd.Tan(a.vector0), simd.Tan(a.vector1), simd.Tan(a.vector2), simd.Tan(a.vector3));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt32 asin([This] double_mt32 a)
+    {
+        return new(simd.Asin(a.vector0), simd.Asin(a.vector1), simd.Asin(a.vector2), simd.Asin(a.vector3));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt32 acos([This] double_mt32 a)
+    {
+        return new(simd.Acos(a.vector0), simd.Acos(a.vector1), simd.Acos(a.vector2), simd.Acos(a.vector3));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt32 atan([This] double_mt32 a)
+    {
+        return new(simd.Atan(a.vector0), simd.Atan(a.vector1), simd.Atan(a.vector2), simd.Atan(a.vector3));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt32 atan2([This] double_mt32 a, double_mt32 b)
+    {
+        return new(simd.Atan2(a.vector0, b.vector0), simd.Atan2(a.vector1, b.vector1), simd.Atan2(a.vector2, b.vector2), simd.Atan2(a.vector3, b.vector3));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt32 sinh([This] double_mt32 a)
+    {
+        return new(simd.Sinh(a.vector0), simd.Sinh(a.vector1), simd.Sinh(a.vector2), simd.Sinh(a.vector3));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt32 cosh([This] double_mt32 a)
+    {
+        return new(simd.Cosh(a.vector0), simd.Cosh(a.vector1), simd.Cosh(a.vector2), simd.Cosh(a.vector3));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt32 tanh([This] double_mt32 a)
+    {
+        return new(simd.Tanh(a.vector0), simd.Tanh(a.vector1), simd.Tanh(a.vector2), simd.Tanh(a.vector3));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt32 asinh([This] double_mt32 a)
+    {
+        return new(simd.Asinh(a.vector0), simd.Asinh(a.vector1), simd.Asinh(a.vector2), simd.Asinh(a.vector3));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt32 acosh([This] double_mt32 a)
+    {
+        return new(simd.Acosh(a.vector0), simd.Acosh(a.vector1), simd.Acosh(a.vector2), simd.Acosh(a.vector3));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt32 atanh([This] double_mt32 a)
+    {
+        return new(simd.Atanh(a.vector0), simd.Atanh(a.vector1), simd.Atanh(a.vector2), simd.Atanh(a.vector3));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt32 chgsign([This] double_mt32 a, double_mt32 b)
+    {
+        var sig = Unsafe.BitCast<ulong, double>(0x8000_0000_0000_0000);
+        return (b & sig) ^ a;
     }
 }
 

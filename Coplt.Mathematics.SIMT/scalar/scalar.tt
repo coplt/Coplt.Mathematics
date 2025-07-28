@@ -273,6 +273,10 @@ public partial struct <#= typeName #>
                 $"new({string.Join(", ", vectors.Select(v => $"a.{v} & b.{v}"))})" #>;
 
     [MethodImpl(256 | 512)]
+    public static <#= typeName #> operator^(<#= typeName #> a, <#= typeName #> b) => <#=
+                $"new({string.Join(", ", vectors.Select(v => $"a.{v} ^ b.{v}"))})" #>;
+
+    [MethodImpl(256 | 512)]
     public static <#= typeName #> operator<<(<#= typeName #> a, int b) => <#=
                 $"new({string.Join(", ", vectors.Select(v => $"a.{v} << b"))})" #>;
 
@@ -284,10 +288,14 @@ public partial struct <#= typeName #>
     public static <#= typeName #> operator>>>(<#= typeName #> a, int b) => <#=
                 $"new({string.Join(", ", vectors.Select(v => $"a.{v} >>> b"))})" #>;
 
+    #endregion  // Operators
+
+    #region ToString
+
     public readonly override string ToString() => $"<#= typeName #> {{ <#=
                 string.Join(", ", Enumerable.Range(0, size).Select(l => $"t{l} = {{this[{l}]}}")) #> }}";
 
-    #endregion
+    #endregion  // ToString
 }
 
 #endregion // <#= typeName #>

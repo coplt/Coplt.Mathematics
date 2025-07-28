@@ -121,7 +121,12 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 rsqrt([This] float2 a) => float2.One / sqrt(a);
+    public static float2 rsqrt([This] float2 a)
+    {
+        if (Vector64.IsHardwareAccelerated)
+            return new(simd.RSqrt(a.vector));
+        return new(a.x.rsqrt(), a.y.rsqrt());
+    }
 
     [MethodImpl(256 | 512)]
     public static float length([This] float2 a) => dot(a, a).sqrt();
@@ -425,7 +430,12 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 rsqrt([This] float3 a) => float3.One / sqrt(a);
+    public static float3 rsqrt([This] float3 a)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.RSqrt(a.vector));
+        return new(a.x.rsqrt(), a.y.rsqrt(), a.z.rsqrt());
+    }
 
     [MethodImpl(256 | 512)]
     public static float length([This] float3 a) => dot(a, a).sqrt();
@@ -731,7 +741,12 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 rsqrt([This] float4 a) => float4.One / sqrt(a);
+    public static float4 rsqrt([This] float4 a)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.RSqrt(a.vector));
+        return new(a.x.rsqrt(), a.y.rsqrt(), a.z.rsqrt(), a.w.rsqrt());
+    }
 
     [MethodImpl(256 | 512)]
     public static float length([This] float4 a) => dot(a, a).sqrt();
@@ -1039,7 +1054,12 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 rsqrt([This] double2 a) => double2.One / sqrt(a);
+    public static double2 rsqrt([This] double2 a)
+    {
+        if (Vector128.IsHardwareAccelerated)
+            return new(simd.RSqrt(a.vector));
+        return new(a.x.rsqrt(), a.y.rsqrt());
+    }
 
     [MethodImpl(256 | 512)]
     public static double length([This] double2 a) => dot(a, a).sqrt();
@@ -1343,7 +1363,12 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 rsqrt([This] double3 a) => double3.One / sqrt(a);
+    public static double3 rsqrt([This] double3 a)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.RSqrt(a.vector));
+        return new(a.x.rsqrt(), a.y.rsqrt(), a.z.rsqrt());
+    }
 
     [MethodImpl(256 | 512)]
     public static double length([This] double3 a) => dot(a, a).sqrt();
@@ -1649,7 +1674,12 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 rsqrt([This] double4 a) => double4.One / sqrt(a);
+    public static double4 rsqrt([This] double4 a)
+    {
+        if (Vector256.IsHardwareAccelerated)
+            return new(simd.RSqrt(a.vector));
+        return new(a.x.rsqrt(), a.y.rsqrt(), a.z.rsqrt(), a.w.rsqrt());
+    }
 
     [MethodImpl(256 | 512)]
     public static double length([This] double4 a) => dot(a, a).sqrt();
@@ -1931,7 +1961,10 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 rsqrt([This] half2 a) => half2.One / sqrt(a);
+    public static half2 rsqrt([This] half2 a)
+    {
+        return new(a.x.rsqrt(), a.y.rsqrt());
+    }
 
     [MethodImpl(256 | 512)]
     public static half length([This] half2 a) => dot(a, a).sqrt();
@@ -2173,7 +2206,10 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 rsqrt([This] half3 a) => half3.One / sqrt(a);
+    public static half3 rsqrt([This] half3 a)
+    {
+        return new(a.x.rsqrt(), a.y.rsqrt(), a.z.rsqrt());
+    }
 
     [MethodImpl(256 | 512)]
     public static half length([This] half3 a) => dot(a, a).sqrt();
@@ -2417,7 +2453,10 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 rsqrt([This] half4 a) => half4.One / sqrt(a);
+    public static half4 rsqrt([This] half4 a)
+    {
+        return new(a.x.rsqrt(), a.y.rsqrt(), a.z.rsqrt(), a.w.rsqrt());
+    }
 
     [MethodImpl(256 | 512)]
     public static half length([This] half4 a) => dot(a, a).sqrt();

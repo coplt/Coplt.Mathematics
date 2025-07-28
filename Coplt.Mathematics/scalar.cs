@@ -1658,22 +1658,25 @@ public static partial class math
     [MethodImpl(256 | 512)]
     public static float wrap([This] float x, float min, float max)
     {
-        var range = max - min;
-        return min + ((x - min) % range + range) % range;
+        var add = x >= 0 ? min : max;
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static double wrap([This] double x, double min, double max)
     {
-        var range = max - min;
-        return min + ((x - min) % range + range) % range;
+        var add = x >= 0 ? min : max;
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static decimal wrap([This] decimal x, decimal min, decimal max)
     {
-        var range = max - min;
-        return min + ((x - min) % range + range) % range;
+        var add = x >= 0 ? min : max;
+        var off = x % (max - min);
+        return add + off;
     }
 
     #endregion

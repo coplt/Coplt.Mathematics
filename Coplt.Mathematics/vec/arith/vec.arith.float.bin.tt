@@ -242,7 +242,19 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> rsqrt([This] <#= typeName #> a) => <#= typeName #>.One / sqrt(a);
+    public static <#= typeName #> rsqrt([This] <#= typeName #> a)
+    {
+<#
+            if (typ.simd)
+            {
+#>
+        if (Vector<#= bitSize #>.IsHardwareAccelerated)
+            return new(simd.RSqrt(a.vector));
+<#
+            }
+#>
+        return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.rsqrt()")) #>);
+    }
 
     [MethodImpl(256 | 512)]
     public static <#= typ.compType #> length([This] <#= typeName #> a) => dot(a, a).sqrt();

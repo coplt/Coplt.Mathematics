@@ -139,9 +139,13 @@ public partial struct <#= typeName #>
     public static <#= typeName #> operator&(<#= typeName #> a, <#= typeName #> b) => new(<#=
                     string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]} & b.{Typ.xyzw[n]}")) #>);
 
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> operator^(<#= typeName #> a, <#= typeName #> b) => new(<#=
+                    string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]} ^ b.{Typ.xyzw[n]}")) #>);
+
     #endregion // Operators
 
-    #region // ToString
+    #region ToString
 
     public readonly override string ToString() => $"<#= typeName #> {{ <#=
                 string.Join(", ", Enumerable.Range(0, size).Select(l => $"t{l} = {{this[{l}]}}")) #> }}";

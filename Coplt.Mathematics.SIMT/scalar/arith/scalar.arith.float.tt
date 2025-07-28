@@ -11,6 +11,7 @@ namespace Coplt.Mathematics.SIMT;
     foreach (var typ in Typ.Typs)
     {
         if (!typ.f) continue;
+        if (!typ.bin) continue;
         if (!typ.arith) continue;
         if (!typ.simd) continue;
         if (typ.size < 4) continue;
@@ -110,6 +111,296 @@ public static partial class math_mt
     public static <#= typeName #> mod([This] <#= typeName #> a, <#= typeName #> b)
     {
         return new(<#= string.Join(", ", vectors.Select(v => $"simd.Mod(a.{v}, b.{v})")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> ceil([This] <#= typeName #> a)
+    {
+        return new(<#= string.Join(", ", vectors.Select(v => $"Vector{bitSize}.Ceiling(a.{v})")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> floor([This] <#= typeName #> a)
+    {
+        return new(<#= string.Join(", ", vectors.Select(v => $"Vector{bitSize}.Floor(a.{v})")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> round([This] <#= typeName #> a)
+    {
+        return new(<#= string.Join(", ", vectors.Select(v => $"simd.Round(a.{v})")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> trunc([This] <#= typeName #> a)
+    {
+        return new(<#= string.Join(", ", vectors.Select(v => $"simd.RoundToZero(a.{v})")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> frac([This] <#= typeName #> a) => a - floor(a);
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> modf([This] <#= typeName #> d, out <#= typeName #> i)
+    {
+        i = trunc(d);
+        return d - i;
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> rcp([This] <#= typeName #> a)
+    {
+        return new(<#= string.Join(", ", vectors.Select(v => $"simd.Rcp(a.{v})")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> saturate([This] <#= typeName #> a) => a.clamp(default, <#= typeName #>.One);
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> smoothstep(<#= typeName #> min, <#= typeName #> max, [This] <#= typeName #> a)
+    {
+        var t = saturate((a - min) / (max - min));
+        return t * t * fnma(2.0<#= typ.suffix #>, t, 3.0<#= typ.suffix #>); // (3.0<#= typ.suffix #> - (2.0<#= typ.suffix #> * t))
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> radians([This] <#= typeName #> a) => a * 0.0174532925199432957692369076848861271344287188854172545609719144<#= typ.suffix #>;
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> degrees([This] <#= typeName #> a) => a * 57.295779513082320876798154814105170332405472466564321549160243861<#= typ.suffix #>;
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> wrap([This] <#= typeName #> x, <#= typeName #> min, <#= typeName #> max)
+    {
+<#
+            // todo bool op
+            foreach (var v in vectors)
+            {
+#>
+        var a_<#= v #> = Vector<#= bitSize #>.GreaterThanOrEqual(x.<#= v #>, default);
+<#
+            }
+#>
+<#
+            foreach (var v in vectors)
+            {
+#>
+        var add_<#= v #> = Vector<#= bitSize #>.ConditionalSelect(a_<#= v #>, min.<#= v #>, max.<#= v #>);
+<#
+            }
+#>
+        var add = new <#= typeName #>(<#= string.Join(", ", vectors.Select(v => $"add_{v}")) #>);
+        var off = x % (max - min);
+        return add + off;
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> wrap([This] <#= typeName #> x, <#= typ.compType #> min, <#= typ.compType #> max)
+    {
+<#
+            // todo bool op
+            foreach (var v in vectors)
+            {
+#>
+        var a_<#= v #> = Vector<#= bitSize #>.GreaterThanOrEqual(x.<#= v #>, default);
+<#
+            }
+#>
+<#
+            foreach (var v in vectors)
+            {
+#>
+        var add_<#= v #> = Vector<#= bitSize #>.ConditionalSelect(a_<#= v #>, Vector<#= bitSize #>.Create(min), Vector<#= bitSize #>.Create(max));
+<#
+            }
+#>
+        var add = new <#= typeName #>(<#= string.Join(", ", vectors.Select(v => $"add_{v}")) #>);
+        var off = x % (max - min);
+        return add + off;
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> log([This] <#= typeName #> a)
+    {
+        return new(<#= string.Join(", ", vectors.Select(v => $"simd.Log(a.{v})")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> log2([This] <#= typeName #> a)
+    {
+        return new(<#= string.Join(", ", vectors.Select(v => $"simd.Log2(a.{v})")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> log2([This] <#= typeName #> a, <#= typeName #> b) => log(a) / log(b);
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> log10([This] <#= typeName #> a)
+    {
+        return new(<#= string.Join(", ", vectors.Select(v => $"simd.Log10(a.{v})")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> exp([This] <#= typeName #> a)
+    {
+        return new(<#= string.Join(", ", vectors.Select(v => $"simd.Exp(a.{v})")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> exp2([This] <#= typeName #> a)
+    {
+        return new(<#= string.Join(", ", vectors.Select(v => $"simd.Exp2(a.{v})")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> exp10([This] <#= typeName #> a)
+    {
+        return new(<#= string.Join(", ", vectors.Select(v => $"simd.Exp10(a.{v})")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> pow([This] <#= typeName #> a, <#= typeName #> b)
+    {
+        return new(<#= string.Join(", ", vectors.Select(v => $"simd.Pow(a.{v}, b.{v})")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> pow([This] <#= typeName #> a, <#= typ.compType #> b)
+    {
+        return new(<#= string.Join(", ", vectors.Select(v => $"simd.Pow(a.{v}, b)")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> sqrt([This] <#= typeName #> a)
+    {
+        return new(<#= string.Join(", ", vectors.Select(v => $"Vector{bitSize}.Sqrt(a.{v})")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> rsqrt([This] <#= typeName #> a)
+    {
+        return new(<#= string.Join(", ", vectors.Select(v => $"simd.RSqrt(a.{v})")) #>);
+    }
+<#
+            // todo step
+#>
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> sin([This] <#= typeName #> a)
+    {
+        return new(<#= string.Join(", ", vectors.Select(v => $"simd.Sin(a.{v})")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> cos([This] <#= typeName #> a)
+    {
+        return new(<#= string.Join(", ", vectors.Select(v => $"simd.Cos(a.{v})")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static (<#= typeName #> sin, <#= typeName #> cos) sincos([This] <#= typeName #> a)
+    {
+<#
+            foreach (var v in vectors)
+            {
+#>
+        var (sin_<#= v #>, cos_<#= v #>) = simd.SinCos(a.<#= v #>);
+<#
+            }
+#>
+        return (
+            new(<#= string.Join(", ", vectors.Select(v => $"sin_{v}")) #>),
+            new(<#= string.Join(", ", vectors.Select(v => $"cos_{v}")) #>)
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static void sincos([This] <#= typeName #> a, out <#= typeName #> sin, out <#= typeName #> cos)
+    {
+<#
+            foreach (var v in vectors)
+            {
+#>
+        var (sin_<#= v #>, cos_<#= v #>) = simd.SinCos(a.<#= v #>);
+<#
+            }
+#>
+        sin = new(<#= string.Join(", ", vectors.Select(v => $"sin_{v}")) #>);
+        cos = new(<#= string.Join(", ", vectors.Select(v => $"cos_{v}")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> tan([This] <#= typeName #> a)
+    {
+        return new(<#= string.Join(", ", vectors.Select(v => $"simd.Tan(a.{v})")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> asin([This] <#= typeName #> a)
+    {
+        return new(<#= string.Join(", ", vectors.Select(v => $"simd.Asin(a.{v})")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> acos([This] <#= typeName #> a)
+    {
+        return new(<#= string.Join(", ", vectors.Select(v => $"simd.Acos(a.{v})")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> atan([This] <#= typeName #> a)
+    {
+        return new(<#= string.Join(", ", vectors.Select(v => $"simd.Atan(a.{v})")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> atan2([This] <#= typeName #> a, <#= typeName #> b)
+    {
+        return new(<#= string.Join(", ", vectors.Select(v => $"simd.Atan2(a.{v}, b.{v})")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> sinh([This] <#= typeName #> a)
+    {
+        return new(<#= string.Join(", ", vectors.Select(v => $"simd.Sinh(a.{v})")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> cosh([This] <#= typeName #> a)
+    {
+        return new(<#= string.Join(", ", vectors.Select(v => $"simd.Cosh(a.{v})")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> tanh([This] <#= typeName #> a)
+    {
+        return new(<#= string.Join(", ", vectors.Select(v => $"simd.Tanh(a.{v})")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> asinh([This] <#= typeName #> a)
+    {
+        return new(<#= string.Join(", ", vectors.Select(v => $"simd.Asinh(a.{v})")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> acosh([This] <#= typeName #> a)
+    {
+        return new(<#= string.Join(", ", vectors.Select(v => $"simd.Acosh(a.{v})")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> atanh([This] <#= typeName #> a)
+    {
+        return new(<#= string.Join(", ", vectors.Select(v => $"simd.Atanh(a.{v})")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> chgsign([This] <#= typeName #> a, <#= typeName #> b)
+    {
+        var sig = Unsafe.BitCast<<#= typ.maskType #>, <#= typ.compType #>>(<#=
+                    typ.name switch { "half" => "0x8000", "float" => "0x8000_0000", "double" => "0x8000_0000_0000_0000", _ => "" } #>);
+        return (b & sig) ^ a;
     }
 }
 

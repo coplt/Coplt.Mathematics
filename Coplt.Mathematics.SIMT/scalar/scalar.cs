@@ -105,6 +105,9 @@ public partial struct float_mt4
     public static float_mt4 operator&(float_mt4 a, float_mt4 b) => new(a.vector & b.vector);
 
     [MethodImpl(256 | 512)]
+    public static float_mt4 operator^(float_mt4 a, float_mt4 b) => new(a.vector ^ b.vector);
+
+    [MethodImpl(256 | 512)]
     public static float_mt4 operator<<(float_mt4 a, int b) => new(a.vector << b);
 
     [MethodImpl(256 | 512)]
@@ -113,9 +116,13 @@ public partial struct float_mt4
     [MethodImpl(256 | 512)]
     public static float_mt4 operator>>>(float_mt4 a, int b) => new(a.vector >>> b);
 
+    #endregion  // Operators
+
+    #region ToString
+
     public readonly override string ToString() => $"float_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
 
-    #endregion
+    #endregion  // ToString
 }
 
 #endregion // float_mt4
@@ -222,6 +229,9 @@ public partial struct float_mt8
     public static float_mt8 operator&(float_mt8 a, float_mt8 b) => new(a.vector & b.vector);
 
     [MethodImpl(256 | 512)]
+    public static float_mt8 operator^(float_mt8 a, float_mt8 b) => new(a.vector ^ b.vector);
+
+    [MethodImpl(256 | 512)]
     public static float_mt8 operator<<(float_mt8 a, int b) => new(a.vector << b);
 
     [MethodImpl(256 | 512)]
@@ -230,9 +240,13 @@ public partial struct float_mt8
     [MethodImpl(256 | 512)]
     public static float_mt8 operator>>>(float_mt8 a, int b) => new(a.vector >>> b);
 
+    #endregion  // Operators
+
+    #region ToString
+
     public readonly override string ToString() => $"float_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
 
-    #endregion
+    #endregion  // ToString
 }
 
 #endregion // float_mt8
@@ -339,6 +353,9 @@ public partial struct float_mt16
     public static float_mt16 operator&(float_mt16 a, float_mt16 b) => new(a.vector & b.vector);
 
     [MethodImpl(256 | 512)]
+    public static float_mt16 operator^(float_mt16 a, float_mt16 b) => new(a.vector ^ b.vector);
+
+    [MethodImpl(256 | 512)]
     public static float_mt16 operator<<(float_mt16 a, int b) => new(a.vector << b);
 
     [MethodImpl(256 | 512)]
@@ -347,9 +364,13 @@ public partial struct float_mt16
     [MethodImpl(256 | 512)]
     public static float_mt16 operator>>>(float_mt16 a, int b) => new(a.vector >>> b);
 
+    #endregion  // Operators
+
+    #region ToString
+
     public readonly override string ToString() => $"float_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
 
-    #endregion
+    #endregion  // ToString
 }
 
 #endregion // float_mt16
@@ -465,6 +486,9 @@ public partial struct float_mt32
     public static float_mt32 operator&(float_mt32 a, float_mt32 b) => new(a.vector0 & b.vector0, a.vector1 & b.vector1);
 
     [MethodImpl(256 | 512)]
+    public static float_mt32 operator^(float_mt32 a, float_mt32 b) => new(a.vector0 ^ b.vector0, a.vector1 ^ b.vector1);
+
+    [MethodImpl(256 | 512)]
     public static float_mt32 operator<<(float_mt32 a, int b) => new(a.vector0 << b, a.vector1 << b);
 
     [MethodImpl(256 | 512)]
@@ -473,9 +497,13 @@ public partial struct float_mt32
     [MethodImpl(256 | 512)]
     public static float_mt32 operator>>>(float_mt32 a, int b) => new(a.vector0 >>> b, a.vector1 >>> b);
 
+    #endregion  // Operators
+
+    #region ToString
+
     public readonly override string ToString() => $"float_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
 
-    #endregion
+    #endregion  // ToString
 }
 
 #endregion // float_mt32
@@ -582,6 +610,9 @@ public partial struct double_mt4
     public static double_mt4 operator&(double_mt4 a, double_mt4 b) => new(a.vector & b.vector);
 
     [MethodImpl(256 | 512)]
+    public static double_mt4 operator^(double_mt4 a, double_mt4 b) => new(a.vector ^ b.vector);
+
+    [MethodImpl(256 | 512)]
     public static double_mt4 operator<<(double_mt4 a, int b) => new(a.vector << b);
 
     [MethodImpl(256 | 512)]
@@ -590,9 +621,13 @@ public partial struct double_mt4
     [MethodImpl(256 | 512)]
     public static double_mt4 operator>>>(double_mt4 a, int b) => new(a.vector >>> b);
 
+    #endregion  // Operators
+
+    #region ToString
+
     public readonly override string ToString() => $"double_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
 
-    #endregion
+    #endregion  // ToString
 }
 
 #endregion // double_mt4
@@ -699,6 +734,9 @@ public partial struct double_mt8
     public static double_mt8 operator&(double_mt8 a, double_mt8 b) => new(a.vector & b.vector);
 
     [MethodImpl(256 | 512)]
+    public static double_mt8 operator^(double_mt8 a, double_mt8 b) => new(a.vector ^ b.vector);
+
+    [MethodImpl(256 | 512)]
     public static double_mt8 operator<<(double_mt8 a, int b) => new(a.vector << b);
 
     [MethodImpl(256 | 512)]
@@ -707,9 +745,13 @@ public partial struct double_mt8
     [MethodImpl(256 | 512)]
     public static double_mt8 operator>>>(double_mt8 a, int b) => new(a.vector >>> b);
 
+    #endregion  // Operators
+
+    #region ToString
+
     public readonly override string ToString() => $"double_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
 
-    #endregion
+    #endregion  // ToString
 }
 
 #endregion // double_mt8
@@ -825,6 +867,9 @@ public partial struct double_mt16
     public static double_mt16 operator&(double_mt16 a, double_mt16 b) => new(a.vector0 & b.vector0, a.vector1 & b.vector1);
 
     [MethodImpl(256 | 512)]
+    public static double_mt16 operator^(double_mt16 a, double_mt16 b) => new(a.vector0 ^ b.vector0, a.vector1 ^ b.vector1);
+
+    [MethodImpl(256 | 512)]
     public static double_mt16 operator<<(double_mt16 a, int b) => new(a.vector0 << b, a.vector1 << b);
 
     [MethodImpl(256 | 512)]
@@ -833,9 +878,13 @@ public partial struct double_mt16
     [MethodImpl(256 | 512)]
     public static double_mt16 operator>>>(double_mt16 a, int b) => new(a.vector0 >>> b, a.vector1 >>> b);
 
+    #endregion  // Operators
+
+    #region ToString
+
     public readonly override string ToString() => $"double_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
 
-    #endregion
+    #endregion  // ToString
 }
 
 #endregion // double_mt16
@@ -963,6 +1012,9 @@ public partial struct double_mt32
     public static double_mt32 operator&(double_mt32 a, double_mt32 b) => new(a.vector0 & b.vector0, a.vector1 & b.vector1, a.vector2 & b.vector2, a.vector3 & b.vector3);
 
     [MethodImpl(256 | 512)]
+    public static double_mt32 operator^(double_mt32 a, double_mt32 b) => new(a.vector0 ^ b.vector0, a.vector1 ^ b.vector1, a.vector2 ^ b.vector2, a.vector3 ^ b.vector3);
+
+    [MethodImpl(256 | 512)]
     public static double_mt32 operator<<(double_mt32 a, int b) => new(a.vector0 << b, a.vector1 << b, a.vector2 << b, a.vector3 << b);
 
     [MethodImpl(256 | 512)]
@@ -971,9 +1023,13 @@ public partial struct double_mt32
     [MethodImpl(256 | 512)]
     public static double_mt32 operator>>>(double_mt32 a, int b) => new(a.vector0 >>> b, a.vector1 >>> b, a.vector2 >>> b, a.vector3 >>> b);
 
+    #endregion  // Operators
+
+    #region ToString
+
     public readonly override string ToString() => $"double_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
 
-    #endregion
+    #endregion  // ToString
 }
 
 #endregion // double_mt32
@@ -1080,6 +1136,9 @@ public partial struct int_mt4
     public static int_mt4 operator&(int_mt4 a, int_mt4 b) => new(a.vector & b.vector);
 
     [MethodImpl(256 | 512)]
+    public static int_mt4 operator^(int_mt4 a, int_mt4 b) => new(a.vector ^ b.vector);
+
+    [MethodImpl(256 | 512)]
     public static int_mt4 operator<<(int_mt4 a, int b) => new(a.vector << b);
 
     [MethodImpl(256 | 512)]
@@ -1088,9 +1147,13 @@ public partial struct int_mt4
     [MethodImpl(256 | 512)]
     public static int_mt4 operator>>>(int_mt4 a, int b) => new(a.vector >>> b);
 
+    #endregion  // Operators
+
+    #region ToString
+
     public readonly override string ToString() => $"int_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
 
-    #endregion
+    #endregion  // ToString
 }
 
 #endregion // int_mt4
@@ -1197,6 +1260,9 @@ public partial struct int_mt8
     public static int_mt8 operator&(int_mt8 a, int_mt8 b) => new(a.vector & b.vector);
 
     [MethodImpl(256 | 512)]
+    public static int_mt8 operator^(int_mt8 a, int_mt8 b) => new(a.vector ^ b.vector);
+
+    [MethodImpl(256 | 512)]
     public static int_mt8 operator<<(int_mt8 a, int b) => new(a.vector << b);
 
     [MethodImpl(256 | 512)]
@@ -1205,9 +1271,13 @@ public partial struct int_mt8
     [MethodImpl(256 | 512)]
     public static int_mt8 operator>>>(int_mt8 a, int b) => new(a.vector >>> b);
 
+    #endregion  // Operators
+
+    #region ToString
+
     public readonly override string ToString() => $"int_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
 
-    #endregion
+    #endregion  // ToString
 }
 
 #endregion // int_mt8
@@ -1314,6 +1384,9 @@ public partial struct int_mt16
     public static int_mt16 operator&(int_mt16 a, int_mt16 b) => new(a.vector & b.vector);
 
     [MethodImpl(256 | 512)]
+    public static int_mt16 operator^(int_mt16 a, int_mt16 b) => new(a.vector ^ b.vector);
+
+    [MethodImpl(256 | 512)]
     public static int_mt16 operator<<(int_mt16 a, int b) => new(a.vector << b);
 
     [MethodImpl(256 | 512)]
@@ -1322,9 +1395,13 @@ public partial struct int_mt16
     [MethodImpl(256 | 512)]
     public static int_mt16 operator>>>(int_mt16 a, int b) => new(a.vector >>> b);
 
+    #endregion  // Operators
+
+    #region ToString
+
     public readonly override string ToString() => $"int_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
 
-    #endregion
+    #endregion  // ToString
 }
 
 #endregion // int_mt16
@@ -1440,6 +1517,9 @@ public partial struct int_mt32
     public static int_mt32 operator&(int_mt32 a, int_mt32 b) => new(a.vector0 & b.vector0, a.vector1 & b.vector1);
 
     [MethodImpl(256 | 512)]
+    public static int_mt32 operator^(int_mt32 a, int_mt32 b) => new(a.vector0 ^ b.vector0, a.vector1 ^ b.vector1);
+
+    [MethodImpl(256 | 512)]
     public static int_mt32 operator<<(int_mt32 a, int b) => new(a.vector0 << b, a.vector1 << b);
 
     [MethodImpl(256 | 512)]
@@ -1448,9 +1528,13 @@ public partial struct int_mt32
     [MethodImpl(256 | 512)]
     public static int_mt32 operator>>>(int_mt32 a, int b) => new(a.vector0 >>> b, a.vector1 >>> b);
 
+    #endregion  // Operators
+
+    #region ToString
+
     public readonly override string ToString() => $"int_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
 
-    #endregion
+    #endregion  // ToString
 }
 
 #endregion // int_mt32
@@ -1557,6 +1641,9 @@ public partial struct uint_mt4
     public static uint_mt4 operator&(uint_mt4 a, uint_mt4 b) => new(a.vector & b.vector);
 
     [MethodImpl(256 | 512)]
+    public static uint_mt4 operator^(uint_mt4 a, uint_mt4 b) => new(a.vector ^ b.vector);
+
+    [MethodImpl(256 | 512)]
     public static uint_mt4 operator<<(uint_mt4 a, int b) => new(a.vector << b);
 
     [MethodImpl(256 | 512)]
@@ -1565,9 +1652,13 @@ public partial struct uint_mt4
     [MethodImpl(256 | 512)]
     public static uint_mt4 operator>>>(uint_mt4 a, int b) => new(a.vector >>> b);
 
+    #endregion  // Operators
+
+    #region ToString
+
     public readonly override string ToString() => $"uint_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
 
-    #endregion
+    #endregion  // ToString
 }
 
 #endregion // uint_mt4
@@ -1674,6 +1765,9 @@ public partial struct uint_mt8
     public static uint_mt8 operator&(uint_mt8 a, uint_mt8 b) => new(a.vector & b.vector);
 
     [MethodImpl(256 | 512)]
+    public static uint_mt8 operator^(uint_mt8 a, uint_mt8 b) => new(a.vector ^ b.vector);
+
+    [MethodImpl(256 | 512)]
     public static uint_mt8 operator<<(uint_mt8 a, int b) => new(a.vector << b);
 
     [MethodImpl(256 | 512)]
@@ -1682,9 +1776,13 @@ public partial struct uint_mt8
     [MethodImpl(256 | 512)]
     public static uint_mt8 operator>>>(uint_mt8 a, int b) => new(a.vector >>> b);
 
+    #endregion  // Operators
+
+    #region ToString
+
     public readonly override string ToString() => $"uint_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
 
-    #endregion
+    #endregion  // ToString
 }
 
 #endregion // uint_mt8
@@ -1791,6 +1889,9 @@ public partial struct uint_mt16
     public static uint_mt16 operator&(uint_mt16 a, uint_mt16 b) => new(a.vector & b.vector);
 
     [MethodImpl(256 | 512)]
+    public static uint_mt16 operator^(uint_mt16 a, uint_mt16 b) => new(a.vector ^ b.vector);
+
+    [MethodImpl(256 | 512)]
     public static uint_mt16 operator<<(uint_mt16 a, int b) => new(a.vector << b);
 
     [MethodImpl(256 | 512)]
@@ -1799,9 +1900,13 @@ public partial struct uint_mt16
     [MethodImpl(256 | 512)]
     public static uint_mt16 operator>>>(uint_mt16 a, int b) => new(a.vector >>> b);
 
+    #endregion  // Operators
+
+    #region ToString
+
     public readonly override string ToString() => $"uint_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
 
-    #endregion
+    #endregion  // ToString
 }
 
 #endregion // uint_mt16
@@ -1917,6 +2022,9 @@ public partial struct uint_mt32
     public static uint_mt32 operator&(uint_mt32 a, uint_mt32 b) => new(a.vector0 & b.vector0, a.vector1 & b.vector1);
 
     [MethodImpl(256 | 512)]
+    public static uint_mt32 operator^(uint_mt32 a, uint_mt32 b) => new(a.vector0 ^ b.vector0, a.vector1 ^ b.vector1);
+
+    [MethodImpl(256 | 512)]
     public static uint_mt32 operator<<(uint_mt32 a, int b) => new(a.vector0 << b, a.vector1 << b);
 
     [MethodImpl(256 | 512)]
@@ -1925,9 +2033,13 @@ public partial struct uint_mt32
     [MethodImpl(256 | 512)]
     public static uint_mt32 operator>>>(uint_mt32 a, int b) => new(a.vector0 >>> b, a.vector1 >>> b);
 
+    #endregion  // Operators
+
+    #region ToString
+
     public readonly override string ToString() => $"uint_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
 
-    #endregion
+    #endregion  // ToString
 }
 
 #endregion // uint_mt32
@@ -2034,6 +2146,9 @@ public partial struct long_mt4
     public static long_mt4 operator&(long_mt4 a, long_mt4 b) => new(a.vector & b.vector);
 
     [MethodImpl(256 | 512)]
+    public static long_mt4 operator^(long_mt4 a, long_mt4 b) => new(a.vector ^ b.vector);
+
+    [MethodImpl(256 | 512)]
     public static long_mt4 operator<<(long_mt4 a, int b) => new(a.vector << b);
 
     [MethodImpl(256 | 512)]
@@ -2042,9 +2157,13 @@ public partial struct long_mt4
     [MethodImpl(256 | 512)]
     public static long_mt4 operator>>>(long_mt4 a, int b) => new(a.vector >>> b);
 
+    #endregion  // Operators
+
+    #region ToString
+
     public readonly override string ToString() => $"long_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
 
-    #endregion
+    #endregion  // ToString
 }
 
 #endregion // long_mt4
@@ -2151,6 +2270,9 @@ public partial struct long_mt8
     public static long_mt8 operator&(long_mt8 a, long_mt8 b) => new(a.vector & b.vector);
 
     [MethodImpl(256 | 512)]
+    public static long_mt8 operator^(long_mt8 a, long_mt8 b) => new(a.vector ^ b.vector);
+
+    [MethodImpl(256 | 512)]
     public static long_mt8 operator<<(long_mt8 a, int b) => new(a.vector << b);
 
     [MethodImpl(256 | 512)]
@@ -2159,9 +2281,13 @@ public partial struct long_mt8
     [MethodImpl(256 | 512)]
     public static long_mt8 operator>>>(long_mt8 a, int b) => new(a.vector >>> b);
 
+    #endregion  // Operators
+
+    #region ToString
+
     public readonly override string ToString() => $"long_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
 
-    #endregion
+    #endregion  // ToString
 }
 
 #endregion // long_mt8
@@ -2277,6 +2403,9 @@ public partial struct long_mt16
     public static long_mt16 operator&(long_mt16 a, long_mt16 b) => new(a.vector0 & b.vector0, a.vector1 & b.vector1);
 
     [MethodImpl(256 | 512)]
+    public static long_mt16 operator^(long_mt16 a, long_mt16 b) => new(a.vector0 ^ b.vector0, a.vector1 ^ b.vector1);
+
+    [MethodImpl(256 | 512)]
     public static long_mt16 operator<<(long_mt16 a, int b) => new(a.vector0 << b, a.vector1 << b);
 
     [MethodImpl(256 | 512)]
@@ -2285,9 +2414,13 @@ public partial struct long_mt16
     [MethodImpl(256 | 512)]
     public static long_mt16 operator>>>(long_mt16 a, int b) => new(a.vector0 >>> b, a.vector1 >>> b);
 
+    #endregion  // Operators
+
+    #region ToString
+
     public readonly override string ToString() => $"long_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
 
-    #endregion
+    #endregion  // ToString
 }
 
 #endregion // long_mt16
@@ -2415,6 +2548,9 @@ public partial struct long_mt32
     public static long_mt32 operator&(long_mt32 a, long_mt32 b) => new(a.vector0 & b.vector0, a.vector1 & b.vector1, a.vector2 & b.vector2, a.vector3 & b.vector3);
 
     [MethodImpl(256 | 512)]
+    public static long_mt32 operator^(long_mt32 a, long_mt32 b) => new(a.vector0 ^ b.vector0, a.vector1 ^ b.vector1, a.vector2 ^ b.vector2, a.vector3 ^ b.vector3);
+
+    [MethodImpl(256 | 512)]
     public static long_mt32 operator<<(long_mt32 a, int b) => new(a.vector0 << b, a.vector1 << b, a.vector2 << b, a.vector3 << b);
 
     [MethodImpl(256 | 512)]
@@ -2423,9 +2559,13 @@ public partial struct long_mt32
     [MethodImpl(256 | 512)]
     public static long_mt32 operator>>>(long_mt32 a, int b) => new(a.vector0 >>> b, a.vector1 >>> b, a.vector2 >>> b, a.vector3 >>> b);
 
+    #endregion  // Operators
+
+    #region ToString
+
     public readonly override string ToString() => $"long_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
 
-    #endregion
+    #endregion  // ToString
 }
 
 #endregion // long_mt32
@@ -2532,6 +2672,9 @@ public partial struct ulong_mt4
     public static ulong_mt4 operator&(ulong_mt4 a, ulong_mt4 b) => new(a.vector & b.vector);
 
     [MethodImpl(256 | 512)]
+    public static ulong_mt4 operator^(ulong_mt4 a, ulong_mt4 b) => new(a.vector ^ b.vector);
+
+    [MethodImpl(256 | 512)]
     public static ulong_mt4 operator<<(ulong_mt4 a, int b) => new(a.vector << b);
 
     [MethodImpl(256 | 512)]
@@ -2540,9 +2683,13 @@ public partial struct ulong_mt4
     [MethodImpl(256 | 512)]
     public static ulong_mt4 operator>>>(ulong_mt4 a, int b) => new(a.vector >>> b);
 
+    #endregion  // Operators
+
+    #region ToString
+
     public readonly override string ToString() => $"ulong_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
 
-    #endregion
+    #endregion  // ToString
 }
 
 #endregion // ulong_mt4
@@ -2649,6 +2796,9 @@ public partial struct ulong_mt8
     public static ulong_mt8 operator&(ulong_mt8 a, ulong_mt8 b) => new(a.vector & b.vector);
 
     [MethodImpl(256 | 512)]
+    public static ulong_mt8 operator^(ulong_mt8 a, ulong_mt8 b) => new(a.vector ^ b.vector);
+
+    [MethodImpl(256 | 512)]
     public static ulong_mt8 operator<<(ulong_mt8 a, int b) => new(a.vector << b);
 
     [MethodImpl(256 | 512)]
@@ -2657,9 +2807,13 @@ public partial struct ulong_mt8
     [MethodImpl(256 | 512)]
     public static ulong_mt8 operator>>>(ulong_mt8 a, int b) => new(a.vector >>> b);
 
+    #endregion  // Operators
+
+    #region ToString
+
     public readonly override string ToString() => $"ulong_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
 
-    #endregion
+    #endregion  // ToString
 }
 
 #endregion // ulong_mt8
@@ -2775,6 +2929,9 @@ public partial struct ulong_mt16
     public static ulong_mt16 operator&(ulong_mt16 a, ulong_mt16 b) => new(a.vector0 & b.vector0, a.vector1 & b.vector1);
 
     [MethodImpl(256 | 512)]
+    public static ulong_mt16 operator^(ulong_mt16 a, ulong_mt16 b) => new(a.vector0 ^ b.vector0, a.vector1 ^ b.vector1);
+
+    [MethodImpl(256 | 512)]
     public static ulong_mt16 operator<<(ulong_mt16 a, int b) => new(a.vector0 << b, a.vector1 << b);
 
     [MethodImpl(256 | 512)]
@@ -2783,9 +2940,13 @@ public partial struct ulong_mt16
     [MethodImpl(256 | 512)]
     public static ulong_mt16 operator>>>(ulong_mt16 a, int b) => new(a.vector0 >>> b, a.vector1 >>> b);
 
+    #endregion  // Operators
+
+    #region ToString
+
     public readonly override string ToString() => $"ulong_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
 
-    #endregion
+    #endregion  // ToString
 }
 
 #endregion // ulong_mt16
@@ -2913,6 +3074,9 @@ public partial struct ulong_mt32
     public static ulong_mt32 operator&(ulong_mt32 a, ulong_mt32 b) => new(a.vector0 & b.vector0, a.vector1 & b.vector1, a.vector2 & b.vector2, a.vector3 & b.vector3);
 
     [MethodImpl(256 | 512)]
+    public static ulong_mt32 operator^(ulong_mt32 a, ulong_mt32 b) => new(a.vector0 ^ b.vector0, a.vector1 ^ b.vector1, a.vector2 ^ b.vector2, a.vector3 ^ b.vector3);
+
+    [MethodImpl(256 | 512)]
     public static ulong_mt32 operator<<(ulong_mt32 a, int b) => new(a.vector0 << b, a.vector1 << b, a.vector2 << b, a.vector3 << b);
 
     [MethodImpl(256 | 512)]
@@ -2921,9 +3085,13 @@ public partial struct ulong_mt32
     [MethodImpl(256 | 512)]
     public static ulong_mt32 operator>>>(ulong_mt32 a, int b) => new(a.vector0 >>> b, a.vector1 >>> b, a.vector2 >>> b, a.vector3 >>> b);
 
+    #endregion  // Operators
+
+    #region ToString
+
     public readonly override string ToString() => $"ulong_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
 
-    #endregion
+    #endregion  // ToString
 }
 
 #endregion // ulong_mt32
@@ -3030,6 +3198,9 @@ public partial struct b32_mt4
     public static b32_mt4 operator&(b32_mt4 a, b32_mt4 b) => new(a.vector & b.vector);
 
     [MethodImpl(256 | 512)]
+    public static b32_mt4 operator^(b32_mt4 a, b32_mt4 b) => new(a.vector ^ b.vector);
+
+    [MethodImpl(256 | 512)]
     public static b32_mt4 operator<<(b32_mt4 a, int b) => new(a.vector << b);
 
     [MethodImpl(256 | 512)]
@@ -3038,9 +3209,13 @@ public partial struct b32_mt4
     [MethodImpl(256 | 512)]
     public static b32_mt4 operator>>>(b32_mt4 a, int b) => new(a.vector >>> b);
 
+    #endregion  // Operators
+
+    #region ToString
+
     public readonly override string ToString() => $"b32_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
 
-    #endregion
+    #endregion  // ToString
 }
 
 #endregion // b32_mt4
@@ -3147,6 +3322,9 @@ public partial struct b32_mt8
     public static b32_mt8 operator&(b32_mt8 a, b32_mt8 b) => new(a.vector & b.vector);
 
     [MethodImpl(256 | 512)]
+    public static b32_mt8 operator^(b32_mt8 a, b32_mt8 b) => new(a.vector ^ b.vector);
+
+    [MethodImpl(256 | 512)]
     public static b32_mt8 operator<<(b32_mt8 a, int b) => new(a.vector << b);
 
     [MethodImpl(256 | 512)]
@@ -3155,9 +3333,13 @@ public partial struct b32_mt8
     [MethodImpl(256 | 512)]
     public static b32_mt8 operator>>>(b32_mt8 a, int b) => new(a.vector >>> b);
 
+    #endregion  // Operators
+
+    #region ToString
+
     public readonly override string ToString() => $"b32_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
 
-    #endregion
+    #endregion  // ToString
 }
 
 #endregion // b32_mt8
@@ -3264,6 +3446,9 @@ public partial struct b32_mt16
     public static b32_mt16 operator&(b32_mt16 a, b32_mt16 b) => new(a.vector & b.vector);
 
     [MethodImpl(256 | 512)]
+    public static b32_mt16 operator^(b32_mt16 a, b32_mt16 b) => new(a.vector ^ b.vector);
+
+    [MethodImpl(256 | 512)]
     public static b32_mt16 operator<<(b32_mt16 a, int b) => new(a.vector << b);
 
     [MethodImpl(256 | 512)]
@@ -3272,9 +3457,13 @@ public partial struct b32_mt16
     [MethodImpl(256 | 512)]
     public static b32_mt16 operator>>>(b32_mt16 a, int b) => new(a.vector >>> b);
 
+    #endregion  // Operators
+
+    #region ToString
+
     public readonly override string ToString() => $"b32_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
 
-    #endregion
+    #endregion  // ToString
 }
 
 #endregion // b32_mt16
@@ -3390,6 +3579,9 @@ public partial struct b32_mt32
     public static b32_mt32 operator&(b32_mt32 a, b32_mt32 b) => new(a.vector0 & b.vector0, a.vector1 & b.vector1);
 
     [MethodImpl(256 | 512)]
+    public static b32_mt32 operator^(b32_mt32 a, b32_mt32 b) => new(a.vector0 ^ b.vector0, a.vector1 ^ b.vector1);
+
+    [MethodImpl(256 | 512)]
     public static b32_mt32 operator<<(b32_mt32 a, int b) => new(a.vector0 << b, a.vector1 << b);
 
     [MethodImpl(256 | 512)]
@@ -3398,9 +3590,13 @@ public partial struct b32_mt32
     [MethodImpl(256 | 512)]
     public static b32_mt32 operator>>>(b32_mt32 a, int b) => new(a.vector0 >>> b, a.vector1 >>> b);
 
+    #endregion  // Operators
+
+    #region ToString
+
     public readonly override string ToString() => $"b32_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
 
-    #endregion
+    #endregion  // ToString
 }
 
 #endregion // b32_mt32
@@ -3507,6 +3703,9 @@ public partial struct b64_mt4
     public static b64_mt4 operator&(b64_mt4 a, b64_mt4 b) => new(a.vector & b.vector);
 
     [MethodImpl(256 | 512)]
+    public static b64_mt4 operator^(b64_mt4 a, b64_mt4 b) => new(a.vector ^ b.vector);
+
+    [MethodImpl(256 | 512)]
     public static b64_mt4 operator<<(b64_mt4 a, int b) => new(a.vector << b);
 
     [MethodImpl(256 | 512)]
@@ -3515,9 +3714,13 @@ public partial struct b64_mt4
     [MethodImpl(256 | 512)]
     public static b64_mt4 operator>>>(b64_mt4 a, int b) => new(a.vector >>> b);
 
+    #endregion  // Operators
+
+    #region ToString
+
     public readonly override string ToString() => $"b64_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
 
-    #endregion
+    #endregion  // ToString
 }
 
 #endregion // b64_mt4
@@ -3624,6 +3827,9 @@ public partial struct b64_mt8
     public static b64_mt8 operator&(b64_mt8 a, b64_mt8 b) => new(a.vector & b.vector);
 
     [MethodImpl(256 | 512)]
+    public static b64_mt8 operator^(b64_mt8 a, b64_mt8 b) => new(a.vector ^ b.vector);
+
+    [MethodImpl(256 | 512)]
     public static b64_mt8 operator<<(b64_mt8 a, int b) => new(a.vector << b);
 
     [MethodImpl(256 | 512)]
@@ -3632,9 +3838,13 @@ public partial struct b64_mt8
     [MethodImpl(256 | 512)]
     public static b64_mt8 operator>>>(b64_mt8 a, int b) => new(a.vector >>> b);
 
+    #endregion  // Operators
+
+    #region ToString
+
     public readonly override string ToString() => $"b64_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
 
-    #endregion
+    #endregion  // ToString
 }
 
 #endregion // b64_mt8
@@ -3750,6 +3960,9 @@ public partial struct b64_mt16
     public static b64_mt16 operator&(b64_mt16 a, b64_mt16 b) => new(a.vector0 & b.vector0, a.vector1 & b.vector1);
 
     [MethodImpl(256 | 512)]
+    public static b64_mt16 operator^(b64_mt16 a, b64_mt16 b) => new(a.vector0 ^ b.vector0, a.vector1 ^ b.vector1);
+
+    [MethodImpl(256 | 512)]
     public static b64_mt16 operator<<(b64_mt16 a, int b) => new(a.vector0 << b, a.vector1 << b);
 
     [MethodImpl(256 | 512)]
@@ -3758,9 +3971,13 @@ public partial struct b64_mt16
     [MethodImpl(256 | 512)]
     public static b64_mt16 operator>>>(b64_mt16 a, int b) => new(a.vector0 >>> b, a.vector1 >>> b);
 
+    #endregion  // Operators
+
+    #region ToString
+
     public readonly override string ToString() => $"b64_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
 
-    #endregion
+    #endregion  // ToString
 }
 
 #endregion // b64_mt16
@@ -3888,6 +4105,9 @@ public partial struct b64_mt32
     public static b64_mt32 operator&(b64_mt32 a, b64_mt32 b) => new(a.vector0 & b.vector0, a.vector1 & b.vector1, a.vector2 & b.vector2, a.vector3 & b.vector3);
 
     [MethodImpl(256 | 512)]
+    public static b64_mt32 operator^(b64_mt32 a, b64_mt32 b) => new(a.vector0 ^ b.vector0, a.vector1 ^ b.vector1, a.vector2 ^ b.vector2, a.vector3 ^ b.vector3);
+
+    [MethodImpl(256 | 512)]
     public static b64_mt32 operator<<(b64_mt32 a, int b) => new(a.vector0 << b, a.vector1 << b, a.vector2 << b, a.vector3 << b);
 
     [MethodImpl(256 | 512)]
@@ -3896,9 +4116,13 @@ public partial struct b64_mt32
     [MethodImpl(256 | 512)]
     public static b64_mt32 operator>>>(b64_mt32 a, int b) => new(a.vector0 >>> b, a.vector1 >>> b, a.vector2 >>> b, a.vector3 >>> b);
 
+    #endregion  // Operators
+
+    #region ToString
+
     public readonly override string ToString() => $"b64_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
 
-    #endregion
+    #endregion  // ToString
 }
 
 #endregion // b64_mt32
