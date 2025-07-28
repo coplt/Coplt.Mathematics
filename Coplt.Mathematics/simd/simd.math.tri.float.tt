@@ -7,15 +7,17 @@
 namespace Coplt.Mathematics.Simd;
 <#
     var type = "f32";
-    var sizes = new[] { 64, 128, 256 };
+    var sizes = new[] { 64, 128, 256, 512 };
 
     var v64 = $"Vector{64}";
     var v128 = $"Vector{128}";
     var v256 = $"Vector{256}";
+    var v512 = $"Vector{512}";
 
     var vt64 = $"{v64}<f32>";
     var vt128 = $"{v128}<f32>";
     var vt256 = $"{v256}<f32>";
+    var vt512 = $"{v512}<f32>";
 #>
 
 public static partial class simd_math
@@ -33,6 +35,13 @@ public static partial class simd_math
     [MethodImpl(512)]
     public static <#= vt256 #> SinCos(<#= vt256 #> x) =>
         Sin_impl(x + <#= v256 #>.Create(0.0f, 0.0f, 0.0f, 0.0f, math.F_Half_PI, math.F_Half_PI, math.F_Half_PI, math.F_Half_PI));
+
+    [MethodImpl(512)]
+    public static <#= vt512 #> SinCos(<#= vt512 #> x) =>
+        Sin_impl(x + <#= v512 #>.Create(
+            0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
+            math.F_Half_PI, math.F_Half_PI, math.F_Half_PI, math.F_Half_PI, math.F_Half_PI, math.F_Half_PI, math.F_Half_PI, math.F_Half_PI
+        ));
 
     #endregion
 
@@ -219,6 +228,27 @@ public static partial class simd_math
     }
 
     [MethodImpl(512)]
+    public static <#= vt256 #> SinhCosh(<#= vt256 #> x)
+    {
+        var r = Exp(x);
+        var rr = <#= vt256 #>.One / r;
+        var rrr = simd.Fma(rr, <#= v256 #>.Create(1.0f, 1.0f, 1.0f, 1.0f, -1.0f, -1.0f, -1.0f, -1.0f), r);
+        return rrr * 0.5f;
+    }
+
+    [MethodImpl(512)]
+    public static <#= vt512 #> SinhCosh(<#= vt512 #> x)
+    {
+        var r = Exp(x);
+        var rr = <#= vt512 #>.One / r;
+        var rrr = simd.Fma(rr, <#= v512 #>.Create(
+            1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+            -1.0f, -1.0f, -1.0f, -1.0f, -1.0f, -1.0f, -1.0f, -1.0f
+        ), r);
+        return rrr * 0.5f;
+    }
+
+    [MethodImpl(512)]
     public static <#= vt128 #> SinhCoshF64To128(<#= vt64 #> x)
     {
         var r = Exp(x);
@@ -229,21 +259,25 @@ public static partial class simd_math
     }
 
     [MethodImpl(512)]
-    public static <#= vt256 #> SinhCosh(<#= vt256 #> x)
-    {
-        var r = Exp(x);
-        var rr = <#= vt256 #>.One / r;
-        var rrr = simd.Fma(rr, <#= v256 #>.Create(1.0f, 1.0f, 1.0f, 1.0f, -1.0f, -1.0f, -1.0f, -1.0f), r);
-        return rrr * 0.5f;
-    }
-
-    [MethodImpl(512)]
     public static <#= vt256 #> SinhCoshF128To256(<#= vt128 #> x)
     {
         var r = Exp(x);
         var r256 = <#= v256 #>.Create(r, r);
         var rr = <#= vt256 #>.One / r256;
         var rrr = simd.Fma(rr, <#= v256 #>.Create(1.0f, 1.0f, 1.0f, 1.0f, -1.0f, -1.0f, -1.0f, -1.0f), r256);
+        return rrr * 0.5f;
+    }
+
+    [MethodImpl(512)]
+    public static <#= vt512 #> SinhCoshF256To512(<#= vt256 #> x)
+    {
+        var r = Exp(x);
+        var r512 = <#= v512 #>.Create(r, r);
+        var rr = <#= vt512 #>.One / r512;
+        var rrr = simd.Fma(rr, <#= v512 #>.Create(
+            1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+            -1.0f, -1.0f, -1.0f, -1.0f, -1.0f, -1.0f, -1.0f, -1.0f
+        ), r512);
         return rrr * 0.5f;
     }
 
@@ -311,6 +345,19 @@ public static partial class simd_math
     {
         var r = simd.Fma(x, x, <#= v256 #>.Create(1.0f, 1.0f, 1.0f, 1.0f, -1.0f, -1.0f, -1.0f, -1.0f));
         r = <#= v256 #>.Sqrt(r);
+        r += x;
+        r = Log(r);
+        return r;
+    }
+
+    [MethodImpl(512)]
+    public static <#= vt512 #> AsinhAcosh(<#= vt512 #> x)
+    {
+        var r = simd.Fma(x, x, <#= v512 #>.Create(
+            1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 
+            -1.0f, -1.0f, -1.0f, -1.0f,  -1.0f, -1.0f, -1.0f, -1.0f
+        ));
+        r = <#= v512 #>.Sqrt(r);
         r += x;
         r = Log(r);
         return r;

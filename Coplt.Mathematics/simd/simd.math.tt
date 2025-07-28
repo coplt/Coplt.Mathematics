@@ -10,7 +10,7 @@ namespace Coplt.Mathematics.Simd;
     var sizes = new[] { 64, 128, 256, 512 };
     var pairs = (from t in types
         from s in sizes
-        where (t, s) is not (("f64", 64) or ("f32", 512))
+        where (t, s) is not ("f64", 64)
         select (t, s)).ToList();
 #>
 
@@ -148,7 +148,6 @@ public static partial class simd_math
 <#
     foreach (var size in sizes)
     {
-        if (size == 512) continue;
         var type = "f32";
         var vector = $"Vector{size}";
         var vt = $"{vector}<{type}>";
@@ -291,7 +290,6 @@ public static partial class simd_math
 <#
     foreach (var size in sizes)
     {
-        if (size == 512) continue;
         var type = "f32";
         var vector = $"Vector{size}";
         var vt = $"{vector}<{type}>";
@@ -394,7 +392,7 @@ public static partial class simd_math
 
         return r;
     }
-    
+
     #endregion
 
 <#
@@ -407,7 +405,6 @@ public static partial class simd_math
 <#
     foreach (var size in sizes)
     {
-        if (size == 512) continue;
         var type = "f32";
         var vector = $"Vector{size}";
         var vt = $"{vector}<{type}>";

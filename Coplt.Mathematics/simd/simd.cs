@@ -3416,18 +3416,35 @@ public static partial class simd
         {
             return simd_math.Sin(a);
         }
-        if (Vector64.IsHardwareAccelerated)
-        {
-            return Vector128.Create(
-                simd_math.Sin(a.GetLower()),
-                simd_math.Sin(a.GetUpper())
-            );
-        }
         return Vector128.Create(
-            a.GetElement(0).sin(),
-            a.GetElement(1).sin(),
-            a.GetElement(2).sin(),
-            a.GetElement(3).sin()
+            Sin(a.GetLower()),
+            Sin(a.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector256<float> Sin(Vector256<float> a)
+    {
+        if (Vector256.IsHardwareAccelerated)
+        {
+            return simd_math.Sin(a);
+        }
+        return Vector256.Create(
+            Sin(a.GetLower()),
+            Sin(a.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector512<float> Sin(Vector512<float> a)
+    {
+        if (Vector512.IsHardwareAccelerated)
+        {
+            return simd_math.Sin(a);
+        }
+        return Vector512.Create(
+            Sin(a.GetLower()),
+            Sin(a.GetUpper())
         );
     }
 
@@ -3451,18 +3468,22 @@ public static partial class simd
         {
             return simd_math.Sin(a);
         }
-        if (Vector128.IsHardwareAccelerated)
-        {
-            return Vector256.Create(
-                simd_math.Sin(a.GetLower()),
-                simd_math.Sin(a.GetUpper())
-            );
-        }
         return Vector256.Create(
-            a.GetElement(0).sin(),
-            a.GetElement(1).sin(),
-            a.GetElement(2).sin(),
-            a.GetElement(3).sin()
+            Sin(a.GetLower()),
+            Sin(a.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector512<double> Sin(Vector512<double> a)
+    {
+        if (Vector512.IsHardwareAccelerated)
+        {
+            return simd_math.Sin(a);
+        }
+        return Vector512.Create(
+            Sin(a.GetLower()),
+            Sin(a.GetUpper())
         );
     }
 
@@ -3494,18 +3515,35 @@ public static partial class simd
         {
             return simd_math.Cos(a);
         }
-        if (Vector64.IsHardwareAccelerated)
-        {
-            return Vector128.Create(
-                simd_math.Cos(a.GetLower()),
-                simd_math.Cos(a.GetUpper())
-            );
-        }
         return Vector128.Create(
-            a.GetElement(0).cos(),
-            a.GetElement(1).cos(),
-            a.GetElement(2).cos(),
-            a.GetElement(3).cos()
+            Cos(a.GetLower()),
+            Cos(a.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector256<float> Cos(Vector256<float> a)
+    {
+        if (Vector256.IsHardwareAccelerated)
+        {
+            return simd_math.Cos(a);
+        }
+        return Vector256.Create(
+            Cos(a.GetLower()),
+            Cos(a.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector512<float> Cos(Vector512<float> a)
+    {
+        if (Vector512.IsHardwareAccelerated)
+        {
+            return simd_math.Cos(a);
+        }
+        return Vector512.Create(
+            Cos(a.GetLower()),
+            Cos(a.GetUpper())
         );
     }
 
@@ -3529,18 +3567,22 @@ public static partial class simd
         {
             return simd_math.Cos(a);
         }
-        if (Vector128.IsHardwareAccelerated)
-        {
-            return Vector256.Create(
-                simd_math.Cos(a.GetLower()),
-                simd_math.Cos(a.GetUpper())
-            );
-        }
         return Vector256.Create(
-            a.GetElement(0).cos(),
-            a.GetElement(1).cos(),
-            a.GetElement(2).cos(),
-            a.GetElement(3).cos()
+            Cos(a.GetLower()),
+            Cos(a.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector512<double> Cos(Vector512<double> a)
+    {
+        if (Vector512.IsHardwareAccelerated)
+        {
+            return simd_math.Cos(a);
+        }
+        return Vector512.Create(
+            Cos(a.GetLower()),
+            Cos(a.GetUpper())
         );
     }
 
@@ -3577,19 +3619,38 @@ public static partial class simd
         {
             return (Sin(a), Cos(a));
         }
-        if (Vector64.IsHardwareAccelerated)
+        var v0 = SinCos(a.GetLower());
+        var v1 = SinCos(a.GetUpper());
+        return (Vector128.Create(v0.sin, v1.sin), Vector128.Create(v0.cos, v1.cos));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static (Vector256<float> sin, Vector256<float> cos) SinCos(Vector256<float> a)
+    {
+        if (Vector512.IsHardwareAccelerated)
         {
-            var v0 = SinCos(a.GetLower());
-            var v1 = SinCos(a.GetUpper());
-            return (Vector128.Create(v0.sin, v1.sin), Vector128.Create(v0.cos, v1.cos));
+            var r = simd_math.SinCos(Vector512.Create(a, a));
+            return (r.GetLower(), r.GetUpper());
         }
+        if (Vector256.IsHardwareAccelerated)
         {
-            var v0 = a.GetElement(0).sincos();
-            var v1 = a.GetElement(1).sincos();
-            var v2 = a.GetElement(1).sincos();
-            var v3 = a.GetElement(1).sincos();
-            return (Vector128.Create(v0.sin, v1.sin, v2.sin, v3.sin), Vector128.Create(v0.cos, v1.cos, v2.cos, v3.cos));
+            return (Sin(a), Cos(a));
         }
+        var v0 = SinCos(a.GetLower());
+        var v1 = SinCos(a.GetUpper());
+        return (Vector256.Create(v0.sin, v1.sin), Vector256.Create(v0.cos, v1.cos));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static (Vector512<float> sin, Vector512<float> cos) SinCos(Vector512<float> a)
+    {
+        if (Vector512.IsHardwareAccelerated)
+        {
+            return (Sin(a), Cos(a));
+        }
+        var v0 = SinCos(a.GetLower());
+        var v1 = SinCos(a.GetUpper());
+        return (Vector512.Create(v0.sin, v1.sin), Vector512.Create(v0.cos, v1.cos));
     }
 
     [MethodImpl(256 | 512)]
@@ -3621,19 +3682,21 @@ public static partial class simd
         {
             return (Sin(a), Cos(a));
         }
-        if (Vector128.IsHardwareAccelerated)
+        var v0 = SinCos(a.GetLower());
+        var v1 = SinCos(a.GetUpper());
+        return (Vector256.Create(v0.sin, v1.sin), Vector256.Create(v0.cos, v1.cos));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static (Vector512<double> sin, Vector512<double> cos) SinCos(Vector512<double> a)
+    {
+        if (Vector512.IsHardwareAccelerated)
         {
-            var v0 = SinCos(a.GetLower());
-            var v1 = SinCos(a.GetUpper());
-            return (Vector256.Create(v0.sin, v1.sin), Vector256.Create(v0.cos, v1.cos));
+            return (Sin(a), Cos(a));
         }
-        {
-            var v0 = a.GetElement(0).sincos();
-            var v1 = a.GetElement(1).sincos();
-            var v2 = a.GetElement(1).sincos();
-            var v3 = a.GetElement(1).sincos();
-            return (Vector256.Create(v0.sin, v1.sin, v2.sin, v3.sin), Vector256.Create(v0.cos, v1.cos, v2.cos, v3.cos));
-        }
+        var v0 = SinCos(a.GetLower());
+        var v1 = SinCos(a.GetUpper());
+        return (Vector512.Create(v0.sin, v1.sin), Vector512.Create(v0.cos, v1.cos));
     }
 
     #endregion
@@ -3664,18 +3727,22 @@ public static partial class simd
         {
             return simd_math.Tan(a);
         }
-        if (Vector64.IsHardwareAccelerated)
-        {
-            return Vector128.Create(
-                simd_math.Tan(a.GetLower()),
-                simd_math.Tan(a.GetUpper())
-            );
-        }
         return Vector128.Create(
-            a.GetElement(0).tan(),
-            a.GetElement(1).tan(),
-            a.GetElement(2).tan(),
-            a.GetElement(3).tan()
+            Tan(a.GetLower()),
+            Tan(a.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector256<float> Tan(Vector256<float> a)
+    {
+        if (Vector256.IsHardwareAccelerated)
+        {
+            return simd_math.Tan(a);
+        }
+        return Vector256.Create(
+            Tan(a.GetLower()),
+            Tan(a.GetUpper())
         );
     }
 
@@ -3699,18 +3766,22 @@ public static partial class simd
         {
             return simd_math.Tan(a);
         }
-        if (Vector128.IsHardwareAccelerated)
-        {
-            return Vector256.Create(
-                simd_math.Tan(a.GetLower()),
-                simd_math.Tan(a.GetUpper())
-            );
-        }
         return Vector256.Create(
-            a.GetElement(0).tan(),
-            a.GetElement(1).tan(),
-            a.GetElement(2).tan(),
-            a.GetElement(3).tan()
+            Tan(a.GetLower()),
+            Tan(a.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector512<double> Tan(Vector512<double> a)
+    {
+        if (Vector512.IsHardwareAccelerated)
+        {
+            return simd_math.Tan(a);
+        }
+        return Vector512.Create(
+            Tan(a.GetLower()),
+            Tan(a.GetUpper())
         );
     }
 
@@ -3742,18 +3813,35 @@ public static partial class simd
         {
             return simd_math.Sinh(a);
         }
-        if (Vector64.IsHardwareAccelerated)
-        {
-            return Vector128.Create(
-                simd_math.Sinh(a.GetLower()),
-                simd_math.Sinh(a.GetUpper())
-            );
-        }
         return Vector128.Create(
-            a.GetElement(0).sinh(),
-            a.GetElement(1).sinh(),
-            a.GetElement(2).sinh(),
-            a.GetElement(3).sinh()
+            Sinh(a.GetLower()),
+            Sinh(a.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector256<float> Sinh(Vector256<float> a)
+    {
+        if (Vector256.IsHardwareAccelerated)
+        {
+            return simd_math.Sinh(a);
+        }
+        return Vector256.Create(
+            Sinh(a.GetLower()),
+            Sinh(a.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector512<float> Sinh(Vector512<float> a)
+    {
+        if (Vector512.IsHardwareAccelerated)
+        {
+            return simd_math.Sinh(a);
+        }
+        return Vector512.Create(
+            Sinh(a.GetLower()),
+            Sinh(a.GetUpper())
         );
     }
 
@@ -3777,18 +3865,22 @@ public static partial class simd
         {
             return simd_math.Sinh(a);
         }
-        if (Vector128.IsHardwareAccelerated)
-        {
-            return Vector256.Create(
-                simd_math.Sinh(a.GetLower()),
-                simd_math.Sinh(a.GetUpper())
-            );
-        }
         return Vector256.Create(
-            a.GetElement(0).sinh(),
-            a.GetElement(1).sinh(),
-            a.GetElement(2).sinh(),
-            a.GetElement(3).sinh()
+            Sinh(a.GetLower()),
+            Sinh(a.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector512<double> Sinh(Vector512<double> a)
+    {
+        if (Vector512.IsHardwareAccelerated)
+        {
+            return simd_math.Sinh(a);
+        }
+        return Vector512.Create(
+            Sinh(a.GetLower()),
+            Sinh(a.GetUpper())
         );
     }
 
@@ -3820,18 +3912,35 @@ public static partial class simd
         {
             return simd_math.Cosh(a);
         }
-        if (Vector64.IsHardwareAccelerated)
-        {
-            return Vector128.Create(
-                simd_math.Cosh(a.GetLower()),
-                simd_math.Cosh(a.GetUpper())
-            );
-        }
         return Vector128.Create(
-            a.GetElement(0).cosh(),
-            a.GetElement(1).cosh(),
-            a.GetElement(2).cosh(),
-            a.GetElement(3).cosh()
+            Cosh(a.GetLower()),
+            Cosh(a.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector256<float> Cosh(Vector256<float> a)
+    {
+        if (Vector256.IsHardwareAccelerated)
+        {
+            return simd_math.Cosh(a);
+        }
+        return Vector256.Create(
+            Cosh(a.GetLower()),
+            Cosh(a.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector512<float> Cosh(Vector512<float> a)
+    {
+        if (Vector512.IsHardwareAccelerated)
+        {
+            return simd_math.Cosh(a);
+        }
+        return Vector512.Create(
+            Cosh(a.GetLower()),
+            Cosh(a.GetUpper())
         );
     }
 
@@ -3855,18 +3964,22 @@ public static partial class simd
         {
             return simd_math.Cosh(a);
         }
-        if (Vector128.IsHardwareAccelerated)
-        {
-            return Vector256.Create(
-                simd_math.Cosh(a.GetLower()),
-                simd_math.Cosh(a.GetUpper())
-            );
-        }
         return Vector256.Create(
-            a.GetElement(0).cosh(),
-            a.GetElement(1).cosh(),
-            a.GetElement(2).cosh(),
-            a.GetElement(3).cosh()
+            Cosh(a.GetLower()),
+            Cosh(a.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector512<double> Cosh(Vector512<double> a)
+    {
+        if (Vector512.IsHardwareAccelerated)
+        {
+            return simd_math.Cosh(a);
+        }
+        return Vector512.Create(
+            Cosh(a.GetLower()),
+            Cosh(a.GetUpper())
         );
     }
 
@@ -3898,18 +4011,35 @@ public static partial class simd
         {
             return simd_math.Tanh(a);
         }
-        if (Vector64.IsHardwareAccelerated)
-        {
-            return Vector128.Create(
-                simd_math.Tanh(a.GetLower()),
-                simd_math.Tanh(a.GetUpper())
-            );
-        }
         return Vector128.Create(
-            a.GetElement(0).tanh(),
-            a.GetElement(1).tanh(),
-            a.GetElement(2).tanh(),
-            a.GetElement(3).tanh()
+            Tanh(a.GetLower()),
+            Tanh(a.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector256<float> Tanh(Vector256<float> a)
+    {
+        if (Vector256.IsHardwareAccelerated)
+        {
+            return simd_math.Tanh(a);
+        }
+        return Vector256.Create(
+            Tanh(a.GetLower()),
+            Tanh(a.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector512<float> Tanh(Vector512<float> a)
+    {
+        if (Vector512.IsHardwareAccelerated)
+        {
+            return simd_math.Tanh(a);
+        }
+        return Vector512.Create(
+            Tanh(a.GetLower()),
+            Tanh(a.GetUpper())
         );
     }
 
@@ -3933,18 +4063,22 @@ public static partial class simd
         {
             return simd_math.Tanh(a);
         }
-        if (Vector128.IsHardwareAccelerated)
-        {
-            return Vector256.Create(
-                simd_math.Tanh(a.GetLower()),
-                simd_math.Tanh(a.GetUpper())
-            );
-        }
         return Vector256.Create(
-            a.GetElement(0).tanh(),
-            a.GetElement(1).tanh(),
-            a.GetElement(2).tanh(),
-            a.GetElement(3).tanh()
+            Tanh(a.GetLower()),
+            Tanh(a.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector512<double> Tanh(Vector512<double> a)
+    {
+        if (Vector512.IsHardwareAccelerated)
+        {
+            return simd_math.Tanh(a);
+        }
+        return Vector512.Create(
+            Tanh(a.GetLower()),
+            Tanh(a.GetUpper())
         );
     }
 
@@ -3976,18 +4110,35 @@ public static partial class simd
         {
             return simd_math.Asinh(a);
         }
-        if (Vector64.IsHardwareAccelerated)
-        {
-            return Vector128.Create(
-                simd_math.Asinh(a.GetLower()),
-                simd_math.Asinh(a.GetUpper())
-            );
-        }
         return Vector128.Create(
-            a.GetElement(0).asinh(),
-            a.GetElement(1).asinh(),
-            a.GetElement(2).asinh(),
-            a.GetElement(3).asinh()
+            Asinh(a.GetLower()),
+            Asinh(a.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector256<float> Asinh(Vector256<float> a)
+    {
+        if (Vector256.IsHardwareAccelerated)
+        {
+            return simd_math.Asinh(a);
+        }
+        return Vector256.Create(
+            Asinh(a.GetLower()),
+            Asinh(a.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector512<float> Asinh(Vector512<float> a)
+    {
+        if (Vector512.IsHardwareAccelerated)
+        {
+            return simd_math.Asinh(a);
+        }
+        return Vector512.Create(
+            Asinh(a.GetLower()),
+            Asinh(a.GetUpper())
         );
     }
 
@@ -4011,18 +4162,22 @@ public static partial class simd
         {
             return simd_math.Asinh(a);
         }
-        if (Vector128.IsHardwareAccelerated)
-        {
-            return Vector256.Create(
-                simd_math.Asinh(a.GetLower()),
-                simd_math.Asinh(a.GetUpper())
-            );
-        }
         return Vector256.Create(
-            a.GetElement(0).asinh(),
-            a.GetElement(1).asinh(),
-            a.GetElement(2).asinh(),
-            a.GetElement(3).asinh()
+            Asinh(a.GetLower()),
+            Asinh(a.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector512<double> Asinh(Vector512<double> a)
+    {
+        if (Vector512.IsHardwareAccelerated)
+        {
+            return simd_math.Asinh(a);
+        }
+        return Vector512.Create(
+            Asinh(a.GetLower()),
+            Asinh(a.GetUpper())
         );
     }
 
@@ -4054,18 +4209,35 @@ public static partial class simd
         {
             return simd_math.Acosh(a);
         }
-        if (Vector64.IsHardwareAccelerated)
-        {
-            return Vector128.Create(
-                simd_math.Acosh(a.GetLower()),
-                simd_math.Acosh(a.GetUpper())
-            );
-        }
         return Vector128.Create(
-            a.GetElement(0).acosh(),
-            a.GetElement(1).acosh(),
-            a.GetElement(2).acosh(),
-            a.GetElement(3).acosh()
+            Acosh(a.GetLower()),
+            Acosh(a.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector256<float> Acosh(Vector256<float> a)
+    {
+        if (Vector256.IsHardwareAccelerated)
+        {
+            return simd_math.Acosh(a);
+        }
+        return Vector256.Create(
+            Acosh(a.GetLower()),
+            Acosh(a.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector512<float> Acosh(Vector512<float> a)
+    {
+        if (Vector512.IsHardwareAccelerated)
+        {
+            return simd_math.Acosh(a);
+        }
+        return Vector512.Create(
+            Acosh(a.GetLower()),
+            Acosh(a.GetUpper())
         );
     }
 
@@ -4089,18 +4261,22 @@ public static partial class simd
         {
             return simd_math.Acosh(a);
         }
-        if (Vector128.IsHardwareAccelerated)
-        {
-            return Vector256.Create(
-                simd_math.Acosh(a.GetLower()),
-                simd_math.Acosh(a.GetUpper())
-            );
-        }
         return Vector256.Create(
-            a.GetElement(0).acosh(),
-            a.GetElement(1).acosh(),
-            a.GetElement(2).acosh(),
-            a.GetElement(3).acosh()
+            Acosh(a.GetLower()),
+            Acosh(a.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector512<double> Acosh(Vector512<double> a)
+    {
+        if (Vector512.IsHardwareAccelerated)
+        {
+            return simd_math.Acosh(a);
+        }
+        return Vector512.Create(
+            Acosh(a.GetLower()),
+            Acosh(a.GetUpper())
         );
     }
 
@@ -4132,18 +4308,35 @@ public static partial class simd
         {
             return simd_math.Atanh(a);
         }
-        if (Vector64.IsHardwareAccelerated)
-        {
-            return Vector128.Create(
-                simd_math.Atanh(a.GetLower()),
-                simd_math.Atanh(a.GetUpper())
-            );
-        }
         return Vector128.Create(
-            a.GetElement(0).atanh(),
-            a.GetElement(1).atanh(),
-            a.GetElement(2).atanh(),
-            a.GetElement(3).atanh()
+            Atanh(a.GetLower()),
+            Atanh(a.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector256<float> Atanh(Vector256<float> a)
+    {
+        if (Vector256.IsHardwareAccelerated)
+        {
+            return simd_math.Atanh(a);
+        }
+        return Vector256.Create(
+            Atanh(a.GetLower()),
+            Atanh(a.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector512<float> Atanh(Vector512<float> a)
+    {
+        if (Vector512.IsHardwareAccelerated)
+        {
+            return simd_math.Atanh(a);
+        }
+        return Vector512.Create(
+            Atanh(a.GetLower()),
+            Atanh(a.GetUpper())
         );
     }
 
@@ -4167,18 +4360,22 @@ public static partial class simd
         {
             return simd_math.Atanh(a);
         }
-        if (Vector128.IsHardwareAccelerated)
-        {
-            return Vector256.Create(
-                simd_math.Atanh(a.GetLower()),
-                simd_math.Atanh(a.GetUpper())
-            );
-        }
         return Vector256.Create(
-            a.GetElement(0).atanh(),
-            a.GetElement(1).atanh(),
-            a.GetElement(2).atanh(),
-            a.GetElement(3).atanh()
+            Atanh(a.GetLower()),
+            Atanh(a.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector512<double> Atanh(Vector512<double> a)
+    {
+        if (Vector512.IsHardwareAccelerated)
+        {
+            return simd_math.Atanh(a);
+        }
+        return Vector512.Create(
+            Atanh(a.GetLower()),
+            Atanh(a.GetUpper())
         );
     }
 
@@ -4210,18 +4407,35 @@ public static partial class simd
         {
             return simd_math.Asin(a);
         }
-        if (Vector64.IsHardwareAccelerated)
-        {
-            return Vector128.Create(
-                simd_math.Asin(a.GetLower()),
-                simd_math.Asin(a.GetUpper())
-            );
-        }
         return Vector128.Create(
-            a.GetElement(0).asin(),
-            a.GetElement(1).asin(),
-            a.GetElement(2).asin(),
-            a.GetElement(3).asin()
+            Asin(a.GetLower()),
+            Asin(a.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector256<float> Asin(Vector256<float> a)
+    {
+        if (Vector256.IsHardwareAccelerated)
+        {
+            return simd_math.Asin(a);
+        }
+        return Vector256.Create(
+            Asin(a.GetLower()),
+            Asin(a.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector512<float> Asin(Vector512<float> a)
+    {
+        if (Vector512.IsHardwareAccelerated)
+        {
+            return simd_math.Asin(a);
+        }
+        return Vector512.Create(
+            Asin(a.GetLower()),
+            Asin(a.GetUpper())
         );
     }
 
@@ -4245,18 +4459,22 @@ public static partial class simd
         {
             return simd_math.Asin(a);
         }
-        if (Vector128.IsHardwareAccelerated)
-        {
-            return Vector256.Create(
-                simd_math.Asin(a.GetLower()),
-                simd_math.Asin(a.GetUpper())
-            );
-        }
         return Vector256.Create(
-            a.GetElement(0).asin(),
-            a.GetElement(1).asin(),
-            a.GetElement(2).asin(),
-            a.GetElement(3).asin()
+            Asin(a.GetLower()),
+            Asin(a.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector512<double> Asin(Vector512<double> a)
+    {
+        if (Vector512.IsHardwareAccelerated)
+        {
+            return simd_math.Asin(a);
+        }
+        return Vector512.Create(
+            Asin(a.GetLower()),
+            Asin(a.GetUpper())
         );
     }
 
@@ -4288,18 +4506,35 @@ public static partial class simd
         {
             return simd_math.Acos(a);
         }
-        if (Vector64.IsHardwareAccelerated)
-        {
-            return Vector128.Create(
-                simd_math.Acos(a.GetLower()),
-                simd_math.Acos(a.GetUpper())
-            );
-        }
         return Vector128.Create(
-            a.GetElement(0).acos(),
-            a.GetElement(1).acos(),
-            a.GetElement(2).acos(),
-            a.GetElement(3).acos()
+            Acos(a.GetLower()),
+            Acos(a.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector256<float> Acos(Vector256<float> a)
+    {
+        if (Vector256.IsHardwareAccelerated)
+        {
+            return simd_math.Acos(a);
+        }
+        return Vector256.Create(
+            Acos(a.GetLower()),
+            Acos(a.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector512<float> Acos(Vector512<float> a)
+    {
+        if (Vector512.IsHardwareAccelerated)
+        {
+            return simd_math.Acos(a);
+        }
+        return Vector512.Create(
+            Acos(a.GetLower()),
+            Acos(a.GetUpper())
         );
     }
 
@@ -4323,18 +4558,22 @@ public static partial class simd
         {
             return simd_math.Acos(a);
         }
-        if (Vector128.IsHardwareAccelerated)
-        {
-            return Vector256.Create(
-                simd_math.Acos(a.GetLower()),
-                simd_math.Acos(a.GetUpper())
-            );
-        }
         return Vector256.Create(
-            a.GetElement(0).acos(),
-            a.GetElement(1).acos(),
-            a.GetElement(2).acos(),
-            a.GetElement(3).acos()
+            Acos(a.GetLower()),
+            Acos(a.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector512<double> Acos(Vector512<double> a)
+    {
+        if (Vector512.IsHardwareAccelerated)
+        {
+            return simd_math.Acos(a);
+        }
+        return Vector512.Create(
+            Acos(a.GetLower()),
+            Acos(a.GetUpper())
         );
     }
 
@@ -4366,18 +4605,35 @@ public static partial class simd
         {
             return simd_math.Atan(a);
         }
-        if (Vector64.IsHardwareAccelerated)
-        {
-            return Vector128.Create(
-                simd_math.Atan(a.GetLower()),
-                simd_math.Atan(a.GetUpper())
-            );
-        }
         return Vector128.Create(
-            a.GetElement(0).atan(),
-            a.GetElement(1).atan(),
-            a.GetElement(2).atan(),
-            a.GetElement(3).atan()
+            Atan(a.GetLower()),
+            Atan(a.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector256<float> Atan(Vector256<float> a)
+    {
+        if (Vector256.IsHardwareAccelerated)
+        {
+            return simd_math.Atan(a);
+        }
+        return Vector256.Create(
+            Atan(a.GetLower()),
+            Atan(a.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector512<float> Atan(Vector512<float> a)
+    {
+        if (Vector512.IsHardwareAccelerated)
+        {
+            return simd_math.Atan(a);
+        }
+        return Vector512.Create(
+            Atan(a.GetLower()),
+            Atan(a.GetUpper())
         );
     }
 
@@ -4401,18 +4657,22 @@ public static partial class simd
         {
             return simd_math.Atan(a);
         }
-        if (Vector128.IsHardwareAccelerated)
-        {
-            return Vector256.Create(
-                simd_math.Atan(a.GetLower()),
-                simd_math.Atan(a.GetUpper())
-            );
-        }
         return Vector256.Create(
-            a.GetElement(0).atan(),
-            a.GetElement(1).atan(),
-            a.GetElement(2).atan(),
-            a.GetElement(3).atan()
+            Atan(a.GetLower()),
+            Atan(a.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector512<double> Atan(Vector512<double> a)
+    {
+        if (Vector512.IsHardwareAccelerated)
+        {
+            return simd_math.Atan(a);
+        }
+        return Vector512.Create(
+            Atan(a.GetLower()),
+            Atan(a.GetUpper())
         );
     }
 
@@ -4444,18 +4704,35 @@ public static partial class simd
         {
             return simd_math.Atan2(y, x);
         }
-        if (Vector64.IsHardwareAccelerated)
-        {
-            return Vector128.Create(
-                simd_math.Atan2(y.GetLower(), x.GetLower()),
-                simd_math.Atan2(y.GetUpper(), x.GetUpper())
-            );
-        }
         return Vector128.Create(
-            y.GetElement(0).atan2(x.GetElement(0)),
-            y.GetElement(1).atan2(x.GetElement(1)),
-            y.GetElement(2).atan2(x.GetElement(2)),
-            y.GetElement(3).atan2(x.GetElement(3))
+            Atan2(y.GetLower(), x.GetLower()),
+            Atan2(y.GetUpper(), x.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector256<float> Atan2(Vector256<float> y, Vector256<float> x)
+    {
+        if (Vector256.IsHardwareAccelerated)
+        {
+            return simd_math.Atan2(y, x);
+        }
+        return Vector256.Create(
+            Atan2(y.GetLower(), x.GetLower()),
+            Atan2(y.GetUpper(), x.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector512<float> Atan2(Vector512<float> y, Vector512<float> x)
+    {
+        if (Vector512.IsHardwareAccelerated)
+        {
+            return simd_math.Atan2(y, x);
+        }
+        return Vector512.Create(
+            Atan2(y.GetLower(), x.GetLower()),
+            Atan2(y.GetUpper(), x.GetUpper())
         );
     }
 
@@ -4479,18 +4756,22 @@ public static partial class simd
         {
             return simd_math.Atan2(y, x);
         }
-        if (Vector128.IsHardwareAccelerated)
-        {
-            return Vector256.Create(
-                simd_math.Atan2(y.GetLower(), x.GetLower()),
-                simd_math.Atan2(y.GetUpper(), x.GetUpper())
-            );
-        }
         return Vector256.Create(
-            y.GetElement(0).atan2(x.GetElement(0)),
-            y.GetElement(1).atan2(x.GetElement(1)),
-            y.GetElement(2).atan2(x.GetElement(2)),
-            y.GetElement(3).atan2(x.GetElement(3))
+            Atan2(y.GetLower(), x.GetLower()),
+            Atan2(y.GetUpper(), x.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector512<double> Atan2(Vector512<double> y, Vector512<double> x)
+    {
+        if (Vector512.IsHardwareAccelerated)
+        {
+            return simd_math.Atan2(y, x);
+        }
+        return Vector512.Create(
+            Atan2(y.GetLower(), x.GetLower()),
+            Atan2(y.GetUpper(), x.GetUpper())
         );
     }
 

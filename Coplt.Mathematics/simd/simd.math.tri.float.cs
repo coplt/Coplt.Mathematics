@@ -18,6 +18,13 @@ public static partial class simd_math
     public static Vector256<f32> SinCos(Vector256<f32> x) =>
         Sin_impl(x + Vector256.Create(0.0f, 0.0f, 0.0f, 0.0f, math.F_Half_PI, math.F_Half_PI, math.F_Half_PI, math.F_Half_PI));
 
+    [MethodImpl(512)]
+    public static Vector512<f32> SinCos(Vector512<f32> x) =>
+        Sin_impl(x + Vector512.Create(
+            0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
+            math.F_Half_PI, math.F_Half_PI, math.F_Half_PI, math.F_Half_PI, math.F_Half_PI, math.F_Half_PI, math.F_Half_PI, math.F_Half_PI
+        ));
+
     #endregion
 
     #region Vector64<f32>
@@ -148,6 +155,52 @@ public static partial class simd_math
         r = simd.Fma(r, sq, Vector256.Create(0.008333333333299304989001f));
         r = simd.Fma(r, sq, Vector256.Create(-0.166666666666663509013977f));
         r = simd.Fma(r, sq, Vector256<f32>.One);
+
+        r *= xt;
+
+        r = simd.Fma(r, is_neg, is_nan);
+
+        return r;
+    }
+
+    #endregion
+
+    #region Vector512<f32>
+
+    [MethodImpl(512)]
+    public static Vector512<f32> Cos(Vector512<f32> x) => Sin_impl(x + Vector512.Create(math.F_Half_PI));
+
+    [MethodImpl(512)]
+    public static Vector512<f32> Sin(Vector512<f32> x) => Sin_impl(x);
+
+    [MethodImpl(256 | 512)]
+    private static Vector512<f32> Sin_impl(Vector512<f32> x)
+    {
+        // Since sin() is periodic around 2pi, this converts x into the range of [0, 2pi]
+        var xt = Wrap0To2Pi(x);
+
+        // Since sin() in [0, 2pi] is an odd function around pi, this converts the range to [0, pi], then stores whether or not the result needs to be negated in is_neg.
+        var is_neg = Vector512.GreaterThan(xt, Vector512.Create(math.F_PI));
+        xt -= is_neg & Vector512.Create(math.F_PI);
+
+        is_neg &= Vector512.Create(-2.0f);
+        is_neg += Vector512<f32>.One;
+
+        var is_nan = simd.Ne(x, x);
+        is_nan += Vector512.GreaterThan(x, Vector512.Create(f32.MaxValue));
+        is_nan += Vector512.LessThan(x, Vector512.Create(f32.MinValue));
+
+        // Since sin() on [0, pi] is an even function around pi/2, this "folds" the range into [0, pi/2]. I.e. 3pi/5 becomes 2pi/5.
+        xt = Vector512.Create(math.F_Half_PI) - Vector512.Abs(xt - Vector512.Create(math.F_Half_PI));
+
+        var sq = xt * xt;
+        var r = simd.Fma(sq, Vector512.Create(-0.0000000000007384998082865f), Vector512.Create(0.000000000160490521296459f));
+        r = simd.Fma(r, sq, Vector512.Create(-0.00000002505191090496049f));
+        r = simd.Fma(r, sq, Vector512.Create(0.00000275573170815073144f));
+        r = simd.Fma(r, sq, Vector512.Create(-0.00019841269828860068271f));
+        r = simd.Fma(r, sq, Vector512.Create(0.008333333333299304989001f));
+        r = simd.Fma(r, sq, Vector512.Create(-0.166666666666663509013977f));
+        r = simd.Fma(r, sq, Vector512<f32>.One);
 
         r *= xt;
 
@@ -348,6 +401,68 @@ public static partial class simd_math
 
     #endregion
 
+    #region Vector512<f32>
+
+    /// <summary>
+    /// Computes sines in [0,pi/4]
+    /// </summary>
+    [MethodImpl(512)]
+    public static Vector512<f32> SinIn0P4(Vector512<f32> x) => SinIn0P4_impl(x);
+
+    /// <summary>
+    /// Computes sines in [0,pi/4]
+    /// </summary>
+    [MethodImpl(256 | 512)]
+    public static Vector512<f32> SinIn0P4_impl(Vector512<f32> x)
+    {
+        var sq = x * x;
+
+        // This is an odd-only Taylor series approximation of sin() on [0, pi/4]. 
+        var r = simd.Fma(sq, Vector512.Create(0.0000000001590238118466f), Vector512.Create(-0.0000000250508528135474f));
+        r = simd.Fma(r, sq, Vector512.Create(0.0000027557314284120030f));
+        r = simd.Fma(r, sq, Vector512.Create(-0.00019841269831470328245f));
+        r = simd.Fma(r, sq, Vector512.Create(0.008333333333324419158220f));
+        r = simd.Fma(r, sq, Vector512.Create(-0.1666666666666663969165095f));
+        r = simd.Fma(r, sq, Vector512<f32>.One);
+        r *= x;
+
+        return r;
+    }
+
+    [MethodImpl(512)]
+    public static Vector512<f32> Tan(Vector512<f32> x)
+    {
+        // Since tan() is periodic around pi, this converts x into the range of [0, pi]
+        var xt = Wrap0ToPi(x);
+
+        // Since tan() in [0, pi] is an odd function around pi/2, this converts the range to [0, pi/2], then stores whether or not the result needs to be negated in is_neg.
+        var is_neg = Vector512.GreaterThan(xt, Vector512.Create(math.F_Half_PI));
+        xt += is_neg & ((xt - Vector512.Create(math.F_Half_PI)) * -2);
+
+        is_neg &= Vector512.Create(-2.0f);
+        is_neg += Vector512<f32>.One;
+
+        var is_nan = simd.Ne(x, x);
+        is_nan += Vector512.GreaterThan(x, Vector512.Create(float.MaxValue));
+        is_nan += Vector512.LessThan(x, Vector512.Create(float.MinValue));
+
+        // Since tan() on [0, pi/2] is an inversed function around pi/4, this "folds" the range into [0, pi/4]. I.e. 3pi/10 becomes 2pi/10.
+        var do_inv_mask = Vector512.GreaterThan(xt, Vector512.Create(math.F_Quarter_PI));
+        var no_inv_mask = Vector512.LessThanOrEqual(xt, Vector512.Create(math.F_Quarter_PI));
+        xt = Vector512.Create(math.F_Quarter_PI) - Vector512.Abs(xt - Vector512.Create(math.F_Quarter_PI));
+
+        var xx = SinIn0P4_impl(xt);
+
+        xt = Vector512.Sqrt(Vector512<f32>.One - xx * xx);
+
+        xx = (do_inv_mask & (xt / xx)) + (no_inv_mask & (xx / xt));
+
+        xx = simd.Fma(xx, is_neg, is_nan);
+        return xx;
+    }
+
+    #endregion
+
     #endregion
 
     #region Sinh Cosh Tanh
@@ -436,6 +551,34 @@ public static partial class simd_math
 
     #endregion
 
+    #region Vector512<f32>
+
+    [MethodImpl(512)]
+    public static Vector512<f32> Sinh(Vector512<f32> x)
+    {
+        var r = Exp(x);
+        var rr = Vector512<f32>.One / r;
+        return (r - rr) * 0.5f;
+    }
+
+    [MethodImpl(512)]
+    public static Vector512<f32> Cosh(Vector512<f32> x)
+    {
+        var r = Exp(x);
+        var rr = Vector512<f32>.One / r;
+        return (r + rr) * 0.5f;
+    }
+
+    [MethodImpl(512)]
+    public static Vector512<f32> Tanh(Vector512<f32> x)
+    {
+        var r = Exp(x);
+        var rr = Vector512<f32>.One / r;
+        return (r - rr) / (r + rr);
+    }
+
+    #endregion
+
     #region SinhCosh
 
     [MethodImpl(512)]
@@ -444,6 +587,27 @@ public static partial class simd_math
         var r = Exp(x);
         var rr = Vector128<f32>.One / r;
         var rrr = simd.Fma(rr, Vector128.Create(1.0f, 1.0f, -1.0f, -1.0f), r);
+        return rrr * 0.5f;
+    }
+
+    [MethodImpl(512)]
+    public static Vector256<f32> SinhCosh(Vector256<f32> x)
+    {
+        var r = Exp(x);
+        var rr = Vector256<f32>.One / r;
+        var rrr = simd.Fma(rr, Vector256.Create(1.0f, 1.0f, 1.0f, 1.0f, -1.0f, -1.0f, -1.0f, -1.0f), r);
+        return rrr * 0.5f;
+    }
+
+    [MethodImpl(512)]
+    public static Vector512<f32> SinhCosh(Vector512<f32> x)
+    {
+        var r = Exp(x);
+        var rr = Vector512<f32>.One / r;
+        var rrr = simd.Fma(rr, Vector512.Create(
+            1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+            -1.0f, -1.0f, -1.0f, -1.0f, -1.0f, -1.0f, -1.0f, -1.0f
+        ), r);
         return rrr * 0.5f;
     }
 
@@ -458,21 +622,25 @@ public static partial class simd_math
     }
 
     [MethodImpl(512)]
-    public static Vector256<f32> SinhCosh(Vector256<f32> x)
-    {
-        var r = Exp(x);
-        var rr = Vector256<f32>.One / r;
-        var rrr = simd.Fma(rr, Vector256.Create(1.0f, 1.0f, 1.0f, 1.0f, -1.0f, -1.0f, -1.0f, -1.0f), r);
-        return rrr * 0.5f;
-    }
-
-    [MethodImpl(512)]
     public static Vector256<f32> SinhCoshF128To256(Vector128<f32> x)
     {
         var r = Exp(x);
         var r256 = Vector256.Create(r, r);
         var rr = Vector256<f32>.One / r256;
         var rrr = simd.Fma(rr, Vector256.Create(1.0f, 1.0f, 1.0f, 1.0f, -1.0f, -1.0f, -1.0f, -1.0f), r256);
+        return rrr * 0.5f;
+    }
+
+    [MethodImpl(512)]
+    public static Vector512<f32> SinhCoshF256To512(Vector256<f32> x)
+    {
+        var r = Exp(x);
+        var r512 = Vector512.Create(r, r);
+        var rr = Vector512<f32>.One / r512;
+        var rrr = simd.Fma(rr, Vector512.Create(
+            1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+            -1.0f, -1.0f, -1.0f, -1.0f, -1.0f, -1.0f, -1.0f, -1.0f
+        ), r512);
         return rrr * 0.5f;
     }
 
@@ -578,6 +746,38 @@ public static partial class simd_math
 
     #endregion
 
+    #region Vector512<f32>
+
+    [MethodImpl(512)]
+    public static Vector512<f32> Asinh(Vector512<f32> x)
+    {
+        var r = simd.Fma(x, x, Vector512<f32>.One);
+        r = Vector512.Sqrt(r);
+        r += x;
+        r = Log(r);
+        return r;
+    }
+
+    [MethodImpl(512)]
+    public static Vector512<f32> Acosh(Vector512<f32> x)
+    {
+        var r = simd.Fma(x, x, -Vector512<f32>.One);
+        r = Vector512.Sqrt(r);
+        r += x;
+        r = Log(r);
+        return r;
+    }
+
+    [MethodImpl(512)]
+    public static Vector512<f32> Atanh(Vector512<f32> x)
+    {
+        var r = (Vector512<f32>.One + x) / (Vector512<f32>.One - x);
+        r = Log(r) * 0.5f;
+        return r;
+    }
+
+    #endregion
+
     #region AsinhAcosh
 
     [MethodImpl(512)]
@@ -595,6 +795,19 @@ public static partial class simd_math
     {
         var r = simd.Fma(x, x, Vector256.Create(1.0f, 1.0f, 1.0f, 1.0f, -1.0f, -1.0f, -1.0f, -1.0f));
         r = Vector256.Sqrt(r);
+        r += x;
+        r = Log(r);
+        return r;
+    }
+
+    [MethodImpl(512)]
+    public static Vector512<f32> AsinhAcosh(Vector512<f32> x)
+    {
+        var r = simd.Fma(x, x, Vector512.Create(
+            1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 
+            -1.0f, -1.0f, -1.0f, -1.0f,  -1.0f, -1.0f, -1.0f, -1.0f
+        ));
+        r = Vector512.Sqrt(r);
         r += x;
         r = Log(r);
         return r;
@@ -679,6 +892,32 @@ public static partial class simd_math
         r = Vector256.ConditionalSelect(o, u, r);
 
         r ^= d & -Vector256<f32>.Zero;
+        return r;
+    }
+
+    #endregion
+
+    #region Vector512<f32>
+
+    [MethodImpl(512)]
+    public static Vector512<f32> Asin(Vector512<f32> d)
+    {
+        var abs = Vector512.Abs(d);
+        var o = Vector512.LessThan(abs, Vector512.Create(0.5f));
+        var x2 = Vector512.ConditionalSelect(o, d * d, (Vector512<f32>.One - abs) * Vector512.Create(0.5f));
+        var x = Vector512.ConditionalSelect(o, abs, Vector512.Sqrt(x2));
+
+        var u = Vector512.Create(0.4197454825e-1f);
+        u = simd.Fma(u, x2, Vector512.Create(0.2424046025e-1f));
+        u = simd.Fma(u, x2, Vector512.Create(0.4547423869e-1f));
+        u = simd.Fma(u, x2, Vector512.Create(0.7495029271e-1f));
+        u = simd.Fma(u, x2, Vector512.Create(0.1666677296e+0f));
+        u = simd.Fma(u, x * x2, x);
+
+        var r = simd.Fnma(u, Vector512.Create(2f), Vector512.Create(math.F_Half_PI));
+        r = Vector512.ConditionalSelect(o, u, r);
+
+        r ^= d & -Vector512<f32>.Zero;
         return r;
     }
 
@@ -773,6 +1012,36 @@ public static partial class simd_math
         var r = Vector256.ConditionalSelect(o, y, x * 2);
         var c = Vector256.LessThan(d, Vector256<f32>.Zero) & ~o;
         r = Vector256.ConditionalSelect(c, Vector256.Create(math.F_PI) - r, r);
+        return r;
+    }
+
+    #endregion
+
+    #region Vector512<f32>
+
+    [MethodImpl(512)]
+    public static Vector512<f32> Acos(Vector512<f32> d)
+    {
+        var abs = Vector512.Abs(d);
+        var o = Vector512.LessThan(abs, Vector512.Create(0.5f));
+        var x2 = Vector512.ConditionalSelect(o, d * d, (Vector512<f32>.One - abs) * Vector512.Create(0.5f));
+        var x = Vector512.ConditionalSelect(o, abs, Vector512.Sqrt(x2));
+        x &= simd.Ne(Vector512<f32>.One, abs);
+
+        var u = Vector512.Create(0.4197454825e-1f);
+        u = simd.Fma(u, x2, Vector512.Create(0.2424046025e-1f));
+        u = simd.Fma(u, x2, Vector512.Create(0.4547423869e-1f));
+        u = simd.Fma(u, x2, Vector512.Create(0.7495029271e-1f));
+        u = simd.Fma(u, x2, Vector512.Create(0.1666677296e+0f));
+        u *= x * x2;
+
+        var sign = d & -Vector512<f32>.Zero;
+
+        var y = Vector512.Create(math.F_Half_PI) - ((x ^ sign) + (u ^ sign));
+        x += u;
+        var r = Vector512.ConditionalSelect(o, y, x * 2);
+        var c = Vector512.LessThan(d, Vector512<f32>.Zero) & ~o;
+        r = Vector512.ConditionalSelect(c, Vector512.Create(math.F_PI) - r, r);
         return r;
     }
 
@@ -884,6 +1153,43 @@ public static partial class simd_math
         t = Vector256.ConditionalSelect(
             is_gt_1,
             Vector256.Create(math.F_Half_PI) - t,
+            t
+        );
+        t ^= sign;
+
+        return t;
+    }
+
+    #endregion
+
+    #region Vector512<f32>
+
+    [MethodImpl(512)]
+    public static Vector512<f32> Atan(Vector512<f32> s)
+    {
+        var sign = s & -Vector512<f32>.Zero;
+        s = Vector512.Abs(s);
+        var is_gt_1 = Vector512.GreaterThan(s, Vector512<f32>.One);
+        s = Vector512.ConditionalSelect(is_gt_1, Vector512<f32>.One / s, s);
+
+        var t = s * s;
+        var t2 = t * t;
+        var t4 = t2 * t2;
+        var u = simd.Fma(t4,
+            simd.Fma(t2,
+                simd.Fma(t, Vector512.Create(0.00282363896258175373077393f), Vector512.Create(-0.0159569028764963150024414f)),
+                simd.Fma(t, Vector512.Create(0.0425049886107444763183594f), Vector512.Create(-0.0748900920152664184570312f))
+            ),
+            simd.Fma(t2,
+                simd.Fma(t, Vector512.Create(0.106347933411598205566406f), Vector512.Create(-0.142027363181114196777344f)),
+                simd.Fma(t, Vector512.Create(0.199926957488059997558594f), Vector512.Create(-0.333331018686294555664062f))
+            )
+        );
+        t = simd.Fma(s, t * u, s);
+
+        t = Vector512.ConditionalSelect(
+            is_gt_1,
+            Vector512.Create(math.F_Half_PI) - t,
             t
         );
         t ^= sign;
@@ -1073,6 +1379,67 @@ public static partial class simd_math
             r);
         r = Vector256.ConditionalSelect(y_is_nan | x_is_nan,
             Vector256.Create(f32.NaN),
+            r ^ y_sign
+        );
+        return r;
+    }
+
+    #endregion
+
+    #region Vector512<f32>
+
+    [MethodImpl(512)]
+    public static Vector512<f32> Atan2(Vector512<f32> y, Vector512<f32> x)
+    {
+        var x_is_inf = simd.IsInfinity(x).AsSingle();
+        var y_is_inf = simd.IsInfinity(y).AsSingle();
+        var x_iz = Vector512.Equals(x, default);
+        var y_iz = Vector512.Equals(y, default);
+        var y_sign = y & -Vector512<f32>.Zero;
+        var x_sign = x & -Vector512<f32>.Zero;
+        var y_is_nan = simd.Ne(y, y);
+        var x_is_nan = simd.Ne(x, x);
+
+        y = Vector512.Abs(y);
+        var x_lz = Vector512.LessThan(x, default);
+        x = Vector512.Abs(x);
+        var q = x_lz & Vector512.Create(-2f);
+        var y_gt_x = Vector512.GreaterThan(y, x);
+        q += y_gt_x & Vector512<f32>.One;
+        var b = Vector512.Min(x, y);
+        b = Vector512.ConditionalSelect(y_gt_x, -b, b);
+        var a = Vector512.Max(x, y);
+
+        var s = b / a;
+        var t = s * s;
+        var t2 = t * t;
+        var t4 = t2 * t2;
+        var u = simd.Fma(t4,
+            simd.Fma(t2,
+                simd.Fma(t, Vector512.Create(0.00282363896258175373077393f), Vector512.Create(-0.0159569028764963150024414f)),
+                simd.Fma(t, Vector512.Create(0.0425049886107444763183594f), Vector512.Create(-0.0748900920152664184570312f))
+            ),
+            simd.Fma(t2,
+                simd.Fma(t, Vector512.Create(0.106347933411598205566406f), Vector512.Create(-0.142027363181114196777344f)),
+                simd.Fma(t, Vector512.Create(0.199926957488059997558594f), Vector512.Create(-0.333331018686294555664062f))
+            )
+        );
+
+        var r = simd.Fma(u, t * s, s);
+        r = simd.Fma(q, Vector512.Create(math.F_Half_PI), r);
+        r ^= x_sign;
+        r = Vector512.ConditionalSelect(x_is_inf | x_iz,
+            Vector512.Create(math.F_Half_PI) - (x_is_inf & (Vector512.Create(math.F_Half_PI) ^ x_sign)),
+            r
+        );
+        r = Vector512.ConditionalSelect(y_is_inf,
+            Vector512.Create(math.F_Half_PI) - (x_is_inf & (Vector512.Create(math.F_Quarter_PI) ^ x_sign)),
+            r);
+        r = Vector512.ConditionalSelect(y_iz,
+            Vector512.Equals(x_sign.AsInt32(), (-Vector512<f32>.Zero).AsInt32()).AsSingle() & Vector512.Create(math.F_PI),
+            r);
+        r = Vector512.ConditionalSelect(y_is_nan | x_is_nan,
+            Vector512.Create(f32.NaN),
             r ^ y_sign
         );
         return r;
