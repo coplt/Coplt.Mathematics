@@ -239,7 +239,7 @@ public static partial class math_mt
     public static <#= typeName #> fms([This] <#= typeName #> a, <#= typeName #> b, <#= typeName #> c)
     {
 <#
-            if (typ.f && typ.bin)
+            if (typ.f)
             {
 #>
         return new(<#= string.Join(", ", vectors.Select(v => $"simd.Fms(a.{v}, b.{v}, c.{v})")) #>);
@@ -265,7 +265,7 @@ public static partial class math_mt
     public static <#= typeName #> fnma([This] <#= typeName #> a, <#= typeName #> b, <#= typeName #> c)
     {
 <#
-            if (typ.f && typ.bin)
+            if (typ.f)
             {
 #>
         return new(<#= string.Join(", ", vectors.Select(v => $"simd.Fnma(a.{v}, b.{v}, c.{v})")) #>);
