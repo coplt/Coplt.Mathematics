@@ -4,8 +4,7 @@ namespace Coplt.Mathematics.SIMT;
 
 #region float_mt
 
-[Serializable, CpuOnly]
-//[JsonConverter(typeof(float_mtJsonConverter))]
+[CpuOnly]
 public partial struct float_mt
 {
     #region Constants
@@ -16,6 +15,24 @@ public partial struct float_mt
         get => throw new NotSupportedException("Compile time only");
     }
 
+    public static float_mt Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static float_mt One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1.0f);
+    }
+
+    public static float_mt Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new(2.0f);
+    }
+
     #endregion
 
     #region Properties
@@ -23,7 +40,7 @@ public partial struct float_mt
     public float this[int index]
     {
         [MethodImpl(256 | 512)]
-        get
+        readonly get
         {
             throw new NotSupportedException("Compile time only");
         }
@@ -105,14 +122,15 @@ public partial struct float_mt
     [MethodImpl(256 | 512)]
     public static float_mt operator>>>(float_mt a, int b) => throw new NotSupportedException("Compile time only");
 
+    public readonly override string ToString() => $"float_mt {{  }}";
+
     #endregion
 }
 
 #endregion // float_mt
 #region float_mt4
 
-[Serializable, CpuOnly]
-//[JsonConverter(typeof(float_mt4JsonConverter))]
+[CpuOnly]
 public partial struct float_mt4
 {
     #region Constants
@@ -121,6 +139,24 @@ public partial struct float_mt4
     {
         [MethodImpl(256 | 512)]
         get => 4;
+    }
+
+    public static float_mt4 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static float_mt4 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1.0f);
+    }
+
+    public static float_mt4 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new(2.0f);
     }
 
     #endregion
@@ -132,6 +168,16 @@ public partial struct float_mt4
     #endregion // Fields
 
     #region Properties
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public readonly ref readonly Vector128<float> VectorAtRo(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
 
     [MethodImpl(256 | 512), UnscopedRef]
     public ref Vector128<float> VectorAt(int index)
@@ -146,7 +192,7 @@ public partial struct float_mt4
     public float this[int index]
     {
         [MethodImpl(256 | 512)]
-        get
+        readonly get
         {
             return vector[index];
         }
@@ -241,14 +287,15 @@ public partial struct float_mt4
     [MethodImpl(256 | 512)]
     public static float_mt4 operator>>>(float_mt4 a, int b) => new(a.vector >>> b);
 
+    public readonly override string ToString() => $"float_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+
     #endregion
 }
 
 #endregion // float_mt4
 #region float_mt8
 
-[Serializable, CpuOnly]
-//[JsonConverter(typeof(float_mt8JsonConverter))]
+[CpuOnly]
 public partial struct float_mt8
 {
     #region Constants
@@ -257,6 +304,24 @@ public partial struct float_mt8
     {
         [MethodImpl(256 | 512)]
         get => 8;
+    }
+
+    public static float_mt8 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static float_mt8 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1.0f);
+    }
+
+    public static float_mt8 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new(2.0f);
     }
 
     #endregion
@@ -268,6 +333,16 @@ public partial struct float_mt8
     #endregion // Fields
 
     #region Properties
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public readonly ref readonly Vector256<float> VectorAtRo(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
 
     [MethodImpl(256 | 512), UnscopedRef]
     public ref Vector256<float> VectorAt(int index)
@@ -282,7 +357,7 @@ public partial struct float_mt8
     public float this[int index]
     {
         [MethodImpl(256 | 512)]
-        get
+        readonly get
         {
             return vector[index];
         }
@@ -377,14 +452,15 @@ public partial struct float_mt8
     [MethodImpl(256 | 512)]
     public static float_mt8 operator>>>(float_mt8 a, int b) => new(a.vector >>> b);
 
+    public readonly override string ToString() => $"float_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+
     #endregion
 }
 
 #endregion // float_mt8
 #region float_mt16
 
-[Serializable, CpuOnly]
-//[JsonConverter(typeof(float_mt16JsonConverter))]
+[CpuOnly]
 public partial struct float_mt16
 {
     #region Constants
@@ -393,6 +469,24 @@ public partial struct float_mt16
     {
         [MethodImpl(256 | 512)]
         get => 16;
+    }
+
+    public static float_mt16 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static float_mt16 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1.0f);
+    }
+
+    public static float_mt16 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new(2.0f);
     }
 
     #endregion
@@ -404,6 +498,16 @@ public partial struct float_mt16
     #endregion // Fields
 
     #region Properties
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public readonly ref readonly Vector512<float> VectorAtRo(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
 
     [MethodImpl(256 | 512), UnscopedRef]
     public ref Vector512<float> VectorAt(int index)
@@ -418,7 +522,7 @@ public partial struct float_mt16
     public float this[int index]
     {
         [MethodImpl(256 | 512)]
-        get
+        readonly get
         {
             return vector[index];
         }
@@ -513,14 +617,15 @@ public partial struct float_mt16
     [MethodImpl(256 | 512)]
     public static float_mt16 operator>>>(float_mt16 a, int b) => new(a.vector >>> b);
 
+    public readonly override string ToString() => $"float_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+
     #endregion
 }
 
 #endregion // float_mt16
 #region double_mt
 
-[Serializable, CpuOnly]
-//[JsonConverter(typeof(double_mtJsonConverter))]
+[CpuOnly]
 public partial struct double_mt
 {
     #region Constants
@@ -531,6 +636,24 @@ public partial struct double_mt
         get => throw new NotSupportedException("Compile time only");
     }
 
+    public static double_mt Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static double_mt One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1.0);
+    }
+
+    public static double_mt Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new(2.0);
+    }
+
     #endregion
 
     #region Properties
@@ -538,7 +661,7 @@ public partial struct double_mt
     public double this[int index]
     {
         [MethodImpl(256 | 512)]
-        get
+        readonly get
         {
             throw new NotSupportedException("Compile time only");
         }
@@ -620,14 +743,15 @@ public partial struct double_mt
     [MethodImpl(256 | 512)]
     public static double_mt operator>>>(double_mt a, int b) => throw new NotSupportedException("Compile time only");
 
+    public readonly override string ToString() => $"double_mt {{  }}";
+
     #endregion
 }
 
 #endregion // double_mt
 #region double_mt4
 
-[Serializable, CpuOnly]
-//[JsonConverter(typeof(double_mt4JsonConverter))]
+[CpuOnly]
 public partial struct double_mt4
 {
     #region Constants
@@ -636,6 +760,24 @@ public partial struct double_mt4
     {
         [MethodImpl(256 | 512)]
         get => 4;
+    }
+
+    public static double_mt4 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static double_mt4 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1.0);
+    }
+
+    public static double_mt4 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new(2.0);
     }
 
     #endregion
@@ -647,6 +789,16 @@ public partial struct double_mt4
     #endregion // Fields
 
     #region Properties
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public readonly ref readonly Vector256<double> VectorAtRo(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
 
     [MethodImpl(256 | 512), UnscopedRef]
     public ref Vector256<double> VectorAt(int index)
@@ -661,7 +813,7 @@ public partial struct double_mt4
     public double this[int index]
     {
         [MethodImpl(256 | 512)]
-        get
+        readonly get
         {
             return vector[index];
         }
@@ -756,14 +908,15 @@ public partial struct double_mt4
     [MethodImpl(256 | 512)]
     public static double_mt4 operator>>>(double_mt4 a, int b) => new(a.vector >>> b);
 
+    public readonly override string ToString() => $"double_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+
     #endregion
 }
 
 #endregion // double_mt4
 #region double_mt8
 
-[Serializable, CpuOnly]
-//[JsonConverter(typeof(double_mt8JsonConverter))]
+[CpuOnly]
 public partial struct double_mt8
 {
     #region Constants
@@ -772,6 +925,24 @@ public partial struct double_mt8
     {
         [MethodImpl(256 | 512)]
         get => 8;
+    }
+
+    public static double_mt8 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static double_mt8 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1.0);
+    }
+
+    public static double_mt8 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new(2.0);
     }
 
     #endregion
@@ -783,6 +954,16 @@ public partial struct double_mt8
     #endregion // Fields
 
     #region Properties
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public readonly ref readonly Vector512<double> VectorAtRo(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
 
     [MethodImpl(256 | 512), UnscopedRef]
     public ref Vector512<double> VectorAt(int index)
@@ -797,7 +978,7 @@ public partial struct double_mt8
     public double this[int index]
     {
         [MethodImpl(256 | 512)]
-        get
+        readonly get
         {
             return vector[index];
         }
@@ -892,14 +1073,15 @@ public partial struct double_mt8
     [MethodImpl(256 | 512)]
     public static double_mt8 operator>>>(double_mt8 a, int b) => new(a.vector >>> b);
 
+    public readonly override string ToString() => $"double_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+
     #endregion
 }
 
 #endregion // double_mt8
 #region double_mt16
 
-[Serializable, CpuOnly]
-//[JsonConverter(typeof(double_mt16JsonConverter))]
+[CpuOnly]
 public partial struct double_mt16
 {
     #region Constants
@@ -908,6 +1090,24 @@ public partial struct double_mt16
     {
         [MethodImpl(256 | 512)]
         get => 16;
+    }
+
+    public static double_mt16 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static double_mt16 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1.0);
+    }
+
+    public static double_mt16 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new(2.0);
     }
 
     #endregion
@@ -920,6 +1120,17 @@ public partial struct double_mt16
     #endregion // Fields
 
     #region Properties
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public readonly ref readonly Vector512<double> VectorAtRo(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector0;
+            case 1: return ref vector1;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
 
     [MethodImpl(256 | 512), UnscopedRef]
     public ref Vector512<double> VectorAt(int index)
@@ -935,10 +1146,10 @@ public partial struct double_mt16
     public double this[int index]
     {
         [MethodImpl(256 | 512)]
-        get
+        readonly get
         {
             var (q, r) = Math.DivRem(index, Vector512<double>.Count);
-            return VectorAt(q)[r];
+            return VectorAtRo(q)[r];
         }
         [MethodImpl(256 | 512)]
         set
@@ -1036,14 +1247,15 @@ public partial struct double_mt16
     [MethodImpl(256 | 512)]
     public static double_mt16 operator>>>(double_mt16 a, int b) => new(a.vector0 >>> b, a.vector1 >>> b);
 
+    public readonly override string ToString() => $"double_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+
     #endregion
 }
 
 #endregion // double_mt16
 #region int_mt
 
-[Serializable, CpuOnly]
-//[JsonConverter(typeof(int_mtJsonConverter))]
+[CpuOnly]
 public partial struct int_mt
 {
     #region Constants
@@ -1054,6 +1266,24 @@ public partial struct int_mt
         get => throw new NotSupportedException("Compile time only");
     }
 
+    public static int_mt Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static int_mt One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1);
+    }
+
+    public static int_mt Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1 + 1));
+    }
+
     #endregion
 
     #region Properties
@@ -1061,7 +1291,7 @@ public partial struct int_mt
     public int this[int index]
     {
         [MethodImpl(256 | 512)]
-        get
+        readonly get
         {
             throw new NotSupportedException("Compile time only");
         }
@@ -1143,14 +1373,15 @@ public partial struct int_mt
     [MethodImpl(256 | 512)]
     public static int_mt operator>>>(int_mt a, int b) => throw new NotSupportedException("Compile time only");
 
+    public readonly override string ToString() => $"int_mt {{  }}";
+
     #endregion
 }
 
 #endregion // int_mt
 #region int_mt4
 
-[Serializable, CpuOnly]
-//[JsonConverter(typeof(int_mt4JsonConverter))]
+[CpuOnly]
 public partial struct int_mt4
 {
     #region Constants
@@ -1159,6 +1390,24 @@ public partial struct int_mt4
     {
         [MethodImpl(256 | 512)]
         get => 4;
+    }
+
+    public static int_mt4 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static int_mt4 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1);
+    }
+
+    public static int_mt4 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1 + 1));
     }
 
     #endregion
@@ -1170,6 +1419,16 @@ public partial struct int_mt4
     #endregion // Fields
 
     #region Properties
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public readonly ref readonly Vector128<int> VectorAtRo(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
 
     [MethodImpl(256 | 512), UnscopedRef]
     public ref Vector128<int> VectorAt(int index)
@@ -1184,7 +1443,7 @@ public partial struct int_mt4
     public int this[int index]
     {
         [MethodImpl(256 | 512)]
-        get
+        readonly get
         {
             return vector[index];
         }
@@ -1279,14 +1538,15 @@ public partial struct int_mt4
     [MethodImpl(256 | 512)]
     public static int_mt4 operator>>>(int_mt4 a, int b) => new(a.vector >>> b);
 
+    public readonly override string ToString() => $"int_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+
     #endregion
 }
 
 #endregion // int_mt4
 #region int_mt8
 
-[Serializable, CpuOnly]
-//[JsonConverter(typeof(int_mt8JsonConverter))]
+[CpuOnly]
 public partial struct int_mt8
 {
     #region Constants
@@ -1295,6 +1555,24 @@ public partial struct int_mt8
     {
         [MethodImpl(256 | 512)]
         get => 8;
+    }
+
+    public static int_mt8 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static int_mt8 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1);
+    }
+
+    public static int_mt8 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1 + 1));
     }
 
     #endregion
@@ -1306,6 +1584,16 @@ public partial struct int_mt8
     #endregion // Fields
 
     #region Properties
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public readonly ref readonly Vector256<int> VectorAtRo(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
 
     [MethodImpl(256 | 512), UnscopedRef]
     public ref Vector256<int> VectorAt(int index)
@@ -1320,7 +1608,7 @@ public partial struct int_mt8
     public int this[int index]
     {
         [MethodImpl(256 | 512)]
-        get
+        readonly get
         {
             return vector[index];
         }
@@ -1415,14 +1703,15 @@ public partial struct int_mt8
     [MethodImpl(256 | 512)]
     public static int_mt8 operator>>>(int_mt8 a, int b) => new(a.vector >>> b);
 
+    public readonly override string ToString() => $"int_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+
     #endregion
 }
 
 #endregion // int_mt8
 #region int_mt16
 
-[Serializable, CpuOnly]
-//[JsonConverter(typeof(int_mt16JsonConverter))]
+[CpuOnly]
 public partial struct int_mt16
 {
     #region Constants
@@ -1431,6 +1720,24 @@ public partial struct int_mt16
     {
         [MethodImpl(256 | 512)]
         get => 16;
+    }
+
+    public static int_mt16 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static int_mt16 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1);
+    }
+
+    public static int_mt16 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1 + 1));
     }
 
     #endregion
@@ -1442,6 +1749,16 @@ public partial struct int_mt16
     #endregion // Fields
 
     #region Properties
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public readonly ref readonly Vector512<int> VectorAtRo(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
 
     [MethodImpl(256 | 512), UnscopedRef]
     public ref Vector512<int> VectorAt(int index)
@@ -1456,7 +1773,7 @@ public partial struct int_mt16
     public int this[int index]
     {
         [MethodImpl(256 | 512)]
-        get
+        readonly get
         {
             return vector[index];
         }
@@ -1551,14 +1868,15 @@ public partial struct int_mt16
     [MethodImpl(256 | 512)]
     public static int_mt16 operator>>>(int_mt16 a, int b) => new(a.vector >>> b);
 
+    public readonly override string ToString() => $"int_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+
     #endregion
 }
 
 #endregion // int_mt16
 #region uint_mt
 
-[Serializable, CpuOnly]
-//[JsonConverter(typeof(uint_mtJsonConverter))]
+[CpuOnly]
 public partial struct uint_mt
 {
     #region Constants
@@ -1569,6 +1887,24 @@ public partial struct uint_mt
         get => throw new NotSupportedException("Compile time only");
     }
 
+    public static uint_mt Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static uint_mt One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1u);
+    }
+
+    public static uint_mt Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1u + 1u));
+    }
+
     #endregion
 
     #region Properties
@@ -1576,7 +1912,7 @@ public partial struct uint_mt
     public uint this[int index]
     {
         [MethodImpl(256 | 512)]
-        get
+        readonly get
         {
             throw new NotSupportedException("Compile time only");
         }
@@ -1658,14 +1994,15 @@ public partial struct uint_mt
     [MethodImpl(256 | 512)]
     public static uint_mt operator>>>(uint_mt a, int b) => throw new NotSupportedException("Compile time only");
 
+    public readonly override string ToString() => $"uint_mt {{  }}";
+
     #endregion
 }
 
 #endregion // uint_mt
 #region uint_mt4
 
-[Serializable, CpuOnly]
-//[JsonConverter(typeof(uint_mt4JsonConverter))]
+[CpuOnly]
 public partial struct uint_mt4
 {
     #region Constants
@@ -1674,6 +2011,24 @@ public partial struct uint_mt4
     {
         [MethodImpl(256 | 512)]
         get => 4;
+    }
+
+    public static uint_mt4 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static uint_mt4 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1u);
+    }
+
+    public static uint_mt4 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1u + 1u));
     }
 
     #endregion
@@ -1685,6 +2040,16 @@ public partial struct uint_mt4
     #endregion // Fields
 
     #region Properties
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public readonly ref readonly Vector128<uint> VectorAtRo(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
 
     [MethodImpl(256 | 512), UnscopedRef]
     public ref Vector128<uint> VectorAt(int index)
@@ -1699,7 +2064,7 @@ public partial struct uint_mt4
     public uint this[int index]
     {
         [MethodImpl(256 | 512)]
-        get
+        readonly get
         {
             return vector[index];
         }
@@ -1794,14 +2159,15 @@ public partial struct uint_mt4
     [MethodImpl(256 | 512)]
     public static uint_mt4 operator>>>(uint_mt4 a, int b) => new(a.vector >>> b);
 
+    public readonly override string ToString() => $"uint_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+
     #endregion
 }
 
 #endregion // uint_mt4
 #region uint_mt8
 
-[Serializable, CpuOnly]
-//[JsonConverter(typeof(uint_mt8JsonConverter))]
+[CpuOnly]
 public partial struct uint_mt8
 {
     #region Constants
@@ -1810,6 +2176,24 @@ public partial struct uint_mt8
     {
         [MethodImpl(256 | 512)]
         get => 8;
+    }
+
+    public static uint_mt8 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static uint_mt8 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1u);
+    }
+
+    public static uint_mt8 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1u + 1u));
     }
 
     #endregion
@@ -1821,6 +2205,16 @@ public partial struct uint_mt8
     #endregion // Fields
 
     #region Properties
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public readonly ref readonly Vector256<uint> VectorAtRo(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
 
     [MethodImpl(256 | 512), UnscopedRef]
     public ref Vector256<uint> VectorAt(int index)
@@ -1835,7 +2229,7 @@ public partial struct uint_mt8
     public uint this[int index]
     {
         [MethodImpl(256 | 512)]
-        get
+        readonly get
         {
             return vector[index];
         }
@@ -1930,14 +2324,15 @@ public partial struct uint_mt8
     [MethodImpl(256 | 512)]
     public static uint_mt8 operator>>>(uint_mt8 a, int b) => new(a.vector >>> b);
 
+    public readonly override string ToString() => $"uint_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+
     #endregion
 }
 
 #endregion // uint_mt8
 #region uint_mt16
 
-[Serializable, CpuOnly]
-//[JsonConverter(typeof(uint_mt16JsonConverter))]
+[CpuOnly]
 public partial struct uint_mt16
 {
     #region Constants
@@ -1946,6 +2341,24 @@ public partial struct uint_mt16
     {
         [MethodImpl(256 | 512)]
         get => 16;
+    }
+
+    public static uint_mt16 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static uint_mt16 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1u);
+    }
+
+    public static uint_mt16 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1u + 1u));
     }
 
     #endregion
@@ -1957,6 +2370,16 @@ public partial struct uint_mt16
     #endregion // Fields
 
     #region Properties
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public readonly ref readonly Vector512<uint> VectorAtRo(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
 
     [MethodImpl(256 | 512), UnscopedRef]
     public ref Vector512<uint> VectorAt(int index)
@@ -1971,7 +2394,7 @@ public partial struct uint_mt16
     public uint this[int index]
     {
         [MethodImpl(256 | 512)]
-        get
+        readonly get
         {
             return vector[index];
         }
@@ -2066,14 +2489,15 @@ public partial struct uint_mt16
     [MethodImpl(256 | 512)]
     public static uint_mt16 operator>>>(uint_mt16 a, int b) => new(a.vector >>> b);
 
+    public readonly override string ToString() => $"uint_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+
     #endregion
 }
 
 #endregion // uint_mt16
 #region long_mt
 
-[Serializable, CpuOnly]
-//[JsonConverter(typeof(long_mtJsonConverter))]
+[CpuOnly]
 public partial struct long_mt
 {
     #region Constants
@@ -2084,6 +2508,24 @@ public partial struct long_mt
         get => throw new NotSupportedException("Compile time only");
     }
 
+    public static long_mt Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static long_mt One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1L);
+    }
+
+    public static long_mt Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1L + 1L));
+    }
+
     #endregion
 
     #region Properties
@@ -2091,7 +2533,7 @@ public partial struct long_mt
     public long this[int index]
     {
         [MethodImpl(256 | 512)]
-        get
+        readonly get
         {
             throw new NotSupportedException("Compile time only");
         }
@@ -2173,14 +2615,15 @@ public partial struct long_mt
     [MethodImpl(256 | 512)]
     public static long_mt operator>>>(long_mt a, int b) => throw new NotSupportedException("Compile time only");
 
+    public readonly override string ToString() => $"long_mt {{  }}";
+
     #endregion
 }
 
 #endregion // long_mt
 #region long_mt4
 
-[Serializable, CpuOnly]
-//[JsonConverter(typeof(long_mt4JsonConverter))]
+[CpuOnly]
 public partial struct long_mt4
 {
     #region Constants
@@ -2189,6 +2632,24 @@ public partial struct long_mt4
     {
         [MethodImpl(256 | 512)]
         get => 4;
+    }
+
+    public static long_mt4 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static long_mt4 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1L);
+    }
+
+    public static long_mt4 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1L + 1L));
     }
 
     #endregion
@@ -2200,6 +2661,16 @@ public partial struct long_mt4
     #endregion // Fields
 
     #region Properties
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public readonly ref readonly Vector256<long> VectorAtRo(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
 
     [MethodImpl(256 | 512), UnscopedRef]
     public ref Vector256<long> VectorAt(int index)
@@ -2214,7 +2685,7 @@ public partial struct long_mt4
     public long this[int index]
     {
         [MethodImpl(256 | 512)]
-        get
+        readonly get
         {
             return vector[index];
         }
@@ -2309,14 +2780,15 @@ public partial struct long_mt4
     [MethodImpl(256 | 512)]
     public static long_mt4 operator>>>(long_mt4 a, int b) => new(a.vector >>> b);
 
+    public readonly override string ToString() => $"long_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+
     #endregion
 }
 
 #endregion // long_mt4
 #region long_mt8
 
-[Serializable, CpuOnly]
-//[JsonConverter(typeof(long_mt8JsonConverter))]
+[CpuOnly]
 public partial struct long_mt8
 {
     #region Constants
@@ -2325,6 +2797,24 @@ public partial struct long_mt8
     {
         [MethodImpl(256 | 512)]
         get => 8;
+    }
+
+    public static long_mt8 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static long_mt8 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1L);
+    }
+
+    public static long_mt8 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1L + 1L));
     }
 
     #endregion
@@ -2336,6 +2826,16 @@ public partial struct long_mt8
     #endregion // Fields
 
     #region Properties
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public readonly ref readonly Vector512<long> VectorAtRo(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
 
     [MethodImpl(256 | 512), UnscopedRef]
     public ref Vector512<long> VectorAt(int index)
@@ -2350,7 +2850,7 @@ public partial struct long_mt8
     public long this[int index]
     {
         [MethodImpl(256 | 512)]
-        get
+        readonly get
         {
             return vector[index];
         }
@@ -2445,14 +2945,15 @@ public partial struct long_mt8
     [MethodImpl(256 | 512)]
     public static long_mt8 operator>>>(long_mt8 a, int b) => new(a.vector >>> b);
 
+    public readonly override string ToString() => $"long_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+
     #endregion
 }
 
 #endregion // long_mt8
 #region long_mt16
 
-[Serializable, CpuOnly]
-//[JsonConverter(typeof(long_mt16JsonConverter))]
+[CpuOnly]
 public partial struct long_mt16
 {
     #region Constants
@@ -2461,6 +2962,24 @@ public partial struct long_mt16
     {
         [MethodImpl(256 | 512)]
         get => 16;
+    }
+
+    public static long_mt16 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static long_mt16 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1L);
+    }
+
+    public static long_mt16 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1L + 1L));
     }
 
     #endregion
@@ -2473,6 +2992,17 @@ public partial struct long_mt16
     #endregion // Fields
 
     #region Properties
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public readonly ref readonly Vector512<long> VectorAtRo(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector0;
+            case 1: return ref vector1;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
 
     [MethodImpl(256 | 512), UnscopedRef]
     public ref Vector512<long> VectorAt(int index)
@@ -2488,10 +3018,10 @@ public partial struct long_mt16
     public long this[int index]
     {
         [MethodImpl(256 | 512)]
-        get
+        readonly get
         {
             var (q, r) = Math.DivRem(index, Vector512<long>.Count);
-            return VectorAt(q)[r];
+            return VectorAtRo(q)[r];
         }
         [MethodImpl(256 | 512)]
         set
@@ -2589,14 +3119,15 @@ public partial struct long_mt16
     [MethodImpl(256 | 512)]
     public static long_mt16 operator>>>(long_mt16 a, int b) => new(a.vector0 >>> b, a.vector1 >>> b);
 
+    public readonly override string ToString() => $"long_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+
     #endregion
 }
 
 #endregion // long_mt16
 #region ulong_mt
 
-[Serializable, CpuOnly]
-//[JsonConverter(typeof(ulong_mtJsonConverter))]
+[CpuOnly]
 public partial struct ulong_mt
 {
     #region Constants
@@ -2607,6 +3138,24 @@ public partial struct ulong_mt
         get => throw new NotSupportedException("Compile time only");
     }
 
+    public static ulong_mt Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static ulong_mt One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1UL);
+    }
+
+    public static ulong_mt Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1UL + 1UL));
+    }
+
     #endregion
 
     #region Properties
@@ -2614,7 +3163,7 @@ public partial struct ulong_mt
     public ulong this[int index]
     {
         [MethodImpl(256 | 512)]
-        get
+        readonly get
         {
             throw new NotSupportedException("Compile time only");
         }
@@ -2696,14 +3245,15 @@ public partial struct ulong_mt
     [MethodImpl(256 | 512)]
     public static ulong_mt operator>>>(ulong_mt a, int b) => throw new NotSupportedException("Compile time only");
 
+    public readonly override string ToString() => $"ulong_mt {{  }}";
+
     #endregion
 }
 
 #endregion // ulong_mt
 #region ulong_mt4
 
-[Serializable, CpuOnly]
-//[JsonConverter(typeof(ulong_mt4JsonConverter))]
+[CpuOnly]
 public partial struct ulong_mt4
 {
     #region Constants
@@ -2712,6 +3262,24 @@ public partial struct ulong_mt4
     {
         [MethodImpl(256 | 512)]
         get => 4;
+    }
+
+    public static ulong_mt4 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static ulong_mt4 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1UL);
+    }
+
+    public static ulong_mt4 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1UL + 1UL));
     }
 
     #endregion
@@ -2723,6 +3291,16 @@ public partial struct ulong_mt4
     #endregion // Fields
 
     #region Properties
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public readonly ref readonly Vector256<ulong> VectorAtRo(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
 
     [MethodImpl(256 | 512), UnscopedRef]
     public ref Vector256<ulong> VectorAt(int index)
@@ -2737,7 +3315,7 @@ public partial struct ulong_mt4
     public ulong this[int index]
     {
         [MethodImpl(256 | 512)]
-        get
+        readonly get
         {
             return vector[index];
         }
@@ -2832,14 +3410,15 @@ public partial struct ulong_mt4
     [MethodImpl(256 | 512)]
     public static ulong_mt4 operator>>>(ulong_mt4 a, int b) => new(a.vector >>> b);
 
+    public readonly override string ToString() => $"ulong_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+
     #endregion
 }
 
 #endregion // ulong_mt4
 #region ulong_mt8
 
-[Serializable, CpuOnly]
-//[JsonConverter(typeof(ulong_mt8JsonConverter))]
+[CpuOnly]
 public partial struct ulong_mt8
 {
     #region Constants
@@ -2848,6 +3427,24 @@ public partial struct ulong_mt8
     {
         [MethodImpl(256 | 512)]
         get => 8;
+    }
+
+    public static ulong_mt8 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static ulong_mt8 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1UL);
+    }
+
+    public static ulong_mt8 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1UL + 1UL));
     }
 
     #endregion
@@ -2859,6 +3456,16 @@ public partial struct ulong_mt8
     #endregion // Fields
 
     #region Properties
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public readonly ref readonly Vector512<ulong> VectorAtRo(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
 
     [MethodImpl(256 | 512), UnscopedRef]
     public ref Vector512<ulong> VectorAt(int index)
@@ -2873,7 +3480,7 @@ public partial struct ulong_mt8
     public ulong this[int index]
     {
         [MethodImpl(256 | 512)]
-        get
+        readonly get
         {
             return vector[index];
         }
@@ -2968,14 +3575,15 @@ public partial struct ulong_mt8
     [MethodImpl(256 | 512)]
     public static ulong_mt8 operator>>>(ulong_mt8 a, int b) => new(a.vector >>> b);
 
+    public readonly override string ToString() => $"ulong_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+
     #endregion
 }
 
 #endregion // ulong_mt8
 #region ulong_mt16
 
-[Serializable, CpuOnly]
-//[JsonConverter(typeof(ulong_mt16JsonConverter))]
+[CpuOnly]
 public partial struct ulong_mt16
 {
     #region Constants
@@ -2984,6 +3592,24 @@ public partial struct ulong_mt16
     {
         [MethodImpl(256 | 512)]
         get => 16;
+    }
+
+    public static ulong_mt16 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static ulong_mt16 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1UL);
+    }
+
+    public static ulong_mt16 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1UL + 1UL));
     }
 
     #endregion
@@ -2996,6 +3622,17 @@ public partial struct ulong_mt16
     #endregion // Fields
 
     #region Properties
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public readonly ref readonly Vector512<ulong> VectorAtRo(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector0;
+            case 1: return ref vector1;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
 
     [MethodImpl(256 | 512), UnscopedRef]
     public ref Vector512<ulong> VectorAt(int index)
@@ -3011,10 +3648,10 @@ public partial struct ulong_mt16
     public ulong this[int index]
     {
         [MethodImpl(256 | 512)]
-        get
+        readonly get
         {
             var (q, r) = Math.DivRem(index, Vector512<ulong>.Count);
-            return VectorAt(q)[r];
+            return VectorAtRo(q)[r];
         }
         [MethodImpl(256 | 512)]
         set
@@ -3112,14 +3749,15 @@ public partial struct ulong_mt16
     [MethodImpl(256 | 512)]
     public static ulong_mt16 operator>>>(ulong_mt16 a, int b) => new(a.vector0 >>> b, a.vector1 >>> b);
 
+    public readonly override string ToString() => $"ulong_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+
     #endregion
 }
 
 #endregion // ulong_mt16
 #region b32_mt
 
-[Serializable, CpuOnly]
-//[JsonConverter(typeof(b32_mtJsonConverter))]
+[CpuOnly]
 public partial struct b32_mt
 {
     #region Constants
@@ -3137,7 +3775,7 @@ public partial struct b32_mt
     public b32 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get
+        readonly get
         {
             throw new NotSupportedException("Compile time only");
         }
@@ -3189,14 +3827,15 @@ public partial struct b32_mt
     [MethodImpl(256 | 512)]
     public static b32_mt operator>>>(b32_mt a, int b) => throw new NotSupportedException("Compile time only");
 
+    public readonly override string ToString() => $"b32_mt {{  }}";
+
     #endregion
 }
 
 #endregion // b32_mt
 #region b32_mt4
 
-[Serializable, CpuOnly]
-//[JsonConverter(typeof(b32_mt4JsonConverter))]
+[CpuOnly]
 public partial struct b32_mt4
 {
     #region Constants
@@ -3218,6 +3857,16 @@ public partial struct b32_mt4
     #region Properties
 
     [MethodImpl(256 | 512), UnscopedRef]
+    public readonly ref readonly Vector128<uint> VectorAtRo(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    [MethodImpl(256 | 512), UnscopedRef]
     public ref Vector128<uint> VectorAt(int index)
     {
         switch(index)
@@ -3230,7 +3879,7 @@ public partial struct b32_mt4
     public b32 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get
+        readonly get
         {
             return vector[index];
         }
@@ -3295,14 +3944,15 @@ public partial struct b32_mt4
     [MethodImpl(256 | 512)]
     public static b32_mt4 operator>>>(b32_mt4 a, int b) => new(a.vector >>> b);
 
+    public readonly override string ToString() => $"b32_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+
     #endregion
 }
 
 #endregion // b32_mt4
 #region b32_mt8
 
-[Serializable, CpuOnly]
-//[JsonConverter(typeof(b32_mt8JsonConverter))]
+[CpuOnly]
 public partial struct b32_mt8
 {
     #region Constants
@@ -3324,6 +3974,16 @@ public partial struct b32_mt8
     #region Properties
 
     [MethodImpl(256 | 512), UnscopedRef]
+    public readonly ref readonly Vector256<uint> VectorAtRo(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    [MethodImpl(256 | 512), UnscopedRef]
     public ref Vector256<uint> VectorAt(int index)
     {
         switch(index)
@@ -3336,7 +3996,7 @@ public partial struct b32_mt8
     public b32 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get
+        readonly get
         {
             return vector[index];
         }
@@ -3401,14 +4061,15 @@ public partial struct b32_mt8
     [MethodImpl(256 | 512)]
     public static b32_mt8 operator>>>(b32_mt8 a, int b) => new(a.vector >>> b);
 
+    public readonly override string ToString() => $"b32_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+
     #endregion
 }
 
 #endregion // b32_mt8
 #region b32_mt16
 
-[Serializable, CpuOnly]
-//[JsonConverter(typeof(b32_mt16JsonConverter))]
+[CpuOnly]
 public partial struct b32_mt16
 {
     #region Constants
@@ -3430,6 +4091,16 @@ public partial struct b32_mt16
     #region Properties
 
     [MethodImpl(256 | 512), UnscopedRef]
+    public readonly ref readonly Vector512<uint> VectorAtRo(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    [MethodImpl(256 | 512), UnscopedRef]
     public ref Vector512<uint> VectorAt(int index)
     {
         switch(index)
@@ -3442,7 +4113,7 @@ public partial struct b32_mt16
     public b32 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get
+        readonly get
         {
             return vector[index];
         }
@@ -3507,14 +4178,15 @@ public partial struct b32_mt16
     [MethodImpl(256 | 512)]
     public static b32_mt16 operator>>>(b32_mt16 a, int b) => new(a.vector >>> b);
 
+    public readonly override string ToString() => $"b32_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+
     #endregion
 }
 
 #endregion // b32_mt16
 #region b64_mt
 
-[Serializable, CpuOnly]
-//[JsonConverter(typeof(b64_mtJsonConverter))]
+[CpuOnly]
 public partial struct b64_mt
 {
     #region Constants
@@ -3532,7 +4204,7 @@ public partial struct b64_mt
     public b64 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get
+        readonly get
         {
             throw new NotSupportedException("Compile time only");
         }
@@ -3584,14 +4256,15 @@ public partial struct b64_mt
     [MethodImpl(256 | 512)]
     public static b64_mt operator>>>(b64_mt a, int b) => throw new NotSupportedException("Compile time only");
 
+    public readonly override string ToString() => $"b64_mt {{  }}";
+
     #endregion
 }
 
 #endregion // b64_mt
 #region b64_mt4
 
-[Serializable, CpuOnly]
-//[JsonConverter(typeof(b64_mt4JsonConverter))]
+[CpuOnly]
 public partial struct b64_mt4
 {
     #region Constants
@@ -3613,6 +4286,16 @@ public partial struct b64_mt4
     #region Properties
 
     [MethodImpl(256 | 512), UnscopedRef]
+    public readonly ref readonly Vector256<ulong> VectorAtRo(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    [MethodImpl(256 | 512), UnscopedRef]
     public ref Vector256<ulong> VectorAt(int index)
     {
         switch(index)
@@ -3625,7 +4308,7 @@ public partial struct b64_mt4
     public b64 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get
+        readonly get
         {
             return vector[index];
         }
@@ -3690,14 +4373,15 @@ public partial struct b64_mt4
     [MethodImpl(256 | 512)]
     public static b64_mt4 operator>>>(b64_mt4 a, int b) => new(a.vector >>> b);
 
+    public readonly override string ToString() => $"b64_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+
     #endregion
 }
 
 #endregion // b64_mt4
 #region b64_mt8
 
-[Serializable, CpuOnly]
-//[JsonConverter(typeof(b64_mt8JsonConverter))]
+[CpuOnly]
 public partial struct b64_mt8
 {
     #region Constants
@@ -3719,6 +4403,16 @@ public partial struct b64_mt8
     #region Properties
 
     [MethodImpl(256 | 512), UnscopedRef]
+    public readonly ref readonly Vector512<ulong> VectorAtRo(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    [MethodImpl(256 | 512), UnscopedRef]
     public ref Vector512<ulong> VectorAt(int index)
     {
         switch(index)
@@ -3731,7 +4425,7 @@ public partial struct b64_mt8
     public b64 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get
+        readonly get
         {
             return vector[index];
         }
@@ -3796,14 +4490,15 @@ public partial struct b64_mt8
     [MethodImpl(256 | 512)]
     public static b64_mt8 operator>>>(b64_mt8 a, int b) => new(a.vector >>> b);
 
+    public readonly override string ToString() => $"b64_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+
     #endregion
 }
 
 #endregion // b64_mt8
 #region b64_mt16
 
-[Serializable, CpuOnly]
-//[JsonConverter(typeof(b64_mt16JsonConverter))]
+[CpuOnly]
 public partial struct b64_mt16
 {
     #region Constants
@@ -3826,6 +4521,17 @@ public partial struct b64_mt16
     #region Properties
 
     [MethodImpl(256 | 512), UnscopedRef]
+    public readonly ref readonly Vector512<ulong> VectorAtRo(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector0;
+            case 1: return ref vector1;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    [MethodImpl(256 | 512), UnscopedRef]
     public ref Vector512<ulong> VectorAt(int index)
     {
         switch(index)
@@ -3839,10 +4545,10 @@ public partial struct b64_mt16
     public b64 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get
+        readonly get
         {
             var (q, r) = Math.DivRem(index, Vector512<ulong>.Count);
-            return VectorAt(q)[r];
+            return VectorAtRo(q)[r];
         }
         [MethodImpl(256 | 512)]
         set
@@ -3909,6 +4615,8 @@ public partial struct b64_mt16
 
     [MethodImpl(256 | 512)]
     public static b64_mt16 operator>>>(b64_mt16 a, int b) => new(a.vector0 >>> b, a.vector1 >>> b);
+
+    public readonly override string ToString() => $"b64_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
 
     #endregion
 }

@@ -27,8 +27,7 @@ namespace Coplt.Mathematics.SIMT;
 #>
 #region <#= typeName #>
 
-[Serializable]
-//[JsonConverter(typeof(<#= typeName #>JsonConverter))]
+[CpuOnly]
 public partial struct <#= typeName #>
 {
     #region Constants
@@ -36,8 +35,33 @@ public partial struct <#= typeName #>
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<<#= typ.simdComp #>>.Count;
+        get => <#= scalarName #>.LineCount;
     }
+<#
+            if (typ.arith)
+            {
+#>
+
+    public static <#= typeName #> Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static <#= typeName #> One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(<#= typ.one #>);
+    }
+
+    public static <#= typeName #> Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new(<#= typ.two #>);
+    }
+<#
+            }
+#>
 
     #endregion
 
@@ -59,7 +83,7 @@ public partial struct <#= typeName #>
     public <#= simd_typeName #> this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"{Typ.xyzw[n]}[index]")) #>);
+        readonly get => new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"{Typ.xyzw[n]}[index]")) #>);
         set 
         {
 <#
@@ -88,6 +112,12 @@ public partial struct <#= typeName #>
 <#
                 }
 #>
+    }
+
+    [MethodImpl(256 | 512)]
+    public <#= typeName #>(<#= typ.compType #> value)
+    {
+        <#= string.Join(" = ", Enumerable.Range(0, i).Reverse().Select(n => $"{Typ.xyzw[n]}")) #> = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -172,6 +202,9 @@ public partial struct <#= typeName #>
     [MethodImpl(256 | 512)]
     public static <#= typeName #> operator&(<#= typeName #> a, <#= typeName #> b) => new(<#=
                     string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]} & b.{Typ.xyzw[n]}")) #>);
+
+    public readonly override string ToString() => $"<#= typeName #> {{ <#=
+                string.Join(", ", Enumerable.Range(0, size).Select(l => $"t{l} = {{this[{l}]}}")) #> }}";
 
     #endregion // Operators
 }

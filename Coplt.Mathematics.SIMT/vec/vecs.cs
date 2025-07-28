@@ -4,8 +4,7 @@ namespace Coplt.Mathematics.SIMT;
 
 #region float2_mt
 
-[Serializable]
-//[JsonConverter(typeof(float2_mtJsonConverter))]
+[CpuOnly]
 public partial struct float2_mt
 {
     #region Constants
@@ -13,7 +12,25 @@ public partial struct float2_mt
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<float>.Count;
+        get => float_mt.LineCount;
+    }
+
+    public static float2_mt Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static float2_mt One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1.0f);
+    }
+
+    public static float2_mt Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new(2.0f);
     }
 
     #endregion
@@ -30,7 +47,7 @@ public partial struct float2_mt
     public float2 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index]);
+        readonly get => new(x[index], y[index]);
         set 
         {
            x[index] = value.x;
@@ -47,6 +64,12 @@ public partial struct float2_mt
     {
         this.x = x;
         this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public float2_mt(float value)
+    {
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -108,14 +131,15 @@ public partial struct float2_mt
     [MethodImpl(256 | 512)]
     public static float2_mt operator&(float2_mt a, float2_mt b) => new(a.x & b.x, a.y & b.y);
 
+    public readonly override string ToString() => $"float2_mt {{  }}";
+
     #endregion // Operators
 }
 
 #endregion // float2_mt
 #region float2_mt4
 
-[Serializable]
-//[JsonConverter(typeof(float2_mt4JsonConverter))]
+[CpuOnly]
 public partial struct float2_mt4
 {
     #region Constants
@@ -123,7 +147,25 @@ public partial struct float2_mt4
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<float>.Count;
+        get => float_mt4.LineCount;
+    }
+
+    public static float2_mt4 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static float2_mt4 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1.0f);
+    }
+
+    public static float2_mt4 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new(2.0f);
     }
 
     #endregion
@@ -140,7 +182,7 @@ public partial struct float2_mt4
     public float2 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index]);
+        readonly get => new(x[index], y[index]);
         set 
         {
            x[index] = value.x;
@@ -157,6 +199,12 @@ public partial struct float2_mt4
     {
         this.x = x;
         this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public float2_mt4(float value)
+    {
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -218,14 +266,15 @@ public partial struct float2_mt4
     [MethodImpl(256 | 512)]
     public static float2_mt4 operator&(float2_mt4 a, float2_mt4 b) => new(a.x & b.x, a.y & b.y);
 
+    public readonly override string ToString() => $"float2_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+
     #endregion // Operators
 }
 
 #endregion // float2_mt4
 #region float2_mt8
 
-[Serializable]
-//[JsonConverter(typeof(float2_mt8JsonConverter))]
+[CpuOnly]
 public partial struct float2_mt8
 {
     #region Constants
@@ -233,7 +282,25 @@ public partial struct float2_mt8
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<float>.Count;
+        get => float_mt8.LineCount;
+    }
+
+    public static float2_mt8 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static float2_mt8 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1.0f);
+    }
+
+    public static float2_mt8 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new(2.0f);
     }
 
     #endregion
@@ -250,7 +317,7 @@ public partial struct float2_mt8
     public float2 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index]);
+        readonly get => new(x[index], y[index]);
         set 
         {
            x[index] = value.x;
@@ -267,6 +334,12 @@ public partial struct float2_mt8
     {
         this.x = x;
         this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public float2_mt8(float value)
+    {
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -328,14 +401,15 @@ public partial struct float2_mt8
     [MethodImpl(256 | 512)]
     public static float2_mt8 operator&(float2_mt8 a, float2_mt8 b) => new(a.x & b.x, a.y & b.y);
 
+    public readonly override string ToString() => $"float2_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+
     #endregion // Operators
 }
 
 #endregion // float2_mt8
 #region float2_mt16
 
-[Serializable]
-//[JsonConverter(typeof(float2_mt16JsonConverter))]
+[CpuOnly]
 public partial struct float2_mt16
 {
     #region Constants
@@ -343,7 +417,25 @@ public partial struct float2_mt16
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<float>.Count;
+        get => float_mt16.LineCount;
+    }
+
+    public static float2_mt16 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static float2_mt16 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1.0f);
+    }
+
+    public static float2_mt16 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new(2.0f);
     }
 
     #endregion
@@ -360,7 +452,7 @@ public partial struct float2_mt16
     public float2 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index]);
+        readonly get => new(x[index], y[index]);
         set 
         {
            x[index] = value.x;
@@ -377,6 +469,12 @@ public partial struct float2_mt16
     {
         this.x = x;
         this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public float2_mt16(float value)
+    {
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -438,14 +536,15 @@ public partial struct float2_mt16
     [MethodImpl(256 | 512)]
     public static float2_mt16 operator&(float2_mt16 a, float2_mt16 b) => new(a.x & b.x, a.y & b.y);
 
+    public readonly override string ToString() => $"float2_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+
     #endregion // Operators
 }
 
 #endregion // float2_mt16
 #region float3_mt
 
-[Serializable]
-//[JsonConverter(typeof(float3_mtJsonConverter))]
+[CpuOnly]
 public partial struct float3_mt
 {
     #region Constants
@@ -453,7 +552,25 @@ public partial struct float3_mt
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<float>.Count;
+        get => float_mt.LineCount;
+    }
+
+    public static float3_mt Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static float3_mt One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1.0f);
+    }
+
+    public static float3_mt Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new(2.0f);
     }
 
     #endregion
@@ -471,7 +588,7 @@ public partial struct float3_mt
     public float3 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index]);
+        readonly get => new(x[index], y[index], z[index]);
         set 
         {
            x[index] = value.x;
@@ -490,6 +607,12 @@ public partial struct float3_mt
         this.x = x;
         this.y = y;
         this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public float3_mt(float value)
+    {
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -552,14 +675,15 @@ public partial struct float3_mt
     [MethodImpl(256 | 512)]
     public static float3_mt operator&(float3_mt a, float3_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
+    public readonly override string ToString() => $"float3_mt {{  }}";
+
     #endregion // Operators
 }
 
 #endregion // float3_mt
 #region float3_mt4
 
-[Serializable]
-//[JsonConverter(typeof(float3_mt4JsonConverter))]
+[CpuOnly]
 public partial struct float3_mt4
 {
     #region Constants
@@ -567,7 +691,25 @@ public partial struct float3_mt4
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<float>.Count;
+        get => float_mt4.LineCount;
+    }
+
+    public static float3_mt4 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static float3_mt4 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1.0f);
+    }
+
+    public static float3_mt4 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new(2.0f);
     }
 
     #endregion
@@ -585,7 +727,7 @@ public partial struct float3_mt4
     public float3 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index]);
+        readonly get => new(x[index], y[index], z[index]);
         set 
         {
            x[index] = value.x;
@@ -604,6 +746,12 @@ public partial struct float3_mt4
         this.x = x;
         this.y = y;
         this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public float3_mt4(float value)
+    {
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -666,14 +814,15 @@ public partial struct float3_mt4
     [MethodImpl(256 | 512)]
     public static float3_mt4 operator&(float3_mt4 a, float3_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
+    public readonly override string ToString() => $"float3_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+
     #endregion // Operators
 }
 
 #endregion // float3_mt4
 #region float3_mt8
 
-[Serializable]
-//[JsonConverter(typeof(float3_mt8JsonConverter))]
+[CpuOnly]
 public partial struct float3_mt8
 {
     #region Constants
@@ -681,7 +830,25 @@ public partial struct float3_mt8
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<float>.Count;
+        get => float_mt8.LineCount;
+    }
+
+    public static float3_mt8 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static float3_mt8 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1.0f);
+    }
+
+    public static float3_mt8 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new(2.0f);
     }
 
     #endregion
@@ -699,7 +866,7 @@ public partial struct float3_mt8
     public float3 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index]);
+        readonly get => new(x[index], y[index], z[index]);
         set 
         {
            x[index] = value.x;
@@ -718,6 +885,12 @@ public partial struct float3_mt8
         this.x = x;
         this.y = y;
         this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public float3_mt8(float value)
+    {
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -780,14 +953,15 @@ public partial struct float3_mt8
     [MethodImpl(256 | 512)]
     public static float3_mt8 operator&(float3_mt8 a, float3_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
+    public readonly override string ToString() => $"float3_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+
     #endregion // Operators
 }
 
 #endregion // float3_mt8
 #region float3_mt16
 
-[Serializable]
-//[JsonConverter(typeof(float3_mt16JsonConverter))]
+[CpuOnly]
 public partial struct float3_mt16
 {
     #region Constants
@@ -795,7 +969,25 @@ public partial struct float3_mt16
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<float>.Count;
+        get => float_mt16.LineCount;
+    }
+
+    public static float3_mt16 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static float3_mt16 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1.0f);
+    }
+
+    public static float3_mt16 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new(2.0f);
     }
 
     #endregion
@@ -813,7 +1005,7 @@ public partial struct float3_mt16
     public float3 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index]);
+        readonly get => new(x[index], y[index], z[index]);
         set 
         {
            x[index] = value.x;
@@ -832,6 +1024,12 @@ public partial struct float3_mt16
         this.x = x;
         this.y = y;
         this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public float3_mt16(float value)
+    {
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -894,14 +1092,15 @@ public partial struct float3_mt16
     [MethodImpl(256 | 512)]
     public static float3_mt16 operator&(float3_mt16 a, float3_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
+    public readonly override string ToString() => $"float3_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+
     #endregion // Operators
 }
 
 #endregion // float3_mt16
 #region float4_mt
 
-[Serializable]
-//[JsonConverter(typeof(float4_mtJsonConverter))]
+[CpuOnly]
 public partial struct float4_mt
 {
     #region Constants
@@ -909,7 +1108,25 @@ public partial struct float4_mt
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<float>.Count;
+        get => float_mt.LineCount;
+    }
+
+    public static float4_mt Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static float4_mt One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1.0f);
+    }
+
+    public static float4_mt Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new(2.0f);
     }
 
     #endregion
@@ -928,7 +1145,7 @@ public partial struct float4_mt
     public float4 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index], w[index]);
+        readonly get => new(x[index], y[index], z[index], w[index]);
         set 
         {
            x[index] = value.x;
@@ -949,6 +1166,12 @@ public partial struct float4_mt
         this.y = y;
         this.z = z;
         this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public float4_mt(float value)
+    {
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -1012,14 +1235,15 @@ public partial struct float4_mt
     [MethodImpl(256 | 512)]
     public static float4_mt operator&(float4_mt a, float4_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
+    public readonly override string ToString() => $"float4_mt {{  }}";
+
     #endregion // Operators
 }
 
 #endregion // float4_mt
 #region float4_mt4
 
-[Serializable]
-//[JsonConverter(typeof(float4_mt4JsonConverter))]
+[CpuOnly]
 public partial struct float4_mt4
 {
     #region Constants
@@ -1027,7 +1251,25 @@ public partial struct float4_mt4
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<float>.Count;
+        get => float_mt4.LineCount;
+    }
+
+    public static float4_mt4 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static float4_mt4 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1.0f);
+    }
+
+    public static float4_mt4 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new(2.0f);
     }
 
     #endregion
@@ -1046,7 +1288,7 @@ public partial struct float4_mt4
     public float4 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index], w[index]);
+        readonly get => new(x[index], y[index], z[index], w[index]);
         set 
         {
            x[index] = value.x;
@@ -1067,6 +1309,12 @@ public partial struct float4_mt4
         this.y = y;
         this.z = z;
         this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public float4_mt4(float value)
+    {
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -1130,14 +1378,15 @@ public partial struct float4_mt4
     [MethodImpl(256 | 512)]
     public static float4_mt4 operator&(float4_mt4 a, float4_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
+    public readonly override string ToString() => $"float4_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+
     #endregion // Operators
 }
 
 #endregion // float4_mt4
 #region float4_mt8
 
-[Serializable]
-//[JsonConverter(typeof(float4_mt8JsonConverter))]
+[CpuOnly]
 public partial struct float4_mt8
 {
     #region Constants
@@ -1145,7 +1394,25 @@ public partial struct float4_mt8
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<float>.Count;
+        get => float_mt8.LineCount;
+    }
+
+    public static float4_mt8 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static float4_mt8 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1.0f);
+    }
+
+    public static float4_mt8 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new(2.0f);
     }
 
     #endregion
@@ -1164,7 +1431,7 @@ public partial struct float4_mt8
     public float4 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index], w[index]);
+        readonly get => new(x[index], y[index], z[index], w[index]);
         set 
         {
            x[index] = value.x;
@@ -1185,6 +1452,12 @@ public partial struct float4_mt8
         this.y = y;
         this.z = z;
         this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public float4_mt8(float value)
+    {
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -1248,14 +1521,15 @@ public partial struct float4_mt8
     [MethodImpl(256 | 512)]
     public static float4_mt8 operator&(float4_mt8 a, float4_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
+    public readonly override string ToString() => $"float4_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+
     #endregion // Operators
 }
 
 #endregion // float4_mt8
 #region float4_mt16
 
-[Serializable]
-//[JsonConverter(typeof(float4_mt16JsonConverter))]
+[CpuOnly]
 public partial struct float4_mt16
 {
     #region Constants
@@ -1263,7 +1537,25 @@ public partial struct float4_mt16
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<float>.Count;
+        get => float_mt16.LineCount;
+    }
+
+    public static float4_mt16 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static float4_mt16 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1.0f);
+    }
+
+    public static float4_mt16 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new(2.0f);
     }
 
     #endregion
@@ -1282,7 +1574,7 @@ public partial struct float4_mt16
     public float4 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index], w[index]);
+        readonly get => new(x[index], y[index], z[index], w[index]);
         set 
         {
            x[index] = value.x;
@@ -1303,6 +1595,12 @@ public partial struct float4_mt16
         this.y = y;
         this.z = z;
         this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public float4_mt16(float value)
+    {
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -1366,14 +1664,15 @@ public partial struct float4_mt16
     [MethodImpl(256 | 512)]
     public static float4_mt16 operator&(float4_mt16 a, float4_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
+    public readonly override string ToString() => $"float4_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+
     #endregion // Operators
 }
 
 #endregion // float4_mt16
 #region double2_mt
 
-[Serializable]
-//[JsonConverter(typeof(double2_mtJsonConverter))]
+[CpuOnly]
 public partial struct double2_mt
 {
     #region Constants
@@ -1381,7 +1680,25 @@ public partial struct double2_mt
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<double>.Count;
+        get => double_mt.LineCount;
+    }
+
+    public static double2_mt Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static double2_mt One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1.0);
+    }
+
+    public static double2_mt Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new(2.0);
     }
 
     #endregion
@@ -1398,7 +1715,7 @@ public partial struct double2_mt
     public double2 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index]);
+        readonly get => new(x[index], y[index]);
         set 
         {
            x[index] = value.x;
@@ -1415,6 +1732,12 @@ public partial struct double2_mt
     {
         this.x = x;
         this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public double2_mt(double value)
+    {
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -1476,14 +1799,15 @@ public partial struct double2_mt
     [MethodImpl(256 | 512)]
     public static double2_mt operator&(double2_mt a, double2_mt b) => new(a.x & b.x, a.y & b.y);
 
+    public readonly override string ToString() => $"double2_mt {{  }}";
+
     #endregion // Operators
 }
 
 #endregion // double2_mt
 #region double2_mt4
 
-[Serializable]
-//[JsonConverter(typeof(double2_mt4JsonConverter))]
+[CpuOnly]
 public partial struct double2_mt4
 {
     #region Constants
@@ -1491,7 +1815,25 @@ public partial struct double2_mt4
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<double>.Count;
+        get => double_mt4.LineCount;
+    }
+
+    public static double2_mt4 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static double2_mt4 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1.0);
+    }
+
+    public static double2_mt4 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new(2.0);
     }
 
     #endregion
@@ -1508,7 +1850,7 @@ public partial struct double2_mt4
     public double2 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index]);
+        readonly get => new(x[index], y[index]);
         set 
         {
            x[index] = value.x;
@@ -1525,6 +1867,12 @@ public partial struct double2_mt4
     {
         this.x = x;
         this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public double2_mt4(double value)
+    {
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -1586,14 +1934,15 @@ public partial struct double2_mt4
     [MethodImpl(256 | 512)]
     public static double2_mt4 operator&(double2_mt4 a, double2_mt4 b) => new(a.x & b.x, a.y & b.y);
 
+    public readonly override string ToString() => $"double2_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+
     #endregion // Operators
 }
 
 #endregion // double2_mt4
 #region double2_mt8
 
-[Serializable]
-//[JsonConverter(typeof(double2_mt8JsonConverter))]
+[CpuOnly]
 public partial struct double2_mt8
 {
     #region Constants
@@ -1601,7 +1950,25 @@ public partial struct double2_mt8
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<double>.Count;
+        get => double_mt8.LineCount;
+    }
+
+    public static double2_mt8 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static double2_mt8 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1.0);
+    }
+
+    public static double2_mt8 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new(2.0);
     }
 
     #endregion
@@ -1618,7 +1985,7 @@ public partial struct double2_mt8
     public double2 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index]);
+        readonly get => new(x[index], y[index]);
         set 
         {
            x[index] = value.x;
@@ -1635,6 +2002,12 @@ public partial struct double2_mt8
     {
         this.x = x;
         this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public double2_mt8(double value)
+    {
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -1696,14 +2069,15 @@ public partial struct double2_mt8
     [MethodImpl(256 | 512)]
     public static double2_mt8 operator&(double2_mt8 a, double2_mt8 b) => new(a.x & b.x, a.y & b.y);
 
+    public readonly override string ToString() => $"double2_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+
     #endregion // Operators
 }
 
 #endregion // double2_mt8
 #region double2_mt16
 
-[Serializable]
-//[JsonConverter(typeof(double2_mt16JsonConverter))]
+[CpuOnly]
 public partial struct double2_mt16
 {
     #region Constants
@@ -1711,7 +2085,25 @@ public partial struct double2_mt16
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<double>.Count;
+        get => double_mt16.LineCount;
+    }
+
+    public static double2_mt16 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static double2_mt16 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1.0);
+    }
+
+    public static double2_mt16 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new(2.0);
     }
 
     #endregion
@@ -1728,7 +2120,7 @@ public partial struct double2_mt16
     public double2 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index]);
+        readonly get => new(x[index], y[index]);
         set 
         {
            x[index] = value.x;
@@ -1745,6 +2137,12 @@ public partial struct double2_mt16
     {
         this.x = x;
         this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public double2_mt16(double value)
+    {
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -1806,14 +2204,15 @@ public partial struct double2_mt16
     [MethodImpl(256 | 512)]
     public static double2_mt16 operator&(double2_mt16 a, double2_mt16 b) => new(a.x & b.x, a.y & b.y);
 
+    public readonly override string ToString() => $"double2_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+
     #endregion // Operators
 }
 
 #endregion // double2_mt16
 #region double3_mt
 
-[Serializable]
-//[JsonConverter(typeof(double3_mtJsonConverter))]
+[CpuOnly]
 public partial struct double3_mt
 {
     #region Constants
@@ -1821,7 +2220,25 @@ public partial struct double3_mt
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<double>.Count;
+        get => double_mt.LineCount;
+    }
+
+    public static double3_mt Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static double3_mt One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1.0);
+    }
+
+    public static double3_mt Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new(2.0);
     }
 
     #endregion
@@ -1839,7 +2256,7 @@ public partial struct double3_mt
     public double3 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index]);
+        readonly get => new(x[index], y[index], z[index]);
         set 
         {
            x[index] = value.x;
@@ -1858,6 +2275,12 @@ public partial struct double3_mt
         this.x = x;
         this.y = y;
         this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public double3_mt(double value)
+    {
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -1920,14 +2343,15 @@ public partial struct double3_mt
     [MethodImpl(256 | 512)]
     public static double3_mt operator&(double3_mt a, double3_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
+    public readonly override string ToString() => $"double3_mt {{  }}";
+
     #endregion // Operators
 }
 
 #endregion // double3_mt
 #region double3_mt4
 
-[Serializable]
-//[JsonConverter(typeof(double3_mt4JsonConverter))]
+[CpuOnly]
 public partial struct double3_mt4
 {
     #region Constants
@@ -1935,7 +2359,25 @@ public partial struct double3_mt4
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<double>.Count;
+        get => double_mt4.LineCount;
+    }
+
+    public static double3_mt4 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static double3_mt4 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1.0);
+    }
+
+    public static double3_mt4 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new(2.0);
     }
 
     #endregion
@@ -1953,7 +2395,7 @@ public partial struct double3_mt4
     public double3 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index]);
+        readonly get => new(x[index], y[index], z[index]);
         set 
         {
            x[index] = value.x;
@@ -1972,6 +2414,12 @@ public partial struct double3_mt4
         this.x = x;
         this.y = y;
         this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public double3_mt4(double value)
+    {
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -2034,14 +2482,15 @@ public partial struct double3_mt4
     [MethodImpl(256 | 512)]
     public static double3_mt4 operator&(double3_mt4 a, double3_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
+    public readonly override string ToString() => $"double3_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+
     #endregion // Operators
 }
 
 #endregion // double3_mt4
 #region double3_mt8
 
-[Serializable]
-//[JsonConverter(typeof(double3_mt8JsonConverter))]
+[CpuOnly]
 public partial struct double3_mt8
 {
     #region Constants
@@ -2049,7 +2498,25 @@ public partial struct double3_mt8
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<double>.Count;
+        get => double_mt8.LineCount;
+    }
+
+    public static double3_mt8 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static double3_mt8 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1.0);
+    }
+
+    public static double3_mt8 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new(2.0);
     }
 
     #endregion
@@ -2067,7 +2534,7 @@ public partial struct double3_mt8
     public double3 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index]);
+        readonly get => new(x[index], y[index], z[index]);
         set 
         {
            x[index] = value.x;
@@ -2086,6 +2553,12 @@ public partial struct double3_mt8
         this.x = x;
         this.y = y;
         this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public double3_mt8(double value)
+    {
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -2148,14 +2621,15 @@ public partial struct double3_mt8
     [MethodImpl(256 | 512)]
     public static double3_mt8 operator&(double3_mt8 a, double3_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
+    public readonly override string ToString() => $"double3_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+
     #endregion // Operators
 }
 
 #endregion // double3_mt8
 #region double3_mt16
 
-[Serializable]
-//[JsonConverter(typeof(double3_mt16JsonConverter))]
+[CpuOnly]
 public partial struct double3_mt16
 {
     #region Constants
@@ -2163,7 +2637,25 @@ public partial struct double3_mt16
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<double>.Count;
+        get => double_mt16.LineCount;
+    }
+
+    public static double3_mt16 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static double3_mt16 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1.0);
+    }
+
+    public static double3_mt16 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new(2.0);
     }
 
     #endregion
@@ -2181,7 +2673,7 @@ public partial struct double3_mt16
     public double3 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index]);
+        readonly get => new(x[index], y[index], z[index]);
         set 
         {
            x[index] = value.x;
@@ -2200,6 +2692,12 @@ public partial struct double3_mt16
         this.x = x;
         this.y = y;
         this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public double3_mt16(double value)
+    {
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -2262,14 +2760,15 @@ public partial struct double3_mt16
     [MethodImpl(256 | 512)]
     public static double3_mt16 operator&(double3_mt16 a, double3_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
+    public readonly override string ToString() => $"double3_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+
     #endregion // Operators
 }
 
 #endregion // double3_mt16
 #region double4_mt
 
-[Serializable]
-//[JsonConverter(typeof(double4_mtJsonConverter))]
+[CpuOnly]
 public partial struct double4_mt
 {
     #region Constants
@@ -2277,7 +2776,25 @@ public partial struct double4_mt
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<double>.Count;
+        get => double_mt.LineCount;
+    }
+
+    public static double4_mt Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static double4_mt One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1.0);
+    }
+
+    public static double4_mt Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new(2.0);
     }
 
     #endregion
@@ -2296,7 +2813,7 @@ public partial struct double4_mt
     public double4 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index], w[index]);
+        readonly get => new(x[index], y[index], z[index], w[index]);
         set 
         {
            x[index] = value.x;
@@ -2317,6 +2834,12 @@ public partial struct double4_mt
         this.y = y;
         this.z = z;
         this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public double4_mt(double value)
+    {
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -2380,14 +2903,15 @@ public partial struct double4_mt
     [MethodImpl(256 | 512)]
     public static double4_mt operator&(double4_mt a, double4_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
+    public readonly override string ToString() => $"double4_mt {{  }}";
+
     #endregion // Operators
 }
 
 #endregion // double4_mt
 #region double4_mt4
 
-[Serializable]
-//[JsonConverter(typeof(double4_mt4JsonConverter))]
+[CpuOnly]
 public partial struct double4_mt4
 {
     #region Constants
@@ -2395,7 +2919,25 @@ public partial struct double4_mt4
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<double>.Count;
+        get => double_mt4.LineCount;
+    }
+
+    public static double4_mt4 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static double4_mt4 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1.0);
+    }
+
+    public static double4_mt4 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new(2.0);
     }
 
     #endregion
@@ -2414,7 +2956,7 @@ public partial struct double4_mt4
     public double4 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index], w[index]);
+        readonly get => new(x[index], y[index], z[index], w[index]);
         set 
         {
            x[index] = value.x;
@@ -2435,6 +2977,12 @@ public partial struct double4_mt4
         this.y = y;
         this.z = z;
         this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public double4_mt4(double value)
+    {
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -2498,14 +3046,15 @@ public partial struct double4_mt4
     [MethodImpl(256 | 512)]
     public static double4_mt4 operator&(double4_mt4 a, double4_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
+    public readonly override string ToString() => $"double4_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+
     #endregion // Operators
 }
 
 #endregion // double4_mt4
 #region double4_mt8
 
-[Serializable]
-//[JsonConverter(typeof(double4_mt8JsonConverter))]
+[CpuOnly]
 public partial struct double4_mt8
 {
     #region Constants
@@ -2513,7 +3062,25 @@ public partial struct double4_mt8
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<double>.Count;
+        get => double_mt8.LineCount;
+    }
+
+    public static double4_mt8 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static double4_mt8 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1.0);
+    }
+
+    public static double4_mt8 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new(2.0);
     }
 
     #endregion
@@ -2532,7 +3099,7 @@ public partial struct double4_mt8
     public double4 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index], w[index]);
+        readonly get => new(x[index], y[index], z[index], w[index]);
         set 
         {
            x[index] = value.x;
@@ -2553,6 +3120,12 @@ public partial struct double4_mt8
         this.y = y;
         this.z = z;
         this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public double4_mt8(double value)
+    {
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -2616,14 +3189,15 @@ public partial struct double4_mt8
     [MethodImpl(256 | 512)]
     public static double4_mt8 operator&(double4_mt8 a, double4_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
+    public readonly override string ToString() => $"double4_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+
     #endregion // Operators
 }
 
 #endregion // double4_mt8
 #region double4_mt16
 
-[Serializable]
-//[JsonConverter(typeof(double4_mt16JsonConverter))]
+[CpuOnly]
 public partial struct double4_mt16
 {
     #region Constants
@@ -2631,7 +3205,25 @@ public partial struct double4_mt16
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<double>.Count;
+        get => double_mt16.LineCount;
+    }
+
+    public static double4_mt16 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static double4_mt16 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1.0);
+    }
+
+    public static double4_mt16 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new(2.0);
     }
 
     #endregion
@@ -2650,7 +3242,7 @@ public partial struct double4_mt16
     public double4 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index], w[index]);
+        readonly get => new(x[index], y[index], z[index], w[index]);
         set 
         {
            x[index] = value.x;
@@ -2671,6 +3263,12 @@ public partial struct double4_mt16
         this.y = y;
         this.z = z;
         this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public double4_mt16(double value)
+    {
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -2734,14 +3332,15 @@ public partial struct double4_mt16
     [MethodImpl(256 | 512)]
     public static double4_mt16 operator&(double4_mt16 a, double4_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
+    public readonly override string ToString() => $"double4_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+
     #endregion // Operators
 }
 
 #endregion // double4_mt16
 #region int2_mt
 
-[Serializable]
-//[JsonConverter(typeof(int2_mtJsonConverter))]
+[CpuOnly]
 public partial struct int2_mt
 {
     #region Constants
@@ -2749,7 +3348,25 @@ public partial struct int2_mt
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<int>.Count;
+        get => int_mt.LineCount;
+    }
+
+    public static int2_mt Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static int2_mt One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1);
+    }
+
+    public static int2_mt Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1 + 1));
     }
 
     #endregion
@@ -2766,7 +3383,7 @@ public partial struct int2_mt
     public int2 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index]);
+        readonly get => new(x[index], y[index]);
         set 
         {
            x[index] = value.x;
@@ -2783,6 +3400,12 @@ public partial struct int2_mt
     {
         this.x = x;
         this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public int2_mt(int value)
+    {
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -2844,14 +3467,15 @@ public partial struct int2_mt
     [MethodImpl(256 | 512)]
     public static int2_mt operator&(int2_mt a, int2_mt b) => new(a.x & b.x, a.y & b.y);
 
+    public readonly override string ToString() => $"int2_mt {{  }}";
+
     #endregion // Operators
 }
 
 #endregion // int2_mt
 #region int2_mt4
 
-[Serializable]
-//[JsonConverter(typeof(int2_mt4JsonConverter))]
+[CpuOnly]
 public partial struct int2_mt4
 {
     #region Constants
@@ -2859,7 +3483,25 @@ public partial struct int2_mt4
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<int>.Count;
+        get => int_mt4.LineCount;
+    }
+
+    public static int2_mt4 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static int2_mt4 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1);
+    }
+
+    public static int2_mt4 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1 + 1));
     }
 
     #endregion
@@ -2876,7 +3518,7 @@ public partial struct int2_mt4
     public int2 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index]);
+        readonly get => new(x[index], y[index]);
         set 
         {
            x[index] = value.x;
@@ -2893,6 +3535,12 @@ public partial struct int2_mt4
     {
         this.x = x;
         this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public int2_mt4(int value)
+    {
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -2954,14 +3602,15 @@ public partial struct int2_mt4
     [MethodImpl(256 | 512)]
     public static int2_mt4 operator&(int2_mt4 a, int2_mt4 b) => new(a.x & b.x, a.y & b.y);
 
+    public readonly override string ToString() => $"int2_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+
     #endregion // Operators
 }
 
 #endregion // int2_mt4
 #region int2_mt8
 
-[Serializable]
-//[JsonConverter(typeof(int2_mt8JsonConverter))]
+[CpuOnly]
 public partial struct int2_mt8
 {
     #region Constants
@@ -2969,7 +3618,25 @@ public partial struct int2_mt8
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<int>.Count;
+        get => int_mt8.LineCount;
+    }
+
+    public static int2_mt8 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static int2_mt8 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1);
+    }
+
+    public static int2_mt8 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1 + 1));
     }
 
     #endregion
@@ -2986,7 +3653,7 @@ public partial struct int2_mt8
     public int2 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index]);
+        readonly get => new(x[index], y[index]);
         set 
         {
            x[index] = value.x;
@@ -3003,6 +3670,12 @@ public partial struct int2_mt8
     {
         this.x = x;
         this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public int2_mt8(int value)
+    {
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -3064,14 +3737,15 @@ public partial struct int2_mt8
     [MethodImpl(256 | 512)]
     public static int2_mt8 operator&(int2_mt8 a, int2_mt8 b) => new(a.x & b.x, a.y & b.y);
 
+    public readonly override string ToString() => $"int2_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+
     #endregion // Operators
 }
 
 #endregion // int2_mt8
 #region int2_mt16
 
-[Serializable]
-//[JsonConverter(typeof(int2_mt16JsonConverter))]
+[CpuOnly]
 public partial struct int2_mt16
 {
     #region Constants
@@ -3079,7 +3753,25 @@ public partial struct int2_mt16
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<int>.Count;
+        get => int_mt16.LineCount;
+    }
+
+    public static int2_mt16 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static int2_mt16 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1);
+    }
+
+    public static int2_mt16 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1 + 1));
     }
 
     #endregion
@@ -3096,7 +3788,7 @@ public partial struct int2_mt16
     public int2 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index]);
+        readonly get => new(x[index], y[index]);
         set 
         {
            x[index] = value.x;
@@ -3113,6 +3805,12 @@ public partial struct int2_mt16
     {
         this.x = x;
         this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public int2_mt16(int value)
+    {
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -3174,14 +3872,15 @@ public partial struct int2_mt16
     [MethodImpl(256 | 512)]
     public static int2_mt16 operator&(int2_mt16 a, int2_mt16 b) => new(a.x & b.x, a.y & b.y);
 
+    public readonly override string ToString() => $"int2_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+
     #endregion // Operators
 }
 
 #endregion // int2_mt16
 #region int3_mt
 
-[Serializable]
-//[JsonConverter(typeof(int3_mtJsonConverter))]
+[CpuOnly]
 public partial struct int3_mt
 {
     #region Constants
@@ -3189,7 +3888,25 @@ public partial struct int3_mt
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<int>.Count;
+        get => int_mt.LineCount;
+    }
+
+    public static int3_mt Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static int3_mt One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1);
+    }
+
+    public static int3_mt Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1 + 1));
     }
 
     #endregion
@@ -3207,7 +3924,7 @@ public partial struct int3_mt
     public int3 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index]);
+        readonly get => new(x[index], y[index], z[index]);
         set 
         {
            x[index] = value.x;
@@ -3226,6 +3943,12 @@ public partial struct int3_mt
         this.x = x;
         this.y = y;
         this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public int3_mt(int value)
+    {
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -3288,14 +4011,15 @@ public partial struct int3_mt
     [MethodImpl(256 | 512)]
     public static int3_mt operator&(int3_mt a, int3_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
+    public readonly override string ToString() => $"int3_mt {{  }}";
+
     #endregion // Operators
 }
 
 #endregion // int3_mt
 #region int3_mt4
 
-[Serializable]
-//[JsonConverter(typeof(int3_mt4JsonConverter))]
+[CpuOnly]
 public partial struct int3_mt4
 {
     #region Constants
@@ -3303,7 +4027,25 @@ public partial struct int3_mt4
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<int>.Count;
+        get => int_mt4.LineCount;
+    }
+
+    public static int3_mt4 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static int3_mt4 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1);
+    }
+
+    public static int3_mt4 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1 + 1));
     }
 
     #endregion
@@ -3321,7 +4063,7 @@ public partial struct int3_mt4
     public int3 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index]);
+        readonly get => new(x[index], y[index], z[index]);
         set 
         {
            x[index] = value.x;
@@ -3340,6 +4082,12 @@ public partial struct int3_mt4
         this.x = x;
         this.y = y;
         this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public int3_mt4(int value)
+    {
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -3402,14 +4150,15 @@ public partial struct int3_mt4
     [MethodImpl(256 | 512)]
     public static int3_mt4 operator&(int3_mt4 a, int3_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
+    public readonly override string ToString() => $"int3_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+
     #endregion // Operators
 }
 
 #endregion // int3_mt4
 #region int3_mt8
 
-[Serializable]
-//[JsonConverter(typeof(int3_mt8JsonConverter))]
+[CpuOnly]
 public partial struct int3_mt8
 {
     #region Constants
@@ -3417,7 +4166,25 @@ public partial struct int3_mt8
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<int>.Count;
+        get => int_mt8.LineCount;
+    }
+
+    public static int3_mt8 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static int3_mt8 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1);
+    }
+
+    public static int3_mt8 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1 + 1));
     }
 
     #endregion
@@ -3435,7 +4202,7 @@ public partial struct int3_mt8
     public int3 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index]);
+        readonly get => new(x[index], y[index], z[index]);
         set 
         {
            x[index] = value.x;
@@ -3454,6 +4221,12 @@ public partial struct int3_mt8
         this.x = x;
         this.y = y;
         this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public int3_mt8(int value)
+    {
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -3516,14 +4289,15 @@ public partial struct int3_mt8
     [MethodImpl(256 | 512)]
     public static int3_mt8 operator&(int3_mt8 a, int3_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
+    public readonly override string ToString() => $"int3_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+
     #endregion // Operators
 }
 
 #endregion // int3_mt8
 #region int3_mt16
 
-[Serializable]
-//[JsonConverter(typeof(int3_mt16JsonConverter))]
+[CpuOnly]
 public partial struct int3_mt16
 {
     #region Constants
@@ -3531,7 +4305,25 @@ public partial struct int3_mt16
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<int>.Count;
+        get => int_mt16.LineCount;
+    }
+
+    public static int3_mt16 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static int3_mt16 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1);
+    }
+
+    public static int3_mt16 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1 + 1));
     }
 
     #endregion
@@ -3549,7 +4341,7 @@ public partial struct int3_mt16
     public int3 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index]);
+        readonly get => new(x[index], y[index], z[index]);
         set 
         {
            x[index] = value.x;
@@ -3568,6 +4360,12 @@ public partial struct int3_mt16
         this.x = x;
         this.y = y;
         this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public int3_mt16(int value)
+    {
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -3630,14 +4428,15 @@ public partial struct int3_mt16
     [MethodImpl(256 | 512)]
     public static int3_mt16 operator&(int3_mt16 a, int3_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
+    public readonly override string ToString() => $"int3_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+
     #endregion // Operators
 }
 
 #endregion // int3_mt16
 #region int4_mt
 
-[Serializable]
-//[JsonConverter(typeof(int4_mtJsonConverter))]
+[CpuOnly]
 public partial struct int4_mt
 {
     #region Constants
@@ -3645,7 +4444,25 @@ public partial struct int4_mt
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<int>.Count;
+        get => int_mt.LineCount;
+    }
+
+    public static int4_mt Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static int4_mt One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1);
+    }
+
+    public static int4_mt Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1 + 1));
     }
 
     #endregion
@@ -3664,7 +4481,7 @@ public partial struct int4_mt
     public int4 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index], w[index]);
+        readonly get => new(x[index], y[index], z[index], w[index]);
         set 
         {
            x[index] = value.x;
@@ -3685,6 +4502,12 @@ public partial struct int4_mt
         this.y = y;
         this.z = z;
         this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public int4_mt(int value)
+    {
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -3748,14 +4571,15 @@ public partial struct int4_mt
     [MethodImpl(256 | 512)]
     public static int4_mt operator&(int4_mt a, int4_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
+    public readonly override string ToString() => $"int4_mt {{  }}";
+
     #endregion // Operators
 }
 
 #endregion // int4_mt
 #region int4_mt4
 
-[Serializable]
-//[JsonConverter(typeof(int4_mt4JsonConverter))]
+[CpuOnly]
 public partial struct int4_mt4
 {
     #region Constants
@@ -3763,7 +4587,25 @@ public partial struct int4_mt4
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<int>.Count;
+        get => int_mt4.LineCount;
+    }
+
+    public static int4_mt4 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static int4_mt4 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1);
+    }
+
+    public static int4_mt4 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1 + 1));
     }
 
     #endregion
@@ -3782,7 +4624,7 @@ public partial struct int4_mt4
     public int4 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index], w[index]);
+        readonly get => new(x[index], y[index], z[index], w[index]);
         set 
         {
            x[index] = value.x;
@@ -3803,6 +4645,12 @@ public partial struct int4_mt4
         this.y = y;
         this.z = z;
         this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public int4_mt4(int value)
+    {
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -3866,14 +4714,15 @@ public partial struct int4_mt4
     [MethodImpl(256 | 512)]
     public static int4_mt4 operator&(int4_mt4 a, int4_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
+    public readonly override string ToString() => $"int4_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+
     #endregion // Operators
 }
 
 #endregion // int4_mt4
 #region int4_mt8
 
-[Serializable]
-//[JsonConverter(typeof(int4_mt8JsonConverter))]
+[CpuOnly]
 public partial struct int4_mt8
 {
     #region Constants
@@ -3881,7 +4730,25 @@ public partial struct int4_mt8
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<int>.Count;
+        get => int_mt8.LineCount;
+    }
+
+    public static int4_mt8 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static int4_mt8 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1);
+    }
+
+    public static int4_mt8 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1 + 1));
     }
 
     #endregion
@@ -3900,7 +4767,7 @@ public partial struct int4_mt8
     public int4 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index], w[index]);
+        readonly get => new(x[index], y[index], z[index], w[index]);
         set 
         {
            x[index] = value.x;
@@ -3921,6 +4788,12 @@ public partial struct int4_mt8
         this.y = y;
         this.z = z;
         this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public int4_mt8(int value)
+    {
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -3984,14 +4857,15 @@ public partial struct int4_mt8
     [MethodImpl(256 | 512)]
     public static int4_mt8 operator&(int4_mt8 a, int4_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
+    public readonly override string ToString() => $"int4_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+
     #endregion // Operators
 }
 
 #endregion // int4_mt8
 #region int4_mt16
 
-[Serializable]
-//[JsonConverter(typeof(int4_mt16JsonConverter))]
+[CpuOnly]
 public partial struct int4_mt16
 {
     #region Constants
@@ -3999,7 +4873,25 @@ public partial struct int4_mt16
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<int>.Count;
+        get => int_mt16.LineCount;
+    }
+
+    public static int4_mt16 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static int4_mt16 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1);
+    }
+
+    public static int4_mt16 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1 + 1));
     }
 
     #endregion
@@ -4018,7 +4910,7 @@ public partial struct int4_mt16
     public int4 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index], w[index]);
+        readonly get => new(x[index], y[index], z[index], w[index]);
         set 
         {
            x[index] = value.x;
@@ -4039,6 +4931,12 @@ public partial struct int4_mt16
         this.y = y;
         this.z = z;
         this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public int4_mt16(int value)
+    {
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -4102,14 +5000,15 @@ public partial struct int4_mt16
     [MethodImpl(256 | 512)]
     public static int4_mt16 operator&(int4_mt16 a, int4_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
+    public readonly override string ToString() => $"int4_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+
     #endregion // Operators
 }
 
 #endregion // int4_mt16
 #region uint2_mt
 
-[Serializable]
-//[JsonConverter(typeof(uint2_mtJsonConverter))]
+[CpuOnly]
 public partial struct uint2_mt
 {
     #region Constants
@@ -4117,7 +5016,25 @@ public partial struct uint2_mt
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<uint>.Count;
+        get => uint_mt.LineCount;
+    }
+
+    public static uint2_mt Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static uint2_mt One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1u);
+    }
+
+    public static uint2_mt Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1u + 1u));
     }
 
     #endregion
@@ -4134,7 +5051,7 @@ public partial struct uint2_mt
     public uint2 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index]);
+        readonly get => new(x[index], y[index]);
         set 
         {
            x[index] = value.x;
@@ -4151,6 +5068,12 @@ public partial struct uint2_mt
     {
         this.x = x;
         this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public uint2_mt(uint value)
+    {
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -4212,14 +5135,15 @@ public partial struct uint2_mt
     [MethodImpl(256 | 512)]
     public static uint2_mt operator&(uint2_mt a, uint2_mt b) => new(a.x & b.x, a.y & b.y);
 
+    public readonly override string ToString() => $"uint2_mt {{  }}";
+
     #endregion // Operators
 }
 
 #endregion // uint2_mt
 #region uint2_mt4
 
-[Serializable]
-//[JsonConverter(typeof(uint2_mt4JsonConverter))]
+[CpuOnly]
 public partial struct uint2_mt4
 {
     #region Constants
@@ -4227,7 +5151,25 @@ public partial struct uint2_mt4
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<uint>.Count;
+        get => uint_mt4.LineCount;
+    }
+
+    public static uint2_mt4 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static uint2_mt4 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1u);
+    }
+
+    public static uint2_mt4 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1u + 1u));
     }
 
     #endregion
@@ -4244,7 +5186,7 @@ public partial struct uint2_mt4
     public uint2 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index]);
+        readonly get => new(x[index], y[index]);
         set 
         {
            x[index] = value.x;
@@ -4261,6 +5203,12 @@ public partial struct uint2_mt4
     {
         this.x = x;
         this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public uint2_mt4(uint value)
+    {
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -4322,14 +5270,15 @@ public partial struct uint2_mt4
     [MethodImpl(256 | 512)]
     public static uint2_mt4 operator&(uint2_mt4 a, uint2_mt4 b) => new(a.x & b.x, a.y & b.y);
 
+    public readonly override string ToString() => $"uint2_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+
     #endregion // Operators
 }
 
 #endregion // uint2_mt4
 #region uint2_mt8
 
-[Serializable]
-//[JsonConverter(typeof(uint2_mt8JsonConverter))]
+[CpuOnly]
 public partial struct uint2_mt8
 {
     #region Constants
@@ -4337,7 +5286,25 @@ public partial struct uint2_mt8
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<uint>.Count;
+        get => uint_mt8.LineCount;
+    }
+
+    public static uint2_mt8 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static uint2_mt8 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1u);
+    }
+
+    public static uint2_mt8 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1u + 1u));
     }
 
     #endregion
@@ -4354,7 +5321,7 @@ public partial struct uint2_mt8
     public uint2 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index]);
+        readonly get => new(x[index], y[index]);
         set 
         {
            x[index] = value.x;
@@ -4371,6 +5338,12 @@ public partial struct uint2_mt8
     {
         this.x = x;
         this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public uint2_mt8(uint value)
+    {
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -4432,14 +5405,15 @@ public partial struct uint2_mt8
     [MethodImpl(256 | 512)]
     public static uint2_mt8 operator&(uint2_mt8 a, uint2_mt8 b) => new(a.x & b.x, a.y & b.y);
 
+    public readonly override string ToString() => $"uint2_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+
     #endregion // Operators
 }
 
 #endregion // uint2_mt8
 #region uint2_mt16
 
-[Serializable]
-//[JsonConverter(typeof(uint2_mt16JsonConverter))]
+[CpuOnly]
 public partial struct uint2_mt16
 {
     #region Constants
@@ -4447,7 +5421,25 @@ public partial struct uint2_mt16
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<uint>.Count;
+        get => uint_mt16.LineCount;
+    }
+
+    public static uint2_mt16 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static uint2_mt16 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1u);
+    }
+
+    public static uint2_mt16 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1u + 1u));
     }
 
     #endregion
@@ -4464,7 +5456,7 @@ public partial struct uint2_mt16
     public uint2 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index]);
+        readonly get => new(x[index], y[index]);
         set 
         {
            x[index] = value.x;
@@ -4481,6 +5473,12 @@ public partial struct uint2_mt16
     {
         this.x = x;
         this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public uint2_mt16(uint value)
+    {
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -4542,14 +5540,15 @@ public partial struct uint2_mt16
     [MethodImpl(256 | 512)]
     public static uint2_mt16 operator&(uint2_mt16 a, uint2_mt16 b) => new(a.x & b.x, a.y & b.y);
 
+    public readonly override string ToString() => $"uint2_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+
     #endregion // Operators
 }
 
 #endregion // uint2_mt16
 #region uint3_mt
 
-[Serializable]
-//[JsonConverter(typeof(uint3_mtJsonConverter))]
+[CpuOnly]
 public partial struct uint3_mt
 {
     #region Constants
@@ -4557,7 +5556,25 @@ public partial struct uint3_mt
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<uint>.Count;
+        get => uint_mt.LineCount;
+    }
+
+    public static uint3_mt Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static uint3_mt One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1u);
+    }
+
+    public static uint3_mt Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1u + 1u));
     }
 
     #endregion
@@ -4575,7 +5592,7 @@ public partial struct uint3_mt
     public uint3 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index]);
+        readonly get => new(x[index], y[index], z[index]);
         set 
         {
            x[index] = value.x;
@@ -4594,6 +5611,12 @@ public partial struct uint3_mt
         this.x = x;
         this.y = y;
         this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public uint3_mt(uint value)
+    {
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -4656,14 +5679,15 @@ public partial struct uint3_mt
     [MethodImpl(256 | 512)]
     public static uint3_mt operator&(uint3_mt a, uint3_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
+    public readonly override string ToString() => $"uint3_mt {{  }}";
+
     #endregion // Operators
 }
 
 #endregion // uint3_mt
 #region uint3_mt4
 
-[Serializable]
-//[JsonConverter(typeof(uint3_mt4JsonConverter))]
+[CpuOnly]
 public partial struct uint3_mt4
 {
     #region Constants
@@ -4671,7 +5695,25 @@ public partial struct uint3_mt4
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<uint>.Count;
+        get => uint_mt4.LineCount;
+    }
+
+    public static uint3_mt4 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static uint3_mt4 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1u);
+    }
+
+    public static uint3_mt4 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1u + 1u));
     }
 
     #endregion
@@ -4689,7 +5731,7 @@ public partial struct uint3_mt4
     public uint3 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index]);
+        readonly get => new(x[index], y[index], z[index]);
         set 
         {
            x[index] = value.x;
@@ -4708,6 +5750,12 @@ public partial struct uint3_mt4
         this.x = x;
         this.y = y;
         this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public uint3_mt4(uint value)
+    {
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -4770,14 +5818,15 @@ public partial struct uint3_mt4
     [MethodImpl(256 | 512)]
     public static uint3_mt4 operator&(uint3_mt4 a, uint3_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
+    public readonly override string ToString() => $"uint3_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+
     #endregion // Operators
 }
 
 #endregion // uint3_mt4
 #region uint3_mt8
 
-[Serializable]
-//[JsonConverter(typeof(uint3_mt8JsonConverter))]
+[CpuOnly]
 public partial struct uint3_mt8
 {
     #region Constants
@@ -4785,7 +5834,25 @@ public partial struct uint3_mt8
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<uint>.Count;
+        get => uint_mt8.LineCount;
+    }
+
+    public static uint3_mt8 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static uint3_mt8 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1u);
+    }
+
+    public static uint3_mt8 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1u + 1u));
     }
 
     #endregion
@@ -4803,7 +5870,7 @@ public partial struct uint3_mt8
     public uint3 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index]);
+        readonly get => new(x[index], y[index], z[index]);
         set 
         {
            x[index] = value.x;
@@ -4822,6 +5889,12 @@ public partial struct uint3_mt8
         this.x = x;
         this.y = y;
         this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public uint3_mt8(uint value)
+    {
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -4884,14 +5957,15 @@ public partial struct uint3_mt8
     [MethodImpl(256 | 512)]
     public static uint3_mt8 operator&(uint3_mt8 a, uint3_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
+    public readonly override string ToString() => $"uint3_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+
     #endregion // Operators
 }
 
 #endregion // uint3_mt8
 #region uint3_mt16
 
-[Serializable]
-//[JsonConverter(typeof(uint3_mt16JsonConverter))]
+[CpuOnly]
 public partial struct uint3_mt16
 {
     #region Constants
@@ -4899,7 +5973,25 @@ public partial struct uint3_mt16
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<uint>.Count;
+        get => uint_mt16.LineCount;
+    }
+
+    public static uint3_mt16 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static uint3_mt16 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1u);
+    }
+
+    public static uint3_mt16 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1u + 1u));
     }
 
     #endregion
@@ -4917,7 +6009,7 @@ public partial struct uint3_mt16
     public uint3 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index]);
+        readonly get => new(x[index], y[index], z[index]);
         set 
         {
            x[index] = value.x;
@@ -4936,6 +6028,12 @@ public partial struct uint3_mt16
         this.x = x;
         this.y = y;
         this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public uint3_mt16(uint value)
+    {
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -4998,14 +6096,15 @@ public partial struct uint3_mt16
     [MethodImpl(256 | 512)]
     public static uint3_mt16 operator&(uint3_mt16 a, uint3_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
+    public readonly override string ToString() => $"uint3_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+
     #endregion // Operators
 }
 
 #endregion // uint3_mt16
 #region uint4_mt
 
-[Serializable]
-//[JsonConverter(typeof(uint4_mtJsonConverter))]
+[CpuOnly]
 public partial struct uint4_mt
 {
     #region Constants
@@ -5013,7 +6112,25 @@ public partial struct uint4_mt
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<uint>.Count;
+        get => uint_mt.LineCount;
+    }
+
+    public static uint4_mt Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static uint4_mt One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1u);
+    }
+
+    public static uint4_mt Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1u + 1u));
     }
 
     #endregion
@@ -5032,7 +6149,7 @@ public partial struct uint4_mt
     public uint4 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index], w[index]);
+        readonly get => new(x[index], y[index], z[index], w[index]);
         set 
         {
            x[index] = value.x;
@@ -5053,6 +6170,12 @@ public partial struct uint4_mt
         this.y = y;
         this.z = z;
         this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public uint4_mt(uint value)
+    {
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -5116,14 +6239,15 @@ public partial struct uint4_mt
     [MethodImpl(256 | 512)]
     public static uint4_mt operator&(uint4_mt a, uint4_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
+    public readonly override string ToString() => $"uint4_mt {{  }}";
+
     #endregion // Operators
 }
 
 #endregion // uint4_mt
 #region uint4_mt4
 
-[Serializable]
-//[JsonConverter(typeof(uint4_mt4JsonConverter))]
+[CpuOnly]
 public partial struct uint4_mt4
 {
     #region Constants
@@ -5131,7 +6255,25 @@ public partial struct uint4_mt4
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<uint>.Count;
+        get => uint_mt4.LineCount;
+    }
+
+    public static uint4_mt4 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static uint4_mt4 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1u);
+    }
+
+    public static uint4_mt4 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1u + 1u));
     }
 
     #endregion
@@ -5150,7 +6292,7 @@ public partial struct uint4_mt4
     public uint4 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index], w[index]);
+        readonly get => new(x[index], y[index], z[index], w[index]);
         set 
         {
            x[index] = value.x;
@@ -5171,6 +6313,12 @@ public partial struct uint4_mt4
         this.y = y;
         this.z = z;
         this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public uint4_mt4(uint value)
+    {
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -5234,14 +6382,15 @@ public partial struct uint4_mt4
     [MethodImpl(256 | 512)]
     public static uint4_mt4 operator&(uint4_mt4 a, uint4_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
+    public readonly override string ToString() => $"uint4_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+
     #endregion // Operators
 }
 
 #endregion // uint4_mt4
 #region uint4_mt8
 
-[Serializable]
-//[JsonConverter(typeof(uint4_mt8JsonConverter))]
+[CpuOnly]
 public partial struct uint4_mt8
 {
     #region Constants
@@ -5249,7 +6398,25 @@ public partial struct uint4_mt8
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<uint>.Count;
+        get => uint_mt8.LineCount;
+    }
+
+    public static uint4_mt8 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static uint4_mt8 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1u);
+    }
+
+    public static uint4_mt8 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1u + 1u));
     }
 
     #endregion
@@ -5268,7 +6435,7 @@ public partial struct uint4_mt8
     public uint4 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index], w[index]);
+        readonly get => new(x[index], y[index], z[index], w[index]);
         set 
         {
            x[index] = value.x;
@@ -5289,6 +6456,12 @@ public partial struct uint4_mt8
         this.y = y;
         this.z = z;
         this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public uint4_mt8(uint value)
+    {
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -5352,14 +6525,15 @@ public partial struct uint4_mt8
     [MethodImpl(256 | 512)]
     public static uint4_mt8 operator&(uint4_mt8 a, uint4_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
+    public readonly override string ToString() => $"uint4_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+
     #endregion // Operators
 }
 
 #endregion // uint4_mt8
 #region uint4_mt16
 
-[Serializable]
-//[JsonConverter(typeof(uint4_mt16JsonConverter))]
+[CpuOnly]
 public partial struct uint4_mt16
 {
     #region Constants
@@ -5367,7 +6541,25 @@ public partial struct uint4_mt16
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<uint>.Count;
+        get => uint_mt16.LineCount;
+    }
+
+    public static uint4_mt16 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static uint4_mt16 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1u);
+    }
+
+    public static uint4_mt16 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1u + 1u));
     }
 
     #endregion
@@ -5386,7 +6578,7 @@ public partial struct uint4_mt16
     public uint4 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index], w[index]);
+        readonly get => new(x[index], y[index], z[index], w[index]);
         set 
         {
            x[index] = value.x;
@@ -5407,6 +6599,12 @@ public partial struct uint4_mt16
         this.y = y;
         this.z = z;
         this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public uint4_mt16(uint value)
+    {
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -5470,14 +6668,15 @@ public partial struct uint4_mt16
     [MethodImpl(256 | 512)]
     public static uint4_mt16 operator&(uint4_mt16 a, uint4_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
+    public readonly override string ToString() => $"uint4_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+
     #endregion // Operators
 }
 
 #endregion // uint4_mt16
 #region long2_mt
 
-[Serializable]
-//[JsonConverter(typeof(long2_mtJsonConverter))]
+[CpuOnly]
 public partial struct long2_mt
 {
     #region Constants
@@ -5485,7 +6684,25 @@ public partial struct long2_mt
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<long>.Count;
+        get => long_mt.LineCount;
+    }
+
+    public static long2_mt Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static long2_mt One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1L);
+    }
+
+    public static long2_mt Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1L + 1L));
     }
 
     #endregion
@@ -5502,7 +6719,7 @@ public partial struct long2_mt
     public long2 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index]);
+        readonly get => new(x[index], y[index]);
         set 
         {
            x[index] = value.x;
@@ -5519,6 +6736,12 @@ public partial struct long2_mt
     {
         this.x = x;
         this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public long2_mt(long value)
+    {
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -5580,14 +6803,15 @@ public partial struct long2_mt
     [MethodImpl(256 | 512)]
     public static long2_mt operator&(long2_mt a, long2_mt b) => new(a.x & b.x, a.y & b.y);
 
+    public readonly override string ToString() => $"long2_mt {{  }}";
+
     #endregion // Operators
 }
 
 #endregion // long2_mt
 #region long2_mt4
 
-[Serializable]
-//[JsonConverter(typeof(long2_mt4JsonConverter))]
+[CpuOnly]
 public partial struct long2_mt4
 {
     #region Constants
@@ -5595,7 +6819,25 @@ public partial struct long2_mt4
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<long>.Count;
+        get => long_mt4.LineCount;
+    }
+
+    public static long2_mt4 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static long2_mt4 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1L);
+    }
+
+    public static long2_mt4 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1L + 1L));
     }
 
     #endregion
@@ -5612,7 +6854,7 @@ public partial struct long2_mt4
     public long2 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index]);
+        readonly get => new(x[index], y[index]);
         set 
         {
            x[index] = value.x;
@@ -5629,6 +6871,12 @@ public partial struct long2_mt4
     {
         this.x = x;
         this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public long2_mt4(long value)
+    {
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -5690,14 +6938,15 @@ public partial struct long2_mt4
     [MethodImpl(256 | 512)]
     public static long2_mt4 operator&(long2_mt4 a, long2_mt4 b) => new(a.x & b.x, a.y & b.y);
 
+    public readonly override string ToString() => $"long2_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+
     #endregion // Operators
 }
 
 #endregion // long2_mt4
 #region long2_mt8
 
-[Serializable]
-//[JsonConverter(typeof(long2_mt8JsonConverter))]
+[CpuOnly]
 public partial struct long2_mt8
 {
     #region Constants
@@ -5705,7 +6954,25 @@ public partial struct long2_mt8
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<long>.Count;
+        get => long_mt8.LineCount;
+    }
+
+    public static long2_mt8 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static long2_mt8 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1L);
+    }
+
+    public static long2_mt8 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1L + 1L));
     }
 
     #endregion
@@ -5722,7 +6989,7 @@ public partial struct long2_mt8
     public long2 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index]);
+        readonly get => new(x[index], y[index]);
         set 
         {
            x[index] = value.x;
@@ -5739,6 +7006,12 @@ public partial struct long2_mt8
     {
         this.x = x;
         this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public long2_mt8(long value)
+    {
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -5800,14 +7073,15 @@ public partial struct long2_mt8
     [MethodImpl(256 | 512)]
     public static long2_mt8 operator&(long2_mt8 a, long2_mt8 b) => new(a.x & b.x, a.y & b.y);
 
+    public readonly override string ToString() => $"long2_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+
     #endregion // Operators
 }
 
 #endregion // long2_mt8
 #region long2_mt16
 
-[Serializable]
-//[JsonConverter(typeof(long2_mt16JsonConverter))]
+[CpuOnly]
 public partial struct long2_mt16
 {
     #region Constants
@@ -5815,7 +7089,25 @@ public partial struct long2_mt16
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<long>.Count;
+        get => long_mt16.LineCount;
+    }
+
+    public static long2_mt16 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static long2_mt16 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1L);
+    }
+
+    public static long2_mt16 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1L + 1L));
     }
 
     #endregion
@@ -5832,7 +7124,7 @@ public partial struct long2_mt16
     public long2 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index]);
+        readonly get => new(x[index], y[index]);
         set 
         {
            x[index] = value.x;
@@ -5849,6 +7141,12 @@ public partial struct long2_mt16
     {
         this.x = x;
         this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public long2_mt16(long value)
+    {
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -5910,14 +7208,15 @@ public partial struct long2_mt16
     [MethodImpl(256 | 512)]
     public static long2_mt16 operator&(long2_mt16 a, long2_mt16 b) => new(a.x & b.x, a.y & b.y);
 
+    public readonly override string ToString() => $"long2_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+
     #endregion // Operators
 }
 
 #endregion // long2_mt16
 #region long3_mt
 
-[Serializable]
-//[JsonConverter(typeof(long3_mtJsonConverter))]
+[CpuOnly]
 public partial struct long3_mt
 {
     #region Constants
@@ -5925,7 +7224,25 @@ public partial struct long3_mt
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<long>.Count;
+        get => long_mt.LineCount;
+    }
+
+    public static long3_mt Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static long3_mt One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1L);
+    }
+
+    public static long3_mt Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1L + 1L));
     }
 
     #endregion
@@ -5943,7 +7260,7 @@ public partial struct long3_mt
     public long3 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index]);
+        readonly get => new(x[index], y[index], z[index]);
         set 
         {
            x[index] = value.x;
@@ -5962,6 +7279,12 @@ public partial struct long3_mt
         this.x = x;
         this.y = y;
         this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public long3_mt(long value)
+    {
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -6024,14 +7347,15 @@ public partial struct long3_mt
     [MethodImpl(256 | 512)]
     public static long3_mt operator&(long3_mt a, long3_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
+    public readonly override string ToString() => $"long3_mt {{  }}";
+
     #endregion // Operators
 }
 
 #endregion // long3_mt
 #region long3_mt4
 
-[Serializable]
-//[JsonConverter(typeof(long3_mt4JsonConverter))]
+[CpuOnly]
 public partial struct long3_mt4
 {
     #region Constants
@@ -6039,7 +7363,25 @@ public partial struct long3_mt4
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<long>.Count;
+        get => long_mt4.LineCount;
+    }
+
+    public static long3_mt4 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static long3_mt4 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1L);
+    }
+
+    public static long3_mt4 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1L + 1L));
     }
 
     #endregion
@@ -6057,7 +7399,7 @@ public partial struct long3_mt4
     public long3 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index]);
+        readonly get => new(x[index], y[index], z[index]);
         set 
         {
            x[index] = value.x;
@@ -6076,6 +7418,12 @@ public partial struct long3_mt4
         this.x = x;
         this.y = y;
         this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public long3_mt4(long value)
+    {
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -6138,14 +7486,15 @@ public partial struct long3_mt4
     [MethodImpl(256 | 512)]
     public static long3_mt4 operator&(long3_mt4 a, long3_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
+    public readonly override string ToString() => $"long3_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+
     #endregion // Operators
 }
 
 #endregion // long3_mt4
 #region long3_mt8
 
-[Serializable]
-//[JsonConverter(typeof(long3_mt8JsonConverter))]
+[CpuOnly]
 public partial struct long3_mt8
 {
     #region Constants
@@ -6153,7 +7502,25 @@ public partial struct long3_mt8
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<long>.Count;
+        get => long_mt8.LineCount;
+    }
+
+    public static long3_mt8 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static long3_mt8 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1L);
+    }
+
+    public static long3_mt8 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1L + 1L));
     }
 
     #endregion
@@ -6171,7 +7538,7 @@ public partial struct long3_mt8
     public long3 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index]);
+        readonly get => new(x[index], y[index], z[index]);
         set 
         {
            x[index] = value.x;
@@ -6190,6 +7557,12 @@ public partial struct long3_mt8
         this.x = x;
         this.y = y;
         this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public long3_mt8(long value)
+    {
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -6252,14 +7625,15 @@ public partial struct long3_mt8
     [MethodImpl(256 | 512)]
     public static long3_mt8 operator&(long3_mt8 a, long3_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
+    public readonly override string ToString() => $"long3_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+
     #endregion // Operators
 }
 
 #endregion // long3_mt8
 #region long3_mt16
 
-[Serializable]
-//[JsonConverter(typeof(long3_mt16JsonConverter))]
+[CpuOnly]
 public partial struct long3_mt16
 {
     #region Constants
@@ -6267,7 +7641,25 @@ public partial struct long3_mt16
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<long>.Count;
+        get => long_mt16.LineCount;
+    }
+
+    public static long3_mt16 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static long3_mt16 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1L);
+    }
+
+    public static long3_mt16 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1L + 1L));
     }
 
     #endregion
@@ -6285,7 +7677,7 @@ public partial struct long3_mt16
     public long3 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index]);
+        readonly get => new(x[index], y[index], z[index]);
         set 
         {
            x[index] = value.x;
@@ -6304,6 +7696,12 @@ public partial struct long3_mt16
         this.x = x;
         this.y = y;
         this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public long3_mt16(long value)
+    {
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -6366,14 +7764,15 @@ public partial struct long3_mt16
     [MethodImpl(256 | 512)]
     public static long3_mt16 operator&(long3_mt16 a, long3_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
+    public readonly override string ToString() => $"long3_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+
     #endregion // Operators
 }
 
 #endregion // long3_mt16
 #region long4_mt
 
-[Serializable]
-//[JsonConverter(typeof(long4_mtJsonConverter))]
+[CpuOnly]
 public partial struct long4_mt
 {
     #region Constants
@@ -6381,7 +7780,25 @@ public partial struct long4_mt
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<long>.Count;
+        get => long_mt.LineCount;
+    }
+
+    public static long4_mt Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static long4_mt One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1L);
+    }
+
+    public static long4_mt Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1L + 1L));
     }
 
     #endregion
@@ -6400,7 +7817,7 @@ public partial struct long4_mt
     public long4 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index], w[index]);
+        readonly get => new(x[index], y[index], z[index], w[index]);
         set 
         {
            x[index] = value.x;
@@ -6421,6 +7838,12 @@ public partial struct long4_mt
         this.y = y;
         this.z = z;
         this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public long4_mt(long value)
+    {
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -6484,14 +7907,15 @@ public partial struct long4_mt
     [MethodImpl(256 | 512)]
     public static long4_mt operator&(long4_mt a, long4_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
+    public readonly override string ToString() => $"long4_mt {{  }}";
+
     #endregion // Operators
 }
 
 #endregion // long4_mt
 #region long4_mt4
 
-[Serializable]
-//[JsonConverter(typeof(long4_mt4JsonConverter))]
+[CpuOnly]
 public partial struct long4_mt4
 {
     #region Constants
@@ -6499,7 +7923,25 @@ public partial struct long4_mt4
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<long>.Count;
+        get => long_mt4.LineCount;
+    }
+
+    public static long4_mt4 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static long4_mt4 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1L);
+    }
+
+    public static long4_mt4 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1L + 1L));
     }
 
     #endregion
@@ -6518,7 +7960,7 @@ public partial struct long4_mt4
     public long4 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index], w[index]);
+        readonly get => new(x[index], y[index], z[index], w[index]);
         set 
         {
            x[index] = value.x;
@@ -6539,6 +7981,12 @@ public partial struct long4_mt4
         this.y = y;
         this.z = z;
         this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public long4_mt4(long value)
+    {
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -6602,14 +8050,15 @@ public partial struct long4_mt4
     [MethodImpl(256 | 512)]
     public static long4_mt4 operator&(long4_mt4 a, long4_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
+    public readonly override string ToString() => $"long4_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+
     #endregion // Operators
 }
 
 #endregion // long4_mt4
 #region long4_mt8
 
-[Serializable]
-//[JsonConverter(typeof(long4_mt8JsonConverter))]
+[CpuOnly]
 public partial struct long4_mt8
 {
     #region Constants
@@ -6617,7 +8066,25 @@ public partial struct long4_mt8
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<long>.Count;
+        get => long_mt8.LineCount;
+    }
+
+    public static long4_mt8 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static long4_mt8 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1L);
+    }
+
+    public static long4_mt8 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1L + 1L));
     }
 
     #endregion
@@ -6636,7 +8103,7 @@ public partial struct long4_mt8
     public long4 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index], w[index]);
+        readonly get => new(x[index], y[index], z[index], w[index]);
         set 
         {
            x[index] = value.x;
@@ -6657,6 +8124,12 @@ public partial struct long4_mt8
         this.y = y;
         this.z = z;
         this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public long4_mt8(long value)
+    {
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -6720,14 +8193,15 @@ public partial struct long4_mt8
     [MethodImpl(256 | 512)]
     public static long4_mt8 operator&(long4_mt8 a, long4_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
+    public readonly override string ToString() => $"long4_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+
     #endregion // Operators
 }
 
 #endregion // long4_mt8
 #region long4_mt16
 
-[Serializable]
-//[JsonConverter(typeof(long4_mt16JsonConverter))]
+[CpuOnly]
 public partial struct long4_mt16
 {
     #region Constants
@@ -6735,7 +8209,25 @@ public partial struct long4_mt16
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<long>.Count;
+        get => long_mt16.LineCount;
+    }
+
+    public static long4_mt16 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static long4_mt16 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1L);
+    }
+
+    public static long4_mt16 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1L + 1L));
     }
 
     #endregion
@@ -6754,7 +8246,7 @@ public partial struct long4_mt16
     public long4 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index], w[index]);
+        readonly get => new(x[index], y[index], z[index], w[index]);
         set 
         {
            x[index] = value.x;
@@ -6775,6 +8267,12 @@ public partial struct long4_mt16
         this.y = y;
         this.z = z;
         this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public long4_mt16(long value)
+    {
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -6838,14 +8336,15 @@ public partial struct long4_mt16
     [MethodImpl(256 | 512)]
     public static long4_mt16 operator&(long4_mt16 a, long4_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
+    public readonly override string ToString() => $"long4_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+
     #endregion // Operators
 }
 
 #endregion // long4_mt16
 #region ulong2_mt
 
-[Serializable]
-//[JsonConverter(typeof(ulong2_mtJsonConverter))]
+[CpuOnly]
 public partial struct ulong2_mt
 {
     #region Constants
@@ -6853,7 +8352,25 @@ public partial struct ulong2_mt
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<ulong>.Count;
+        get => ulong_mt.LineCount;
+    }
+
+    public static ulong2_mt Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static ulong2_mt One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1UL);
+    }
+
+    public static ulong2_mt Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1UL + 1UL));
     }
 
     #endregion
@@ -6870,7 +8387,7 @@ public partial struct ulong2_mt
     public ulong2 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index]);
+        readonly get => new(x[index], y[index]);
         set 
         {
            x[index] = value.x;
@@ -6887,6 +8404,12 @@ public partial struct ulong2_mt
     {
         this.x = x;
         this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public ulong2_mt(ulong value)
+    {
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -6948,14 +8471,15 @@ public partial struct ulong2_mt
     [MethodImpl(256 | 512)]
     public static ulong2_mt operator&(ulong2_mt a, ulong2_mt b) => new(a.x & b.x, a.y & b.y);
 
+    public readonly override string ToString() => $"ulong2_mt {{  }}";
+
     #endregion // Operators
 }
 
 #endregion // ulong2_mt
 #region ulong2_mt4
 
-[Serializable]
-//[JsonConverter(typeof(ulong2_mt4JsonConverter))]
+[CpuOnly]
 public partial struct ulong2_mt4
 {
     #region Constants
@@ -6963,7 +8487,25 @@ public partial struct ulong2_mt4
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<ulong>.Count;
+        get => ulong_mt4.LineCount;
+    }
+
+    public static ulong2_mt4 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static ulong2_mt4 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1UL);
+    }
+
+    public static ulong2_mt4 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1UL + 1UL));
     }
 
     #endregion
@@ -6980,7 +8522,7 @@ public partial struct ulong2_mt4
     public ulong2 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index]);
+        readonly get => new(x[index], y[index]);
         set 
         {
            x[index] = value.x;
@@ -6997,6 +8539,12 @@ public partial struct ulong2_mt4
     {
         this.x = x;
         this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public ulong2_mt4(ulong value)
+    {
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -7058,14 +8606,15 @@ public partial struct ulong2_mt4
     [MethodImpl(256 | 512)]
     public static ulong2_mt4 operator&(ulong2_mt4 a, ulong2_mt4 b) => new(a.x & b.x, a.y & b.y);
 
+    public readonly override string ToString() => $"ulong2_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+
     #endregion // Operators
 }
 
 #endregion // ulong2_mt4
 #region ulong2_mt8
 
-[Serializable]
-//[JsonConverter(typeof(ulong2_mt8JsonConverter))]
+[CpuOnly]
 public partial struct ulong2_mt8
 {
     #region Constants
@@ -7073,7 +8622,25 @@ public partial struct ulong2_mt8
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<ulong>.Count;
+        get => ulong_mt8.LineCount;
+    }
+
+    public static ulong2_mt8 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static ulong2_mt8 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1UL);
+    }
+
+    public static ulong2_mt8 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1UL + 1UL));
     }
 
     #endregion
@@ -7090,7 +8657,7 @@ public partial struct ulong2_mt8
     public ulong2 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index]);
+        readonly get => new(x[index], y[index]);
         set 
         {
            x[index] = value.x;
@@ -7107,6 +8674,12 @@ public partial struct ulong2_mt8
     {
         this.x = x;
         this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public ulong2_mt8(ulong value)
+    {
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -7168,14 +8741,15 @@ public partial struct ulong2_mt8
     [MethodImpl(256 | 512)]
     public static ulong2_mt8 operator&(ulong2_mt8 a, ulong2_mt8 b) => new(a.x & b.x, a.y & b.y);
 
+    public readonly override string ToString() => $"ulong2_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+
     #endregion // Operators
 }
 
 #endregion // ulong2_mt8
 #region ulong2_mt16
 
-[Serializable]
-//[JsonConverter(typeof(ulong2_mt16JsonConverter))]
+[CpuOnly]
 public partial struct ulong2_mt16
 {
     #region Constants
@@ -7183,7 +8757,25 @@ public partial struct ulong2_mt16
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<ulong>.Count;
+        get => ulong_mt16.LineCount;
+    }
+
+    public static ulong2_mt16 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static ulong2_mt16 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1UL);
+    }
+
+    public static ulong2_mt16 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1UL + 1UL));
     }
 
     #endregion
@@ -7200,7 +8792,7 @@ public partial struct ulong2_mt16
     public ulong2 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index]);
+        readonly get => new(x[index], y[index]);
         set 
         {
            x[index] = value.x;
@@ -7217,6 +8809,12 @@ public partial struct ulong2_mt16
     {
         this.x = x;
         this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public ulong2_mt16(ulong value)
+    {
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -7278,14 +8876,15 @@ public partial struct ulong2_mt16
     [MethodImpl(256 | 512)]
     public static ulong2_mt16 operator&(ulong2_mt16 a, ulong2_mt16 b) => new(a.x & b.x, a.y & b.y);
 
+    public readonly override string ToString() => $"ulong2_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+
     #endregion // Operators
 }
 
 #endregion // ulong2_mt16
 #region ulong3_mt
 
-[Serializable]
-//[JsonConverter(typeof(ulong3_mtJsonConverter))]
+[CpuOnly]
 public partial struct ulong3_mt
 {
     #region Constants
@@ -7293,7 +8892,25 @@ public partial struct ulong3_mt
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<ulong>.Count;
+        get => ulong_mt.LineCount;
+    }
+
+    public static ulong3_mt Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static ulong3_mt One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1UL);
+    }
+
+    public static ulong3_mt Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1UL + 1UL));
     }
 
     #endregion
@@ -7311,7 +8928,7 @@ public partial struct ulong3_mt
     public ulong3 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index]);
+        readonly get => new(x[index], y[index], z[index]);
         set 
         {
            x[index] = value.x;
@@ -7330,6 +8947,12 @@ public partial struct ulong3_mt
         this.x = x;
         this.y = y;
         this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public ulong3_mt(ulong value)
+    {
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -7392,14 +9015,15 @@ public partial struct ulong3_mt
     [MethodImpl(256 | 512)]
     public static ulong3_mt operator&(ulong3_mt a, ulong3_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
+    public readonly override string ToString() => $"ulong3_mt {{  }}";
+
     #endregion // Operators
 }
 
 #endregion // ulong3_mt
 #region ulong3_mt4
 
-[Serializable]
-//[JsonConverter(typeof(ulong3_mt4JsonConverter))]
+[CpuOnly]
 public partial struct ulong3_mt4
 {
     #region Constants
@@ -7407,7 +9031,25 @@ public partial struct ulong3_mt4
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<ulong>.Count;
+        get => ulong_mt4.LineCount;
+    }
+
+    public static ulong3_mt4 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static ulong3_mt4 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1UL);
+    }
+
+    public static ulong3_mt4 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1UL + 1UL));
     }
 
     #endregion
@@ -7425,7 +9067,7 @@ public partial struct ulong3_mt4
     public ulong3 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index]);
+        readonly get => new(x[index], y[index], z[index]);
         set 
         {
            x[index] = value.x;
@@ -7444,6 +9086,12 @@ public partial struct ulong3_mt4
         this.x = x;
         this.y = y;
         this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public ulong3_mt4(ulong value)
+    {
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -7506,14 +9154,15 @@ public partial struct ulong3_mt4
     [MethodImpl(256 | 512)]
     public static ulong3_mt4 operator&(ulong3_mt4 a, ulong3_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
+    public readonly override string ToString() => $"ulong3_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+
     #endregion // Operators
 }
 
 #endregion // ulong3_mt4
 #region ulong3_mt8
 
-[Serializable]
-//[JsonConverter(typeof(ulong3_mt8JsonConverter))]
+[CpuOnly]
 public partial struct ulong3_mt8
 {
     #region Constants
@@ -7521,7 +9170,25 @@ public partial struct ulong3_mt8
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<ulong>.Count;
+        get => ulong_mt8.LineCount;
+    }
+
+    public static ulong3_mt8 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static ulong3_mt8 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1UL);
+    }
+
+    public static ulong3_mt8 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1UL + 1UL));
     }
 
     #endregion
@@ -7539,7 +9206,7 @@ public partial struct ulong3_mt8
     public ulong3 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index]);
+        readonly get => new(x[index], y[index], z[index]);
         set 
         {
            x[index] = value.x;
@@ -7558,6 +9225,12 @@ public partial struct ulong3_mt8
         this.x = x;
         this.y = y;
         this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public ulong3_mt8(ulong value)
+    {
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -7620,14 +9293,15 @@ public partial struct ulong3_mt8
     [MethodImpl(256 | 512)]
     public static ulong3_mt8 operator&(ulong3_mt8 a, ulong3_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
+    public readonly override string ToString() => $"ulong3_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+
     #endregion // Operators
 }
 
 #endregion // ulong3_mt8
 #region ulong3_mt16
 
-[Serializable]
-//[JsonConverter(typeof(ulong3_mt16JsonConverter))]
+[CpuOnly]
 public partial struct ulong3_mt16
 {
     #region Constants
@@ -7635,7 +9309,25 @@ public partial struct ulong3_mt16
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<ulong>.Count;
+        get => ulong_mt16.LineCount;
+    }
+
+    public static ulong3_mt16 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static ulong3_mt16 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1UL);
+    }
+
+    public static ulong3_mt16 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1UL + 1UL));
     }
 
     #endregion
@@ -7653,7 +9345,7 @@ public partial struct ulong3_mt16
     public ulong3 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index]);
+        readonly get => new(x[index], y[index], z[index]);
         set 
         {
            x[index] = value.x;
@@ -7672,6 +9364,12 @@ public partial struct ulong3_mt16
         this.x = x;
         this.y = y;
         this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public ulong3_mt16(ulong value)
+    {
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -7734,14 +9432,15 @@ public partial struct ulong3_mt16
     [MethodImpl(256 | 512)]
     public static ulong3_mt16 operator&(ulong3_mt16 a, ulong3_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
+    public readonly override string ToString() => $"ulong3_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+
     #endregion // Operators
 }
 
 #endregion // ulong3_mt16
 #region ulong4_mt
 
-[Serializable]
-//[JsonConverter(typeof(ulong4_mtJsonConverter))]
+[CpuOnly]
 public partial struct ulong4_mt
 {
     #region Constants
@@ -7749,7 +9448,25 @@ public partial struct ulong4_mt
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<ulong>.Count;
+        get => ulong_mt.LineCount;
+    }
+
+    public static ulong4_mt Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static ulong4_mt One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1UL);
+    }
+
+    public static ulong4_mt Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1UL + 1UL));
     }
 
     #endregion
@@ -7768,7 +9485,7 @@ public partial struct ulong4_mt
     public ulong4 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index], w[index]);
+        readonly get => new(x[index], y[index], z[index], w[index]);
         set 
         {
            x[index] = value.x;
@@ -7789,6 +9506,12 @@ public partial struct ulong4_mt
         this.y = y;
         this.z = z;
         this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public ulong4_mt(ulong value)
+    {
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -7852,14 +9575,15 @@ public partial struct ulong4_mt
     [MethodImpl(256 | 512)]
     public static ulong4_mt operator&(ulong4_mt a, ulong4_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
+    public readonly override string ToString() => $"ulong4_mt {{  }}";
+
     #endregion // Operators
 }
 
 #endregion // ulong4_mt
 #region ulong4_mt4
 
-[Serializable]
-//[JsonConverter(typeof(ulong4_mt4JsonConverter))]
+[CpuOnly]
 public partial struct ulong4_mt4
 {
     #region Constants
@@ -7867,7 +9591,25 @@ public partial struct ulong4_mt4
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<ulong>.Count;
+        get => ulong_mt4.LineCount;
+    }
+
+    public static ulong4_mt4 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static ulong4_mt4 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1UL);
+    }
+
+    public static ulong4_mt4 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1UL + 1UL));
     }
 
     #endregion
@@ -7886,7 +9628,7 @@ public partial struct ulong4_mt4
     public ulong4 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index], w[index]);
+        readonly get => new(x[index], y[index], z[index], w[index]);
         set 
         {
            x[index] = value.x;
@@ -7907,6 +9649,12 @@ public partial struct ulong4_mt4
         this.y = y;
         this.z = z;
         this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public ulong4_mt4(ulong value)
+    {
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -7970,14 +9718,15 @@ public partial struct ulong4_mt4
     [MethodImpl(256 | 512)]
     public static ulong4_mt4 operator&(ulong4_mt4 a, ulong4_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
+    public readonly override string ToString() => $"ulong4_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+
     #endregion // Operators
 }
 
 #endregion // ulong4_mt4
 #region ulong4_mt8
 
-[Serializable]
-//[JsonConverter(typeof(ulong4_mt8JsonConverter))]
+[CpuOnly]
 public partial struct ulong4_mt8
 {
     #region Constants
@@ -7985,7 +9734,25 @@ public partial struct ulong4_mt8
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<ulong>.Count;
+        get => ulong_mt8.LineCount;
+    }
+
+    public static ulong4_mt8 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static ulong4_mt8 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1UL);
+    }
+
+    public static ulong4_mt8 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1UL + 1UL));
     }
 
     #endregion
@@ -8004,7 +9771,7 @@ public partial struct ulong4_mt8
     public ulong4 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index], w[index]);
+        readonly get => new(x[index], y[index], z[index], w[index]);
         set 
         {
            x[index] = value.x;
@@ -8025,6 +9792,12 @@ public partial struct ulong4_mt8
         this.y = y;
         this.z = z;
         this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public ulong4_mt8(ulong value)
+    {
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -8088,14 +9861,15 @@ public partial struct ulong4_mt8
     [MethodImpl(256 | 512)]
     public static ulong4_mt8 operator&(ulong4_mt8 a, ulong4_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
+    public readonly override string ToString() => $"ulong4_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+
     #endregion // Operators
 }
 
 #endregion // ulong4_mt8
 #region ulong4_mt16
 
-[Serializable]
-//[JsonConverter(typeof(ulong4_mt16JsonConverter))]
+[CpuOnly]
 public partial struct ulong4_mt16
 {
     #region Constants
@@ -8103,7 +9877,25 @@ public partial struct ulong4_mt16
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<ulong>.Count;
+        get => ulong_mt16.LineCount;
+    }
+
+    public static ulong4_mt16 Zero
+    {
+        [MethodImpl(256 | 512)]
+        get => default;
+    }
+
+    public static ulong4_mt16 One
+    {
+        [MethodImpl(256 | 512)]
+        get => new(1UL);
+    }
+
+    public static ulong4_mt16 Two
+    {
+        [MethodImpl(256 | 512)]
+        get => new((1UL + 1UL));
     }
 
     #endregion
@@ -8122,7 +9914,7 @@ public partial struct ulong4_mt16
     public ulong4 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index], w[index]);
+        readonly get => new(x[index], y[index], z[index], w[index]);
         set 
         {
            x[index] = value.x;
@@ -8143,6 +9935,12 @@ public partial struct ulong4_mt16
         this.y = y;
         this.z = z;
         this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public ulong4_mt16(ulong value)
+    {
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -8206,14 +10004,15 @@ public partial struct ulong4_mt16
     [MethodImpl(256 | 512)]
     public static ulong4_mt16 operator&(ulong4_mt16 a, ulong4_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
+    public readonly override string ToString() => $"ulong4_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+
     #endregion // Operators
 }
 
 #endregion // ulong4_mt16
 #region b32v2_mt
 
-[Serializable]
-//[JsonConverter(typeof(b32v2_mtJsonConverter))]
+[CpuOnly]
 public partial struct b32v2_mt
 {
     #region Constants
@@ -8221,7 +10020,7 @@ public partial struct b32v2_mt
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<uint>.Count;
+        get => b32_mt.LineCount;
     }
 
     #endregion
@@ -8238,7 +10037,7 @@ public partial struct b32v2_mt
     public b32v2 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index]);
+        readonly get => new(x[index], y[index]);
         set 
         {
            x[index] = value.x;
@@ -8255,6 +10054,12 @@ public partial struct b32v2_mt
     {
         this.x = x;
         this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b32v2_mt(b32 value)
+    {
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -8292,14 +10097,15 @@ public partial struct b32v2_mt
     [MethodImpl(256 | 512)]
     public static b32v2_mt operator&(b32v2_mt a, b32v2_mt b) => new(a.x & b.x, a.y & b.y);
 
+    public readonly override string ToString() => $"b32v2_mt {{  }}";
+
     #endregion // Operators
 }
 
 #endregion // b32v2_mt
 #region b32v2_mt4
 
-[Serializable]
-//[JsonConverter(typeof(b32v2_mt4JsonConverter))]
+[CpuOnly]
 public partial struct b32v2_mt4
 {
     #region Constants
@@ -8307,7 +10113,7 @@ public partial struct b32v2_mt4
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<uint>.Count;
+        get => b32_mt4.LineCount;
     }
 
     #endregion
@@ -8324,7 +10130,7 @@ public partial struct b32v2_mt4
     public b32v2 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index]);
+        readonly get => new(x[index], y[index]);
         set 
         {
            x[index] = value.x;
@@ -8341,6 +10147,12 @@ public partial struct b32v2_mt4
     {
         this.x = x;
         this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b32v2_mt4(b32 value)
+    {
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -8378,14 +10190,15 @@ public partial struct b32v2_mt4
     [MethodImpl(256 | 512)]
     public static b32v2_mt4 operator&(b32v2_mt4 a, b32v2_mt4 b) => new(a.x & b.x, a.y & b.y);
 
+    public readonly override string ToString() => $"b32v2_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+
     #endregion // Operators
 }
 
 #endregion // b32v2_mt4
 #region b32v2_mt8
 
-[Serializable]
-//[JsonConverter(typeof(b32v2_mt8JsonConverter))]
+[CpuOnly]
 public partial struct b32v2_mt8
 {
     #region Constants
@@ -8393,7 +10206,7 @@ public partial struct b32v2_mt8
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<uint>.Count;
+        get => b32_mt8.LineCount;
     }
 
     #endregion
@@ -8410,7 +10223,7 @@ public partial struct b32v2_mt8
     public b32v2 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index]);
+        readonly get => new(x[index], y[index]);
         set 
         {
            x[index] = value.x;
@@ -8427,6 +10240,12 @@ public partial struct b32v2_mt8
     {
         this.x = x;
         this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b32v2_mt8(b32 value)
+    {
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -8464,14 +10283,15 @@ public partial struct b32v2_mt8
     [MethodImpl(256 | 512)]
     public static b32v2_mt8 operator&(b32v2_mt8 a, b32v2_mt8 b) => new(a.x & b.x, a.y & b.y);
 
+    public readonly override string ToString() => $"b32v2_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+
     #endregion // Operators
 }
 
 #endregion // b32v2_mt8
 #region b32v2_mt16
 
-[Serializable]
-//[JsonConverter(typeof(b32v2_mt16JsonConverter))]
+[CpuOnly]
 public partial struct b32v2_mt16
 {
     #region Constants
@@ -8479,7 +10299,7 @@ public partial struct b32v2_mt16
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<uint>.Count;
+        get => b32_mt16.LineCount;
     }
 
     #endregion
@@ -8496,7 +10316,7 @@ public partial struct b32v2_mt16
     public b32v2 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index]);
+        readonly get => new(x[index], y[index]);
         set 
         {
            x[index] = value.x;
@@ -8513,6 +10333,12 @@ public partial struct b32v2_mt16
     {
         this.x = x;
         this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b32v2_mt16(b32 value)
+    {
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -8550,14 +10376,15 @@ public partial struct b32v2_mt16
     [MethodImpl(256 | 512)]
     public static b32v2_mt16 operator&(b32v2_mt16 a, b32v2_mt16 b) => new(a.x & b.x, a.y & b.y);
 
+    public readonly override string ToString() => $"b32v2_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+
     #endregion // Operators
 }
 
 #endregion // b32v2_mt16
 #region b32v3_mt
 
-[Serializable]
-//[JsonConverter(typeof(b32v3_mtJsonConverter))]
+[CpuOnly]
 public partial struct b32v3_mt
 {
     #region Constants
@@ -8565,7 +10392,7 @@ public partial struct b32v3_mt
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<uint>.Count;
+        get => b32_mt.LineCount;
     }
 
     #endregion
@@ -8583,7 +10410,7 @@ public partial struct b32v3_mt
     public b32v3 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index]);
+        readonly get => new(x[index], y[index], z[index]);
         set 
         {
            x[index] = value.x;
@@ -8602,6 +10429,12 @@ public partial struct b32v3_mt
         this.x = x;
         this.y = y;
         this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b32v3_mt(b32 value)
+    {
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -8640,14 +10473,15 @@ public partial struct b32v3_mt
     [MethodImpl(256 | 512)]
     public static b32v3_mt operator&(b32v3_mt a, b32v3_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
+    public readonly override string ToString() => $"b32v3_mt {{  }}";
+
     #endregion // Operators
 }
 
 #endregion // b32v3_mt
 #region b32v3_mt4
 
-[Serializable]
-//[JsonConverter(typeof(b32v3_mt4JsonConverter))]
+[CpuOnly]
 public partial struct b32v3_mt4
 {
     #region Constants
@@ -8655,7 +10489,7 @@ public partial struct b32v3_mt4
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<uint>.Count;
+        get => b32_mt4.LineCount;
     }
 
     #endregion
@@ -8673,7 +10507,7 @@ public partial struct b32v3_mt4
     public b32v3 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index]);
+        readonly get => new(x[index], y[index], z[index]);
         set 
         {
            x[index] = value.x;
@@ -8692,6 +10526,12 @@ public partial struct b32v3_mt4
         this.x = x;
         this.y = y;
         this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b32v3_mt4(b32 value)
+    {
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -8730,14 +10570,15 @@ public partial struct b32v3_mt4
     [MethodImpl(256 | 512)]
     public static b32v3_mt4 operator&(b32v3_mt4 a, b32v3_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
+    public readonly override string ToString() => $"b32v3_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+
     #endregion // Operators
 }
 
 #endregion // b32v3_mt4
 #region b32v3_mt8
 
-[Serializable]
-//[JsonConverter(typeof(b32v3_mt8JsonConverter))]
+[CpuOnly]
 public partial struct b32v3_mt8
 {
     #region Constants
@@ -8745,7 +10586,7 @@ public partial struct b32v3_mt8
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<uint>.Count;
+        get => b32_mt8.LineCount;
     }
 
     #endregion
@@ -8763,7 +10604,7 @@ public partial struct b32v3_mt8
     public b32v3 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index]);
+        readonly get => new(x[index], y[index], z[index]);
         set 
         {
            x[index] = value.x;
@@ -8782,6 +10623,12 @@ public partial struct b32v3_mt8
         this.x = x;
         this.y = y;
         this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b32v3_mt8(b32 value)
+    {
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -8820,14 +10667,15 @@ public partial struct b32v3_mt8
     [MethodImpl(256 | 512)]
     public static b32v3_mt8 operator&(b32v3_mt8 a, b32v3_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
+    public readonly override string ToString() => $"b32v3_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+
     #endregion // Operators
 }
 
 #endregion // b32v3_mt8
 #region b32v3_mt16
 
-[Serializable]
-//[JsonConverter(typeof(b32v3_mt16JsonConverter))]
+[CpuOnly]
 public partial struct b32v3_mt16
 {
     #region Constants
@@ -8835,7 +10683,7 @@ public partial struct b32v3_mt16
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<uint>.Count;
+        get => b32_mt16.LineCount;
     }
 
     #endregion
@@ -8853,7 +10701,7 @@ public partial struct b32v3_mt16
     public b32v3 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index]);
+        readonly get => new(x[index], y[index], z[index]);
         set 
         {
            x[index] = value.x;
@@ -8872,6 +10720,12 @@ public partial struct b32v3_mt16
         this.x = x;
         this.y = y;
         this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b32v3_mt16(b32 value)
+    {
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -8910,14 +10764,15 @@ public partial struct b32v3_mt16
     [MethodImpl(256 | 512)]
     public static b32v3_mt16 operator&(b32v3_mt16 a, b32v3_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
+    public readonly override string ToString() => $"b32v3_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+
     #endregion // Operators
 }
 
 #endregion // b32v3_mt16
 #region b32v4_mt
 
-[Serializable]
-//[JsonConverter(typeof(b32v4_mtJsonConverter))]
+[CpuOnly]
 public partial struct b32v4_mt
 {
     #region Constants
@@ -8925,7 +10780,7 @@ public partial struct b32v4_mt
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<uint>.Count;
+        get => b32_mt.LineCount;
     }
 
     #endregion
@@ -8944,7 +10799,7 @@ public partial struct b32v4_mt
     public b32v4 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index], w[index]);
+        readonly get => new(x[index], y[index], z[index], w[index]);
         set 
         {
            x[index] = value.x;
@@ -8965,6 +10820,12 @@ public partial struct b32v4_mt
         this.y = y;
         this.z = z;
         this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b32v4_mt(b32 value)
+    {
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -9004,14 +10865,15 @@ public partial struct b32v4_mt
     [MethodImpl(256 | 512)]
     public static b32v4_mt operator&(b32v4_mt a, b32v4_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
+    public readonly override string ToString() => $"b32v4_mt {{  }}";
+
     #endregion // Operators
 }
 
 #endregion // b32v4_mt
 #region b32v4_mt4
 
-[Serializable]
-//[JsonConverter(typeof(b32v4_mt4JsonConverter))]
+[CpuOnly]
 public partial struct b32v4_mt4
 {
     #region Constants
@@ -9019,7 +10881,7 @@ public partial struct b32v4_mt4
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<uint>.Count;
+        get => b32_mt4.LineCount;
     }
 
     #endregion
@@ -9038,7 +10900,7 @@ public partial struct b32v4_mt4
     public b32v4 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index], w[index]);
+        readonly get => new(x[index], y[index], z[index], w[index]);
         set 
         {
            x[index] = value.x;
@@ -9059,6 +10921,12 @@ public partial struct b32v4_mt4
         this.y = y;
         this.z = z;
         this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b32v4_mt4(b32 value)
+    {
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -9098,14 +10966,15 @@ public partial struct b32v4_mt4
     [MethodImpl(256 | 512)]
     public static b32v4_mt4 operator&(b32v4_mt4 a, b32v4_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
+    public readonly override string ToString() => $"b32v4_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+
     #endregion // Operators
 }
 
 #endregion // b32v4_mt4
 #region b32v4_mt8
 
-[Serializable]
-//[JsonConverter(typeof(b32v4_mt8JsonConverter))]
+[CpuOnly]
 public partial struct b32v4_mt8
 {
     #region Constants
@@ -9113,7 +10982,7 @@ public partial struct b32v4_mt8
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<uint>.Count;
+        get => b32_mt8.LineCount;
     }
 
     #endregion
@@ -9132,7 +11001,7 @@ public partial struct b32v4_mt8
     public b32v4 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index], w[index]);
+        readonly get => new(x[index], y[index], z[index], w[index]);
         set 
         {
            x[index] = value.x;
@@ -9153,6 +11022,12 @@ public partial struct b32v4_mt8
         this.y = y;
         this.z = z;
         this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b32v4_mt8(b32 value)
+    {
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -9192,14 +11067,15 @@ public partial struct b32v4_mt8
     [MethodImpl(256 | 512)]
     public static b32v4_mt8 operator&(b32v4_mt8 a, b32v4_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
+    public readonly override string ToString() => $"b32v4_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+
     #endregion // Operators
 }
 
 #endregion // b32v4_mt8
 #region b32v4_mt16
 
-[Serializable]
-//[JsonConverter(typeof(b32v4_mt16JsonConverter))]
+[CpuOnly]
 public partial struct b32v4_mt16
 {
     #region Constants
@@ -9207,7 +11083,7 @@ public partial struct b32v4_mt16
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<uint>.Count;
+        get => b32_mt16.LineCount;
     }
 
     #endregion
@@ -9226,7 +11102,7 @@ public partial struct b32v4_mt16
     public b32v4 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index], w[index]);
+        readonly get => new(x[index], y[index], z[index], w[index]);
         set 
         {
            x[index] = value.x;
@@ -9247,6 +11123,12 @@ public partial struct b32v4_mt16
         this.y = y;
         this.z = z;
         this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b32v4_mt16(b32 value)
+    {
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -9286,14 +11168,15 @@ public partial struct b32v4_mt16
     [MethodImpl(256 | 512)]
     public static b32v4_mt16 operator&(b32v4_mt16 a, b32v4_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
+    public readonly override string ToString() => $"b32v4_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+
     #endregion // Operators
 }
 
 #endregion // b32v4_mt16
 #region b64v2_mt
 
-[Serializable]
-//[JsonConverter(typeof(b64v2_mtJsonConverter))]
+[CpuOnly]
 public partial struct b64v2_mt
 {
     #region Constants
@@ -9301,7 +11184,7 @@ public partial struct b64v2_mt
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<ulong>.Count;
+        get => b64_mt.LineCount;
     }
 
     #endregion
@@ -9318,7 +11201,7 @@ public partial struct b64v2_mt
     public b64v2 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index]);
+        readonly get => new(x[index], y[index]);
         set 
         {
            x[index] = value.x;
@@ -9335,6 +11218,12 @@ public partial struct b64v2_mt
     {
         this.x = x;
         this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b64v2_mt(b64 value)
+    {
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -9372,14 +11261,15 @@ public partial struct b64v2_mt
     [MethodImpl(256 | 512)]
     public static b64v2_mt operator&(b64v2_mt a, b64v2_mt b) => new(a.x & b.x, a.y & b.y);
 
+    public readonly override string ToString() => $"b64v2_mt {{  }}";
+
     #endregion // Operators
 }
 
 #endregion // b64v2_mt
 #region b64v2_mt4
 
-[Serializable]
-//[JsonConverter(typeof(b64v2_mt4JsonConverter))]
+[CpuOnly]
 public partial struct b64v2_mt4
 {
     #region Constants
@@ -9387,7 +11277,7 @@ public partial struct b64v2_mt4
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<ulong>.Count;
+        get => b64_mt4.LineCount;
     }
 
     #endregion
@@ -9404,7 +11294,7 @@ public partial struct b64v2_mt4
     public b64v2 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index]);
+        readonly get => new(x[index], y[index]);
         set 
         {
            x[index] = value.x;
@@ -9421,6 +11311,12 @@ public partial struct b64v2_mt4
     {
         this.x = x;
         this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b64v2_mt4(b64 value)
+    {
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -9458,14 +11354,15 @@ public partial struct b64v2_mt4
     [MethodImpl(256 | 512)]
     public static b64v2_mt4 operator&(b64v2_mt4 a, b64v2_mt4 b) => new(a.x & b.x, a.y & b.y);
 
+    public readonly override string ToString() => $"b64v2_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+
     #endregion // Operators
 }
 
 #endregion // b64v2_mt4
 #region b64v2_mt8
 
-[Serializable]
-//[JsonConverter(typeof(b64v2_mt8JsonConverter))]
+[CpuOnly]
 public partial struct b64v2_mt8
 {
     #region Constants
@@ -9473,7 +11370,7 @@ public partial struct b64v2_mt8
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<ulong>.Count;
+        get => b64_mt8.LineCount;
     }
 
     #endregion
@@ -9490,7 +11387,7 @@ public partial struct b64v2_mt8
     public b64v2 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index]);
+        readonly get => new(x[index], y[index]);
         set 
         {
            x[index] = value.x;
@@ -9507,6 +11404,12 @@ public partial struct b64v2_mt8
     {
         this.x = x;
         this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b64v2_mt8(b64 value)
+    {
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -9544,14 +11447,15 @@ public partial struct b64v2_mt8
     [MethodImpl(256 | 512)]
     public static b64v2_mt8 operator&(b64v2_mt8 a, b64v2_mt8 b) => new(a.x & b.x, a.y & b.y);
 
+    public readonly override string ToString() => $"b64v2_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+
     #endregion // Operators
 }
 
 #endregion // b64v2_mt8
 #region b64v2_mt16
 
-[Serializable]
-//[JsonConverter(typeof(b64v2_mt16JsonConverter))]
+[CpuOnly]
 public partial struct b64v2_mt16
 {
     #region Constants
@@ -9559,7 +11463,7 @@ public partial struct b64v2_mt16
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<ulong>.Count;
+        get => b64_mt16.LineCount;
     }
 
     #endregion
@@ -9576,7 +11480,7 @@ public partial struct b64v2_mt16
     public b64v2 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index]);
+        readonly get => new(x[index], y[index]);
         set 
         {
            x[index] = value.x;
@@ -9593,6 +11497,12 @@ public partial struct b64v2_mt16
     {
         this.x = x;
         this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b64v2_mt16(b64 value)
+    {
+        y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -9630,14 +11540,15 @@ public partial struct b64v2_mt16
     [MethodImpl(256 | 512)]
     public static b64v2_mt16 operator&(b64v2_mt16 a, b64v2_mt16 b) => new(a.x & b.x, a.y & b.y);
 
+    public readonly override string ToString() => $"b64v2_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+
     #endregion // Operators
 }
 
 #endregion // b64v2_mt16
 #region b64v3_mt
 
-[Serializable]
-//[JsonConverter(typeof(b64v3_mtJsonConverter))]
+[CpuOnly]
 public partial struct b64v3_mt
 {
     #region Constants
@@ -9645,7 +11556,7 @@ public partial struct b64v3_mt
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<ulong>.Count;
+        get => b64_mt.LineCount;
     }
 
     #endregion
@@ -9663,7 +11574,7 @@ public partial struct b64v3_mt
     public b64v3 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index]);
+        readonly get => new(x[index], y[index], z[index]);
         set 
         {
            x[index] = value.x;
@@ -9682,6 +11593,12 @@ public partial struct b64v3_mt
         this.x = x;
         this.y = y;
         this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b64v3_mt(b64 value)
+    {
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -9720,14 +11637,15 @@ public partial struct b64v3_mt
     [MethodImpl(256 | 512)]
     public static b64v3_mt operator&(b64v3_mt a, b64v3_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
+    public readonly override string ToString() => $"b64v3_mt {{  }}";
+
     #endregion // Operators
 }
 
 #endregion // b64v3_mt
 #region b64v3_mt4
 
-[Serializable]
-//[JsonConverter(typeof(b64v3_mt4JsonConverter))]
+[CpuOnly]
 public partial struct b64v3_mt4
 {
     #region Constants
@@ -9735,7 +11653,7 @@ public partial struct b64v3_mt4
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<ulong>.Count;
+        get => b64_mt4.LineCount;
     }
 
     #endregion
@@ -9753,7 +11671,7 @@ public partial struct b64v3_mt4
     public b64v3 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index]);
+        readonly get => new(x[index], y[index], z[index]);
         set 
         {
            x[index] = value.x;
@@ -9772,6 +11690,12 @@ public partial struct b64v3_mt4
         this.x = x;
         this.y = y;
         this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b64v3_mt4(b64 value)
+    {
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -9810,14 +11734,15 @@ public partial struct b64v3_mt4
     [MethodImpl(256 | 512)]
     public static b64v3_mt4 operator&(b64v3_mt4 a, b64v3_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
+    public readonly override string ToString() => $"b64v3_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+
     #endregion // Operators
 }
 
 #endregion // b64v3_mt4
 #region b64v3_mt8
 
-[Serializable]
-//[JsonConverter(typeof(b64v3_mt8JsonConverter))]
+[CpuOnly]
 public partial struct b64v3_mt8
 {
     #region Constants
@@ -9825,7 +11750,7 @@ public partial struct b64v3_mt8
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<ulong>.Count;
+        get => b64_mt8.LineCount;
     }
 
     #endregion
@@ -9843,7 +11768,7 @@ public partial struct b64v3_mt8
     public b64v3 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index]);
+        readonly get => new(x[index], y[index], z[index]);
         set 
         {
            x[index] = value.x;
@@ -9862,6 +11787,12 @@ public partial struct b64v3_mt8
         this.x = x;
         this.y = y;
         this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b64v3_mt8(b64 value)
+    {
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -9900,14 +11831,15 @@ public partial struct b64v3_mt8
     [MethodImpl(256 | 512)]
     public static b64v3_mt8 operator&(b64v3_mt8 a, b64v3_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
+    public readonly override string ToString() => $"b64v3_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+
     #endregion // Operators
 }
 
 #endregion // b64v3_mt8
 #region b64v3_mt16
 
-[Serializable]
-//[JsonConverter(typeof(b64v3_mt16JsonConverter))]
+[CpuOnly]
 public partial struct b64v3_mt16
 {
     #region Constants
@@ -9915,7 +11847,7 @@ public partial struct b64v3_mt16
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<ulong>.Count;
+        get => b64_mt16.LineCount;
     }
 
     #endregion
@@ -9933,7 +11865,7 @@ public partial struct b64v3_mt16
     public b64v3 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index]);
+        readonly get => new(x[index], y[index], z[index]);
         set 
         {
            x[index] = value.x;
@@ -9952,6 +11884,12 @@ public partial struct b64v3_mt16
         this.x = x;
         this.y = y;
         this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b64v3_mt16(b64 value)
+    {
+        z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -9990,14 +11928,15 @@ public partial struct b64v3_mt16
     [MethodImpl(256 | 512)]
     public static b64v3_mt16 operator&(b64v3_mt16 a, b64v3_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
 
+    public readonly override string ToString() => $"b64v3_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+
     #endregion // Operators
 }
 
 #endregion // b64v3_mt16
 #region b64v4_mt
 
-[Serializable]
-//[JsonConverter(typeof(b64v4_mtJsonConverter))]
+[CpuOnly]
 public partial struct b64v4_mt
 {
     #region Constants
@@ -10005,7 +11944,7 @@ public partial struct b64v4_mt
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<ulong>.Count;
+        get => b64_mt.LineCount;
     }
 
     #endregion
@@ -10024,7 +11963,7 @@ public partial struct b64v4_mt
     public b64v4 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index], w[index]);
+        readonly get => new(x[index], y[index], z[index], w[index]);
         set 
         {
            x[index] = value.x;
@@ -10045,6 +11984,12 @@ public partial struct b64v4_mt
         this.y = y;
         this.z = z;
         this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b64v4_mt(b64 value)
+    {
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -10084,14 +12029,15 @@ public partial struct b64v4_mt
     [MethodImpl(256 | 512)]
     public static b64v4_mt operator&(b64v4_mt a, b64v4_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
+    public readonly override string ToString() => $"b64v4_mt {{  }}";
+
     #endregion // Operators
 }
 
 #endregion // b64v4_mt
 #region b64v4_mt4
 
-[Serializable]
-//[JsonConverter(typeof(b64v4_mt4JsonConverter))]
+[CpuOnly]
 public partial struct b64v4_mt4
 {
     #region Constants
@@ -10099,7 +12045,7 @@ public partial struct b64v4_mt4
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<ulong>.Count;
+        get => b64_mt4.LineCount;
     }
 
     #endregion
@@ -10118,7 +12064,7 @@ public partial struct b64v4_mt4
     public b64v4 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index], w[index]);
+        readonly get => new(x[index], y[index], z[index], w[index]);
         set 
         {
            x[index] = value.x;
@@ -10139,6 +12085,12 @@ public partial struct b64v4_mt4
         this.y = y;
         this.z = z;
         this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b64v4_mt4(b64 value)
+    {
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -10178,14 +12130,15 @@ public partial struct b64v4_mt4
     [MethodImpl(256 | 512)]
     public static b64v4_mt4 operator&(b64v4_mt4 a, b64v4_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
+    public readonly override string ToString() => $"b64v4_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+
     #endregion // Operators
 }
 
 #endregion // b64v4_mt4
 #region b64v4_mt8
 
-[Serializable]
-//[JsonConverter(typeof(b64v4_mt8JsonConverter))]
+[CpuOnly]
 public partial struct b64v4_mt8
 {
     #region Constants
@@ -10193,7 +12146,7 @@ public partial struct b64v4_mt8
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<ulong>.Count;
+        get => b64_mt8.LineCount;
     }
 
     #endregion
@@ -10212,7 +12165,7 @@ public partial struct b64v4_mt8
     public b64v4 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index], w[index]);
+        readonly get => new(x[index], y[index], z[index], w[index]);
         set 
         {
            x[index] = value.x;
@@ -10233,6 +12186,12 @@ public partial struct b64v4_mt8
         this.y = y;
         this.z = z;
         this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b64v4_mt8(b64 value)
+    {
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -10272,14 +12231,15 @@ public partial struct b64v4_mt8
     [MethodImpl(256 | 512)]
     public static b64v4_mt8 operator&(b64v4_mt8 a, b64v4_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
 
+    public readonly override string ToString() => $"b64v4_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+
     #endregion // Operators
 }
 
 #endregion // b64v4_mt8
 #region b64v4_mt16
 
-[Serializable]
-//[JsonConverter(typeof(b64v4_mt16JsonConverter))]
+[CpuOnly]
 public partial struct b64v4_mt16
 {
     #region Constants
@@ -10287,7 +12247,7 @@ public partial struct b64v4_mt16
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<ulong>.Count;
+        get => b64_mt16.LineCount;
     }
 
     #endregion
@@ -10306,7 +12266,7 @@ public partial struct b64v4_mt16
     public b64v4 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => new(x[index], y[index], z[index], w[index]);
+        readonly get => new(x[index], y[index], z[index], w[index]);
         set 
         {
            x[index] = value.x;
@@ -10327,6 +12287,12 @@ public partial struct b64v4_mt16
         this.y = y;
         this.z = z;
         this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b64v4_mt16(b64 value)
+    {
+        w = z = y = x = value;
     }
 
     [MethodImpl(256 | 512)]
@@ -10365,6 +12331,8 @@ public partial struct b64v4_mt16
 
     [MethodImpl(256 | 512)]
     public static b64v4_mt16 operator&(b64v4_mt16 a, b64v4_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
+
+    public readonly override string ToString() => $"b64v4_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
 
     #endregion // Operators
 }
