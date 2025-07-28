@@ -112,6 +112,336 @@ public partial struct float2_mt
 }
 
 #endregion // float2_mt
+#region float2_mt4
+
+[Serializable]
+//[JsonConverter(typeof(float2_mt4JsonConverter))]
+public partial struct float2_mt4
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<float>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public float_mt4 x;
+    public float_mt4 y;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public float2 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public float2_mt4(float_mt4 x, float_mt4 y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public float2_mt4(float_mt4 value)
+    {
+        y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public float2_mt4(float2 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator float2_mt4(float value) => new float_mt4(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator float2_mt4(float_mt4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator float2_mt4(float2 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt4 operator-(float2_mt4 a) => new(-a.x, -a.y);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt4 operator+(float2_mt4 a, float2_mt4 b) => new(a.x + b.x, a.y + b.y);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt4 operator-(float2_mt4 a, float2_mt4 b) => new(a.x - b.x, a.y - b.y);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt4 operator*(float2_mt4 a, float2_mt4 b) => new(a.x * b.x, a.y * b.y);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt4 operator/(float2_mt4 a, float2_mt4 b) => new(a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt4 operator/(float2_mt4 a, float b) => new(a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt4 operator%(float2_mt4 a, float2_mt4 b) => new(a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt4 operator%(float2_mt4 a, float b) => new(a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt4 operator~(float2_mt4 a) => new(~a.x, ~a.y);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt4 operator|(float2_mt4 a, float2_mt4 b) => new(a.x | b.x, a.y | b.y);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt4 operator&(float2_mt4 a, float2_mt4 b) => new(a.x & b.x, a.y & b.y);
+
+    #endregion // Operators
+}
+
+#endregion // float2_mt4
+#region float2_mt8
+
+[Serializable]
+//[JsonConverter(typeof(float2_mt8JsonConverter))]
+public partial struct float2_mt8
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<float>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public float_mt8 x;
+    public float_mt8 y;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public float2 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public float2_mt8(float_mt8 x, float_mt8 y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public float2_mt8(float_mt8 value)
+    {
+        y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public float2_mt8(float2 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator float2_mt8(float value) => new float_mt8(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator float2_mt8(float_mt8 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator float2_mt8(float2 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt8 operator-(float2_mt8 a) => new(-a.x, -a.y);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt8 operator+(float2_mt8 a, float2_mt8 b) => new(a.x + b.x, a.y + b.y);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt8 operator-(float2_mt8 a, float2_mt8 b) => new(a.x - b.x, a.y - b.y);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt8 operator*(float2_mt8 a, float2_mt8 b) => new(a.x * b.x, a.y * b.y);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt8 operator/(float2_mt8 a, float2_mt8 b) => new(a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt8 operator/(float2_mt8 a, float b) => new(a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt8 operator%(float2_mt8 a, float2_mt8 b) => new(a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt8 operator%(float2_mt8 a, float b) => new(a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt8 operator~(float2_mt8 a) => new(~a.x, ~a.y);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt8 operator|(float2_mt8 a, float2_mt8 b) => new(a.x | b.x, a.y | b.y);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt8 operator&(float2_mt8 a, float2_mt8 b) => new(a.x & b.x, a.y & b.y);
+
+    #endregion // Operators
+}
+
+#endregion // float2_mt8
+#region float2_mt16
+
+[Serializable]
+//[JsonConverter(typeof(float2_mt16JsonConverter))]
+public partial struct float2_mt16
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<float>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public float_mt16 x;
+    public float_mt16 y;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public float2 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public float2_mt16(float_mt16 x, float_mt16 y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public float2_mt16(float_mt16 value)
+    {
+        y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public float2_mt16(float2 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator float2_mt16(float value) => new float_mt16(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator float2_mt16(float_mt16 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator float2_mt16(float2 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt16 operator-(float2_mt16 a) => new(-a.x, -a.y);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt16 operator+(float2_mt16 a, float2_mt16 b) => new(a.x + b.x, a.y + b.y);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt16 operator-(float2_mt16 a, float2_mt16 b) => new(a.x - b.x, a.y - b.y);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt16 operator*(float2_mt16 a, float2_mt16 b) => new(a.x * b.x, a.y * b.y);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt16 operator/(float2_mt16 a, float2_mt16 b) => new(a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt16 operator/(float2_mt16 a, float b) => new(a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt16 operator%(float2_mt16 a, float2_mt16 b) => new(a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt16 operator%(float2_mt16 a, float b) => new(a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt16 operator~(float2_mt16 a) => new(~a.x, ~a.y);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt16 operator|(float2_mt16 a, float2_mt16 b) => new(a.x | b.x, a.y | b.y);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt16 operator&(float2_mt16 a, float2_mt16 b) => new(a.x & b.x, a.y & b.y);
+
+    #endregion // Operators
+}
+
+#endregion // float2_mt16
 #region float3_mt
 
 [Serializable]
@@ -226,6 +556,348 @@ public partial struct float3_mt
 }
 
 #endregion // float3_mt
+#region float3_mt4
+
+[Serializable]
+//[JsonConverter(typeof(float3_mt4JsonConverter))]
+public partial struct float3_mt4
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<float>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public float_mt4 x;
+    public float_mt4 y;
+    public float_mt4 z;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public float3 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public float3_mt4(float_mt4 x, float_mt4 y, float_mt4 z)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public float3_mt4(float_mt4 value)
+    {
+        z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public float3_mt4(float3 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator float3_mt4(float value) => new float_mt4(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator float3_mt4(float_mt4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator float3_mt4(float3 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt4 operator-(float3_mt4 a) => new(-a.x, -a.y, -a.z);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt4 operator+(float3_mt4 a, float3_mt4 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt4 operator-(float3_mt4 a, float3_mt4 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt4 operator*(float3_mt4 a, float3_mt4 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt4 operator/(float3_mt4 a, float3_mt4 b) => new(a.z / b.z, a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt4 operator/(float3_mt4 a, float b) => new(a.z / b, a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt4 operator%(float3_mt4 a, float3_mt4 b) => new(a.z % b.z, a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt4 operator%(float3_mt4 a, float b) => new(a.z % b, a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt4 operator~(float3_mt4 a) => new(~a.x, ~a.y, ~a.z);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt4 operator|(float3_mt4 a, float3_mt4 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt4 operator&(float3_mt4 a, float3_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
+
+    #endregion // Operators
+}
+
+#endregion // float3_mt4
+#region float3_mt8
+
+[Serializable]
+//[JsonConverter(typeof(float3_mt8JsonConverter))]
+public partial struct float3_mt8
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<float>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public float_mt8 x;
+    public float_mt8 y;
+    public float_mt8 z;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public float3 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public float3_mt8(float_mt8 x, float_mt8 y, float_mt8 z)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public float3_mt8(float_mt8 value)
+    {
+        z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public float3_mt8(float3 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator float3_mt8(float value) => new float_mt8(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator float3_mt8(float_mt8 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator float3_mt8(float3 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt8 operator-(float3_mt8 a) => new(-a.x, -a.y, -a.z);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt8 operator+(float3_mt8 a, float3_mt8 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt8 operator-(float3_mt8 a, float3_mt8 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt8 operator*(float3_mt8 a, float3_mt8 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt8 operator/(float3_mt8 a, float3_mt8 b) => new(a.z / b.z, a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt8 operator/(float3_mt8 a, float b) => new(a.z / b, a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt8 operator%(float3_mt8 a, float3_mt8 b) => new(a.z % b.z, a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt8 operator%(float3_mt8 a, float b) => new(a.z % b, a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt8 operator~(float3_mt8 a) => new(~a.x, ~a.y, ~a.z);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt8 operator|(float3_mt8 a, float3_mt8 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt8 operator&(float3_mt8 a, float3_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
+
+    #endregion // Operators
+}
+
+#endregion // float3_mt8
+#region float3_mt16
+
+[Serializable]
+//[JsonConverter(typeof(float3_mt16JsonConverter))]
+public partial struct float3_mt16
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<float>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public float_mt16 x;
+    public float_mt16 y;
+    public float_mt16 z;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public float3 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public float3_mt16(float_mt16 x, float_mt16 y, float_mt16 z)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public float3_mt16(float_mt16 value)
+    {
+        z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public float3_mt16(float3 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator float3_mt16(float value) => new float_mt16(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator float3_mt16(float_mt16 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator float3_mt16(float3 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt16 operator-(float3_mt16 a) => new(-a.x, -a.y, -a.z);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt16 operator+(float3_mt16 a, float3_mt16 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt16 operator-(float3_mt16 a, float3_mt16 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt16 operator*(float3_mt16 a, float3_mt16 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt16 operator/(float3_mt16 a, float3_mt16 b) => new(a.z / b.z, a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt16 operator/(float3_mt16 a, float b) => new(a.z / b, a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt16 operator%(float3_mt16 a, float3_mt16 b) => new(a.z % b.z, a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt16 operator%(float3_mt16 a, float b) => new(a.z % b, a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt16 operator~(float3_mt16 a) => new(~a.x, ~a.y, ~a.z);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt16 operator|(float3_mt16 a, float3_mt16 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt16 operator&(float3_mt16 a, float3_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
+
+    #endregion // Operators
+}
+
+#endregion // float3_mt16
 #region float4_mt
 
 [Serializable]
@@ -344,6 +1016,1728 @@ public partial struct float4_mt
 }
 
 #endregion // float4_mt
+#region float4_mt4
+
+[Serializable]
+//[JsonConverter(typeof(float4_mt4JsonConverter))]
+public partial struct float4_mt4
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<float>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public float_mt4 x;
+    public float_mt4 y;
+    public float_mt4 z;
+    public float_mt4 w;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public float4 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index], w[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+           w[index] = value.w;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public float4_mt4(float_mt4 x, float_mt4 y, float_mt4 z, float_mt4 w)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public float4_mt4(float_mt4 value)
+    {
+        w = z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public float4_mt4(float4 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+        w = new(value.w);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator float4_mt4(float value) => new float_mt4(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator float4_mt4(float_mt4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator float4_mt4(float4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt4 operator-(float4_mt4 a) => new(-a.x, -a.y, -a.z, -a.w);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt4 operator+(float4_mt4 a, float4_mt4 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt4 operator-(float4_mt4 a, float4_mt4 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt4 operator*(float4_mt4 a, float4_mt4 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt4 operator/(float4_mt4 a, float4_mt4 b) => new(a.w / b.w, a.z / b.z, a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt4 operator/(float4_mt4 a, float b) => new(a.w / b, a.z / b, a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt4 operator%(float4_mt4 a, float4_mt4 b) => new(a.w % b.w, a.z % b.z, a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt4 operator%(float4_mt4 a, float b) => new(a.w % b, a.z % b, a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt4 operator~(float4_mt4 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt4 operator|(float4_mt4 a, float4_mt4 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt4 operator&(float4_mt4 a, float4_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
+
+    #endregion // Operators
+}
+
+#endregion // float4_mt4
+#region float4_mt8
+
+[Serializable]
+//[JsonConverter(typeof(float4_mt8JsonConverter))]
+public partial struct float4_mt8
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<float>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public float_mt8 x;
+    public float_mt8 y;
+    public float_mt8 z;
+    public float_mt8 w;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public float4 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index], w[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+           w[index] = value.w;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public float4_mt8(float_mt8 x, float_mt8 y, float_mt8 z, float_mt8 w)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public float4_mt8(float_mt8 value)
+    {
+        w = z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public float4_mt8(float4 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+        w = new(value.w);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator float4_mt8(float value) => new float_mt8(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator float4_mt8(float_mt8 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator float4_mt8(float4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt8 operator-(float4_mt8 a) => new(-a.x, -a.y, -a.z, -a.w);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt8 operator+(float4_mt8 a, float4_mt8 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt8 operator-(float4_mt8 a, float4_mt8 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt8 operator*(float4_mt8 a, float4_mt8 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt8 operator/(float4_mt8 a, float4_mt8 b) => new(a.w / b.w, a.z / b.z, a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt8 operator/(float4_mt8 a, float b) => new(a.w / b, a.z / b, a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt8 operator%(float4_mt8 a, float4_mt8 b) => new(a.w % b.w, a.z % b.z, a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt8 operator%(float4_mt8 a, float b) => new(a.w % b, a.z % b, a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt8 operator~(float4_mt8 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt8 operator|(float4_mt8 a, float4_mt8 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt8 operator&(float4_mt8 a, float4_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
+
+    #endregion // Operators
+}
+
+#endregion // float4_mt8
+#region float4_mt16
+
+[Serializable]
+//[JsonConverter(typeof(float4_mt16JsonConverter))]
+public partial struct float4_mt16
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<float>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public float_mt16 x;
+    public float_mt16 y;
+    public float_mt16 z;
+    public float_mt16 w;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public float4 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index], w[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+           w[index] = value.w;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public float4_mt16(float_mt16 x, float_mt16 y, float_mt16 z, float_mt16 w)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public float4_mt16(float_mt16 value)
+    {
+        w = z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public float4_mt16(float4 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+        w = new(value.w);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator float4_mt16(float value) => new float_mt16(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator float4_mt16(float_mt16 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator float4_mt16(float4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt16 operator-(float4_mt16 a) => new(-a.x, -a.y, -a.z, -a.w);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt16 operator+(float4_mt16 a, float4_mt16 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt16 operator-(float4_mt16 a, float4_mt16 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt16 operator*(float4_mt16 a, float4_mt16 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt16 operator/(float4_mt16 a, float4_mt16 b) => new(a.w / b.w, a.z / b.z, a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt16 operator/(float4_mt16 a, float b) => new(a.w / b, a.z / b, a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt16 operator%(float4_mt16 a, float4_mt16 b) => new(a.w % b.w, a.z % b.z, a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt16 operator%(float4_mt16 a, float b) => new(a.w % b, a.z % b, a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt16 operator~(float4_mt16 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt16 operator|(float4_mt16 a, float4_mt16 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt16 operator&(float4_mt16 a, float4_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
+
+    #endregion // Operators
+}
+
+#endregion // float4_mt16
+#region double2_mt
+
+[Serializable]
+//[JsonConverter(typeof(double2_mtJsonConverter))]
+public partial struct double2_mt
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<double>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public double_mt x;
+    public double_mt y;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public double2 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public double2_mt(double_mt x, double_mt y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public double2_mt(double_mt value)
+    {
+        y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public double2_mt(double2 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator double2_mt(double value) => new double_mt(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator double2_mt(double_mt value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator double2_mt(double2 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt operator-(double2_mt a) => new(-a.x, -a.y);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt operator+(double2_mt a, double2_mt b) => new(a.x + b.x, a.y + b.y);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt operator-(double2_mt a, double2_mt b) => new(a.x - b.x, a.y - b.y);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt operator*(double2_mt a, double2_mt b) => new(a.x * b.x, a.y * b.y);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt operator/(double2_mt a, double2_mt b) => new(a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt operator/(double2_mt a, double b) => new(a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt operator%(double2_mt a, double2_mt b) => new(a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt operator%(double2_mt a, double b) => new(a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt operator~(double2_mt a) => new(~a.x, ~a.y);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt operator|(double2_mt a, double2_mt b) => new(a.x | b.x, a.y | b.y);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt operator&(double2_mt a, double2_mt b) => new(a.x & b.x, a.y & b.y);
+
+    #endregion // Operators
+}
+
+#endregion // double2_mt
+#region double2_mt4
+
+[Serializable]
+//[JsonConverter(typeof(double2_mt4JsonConverter))]
+public partial struct double2_mt4
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<double>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public double_mt4 x;
+    public double_mt4 y;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public double2 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public double2_mt4(double_mt4 x, double_mt4 y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public double2_mt4(double_mt4 value)
+    {
+        y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public double2_mt4(double2 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator double2_mt4(double value) => new double_mt4(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator double2_mt4(double_mt4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator double2_mt4(double2 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt4 operator-(double2_mt4 a) => new(-a.x, -a.y);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt4 operator+(double2_mt4 a, double2_mt4 b) => new(a.x + b.x, a.y + b.y);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt4 operator-(double2_mt4 a, double2_mt4 b) => new(a.x - b.x, a.y - b.y);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt4 operator*(double2_mt4 a, double2_mt4 b) => new(a.x * b.x, a.y * b.y);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt4 operator/(double2_mt4 a, double2_mt4 b) => new(a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt4 operator/(double2_mt4 a, double b) => new(a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt4 operator%(double2_mt4 a, double2_mt4 b) => new(a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt4 operator%(double2_mt4 a, double b) => new(a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt4 operator~(double2_mt4 a) => new(~a.x, ~a.y);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt4 operator|(double2_mt4 a, double2_mt4 b) => new(a.x | b.x, a.y | b.y);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt4 operator&(double2_mt4 a, double2_mt4 b) => new(a.x & b.x, a.y & b.y);
+
+    #endregion // Operators
+}
+
+#endregion // double2_mt4
+#region double2_mt8
+
+[Serializable]
+//[JsonConverter(typeof(double2_mt8JsonConverter))]
+public partial struct double2_mt8
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<double>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public double_mt8 x;
+    public double_mt8 y;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public double2 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public double2_mt8(double_mt8 x, double_mt8 y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public double2_mt8(double_mt8 value)
+    {
+        y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public double2_mt8(double2 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator double2_mt8(double value) => new double_mt8(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator double2_mt8(double_mt8 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator double2_mt8(double2 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt8 operator-(double2_mt8 a) => new(-a.x, -a.y);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt8 operator+(double2_mt8 a, double2_mt8 b) => new(a.x + b.x, a.y + b.y);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt8 operator-(double2_mt8 a, double2_mt8 b) => new(a.x - b.x, a.y - b.y);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt8 operator*(double2_mt8 a, double2_mt8 b) => new(a.x * b.x, a.y * b.y);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt8 operator/(double2_mt8 a, double2_mt8 b) => new(a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt8 operator/(double2_mt8 a, double b) => new(a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt8 operator%(double2_mt8 a, double2_mt8 b) => new(a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt8 operator%(double2_mt8 a, double b) => new(a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt8 operator~(double2_mt8 a) => new(~a.x, ~a.y);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt8 operator|(double2_mt8 a, double2_mt8 b) => new(a.x | b.x, a.y | b.y);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt8 operator&(double2_mt8 a, double2_mt8 b) => new(a.x & b.x, a.y & b.y);
+
+    #endregion // Operators
+}
+
+#endregion // double2_mt8
+#region double2_mt16
+
+[Serializable]
+//[JsonConverter(typeof(double2_mt16JsonConverter))]
+public partial struct double2_mt16
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<double>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public double_mt16 x;
+    public double_mt16 y;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public double2 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public double2_mt16(double_mt16 x, double_mt16 y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public double2_mt16(double_mt16 value)
+    {
+        y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public double2_mt16(double2 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator double2_mt16(double value) => new double_mt16(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator double2_mt16(double_mt16 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator double2_mt16(double2 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt16 operator-(double2_mt16 a) => new(-a.x, -a.y);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt16 operator+(double2_mt16 a, double2_mt16 b) => new(a.x + b.x, a.y + b.y);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt16 operator-(double2_mt16 a, double2_mt16 b) => new(a.x - b.x, a.y - b.y);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt16 operator*(double2_mt16 a, double2_mt16 b) => new(a.x * b.x, a.y * b.y);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt16 operator/(double2_mt16 a, double2_mt16 b) => new(a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt16 operator/(double2_mt16 a, double b) => new(a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt16 operator%(double2_mt16 a, double2_mt16 b) => new(a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt16 operator%(double2_mt16 a, double b) => new(a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt16 operator~(double2_mt16 a) => new(~a.x, ~a.y);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt16 operator|(double2_mt16 a, double2_mt16 b) => new(a.x | b.x, a.y | b.y);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt16 operator&(double2_mt16 a, double2_mt16 b) => new(a.x & b.x, a.y & b.y);
+
+    #endregion // Operators
+}
+
+#endregion // double2_mt16
+#region double3_mt
+
+[Serializable]
+//[JsonConverter(typeof(double3_mtJsonConverter))]
+public partial struct double3_mt
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<double>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public double_mt x;
+    public double_mt y;
+    public double_mt z;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public double3 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public double3_mt(double_mt x, double_mt y, double_mt z)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public double3_mt(double_mt value)
+    {
+        z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public double3_mt(double3 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator double3_mt(double value) => new double_mt(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator double3_mt(double_mt value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator double3_mt(double3 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt operator-(double3_mt a) => new(-a.x, -a.y, -a.z);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt operator+(double3_mt a, double3_mt b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt operator-(double3_mt a, double3_mt b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt operator*(double3_mt a, double3_mt b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt operator/(double3_mt a, double3_mt b) => new(a.z / b.z, a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt operator/(double3_mt a, double b) => new(a.z / b, a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt operator%(double3_mt a, double3_mt b) => new(a.z % b.z, a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt operator%(double3_mt a, double b) => new(a.z % b, a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt operator~(double3_mt a) => new(~a.x, ~a.y, ~a.z);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt operator|(double3_mt a, double3_mt b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt operator&(double3_mt a, double3_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
+
+    #endregion // Operators
+}
+
+#endregion // double3_mt
+#region double3_mt4
+
+[Serializable]
+//[JsonConverter(typeof(double3_mt4JsonConverter))]
+public partial struct double3_mt4
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<double>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public double_mt4 x;
+    public double_mt4 y;
+    public double_mt4 z;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public double3 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public double3_mt4(double_mt4 x, double_mt4 y, double_mt4 z)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public double3_mt4(double_mt4 value)
+    {
+        z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public double3_mt4(double3 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator double3_mt4(double value) => new double_mt4(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator double3_mt4(double_mt4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator double3_mt4(double3 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt4 operator-(double3_mt4 a) => new(-a.x, -a.y, -a.z);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt4 operator+(double3_mt4 a, double3_mt4 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt4 operator-(double3_mt4 a, double3_mt4 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt4 operator*(double3_mt4 a, double3_mt4 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt4 operator/(double3_mt4 a, double3_mt4 b) => new(a.z / b.z, a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt4 operator/(double3_mt4 a, double b) => new(a.z / b, a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt4 operator%(double3_mt4 a, double3_mt4 b) => new(a.z % b.z, a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt4 operator%(double3_mt4 a, double b) => new(a.z % b, a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt4 operator~(double3_mt4 a) => new(~a.x, ~a.y, ~a.z);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt4 operator|(double3_mt4 a, double3_mt4 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt4 operator&(double3_mt4 a, double3_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
+
+    #endregion // Operators
+}
+
+#endregion // double3_mt4
+#region double3_mt8
+
+[Serializable]
+//[JsonConverter(typeof(double3_mt8JsonConverter))]
+public partial struct double3_mt8
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<double>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public double_mt8 x;
+    public double_mt8 y;
+    public double_mt8 z;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public double3 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public double3_mt8(double_mt8 x, double_mt8 y, double_mt8 z)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public double3_mt8(double_mt8 value)
+    {
+        z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public double3_mt8(double3 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator double3_mt8(double value) => new double_mt8(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator double3_mt8(double_mt8 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator double3_mt8(double3 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt8 operator-(double3_mt8 a) => new(-a.x, -a.y, -a.z);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt8 operator+(double3_mt8 a, double3_mt8 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt8 operator-(double3_mt8 a, double3_mt8 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt8 operator*(double3_mt8 a, double3_mt8 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt8 operator/(double3_mt8 a, double3_mt8 b) => new(a.z / b.z, a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt8 operator/(double3_mt8 a, double b) => new(a.z / b, a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt8 operator%(double3_mt8 a, double3_mt8 b) => new(a.z % b.z, a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt8 operator%(double3_mt8 a, double b) => new(a.z % b, a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt8 operator~(double3_mt8 a) => new(~a.x, ~a.y, ~a.z);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt8 operator|(double3_mt8 a, double3_mt8 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt8 operator&(double3_mt8 a, double3_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
+
+    #endregion // Operators
+}
+
+#endregion // double3_mt8
+#region double3_mt16
+
+[Serializable]
+//[JsonConverter(typeof(double3_mt16JsonConverter))]
+public partial struct double3_mt16
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<double>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public double_mt16 x;
+    public double_mt16 y;
+    public double_mt16 z;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public double3 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public double3_mt16(double_mt16 x, double_mt16 y, double_mt16 z)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public double3_mt16(double_mt16 value)
+    {
+        z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public double3_mt16(double3 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator double3_mt16(double value) => new double_mt16(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator double3_mt16(double_mt16 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator double3_mt16(double3 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt16 operator-(double3_mt16 a) => new(-a.x, -a.y, -a.z);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt16 operator+(double3_mt16 a, double3_mt16 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt16 operator-(double3_mt16 a, double3_mt16 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt16 operator*(double3_mt16 a, double3_mt16 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt16 operator/(double3_mt16 a, double3_mt16 b) => new(a.z / b.z, a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt16 operator/(double3_mt16 a, double b) => new(a.z / b, a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt16 operator%(double3_mt16 a, double3_mt16 b) => new(a.z % b.z, a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt16 operator%(double3_mt16 a, double b) => new(a.z % b, a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt16 operator~(double3_mt16 a) => new(~a.x, ~a.y, ~a.z);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt16 operator|(double3_mt16 a, double3_mt16 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt16 operator&(double3_mt16 a, double3_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
+
+    #endregion // Operators
+}
+
+#endregion // double3_mt16
+#region double4_mt
+
+[Serializable]
+//[JsonConverter(typeof(double4_mtJsonConverter))]
+public partial struct double4_mt
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<double>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public double_mt x;
+    public double_mt y;
+    public double_mt z;
+    public double_mt w;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public double4 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index], w[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+           w[index] = value.w;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public double4_mt(double_mt x, double_mt y, double_mt z, double_mt w)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public double4_mt(double_mt value)
+    {
+        w = z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public double4_mt(double4 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+        w = new(value.w);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator double4_mt(double value) => new double_mt(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator double4_mt(double_mt value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator double4_mt(double4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt operator-(double4_mt a) => new(-a.x, -a.y, -a.z, -a.w);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt operator+(double4_mt a, double4_mt b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt operator-(double4_mt a, double4_mt b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt operator*(double4_mt a, double4_mt b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt operator/(double4_mt a, double4_mt b) => new(a.w / b.w, a.z / b.z, a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt operator/(double4_mt a, double b) => new(a.w / b, a.z / b, a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt operator%(double4_mt a, double4_mt b) => new(a.w % b.w, a.z % b.z, a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt operator%(double4_mt a, double b) => new(a.w % b, a.z % b, a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt operator~(double4_mt a) => new(~a.x, ~a.y, ~a.z, ~a.w);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt operator|(double4_mt a, double4_mt b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt operator&(double4_mt a, double4_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
+
+    #endregion // Operators
+}
+
+#endregion // double4_mt
+#region double4_mt4
+
+[Serializable]
+//[JsonConverter(typeof(double4_mt4JsonConverter))]
+public partial struct double4_mt4
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<double>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public double_mt4 x;
+    public double_mt4 y;
+    public double_mt4 z;
+    public double_mt4 w;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public double4 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index], w[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+           w[index] = value.w;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public double4_mt4(double_mt4 x, double_mt4 y, double_mt4 z, double_mt4 w)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public double4_mt4(double_mt4 value)
+    {
+        w = z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public double4_mt4(double4 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+        w = new(value.w);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator double4_mt4(double value) => new double_mt4(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator double4_mt4(double_mt4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator double4_mt4(double4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt4 operator-(double4_mt4 a) => new(-a.x, -a.y, -a.z, -a.w);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt4 operator+(double4_mt4 a, double4_mt4 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt4 operator-(double4_mt4 a, double4_mt4 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt4 operator*(double4_mt4 a, double4_mt4 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt4 operator/(double4_mt4 a, double4_mt4 b) => new(a.w / b.w, a.z / b.z, a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt4 operator/(double4_mt4 a, double b) => new(a.w / b, a.z / b, a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt4 operator%(double4_mt4 a, double4_mt4 b) => new(a.w % b.w, a.z % b.z, a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt4 operator%(double4_mt4 a, double b) => new(a.w % b, a.z % b, a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt4 operator~(double4_mt4 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt4 operator|(double4_mt4 a, double4_mt4 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt4 operator&(double4_mt4 a, double4_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
+
+    #endregion // Operators
+}
+
+#endregion // double4_mt4
+#region double4_mt8
+
+[Serializable]
+//[JsonConverter(typeof(double4_mt8JsonConverter))]
+public partial struct double4_mt8
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<double>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public double_mt8 x;
+    public double_mt8 y;
+    public double_mt8 z;
+    public double_mt8 w;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public double4 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index], w[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+           w[index] = value.w;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public double4_mt8(double_mt8 x, double_mt8 y, double_mt8 z, double_mt8 w)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public double4_mt8(double_mt8 value)
+    {
+        w = z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public double4_mt8(double4 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+        w = new(value.w);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator double4_mt8(double value) => new double_mt8(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator double4_mt8(double_mt8 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator double4_mt8(double4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt8 operator-(double4_mt8 a) => new(-a.x, -a.y, -a.z, -a.w);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt8 operator+(double4_mt8 a, double4_mt8 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt8 operator-(double4_mt8 a, double4_mt8 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt8 operator*(double4_mt8 a, double4_mt8 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt8 operator/(double4_mt8 a, double4_mt8 b) => new(a.w / b.w, a.z / b.z, a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt8 operator/(double4_mt8 a, double b) => new(a.w / b, a.z / b, a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt8 operator%(double4_mt8 a, double4_mt8 b) => new(a.w % b.w, a.z % b.z, a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt8 operator%(double4_mt8 a, double b) => new(a.w % b, a.z % b, a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt8 operator~(double4_mt8 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt8 operator|(double4_mt8 a, double4_mt8 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt8 operator&(double4_mt8 a, double4_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
+
+    #endregion // Operators
+}
+
+#endregion // double4_mt8
+#region double4_mt16
+
+[Serializable]
+//[JsonConverter(typeof(double4_mt16JsonConverter))]
+public partial struct double4_mt16
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<double>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public double_mt16 x;
+    public double_mt16 y;
+    public double_mt16 z;
+    public double_mt16 w;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public double4 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index], w[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+           w[index] = value.w;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public double4_mt16(double_mt16 x, double_mt16 y, double_mt16 z, double_mt16 w)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public double4_mt16(double_mt16 value)
+    {
+        w = z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public double4_mt16(double4 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+        w = new(value.w);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator double4_mt16(double value) => new double_mt16(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator double4_mt16(double_mt16 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator double4_mt16(double4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt16 operator-(double4_mt16 a) => new(-a.x, -a.y, -a.z, -a.w);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt16 operator+(double4_mt16 a, double4_mt16 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt16 operator-(double4_mt16 a, double4_mt16 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt16 operator*(double4_mt16 a, double4_mt16 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt16 operator/(double4_mt16 a, double4_mt16 b) => new(a.w / b.w, a.z / b.z, a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt16 operator/(double4_mt16 a, double b) => new(a.w / b, a.z / b, a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt16 operator%(double4_mt16 a, double4_mt16 b) => new(a.w % b.w, a.z % b.z, a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt16 operator%(double4_mt16 a, double b) => new(a.w % b, a.z % b, a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt16 operator~(double4_mt16 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt16 operator|(double4_mt16 a, double4_mt16 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt16 operator&(double4_mt16 a, double4_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
+
+    #endregion // Operators
+}
+
+#endregion // double4_mt16
 #region int2_mt
 
 [Serializable]
@@ -454,6 +2848,336 @@ public partial struct int2_mt
 }
 
 #endregion // int2_mt
+#region int2_mt4
+
+[Serializable]
+//[JsonConverter(typeof(int2_mt4JsonConverter))]
+public partial struct int2_mt4
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<int>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public int_mt4 x;
+    public int_mt4 y;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public int2 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public int2_mt4(int_mt4 x, int_mt4 y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public int2_mt4(int_mt4 value)
+    {
+        y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public int2_mt4(int2 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator int2_mt4(int value) => new int_mt4(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator int2_mt4(int_mt4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator int2_mt4(int2 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static int2_mt4 operator-(int2_mt4 a) => new(-a.x, -a.y);
+
+    [MethodImpl(256 | 512)]
+    public static int2_mt4 operator+(int2_mt4 a, int2_mt4 b) => new(a.x + b.x, a.y + b.y);
+
+    [MethodImpl(256 | 512)]
+    public static int2_mt4 operator-(int2_mt4 a, int2_mt4 b) => new(a.x - b.x, a.y - b.y);
+
+    [MethodImpl(256 | 512)]
+    public static int2_mt4 operator*(int2_mt4 a, int2_mt4 b) => new(a.x * b.x, a.y * b.y);
+
+    [MethodImpl(256 | 512)]
+    public static int2_mt4 operator/(int2_mt4 a, int2_mt4 b) => new(a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static int2_mt4 operator/(int2_mt4 a, int b) => new(a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static int2_mt4 operator%(int2_mt4 a, int2_mt4 b) => new(a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static int2_mt4 operator%(int2_mt4 a, int b) => new(a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static int2_mt4 operator~(int2_mt4 a) => new(~a.x, ~a.y);
+
+    [MethodImpl(256 | 512)]
+    public static int2_mt4 operator|(int2_mt4 a, int2_mt4 b) => new(a.x | b.x, a.y | b.y);
+
+    [MethodImpl(256 | 512)]
+    public static int2_mt4 operator&(int2_mt4 a, int2_mt4 b) => new(a.x & b.x, a.y & b.y);
+
+    #endregion // Operators
+}
+
+#endregion // int2_mt4
+#region int2_mt8
+
+[Serializable]
+//[JsonConverter(typeof(int2_mt8JsonConverter))]
+public partial struct int2_mt8
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<int>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public int_mt8 x;
+    public int_mt8 y;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public int2 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public int2_mt8(int_mt8 x, int_mt8 y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public int2_mt8(int_mt8 value)
+    {
+        y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public int2_mt8(int2 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator int2_mt8(int value) => new int_mt8(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator int2_mt8(int_mt8 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator int2_mt8(int2 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static int2_mt8 operator-(int2_mt8 a) => new(-a.x, -a.y);
+
+    [MethodImpl(256 | 512)]
+    public static int2_mt8 operator+(int2_mt8 a, int2_mt8 b) => new(a.x + b.x, a.y + b.y);
+
+    [MethodImpl(256 | 512)]
+    public static int2_mt8 operator-(int2_mt8 a, int2_mt8 b) => new(a.x - b.x, a.y - b.y);
+
+    [MethodImpl(256 | 512)]
+    public static int2_mt8 operator*(int2_mt8 a, int2_mt8 b) => new(a.x * b.x, a.y * b.y);
+
+    [MethodImpl(256 | 512)]
+    public static int2_mt8 operator/(int2_mt8 a, int2_mt8 b) => new(a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static int2_mt8 operator/(int2_mt8 a, int b) => new(a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static int2_mt8 operator%(int2_mt8 a, int2_mt8 b) => new(a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static int2_mt8 operator%(int2_mt8 a, int b) => new(a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static int2_mt8 operator~(int2_mt8 a) => new(~a.x, ~a.y);
+
+    [MethodImpl(256 | 512)]
+    public static int2_mt8 operator|(int2_mt8 a, int2_mt8 b) => new(a.x | b.x, a.y | b.y);
+
+    [MethodImpl(256 | 512)]
+    public static int2_mt8 operator&(int2_mt8 a, int2_mt8 b) => new(a.x & b.x, a.y & b.y);
+
+    #endregion // Operators
+}
+
+#endregion // int2_mt8
+#region int2_mt16
+
+[Serializable]
+//[JsonConverter(typeof(int2_mt16JsonConverter))]
+public partial struct int2_mt16
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<int>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public int_mt16 x;
+    public int_mt16 y;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public int2 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public int2_mt16(int_mt16 x, int_mt16 y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public int2_mt16(int_mt16 value)
+    {
+        y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public int2_mt16(int2 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator int2_mt16(int value) => new int_mt16(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator int2_mt16(int_mt16 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator int2_mt16(int2 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static int2_mt16 operator-(int2_mt16 a) => new(-a.x, -a.y);
+
+    [MethodImpl(256 | 512)]
+    public static int2_mt16 operator+(int2_mt16 a, int2_mt16 b) => new(a.x + b.x, a.y + b.y);
+
+    [MethodImpl(256 | 512)]
+    public static int2_mt16 operator-(int2_mt16 a, int2_mt16 b) => new(a.x - b.x, a.y - b.y);
+
+    [MethodImpl(256 | 512)]
+    public static int2_mt16 operator*(int2_mt16 a, int2_mt16 b) => new(a.x * b.x, a.y * b.y);
+
+    [MethodImpl(256 | 512)]
+    public static int2_mt16 operator/(int2_mt16 a, int2_mt16 b) => new(a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static int2_mt16 operator/(int2_mt16 a, int b) => new(a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static int2_mt16 operator%(int2_mt16 a, int2_mt16 b) => new(a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static int2_mt16 operator%(int2_mt16 a, int b) => new(a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static int2_mt16 operator~(int2_mt16 a) => new(~a.x, ~a.y);
+
+    [MethodImpl(256 | 512)]
+    public static int2_mt16 operator|(int2_mt16 a, int2_mt16 b) => new(a.x | b.x, a.y | b.y);
+
+    [MethodImpl(256 | 512)]
+    public static int2_mt16 operator&(int2_mt16 a, int2_mt16 b) => new(a.x & b.x, a.y & b.y);
+
+    #endregion // Operators
+}
+
+#endregion // int2_mt16
 #region int3_mt
 
 [Serializable]
@@ -568,6 +3292,348 @@ public partial struct int3_mt
 }
 
 #endregion // int3_mt
+#region int3_mt4
+
+[Serializable]
+//[JsonConverter(typeof(int3_mt4JsonConverter))]
+public partial struct int3_mt4
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<int>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public int_mt4 x;
+    public int_mt4 y;
+    public int_mt4 z;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public int3 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public int3_mt4(int_mt4 x, int_mt4 y, int_mt4 z)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public int3_mt4(int_mt4 value)
+    {
+        z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public int3_mt4(int3 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator int3_mt4(int value) => new int_mt4(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator int3_mt4(int_mt4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator int3_mt4(int3 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static int3_mt4 operator-(int3_mt4 a) => new(-a.x, -a.y, -a.z);
+
+    [MethodImpl(256 | 512)]
+    public static int3_mt4 operator+(int3_mt4 a, int3_mt4 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
+
+    [MethodImpl(256 | 512)]
+    public static int3_mt4 operator-(int3_mt4 a, int3_mt4 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
+
+    [MethodImpl(256 | 512)]
+    public static int3_mt4 operator*(int3_mt4 a, int3_mt4 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
+
+    [MethodImpl(256 | 512)]
+    public static int3_mt4 operator/(int3_mt4 a, int3_mt4 b) => new(a.z / b.z, a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static int3_mt4 operator/(int3_mt4 a, int b) => new(a.z / b, a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static int3_mt4 operator%(int3_mt4 a, int3_mt4 b) => new(a.z % b.z, a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static int3_mt4 operator%(int3_mt4 a, int b) => new(a.z % b, a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static int3_mt4 operator~(int3_mt4 a) => new(~a.x, ~a.y, ~a.z);
+
+    [MethodImpl(256 | 512)]
+    public static int3_mt4 operator|(int3_mt4 a, int3_mt4 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
+
+    [MethodImpl(256 | 512)]
+    public static int3_mt4 operator&(int3_mt4 a, int3_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
+
+    #endregion // Operators
+}
+
+#endregion // int3_mt4
+#region int3_mt8
+
+[Serializable]
+//[JsonConverter(typeof(int3_mt8JsonConverter))]
+public partial struct int3_mt8
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<int>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public int_mt8 x;
+    public int_mt8 y;
+    public int_mt8 z;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public int3 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public int3_mt8(int_mt8 x, int_mt8 y, int_mt8 z)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public int3_mt8(int_mt8 value)
+    {
+        z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public int3_mt8(int3 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator int3_mt8(int value) => new int_mt8(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator int3_mt8(int_mt8 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator int3_mt8(int3 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static int3_mt8 operator-(int3_mt8 a) => new(-a.x, -a.y, -a.z);
+
+    [MethodImpl(256 | 512)]
+    public static int3_mt8 operator+(int3_mt8 a, int3_mt8 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
+
+    [MethodImpl(256 | 512)]
+    public static int3_mt8 operator-(int3_mt8 a, int3_mt8 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
+
+    [MethodImpl(256 | 512)]
+    public static int3_mt8 operator*(int3_mt8 a, int3_mt8 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
+
+    [MethodImpl(256 | 512)]
+    public static int3_mt8 operator/(int3_mt8 a, int3_mt8 b) => new(a.z / b.z, a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static int3_mt8 operator/(int3_mt8 a, int b) => new(a.z / b, a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static int3_mt8 operator%(int3_mt8 a, int3_mt8 b) => new(a.z % b.z, a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static int3_mt8 operator%(int3_mt8 a, int b) => new(a.z % b, a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static int3_mt8 operator~(int3_mt8 a) => new(~a.x, ~a.y, ~a.z);
+
+    [MethodImpl(256 | 512)]
+    public static int3_mt8 operator|(int3_mt8 a, int3_mt8 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
+
+    [MethodImpl(256 | 512)]
+    public static int3_mt8 operator&(int3_mt8 a, int3_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
+
+    #endregion // Operators
+}
+
+#endregion // int3_mt8
+#region int3_mt16
+
+[Serializable]
+//[JsonConverter(typeof(int3_mt16JsonConverter))]
+public partial struct int3_mt16
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<int>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public int_mt16 x;
+    public int_mt16 y;
+    public int_mt16 z;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public int3 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public int3_mt16(int_mt16 x, int_mt16 y, int_mt16 z)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public int3_mt16(int_mt16 value)
+    {
+        z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public int3_mt16(int3 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator int3_mt16(int value) => new int_mt16(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator int3_mt16(int_mt16 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator int3_mt16(int3 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static int3_mt16 operator-(int3_mt16 a) => new(-a.x, -a.y, -a.z);
+
+    [MethodImpl(256 | 512)]
+    public static int3_mt16 operator+(int3_mt16 a, int3_mt16 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
+
+    [MethodImpl(256 | 512)]
+    public static int3_mt16 operator-(int3_mt16 a, int3_mt16 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
+
+    [MethodImpl(256 | 512)]
+    public static int3_mt16 operator*(int3_mt16 a, int3_mt16 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
+
+    [MethodImpl(256 | 512)]
+    public static int3_mt16 operator/(int3_mt16 a, int3_mt16 b) => new(a.z / b.z, a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static int3_mt16 operator/(int3_mt16 a, int b) => new(a.z / b, a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static int3_mt16 operator%(int3_mt16 a, int3_mt16 b) => new(a.z % b.z, a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static int3_mt16 operator%(int3_mt16 a, int b) => new(a.z % b, a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static int3_mt16 operator~(int3_mt16 a) => new(~a.x, ~a.y, ~a.z);
+
+    [MethodImpl(256 | 512)]
+    public static int3_mt16 operator|(int3_mt16 a, int3_mt16 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
+
+    [MethodImpl(256 | 512)]
+    public static int3_mt16 operator&(int3_mt16 a, int3_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
+
+    #endregion // Operators
+}
+
+#endregion // int3_mt16
 #region int4_mt
 
 [Serializable]
@@ -686,6 +3752,360 @@ public partial struct int4_mt
 }
 
 #endregion // int4_mt
+#region int4_mt4
+
+[Serializable]
+//[JsonConverter(typeof(int4_mt4JsonConverter))]
+public partial struct int4_mt4
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<int>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public int_mt4 x;
+    public int_mt4 y;
+    public int_mt4 z;
+    public int_mt4 w;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public int4 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index], w[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+           w[index] = value.w;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public int4_mt4(int_mt4 x, int_mt4 y, int_mt4 z, int_mt4 w)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public int4_mt4(int_mt4 value)
+    {
+        w = z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public int4_mt4(int4 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+        w = new(value.w);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator int4_mt4(int value) => new int_mt4(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator int4_mt4(int_mt4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator int4_mt4(int4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static int4_mt4 operator-(int4_mt4 a) => new(-a.x, -a.y, -a.z, -a.w);
+
+    [MethodImpl(256 | 512)]
+    public static int4_mt4 operator+(int4_mt4 a, int4_mt4 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
+
+    [MethodImpl(256 | 512)]
+    public static int4_mt4 operator-(int4_mt4 a, int4_mt4 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
+
+    [MethodImpl(256 | 512)]
+    public static int4_mt4 operator*(int4_mt4 a, int4_mt4 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
+
+    [MethodImpl(256 | 512)]
+    public static int4_mt4 operator/(int4_mt4 a, int4_mt4 b) => new(a.w / b.w, a.z / b.z, a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static int4_mt4 operator/(int4_mt4 a, int b) => new(a.w / b, a.z / b, a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static int4_mt4 operator%(int4_mt4 a, int4_mt4 b) => new(a.w % b.w, a.z % b.z, a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static int4_mt4 operator%(int4_mt4 a, int b) => new(a.w % b, a.z % b, a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static int4_mt4 operator~(int4_mt4 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
+
+    [MethodImpl(256 | 512)]
+    public static int4_mt4 operator|(int4_mt4 a, int4_mt4 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
+
+    [MethodImpl(256 | 512)]
+    public static int4_mt4 operator&(int4_mt4 a, int4_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
+
+    #endregion // Operators
+}
+
+#endregion // int4_mt4
+#region int4_mt8
+
+[Serializable]
+//[JsonConverter(typeof(int4_mt8JsonConverter))]
+public partial struct int4_mt8
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<int>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public int_mt8 x;
+    public int_mt8 y;
+    public int_mt8 z;
+    public int_mt8 w;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public int4 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index], w[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+           w[index] = value.w;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public int4_mt8(int_mt8 x, int_mt8 y, int_mt8 z, int_mt8 w)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public int4_mt8(int_mt8 value)
+    {
+        w = z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public int4_mt8(int4 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+        w = new(value.w);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator int4_mt8(int value) => new int_mt8(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator int4_mt8(int_mt8 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator int4_mt8(int4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static int4_mt8 operator-(int4_mt8 a) => new(-a.x, -a.y, -a.z, -a.w);
+
+    [MethodImpl(256 | 512)]
+    public static int4_mt8 operator+(int4_mt8 a, int4_mt8 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
+
+    [MethodImpl(256 | 512)]
+    public static int4_mt8 operator-(int4_mt8 a, int4_mt8 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
+
+    [MethodImpl(256 | 512)]
+    public static int4_mt8 operator*(int4_mt8 a, int4_mt8 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
+
+    [MethodImpl(256 | 512)]
+    public static int4_mt8 operator/(int4_mt8 a, int4_mt8 b) => new(a.w / b.w, a.z / b.z, a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static int4_mt8 operator/(int4_mt8 a, int b) => new(a.w / b, a.z / b, a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static int4_mt8 operator%(int4_mt8 a, int4_mt8 b) => new(a.w % b.w, a.z % b.z, a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static int4_mt8 operator%(int4_mt8 a, int b) => new(a.w % b, a.z % b, a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static int4_mt8 operator~(int4_mt8 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
+
+    [MethodImpl(256 | 512)]
+    public static int4_mt8 operator|(int4_mt8 a, int4_mt8 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
+
+    [MethodImpl(256 | 512)]
+    public static int4_mt8 operator&(int4_mt8 a, int4_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
+
+    #endregion // Operators
+}
+
+#endregion // int4_mt8
+#region int4_mt16
+
+[Serializable]
+//[JsonConverter(typeof(int4_mt16JsonConverter))]
+public partial struct int4_mt16
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<int>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public int_mt16 x;
+    public int_mt16 y;
+    public int_mt16 z;
+    public int_mt16 w;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public int4 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index], w[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+           w[index] = value.w;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public int4_mt16(int_mt16 x, int_mt16 y, int_mt16 z, int_mt16 w)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public int4_mt16(int_mt16 value)
+    {
+        w = z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public int4_mt16(int4 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+        w = new(value.w);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator int4_mt16(int value) => new int_mt16(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator int4_mt16(int_mt16 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator int4_mt16(int4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static int4_mt16 operator-(int4_mt16 a) => new(-a.x, -a.y, -a.z, -a.w);
+
+    [MethodImpl(256 | 512)]
+    public static int4_mt16 operator+(int4_mt16 a, int4_mt16 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
+
+    [MethodImpl(256 | 512)]
+    public static int4_mt16 operator-(int4_mt16 a, int4_mt16 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
+
+    [MethodImpl(256 | 512)]
+    public static int4_mt16 operator*(int4_mt16 a, int4_mt16 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
+
+    [MethodImpl(256 | 512)]
+    public static int4_mt16 operator/(int4_mt16 a, int4_mt16 b) => new(a.w / b.w, a.z / b.z, a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static int4_mt16 operator/(int4_mt16 a, int b) => new(a.w / b, a.z / b, a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static int4_mt16 operator%(int4_mt16 a, int4_mt16 b) => new(a.w % b.w, a.z % b.z, a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static int4_mt16 operator%(int4_mt16 a, int b) => new(a.w % b, a.z % b, a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static int4_mt16 operator~(int4_mt16 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
+
+    [MethodImpl(256 | 512)]
+    public static int4_mt16 operator|(int4_mt16 a, int4_mt16 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
+
+    [MethodImpl(256 | 512)]
+    public static int4_mt16 operator&(int4_mt16 a, int4_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
+
+    #endregion // Operators
+}
+
+#endregion // int4_mt16
 #region uint2_mt
 
 [Serializable]
@@ -796,6 +4216,336 @@ public partial struct uint2_mt
 }
 
 #endregion // uint2_mt
+#region uint2_mt4
+
+[Serializable]
+//[JsonConverter(typeof(uint2_mt4JsonConverter))]
+public partial struct uint2_mt4
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<uint>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public uint_mt4 x;
+    public uint_mt4 y;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public uint2 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public uint2_mt4(uint_mt4 x, uint_mt4 y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public uint2_mt4(uint_mt4 value)
+    {
+        y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public uint2_mt4(uint2 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator uint2_mt4(uint value) => new uint_mt4(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator uint2_mt4(uint_mt4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator uint2_mt4(uint2 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static uint2_mt4 operator-(uint2_mt4 a) => new(-a.x, -a.y);
+
+    [MethodImpl(256 | 512)]
+    public static uint2_mt4 operator+(uint2_mt4 a, uint2_mt4 b) => new(a.x + b.x, a.y + b.y);
+
+    [MethodImpl(256 | 512)]
+    public static uint2_mt4 operator-(uint2_mt4 a, uint2_mt4 b) => new(a.x - b.x, a.y - b.y);
+
+    [MethodImpl(256 | 512)]
+    public static uint2_mt4 operator*(uint2_mt4 a, uint2_mt4 b) => new(a.x * b.x, a.y * b.y);
+
+    [MethodImpl(256 | 512)]
+    public static uint2_mt4 operator/(uint2_mt4 a, uint2_mt4 b) => new(a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static uint2_mt4 operator/(uint2_mt4 a, uint b) => new(a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static uint2_mt4 operator%(uint2_mt4 a, uint2_mt4 b) => new(a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static uint2_mt4 operator%(uint2_mt4 a, uint b) => new(a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static uint2_mt4 operator~(uint2_mt4 a) => new(~a.x, ~a.y);
+
+    [MethodImpl(256 | 512)]
+    public static uint2_mt4 operator|(uint2_mt4 a, uint2_mt4 b) => new(a.x | b.x, a.y | b.y);
+
+    [MethodImpl(256 | 512)]
+    public static uint2_mt4 operator&(uint2_mt4 a, uint2_mt4 b) => new(a.x & b.x, a.y & b.y);
+
+    #endregion // Operators
+}
+
+#endregion // uint2_mt4
+#region uint2_mt8
+
+[Serializable]
+//[JsonConverter(typeof(uint2_mt8JsonConverter))]
+public partial struct uint2_mt8
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<uint>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public uint_mt8 x;
+    public uint_mt8 y;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public uint2 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public uint2_mt8(uint_mt8 x, uint_mt8 y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public uint2_mt8(uint_mt8 value)
+    {
+        y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public uint2_mt8(uint2 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator uint2_mt8(uint value) => new uint_mt8(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator uint2_mt8(uint_mt8 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator uint2_mt8(uint2 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static uint2_mt8 operator-(uint2_mt8 a) => new(-a.x, -a.y);
+
+    [MethodImpl(256 | 512)]
+    public static uint2_mt8 operator+(uint2_mt8 a, uint2_mt8 b) => new(a.x + b.x, a.y + b.y);
+
+    [MethodImpl(256 | 512)]
+    public static uint2_mt8 operator-(uint2_mt8 a, uint2_mt8 b) => new(a.x - b.x, a.y - b.y);
+
+    [MethodImpl(256 | 512)]
+    public static uint2_mt8 operator*(uint2_mt8 a, uint2_mt8 b) => new(a.x * b.x, a.y * b.y);
+
+    [MethodImpl(256 | 512)]
+    public static uint2_mt8 operator/(uint2_mt8 a, uint2_mt8 b) => new(a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static uint2_mt8 operator/(uint2_mt8 a, uint b) => new(a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static uint2_mt8 operator%(uint2_mt8 a, uint2_mt8 b) => new(a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static uint2_mt8 operator%(uint2_mt8 a, uint b) => new(a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static uint2_mt8 operator~(uint2_mt8 a) => new(~a.x, ~a.y);
+
+    [MethodImpl(256 | 512)]
+    public static uint2_mt8 operator|(uint2_mt8 a, uint2_mt8 b) => new(a.x | b.x, a.y | b.y);
+
+    [MethodImpl(256 | 512)]
+    public static uint2_mt8 operator&(uint2_mt8 a, uint2_mt8 b) => new(a.x & b.x, a.y & b.y);
+
+    #endregion // Operators
+}
+
+#endregion // uint2_mt8
+#region uint2_mt16
+
+[Serializable]
+//[JsonConverter(typeof(uint2_mt16JsonConverter))]
+public partial struct uint2_mt16
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<uint>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public uint_mt16 x;
+    public uint_mt16 y;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public uint2 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public uint2_mt16(uint_mt16 x, uint_mt16 y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public uint2_mt16(uint_mt16 value)
+    {
+        y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public uint2_mt16(uint2 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator uint2_mt16(uint value) => new uint_mt16(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator uint2_mt16(uint_mt16 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator uint2_mt16(uint2 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static uint2_mt16 operator-(uint2_mt16 a) => new(-a.x, -a.y);
+
+    [MethodImpl(256 | 512)]
+    public static uint2_mt16 operator+(uint2_mt16 a, uint2_mt16 b) => new(a.x + b.x, a.y + b.y);
+
+    [MethodImpl(256 | 512)]
+    public static uint2_mt16 operator-(uint2_mt16 a, uint2_mt16 b) => new(a.x - b.x, a.y - b.y);
+
+    [MethodImpl(256 | 512)]
+    public static uint2_mt16 operator*(uint2_mt16 a, uint2_mt16 b) => new(a.x * b.x, a.y * b.y);
+
+    [MethodImpl(256 | 512)]
+    public static uint2_mt16 operator/(uint2_mt16 a, uint2_mt16 b) => new(a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static uint2_mt16 operator/(uint2_mt16 a, uint b) => new(a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static uint2_mt16 operator%(uint2_mt16 a, uint2_mt16 b) => new(a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static uint2_mt16 operator%(uint2_mt16 a, uint b) => new(a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static uint2_mt16 operator~(uint2_mt16 a) => new(~a.x, ~a.y);
+
+    [MethodImpl(256 | 512)]
+    public static uint2_mt16 operator|(uint2_mt16 a, uint2_mt16 b) => new(a.x | b.x, a.y | b.y);
+
+    [MethodImpl(256 | 512)]
+    public static uint2_mt16 operator&(uint2_mt16 a, uint2_mt16 b) => new(a.x & b.x, a.y & b.y);
+
+    #endregion // Operators
+}
+
+#endregion // uint2_mt16
 #region uint3_mt
 
 [Serializable]
@@ -910,6 +4660,348 @@ public partial struct uint3_mt
 }
 
 #endregion // uint3_mt
+#region uint3_mt4
+
+[Serializable]
+//[JsonConverter(typeof(uint3_mt4JsonConverter))]
+public partial struct uint3_mt4
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<uint>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public uint_mt4 x;
+    public uint_mt4 y;
+    public uint_mt4 z;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public uint3 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public uint3_mt4(uint_mt4 x, uint_mt4 y, uint_mt4 z)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public uint3_mt4(uint_mt4 value)
+    {
+        z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public uint3_mt4(uint3 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator uint3_mt4(uint value) => new uint_mt4(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator uint3_mt4(uint_mt4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator uint3_mt4(uint3 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static uint3_mt4 operator-(uint3_mt4 a) => new(-a.x, -a.y, -a.z);
+
+    [MethodImpl(256 | 512)]
+    public static uint3_mt4 operator+(uint3_mt4 a, uint3_mt4 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
+
+    [MethodImpl(256 | 512)]
+    public static uint3_mt4 operator-(uint3_mt4 a, uint3_mt4 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
+
+    [MethodImpl(256 | 512)]
+    public static uint3_mt4 operator*(uint3_mt4 a, uint3_mt4 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
+
+    [MethodImpl(256 | 512)]
+    public static uint3_mt4 operator/(uint3_mt4 a, uint3_mt4 b) => new(a.z / b.z, a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static uint3_mt4 operator/(uint3_mt4 a, uint b) => new(a.z / b, a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static uint3_mt4 operator%(uint3_mt4 a, uint3_mt4 b) => new(a.z % b.z, a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static uint3_mt4 operator%(uint3_mt4 a, uint b) => new(a.z % b, a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static uint3_mt4 operator~(uint3_mt4 a) => new(~a.x, ~a.y, ~a.z);
+
+    [MethodImpl(256 | 512)]
+    public static uint3_mt4 operator|(uint3_mt4 a, uint3_mt4 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
+
+    [MethodImpl(256 | 512)]
+    public static uint3_mt4 operator&(uint3_mt4 a, uint3_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
+
+    #endregion // Operators
+}
+
+#endregion // uint3_mt4
+#region uint3_mt8
+
+[Serializable]
+//[JsonConverter(typeof(uint3_mt8JsonConverter))]
+public partial struct uint3_mt8
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<uint>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public uint_mt8 x;
+    public uint_mt8 y;
+    public uint_mt8 z;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public uint3 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public uint3_mt8(uint_mt8 x, uint_mt8 y, uint_mt8 z)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public uint3_mt8(uint_mt8 value)
+    {
+        z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public uint3_mt8(uint3 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator uint3_mt8(uint value) => new uint_mt8(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator uint3_mt8(uint_mt8 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator uint3_mt8(uint3 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static uint3_mt8 operator-(uint3_mt8 a) => new(-a.x, -a.y, -a.z);
+
+    [MethodImpl(256 | 512)]
+    public static uint3_mt8 operator+(uint3_mt8 a, uint3_mt8 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
+
+    [MethodImpl(256 | 512)]
+    public static uint3_mt8 operator-(uint3_mt8 a, uint3_mt8 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
+
+    [MethodImpl(256 | 512)]
+    public static uint3_mt8 operator*(uint3_mt8 a, uint3_mt8 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
+
+    [MethodImpl(256 | 512)]
+    public static uint3_mt8 operator/(uint3_mt8 a, uint3_mt8 b) => new(a.z / b.z, a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static uint3_mt8 operator/(uint3_mt8 a, uint b) => new(a.z / b, a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static uint3_mt8 operator%(uint3_mt8 a, uint3_mt8 b) => new(a.z % b.z, a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static uint3_mt8 operator%(uint3_mt8 a, uint b) => new(a.z % b, a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static uint3_mt8 operator~(uint3_mt8 a) => new(~a.x, ~a.y, ~a.z);
+
+    [MethodImpl(256 | 512)]
+    public static uint3_mt8 operator|(uint3_mt8 a, uint3_mt8 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
+
+    [MethodImpl(256 | 512)]
+    public static uint3_mt8 operator&(uint3_mt8 a, uint3_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
+
+    #endregion // Operators
+}
+
+#endregion // uint3_mt8
+#region uint3_mt16
+
+[Serializable]
+//[JsonConverter(typeof(uint3_mt16JsonConverter))]
+public partial struct uint3_mt16
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<uint>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public uint_mt16 x;
+    public uint_mt16 y;
+    public uint_mt16 z;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public uint3 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public uint3_mt16(uint_mt16 x, uint_mt16 y, uint_mt16 z)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public uint3_mt16(uint_mt16 value)
+    {
+        z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public uint3_mt16(uint3 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator uint3_mt16(uint value) => new uint_mt16(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator uint3_mt16(uint_mt16 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator uint3_mt16(uint3 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static uint3_mt16 operator-(uint3_mt16 a) => new(-a.x, -a.y, -a.z);
+
+    [MethodImpl(256 | 512)]
+    public static uint3_mt16 operator+(uint3_mt16 a, uint3_mt16 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
+
+    [MethodImpl(256 | 512)]
+    public static uint3_mt16 operator-(uint3_mt16 a, uint3_mt16 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
+
+    [MethodImpl(256 | 512)]
+    public static uint3_mt16 operator*(uint3_mt16 a, uint3_mt16 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
+
+    [MethodImpl(256 | 512)]
+    public static uint3_mt16 operator/(uint3_mt16 a, uint3_mt16 b) => new(a.z / b.z, a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static uint3_mt16 operator/(uint3_mt16 a, uint b) => new(a.z / b, a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static uint3_mt16 operator%(uint3_mt16 a, uint3_mt16 b) => new(a.z % b.z, a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static uint3_mt16 operator%(uint3_mt16 a, uint b) => new(a.z % b, a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static uint3_mt16 operator~(uint3_mt16 a) => new(~a.x, ~a.y, ~a.z);
+
+    [MethodImpl(256 | 512)]
+    public static uint3_mt16 operator|(uint3_mt16 a, uint3_mt16 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
+
+    [MethodImpl(256 | 512)]
+    public static uint3_mt16 operator&(uint3_mt16 a, uint3_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
+
+    #endregion // Operators
+}
+
+#endregion // uint3_mt16
 #region uint4_mt
 
 [Serializable]
@@ -1028,6 +5120,3096 @@ public partial struct uint4_mt
 }
 
 #endregion // uint4_mt
+#region uint4_mt4
+
+[Serializable]
+//[JsonConverter(typeof(uint4_mt4JsonConverter))]
+public partial struct uint4_mt4
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<uint>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public uint_mt4 x;
+    public uint_mt4 y;
+    public uint_mt4 z;
+    public uint_mt4 w;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public uint4 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index], w[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+           w[index] = value.w;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public uint4_mt4(uint_mt4 x, uint_mt4 y, uint_mt4 z, uint_mt4 w)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public uint4_mt4(uint_mt4 value)
+    {
+        w = z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public uint4_mt4(uint4 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+        w = new(value.w);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator uint4_mt4(uint value) => new uint_mt4(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator uint4_mt4(uint_mt4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator uint4_mt4(uint4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static uint4_mt4 operator-(uint4_mt4 a) => new(-a.x, -a.y, -a.z, -a.w);
+
+    [MethodImpl(256 | 512)]
+    public static uint4_mt4 operator+(uint4_mt4 a, uint4_mt4 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
+
+    [MethodImpl(256 | 512)]
+    public static uint4_mt4 operator-(uint4_mt4 a, uint4_mt4 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
+
+    [MethodImpl(256 | 512)]
+    public static uint4_mt4 operator*(uint4_mt4 a, uint4_mt4 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
+
+    [MethodImpl(256 | 512)]
+    public static uint4_mt4 operator/(uint4_mt4 a, uint4_mt4 b) => new(a.w / b.w, a.z / b.z, a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static uint4_mt4 operator/(uint4_mt4 a, uint b) => new(a.w / b, a.z / b, a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static uint4_mt4 operator%(uint4_mt4 a, uint4_mt4 b) => new(a.w % b.w, a.z % b.z, a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static uint4_mt4 operator%(uint4_mt4 a, uint b) => new(a.w % b, a.z % b, a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static uint4_mt4 operator~(uint4_mt4 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
+
+    [MethodImpl(256 | 512)]
+    public static uint4_mt4 operator|(uint4_mt4 a, uint4_mt4 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
+
+    [MethodImpl(256 | 512)]
+    public static uint4_mt4 operator&(uint4_mt4 a, uint4_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
+
+    #endregion // Operators
+}
+
+#endregion // uint4_mt4
+#region uint4_mt8
+
+[Serializable]
+//[JsonConverter(typeof(uint4_mt8JsonConverter))]
+public partial struct uint4_mt8
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<uint>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public uint_mt8 x;
+    public uint_mt8 y;
+    public uint_mt8 z;
+    public uint_mt8 w;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public uint4 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index], w[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+           w[index] = value.w;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public uint4_mt8(uint_mt8 x, uint_mt8 y, uint_mt8 z, uint_mt8 w)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public uint4_mt8(uint_mt8 value)
+    {
+        w = z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public uint4_mt8(uint4 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+        w = new(value.w);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator uint4_mt8(uint value) => new uint_mt8(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator uint4_mt8(uint_mt8 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator uint4_mt8(uint4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static uint4_mt8 operator-(uint4_mt8 a) => new(-a.x, -a.y, -a.z, -a.w);
+
+    [MethodImpl(256 | 512)]
+    public static uint4_mt8 operator+(uint4_mt8 a, uint4_mt8 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
+
+    [MethodImpl(256 | 512)]
+    public static uint4_mt8 operator-(uint4_mt8 a, uint4_mt8 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
+
+    [MethodImpl(256 | 512)]
+    public static uint4_mt8 operator*(uint4_mt8 a, uint4_mt8 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
+
+    [MethodImpl(256 | 512)]
+    public static uint4_mt8 operator/(uint4_mt8 a, uint4_mt8 b) => new(a.w / b.w, a.z / b.z, a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static uint4_mt8 operator/(uint4_mt8 a, uint b) => new(a.w / b, a.z / b, a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static uint4_mt8 operator%(uint4_mt8 a, uint4_mt8 b) => new(a.w % b.w, a.z % b.z, a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static uint4_mt8 operator%(uint4_mt8 a, uint b) => new(a.w % b, a.z % b, a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static uint4_mt8 operator~(uint4_mt8 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
+
+    [MethodImpl(256 | 512)]
+    public static uint4_mt8 operator|(uint4_mt8 a, uint4_mt8 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
+
+    [MethodImpl(256 | 512)]
+    public static uint4_mt8 operator&(uint4_mt8 a, uint4_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
+
+    #endregion // Operators
+}
+
+#endregion // uint4_mt8
+#region uint4_mt16
+
+[Serializable]
+//[JsonConverter(typeof(uint4_mt16JsonConverter))]
+public partial struct uint4_mt16
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<uint>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public uint_mt16 x;
+    public uint_mt16 y;
+    public uint_mt16 z;
+    public uint_mt16 w;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public uint4 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index], w[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+           w[index] = value.w;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public uint4_mt16(uint_mt16 x, uint_mt16 y, uint_mt16 z, uint_mt16 w)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public uint4_mt16(uint_mt16 value)
+    {
+        w = z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public uint4_mt16(uint4 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+        w = new(value.w);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator uint4_mt16(uint value) => new uint_mt16(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator uint4_mt16(uint_mt16 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator uint4_mt16(uint4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static uint4_mt16 operator-(uint4_mt16 a) => new(-a.x, -a.y, -a.z, -a.w);
+
+    [MethodImpl(256 | 512)]
+    public static uint4_mt16 operator+(uint4_mt16 a, uint4_mt16 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
+
+    [MethodImpl(256 | 512)]
+    public static uint4_mt16 operator-(uint4_mt16 a, uint4_mt16 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
+
+    [MethodImpl(256 | 512)]
+    public static uint4_mt16 operator*(uint4_mt16 a, uint4_mt16 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
+
+    [MethodImpl(256 | 512)]
+    public static uint4_mt16 operator/(uint4_mt16 a, uint4_mt16 b) => new(a.w / b.w, a.z / b.z, a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static uint4_mt16 operator/(uint4_mt16 a, uint b) => new(a.w / b, a.z / b, a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static uint4_mt16 operator%(uint4_mt16 a, uint4_mt16 b) => new(a.w % b.w, a.z % b.z, a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static uint4_mt16 operator%(uint4_mt16 a, uint b) => new(a.w % b, a.z % b, a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static uint4_mt16 operator~(uint4_mt16 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
+
+    [MethodImpl(256 | 512)]
+    public static uint4_mt16 operator|(uint4_mt16 a, uint4_mt16 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
+
+    [MethodImpl(256 | 512)]
+    public static uint4_mt16 operator&(uint4_mt16 a, uint4_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
+
+    #endregion // Operators
+}
+
+#endregion // uint4_mt16
+#region long2_mt
+
+[Serializable]
+//[JsonConverter(typeof(long2_mtJsonConverter))]
+public partial struct long2_mt
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<long>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public long_mt x;
+    public long_mt y;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public long2 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public long2_mt(long_mt x, long_mt y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public long2_mt(long_mt value)
+    {
+        y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public long2_mt(long2 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator long2_mt(long value) => new long_mt(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator long2_mt(long_mt value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator long2_mt(long2 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt operator-(long2_mt a) => new(-a.x, -a.y);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt operator+(long2_mt a, long2_mt b) => new(a.x + b.x, a.y + b.y);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt operator-(long2_mt a, long2_mt b) => new(a.x - b.x, a.y - b.y);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt operator*(long2_mt a, long2_mt b) => new(a.x * b.x, a.y * b.y);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt operator/(long2_mt a, long2_mt b) => new(a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt operator/(long2_mt a, long b) => new(a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt operator%(long2_mt a, long2_mt b) => new(a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt operator%(long2_mt a, long b) => new(a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt operator~(long2_mt a) => new(~a.x, ~a.y);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt operator|(long2_mt a, long2_mt b) => new(a.x | b.x, a.y | b.y);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt operator&(long2_mt a, long2_mt b) => new(a.x & b.x, a.y & b.y);
+
+    #endregion // Operators
+}
+
+#endregion // long2_mt
+#region long2_mt4
+
+[Serializable]
+//[JsonConverter(typeof(long2_mt4JsonConverter))]
+public partial struct long2_mt4
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<long>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public long_mt4 x;
+    public long_mt4 y;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public long2 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public long2_mt4(long_mt4 x, long_mt4 y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public long2_mt4(long_mt4 value)
+    {
+        y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public long2_mt4(long2 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator long2_mt4(long value) => new long_mt4(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator long2_mt4(long_mt4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator long2_mt4(long2 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt4 operator-(long2_mt4 a) => new(-a.x, -a.y);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt4 operator+(long2_mt4 a, long2_mt4 b) => new(a.x + b.x, a.y + b.y);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt4 operator-(long2_mt4 a, long2_mt4 b) => new(a.x - b.x, a.y - b.y);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt4 operator*(long2_mt4 a, long2_mt4 b) => new(a.x * b.x, a.y * b.y);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt4 operator/(long2_mt4 a, long2_mt4 b) => new(a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt4 operator/(long2_mt4 a, long b) => new(a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt4 operator%(long2_mt4 a, long2_mt4 b) => new(a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt4 operator%(long2_mt4 a, long b) => new(a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt4 operator~(long2_mt4 a) => new(~a.x, ~a.y);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt4 operator|(long2_mt4 a, long2_mt4 b) => new(a.x | b.x, a.y | b.y);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt4 operator&(long2_mt4 a, long2_mt4 b) => new(a.x & b.x, a.y & b.y);
+
+    #endregion // Operators
+}
+
+#endregion // long2_mt4
+#region long2_mt8
+
+[Serializable]
+//[JsonConverter(typeof(long2_mt8JsonConverter))]
+public partial struct long2_mt8
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<long>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public long_mt8 x;
+    public long_mt8 y;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public long2 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public long2_mt8(long_mt8 x, long_mt8 y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public long2_mt8(long_mt8 value)
+    {
+        y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public long2_mt8(long2 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator long2_mt8(long value) => new long_mt8(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator long2_mt8(long_mt8 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator long2_mt8(long2 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt8 operator-(long2_mt8 a) => new(-a.x, -a.y);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt8 operator+(long2_mt8 a, long2_mt8 b) => new(a.x + b.x, a.y + b.y);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt8 operator-(long2_mt8 a, long2_mt8 b) => new(a.x - b.x, a.y - b.y);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt8 operator*(long2_mt8 a, long2_mt8 b) => new(a.x * b.x, a.y * b.y);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt8 operator/(long2_mt8 a, long2_mt8 b) => new(a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt8 operator/(long2_mt8 a, long b) => new(a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt8 operator%(long2_mt8 a, long2_mt8 b) => new(a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt8 operator%(long2_mt8 a, long b) => new(a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt8 operator~(long2_mt8 a) => new(~a.x, ~a.y);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt8 operator|(long2_mt8 a, long2_mt8 b) => new(a.x | b.x, a.y | b.y);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt8 operator&(long2_mt8 a, long2_mt8 b) => new(a.x & b.x, a.y & b.y);
+
+    #endregion // Operators
+}
+
+#endregion // long2_mt8
+#region long2_mt16
+
+[Serializable]
+//[JsonConverter(typeof(long2_mt16JsonConverter))]
+public partial struct long2_mt16
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<long>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public long_mt16 x;
+    public long_mt16 y;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public long2 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public long2_mt16(long_mt16 x, long_mt16 y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public long2_mt16(long_mt16 value)
+    {
+        y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public long2_mt16(long2 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator long2_mt16(long value) => new long_mt16(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator long2_mt16(long_mt16 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator long2_mt16(long2 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt16 operator-(long2_mt16 a) => new(-a.x, -a.y);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt16 operator+(long2_mt16 a, long2_mt16 b) => new(a.x + b.x, a.y + b.y);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt16 operator-(long2_mt16 a, long2_mt16 b) => new(a.x - b.x, a.y - b.y);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt16 operator*(long2_mt16 a, long2_mt16 b) => new(a.x * b.x, a.y * b.y);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt16 operator/(long2_mt16 a, long2_mt16 b) => new(a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt16 operator/(long2_mt16 a, long b) => new(a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt16 operator%(long2_mt16 a, long2_mt16 b) => new(a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt16 operator%(long2_mt16 a, long b) => new(a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt16 operator~(long2_mt16 a) => new(~a.x, ~a.y);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt16 operator|(long2_mt16 a, long2_mt16 b) => new(a.x | b.x, a.y | b.y);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt16 operator&(long2_mt16 a, long2_mt16 b) => new(a.x & b.x, a.y & b.y);
+
+    #endregion // Operators
+}
+
+#endregion // long2_mt16
+#region long3_mt
+
+[Serializable]
+//[JsonConverter(typeof(long3_mtJsonConverter))]
+public partial struct long3_mt
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<long>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public long_mt x;
+    public long_mt y;
+    public long_mt z;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public long3 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public long3_mt(long_mt x, long_mt y, long_mt z)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public long3_mt(long_mt value)
+    {
+        z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public long3_mt(long3 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator long3_mt(long value) => new long_mt(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator long3_mt(long_mt value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator long3_mt(long3 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt operator-(long3_mt a) => new(-a.x, -a.y, -a.z);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt operator+(long3_mt a, long3_mt b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt operator-(long3_mt a, long3_mt b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt operator*(long3_mt a, long3_mt b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt operator/(long3_mt a, long3_mt b) => new(a.z / b.z, a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt operator/(long3_mt a, long b) => new(a.z / b, a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt operator%(long3_mt a, long3_mt b) => new(a.z % b.z, a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt operator%(long3_mt a, long b) => new(a.z % b, a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt operator~(long3_mt a) => new(~a.x, ~a.y, ~a.z);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt operator|(long3_mt a, long3_mt b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt operator&(long3_mt a, long3_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
+
+    #endregion // Operators
+}
+
+#endregion // long3_mt
+#region long3_mt4
+
+[Serializable]
+//[JsonConverter(typeof(long3_mt4JsonConverter))]
+public partial struct long3_mt4
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<long>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public long_mt4 x;
+    public long_mt4 y;
+    public long_mt4 z;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public long3 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public long3_mt4(long_mt4 x, long_mt4 y, long_mt4 z)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public long3_mt4(long_mt4 value)
+    {
+        z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public long3_mt4(long3 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator long3_mt4(long value) => new long_mt4(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator long3_mt4(long_mt4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator long3_mt4(long3 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt4 operator-(long3_mt4 a) => new(-a.x, -a.y, -a.z);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt4 operator+(long3_mt4 a, long3_mt4 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt4 operator-(long3_mt4 a, long3_mt4 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt4 operator*(long3_mt4 a, long3_mt4 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt4 operator/(long3_mt4 a, long3_mt4 b) => new(a.z / b.z, a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt4 operator/(long3_mt4 a, long b) => new(a.z / b, a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt4 operator%(long3_mt4 a, long3_mt4 b) => new(a.z % b.z, a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt4 operator%(long3_mt4 a, long b) => new(a.z % b, a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt4 operator~(long3_mt4 a) => new(~a.x, ~a.y, ~a.z);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt4 operator|(long3_mt4 a, long3_mt4 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt4 operator&(long3_mt4 a, long3_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
+
+    #endregion // Operators
+}
+
+#endregion // long3_mt4
+#region long3_mt8
+
+[Serializable]
+//[JsonConverter(typeof(long3_mt8JsonConverter))]
+public partial struct long3_mt8
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<long>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public long_mt8 x;
+    public long_mt8 y;
+    public long_mt8 z;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public long3 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public long3_mt8(long_mt8 x, long_mt8 y, long_mt8 z)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public long3_mt8(long_mt8 value)
+    {
+        z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public long3_mt8(long3 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator long3_mt8(long value) => new long_mt8(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator long3_mt8(long_mt8 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator long3_mt8(long3 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt8 operator-(long3_mt8 a) => new(-a.x, -a.y, -a.z);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt8 operator+(long3_mt8 a, long3_mt8 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt8 operator-(long3_mt8 a, long3_mt8 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt8 operator*(long3_mt8 a, long3_mt8 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt8 operator/(long3_mt8 a, long3_mt8 b) => new(a.z / b.z, a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt8 operator/(long3_mt8 a, long b) => new(a.z / b, a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt8 operator%(long3_mt8 a, long3_mt8 b) => new(a.z % b.z, a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt8 operator%(long3_mt8 a, long b) => new(a.z % b, a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt8 operator~(long3_mt8 a) => new(~a.x, ~a.y, ~a.z);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt8 operator|(long3_mt8 a, long3_mt8 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt8 operator&(long3_mt8 a, long3_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
+
+    #endregion // Operators
+}
+
+#endregion // long3_mt8
+#region long3_mt16
+
+[Serializable]
+//[JsonConverter(typeof(long3_mt16JsonConverter))]
+public partial struct long3_mt16
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<long>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public long_mt16 x;
+    public long_mt16 y;
+    public long_mt16 z;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public long3 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public long3_mt16(long_mt16 x, long_mt16 y, long_mt16 z)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public long3_mt16(long_mt16 value)
+    {
+        z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public long3_mt16(long3 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator long3_mt16(long value) => new long_mt16(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator long3_mt16(long_mt16 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator long3_mt16(long3 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt16 operator-(long3_mt16 a) => new(-a.x, -a.y, -a.z);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt16 operator+(long3_mt16 a, long3_mt16 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt16 operator-(long3_mt16 a, long3_mt16 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt16 operator*(long3_mt16 a, long3_mt16 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt16 operator/(long3_mt16 a, long3_mt16 b) => new(a.z / b.z, a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt16 operator/(long3_mt16 a, long b) => new(a.z / b, a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt16 operator%(long3_mt16 a, long3_mt16 b) => new(a.z % b.z, a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt16 operator%(long3_mt16 a, long b) => new(a.z % b, a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt16 operator~(long3_mt16 a) => new(~a.x, ~a.y, ~a.z);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt16 operator|(long3_mt16 a, long3_mt16 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt16 operator&(long3_mt16 a, long3_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
+
+    #endregion // Operators
+}
+
+#endregion // long3_mt16
+#region long4_mt
+
+[Serializable]
+//[JsonConverter(typeof(long4_mtJsonConverter))]
+public partial struct long4_mt
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<long>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public long_mt x;
+    public long_mt y;
+    public long_mt z;
+    public long_mt w;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public long4 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index], w[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+           w[index] = value.w;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public long4_mt(long_mt x, long_mt y, long_mt z, long_mt w)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public long4_mt(long_mt value)
+    {
+        w = z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public long4_mt(long4 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+        w = new(value.w);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator long4_mt(long value) => new long_mt(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator long4_mt(long_mt value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator long4_mt(long4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt operator-(long4_mt a) => new(-a.x, -a.y, -a.z, -a.w);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt operator+(long4_mt a, long4_mt b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt operator-(long4_mt a, long4_mt b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt operator*(long4_mt a, long4_mt b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt operator/(long4_mt a, long4_mt b) => new(a.w / b.w, a.z / b.z, a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt operator/(long4_mt a, long b) => new(a.w / b, a.z / b, a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt operator%(long4_mt a, long4_mt b) => new(a.w % b.w, a.z % b.z, a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt operator%(long4_mt a, long b) => new(a.w % b, a.z % b, a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt operator~(long4_mt a) => new(~a.x, ~a.y, ~a.z, ~a.w);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt operator|(long4_mt a, long4_mt b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt operator&(long4_mt a, long4_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
+
+    #endregion // Operators
+}
+
+#endregion // long4_mt
+#region long4_mt4
+
+[Serializable]
+//[JsonConverter(typeof(long4_mt4JsonConverter))]
+public partial struct long4_mt4
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<long>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public long_mt4 x;
+    public long_mt4 y;
+    public long_mt4 z;
+    public long_mt4 w;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public long4 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index], w[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+           w[index] = value.w;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public long4_mt4(long_mt4 x, long_mt4 y, long_mt4 z, long_mt4 w)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public long4_mt4(long_mt4 value)
+    {
+        w = z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public long4_mt4(long4 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+        w = new(value.w);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator long4_mt4(long value) => new long_mt4(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator long4_mt4(long_mt4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator long4_mt4(long4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt4 operator-(long4_mt4 a) => new(-a.x, -a.y, -a.z, -a.w);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt4 operator+(long4_mt4 a, long4_mt4 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt4 operator-(long4_mt4 a, long4_mt4 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt4 operator*(long4_mt4 a, long4_mt4 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt4 operator/(long4_mt4 a, long4_mt4 b) => new(a.w / b.w, a.z / b.z, a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt4 operator/(long4_mt4 a, long b) => new(a.w / b, a.z / b, a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt4 operator%(long4_mt4 a, long4_mt4 b) => new(a.w % b.w, a.z % b.z, a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt4 operator%(long4_mt4 a, long b) => new(a.w % b, a.z % b, a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt4 operator~(long4_mt4 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt4 operator|(long4_mt4 a, long4_mt4 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt4 operator&(long4_mt4 a, long4_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
+
+    #endregion // Operators
+}
+
+#endregion // long4_mt4
+#region long4_mt8
+
+[Serializable]
+//[JsonConverter(typeof(long4_mt8JsonConverter))]
+public partial struct long4_mt8
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<long>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public long_mt8 x;
+    public long_mt8 y;
+    public long_mt8 z;
+    public long_mt8 w;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public long4 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index], w[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+           w[index] = value.w;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public long4_mt8(long_mt8 x, long_mt8 y, long_mt8 z, long_mt8 w)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public long4_mt8(long_mt8 value)
+    {
+        w = z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public long4_mt8(long4 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+        w = new(value.w);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator long4_mt8(long value) => new long_mt8(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator long4_mt8(long_mt8 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator long4_mt8(long4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt8 operator-(long4_mt8 a) => new(-a.x, -a.y, -a.z, -a.w);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt8 operator+(long4_mt8 a, long4_mt8 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt8 operator-(long4_mt8 a, long4_mt8 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt8 operator*(long4_mt8 a, long4_mt8 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt8 operator/(long4_mt8 a, long4_mt8 b) => new(a.w / b.w, a.z / b.z, a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt8 operator/(long4_mt8 a, long b) => new(a.w / b, a.z / b, a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt8 operator%(long4_mt8 a, long4_mt8 b) => new(a.w % b.w, a.z % b.z, a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt8 operator%(long4_mt8 a, long b) => new(a.w % b, a.z % b, a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt8 operator~(long4_mt8 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt8 operator|(long4_mt8 a, long4_mt8 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt8 operator&(long4_mt8 a, long4_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
+
+    #endregion // Operators
+}
+
+#endregion // long4_mt8
+#region long4_mt16
+
+[Serializable]
+//[JsonConverter(typeof(long4_mt16JsonConverter))]
+public partial struct long4_mt16
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<long>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public long_mt16 x;
+    public long_mt16 y;
+    public long_mt16 z;
+    public long_mt16 w;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public long4 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index], w[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+           w[index] = value.w;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public long4_mt16(long_mt16 x, long_mt16 y, long_mt16 z, long_mt16 w)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public long4_mt16(long_mt16 value)
+    {
+        w = z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public long4_mt16(long4 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+        w = new(value.w);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator long4_mt16(long value) => new long_mt16(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator long4_mt16(long_mt16 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator long4_mt16(long4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt16 operator-(long4_mt16 a) => new(-a.x, -a.y, -a.z, -a.w);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt16 operator+(long4_mt16 a, long4_mt16 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt16 operator-(long4_mt16 a, long4_mt16 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt16 operator*(long4_mt16 a, long4_mt16 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt16 operator/(long4_mt16 a, long4_mt16 b) => new(a.w / b.w, a.z / b.z, a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt16 operator/(long4_mt16 a, long b) => new(a.w / b, a.z / b, a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt16 operator%(long4_mt16 a, long4_mt16 b) => new(a.w % b.w, a.z % b.z, a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt16 operator%(long4_mt16 a, long b) => new(a.w % b, a.z % b, a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt16 operator~(long4_mt16 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt16 operator|(long4_mt16 a, long4_mt16 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt16 operator&(long4_mt16 a, long4_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
+
+    #endregion // Operators
+}
+
+#endregion // long4_mt16
+#region ulong2_mt
+
+[Serializable]
+//[JsonConverter(typeof(ulong2_mtJsonConverter))]
+public partial struct ulong2_mt
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<ulong>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public ulong_mt x;
+    public ulong_mt y;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public ulong2 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public ulong2_mt(ulong_mt x, ulong_mt y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public ulong2_mt(ulong_mt value)
+    {
+        y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public ulong2_mt(ulong2 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator ulong2_mt(ulong value) => new ulong_mt(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator ulong2_mt(ulong_mt value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator ulong2_mt(ulong2 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt operator-(ulong2_mt a) => new(-a.x, -a.y);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt operator+(ulong2_mt a, ulong2_mt b) => new(a.x + b.x, a.y + b.y);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt operator-(ulong2_mt a, ulong2_mt b) => new(a.x - b.x, a.y - b.y);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt operator*(ulong2_mt a, ulong2_mt b) => new(a.x * b.x, a.y * b.y);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt operator/(ulong2_mt a, ulong2_mt b) => new(a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt operator/(ulong2_mt a, ulong b) => new(a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt operator%(ulong2_mt a, ulong2_mt b) => new(a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt operator%(ulong2_mt a, ulong b) => new(a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt operator~(ulong2_mt a) => new(~a.x, ~a.y);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt operator|(ulong2_mt a, ulong2_mt b) => new(a.x | b.x, a.y | b.y);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt operator&(ulong2_mt a, ulong2_mt b) => new(a.x & b.x, a.y & b.y);
+
+    #endregion // Operators
+}
+
+#endregion // ulong2_mt
+#region ulong2_mt4
+
+[Serializable]
+//[JsonConverter(typeof(ulong2_mt4JsonConverter))]
+public partial struct ulong2_mt4
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<ulong>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public ulong_mt4 x;
+    public ulong_mt4 y;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public ulong2 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public ulong2_mt4(ulong_mt4 x, ulong_mt4 y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public ulong2_mt4(ulong_mt4 value)
+    {
+        y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public ulong2_mt4(ulong2 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator ulong2_mt4(ulong value) => new ulong_mt4(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator ulong2_mt4(ulong_mt4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator ulong2_mt4(ulong2 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt4 operator-(ulong2_mt4 a) => new(-a.x, -a.y);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt4 operator+(ulong2_mt4 a, ulong2_mt4 b) => new(a.x + b.x, a.y + b.y);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt4 operator-(ulong2_mt4 a, ulong2_mt4 b) => new(a.x - b.x, a.y - b.y);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt4 operator*(ulong2_mt4 a, ulong2_mt4 b) => new(a.x * b.x, a.y * b.y);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt4 operator/(ulong2_mt4 a, ulong2_mt4 b) => new(a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt4 operator/(ulong2_mt4 a, ulong b) => new(a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt4 operator%(ulong2_mt4 a, ulong2_mt4 b) => new(a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt4 operator%(ulong2_mt4 a, ulong b) => new(a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt4 operator~(ulong2_mt4 a) => new(~a.x, ~a.y);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt4 operator|(ulong2_mt4 a, ulong2_mt4 b) => new(a.x | b.x, a.y | b.y);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt4 operator&(ulong2_mt4 a, ulong2_mt4 b) => new(a.x & b.x, a.y & b.y);
+
+    #endregion // Operators
+}
+
+#endregion // ulong2_mt4
+#region ulong2_mt8
+
+[Serializable]
+//[JsonConverter(typeof(ulong2_mt8JsonConverter))]
+public partial struct ulong2_mt8
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<ulong>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public ulong_mt8 x;
+    public ulong_mt8 y;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public ulong2 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public ulong2_mt8(ulong_mt8 x, ulong_mt8 y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public ulong2_mt8(ulong_mt8 value)
+    {
+        y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public ulong2_mt8(ulong2 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator ulong2_mt8(ulong value) => new ulong_mt8(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator ulong2_mt8(ulong_mt8 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator ulong2_mt8(ulong2 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt8 operator-(ulong2_mt8 a) => new(-a.x, -a.y);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt8 operator+(ulong2_mt8 a, ulong2_mt8 b) => new(a.x + b.x, a.y + b.y);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt8 operator-(ulong2_mt8 a, ulong2_mt8 b) => new(a.x - b.x, a.y - b.y);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt8 operator*(ulong2_mt8 a, ulong2_mt8 b) => new(a.x * b.x, a.y * b.y);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt8 operator/(ulong2_mt8 a, ulong2_mt8 b) => new(a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt8 operator/(ulong2_mt8 a, ulong b) => new(a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt8 operator%(ulong2_mt8 a, ulong2_mt8 b) => new(a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt8 operator%(ulong2_mt8 a, ulong b) => new(a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt8 operator~(ulong2_mt8 a) => new(~a.x, ~a.y);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt8 operator|(ulong2_mt8 a, ulong2_mt8 b) => new(a.x | b.x, a.y | b.y);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt8 operator&(ulong2_mt8 a, ulong2_mt8 b) => new(a.x & b.x, a.y & b.y);
+
+    #endregion // Operators
+}
+
+#endregion // ulong2_mt8
+#region ulong2_mt16
+
+[Serializable]
+//[JsonConverter(typeof(ulong2_mt16JsonConverter))]
+public partial struct ulong2_mt16
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<ulong>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public ulong_mt16 x;
+    public ulong_mt16 y;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public ulong2 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public ulong2_mt16(ulong_mt16 x, ulong_mt16 y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public ulong2_mt16(ulong_mt16 value)
+    {
+        y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public ulong2_mt16(ulong2 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator ulong2_mt16(ulong value) => new ulong_mt16(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator ulong2_mt16(ulong_mt16 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator ulong2_mt16(ulong2 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt16 operator-(ulong2_mt16 a) => new(-a.x, -a.y);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt16 operator+(ulong2_mt16 a, ulong2_mt16 b) => new(a.x + b.x, a.y + b.y);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt16 operator-(ulong2_mt16 a, ulong2_mt16 b) => new(a.x - b.x, a.y - b.y);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt16 operator*(ulong2_mt16 a, ulong2_mt16 b) => new(a.x * b.x, a.y * b.y);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt16 operator/(ulong2_mt16 a, ulong2_mt16 b) => new(a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt16 operator/(ulong2_mt16 a, ulong b) => new(a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt16 operator%(ulong2_mt16 a, ulong2_mt16 b) => new(a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt16 operator%(ulong2_mt16 a, ulong b) => new(a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt16 operator~(ulong2_mt16 a) => new(~a.x, ~a.y);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt16 operator|(ulong2_mt16 a, ulong2_mt16 b) => new(a.x | b.x, a.y | b.y);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt16 operator&(ulong2_mt16 a, ulong2_mt16 b) => new(a.x & b.x, a.y & b.y);
+
+    #endregion // Operators
+}
+
+#endregion // ulong2_mt16
+#region ulong3_mt
+
+[Serializable]
+//[JsonConverter(typeof(ulong3_mtJsonConverter))]
+public partial struct ulong3_mt
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<ulong>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public ulong_mt x;
+    public ulong_mt y;
+    public ulong_mt z;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public ulong3 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public ulong3_mt(ulong_mt x, ulong_mt y, ulong_mt z)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public ulong3_mt(ulong_mt value)
+    {
+        z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public ulong3_mt(ulong3 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator ulong3_mt(ulong value) => new ulong_mt(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator ulong3_mt(ulong_mt value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator ulong3_mt(ulong3 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt operator-(ulong3_mt a) => new(-a.x, -a.y, -a.z);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt operator+(ulong3_mt a, ulong3_mt b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt operator-(ulong3_mt a, ulong3_mt b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt operator*(ulong3_mt a, ulong3_mt b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt operator/(ulong3_mt a, ulong3_mt b) => new(a.z / b.z, a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt operator/(ulong3_mt a, ulong b) => new(a.z / b, a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt operator%(ulong3_mt a, ulong3_mt b) => new(a.z % b.z, a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt operator%(ulong3_mt a, ulong b) => new(a.z % b, a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt operator~(ulong3_mt a) => new(~a.x, ~a.y, ~a.z);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt operator|(ulong3_mt a, ulong3_mt b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt operator&(ulong3_mt a, ulong3_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
+
+    #endregion // Operators
+}
+
+#endregion // ulong3_mt
+#region ulong3_mt4
+
+[Serializable]
+//[JsonConverter(typeof(ulong3_mt4JsonConverter))]
+public partial struct ulong3_mt4
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<ulong>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public ulong_mt4 x;
+    public ulong_mt4 y;
+    public ulong_mt4 z;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public ulong3 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public ulong3_mt4(ulong_mt4 x, ulong_mt4 y, ulong_mt4 z)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public ulong3_mt4(ulong_mt4 value)
+    {
+        z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public ulong3_mt4(ulong3 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator ulong3_mt4(ulong value) => new ulong_mt4(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator ulong3_mt4(ulong_mt4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator ulong3_mt4(ulong3 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt4 operator-(ulong3_mt4 a) => new(-a.x, -a.y, -a.z);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt4 operator+(ulong3_mt4 a, ulong3_mt4 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt4 operator-(ulong3_mt4 a, ulong3_mt4 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt4 operator*(ulong3_mt4 a, ulong3_mt4 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt4 operator/(ulong3_mt4 a, ulong3_mt4 b) => new(a.z / b.z, a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt4 operator/(ulong3_mt4 a, ulong b) => new(a.z / b, a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt4 operator%(ulong3_mt4 a, ulong3_mt4 b) => new(a.z % b.z, a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt4 operator%(ulong3_mt4 a, ulong b) => new(a.z % b, a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt4 operator~(ulong3_mt4 a) => new(~a.x, ~a.y, ~a.z);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt4 operator|(ulong3_mt4 a, ulong3_mt4 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt4 operator&(ulong3_mt4 a, ulong3_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
+
+    #endregion // Operators
+}
+
+#endregion // ulong3_mt4
+#region ulong3_mt8
+
+[Serializable]
+//[JsonConverter(typeof(ulong3_mt8JsonConverter))]
+public partial struct ulong3_mt8
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<ulong>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public ulong_mt8 x;
+    public ulong_mt8 y;
+    public ulong_mt8 z;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public ulong3 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public ulong3_mt8(ulong_mt8 x, ulong_mt8 y, ulong_mt8 z)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public ulong3_mt8(ulong_mt8 value)
+    {
+        z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public ulong3_mt8(ulong3 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator ulong3_mt8(ulong value) => new ulong_mt8(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator ulong3_mt8(ulong_mt8 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator ulong3_mt8(ulong3 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt8 operator-(ulong3_mt8 a) => new(-a.x, -a.y, -a.z);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt8 operator+(ulong3_mt8 a, ulong3_mt8 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt8 operator-(ulong3_mt8 a, ulong3_mt8 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt8 operator*(ulong3_mt8 a, ulong3_mt8 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt8 operator/(ulong3_mt8 a, ulong3_mt8 b) => new(a.z / b.z, a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt8 operator/(ulong3_mt8 a, ulong b) => new(a.z / b, a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt8 operator%(ulong3_mt8 a, ulong3_mt8 b) => new(a.z % b.z, a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt8 operator%(ulong3_mt8 a, ulong b) => new(a.z % b, a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt8 operator~(ulong3_mt8 a) => new(~a.x, ~a.y, ~a.z);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt8 operator|(ulong3_mt8 a, ulong3_mt8 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt8 operator&(ulong3_mt8 a, ulong3_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
+
+    #endregion // Operators
+}
+
+#endregion // ulong3_mt8
+#region ulong3_mt16
+
+[Serializable]
+//[JsonConverter(typeof(ulong3_mt16JsonConverter))]
+public partial struct ulong3_mt16
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<ulong>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public ulong_mt16 x;
+    public ulong_mt16 y;
+    public ulong_mt16 z;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public ulong3 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public ulong3_mt16(ulong_mt16 x, ulong_mt16 y, ulong_mt16 z)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public ulong3_mt16(ulong_mt16 value)
+    {
+        z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public ulong3_mt16(ulong3 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator ulong3_mt16(ulong value) => new ulong_mt16(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator ulong3_mt16(ulong_mt16 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator ulong3_mt16(ulong3 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt16 operator-(ulong3_mt16 a) => new(-a.x, -a.y, -a.z);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt16 operator+(ulong3_mt16 a, ulong3_mt16 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt16 operator-(ulong3_mt16 a, ulong3_mt16 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt16 operator*(ulong3_mt16 a, ulong3_mt16 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt16 operator/(ulong3_mt16 a, ulong3_mt16 b) => new(a.z / b.z, a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt16 operator/(ulong3_mt16 a, ulong b) => new(a.z / b, a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt16 operator%(ulong3_mt16 a, ulong3_mt16 b) => new(a.z % b.z, a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt16 operator%(ulong3_mt16 a, ulong b) => new(a.z % b, a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt16 operator~(ulong3_mt16 a) => new(~a.x, ~a.y, ~a.z);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt16 operator|(ulong3_mt16 a, ulong3_mt16 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt16 operator&(ulong3_mt16 a, ulong3_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
+
+    #endregion // Operators
+}
+
+#endregion // ulong3_mt16
+#region ulong4_mt
+
+[Serializable]
+//[JsonConverter(typeof(ulong4_mtJsonConverter))]
+public partial struct ulong4_mt
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<ulong>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public ulong_mt x;
+    public ulong_mt y;
+    public ulong_mt z;
+    public ulong_mt w;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public ulong4 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index], w[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+           w[index] = value.w;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public ulong4_mt(ulong_mt x, ulong_mt y, ulong_mt z, ulong_mt w)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public ulong4_mt(ulong_mt value)
+    {
+        w = z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public ulong4_mt(ulong4 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+        w = new(value.w);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator ulong4_mt(ulong value) => new ulong_mt(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator ulong4_mt(ulong_mt value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator ulong4_mt(ulong4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt operator-(ulong4_mt a) => new(-a.x, -a.y, -a.z, -a.w);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt operator+(ulong4_mt a, ulong4_mt b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt operator-(ulong4_mt a, ulong4_mt b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt operator*(ulong4_mt a, ulong4_mt b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt operator/(ulong4_mt a, ulong4_mt b) => new(a.w / b.w, a.z / b.z, a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt operator/(ulong4_mt a, ulong b) => new(a.w / b, a.z / b, a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt operator%(ulong4_mt a, ulong4_mt b) => new(a.w % b.w, a.z % b.z, a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt operator%(ulong4_mt a, ulong b) => new(a.w % b, a.z % b, a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt operator~(ulong4_mt a) => new(~a.x, ~a.y, ~a.z, ~a.w);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt operator|(ulong4_mt a, ulong4_mt b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt operator&(ulong4_mt a, ulong4_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
+
+    #endregion // Operators
+}
+
+#endregion // ulong4_mt
+#region ulong4_mt4
+
+[Serializable]
+//[JsonConverter(typeof(ulong4_mt4JsonConverter))]
+public partial struct ulong4_mt4
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<ulong>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public ulong_mt4 x;
+    public ulong_mt4 y;
+    public ulong_mt4 z;
+    public ulong_mt4 w;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public ulong4 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index], w[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+           w[index] = value.w;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public ulong4_mt4(ulong_mt4 x, ulong_mt4 y, ulong_mt4 z, ulong_mt4 w)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public ulong4_mt4(ulong_mt4 value)
+    {
+        w = z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public ulong4_mt4(ulong4 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+        w = new(value.w);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator ulong4_mt4(ulong value) => new ulong_mt4(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator ulong4_mt4(ulong_mt4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator ulong4_mt4(ulong4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt4 operator-(ulong4_mt4 a) => new(-a.x, -a.y, -a.z, -a.w);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt4 operator+(ulong4_mt4 a, ulong4_mt4 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt4 operator-(ulong4_mt4 a, ulong4_mt4 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt4 operator*(ulong4_mt4 a, ulong4_mt4 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt4 operator/(ulong4_mt4 a, ulong4_mt4 b) => new(a.w / b.w, a.z / b.z, a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt4 operator/(ulong4_mt4 a, ulong b) => new(a.w / b, a.z / b, a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt4 operator%(ulong4_mt4 a, ulong4_mt4 b) => new(a.w % b.w, a.z % b.z, a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt4 operator%(ulong4_mt4 a, ulong b) => new(a.w % b, a.z % b, a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt4 operator~(ulong4_mt4 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt4 operator|(ulong4_mt4 a, ulong4_mt4 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt4 operator&(ulong4_mt4 a, ulong4_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
+
+    #endregion // Operators
+}
+
+#endregion // ulong4_mt4
+#region ulong4_mt8
+
+[Serializable]
+//[JsonConverter(typeof(ulong4_mt8JsonConverter))]
+public partial struct ulong4_mt8
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<ulong>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public ulong_mt8 x;
+    public ulong_mt8 y;
+    public ulong_mt8 z;
+    public ulong_mt8 w;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public ulong4 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index], w[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+           w[index] = value.w;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public ulong4_mt8(ulong_mt8 x, ulong_mt8 y, ulong_mt8 z, ulong_mt8 w)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public ulong4_mt8(ulong_mt8 value)
+    {
+        w = z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public ulong4_mt8(ulong4 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+        w = new(value.w);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator ulong4_mt8(ulong value) => new ulong_mt8(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator ulong4_mt8(ulong_mt8 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator ulong4_mt8(ulong4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt8 operator-(ulong4_mt8 a) => new(-a.x, -a.y, -a.z, -a.w);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt8 operator+(ulong4_mt8 a, ulong4_mt8 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt8 operator-(ulong4_mt8 a, ulong4_mt8 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt8 operator*(ulong4_mt8 a, ulong4_mt8 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt8 operator/(ulong4_mt8 a, ulong4_mt8 b) => new(a.w / b.w, a.z / b.z, a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt8 operator/(ulong4_mt8 a, ulong b) => new(a.w / b, a.z / b, a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt8 operator%(ulong4_mt8 a, ulong4_mt8 b) => new(a.w % b.w, a.z % b.z, a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt8 operator%(ulong4_mt8 a, ulong b) => new(a.w % b, a.z % b, a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt8 operator~(ulong4_mt8 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt8 operator|(ulong4_mt8 a, ulong4_mt8 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt8 operator&(ulong4_mt8 a, ulong4_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
+
+    #endregion // Operators
+}
+
+#endregion // ulong4_mt8
+#region ulong4_mt16
+
+[Serializable]
+//[JsonConverter(typeof(ulong4_mt16JsonConverter))]
+public partial struct ulong4_mt16
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<ulong>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public ulong_mt16 x;
+    public ulong_mt16 y;
+    public ulong_mt16 z;
+    public ulong_mt16 w;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public ulong4 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index], w[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+           w[index] = value.w;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public ulong4_mt16(ulong_mt16 x, ulong_mt16 y, ulong_mt16 z, ulong_mt16 w)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public ulong4_mt16(ulong_mt16 value)
+    {
+        w = z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public ulong4_mt16(ulong4 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+        w = new(value.w);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator ulong4_mt16(ulong value) => new ulong_mt16(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator ulong4_mt16(ulong_mt16 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator ulong4_mt16(ulong4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt16 operator-(ulong4_mt16 a) => new(-a.x, -a.y, -a.z, -a.w);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt16 operator+(ulong4_mt16 a, ulong4_mt16 b) => new(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt16 operator-(ulong4_mt16 a, ulong4_mt16 b) => new(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt16 operator*(ulong4_mt16 a, ulong4_mt16 b) => new(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt16 operator/(ulong4_mt16 a, ulong4_mt16 b) => new(a.w / b.w, a.z / b.z, a.y / b.y, a.x / b.x);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt16 operator/(ulong4_mt16 a, ulong b) => new(a.w / b, a.z / b, a.y / b, a.x / b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt16 operator%(ulong4_mt16 a, ulong4_mt16 b) => new(a.w % b.w, a.z % b.z, a.y % b.y, a.x % b.x);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt16 operator%(ulong4_mt16 a, ulong b) => new(a.w % b, a.z % b, a.y % b, a.x % b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt16 operator~(ulong4_mt16 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt16 operator|(ulong4_mt16 a, ulong4_mt16 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt16 operator&(ulong4_mt16 a, ulong4_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
+
+    #endregion // Operators
+}
+
+#endregion // ulong4_mt16
 #region b32v2_mt
 
 [Serializable]
@@ -1114,6 +8296,264 @@ public partial struct b32v2_mt
 }
 
 #endregion // b32v2_mt
+#region b32v2_mt4
+
+[Serializable]
+//[JsonConverter(typeof(b32v2_mt4JsonConverter))]
+public partial struct b32v2_mt4
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<uint>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public b32_mt4 x;
+    public b32_mt4 y;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public b32v2 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public b32v2_mt4(b32_mt4 x, b32_mt4 y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b32v2_mt4(b32_mt4 value)
+    {
+        y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b32v2_mt4(b32v2 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b32v2_mt4(b32 value) => new b32_mt4(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b32v2_mt4(b32_mt4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b32v2_mt4(b32v2 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator~(b32v2_mt4 a) => new(~a.x, ~a.y);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator|(b32v2_mt4 a, b32v2_mt4 b) => new(a.x | b.x, a.y | b.y);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator&(b32v2_mt4 a, b32v2_mt4 b) => new(a.x & b.x, a.y & b.y);
+
+    #endregion // Operators
+}
+
+#endregion // b32v2_mt4
+#region b32v2_mt8
+
+[Serializable]
+//[JsonConverter(typeof(b32v2_mt8JsonConverter))]
+public partial struct b32v2_mt8
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<uint>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public b32_mt8 x;
+    public b32_mt8 y;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public b32v2 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public b32v2_mt8(b32_mt8 x, b32_mt8 y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b32v2_mt8(b32_mt8 value)
+    {
+        y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b32v2_mt8(b32v2 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b32v2_mt8(b32 value) => new b32_mt8(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b32v2_mt8(b32_mt8 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b32v2_mt8(b32v2 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator~(b32v2_mt8 a) => new(~a.x, ~a.y);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator|(b32v2_mt8 a, b32v2_mt8 b) => new(a.x | b.x, a.y | b.y);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator&(b32v2_mt8 a, b32v2_mt8 b) => new(a.x & b.x, a.y & b.y);
+
+    #endregion // Operators
+}
+
+#endregion // b32v2_mt8
+#region b32v2_mt16
+
+[Serializable]
+//[JsonConverter(typeof(b32v2_mt16JsonConverter))]
+public partial struct b32v2_mt16
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<uint>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public b32_mt16 x;
+    public b32_mt16 y;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public b32v2 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public b32v2_mt16(b32_mt16 x, b32_mt16 y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b32v2_mt16(b32_mt16 value)
+    {
+        y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b32v2_mt16(b32v2 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b32v2_mt16(b32 value) => new b32_mt16(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b32v2_mt16(b32_mt16 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b32v2_mt16(b32v2 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator~(b32v2_mt16 a) => new(~a.x, ~a.y);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator|(b32v2_mt16 a, b32v2_mt16 b) => new(a.x | b.x, a.y | b.y);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator&(b32v2_mt16 a, b32v2_mt16 b) => new(a.x & b.x, a.y & b.y);
+
+    #endregion // Operators
+}
+
+#endregion // b32v2_mt16
 #region b32v3_mt
 
 [Serializable]
@@ -1204,6 +8644,276 @@ public partial struct b32v3_mt
 }
 
 #endregion // b32v3_mt
+#region b32v3_mt4
+
+[Serializable]
+//[JsonConverter(typeof(b32v3_mt4JsonConverter))]
+public partial struct b32v3_mt4
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<uint>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public b32_mt4 x;
+    public b32_mt4 y;
+    public b32_mt4 z;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public b32v3 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public b32v3_mt4(b32_mt4 x, b32_mt4 y, b32_mt4 z)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b32v3_mt4(b32_mt4 value)
+    {
+        z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b32v3_mt4(b32v3 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b32v3_mt4(b32 value) => new b32_mt4(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b32v3_mt4(b32_mt4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b32v3_mt4(b32v3 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator~(b32v3_mt4 a) => new(~a.x, ~a.y, ~a.z);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator|(b32v3_mt4 a, b32v3_mt4 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator&(b32v3_mt4 a, b32v3_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
+
+    #endregion // Operators
+}
+
+#endregion // b32v3_mt4
+#region b32v3_mt8
+
+[Serializable]
+//[JsonConverter(typeof(b32v3_mt8JsonConverter))]
+public partial struct b32v3_mt8
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<uint>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public b32_mt8 x;
+    public b32_mt8 y;
+    public b32_mt8 z;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public b32v3 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public b32v3_mt8(b32_mt8 x, b32_mt8 y, b32_mt8 z)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b32v3_mt8(b32_mt8 value)
+    {
+        z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b32v3_mt8(b32v3 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b32v3_mt8(b32 value) => new b32_mt8(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b32v3_mt8(b32_mt8 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b32v3_mt8(b32v3 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator~(b32v3_mt8 a) => new(~a.x, ~a.y, ~a.z);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator|(b32v3_mt8 a, b32v3_mt8 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator&(b32v3_mt8 a, b32v3_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
+
+    #endregion // Operators
+}
+
+#endregion // b32v3_mt8
+#region b32v3_mt16
+
+[Serializable]
+//[JsonConverter(typeof(b32v3_mt16JsonConverter))]
+public partial struct b32v3_mt16
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<uint>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public b32_mt16 x;
+    public b32_mt16 y;
+    public b32_mt16 z;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public b32v3 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public b32v3_mt16(b32_mt16 x, b32_mt16 y, b32_mt16 z)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b32v3_mt16(b32_mt16 value)
+    {
+        z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b32v3_mt16(b32v3 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b32v3_mt16(b32 value) => new b32_mt16(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b32v3_mt16(b32_mt16 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b32v3_mt16(b32v3 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator~(b32v3_mt16 a) => new(~a.x, ~a.y, ~a.z);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator|(b32v3_mt16 a, b32v3_mt16 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator&(b32v3_mt16 a, b32v3_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
+
+    #endregion // Operators
+}
+
+#endregion // b32v3_mt16
 #region b32v4_mt
 
 [Serializable]
@@ -1298,3 +9008,1365 @@ public partial struct b32v4_mt
 }
 
 #endregion // b32v4_mt
+#region b32v4_mt4
+
+[Serializable]
+//[JsonConverter(typeof(b32v4_mt4JsonConverter))]
+public partial struct b32v4_mt4
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<uint>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public b32_mt4 x;
+    public b32_mt4 y;
+    public b32_mt4 z;
+    public b32_mt4 w;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public b32v4 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index], w[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+           w[index] = value.w;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public b32v4_mt4(b32_mt4 x, b32_mt4 y, b32_mt4 z, b32_mt4 w)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b32v4_mt4(b32_mt4 value)
+    {
+        w = z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b32v4_mt4(b32v4 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+        w = new(value.w);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b32v4_mt4(b32 value) => new b32_mt4(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b32v4_mt4(b32_mt4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b32v4_mt4(b32v4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator~(b32v4_mt4 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator|(b32v4_mt4 a, b32v4_mt4 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator&(b32v4_mt4 a, b32v4_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
+
+    #endregion // Operators
+}
+
+#endregion // b32v4_mt4
+#region b32v4_mt8
+
+[Serializable]
+//[JsonConverter(typeof(b32v4_mt8JsonConverter))]
+public partial struct b32v4_mt8
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<uint>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public b32_mt8 x;
+    public b32_mt8 y;
+    public b32_mt8 z;
+    public b32_mt8 w;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public b32v4 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index], w[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+           w[index] = value.w;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public b32v4_mt8(b32_mt8 x, b32_mt8 y, b32_mt8 z, b32_mt8 w)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b32v4_mt8(b32_mt8 value)
+    {
+        w = z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b32v4_mt8(b32v4 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+        w = new(value.w);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b32v4_mt8(b32 value) => new b32_mt8(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b32v4_mt8(b32_mt8 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b32v4_mt8(b32v4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator~(b32v4_mt8 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator|(b32v4_mt8 a, b32v4_mt8 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator&(b32v4_mt8 a, b32v4_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
+
+    #endregion // Operators
+}
+
+#endregion // b32v4_mt8
+#region b32v4_mt16
+
+[Serializable]
+//[JsonConverter(typeof(b32v4_mt16JsonConverter))]
+public partial struct b32v4_mt16
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<uint>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public b32_mt16 x;
+    public b32_mt16 y;
+    public b32_mt16 z;
+    public b32_mt16 w;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public b32v4 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index], w[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+           w[index] = value.w;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public b32v4_mt16(b32_mt16 x, b32_mt16 y, b32_mt16 z, b32_mt16 w)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b32v4_mt16(b32_mt16 value)
+    {
+        w = z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b32v4_mt16(b32v4 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+        w = new(value.w);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b32v4_mt16(b32 value) => new b32_mt16(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b32v4_mt16(b32_mt16 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b32v4_mt16(b32v4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator~(b32v4_mt16 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator|(b32v4_mt16 a, b32v4_mt16 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator&(b32v4_mt16 a, b32v4_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
+
+    #endregion // Operators
+}
+
+#endregion // b32v4_mt16
+#region b64v2_mt
+
+[Serializable]
+//[JsonConverter(typeof(b64v2_mtJsonConverter))]
+public partial struct b64v2_mt
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<ulong>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public b64_mt x;
+    public b64_mt y;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public b64v2 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public b64v2_mt(b64_mt x, b64_mt y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b64v2_mt(b64_mt value)
+    {
+        y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b64v2_mt(b64v2 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64v2_mt(b64 value) => new b64_mt(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64v2_mt(b64_mt value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64v2_mt(b64v2 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt operator~(b64v2_mt a) => new(~a.x, ~a.y);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt operator|(b64v2_mt a, b64v2_mt b) => new(a.x | b.x, a.y | b.y);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt operator&(b64v2_mt a, b64v2_mt b) => new(a.x & b.x, a.y & b.y);
+
+    #endregion // Operators
+}
+
+#endregion // b64v2_mt
+#region b64v2_mt4
+
+[Serializable]
+//[JsonConverter(typeof(b64v2_mt4JsonConverter))]
+public partial struct b64v2_mt4
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<ulong>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public b64_mt4 x;
+    public b64_mt4 y;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public b64v2 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public b64v2_mt4(b64_mt4 x, b64_mt4 y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b64v2_mt4(b64_mt4 value)
+    {
+        y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b64v2_mt4(b64v2 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64v2_mt4(b64 value) => new b64_mt4(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64v2_mt4(b64_mt4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64v2_mt4(b64v2 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator~(b64v2_mt4 a) => new(~a.x, ~a.y);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator|(b64v2_mt4 a, b64v2_mt4 b) => new(a.x | b.x, a.y | b.y);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator&(b64v2_mt4 a, b64v2_mt4 b) => new(a.x & b.x, a.y & b.y);
+
+    #endregion // Operators
+}
+
+#endregion // b64v2_mt4
+#region b64v2_mt8
+
+[Serializable]
+//[JsonConverter(typeof(b64v2_mt8JsonConverter))]
+public partial struct b64v2_mt8
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<ulong>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public b64_mt8 x;
+    public b64_mt8 y;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public b64v2 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public b64v2_mt8(b64_mt8 x, b64_mt8 y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b64v2_mt8(b64_mt8 value)
+    {
+        y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b64v2_mt8(b64v2 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64v2_mt8(b64 value) => new b64_mt8(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64v2_mt8(b64_mt8 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64v2_mt8(b64v2 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator~(b64v2_mt8 a) => new(~a.x, ~a.y);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator|(b64v2_mt8 a, b64v2_mt8 b) => new(a.x | b.x, a.y | b.y);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator&(b64v2_mt8 a, b64v2_mt8 b) => new(a.x & b.x, a.y & b.y);
+
+    #endregion // Operators
+}
+
+#endregion // b64v2_mt8
+#region b64v2_mt16
+
+[Serializable]
+//[JsonConverter(typeof(b64v2_mt16JsonConverter))]
+public partial struct b64v2_mt16
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<ulong>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public b64_mt16 x;
+    public b64_mt16 y;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public b64v2 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public b64v2_mt16(b64_mt16 x, b64_mt16 y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b64v2_mt16(b64_mt16 value)
+    {
+        y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b64v2_mt16(b64v2 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64v2_mt16(b64 value) => new b64_mt16(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64v2_mt16(b64_mt16 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64v2_mt16(b64v2 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator~(b64v2_mt16 a) => new(~a.x, ~a.y);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator|(b64v2_mt16 a, b64v2_mt16 b) => new(a.x | b.x, a.y | b.y);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator&(b64v2_mt16 a, b64v2_mt16 b) => new(a.x & b.x, a.y & b.y);
+
+    #endregion // Operators
+}
+
+#endregion // b64v2_mt16
+#region b64v3_mt
+
+[Serializable]
+//[JsonConverter(typeof(b64v3_mtJsonConverter))]
+public partial struct b64v3_mt
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<ulong>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public b64_mt x;
+    public b64_mt y;
+    public b64_mt z;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public b64v3 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public b64v3_mt(b64_mt x, b64_mt y, b64_mt z)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b64v3_mt(b64_mt value)
+    {
+        z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b64v3_mt(b64v3 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64v3_mt(b64 value) => new b64_mt(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64v3_mt(b64_mt value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64v3_mt(b64v3 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt operator~(b64v3_mt a) => new(~a.x, ~a.y, ~a.z);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt operator|(b64v3_mt a, b64v3_mt b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt operator&(b64v3_mt a, b64v3_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
+
+    #endregion // Operators
+}
+
+#endregion // b64v3_mt
+#region b64v3_mt4
+
+[Serializable]
+//[JsonConverter(typeof(b64v3_mt4JsonConverter))]
+public partial struct b64v3_mt4
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<ulong>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public b64_mt4 x;
+    public b64_mt4 y;
+    public b64_mt4 z;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public b64v3 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public b64v3_mt4(b64_mt4 x, b64_mt4 y, b64_mt4 z)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b64v3_mt4(b64_mt4 value)
+    {
+        z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b64v3_mt4(b64v3 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64v3_mt4(b64 value) => new b64_mt4(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64v3_mt4(b64_mt4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64v3_mt4(b64v3 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator~(b64v3_mt4 a) => new(~a.x, ~a.y, ~a.z);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator|(b64v3_mt4 a, b64v3_mt4 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator&(b64v3_mt4 a, b64v3_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
+
+    #endregion // Operators
+}
+
+#endregion // b64v3_mt4
+#region b64v3_mt8
+
+[Serializable]
+//[JsonConverter(typeof(b64v3_mt8JsonConverter))]
+public partial struct b64v3_mt8
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<ulong>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public b64_mt8 x;
+    public b64_mt8 y;
+    public b64_mt8 z;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public b64v3 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public b64v3_mt8(b64_mt8 x, b64_mt8 y, b64_mt8 z)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b64v3_mt8(b64_mt8 value)
+    {
+        z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b64v3_mt8(b64v3 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64v3_mt8(b64 value) => new b64_mt8(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64v3_mt8(b64_mt8 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64v3_mt8(b64v3 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator~(b64v3_mt8 a) => new(~a.x, ~a.y, ~a.z);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator|(b64v3_mt8 a, b64v3_mt8 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator&(b64v3_mt8 a, b64v3_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
+
+    #endregion // Operators
+}
+
+#endregion // b64v3_mt8
+#region b64v3_mt16
+
+[Serializable]
+//[JsonConverter(typeof(b64v3_mt16JsonConverter))]
+public partial struct b64v3_mt16
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<ulong>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public b64_mt16 x;
+    public b64_mt16 y;
+    public b64_mt16 z;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public b64v3 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public b64v3_mt16(b64_mt16 x, b64_mt16 y, b64_mt16 z)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b64v3_mt16(b64_mt16 value)
+    {
+        z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b64v3_mt16(b64v3 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64v3_mt16(b64 value) => new b64_mt16(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64v3_mt16(b64_mt16 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64v3_mt16(b64v3 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator~(b64v3_mt16 a) => new(~a.x, ~a.y, ~a.z);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator|(b64v3_mt16 a, b64v3_mt16 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator&(b64v3_mt16 a, b64v3_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
+
+    #endregion // Operators
+}
+
+#endregion // b64v3_mt16
+#region b64v4_mt
+
+[Serializable]
+//[JsonConverter(typeof(b64v4_mtJsonConverter))]
+public partial struct b64v4_mt
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<ulong>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public b64_mt x;
+    public b64_mt y;
+    public b64_mt z;
+    public b64_mt w;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public b64v4 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index], w[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+           w[index] = value.w;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public b64v4_mt(b64_mt x, b64_mt y, b64_mt z, b64_mt w)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b64v4_mt(b64_mt value)
+    {
+        w = z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b64v4_mt(b64v4 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+        w = new(value.w);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64v4_mt(b64 value) => new b64_mt(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64v4_mt(b64_mt value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64v4_mt(b64v4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt operator~(b64v4_mt a) => new(~a.x, ~a.y, ~a.z, ~a.w);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt operator|(b64v4_mt a, b64v4_mt b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt operator&(b64v4_mt a, b64v4_mt b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
+
+    #endregion // Operators
+}
+
+#endregion // b64v4_mt
+#region b64v4_mt4
+
+[Serializable]
+//[JsonConverter(typeof(b64v4_mt4JsonConverter))]
+public partial struct b64v4_mt4
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<ulong>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public b64_mt4 x;
+    public b64_mt4 y;
+    public b64_mt4 z;
+    public b64_mt4 w;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public b64v4 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index], w[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+           w[index] = value.w;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public b64v4_mt4(b64_mt4 x, b64_mt4 y, b64_mt4 z, b64_mt4 w)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b64v4_mt4(b64_mt4 value)
+    {
+        w = z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b64v4_mt4(b64v4 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+        w = new(value.w);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64v4_mt4(b64 value) => new b64_mt4(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64v4_mt4(b64_mt4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64v4_mt4(b64v4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator~(b64v4_mt4 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator|(b64v4_mt4 a, b64v4_mt4 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator&(b64v4_mt4 a, b64v4_mt4 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
+
+    #endregion // Operators
+}
+
+#endregion // b64v4_mt4
+#region b64v4_mt8
+
+[Serializable]
+//[JsonConverter(typeof(b64v4_mt8JsonConverter))]
+public partial struct b64v4_mt8
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<ulong>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public b64_mt8 x;
+    public b64_mt8 y;
+    public b64_mt8 z;
+    public b64_mt8 w;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public b64v4 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index], w[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+           w[index] = value.w;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public b64v4_mt8(b64_mt8 x, b64_mt8 y, b64_mt8 z, b64_mt8 w)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b64v4_mt8(b64_mt8 value)
+    {
+        w = z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b64v4_mt8(b64v4 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+        w = new(value.w);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64v4_mt8(b64 value) => new b64_mt8(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64v4_mt8(b64_mt8 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64v4_mt8(b64v4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator~(b64v4_mt8 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator|(b64v4_mt8 a, b64v4_mt8 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator&(b64v4_mt8 a, b64v4_mt8 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
+
+    #endregion // Operators
+}
+
+#endregion // b64v4_mt8
+#region b64v4_mt16
+
+[Serializable]
+//[JsonConverter(typeof(b64v4_mt16JsonConverter))]
+public partial struct b64v4_mt16
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => Vector<ulong>.Count;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public b64_mt16 x;
+    public b64_mt16 y;
+    public b64_mt16 z;
+    public b64_mt16 w;
+
+    #endregion // Fields
+
+    #region Properties
+
+    public b64v4 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get => new(x[index], y[index], z[index], w[index]);
+        set 
+        {
+           x[index] = value.x;
+           y[index] = value.y;
+           z[index] = value.z;
+           w[index] = value.w;
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public b64v4_mt16(b64_mt16 x, b64_mt16 y, b64_mt16 z, b64_mt16 w)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.w = w;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b64v4_mt16(b64_mt16 value)
+    {
+        w = z = y = x = value;
+    }
+
+    [MethodImpl(256 | 512)]
+    public b64v4_mt16(b64v4 value)
+    {
+        x = new(value.x);
+        y = new(value.y);
+        z = new(value.z);
+        w = new(value.w);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64v4_mt16(b64 value) => new b64_mt16(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64v4_mt16(b64_mt16 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64v4_mt16(b64v4 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator~(b64v4_mt16 a) => new(~a.x, ~a.y, ~a.z, ~a.w);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator|(b64v4_mt16 a, b64v4_mt16 b) => new(a.x | b.x, a.y | b.y, a.z | b.z, a.w | b.w);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator&(b64v4_mt16 a, b64v4_mt16 b) => new(a.x & b.x, a.y & b.y, a.z & b.z, a.w & b.w);
+
+    #endregion // Operators
+}
+
+#endregion // b64v4_mt16

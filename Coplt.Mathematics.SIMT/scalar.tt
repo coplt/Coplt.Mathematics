@@ -7,15 +7,38 @@
 namespace Coplt.Mathematics.SIMT;
 
 <#
+    var sizes = new[] { 0, 4, 8, 16 };
+    var compile_time_only = "throw new NotSupportedException(\"Compile time only\")";
     foreach (var typ in Typ.Typs)
     {
         if (!typ.simd) continue;
-        if (typ.size != 4) continue;
-        var typeName = $"{typ.compType}_mt";
+        if (typ.size < 4) continue;
+        foreach (var size in sizes)
+        {
+            var byteSize = typ.size * size;
+            var bitSize = 8 * byteSize;
+            var num_vectors = Math.Max(1, size == 0 ? 1 : bitSize / 512);
+            bitSize = Math.Min(512, bitSize);
+
+            var typeName = $"{typ.compType}_mt{(size == 0 ? "" : size)}";
+
+            IEnumerable<string> ForVectors(string name)
+            {
+                if (num_vectors == 1) yield return name;
+                else
+                {
+                    for (var i = 0; i < num_vectors; i++)
+                    {
+                        yield return $"{name}{i}";
+                    }
+                }
+            }
+
+            var vectors = ForVectors("vector").ToList();
 #>
 #region <#= typeName #>
 
-[Serializable]
+[Serializable, CpuOnly]
 //[JsonConverter(typeof(<#= typeName #>JsonConverter))]
 public partial struct <#= typeName #>
 {
@@ -24,78 +47,215 @@ public partial struct <#= typeName #>
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<<#= typ.simdComp #>>.Count;
+        get => <#
+            if (size == 0)
+            {
+#><#= compile_time_only #><#
+            }
+            else
+            {
+#><#= size #><#
+            }
+#>;
     }
 
     #endregion
+<#
+            if (size != 0)
+            {
+#>
 
     #region Fields
 
-    public Vector<<#= typ.simdComp #>> vector;
+<#
+                for (var nv = 0; nv < num_vectors; nv++)
+                {
+#>
+    public Vector<#= bitSize #><<#= typ.simdComp #>> vector<#= num_vectors == 1 ? "" : $"{nv}" #>;
+<#
+                }
+#>
 
     #endregion // Fields
+<#
+            }
+#>
 
     #region Properties
+<#
+            if (size != 0)
+            {
+#>
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public ref Vector<#= bitSize #><<#= typ.simdComp #>> VectorAt(int index)
+    {
+        switch(index)
+        {
+<#
+                if (num_vectors == 1)
+                {
+#>
+            case 0: return ref vector;
+<#
+                }
+                else
+                {
+                    for (var nv = 0; nv < num_vectors; nv++)
+                    {
+#>
+            case <#= nv #>: return ref vector<#= nv #>;
+<#
+                    }
+                }
+#>
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+<#
+            }
+#>
 
     public <#= typ.compType #> this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => vector[index];
+        get
+        {
+<#
+            if (size == 0)
+            {
+#>
+            <#= compile_time_only #>;
+<#
+            }
+            else if (num_vectors == 1)
+            {
+#>
+            return vector[index];
+<#
+            }
+            else
+            {
+#>
+            var (q, r) = Math.DivRem(index, Vector<#= bitSize #><<#= typ.simdComp #>>.Count);
+            return VectorAt(q)[r];
+<#
+            }
+#>
+        }
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(index, value);
+        set
+        {
+<#
+            if (size == 0)
+            {
+#>
+            <#= compile_time_only #>;
+<#
+            }
+            else if (num_vectors == 1)
+            {
+#>
+            vector = vector.WithElement(index, value);
+<#
+            }
+            else
+            {
+#>
+            var (q, r) = Math.DivRem(index, Vector<#= bitSize #><<#= typ.simdComp #>>.Count);
+            ref var vector = ref VectorAt(q);
+            vector = vector.WithElement(r, value);
+<#
+            }
+#>
+        }
     }
 
     #endregion // Properties
 
     #region Ctor
+<#
+            if (size != 0)
+            {
+#>
 
     [MethodImpl(256 | 512)]
-    public <#= typeName #>(Vector<<#= typ.simdComp #>> vector)
+    public <#= typeName #>(<#= string.Join(", ", vectors.Select(v => $"Vector{bitSize}<{typ.simdComp}> {v}")) #>)
     {
-        this.vector = vector;
+<#
+                foreach (var v in vectors)
+                {
+#>
+        this.<#= v #> = <#= v #>;
+<#
+                }
+#>
     }
 
     [MethodImpl(256 | 512)]
     private <#= typeName #>(ref readonly <#= typ.compType #> values)
     {
+        ref var vs = ref Unsafe.AsRef(in values);
 <#
-        if (typ.compType == typ.simdComp)
-        {
+                var offset_inc = 0;
+                foreach (var v in vectors)
+                {
+                    var offset = offset_inc;
+                    offset_inc += size;
+                    var off = offset == 0 ? "vs" : $"Unsafe.Add(ref vs, {offset})";
+                    if (typ.compType == typ.simdComp)
+                    {
 #>
-        vector = Vector.LoadUnsafe(in values);
+        <#= v #> = Vector<#= bitSize #>.LoadUnsafe(in <#= off #>);
 <#
-        }
-        else
-        {
+                    }
+                    else
+                    {
 #>
-        vector = Vector.LoadUnsafe(in Unsafe.As<<#= typ.compType #>, <#= typ.simdComp #>>(ref Unsafe.AsRef(in values)));
+        <#= v #> = Vector<#= bitSize #>.LoadUnsafe(in Unsafe.As<<#= typ.compType #>, <#= typ.simdComp #>>(ref <#= off #>));
 <#
-        }
+                    }
+                }
 #>
     }
+<#
+            }
+#>
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> LoadUnsafe(ref readonly <#= typ.compType #> values) => new(in values);
+    public static <#= typeName #> LoadUnsafe(ref readonly <#= typ.compType #> values) => <#= size == 0 ? compile_time_only : "new(in values)" #>;
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> LoadUnsafe(params ReadOnlySpan<<#= typ.compType #>> values) => new(in values.GetPinnableReference());
+    public static <#= typeName #> LoadUnsafe(params ReadOnlySpan<<#= typ.compType #>> values) => <#= size == 0 ? compile_time_only : "new(in values.GetPinnableReference())" #>;
 
     [MethodImpl(256 | 512)]
     public <#= typeName #>(<#= typ.compType #> value)
     {
 <#
-        if (typ.compType == typ.simdComp)
-        {
+            if (size == 0)
+            {
 #>
-        vector = new(value);
+        <#= compile_time_only #>;
 <#
-        }
-        else
-        {
+            }
+            else
+            {
+                foreach (var v in vectors)
+                {
+                    if (typ.compType == typ.simdComp)
+                    {
 #>
-        vector = new((<#= typ.simdComp #>)value);
+        <#= v #> = Vector<#= bitSize #>.Create(value);
 <#
-        }
+                    }
+                    else
+                    {
+#>
+        <#= v #> = Vector<#= bitSize #>.Create((<#= typ.simdComp #>)value);
+<#
+                    }
+                }
+            }
 #>
     }
 
@@ -107,49 +267,105 @@ public partial struct <#= typeName #>
     public static implicit operator <#= typeName #>(<#= typ.compType #> value) => new(value);
 
 <#
-        if (typ.arith)
-        {
+            if (typ.arith)
+            {
 #>
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> operator-(<#= typeName #> a) => new(-a.vector);
+    public static <#= typeName #> operator-(<#= typeName #> a) => <#=
+                size == 0 ? compile_time_only : $"new({string.Join(", ", vectors.Select(v => $"-a.{v}"))})" #>;
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> operator+(<#= typeName #> a, <#= typeName #> b) => new(a.vector + b.vector);
+    public static <#= typeName #> operator+(<#= typeName #> a, <#= typeName #> b) => <#=
+                size == 0 ? compile_time_only : $"new({string.Join(", ", vectors.Select(v => $"a.{v} + b.{v}"))})" #>;
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> operator-(<#= typeName #> a, <#= typeName #> b) => new(a.vector - b.vector);
+    public static <#= typeName #> operator-(<#= typeName #> a, <#= typeName #> b) => <#=
+                size == 0 ? compile_time_only : $"new({string.Join(", ", vectors.Select(v => $"a.{v} - b.{v}"))})" #>;
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> operator*(<#= typeName #> a, <#= typeName #> b) => new(a.vector * b.vector);
+    public static <#= typeName #> operator*(<#= typeName #> a, <#= typeName #> b) => <#=
+                size == 0 ? compile_time_only : $"new({string.Join(", ", vectors.Select(v => $"a.{v} * b.{v}"))})" #>;
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> operator/(<#= typeName #> a, <#= typeName #> b) => new(a.vector / b.vector);
+    public static <#= typeName #> operator*(<#= typeName #> a, <#= typ.compType #> b) => <#=
+                size == 0 ? compile_time_only : $"new({string.Join(", ", vectors.Select(v => $"a.{v} * b"))})" #>;
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> operator/(<#= typeName #> a, <#= typ.compType #> b) => new(a.vector / b);
+    public static <#= typeName #> operator*(<#= typ.compType #> a, <#= typeName #> b) => <#=
+                size == 0 ? compile_time_only : $"new({string.Join(", ", vectors.Select(v => $"a * b.{v}"))})" #>;
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> operator%(<#= typeName #> a, <#= typeName #> b) => new(simt.Rem(a.vector, b.vector));
+    public static <#= typeName #> operator/(<#= typeName #> a, <#= typeName #> b) => <#=
+                size == 0 ? compile_time_only : $"new({string.Join(", ", vectors.Select(v => $"a.{v} / b.{v}"))})" #>;
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> operator%(<#= typeName #> a, <#= typ.compType #> b) => new(simt.Rem(a.vector, b));
+    public static <#= typeName #> operator/(<#= typeName #> a, <#= typ.compType #> b) => <#=
+                size == 0 ? compile_time_only : $"new({string.Join(", ", vectors.Select(v => $"a.{v} / b"))})" #>;
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> operator%(<#= typeName #> a, <#= typeName #> b) => <#
+                if (size == 0)
+                {
+#><#= compile_time_only #><#
+                }
+                else if (typ.i)
+                {
+#>a - (a / b) * b<#
+                }
+                else
+                {
+#>new(<#=string.Join(", ", vectors.Select(v => $"simd.Rem(a.{v}, b.{v})"))#>)<#
+                }
+#>;
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> operator%(<#= typeName #> a, <#= typ.compType #> b) => <#
+                if (size == 0)
+                {
+#><#= compile_time_only #><#
+                }
+                else if (typ.i)
+                {
+#>a - (a / b) * b<#
+                }
+                else
+                {
+#>new(<#=string.Join(", ", vectors.Select(v => $"simd.Rem(a.{v}, b)"))#>)<#
+                }
+#>;
 
 <#
-        }
+            }
 #>
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> operator~(<#= typeName #> a) => new(~a.vector);
+    public static <#= typeName #> operator~(<#= typeName #> a) => <#=
+                size == 0 ? compile_time_only : $"new({string.Join(", ", vectors.Select(v => $"~a.{v}"))})" #>;
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> operator|(<#= typeName #> a, <#= typeName #> b) => new(a.vector | b.vector);
+    public static <#= typeName #> operator|(<#= typeName #> a, <#= typeName #> b) => <#=
+                size == 0 ? compile_time_only : $"new({string.Join(", ", vectors.Select(v => $"a.{v} | b.{v}"))})" #>;
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> operator&(<#= typeName #> a, <#= typeName #> b) => new(a.vector & b.vector);
+    public static <#= typeName #> operator&(<#= typeName #> a, <#= typeName #> b) => <#=
+                size == 0 ? compile_time_only : $"new({string.Join(", ", vectors.Select(v => $"a.{v} & b.{v}"))})" #>;
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> operator<<(<#= typeName #> a, int b) => <#=
+                size == 0 ? compile_time_only : $"new({string.Join(", ", vectors.Select(v => $"a.{v} << b"))})" #>;
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> operator>>(<#= typeName #> a, int b) => <#=
+                size == 0 ? compile_time_only : $"new({string.Join(", ", vectors.Select(v => $"a.{v} >> b"))})" #>;
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> operator>>>(<#= typeName #> a, int b) => <#=
+                size == 0 ? compile_time_only : $"new({string.Join(", ", vectors.Select(v => $"a.{v} >>> b"))})" #>;
 
     #endregion
 }
 
 #endregion // <#= typeName #>
 <#
+        }
     }
 #>

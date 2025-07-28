@@ -743,6 +743,34 @@ public static partial class simd
     }
 
     [MethodImpl(256 | 512)]
+    public static Vector256<float> Rem(Vector256<float> a, Vector256<float> b)
+    {
+        if (Vector256.IsHardwareAccelerated)
+        {
+            return simd_math.Rem(a, b);
+        }
+
+        return Vector256.Create(
+            Rem(a.GetLower(), b.GetLower()),
+            Rem(a.GetUpper(), b.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector512<float> Rem(Vector512<float> a, Vector512<float> b)
+    {
+        if (Vector512.IsHardwareAccelerated)
+        {
+            return simd_math.Rem(a, b);
+        }
+
+        return Vector512.Create(
+            Rem(a.GetLower(), b.GetLower()),
+            Rem(a.GetUpper(), b.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
     public static Vector128<double> Rem(Vector128<double> a, Vector128<double> b)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -769,6 +797,20 @@ public static partial class simd
             a.GetElement(1) % b.GetElement(1),
             a.GetElement(2) % b.GetElement(2),
             a.GetElement(3) % b.GetElement(3)
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector512<double> Rem(Vector512<double> a, Vector512<double> b)
+    {
+        if (Vector512.IsHardwareAccelerated)
+        {
+            return simd_math.Rem(a, b);
+        }
+
+        return Vector512.Create(
+            Rem(a.GetLower(), b.GetLower()),
+            Rem(a.GetUpper(), b.GetUpper())
         );
     }
 
@@ -811,6 +853,34 @@ public static partial class simd
     }
 
     [MethodImpl(256 | 512)]
+    public static Vector256<float> Rem(Vector256<float> a, float b)
+    {
+        if (Vector256.IsHardwareAccelerated)
+        {
+            return simd_math.Rem(a, b);
+        }
+
+        return Vector256.Create(
+            Rem(a.GetLower(), b),
+            Rem(a.GetUpper(), b)
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector512<float> Rem(Vector512<float> a, float b)
+    {
+        if (Vector512.IsHardwareAccelerated)
+        {
+            return simd_math.Rem(a, b);
+        }
+
+        return Vector512.Create(
+            Rem(a.GetLower(), b),
+            Rem(a.GetUpper(), b)
+        );
+    }
+
+    [MethodImpl(256 | 512)]
     public static Vector128<double> Rem(Vector128<double> a, double b)
     {
         if (Vector128.IsHardwareAccelerated)
@@ -837,6 +907,20 @@ public static partial class simd
             a.GetElement(1) % b,
             a.GetElement(2) % b,
             a.GetElement(3) % b
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector512<double> Rem(Vector512<double> a, double b)
+    {
+        if (Vector512.IsHardwareAccelerated)
+        {
+            return simd_math.Rem(a, b);
+        }
+
+        return Vector512.Create(
+            Rem(a.GetLower(), b),
+            Rem(a.GetUpper(), b)
         );
     }
 

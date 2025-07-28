@@ -4,7 +4,7 @@ namespace Coplt.Mathematics.SIMT;
 
 #region float_mt
 
-[Serializable]
+[Serializable, CpuOnly]
 //[JsonConverter(typeof(float_mtJsonConverter))]
 public partial struct float_mt
 {
@@ -13,25 +13,25 @@ public partial struct float_mt
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<float>.Count;
+        get => throw new NotSupportedException("Compile time only");
     }
 
     #endregion
-
-    #region Fields
-
-    public Vector<float> vector;
-
-    #endregion // Fields
 
     #region Properties
 
     public float this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => vector[index];
+        get
+        {
+            throw new NotSupportedException("Compile time only");
+        }
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(index, value);
+        set
+        {
+            throw new NotSupportedException("Compile time only");
+        }
     }
 
     #endregion // Properties
@@ -39,27 +39,15 @@ public partial struct float_mt
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public float_mt(Vector<float> vector)
-    {
-        this.vector = vector;
-    }
+    public static float_mt LoadUnsafe(ref readonly float values) => throw new NotSupportedException("Compile time only");
 
     [MethodImpl(256 | 512)]
-    private float_mt(ref readonly float values)
-    {
-        vector = Vector.LoadUnsafe(in values);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static float_mt LoadUnsafe(ref readonly float values) => new(in values);
-
-    [MethodImpl(256 | 512)]
-    public static float_mt LoadUnsafe(params ReadOnlySpan<float> values) => new(in values.GetPinnableReference());
+    public static float_mt LoadUnsafe(params ReadOnlySpan<float> values) => throw new NotSupportedException("Compile time only");
 
     [MethodImpl(256 | 512)]
     public float_mt(float value)
     {
-        vector = new(value);
+        throw new NotSupportedException("Compile time only");
     }
 
     #endregion // Ctor
@@ -70,45 +58,991 @@ public partial struct float_mt
     public static implicit operator float_mt(float value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static float_mt operator-(float_mt a) => new(-a.vector);
+    public static float_mt operator-(float_mt a) => throw new NotSupportedException("Compile time only");
 
     [MethodImpl(256 | 512)]
-    public static float_mt operator+(float_mt a, float_mt b) => new(a.vector + b.vector);
+    public static float_mt operator+(float_mt a, float_mt b) => throw new NotSupportedException("Compile time only");
 
     [MethodImpl(256 | 512)]
-    public static float_mt operator-(float_mt a, float_mt b) => new(a.vector - b.vector);
+    public static float_mt operator-(float_mt a, float_mt b) => throw new NotSupportedException("Compile time only");
 
     [MethodImpl(256 | 512)]
-    public static float_mt operator*(float_mt a, float_mt b) => new(a.vector * b.vector);
+    public static float_mt operator*(float_mt a, float_mt b) => throw new NotSupportedException("Compile time only");
 
     [MethodImpl(256 | 512)]
-    public static float_mt operator/(float_mt a, float_mt b) => new(a.vector / b.vector);
+    public static float_mt operator*(float_mt a, float b) => throw new NotSupportedException("Compile time only");
 
     [MethodImpl(256 | 512)]
-    public static float_mt operator/(float_mt a, float b) => new(a.vector / b);
+    public static float_mt operator*(float a, float_mt b) => throw new NotSupportedException("Compile time only");
 
     [MethodImpl(256 | 512)]
-    public static float_mt operator%(float_mt a, float_mt b) => new(simt.Rem(a.vector, b.vector));
+    public static float_mt operator/(float_mt a, float_mt b) => throw new NotSupportedException("Compile time only");
 
     [MethodImpl(256 | 512)]
-    public static float_mt operator%(float_mt a, float b) => new(simt.Rem(a.vector, b));
+    public static float_mt operator/(float_mt a, float b) => throw new NotSupportedException("Compile time only");
 
     [MethodImpl(256 | 512)]
-    public static float_mt operator~(float_mt a) => new(~a.vector);
+    public static float_mt operator%(float_mt a, float_mt b) => throw new NotSupportedException("Compile time only");
 
     [MethodImpl(256 | 512)]
-    public static float_mt operator|(float_mt a, float_mt b) => new(a.vector | b.vector);
+    public static float_mt operator%(float_mt a, float b) => throw new NotSupportedException("Compile time only");
 
     [MethodImpl(256 | 512)]
-    public static float_mt operator&(float_mt a, float_mt b) => new(a.vector & b.vector);
+    public static float_mt operator~(float_mt a) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static float_mt operator|(float_mt a, float_mt b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static float_mt operator&(float_mt a, float_mt b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static float_mt operator<<(float_mt a, int b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static float_mt operator>>(float_mt a, int b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static float_mt operator>>>(float_mt a, int b) => throw new NotSupportedException("Compile time only");
 
     #endregion
 }
 
 #endregion // float_mt
+#region float_mt4
+
+[Serializable, CpuOnly]
+//[JsonConverter(typeof(float_mt4JsonConverter))]
+public partial struct float_mt4
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => 4;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public Vector128<float> vector;
+
+    #endregion // Fields
+
+    #region Properties
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public ref Vector128<float> VectorAt(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    public float this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get
+        {
+            return vector[index];
+        }
+        [MethodImpl(256 | 512)]
+        set
+        {
+            vector = vector.WithElement(index, value);
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public float_mt4(Vector128<float> vector)
+    {
+        this.vector = vector;
+    }
+
+    [MethodImpl(256 | 512)]
+    private float_mt4(ref readonly float values)
+    {
+        ref var vs = ref Unsafe.AsRef(in values);
+        vector = Vector128.LoadUnsafe(in vs);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 LoadUnsafe(ref readonly float values) => new(in values);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 LoadUnsafe(params ReadOnlySpan<float> values) => new(in values.GetPinnableReference());
+
+    [MethodImpl(256 | 512)]
+    public float_mt4(float value)
+    {
+        vector = Vector128.Create(value);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator float_mt4(float value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 operator-(float_mt4 a) => new(-a.vector);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 operator+(float_mt4 a, float_mt4 b) => new(a.vector + b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 operator-(float_mt4 a, float_mt4 b) => new(a.vector - b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 operator*(float_mt4 a, float_mt4 b) => new(a.vector * b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 operator*(float_mt4 a, float b) => new(a.vector * b);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 operator*(float a, float_mt4 b) => new(a * b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 operator/(float_mt4 a, float_mt4 b) => new(a.vector / b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 operator/(float_mt4 a, float b) => new(a.vector / b);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 operator%(float_mt4 a, float_mt4 b) => new(simd.Rem(a.vector, b.vector));
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 operator%(float_mt4 a, float b) => new(simd.Rem(a.vector, b));
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 operator~(float_mt4 a) => new(~a.vector);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 operator|(float_mt4 a, float_mt4 b) => new(a.vector | b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 operator&(float_mt4 a, float_mt4 b) => new(a.vector & b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 operator<<(float_mt4 a, int b) => new(a.vector << b);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 operator>>(float_mt4 a, int b) => new(a.vector >> b);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 operator>>>(float_mt4 a, int b) => new(a.vector >>> b);
+
+    #endregion
+}
+
+#endregion // float_mt4
+#region float_mt8
+
+[Serializable, CpuOnly]
+//[JsonConverter(typeof(float_mt8JsonConverter))]
+public partial struct float_mt8
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => 8;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public Vector256<float> vector;
+
+    #endregion // Fields
+
+    #region Properties
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public ref Vector256<float> VectorAt(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    public float this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get
+        {
+            return vector[index];
+        }
+        [MethodImpl(256 | 512)]
+        set
+        {
+            vector = vector.WithElement(index, value);
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public float_mt8(Vector256<float> vector)
+    {
+        this.vector = vector;
+    }
+
+    [MethodImpl(256 | 512)]
+    private float_mt8(ref readonly float values)
+    {
+        ref var vs = ref Unsafe.AsRef(in values);
+        vector = Vector256.LoadUnsafe(in vs);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 LoadUnsafe(ref readonly float values) => new(in values);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 LoadUnsafe(params ReadOnlySpan<float> values) => new(in values.GetPinnableReference());
+
+    [MethodImpl(256 | 512)]
+    public float_mt8(float value)
+    {
+        vector = Vector256.Create(value);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator float_mt8(float value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 operator-(float_mt8 a) => new(-a.vector);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 operator+(float_mt8 a, float_mt8 b) => new(a.vector + b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 operator-(float_mt8 a, float_mt8 b) => new(a.vector - b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 operator*(float_mt8 a, float_mt8 b) => new(a.vector * b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 operator*(float_mt8 a, float b) => new(a.vector * b);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 operator*(float a, float_mt8 b) => new(a * b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 operator/(float_mt8 a, float_mt8 b) => new(a.vector / b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 operator/(float_mt8 a, float b) => new(a.vector / b);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 operator%(float_mt8 a, float_mt8 b) => new(simd.Rem(a.vector, b.vector));
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 operator%(float_mt8 a, float b) => new(simd.Rem(a.vector, b));
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 operator~(float_mt8 a) => new(~a.vector);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 operator|(float_mt8 a, float_mt8 b) => new(a.vector | b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 operator&(float_mt8 a, float_mt8 b) => new(a.vector & b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 operator<<(float_mt8 a, int b) => new(a.vector << b);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 operator>>(float_mt8 a, int b) => new(a.vector >> b);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 operator>>>(float_mt8 a, int b) => new(a.vector >>> b);
+
+    #endregion
+}
+
+#endregion // float_mt8
+#region float_mt16
+
+[Serializable, CpuOnly]
+//[JsonConverter(typeof(float_mt16JsonConverter))]
+public partial struct float_mt16
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => 16;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public Vector512<float> vector;
+
+    #endregion // Fields
+
+    #region Properties
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public ref Vector512<float> VectorAt(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    public float this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get
+        {
+            return vector[index];
+        }
+        [MethodImpl(256 | 512)]
+        set
+        {
+            vector = vector.WithElement(index, value);
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public float_mt16(Vector512<float> vector)
+    {
+        this.vector = vector;
+    }
+
+    [MethodImpl(256 | 512)]
+    private float_mt16(ref readonly float values)
+    {
+        ref var vs = ref Unsafe.AsRef(in values);
+        vector = Vector512.LoadUnsafe(in vs);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 LoadUnsafe(ref readonly float values) => new(in values);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 LoadUnsafe(params ReadOnlySpan<float> values) => new(in values.GetPinnableReference());
+
+    [MethodImpl(256 | 512)]
+    public float_mt16(float value)
+    {
+        vector = Vector512.Create(value);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator float_mt16(float value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 operator-(float_mt16 a) => new(-a.vector);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 operator+(float_mt16 a, float_mt16 b) => new(a.vector + b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 operator-(float_mt16 a, float_mt16 b) => new(a.vector - b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 operator*(float_mt16 a, float_mt16 b) => new(a.vector * b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 operator*(float_mt16 a, float b) => new(a.vector * b);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 operator*(float a, float_mt16 b) => new(a * b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 operator/(float_mt16 a, float_mt16 b) => new(a.vector / b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 operator/(float_mt16 a, float b) => new(a.vector / b);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 operator%(float_mt16 a, float_mt16 b) => new(simd.Rem(a.vector, b.vector));
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 operator%(float_mt16 a, float b) => new(simd.Rem(a.vector, b));
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 operator~(float_mt16 a) => new(~a.vector);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 operator|(float_mt16 a, float_mt16 b) => new(a.vector | b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 operator&(float_mt16 a, float_mt16 b) => new(a.vector & b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 operator<<(float_mt16 a, int b) => new(a.vector << b);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 operator>>(float_mt16 a, int b) => new(a.vector >> b);
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 operator>>>(float_mt16 a, int b) => new(a.vector >>> b);
+
+    #endregion
+}
+
+#endregion // float_mt16
+#region double_mt
+
+[Serializable, CpuOnly]
+//[JsonConverter(typeof(double_mtJsonConverter))]
+public partial struct double_mt
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => throw new NotSupportedException("Compile time only");
+    }
+
+    #endregion
+
+    #region Properties
+
+    public double this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get
+        {
+            throw new NotSupportedException("Compile time only");
+        }
+        [MethodImpl(256 | 512)]
+        set
+        {
+            throw new NotSupportedException("Compile time only");
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public static double_mt LoadUnsafe(ref readonly double values) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static double_mt LoadUnsafe(params ReadOnlySpan<double> values) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public double_mt(double value)
+    {
+        throw new NotSupportedException("Compile time only");
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator double_mt(double value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt operator-(double_mt a) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static double_mt operator+(double_mt a, double_mt b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static double_mt operator-(double_mt a, double_mt b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static double_mt operator*(double_mt a, double_mt b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static double_mt operator*(double_mt a, double b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static double_mt operator*(double a, double_mt b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static double_mt operator/(double_mt a, double_mt b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static double_mt operator/(double_mt a, double b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static double_mt operator%(double_mt a, double_mt b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static double_mt operator%(double_mt a, double b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static double_mt operator~(double_mt a) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static double_mt operator|(double_mt a, double_mt b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static double_mt operator&(double_mt a, double_mt b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static double_mt operator<<(double_mt a, int b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static double_mt operator>>(double_mt a, int b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static double_mt operator>>>(double_mt a, int b) => throw new NotSupportedException("Compile time only");
+
+    #endregion
+}
+
+#endregion // double_mt
+#region double_mt4
+
+[Serializable, CpuOnly]
+//[JsonConverter(typeof(double_mt4JsonConverter))]
+public partial struct double_mt4
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => 4;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public Vector256<double> vector;
+
+    #endregion // Fields
+
+    #region Properties
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public ref Vector256<double> VectorAt(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    public double this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get
+        {
+            return vector[index];
+        }
+        [MethodImpl(256 | 512)]
+        set
+        {
+            vector = vector.WithElement(index, value);
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public double_mt4(Vector256<double> vector)
+    {
+        this.vector = vector;
+    }
+
+    [MethodImpl(256 | 512)]
+    private double_mt4(ref readonly double values)
+    {
+        ref var vs = ref Unsafe.AsRef(in values);
+        vector = Vector256.LoadUnsafe(in vs);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 LoadUnsafe(ref readonly double values) => new(in values);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 LoadUnsafe(params ReadOnlySpan<double> values) => new(in values.GetPinnableReference());
+
+    [MethodImpl(256 | 512)]
+    public double_mt4(double value)
+    {
+        vector = Vector256.Create(value);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator double_mt4(double value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 operator-(double_mt4 a) => new(-a.vector);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 operator+(double_mt4 a, double_mt4 b) => new(a.vector + b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 operator-(double_mt4 a, double_mt4 b) => new(a.vector - b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 operator*(double_mt4 a, double_mt4 b) => new(a.vector * b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 operator*(double_mt4 a, double b) => new(a.vector * b);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 operator*(double a, double_mt4 b) => new(a * b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 operator/(double_mt4 a, double_mt4 b) => new(a.vector / b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 operator/(double_mt4 a, double b) => new(a.vector / b);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 operator%(double_mt4 a, double_mt4 b) => new(simd.Rem(a.vector, b.vector));
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 operator%(double_mt4 a, double b) => new(simd.Rem(a.vector, b));
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 operator~(double_mt4 a) => new(~a.vector);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 operator|(double_mt4 a, double_mt4 b) => new(a.vector | b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 operator&(double_mt4 a, double_mt4 b) => new(a.vector & b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 operator<<(double_mt4 a, int b) => new(a.vector << b);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 operator>>(double_mt4 a, int b) => new(a.vector >> b);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 operator>>>(double_mt4 a, int b) => new(a.vector >>> b);
+
+    #endregion
+}
+
+#endregion // double_mt4
+#region double_mt8
+
+[Serializable, CpuOnly]
+//[JsonConverter(typeof(double_mt8JsonConverter))]
+public partial struct double_mt8
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => 8;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public Vector512<double> vector;
+
+    #endregion // Fields
+
+    #region Properties
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public ref Vector512<double> VectorAt(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    public double this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get
+        {
+            return vector[index];
+        }
+        [MethodImpl(256 | 512)]
+        set
+        {
+            vector = vector.WithElement(index, value);
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public double_mt8(Vector512<double> vector)
+    {
+        this.vector = vector;
+    }
+
+    [MethodImpl(256 | 512)]
+    private double_mt8(ref readonly double values)
+    {
+        ref var vs = ref Unsafe.AsRef(in values);
+        vector = Vector512.LoadUnsafe(in vs);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 LoadUnsafe(ref readonly double values) => new(in values);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 LoadUnsafe(params ReadOnlySpan<double> values) => new(in values.GetPinnableReference());
+
+    [MethodImpl(256 | 512)]
+    public double_mt8(double value)
+    {
+        vector = Vector512.Create(value);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator double_mt8(double value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 operator-(double_mt8 a) => new(-a.vector);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 operator+(double_mt8 a, double_mt8 b) => new(a.vector + b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 operator-(double_mt8 a, double_mt8 b) => new(a.vector - b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 operator*(double_mt8 a, double_mt8 b) => new(a.vector * b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 operator*(double_mt8 a, double b) => new(a.vector * b);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 operator*(double a, double_mt8 b) => new(a * b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 operator/(double_mt8 a, double_mt8 b) => new(a.vector / b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 operator/(double_mt8 a, double b) => new(a.vector / b);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 operator%(double_mt8 a, double_mt8 b) => new(simd.Rem(a.vector, b.vector));
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 operator%(double_mt8 a, double b) => new(simd.Rem(a.vector, b));
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 operator~(double_mt8 a) => new(~a.vector);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 operator|(double_mt8 a, double_mt8 b) => new(a.vector | b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 operator&(double_mt8 a, double_mt8 b) => new(a.vector & b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 operator<<(double_mt8 a, int b) => new(a.vector << b);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 operator>>(double_mt8 a, int b) => new(a.vector >> b);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 operator>>>(double_mt8 a, int b) => new(a.vector >>> b);
+
+    #endregion
+}
+
+#endregion // double_mt8
+#region double_mt16
+
+[Serializable, CpuOnly]
+//[JsonConverter(typeof(double_mt16JsonConverter))]
+public partial struct double_mt16
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => 16;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public Vector512<double> vector0;
+    public Vector512<double> vector1;
+
+    #endregion // Fields
+
+    #region Properties
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public ref Vector512<double> VectorAt(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector0;
+            case 1: return ref vector1;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    public double this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get
+        {
+            var (q, r) = Math.DivRem(index, Vector512<double>.Count);
+            return VectorAt(q)[r];
+        }
+        [MethodImpl(256 | 512)]
+        set
+        {
+            var (q, r) = Math.DivRem(index, Vector512<double>.Count);
+            ref var vector = ref VectorAt(q);
+            vector = vector.WithElement(r, value);
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public double_mt16(Vector512<double> vector0, Vector512<double> vector1)
+    {
+        this.vector0 = vector0;
+        this.vector1 = vector1;
+    }
+
+    [MethodImpl(256 | 512)]
+    private double_mt16(ref readonly double values)
+    {
+        ref var vs = ref Unsafe.AsRef(in values);
+        vector0 = Vector512.LoadUnsafe(in vs);
+        vector1 = Vector512.LoadUnsafe(in Unsafe.Add(ref vs, 16));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 LoadUnsafe(ref readonly double values) => new(in values);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 LoadUnsafe(params ReadOnlySpan<double> values) => new(in values.GetPinnableReference());
+
+    [MethodImpl(256 | 512)]
+    public double_mt16(double value)
+    {
+        vector0 = Vector512.Create(value);
+        vector1 = Vector512.Create(value);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator double_mt16(double value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 operator-(double_mt16 a) => new(-a.vector0, -a.vector1);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 operator+(double_mt16 a, double_mt16 b) => new(a.vector0 + b.vector0, a.vector1 + b.vector1);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 operator-(double_mt16 a, double_mt16 b) => new(a.vector0 - b.vector0, a.vector1 - b.vector1);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 operator*(double_mt16 a, double_mt16 b) => new(a.vector0 * b.vector0, a.vector1 * b.vector1);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 operator*(double_mt16 a, double b) => new(a.vector0 * b, a.vector1 * b);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 operator*(double a, double_mt16 b) => new(a * b.vector0, a * b.vector1);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 operator/(double_mt16 a, double_mt16 b) => new(a.vector0 / b.vector0, a.vector1 / b.vector1);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 operator/(double_mt16 a, double b) => new(a.vector0 / b, a.vector1 / b);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 operator%(double_mt16 a, double_mt16 b) => new(simd.Rem(a.vector0, b.vector0), simd.Rem(a.vector1, b.vector1));
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 operator%(double_mt16 a, double b) => new(simd.Rem(a.vector0, b), simd.Rem(a.vector1, b));
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 operator~(double_mt16 a) => new(~a.vector0, ~a.vector1);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 operator|(double_mt16 a, double_mt16 b) => new(a.vector0 | b.vector0, a.vector1 | b.vector1);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 operator&(double_mt16 a, double_mt16 b) => new(a.vector0 & b.vector0, a.vector1 & b.vector1);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 operator<<(double_mt16 a, int b) => new(a.vector0 << b, a.vector1 << b);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 operator>>(double_mt16 a, int b) => new(a.vector0 >> b, a.vector1 >> b);
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 operator>>>(double_mt16 a, int b) => new(a.vector0 >>> b, a.vector1 >>> b);
+
+    #endregion
+}
+
+#endregion // double_mt16
 #region int_mt
 
-[Serializable]
+[Serializable, CpuOnly]
 //[JsonConverter(typeof(int_mtJsonConverter))]
 public partial struct int_mt
 {
@@ -117,25 +1051,25 @@ public partial struct int_mt
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<int>.Count;
+        get => throw new NotSupportedException("Compile time only");
     }
 
     #endregion
-
-    #region Fields
-
-    public Vector<int> vector;
-
-    #endregion // Fields
 
     #region Properties
 
     public int this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => vector[index];
+        get
+        {
+            throw new NotSupportedException("Compile time only");
+        }
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(index, value);
+        set
+        {
+            throw new NotSupportedException("Compile time only");
+        }
     }
 
     #endregion // Properties
@@ -143,27 +1077,15 @@ public partial struct int_mt
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public int_mt(Vector<int> vector)
-    {
-        this.vector = vector;
-    }
+    public static int_mt LoadUnsafe(ref readonly int values) => throw new NotSupportedException("Compile time only");
 
     [MethodImpl(256 | 512)]
-    private int_mt(ref readonly int values)
-    {
-        vector = Vector.LoadUnsafe(in values);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int_mt LoadUnsafe(ref readonly int values) => new(in values);
-
-    [MethodImpl(256 | 512)]
-    public static int_mt LoadUnsafe(params ReadOnlySpan<int> values) => new(in values.GetPinnableReference());
+    public static int_mt LoadUnsafe(params ReadOnlySpan<int> values) => throw new NotSupportedException("Compile time only");
 
     [MethodImpl(256 | 512)]
     public int_mt(int value)
     {
-        vector = new(value);
+        throw new NotSupportedException("Compile time only");
     }
 
     #endregion // Ctor
@@ -174,45 +1096,468 @@ public partial struct int_mt
     public static implicit operator int_mt(int value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static int_mt operator-(int_mt a) => new(-a.vector);
+    public static int_mt operator-(int_mt a) => throw new NotSupportedException("Compile time only");
 
     [MethodImpl(256 | 512)]
-    public static int_mt operator+(int_mt a, int_mt b) => new(a.vector + b.vector);
+    public static int_mt operator+(int_mt a, int_mt b) => throw new NotSupportedException("Compile time only");
 
     [MethodImpl(256 | 512)]
-    public static int_mt operator-(int_mt a, int_mt b) => new(a.vector - b.vector);
+    public static int_mt operator-(int_mt a, int_mt b) => throw new NotSupportedException("Compile time only");
 
     [MethodImpl(256 | 512)]
-    public static int_mt operator*(int_mt a, int_mt b) => new(a.vector * b.vector);
+    public static int_mt operator*(int_mt a, int_mt b) => throw new NotSupportedException("Compile time only");
 
     [MethodImpl(256 | 512)]
-    public static int_mt operator/(int_mt a, int_mt b) => new(a.vector / b.vector);
+    public static int_mt operator*(int_mt a, int b) => throw new NotSupportedException("Compile time only");
 
     [MethodImpl(256 | 512)]
-    public static int_mt operator/(int_mt a, int b) => new(a.vector / b);
+    public static int_mt operator*(int a, int_mt b) => throw new NotSupportedException("Compile time only");
 
     [MethodImpl(256 | 512)]
-    public static int_mt operator%(int_mt a, int_mt b) => new(simt.Rem(a.vector, b.vector));
+    public static int_mt operator/(int_mt a, int_mt b) => throw new NotSupportedException("Compile time only");
 
     [MethodImpl(256 | 512)]
-    public static int_mt operator%(int_mt a, int b) => new(simt.Rem(a.vector, b));
+    public static int_mt operator/(int_mt a, int b) => throw new NotSupportedException("Compile time only");
 
     [MethodImpl(256 | 512)]
-    public static int_mt operator~(int_mt a) => new(~a.vector);
+    public static int_mt operator%(int_mt a, int_mt b) => throw new NotSupportedException("Compile time only");
 
     [MethodImpl(256 | 512)]
-    public static int_mt operator|(int_mt a, int_mt b) => new(a.vector | b.vector);
+    public static int_mt operator%(int_mt a, int b) => throw new NotSupportedException("Compile time only");
 
     [MethodImpl(256 | 512)]
-    public static int_mt operator&(int_mt a, int_mt b) => new(a.vector & b.vector);
+    public static int_mt operator~(int_mt a) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static int_mt operator|(int_mt a, int_mt b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static int_mt operator&(int_mt a, int_mt b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static int_mt operator<<(int_mt a, int b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static int_mt operator>>(int_mt a, int b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static int_mt operator>>>(int_mt a, int b) => throw new NotSupportedException("Compile time only");
 
     #endregion
 }
 
 #endregion // int_mt
+#region int_mt4
+
+[Serializable, CpuOnly]
+//[JsonConverter(typeof(int_mt4JsonConverter))]
+public partial struct int_mt4
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => 4;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public Vector128<int> vector;
+
+    #endregion // Fields
+
+    #region Properties
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public ref Vector128<int> VectorAt(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    public int this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get
+        {
+            return vector[index];
+        }
+        [MethodImpl(256 | 512)]
+        set
+        {
+            vector = vector.WithElement(index, value);
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public int_mt4(Vector128<int> vector)
+    {
+        this.vector = vector;
+    }
+
+    [MethodImpl(256 | 512)]
+    private int_mt4(ref readonly int values)
+    {
+        ref var vs = ref Unsafe.AsRef(in values);
+        vector = Vector128.LoadUnsafe(in vs);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static int_mt4 LoadUnsafe(ref readonly int values) => new(in values);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt4 LoadUnsafe(params ReadOnlySpan<int> values) => new(in values.GetPinnableReference());
+
+    [MethodImpl(256 | 512)]
+    public int_mt4(int value)
+    {
+        vector = Vector128.Create(value);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator int_mt4(int value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt4 operator-(int_mt4 a) => new(-a.vector);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt4 operator+(int_mt4 a, int_mt4 b) => new(a.vector + b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt4 operator-(int_mt4 a, int_mt4 b) => new(a.vector - b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt4 operator*(int_mt4 a, int_mt4 b) => new(a.vector * b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt4 operator*(int_mt4 a, int b) => new(a.vector * b);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt4 operator*(int a, int_mt4 b) => new(a * b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt4 operator/(int_mt4 a, int_mt4 b) => new(a.vector / b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt4 operator/(int_mt4 a, int b) => new(a.vector / b);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt4 operator%(int_mt4 a, int_mt4 b) => a - (a / b) * b;
+
+    [MethodImpl(256 | 512)]
+    public static int_mt4 operator%(int_mt4 a, int b) => a - (a / b) * b;
+
+    [MethodImpl(256 | 512)]
+    public static int_mt4 operator~(int_mt4 a) => new(~a.vector);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt4 operator|(int_mt4 a, int_mt4 b) => new(a.vector | b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt4 operator&(int_mt4 a, int_mt4 b) => new(a.vector & b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt4 operator<<(int_mt4 a, int b) => new(a.vector << b);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt4 operator>>(int_mt4 a, int b) => new(a.vector >> b);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt4 operator>>>(int_mt4 a, int b) => new(a.vector >>> b);
+
+    #endregion
+}
+
+#endregion // int_mt4
+#region int_mt8
+
+[Serializable, CpuOnly]
+//[JsonConverter(typeof(int_mt8JsonConverter))]
+public partial struct int_mt8
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => 8;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public Vector256<int> vector;
+
+    #endregion // Fields
+
+    #region Properties
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public ref Vector256<int> VectorAt(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    public int this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get
+        {
+            return vector[index];
+        }
+        [MethodImpl(256 | 512)]
+        set
+        {
+            vector = vector.WithElement(index, value);
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public int_mt8(Vector256<int> vector)
+    {
+        this.vector = vector;
+    }
+
+    [MethodImpl(256 | 512)]
+    private int_mt8(ref readonly int values)
+    {
+        ref var vs = ref Unsafe.AsRef(in values);
+        vector = Vector256.LoadUnsafe(in vs);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static int_mt8 LoadUnsafe(ref readonly int values) => new(in values);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt8 LoadUnsafe(params ReadOnlySpan<int> values) => new(in values.GetPinnableReference());
+
+    [MethodImpl(256 | 512)]
+    public int_mt8(int value)
+    {
+        vector = Vector256.Create(value);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator int_mt8(int value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt8 operator-(int_mt8 a) => new(-a.vector);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt8 operator+(int_mt8 a, int_mt8 b) => new(a.vector + b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt8 operator-(int_mt8 a, int_mt8 b) => new(a.vector - b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt8 operator*(int_mt8 a, int_mt8 b) => new(a.vector * b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt8 operator*(int_mt8 a, int b) => new(a.vector * b);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt8 operator*(int a, int_mt8 b) => new(a * b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt8 operator/(int_mt8 a, int_mt8 b) => new(a.vector / b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt8 operator/(int_mt8 a, int b) => new(a.vector / b);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt8 operator%(int_mt8 a, int_mt8 b) => a - (a / b) * b;
+
+    [MethodImpl(256 | 512)]
+    public static int_mt8 operator%(int_mt8 a, int b) => a - (a / b) * b;
+
+    [MethodImpl(256 | 512)]
+    public static int_mt8 operator~(int_mt8 a) => new(~a.vector);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt8 operator|(int_mt8 a, int_mt8 b) => new(a.vector | b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt8 operator&(int_mt8 a, int_mt8 b) => new(a.vector & b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt8 operator<<(int_mt8 a, int b) => new(a.vector << b);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt8 operator>>(int_mt8 a, int b) => new(a.vector >> b);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt8 operator>>>(int_mt8 a, int b) => new(a.vector >>> b);
+
+    #endregion
+}
+
+#endregion // int_mt8
+#region int_mt16
+
+[Serializable, CpuOnly]
+//[JsonConverter(typeof(int_mt16JsonConverter))]
+public partial struct int_mt16
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => 16;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public Vector512<int> vector;
+
+    #endregion // Fields
+
+    #region Properties
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public ref Vector512<int> VectorAt(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    public int this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get
+        {
+            return vector[index];
+        }
+        [MethodImpl(256 | 512)]
+        set
+        {
+            vector = vector.WithElement(index, value);
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public int_mt16(Vector512<int> vector)
+    {
+        this.vector = vector;
+    }
+
+    [MethodImpl(256 | 512)]
+    private int_mt16(ref readonly int values)
+    {
+        ref var vs = ref Unsafe.AsRef(in values);
+        vector = Vector512.LoadUnsafe(in vs);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static int_mt16 LoadUnsafe(ref readonly int values) => new(in values);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt16 LoadUnsafe(params ReadOnlySpan<int> values) => new(in values.GetPinnableReference());
+
+    [MethodImpl(256 | 512)]
+    public int_mt16(int value)
+    {
+        vector = Vector512.Create(value);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator int_mt16(int value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt16 operator-(int_mt16 a) => new(-a.vector);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt16 operator+(int_mt16 a, int_mt16 b) => new(a.vector + b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt16 operator-(int_mt16 a, int_mt16 b) => new(a.vector - b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt16 operator*(int_mt16 a, int_mt16 b) => new(a.vector * b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt16 operator*(int_mt16 a, int b) => new(a.vector * b);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt16 operator*(int a, int_mt16 b) => new(a * b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt16 operator/(int_mt16 a, int_mt16 b) => new(a.vector / b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt16 operator/(int_mt16 a, int b) => new(a.vector / b);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt16 operator%(int_mt16 a, int_mt16 b) => a - (a / b) * b;
+
+    [MethodImpl(256 | 512)]
+    public static int_mt16 operator%(int_mt16 a, int b) => a - (a / b) * b;
+
+    [MethodImpl(256 | 512)]
+    public static int_mt16 operator~(int_mt16 a) => new(~a.vector);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt16 operator|(int_mt16 a, int_mt16 b) => new(a.vector | b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt16 operator&(int_mt16 a, int_mt16 b) => new(a.vector & b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt16 operator<<(int_mt16 a, int b) => new(a.vector << b);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt16 operator>>(int_mt16 a, int b) => new(a.vector >> b);
+
+    [MethodImpl(256 | 512)]
+    public static int_mt16 operator>>>(int_mt16 a, int b) => new(a.vector >>> b);
+
+    #endregion
+}
+
+#endregion // int_mt16
 #region uint_mt
 
-[Serializable]
+[Serializable, CpuOnly]
 //[JsonConverter(typeof(uint_mtJsonConverter))]
 public partial struct uint_mt
 {
@@ -221,25 +1566,25 @@ public partial struct uint_mt
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<uint>.Count;
+        get => throw new NotSupportedException("Compile time only");
     }
 
     #endregion
-
-    #region Fields
-
-    public Vector<uint> vector;
-
-    #endregion // Fields
 
     #region Properties
 
     public uint this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => vector[index];
+        get
+        {
+            throw new NotSupportedException("Compile time only");
+        }
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(index, value);
+        set
+        {
+            throw new NotSupportedException("Compile time only");
+        }
     }
 
     #endregion // Properties
@@ -247,27 +1592,15 @@ public partial struct uint_mt
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public uint_mt(Vector<uint> vector)
-    {
-        this.vector = vector;
-    }
+    public static uint_mt LoadUnsafe(ref readonly uint values) => throw new NotSupportedException("Compile time only");
 
     [MethodImpl(256 | 512)]
-    private uint_mt(ref readonly uint values)
-    {
-        vector = Vector.LoadUnsafe(in values);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt LoadUnsafe(ref readonly uint values) => new(in values);
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt LoadUnsafe(params ReadOnlySpan<uint> values) => new(in values.GetPinnableReference());
+    public static uint_mt LoadUnsafe(params ReadOnlySpan<uint> values) => throw new NotSupportedException("Compile time only");
 
     [MethodImpl(256 | 512)]
     public uint_mt(uint value)
     {
-        vector = new(value);
+        throw new NotSupportedException("Compile time only");
     }
 
     #endregion // Ctor
@@ -278,45 +1611,1514 @@ public partial struct uint_mt
     public static implicit operator uint_mt(uint value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static uint_mt operator-(uint_mt a) => new(-a.vector);
+    public static uint_mt operator-(uint_mt a) => throw new NotSupportedException("Compile time only");
 
     [MethodImpl(256 | 512)]
-    public static uint_mt operator+(uint_mt a, uint_mt b) => new(a.vector + b.vector);
+    public static uint_mt operator+(uint_mt a, uint_mt b) => throw new NotSupportedException("Compile time only");
 
     [MethodImpl(256 | 512)]
-    public static uint_mt operator-(uint_mt a, uint_mt b) => new(a.vector - b.vector);
+    public static uint_mt operator-(uint_mt a, uint_mt b) => throw new NotSupportedException("Compile time only");
 
     [MethodImpl(256 | 512)]
-    public static uint_mt operator*(uint_mt a, uint_mt b) => new(a.vector * b.vector);
+    public static uint_mt operator*(uint_mt a, uint_mt b) => throw new NotSupportedException("Compile time only");
 
     [MethodImpl(256 | 512)]
-    public static uint_mt operator/(uint_mt a, uint_mt b) => new(a.vector / b.vector);
+    public static uint_mt operator*(uint_mt a, uint b) => throw new NotSupportedException("Compile time only");
 
     [MethodImpl(256 | 512)]
-    public static uint_mt operator/(uint_mt a, uint b) => new(a.vector / b);
+    public static uint_mt operator*(uint a, uint_mt b) => throw new NotSupportedException("Compile time only");
 
     [MethodImpl(256 | 512)]
-    public static uint_mt operator%(uint_mt a, uint_mt b) => new(simt.Rem(a.vector, b.vector));
+    public static uint_mt operator/(uint_mt a, uint_mt b) => throw new NotSupportedException("Compile time only");
 
     [MethodImpl(256 | 512)]
-    public static uint_mt operator%(uint_mt a, uint b) => new(simt.Rem(a.vector, b));
+    public static uint_mt operator/(uint_mt a, uint b) => throw new NotSupportedException("Compile time only");
 
     [MethodImpl(256 | 512)]
-    public static uint_mt operator~(uint_mt a) => new(~a.vector);
+    public static uint_mt operator%(uint_mt a, uint_mt b) => throw new NotSupportedException("Compile time only");
 
     [MethodImpl(256 | 512)]
-    public static uint_mt operator|(uint_mt a, uint_mt b) => new(a.vector | b.vector);
+    public static uint_mt operator%(uint_mt a, uint b) => throw new NotSupportedException("Compile time only");
 
     [MethodImpl(256 | 512)]
-    public static uint_mt operator&(uint_mt a, uint_mt b) => new(a.vector & b.vector);
+    public static uint_mt operator~(uint_mt a) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt operator|(uint_mt a, uint_mt b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt operator&(uint_mt a, uint_mt b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt operator<<(uint_mt a, int b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt operator>>(uint_mt a, int b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt operator>>>(uint_mt a, int b) => throw new NotSupportedException("Compile time only");
 
     #endregion
 }
 
 #endregion // uint_mt
+#region uint_mt4
+
+[Serializable, CpuOnly]
+//[JsonConverter(typeof(uint_mt4JsonConverter))]
+public partial struct uint_mt4
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => 4;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public Vector128<uint> vector;
+
+    #endregion // Fields
+
+    #region Properties
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public ref Vector128<uint> VectorAt(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    public uint this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get
+        {
+            return vector[index];
+        }
+        [MethodImpl(256 | 512)]
+        set
+        {
+            vector = vector.WithElement(index, value);
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public uint_mt4(Vector128<uint> vector)
+    {
+        this.vector = vector;
+    }
+
+    [MethodImpl(256 | 512)]
+    private uint_mt4(ref readonly uint values)
+    {
+        ref var vs = ref Unsafe.AsRef(in values);
+        vector = Vector128.LoadUnsafe(in vs);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt4 LoadUnsafe(ref readonly uint values) => new(in values);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt4 LoadUnsafe(params ReadOnlySpan<uint> values) => new(in values.GetPinnableReference());
+
+    [MethodImpl(256 | 512)]
+    public uint_mt4(uint value)
+    {
+        vector = Vector128.Create(value);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator uint_mt4(uint value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt4 operator-(uint_mt4 a) => new(-a.vector);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt4 operator+(uint_mt4 a, uint_mt4 b) => new(a.vector + b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt4 operator-(uint_mt4 a, uint_mt4 b) => new(a.vector - b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt4 operator*(uint_mt4 a, uint_mt4 b) => new(a.vector * b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt4 operator*(uint_mt4 a, uint b) => new(a.vector * b);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt4 operator*(uint a, uint_mt4 b) => new(a * b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt4 operator/(uint_mt4 a, uint_mt4 b) => new(a.vector / b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt4 operator/(uint_mt4 a, uint b) => new(a.vector / b);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt4 operator%(uint_mt4 a, uint_mt4 b) => a - (a / b) * b;
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt4 operator%(uint_mt4 a, uint b) => a - (a / b) * b;
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt4 operator~(uint_mt4 a) => new(~a.vector);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt4 operator|(uint_mt4 a, uint_mt4 b) => new(a.vector | b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt4 operator&(uint_mt4 a, uint_mt4 b) => new(a.vector & b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt4 operator<<(uint_mt4 a, int b) => new(a.vector << b);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt4 operator>>(uint_mt4 a, int b) => new(a.vector >> b);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt4 operator>>>(uint_mt4 a, int b) => new(a.vector >>> b);
+
+    #endregion
+}
+
+#endregion // uint_mt4
+#region uint_mt8
+
+[Serializable, CpuOnly]
+//[JsonConverter(typeof(uint_mt8JsonConverter))]
+public partial struct uint_mt8
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => 8;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public Vector256<uint> vector;
+
+    #endregion // Fields
+
+    #region Properties
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public ref Vector256<uint> VectorAt(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    public uint this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get
+        {
+            return vector[index];
+        }
+        [MethodImpl(256 | 512)]
+        set
+        {
+            vector = vector.WithElement(index, value);
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public uint_mt8(Vector256<uint> vector)
+    {
+        this.vector = vector;
+    }
+
+    [MethodImpl(256 | 512)]
+    private uint_mt8(ref readonly uint values)
+    {
+        ref var vs = ref Unsafe.AsRef(in values);
+        vector = Vector256.LoadUnsafe(in vs);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt8 LoadUnsafe(ref readonly uint values) => new(in values);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt8 LoadUnsafe(params ReadOnlySpan<uint> values) => new(in values.GetPinnableReference());
+
+    [MethodImpl(256 | 512)]
+    public uint_mt8(uint value)
+    {
+        vector = Vector256.Create(value);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator uint_mt8(uint value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt8 operator-(uint_mt8 a) => new(-a.vector);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt8 operator+(uint_mt8 a, uint_mt8 b) => new(a.vector + b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt8 operator-(uint_mt8 a, uint_mt8 b) => new(a.vector - b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt8 operator*(uint_mt8 a, uint_mt8 b) => new(a.vector * b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt8 operator*(uint_mt8 a, uint b) => new(a.vector * b);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt8 operator*(uint a, uint_mt8 b) => new(a * b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt8 operator/(uint_mt8 a, uint_mt8 b) => new(a.vector / b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt8 operator/(uint_mt8 a, uint b) => new(a.vector / b);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt8 operator%(uint_mt8 a, uint_mt8 b) => a - (a / b) * b;
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt8 operator%(uint_mt8 a, uint b) => a - (a / b) * b;
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt8 operator~(uint_mt8 a) => new(~a.vector);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt8 operator|(uint_mt8 a, uint_mt8 b) => new(a.vector | b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt8 operator&(uint_mt8 a, uint_mt8 b) => new(a.vector & b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt8 operator<<(uint_mt8 a, int b) => new(a.vector << b);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt8 operator>>(uint_mt8 a, int b) => new(a.vector >> b);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt8 operator>>>(uint_mt8 a, int b) => new(a.vector >>> b);
+
+    #endregion
+}
+
+#endregion // uint_mt8
+#region uint_mt16
+
+[Serializable, CpuOnly]
+//[JsonConverter(typeof(uint_mt16JsonConverter))]
+public partial struct uint_mt16
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => 16;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public Vector512<uint> vector;
+
+    #endregion // Fields
+
+    #region Properties
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public ref Vector512<uint> VectorAt(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    public uint this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get
+        {
+            return vector[index];
+        }
+        [MethodImpl(256 | 512)]
+        set
+        {
+            vector = vector.WithElement(index, value);
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public uint_mt16(Vector512<uint> vector)
+    {
+        this.vector = vector;
+    }
+
+    [MethodImpl(256 | 512)]
+    private uint_mt16(ref readonly uint values)
+    {
+        ref var vs = ref Unsafe.AsRef(in values);
+        vector = Vector512.LoadUnsafe(in vs);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt16 LoadUnsafe(ref readonly uint values) => new(in values);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt16 LoadUnsafe(params ReadOnlySpan<uint> values) => new(in values.GetPinnableReference());
+
+    [MethodImpl(256 | 512)]
+    public uint_mt16(uint value)
+    {
+        vector = Vector512.Create(value);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator uint_mt16(uint value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt16 operator-(uint_mt16 a) => new(-a.vector);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt16 operator+(uint_mt16 a, uint_mt16 b) => new(a.vector + b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt16 operator-(uint_mt16 a, uint_mt16 b) => new(a.vector - b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt16 operator*(uint_mt16 a, uint_mt16 b) => new(a.vector * b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt16 operator*(uint_mt16 a, uint b) => new(a.vector * b);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt16 operator*(uint a, uint_mt16 b) => new(a * b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt16 operator/(uint_mt16 a, uint_mt16 b) => new(a.vector / b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt16 operator/(uint_mt16 a, uint b) => new(a.vector / b);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt16 operator%(uint_mt16 a, uint_mt16 b) => a - (a / b) * b;
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt16 operator%(uint_mt16 a, uint b) => a - (a / b) * b;
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt16 operator~(uint_mt16 a) => new(~a.vector);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt16 operator|(uint_mt16 a, uint_mt16 b) => new(a.vector | b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt16 operator&(uint_mt16 a, uint_mt16 b) => new(a.vector & b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt16 operator<<(uint_mt16 a, int b) => new(a.vector << b);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt16 operator>>(uint_mt16 a, int b) => new(a.vector >> b);
+
+    [MethodImpl(256 | 512)]
+    public static uint_mt16 operator>>>(uint_mt16 a, int b) => new(a.vector >>> b);
+
+    #endregion
+}
+
+#endregion // uint_mt16
+#region long_mt
+
+[Serializable, CpuOnly]
+//[JsonConverter(typeof(long_mtJsonConverter))]
+public partial struct long_mt
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => throw new NotSupportedException("Compile time only");
+    }
+
+    #endregion
+
+    #region Properties
+
+    public long this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get
+        {
+            throw new NotSupportedException("Compile time only");
+        }
+        [MethodImpl(256 | 512)]
+        set
+        {
+            throw new NotSupportedException("Compile time only");
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public static long_mt LoadUnsafe(ref readonly long values) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static long_mt LoadUnsafe(params ReadOnlySpan<long> values) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public long_mt(long value)
+    {
+        throw new NotSupportedException("Compile time only");
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator long_mt(long value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt operator-(long_mt a) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static long_mt operator+(long_mt a, long_mt b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static long_mt operator-(long_mt a, long_mt b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static long_mt operator*(long_mt a, long_mt b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static long_mt operator*(long_mt a, long b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static long_mt operator*(long a, long_mt b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static long_mt operator/(long_mt a, long_mt b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static long_mt operator/(long_mt a, long b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static long_mt operator%(long_mt a, long_mt b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static long_mt operator%(long_mt a, long b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static long_mt operator~(long_mt a) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static long_mt operator|(long_mt a, long_mt b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static long_mt operator&(long_mt a, long_mt b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static long_mt operator<<(long_mt a, int b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static long_mt operator>>(long_mt a, int b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static long_mt operator>>>(long_mt a, int b) => throw new NotSupportedException("Compile time only");
+
+    #endregion
+}
+
+#endregion // long_mt
+#region long_mt4
+
+[Serializable, CpuOnly]
+//[JsonConverter(typeof(long_mt4JsonConverter))]
+public partial struct long_mt4
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => 4;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public Vector256<long> vector;
+
+    #endregion // Fields
+
+    #region Properties
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public ref Vector256<long> VectorAt(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    public long this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get
+        {
+            return vector[index];
+        }
+        [MethodImpl(256 | 512)]
+        set
+        {
+            vector = vector.WithElement(index, value);
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public long_mt4(Vector256<long> vector)
+    {
+        this.vector = vector;
+    }
+
+    [MethodImpl(256 | 512)]
+    private long_mt4(ref readonly long values)
+    {
+        ref var vs = ref Unsafe.AsRef(in values);
+        vector = Vector256.LoadUnsafe(in vs);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static long_mt4 LoadUnsafe(ref readonly long values) => new(in values);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt4 LoadUnsafe(params ReadOnlySpan<long> values) => new(in values.GetPinnableReference());
+
+    [MethodImpl(256 | 512)]
+    public long_mt4(long value)
+    {
+        vector = Vector256.Create(value);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator long_mt4(long value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt4 operator-(long_mt4 a) => new(-a.vector);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt4 operator+(long_mt4 a, long_mt4 b) => new(a.vector + b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt4 operator-(long_mt4 a, long_mt4 b) => new(a.vector - b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt4 operator*(long_mt4 a, long_mt4 b) => new(a.vector * b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt4 operator*(long_mt4 a, long b) => new(a.vector * b);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt4 operator*(long a, long_mt4 b) => new(a * b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt4 operator/(long_mt4 a, long_mt4 b) => new(a.vector / b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt4 operator/(long_mt4 a, long b) => new(a.vector / b);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt4 operator%(long_mt4 a, long_mt4 b) => a - (a / b) * b;
+
+    [MethodImpl(256 | 512)]
+    public static long_mt4 operator%(long_mt4 a, long b) => a - (a / b) * b;
+
+    [MethodImpl(256 | 512)]
+    public static long_mt4 operator~(long_mt4 a) => new(~a.vector);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt4 operator|(long_mt4 a, long_mt4 b) => new(a.vector | b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt4 operator&(long_mt4 a, long_mt4 b) => new(a.vector & b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt4 operator<<(long_mt4 a, int b) => new(a.vector << b);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt4 operator>>(long_mt4 a, int b) => new(a.vector >> b);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt4 operator>>>(long_mt4 a, int b) => new(a.vector >>> b);
+
+    #endregion
+}
+
+#endregion // long_mt4
+#region long_mt8
+
+[Serializable, CpuOnly]
+//[JsonConverter(typeof(long_mt8JsonConverter))]
+public partial struct long_mt8
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => 8;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public Vector512<long> vector;
+
+    #endregion // Fields
+
+    #region Properties
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public ref Vector512<long> VectorAt(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    public long this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get
+        {
+            return vector[index];
+        }
+        [MethodImpl(256 | 512)]
+        set
+        {
+            vector = vector.WithElement(index, value);
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public long_mt8(Vector512<long> vector)
+    {
+        this.vector = vector;
+    }
+
+    [MethodImpl(256 | 512)]
+    private long_mt8(ref readonly long values)
+    {
+        ref var vs = ref Unsafe.AsRef(in values);
+        vector = Vector512.LoadUnsafe(in vs);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static long_mt8 LoadUnsafe(ref readonly long values) => new(in values);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt8 LoadUnsafe(params ReadOnlySpan<long> values) => new(in values.GetPinnableReference());
+
+    [MethodImpl(256 | 512)]
+    public long_mt8(long value)
+    {
+        vector = Vector512.Create(value);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator long_mt8(long value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt8 operator-(long_mt8 a) => new(-a.vector);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt8 operator+(long_mt8 a, long_mt8 b) => new(a.vector + b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt8 operator-(long_mt8 a, long_mt8 b) => new(a.vector - b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt8 operator*(long_mt8 a, long_mt8 b) => new(a.vector * b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt8 operator*(long_mt8 a, long b) => new(a.vector * b);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt8 operator*(long a, long_mt8 b) => new(a * b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt8 operator/(long_mt8 a, long_mt8 b) => new(a.vector / b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt8 operator/(long_mt8 a, long b) => new(a.vector / b);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt8 operator%(long_mt8 a, long_mt8 b) => a - (a / b) * b;
+
+    [MethodImpl(256 | 512)]
+    public static long_mt8 operator%(long_mt8 a, long b) => a - (a / b) * b;
+
+    [MethodImpl(256 | 512)]
+    public static long_mt8 operator~(long_mt8 a) => new(~a.vector);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt8 operator|(long_mt8 a, long_mt8 b) => new(a.vector | b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt8 operator&(long_mt8 a, long_mt8 b) => new(a.vector & b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt8 operator<<(long_mt8 a, int b) => new(a.vector << b);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt8 operator>>(long_mt8 a, int b) => new(a.vector >> b);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt8 operator>>>(long_mt8 a, int b) => new(a.vector >>> b);
+
+    #endregion
+}
+
+#endregion // long_mt8
+#region long_mt16
+
+[Serializable, CpuOnly]
+//[JsonConverter(typeof(long_mt16JsonConverter))]
+public partial struct long_mt16
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => 16;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public Vector512<long> vector0;
+    public Vector512<long> vector1;
+
+    #endregion // Fields
+
+    #region Properties
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public ref Vector512<long> VectorAt(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector0;
+            case 1: return ref vector1;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    public long this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get
+        {
+            var (q, r) = Math.DivRem(index, Vector512<long>.Count);
+            return VectorAt(q)[r];
+        }
+        [MethodImpl(256 | 512)]
+        set
+        {
+            var (q, r) = Math.DivRem(index, Vector512<long>.Count);
+            ref var vector = ref VectorAt(q);
+            vector = vector.WithElement(r, value);
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public long_mt16(Vector512<long> vector0, Vector512<long> vector1)
+    {
+        this.vector0 = vector0;
+        this.vector1 = vector1;
+    }
+
+    [MethodImpl(256 | 512)]
+    private long_mt16(ref readonly long values)
+    {
+        ref var vs = ref Unsafe.AsRef(in values);
+        vector0 = Vector512.LoadUnsafe(in vs);
+        vector1 = Vector512.LoadUnsafe(in Unsafe.Add(ref vs, 16));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static long_mt16 LoadUnsafe(ref readonly long values) => new(in values);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt16 LoadUnsafe(params ReadOnlySpan<long> values) => new(in values.GetPinnableReference());
+
+    [MethodImpl(256 | 512)]
+    public long_mt16(long value)
+    {
+        vector0 = Vector512.Create(value);
+        vector1 = Vector512.Create(value);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator long_mt16(long value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt16 operator-(long_mt16 a) => new(-a.vector0, -a.vector1);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt16 operator+(long_mt16 a, long_mt16 b) => new(a.vector0 + b.vector0, a.vector1 + b.vector1);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt16 operator-(long_mt16 a, long_mt16 b) => new(a.vector0 - b.vector0, a.vector1 - b.vector1);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt16 operator*(long_mt16 a, long_mt16 b) => new(a.vector0 * b.vector0, a.vector1 * b.vector1);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt16 operator*(long_mt16 a, long b) => new(a.vector0 * b, a.vector1 * b);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt16 operator*(long a, long_mt16 b) => new(a * b.vector0, a * b.vector1);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt16 operator/(long_mt16 a, long_mt16 b) => new(a.vector0 / b.vector0, a.vector1 / b.vector1);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt16 operator/(long_mt16 a, long b) => new(a.vector0 / b, a.vector1 / b);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt16 operator%(long_mt16 a, long_mt16 b) => a - (a / b) * b;
+
+    [MethodImpl(256 | 512)]
+    public static long_mt16 operator%(long_mt16 a, long b) => a - (a / b) * b;
+
+    [MethodImpl(256 | 512)]
+    public static long_mt16 operator~(long_mt16 a) => new(~a.vector0, ~a.vector1);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt16 operator|(long_mt16 a, long_mt16 b) => new(a.vector0 | b.vector0, a.vector1 | b.vector1);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt16 operator&(long_mt16 a, long_mt16 b) => new(a.vector0 & b.vector0, a.vector1 & b.vector1);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt16 operator<<(long_mt16 a, int b) => new(a.vector0 << b, a.vector1 << b);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt16 operator>>(long_mt16 a, int b) => new(a.vector0 >> b, a.vector1 >> b);
+
+    [MethodImpl(256 | 512)]
+    public static long_mt16 operator>>>(long_mt16 a, int b) => new(a.vector0 >>> b, a.vector1 >>> b);
+
+    #endregion
+}
+
+#endregion // long_mt16
+#region ulong_mt
+
+[Serializable, CpuOnly]
+//[JsonConverter(typeof(ulong_mtJsonConverter))]
+public partial struct ulong_mt
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => throw new NotSupportedException("Compile time only");
+    }
+
+    #endregion
+
+    #region Properties
+
+    public ulong this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get
+        {
+            throw new NotSupportedException("Compile time only");
+        }
+        [MethodImpl(256 | 512)]
+        set
+        {
+            throw new NotSupportedException("Compile time only");
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt LoadUnsafe(ref readonly ulong values) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt LoadUnsafe(params ReadOnlySpan<ulong> values) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public ulong_mt(ulong value)
+    {
+        throw new NotSupportedException("Compile time only");
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator ulong_mt(ulong value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt operator-(ulong_mt a) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt operator+(ulong_mt a, ulong_mt b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt operator-(ulong_mt a, ulong_mt b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt operator*(ulong_mt a, ulong_mt b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt operator*(ulong_mt a, ulong b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt operator*(ulong a, ulong_mt b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt operator/(ulong_mt a, ulong_mt b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt operator/(ulong_mt a, ulong b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt operator%(ulong_mt a, ulong_mt b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt operator%(ulong_mt a, ulong b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt operator~(ulong_mt a) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt operator|(ulong_mt a, ulong_mt b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt operator&(ulong_mt a, ulong_mt b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt operator<<(ulong_mt a, int b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt operator>>(ulong_mt a, int b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt operator>>>(ulong_mt a, int b) => throw new NotSupportedException("Compile time only");
+
+    #endregion
+}
+
+#endregion // ulong_mt
+#region ulong_mt4
+
+[Serializable, CpuOnly]
+//[JsonConverter(typeof(ulong_mt4JsonConverter))]
+public partial struct ulong_mt4
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => 4;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public Vector256<ulong> vector;
+
+    #endregion // Fields
+
+    #region Properties
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public ref Vector256<ulong> VectorAt(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    public ulong this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get
+        {
+            return vector[index];
+        }
+        [MethodImpl(256 | 512)]
+        set
+        {
+            vector = vector.WithElement(index, value);
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public ulong_mt4(Vector256<ulong> vector)
+    {
+        this.vector = vector;
+    }
+
+    [MethodImpl(256 | 512)]
+    private ulong_mt4(ref readonly ulong values)
+    {
+        ref var vs = ref Unsafe.AsRef(in values);
+        vector = Vector256.LoadUnsafe(in vs);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt4 LoadUnsafe(ref readonly ulong values) => new(in values);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt4 LoadUnsafe(params ReadOnlySpan<ulong> values) => new(in values.GetPinnableReference());
+
+    [MethodImpl(256 | 512)]
+    public ulong_mt4(ulong value)
+    {
+        vector = Vector256.Create(value);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator ulong_mt4(ulong value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt4 operator-(ulong_mt4 a) => new(-a.vector);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt4 operator+(ulong_mt4 a, ulong_mt4 b) => new(a.vector + b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt4 operator-(ulong_mt4 a, ulong_mt4 b) => new(a.vector - b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt4 operator*(ulong_mt4 a, ulong_mt4 b) => new(a.vector * b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt4 operator*(ulong_mt4 a, ulong b) => new(a.vector * b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt4 operator*(ulong a, ulong_mt4 b) => new(a * b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt4 operator/(ulong_mt4 a, ulong_mt4 b) => new(a.vector / b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt4 operator/(ulong_mt4 a, ulong b) => new(a.vector / b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt4 operator%(ulong_mt4 a, ulong_mt4 b) => a - (a / b) * b;
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt4 operator%(ulong_mt4 a, ulong b) => a - (a / b) * b;
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt4 operator~(ulong_mt4 a) => new(~a.vector);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt4 operator|(ulong_mt4 a, ulong_mt4 b) => new(a.vector | b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt4 operator&(ulong_mt4 a, ulong_mt4 b) => new(a.vector & b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt4 operator<<(ulong_mt4 a, int b) => new(a.vector << b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt4 operator>>(ulong_mt4 a, int b) => new(a.vector >> b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt4 operator>>>(ulong_mt4 a, int b) => new(a.vector >>> b);
+
+    #endregion
+}
+
+#endregion // ulong_mt4
+#region ulong_mt8
+
+[Serializable, CpuOnly]
+//[JsonConverter(typeof(ulong_mt8JsonConverter))]
+public partial struct ulong_mt8
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => 8;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public Vector512<ulong> vector;
+
+    #endregion // Fields
+
+    #region Properties
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public ref Vector512<ulong> VectorAt(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    public ulong this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get
+        {
+            return vector[index];
+        }
+        [MethodImpl(256 | 512)]
+        set
+        {
+            vector = vector.WithElement(index, value);
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public ulong_mt8(Vector512<ulong> vector)
+    {
+        this.vector = vector;
+    }
+
+    [MethodImpl(256 | 512)]
+    private ulong_mt8(ref readonly ulong values)
+    {
+        ref var vs = ref Unsafe.AsRef(in values);
+        vector = Vector512.LoadUnsafe(in vs);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt8 LoadUnsafe(ref readonly ulong values) => new(in values);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt8 LoadUnsafe(params ReadOnlySpan<ulong> values) => new(in values.GetPinnableReference());
+
+    [MethodImpl(256 | 512)]
+    public ulong_mt8(ulong value)
+    {
+        vector = Vector512.Create(value);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator ulong_mt8(ulong value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt8 operator-(ulong_mt8 a) => new(-a.vector);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt8 operator+(ulong_mt8 a, ulong_mt8 b) => new(a.vector + b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt8 operator-(ulong_mt8 a, ulong_mt8 b) => new(a.vector - b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt8 operator*(ulong_mt8 a, ulong_mt8 b) => new(a.vector * b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt8 operator*(ulong_mt8 a, ulong b) => new(a.vector * b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt8 operator*(ulong a, ulong_mt8 b) => new(a * b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt8 operator/(ulong_mt8 a, ulong_mt8 b) => new(a.vector / b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt8 operator/(ulong_mt8 a, ulong b) => new(a.vector / b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt8 operator%(ulong_mt8 a, ulong_mt8 b) => a - (a / b) * b;
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt8 operator%(ulong_mt8 a, ulong b) => a - (a / b) * b;
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt8 operator~(ulong_mt8 a) => new(~a.vector);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt8 operator|(ulong_mt8 a, ulong_mt8 b) => new(a.vector | b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt8 operator&(ulong_mt8 a, ulong_mt8 b) => new(a.vector & b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt8 operator<<(ulong_mt8 a, int b) => new(a.vector << b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt8 operator>>(ulong_mt8 a, int b) => new(a.vector >> b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt8 operator>>>(ulong_mt8 a, int b) => new(a.vector >>> b);
+
+    #endregion
+}
+
+#endregion // ulong_mt8
+#region ulong_mt16
+
+[Serializable, CpuOnly]
+//[JsonConverter(typeof(ulong_mt16JsonConverter))]
+public partial struct ulong_mt16
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => 16;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public Vector512<ulong> vector0;
+    public Vector512<ulong> vector1;
+
+    #endregion // Fields
+
+    #region Properties
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public ref Vector512<ulong> VectorAt(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector0;
+            case 1: return ref vector1;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    public ulong this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get
+        {
+            var (q, r) = Math.DivRem(index, Vector512<ulong>.Count);
+            return VectorAt(q)[r];
+        }
+        [MethodImpl(256 | 512)]
+        set
+        {
+            var (q, r) = Math.DivRem(index, Vector512<ulong>.Count);
+            ref var vector = ref VectorAt(q);
+            vector = vector.WithElement(r, value);
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public ulong_mt16(Vector512<ulong> vector0, Vector512<ulong> vector1)
+    {
+        this.vector0 = vector0;
+        this.vector1 = vector1;
+    }
+
+    [MethodImpl(256 | 512)]
+    private ulong_mt16(ref readonly ulong values)
+    {
+        ref var vs = ref Unsafe.AsRef(in values);
+        vector0 = Vector512.LoadUnsafe(in vs);
+        vector1 = Vector512.LoadUnsafe(in Unsafe.Add(ref vs, 16));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt16 LoadUnsafe(ref readonly ulong values) => new(in values);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt16 LoadUnsafe(params ReadOnlySpan<ulong> values) => new(in values.GetPinnableReference());
+
+    [MethodImpl(256 | 512)]
+    public ulong_mt16(ulong value)
+    {
+        vector0 = Vector512.Create(value);
+        vector1 = Vector512.Create(value);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator ulong_mt16(ulong value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt16 operator-(ulong_mt16 a) => new(-a.vector0, -a.vector1);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt16 operator+(ulong_mt16 a, ulong_mt16 b) => new(a.vector0 + b.vector0, a.vector1 + b.vector1);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt16 operator-(ulong_mt16 a, ulong_mt16 b) => new(a.vector0 - b.vector0, a.vector1 - b.vector1);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt16 operator*(ulong_mt16 a, ulong_mt16 b) => new(a.vector0 * b.vector0, a.vector1 * b.vector1);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt16 operator*(ulong_mt16 a, ulong b) => new(a.vector0 * b, a.vector1 * b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt16 operator*(ulong a, ulong_mt16 b) => new(a * b.vector0, a * b.vector1);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt16 operator/(ulong_mt16 a, ulong_mt16 b) => new(a.vector0 / b.vector0, a.vector1 / b.vector1);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt16 operator/(ulong_mt16 a, ulong b) => new(a.vector0 / b, a.vector1 / b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt16 operator%(ulong_mt16 a, ulong_mt16 b) => a - (a / b) * b;
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt16 operator%(ulong_mt16 a, ulong b) => a - (a / b) * b;
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt16 operator~(ulong_mt16 a) => new(~a.vector0, ~a.vector1);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt16 operator|(ulong_mt16 a, ulong_mt16 b) => new(a.vector0 | b.vector0, a.vector1 | b.vector1);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt16 operator&(ulong_mt16 a, ulong_mt16 b) => new(a.vector0 & b.vector0, a.vector1 & b.vector1);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt16 operator<<(ulong_mt16 a, int b) => new(a.vector0 << b, a.vector1 << b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt16 operator>>(ulong_mt16 a, int b) => new(a.vector0 >> b, a.vector1 >> b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong_mt16 operator>>>(ulong_mt16 a, int b) => new(a.vector0 >>> b, a.vector1 >>> b);
+
+    #endregion
+}
+
+#endregion // ulong_mt16
 #region b32_mt
 
-[Serializable]
+[Serializable, CpuOnly]
 //[JsonConverter(typeof(b32_mtJsonConverter))]
 public partial struct b32_mt
 {
@@ -325,25 +3127,25 @@ public partial struct b32_mt
     public static int LineCount
     {
         [MethodImpl(256 | 512)]
-        get => Vector<uint>.Count;
+        get => throw new NotSupportedException("Compile time only");
     }
 
     #endregion
-
-    #region Fields
-
-    public Vector<uint> vector;
-
-    #endregion // Fields
 
     #region Properties
 
     public b32 this[int index]
     {
         [MethodImpl(256 | 512)]
-        get => vector[index];
+        get
+        {
+            throw new NotSupportedException("Compile time only");
+        }
         [MethodImpl(256 | 512)]
-        set => vector = vector.WithElement(index, value);
+        set
+        {
+            throw new NotSupportedException("Compile time only");
+        }
     }
 
     #endregion // Properties
@@ -351,27 +3153,15 @@ public partial struct b32_mt
     #region Ctor
 
     [MethodImpl(256 | 512)]
-    public b32_mt(Vector<uint> vector)
-    {
-        this.vector = vector;
-    }
+    public static b32_mt LoadUnsafe(ref readonly b32 values) => throw new NotSupportedException("Compile time only");
 
     [MethodImpl(256 | 512)]
-    private b32_mt(ref readonly b32 values)
-    {
-        vector = Vector.LoadUnsafe(in Unsafe.As<b32, uint>(ref Unsafe.AsRef(in values)));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32_mt LoadUnsafe(ref readonly b32 values) => new(in values);
-
-    [MethodImpl(256 | 512)]
-    public static b32_mt LoadUnsafe(params ReadOnlySpan<b32> values) => new(in values.GetPinnableReference());
+    public static b32_mt LoadUnsafe(params ReadOnlySpan<b32> values) => throw new NotSupportedException("Compile time only");
 
     [MethodImpl(256 | 512)]
     public b32_mt(b32 value)
     {
-        vector = new((uint)value);
+        throw new NotSupportedException("Compile time only");
     }
 
     #endregion // Ctor
@@ -382,15 +3172,745 @@ public partial struct b32_mt
     public static implicit operator b32_mt(b32 value) => new(value);
 
     [MethodImpl(256 | 512)]
-    public static b32_mt operator~(b32_mt a) => new(~a.vector);
+    public static b32_mt operator~(b32_mt a) => throw new NotSupportedException("Compile time only");
 
     [MethodImpl(256 | 512)]
-    public static b32_mt operator|(b32_mt a, b32_mt b) => new(a.vector | b.vector);
+    public static b32_mt operator|(b32_mt a, b32_mt b) => throw new NotSupportedException("Compile time only");
 
     [MethodImpl(256 | 512)]
-    public static b32_mt operator&(b32_mt a, b32_mt b) => new(a.vector & b.vector);
+    public static b32_mt operator&(b32_mt a, b32_mt b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static b32_mt operator<<(b32_mt a, int b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static b32_mt operator>>(b32_mt a, int b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static b32_mt operator>>>(b32_mt a, int b) => throw new NotSupportedException("Compile time only");
 
     #endregion
 }
 
 #endregion // b32_mt
+#region b32_mt4
+
+[Serializable, CpuOnly]
+//[JsonConverter(typeof(b32_mt4JsonConverter))]
+public partial struct b32_mt4
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => 4;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public Vector128<uint> vector;
+
+    #endregion // Fields
+
+    #region Properties
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public ref Vector128<uint> VectorAt(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    public b32 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get
+        {
+            return vector[index];
+        }
+        [MethodImpl(256 | 512)]
+        set
+        {
+            vector = vector.WithElement(index, value);
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public b32_mt4(Vector128<uint> vector)
+    {
+        this.vector = vector;
+    }
+
+    [MethodImpl(256 | 512)]
+    private b32_mt4(ref readonly b32 values)
+    {
+        ref var vs = ref Unsafe.AsRef(in values);
+        vector = Vector128.LoadUnsafe(in Unsafe.As<b32, uint>(ref vs));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32_mt4 LoadUnsafe(ref readonly b32 values) => new(in values);
+
+    [MethodImpl(256 | 512)]
+    public static b32_mt4 LoadUnsafe(params ReadOnlySpan<b32> values) => new(in values.GetPinnableReference());
+
+    [MethodImpl(256 | 512)]
+    public b32_mt4(b32 value)
+    {
+        vector = Vector128.Create((uint)value);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b32_mt4(b32 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static b32_mt4 operator~(b32_mt4 a) => new(~a.vector);
+
+    [MethodImpl(256 | 512)]
+    public static b32_mt4 operator|(b32_mt4 a, b32_mt4 b) => new(a.vector | b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static b32_mt4 operator&(b32_mt4 a, b32_mt4 b) => new(a.vector & b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static b32_mt4 operator<<(b32_mt4 a, int b) => new(a.vector << b);
+
+    [MethodImpl(256 | 512)]
+    public static b32_mt4 operator>>(b32_mt4 a, int b) => new(a.vector >> b);
+
+    [MethodImpl(256 | 512)]
+    public static b32_mt4 operator>>>(b32_mt4 a, int b) => new(a.vector >>> b);
+
+    #endregion
+}
+
+#endregion // b32_mt4
+#region b32_mt8
+
+[Serializable, CpuOnly]
+//[JsonConverter(typeof(b32_mt8JsonConverter))]
+public partial struct b32_mt8
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => 8;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public Vector256<uint> vector;
+
+    #endregion // Fields
+
+    #region Properties
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public ref Vector256<uint> VectorAt(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    public b32 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get
+        {
+            return vector[index];
+        }
+        [MethodImpl(256 | 512)]
+        set
+        {
+            vector = vector.WithElement(index, value);
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public b32_mt8(Vector256<uint> vector)
+    {
+        this.vector = vector;
+    }
+
+    [MethodImpl(256 | 512)]
+    private b32_mt8(ref readonly b32 values)
+    {
+        ref var vs = ref Unsafe.AsRef(in values);
+        vector = Vector256.LoadUnsafe(in Unsafe.As<b32, uint>(ref vs));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32_mt8 LoadUnsafe(ref readonly b32 values) => new(in values);
+
+    [MethodImpl(256 | 512)]
+    public static b32_mt8 LoadUnsafe(params ReadOnlySpan<b32> values) => new(in values.GetPinnableReference());
+
+    [MethodImpl(256 | 512)]
+    public b32_mt8(b32 value)
+    {
+        vector = Vector256.Create((uint)value);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b32_mt8(b32 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static b32_mt8 operator~(b32_mt8 a) => new(~a.vector);
+
+    [MethodImpl(256 | 512)]
+    public static b32_mt8 operator|(b32_mt8 a, b32_mt8 b) => new(a.vector | b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static b32_mt8 operator&(b32_mt8 a, b32_mt8 b) => new(a.vector & b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static b32_mt8 operator<<(b32_mt8 a, int b) => new(a.vector << b);
+
+    [MethodImpl(256 | 512)]
+    public static b32_mt8 operator>>(b32_mt8 a, int b) => new(a.vector >> b);
+
+    [MethodImpl(256 | 512)]
+    public static b32_mt8 operator>>>(b32_mt8 a, int b) => new(a.vector >>> b);
+
+    #endregion
+}
+
+#endregion // b32_mt8
+#region b32_mt16
+
+[Serializable, CpuOnly]
+//[JsonConverter(typeof(b32_mt16JsonConverter))]
+public partial struct b32_mt16
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => 16;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public Vector512<uint> vector;
+
+    #endregion // Fields
+
+    #region Properties
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public ref Vector512<uint> VectorAt(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    public b32 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get
+        {
+            return vector[index];
+        }
+        [MethodImpl(256 | 512)]
+        set
+        {
+            vector = vector.WithElement(index, value);
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public b32_mt16(Vector512<uint> vector)
+    {
+        this.vector = vector;
+    }
+
+    [MethodImpl(256 | 512)]
+    private b32_mt16(ref readonly b32 values)
+    {
+        ref var vs = ref Unsafe.AsRef(in values);
+        vector = Vector512.LoadUnsafe(in Unsafe.As<b32, uint>(ref vs));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32_mt16 LoadUnsafe(ref readonly b32 values) => new(in values);
+
+    [MethodImpl(256 | 512)]
+    public static b32_mt16 LoadUnsafe(params ReadOnlySpan<b32> values) => new(in values.GetPinnableReference());
+
+    [MethodImpl(256 | 512)]
+    public b32_mt16(b32 value)
+    {
+        vector = Vector512.Create((uint)value);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b32_mt16(b32 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static b32_mt16 operator~(b32_mt16 a) => new(~a.vector);
+
+    [MethodImpl(256 | 512)]
+    public static b32_mt16 operator|(b32_mt16 a, b32_mt16 b) => new(a.vector | b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static b32_mt16 operator&(b32_mt16 a, b32_mt16 b) => new(a.vector & b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static b32_mt16 operator<<(b32_mt16 a, int b) => new(a.vector << b);
+
+    [MethodImpl(256 | 512)]
+    public static b32_mt16 operator>>(b32_mt16 a, int b) => new(a.vector >> b);
+
+    [MethodImpl(256 | 512)]
+    public static b32_mt16 operator>>>(b32_mt16 a, int b) => new(a.vector >>> b);
+
+    #endregion
+}
+
+#endregion // b32_mt16
+#region b64_mt
+
+[Serializable, CpuOnly]
+//[JsonConverter(typeof(b64_mtJsonConverter))]
+public partial struct b64_mt
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => throw new NotSupportedException("Compile time only");
+    }
+
+    #endregion
+
+    #region Properties
+
+    public b64 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get
+        {
+            throw new NotSupportedException("Compile time only");
+        }
+        [MethodImpl(256 | 512)]
+        set
+        {
+            throw new NotSupportedException("Compile time only");
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt LoadUnsafe(ref readonly b64 values) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt LoadUnsafe(params ReadOnlySpan<b64> values) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public b64_mt(b64 value)
+    {
+        throw new NotSupportedException("Compile time only");
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64_mt(b64 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt operator~(b64_mt a) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt operator|(b64_mt a, b64_mt b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt operator&(b64_mt a, b64_mt b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt operator<<(b64_mt a, int b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt operator>>(b64_mt a, int b) => throw new NotSupportedException("Compile time only");
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt operator>>>(b64_mt a, int b) => throw new NotSupportedException("Compile time only");
+
+    #endregion
+}
+
+#endregion // b64_mt
+#region b64_mt4
+
+[Serializable, CpuOnly]
+//[JsonConverter(typeof(b64_mt4JsonConverter))]
+public partial struct b64_mt4
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => 4;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public Vector256<ulong> vector;
+
+    #endregion // Fields
+
+    #region Properties
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public ref Vector256<ulong> VectorAt(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    public b64 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get
+        {
+            return vector[index];
+        }
+        [MethodImpl(256 | 512)]
+        set
+        {
+            vector = vector.WithElement(index, value);
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public b64_mt4(Vector256<ulong> vector)
+    {
+        this.vector = vector;
+    }
+
+    [MethodImpl(256 | 512)]
+    private b64_mt4(ref readonly b64 values)
+    {
+        ref var vs = ref Unsafe.AsRef(in values);
+        vector = Vector256.LoadUnsafe(in Unsafe.As<b64, ulong>(ref vs));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt4 LoadUnsafe(ref readonly b64 values) => new(in values);
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt4 LoadUnsafe(params ReadOnlySpan<b64> values) => new(in values.GetPinnableReference());
+
+    [MethodImpl(256 | 512)]
+    public b64_mt4(b64 value)
+    {
+        vector = Vector256.Create((ulong)value);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64_mt4(b64 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt4 operator~(b64_mt4 a) => new(~a.vector);
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt4 operator|(b64_mt4 a, b64_mt4 b) => new(a.vector | b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt4 operator&(b64_mt4 a, b64_mt4 b) => new(a.vector & b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt4 operator<<(b64_mt4 a, int b) => new(a.vector << b);
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt4 operator>>(b64_mt4 a, int b) => new(a.vector >> b);
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt4 operator>>>(b64_mt4 a, int b) => new(a.vector >>> b);
+
+    #endregion
+}
+
+#endregion // b64_mt4
+#region b64_mt8
+
+[Serializable, CpuOnly]
+//[JsonConverter(typeof(b64_mt8JsonConverter))]
+public partial struct b64_mt8
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => 8;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public Vector512<ulong> vector;
+
+    #endregion // Fields
+
+    #region Properties
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public ref Vector512<ulong> VectorAt(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    public b64 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get
+        {
+            return vector[index];
+        }
+        [MethodImpl(256 | 512)]
+        set
+        {
+            vector = vector.WithElement(index, value);
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public b64_mt8(Vector512<ulong> vector)
+    {
+        this.vector = vector;
+    }
+
+    [MethodImpl(256 | 512)]
+    private b64_mt8(ref readonly b64 values)
+    {
+        ref var vs = ref Unsafe.AsRef(in values);
+        vector = Vector512.LoadUnsafe(in Unsafe.As<b64, ulong>(ref vs));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt8 LoadUnsafe(ref readonly b64 values) => new(in values);
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt8 LoadUnsafe(params ReadOnlySpan<b64> values) => new(in values.GetPinnableReference());
+
+    [MethodImpl(256 | 512)]
+    public b64_mt8(b64 value)
+    {
+        vector = Vector512.Create((ulong)value);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64_mt8(b64 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt8 operator~(b64_mt8 a) => new(~a.vector);
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt8 operator|(b64_mt8 a, b64_mt8 b) => new(a.vector | b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt8 operator&(b64_mt8 a, b64_mt8 b) => new(a.vector & b.vector);
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt8 operator<<(b64_mt8 a, int b) => new(a.vector << b);
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt8 operator>>(b64_mt8 a, int b) => new(a.vector >> b);
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt8 operator>>>(b64_mt8 a, int b) => new(a.vector >>> b);
+
+    #endregion
+}
+
+#endregion // b64_mt8
+#region b64_mt16
+
+[Serializable, CpuOnly]
+//[JsonConverter(typeof(b64_mt16JsonConverter))]
+public partial struct b64_mt16
+{
+    #region Constants
+
+    public static int LineCount
+    {
+        [MethodImpl(256 | 512)]
+        get => 16;
+    }
+
+    #endregion
+
+    #region Fields
+
+    public Vector512<ulong> vector0;
+    public Vector512<ulong> vector1;
+
+    #endregion // Fields
+
+    #region Properties
+
+    [MethodImpl(256 | 512), UnscopedRef]
+    public ref Vector512<ulong> VectorAt(int index)
+    {
+        switch(index)
+        {
+            case 0: return ref vector0;
+            case 1: return ref vector1;
+            default: throw new IndexOutOfRangeException("Index out of range for vector access");
+        }
+    }
+
+    public b64 this[int index]
+    {
+        [MethodImpl(256 | 512)]
+        get
+        {
+            var (q, r) = Math.DivRem(index, Vector512<ulong>.Count);
+            return VectorAt(q)[r];
+        }
+        [MethodImpl(256 | 512)]
+        set
+        {
+            var (q, r) = Math.DivRem(index, Vector512<ulong>.Count);
+            ref var vector = ref VectorAt(q);
+            vector = vector.WithElement(r, value);
+        }
+    }
+
+    #endregion // Properties
+
+    #region Ctor
+
+    [MethodImpl(256 | 512)]
+    public b64_mt16(Vector512<ulong> vector0, Vector512<ulong> vector1)
+    {
+        this.vector0 = vector0;
+        this.vector1 = vector1;
+    }
+
+    [MethodImpl(256 | 512)]
+    private b64_mt16(ref readonly b64 values)
+    {
+        ref var vs = ref Unsafe.AsRef(in values);
+        vector0 = Vector512.LoadUnsafe(in Unsafe.As<b64, ulong>(ref vs));
+        vector1 = Vector512.LoadUnsafe(in Unsafe.As<b64, ulong>(ref Unsafe.Add(ref vs, 16)));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt16 LoadUnsafe(ref readonly b64 values) => new(in values);
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt16 LoadUnsafe(params ReadOnlySpan<b64> values) => new(in values.GetPinnableReference());
+
+    [MethodImpl(256 | 512)]
+    public b64_mt16(b64 value)
+    {
+        vector0 = Vector512.Create((ulong)value);
+        vector1 = Vector512.Create((ulong)value);
+    }
+
+    #endregion // Ctor
+
+    #region Operators
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64_mt16(b64 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt16 operator~(b64_mt16 a) => new(~a.vector0, ~a.vector1);
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt16 operator|(b64_mt16 a, b64_mt16 b) => new(a.vector0 | b.vector0, a.vector1 | b.vector1);
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt16 operator&(b64_mt16 a, b64_mt16 b) => new(a.vector0 & b.vector0, a.vector1 & b.vector1);
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt16 operator<<(b64_mt16 a, int b) => new(a.vector0 << b, a.vector1 << b);
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt16 operator>>(b64_mt16 a, int b) => new(a.vector0 >> b, a.vector1 >> b);
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt16 operator>>>(b64_mt16 a, int b) => new(a.vector0 >>> b, a.vector1 >>> b);
+
+    #endregion
+}
+
+#endregion // b64_mt16
