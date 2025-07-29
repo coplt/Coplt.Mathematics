@@ -33,8 +33,12 @@ public class TestWrap
         Console.WriteLine(c);
         Console.WriteLine(d);
 
-        Assert.That(a[0], Is.EqualTo(b.x));
-        Assert.That(b.x, Is.EqualTo(c));
-        Assert.That(c, Is.EqualTo(d));
+        Assert.Multiple(() =>
+        {
+            Assert.That(a[0], Is.EqualTo(b.x));
+            Assert.That(b.x, Is.EqualTo(c));
+            Assert.That(c, Is.EqualTo(d));
+            Assert.That(d, Is.EqualTo(-84f));
+        });
     }
 }

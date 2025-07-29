@@ -227,6 +227,256 @@ public static partial class simd
 
     #endregion
 
+    #region LeadingZeroCount
+
+    [MethodImpl(256 | 512)]
+    public static Vector64<uint> LeadingZeroCount(Vector64<uint> a)
+    {
+        if (Avx512CD.VL.IsSupported && Vector128.IsHardwareAccelerated)
+            return Avx512CD.VL.LeadingZeroCount(a.ToVector128()).GetLower();
+        return Vector64.Create(
+            BitOperations.LeadingZeroCount(a[0]),
+            BitOperations.LeadingZeroCount(a[1])
+        ).AsUInt32();
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector128<uint> LeadingZeroCount(Vector128<uint> a)
+    {
+        if (Avx512CD.VL.IsSupported) return Avx512CD.VL.LeadingZeroCount(a);
+        if (Sse2.IsSupported)
+        {
+            var b = Vector128.AndNot(a, Vector128.ShiftRightLogical(a, 8));
+            var c = Vector128.ConvertToSingle(b.AsInt32()).AsUInt32();
+            var d = Vector128.ShiftRightLogical(c, 23);
+            var e = Sse2.SubtractSaturate(Vector128.Create(158).AsUInt16(), d.AsUInt16());
+            var f = Vector128.Min(e, Vector128.Create(32).AsUInt16());
+            return f.AsUInt32();
+        }
+        return Vector128.Create(
+            LeadingZeroCount(a.GetLower()),
+            LeadingZeroCount(a.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector256<uint> LeadingZeroCount(Vector256<uint> a)
+    {
+        if (Avx512CD.VL.IsSupported) return Avx512CD.VL.LeadingZeroCount(a);
+        if (Avx2.IsSupported)
+        {
+            var b = Vector256.AndNot(a, Vector256.ShiftRightLogical(a, 8));
+            var c = Vector256.ConvertToSingle(b.AsInt32()).AsUInt32();
+            var d = Vector256.ShiftRightLogical(c, 23);
+            var e = Avx2.SubtractSaturate(Vector256.Create(158).AsUInt16(), d.AsUInt16());
+            var f = Vector256.Min(e, Vector256.Create(32).AsUInt16());
+            return f.AsUInt32();
+        }
+        return Vector256.Create(
+            LeadingZeroCount(a.GetLower()),
+            LeadingZeroCount(a.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector512<uint> LeadingZeroCount(Vector512<uint> a)
+    {
+        if (Avx512CD.IsSupported) return Avx512CD.LeadingZeroCount(a);
+        return Vector512.Create(
+            LeadingZeroCount(a.GetLower()),
+            LeadingZeroCount(a.GetUpper())
+        );
+    }
+
+    #endregion
+
+    #region RoundUpToPowerOf2
+
+    [MethodImpl(256 | 512)]
+    public static Vector64<uint> RoundUpToPowerOf2(Vector64<uint> a)
+    {
+        if (Avx512CD.VL.IsSupported || Vector128.IsHardwareAccelerated)
+            return RoundUpToPowerOf2(a.ToVector128()).GetLower();
+        return Vector64.Create(
+            BitOperations.RoundUpToPowerOf2(a[0]),
+            BitOperations.RoundUpToPowerOf2(a[1])
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector128<uint> RoundUpToPowerOf2(Vector128<uint> a)
+    {
+        if (Avx512CD.VL.IsSupported)
+        {
+            var shift = Vector128.Create(32) - Avx512CD.VL.LeadingZeroCount(a - Vector128<uint>.One).AsInt32();
+            return Avx2.ShiftLeftLogicalVariable(Vector128<uint>.One ^ (shift >> 5).AsUInt32(), shift.AsUInt32());
+        }
+        if (Vector128.IsHardwareAccelerated)
+        {
+            var value = a - Vector128<uint>.One;
+            value |= value >> 1;
+            value |= value >> 2;
+            value |= value >> 4;
+            value |= value >> 8;
+            value |= value >> 16;
+            return value + Vector128<uint>.One;
+        }
+        return Vector128.Create(
+            RoundUpToPowerOf2(a.GetLower()),
+            RoundUpToPowerOf2(a.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector256<uint> RoundUpToPowerOf2(Vector256<uint> a)
+    {
+        if (Avx512CD.VL.IsSupported)
+        {
+            var shift = Vector256.Create(32) - Avx512CD.VL.LeadingZeroCount(a - Vector256<uint>.One).AsInt32();
+            return Avx2.ShiftLeftLogicalVariable(Vector256<uint>.One ^ (shift >> 5).AsUInt32(), shift.AsUInt32());
+        }
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var value = a - Vector256<uint>.One;
+            value |= value >> 1;
+            value |= value >> 2;
+            value |= value >> 4;
+            value |= value >> 8;
+            value |= value >> 16;
+            return value + Vector256<uint>.One;
+        }
+        return Vector256.Create(
+            RoundUpToPowerOf2(a.GetLower()),
+            RoundUpToPowerOf2(a.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector512<uint> RoundUpToPowerOf2(Vector512<uint> a)
+    {
+        if (Avx512CD.IsSupported)
+        {
+            var shift = Vector512.Create(32) - Avx512CD.LeadingZeroCount(a - Vector512<uint>.One).AsInt32();
+            return Avx512F.ShiftLeftLogicalVariable(Vector512<uint>.One ^ (shift >> 5).AsUInt32(), shift.AsUInt32());
+        }
+        if (Vector512.IsHardwareAccelerated)
+        {
+            var value = a - Vector512<uint>.One;
+            value |= value >> 1;
+            value |= value >> 2;
+            value |= value >> 4;
+            value |= value >> 8;
+            value |= value >> 16;
+            return value + Vector512<uint>.One;
+        }
+        return Vector512.Create(
+            RoundUpToPowerOf2(a.GetLower()),
+            RoundUpToPowerOf2(a.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector128<ulong> RoundUpToPowerOf2(Vector128<ulong> a)
+    {
+        if (Avx512CD.VL.IsSupported)
+        {
+            var shift = Vector128.Create(64L) - Avx512CD.VL.LeadingZeroCount(a - Vector128<ulong>.One).AsInt64();
+            return Avx2.ShiftLeftLogicalVariable(Vector128<ulong>.One ^ (shift >> 5).AsUInt64(), shift.AsUInt64());
+        }
+        if (Vector128.IsHardwareAccelerated && !(X86Base.X64.IsSupported || ArmBase.Arm64.IsSupported || PackedSimd.IsSupported))
+        {
+            var value = a - Vector128<ulong>.One;
+            value |= value >> 1;
+            value |= value >> 2;
+            value |= value >> 4;
+            value |= value >> 8;
+            value |= value >> 16;
+            value |= value >> 32;
+            return value + Vector128<ulong>.One;
+        }
+        return Vector128.Create(
+            BitOperations.RoundUpToPowerOf2(a[0]),
+            BitOperations.RoundUpToPowerOf2(a[1])
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector256<ulong> RoundUpToPowerOf2(Vector256<ulong> a)
+    {
+        if (Avx512CD.VL.IsSupported)
+        {
+            var shift = Vector256.Create(64L) - Avx512CD.VL.LeadingZeroCount(a - Vector256<ulong>.One).AsInt64();
+            return Avx2.ShiftLeftLogicalVariable(Vector256<ulong>.One ^ (shift >> 5).AsUInt64(), shift.AsUInt64());
+        }
+        if (Vector256.IsHardwareAccelerated)
+        {
+            var value = a - Vector256<ulong>.One;
+            value |= value >> 1;
+            value |= value >> 2;
+            value |= value >> 4;
+            value |= value >> 8;
+            value |= value >> 16;
+            value |= value >> 32;
+            return value + Vector256<ulong>.One;
+        }
+        return Vector256.Create(
+            RoundUpToPowerOf2(a.GetLower()),
+            RoundUpToPowerOf2(a.GetUpper())
+        );
+    }
+
+    [MethodImpl(256 | 512)]
+    public static Vector512<ulong> RoundUpToPowerOf2(Vector512<ulong> a)
+    {
+        if (Avx512CD.IsSupported)
+        {
+            var shift = Vector512.Create(64L) - Avx512CD.LeadingZeroCount(a - Vector512<ulong>.One).AsInt64();
+            return Avx512F.ShiftLeftLogicalVariable(Vector512<ulong>.One ^ (shift >> 5).AsUInt64(), shift.AsUInt64());
+        }
+        if (Vector512.IsHardwareAccelerated)
+        {
+            var value = a - Vector512<ulong>.One;
+            value |= value >> 1;
+            value |= value >> 2;
+            value |= value >> 4;
+            value |= value >> 8;
+            value |= value >> 16;
+            value |= value >> 32;
+            return value + Vector512<ulong>.One;
+        }
+        return Vector512.Create(
+            RoundUpToPowerOf2(a.GetLower()),
+            RoundUpToPowerOf2(a.GetUpper())
+        );
+    }
+
+    #endregion
+
+    #region RoundUpToPowerOf2 signed
+
+    [MethodImpl(256 | 512)]
+    public static Vector64<int> RoundUpToPowerOf2(Vector64<int> a) => RoundUpToPowerOf2(a.AsUInt32()).AsInt32();
+
+    [MethodImpl(256 | 512)]
+    public static Vector128<int> RoundUpToPowerOf2(Vector128<int> a) => RoundUpToPowerOf2(a.AsUInt32()).AsInt32();
+
+    [MethodImpl(256 | 512)]
+    public static Vector256<int> RoundUpToPowerOf2(Vector256<int> a) => RoundUpToPowerOf2(a.AsUInt32()).AsInt32();
+
+    [MethodImpl(256 | 512)]
+    public static Vector512<int> RoundUpToPowerOf2(Vector512<int> a) => RoundUpToPowerOf2(a.AsUInt32()).AsInt32();
+
+    [MethodImpl(256 | 512)]
+    public static Vector128<long> RoundUpToPowerOf2(Vector128<long> a) => RoundUpToPowerOf2(a.AsUInt64()).AsInt64();
+
+    [MethodImpl(256 | 512)]
+    public static Vector256<long> RoundUpToPowerOf2(Vector256<long> a) => RoundUpToPowerOf2(a.AsUInt64()).AsInt64();
+
+    [MethodImpl(256 | 512)]
+    public static Vector512<long> RoundUpToPowerOf2(Vector512<long> a) => RoundUpToPowerOf2(a.AsUInt64()).AsInt64();
+
+    #endregion
+
     #region Cmp
 
     [MethodImpl(256 | 512)]
