@@ -72,12 +72,6 @@ public partial struct float_mt4
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static float_mt4 mod([This] float_mt4 a, float_mt4 b)
-    {
-        return new(simd.Mod(a.vector, b.vector));
-    }
-
-    [MethodImpl(256 | 512)]
     public static float_mt4 ceil([This] float_mt4 a)
     {
         return new(Vector128.Ceiling(a.vector));
@@ -99,6 +93,46 @@ public static partial class math_mt
     public static float_mt4 trunc([This] float_mt4 a)
     {
         return new(simd.RoundToZero(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 mod([This] float_mt4 a, float_mt4 b)
+    {
+        var x = a;
+        var y = b;
+        var div = x / y;
+        var flr = floor(div);
+        return fnma(flr, y, x);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 mod([This] float_mt4 a, float b)
+    {
+        var x = a;
+        var y = b;
+        var div = x / y;
+        var flr = floor(div);
+        return fnma(flr, y, x);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 rem([This] float_mt4 a, float_mt4 b)
+    {
+        var x = a;
+        var y = b;
+        var div = x / y;
+        var flr = trunc(div);
+        return fnma(flr, y, x);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 rem([This] float_mt4 a, float b)
+    {
+        var x = a;
+        var y = b;
+        var div = x / y;
+        var flr = trunc(div);
+        return fnma(flr, y, x);
     }
 
     [MethodImpl(256 | 512)]
@@ -166,7 +200,7 @@ public static partial class math_mt
     }
 
     [MethodImpl(256 | 512)]
-    public static float_mt4 log2([This] float_mt4 a, float_mt4 b) => log(a) / log(b);
+    public static float_mt4 log([This] float_mt4 a, float_mt4 b) => log(a) / log(b);
 
     [MethodImpl(256 | 512)]
     public static float_mt4 log10([This] float_mt4 a)
@@ -391,12 +425,6 @@ public partial struct float_mt8
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static float_mt8 mod([This] float_mt8 a, float_mt8 b)
-    {
-        return new(simd.Mod(a.vector, b.vector));
-    }
-
-    [MethodImpl(256 | 512)]
     public static float_mt8 ceil([This] float_mt8 a)
     {
         return new(Vector256.Ceiling(a.vector));
@@ -418,6 +446,46 @@ public static partial class math_mt
     public static float_mt8 trunc([This] float_mt8 a)
     {
         return new(simd.RoundToZero(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 mod([This] float_mt8 a, float_mt8 b)
+    {
+        var x = a;
+        var y = b;
+        var div = x / y;
+        var flr = floor(div);
+        return fnma(flr, y, x);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 mod([This] float_mt8 a, float b)
+    {
+        var x = a;
+        var y = b;
+        var div = x / y;
+        var flr = floor(div);
+        return fnma(flr, y, x);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 rem([This] float_mt8 a, float_mt8 b)
+    {
+        var x = a;
+        var y = b;
+        var div = x / y;
+        var flr = trunc(div);
+        return fnma(flr, y, x);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 rem([This] float_mt8 a, float b)
+    {
+        var x = a;
+        var y = b;
+        var div = x / y;
+        var flr = trunc(div);
+        return fnma(flr, y, x);
     }
 
     [MethodImpl(256 | 512)]
@@ -485,7 +553,7 @@ public static partial class math_mt
     }
 
     [MethodImpl(256 | 512)]
-    public static float_mt8 log2([This] float_mt8 a, float_mt8 b) => log(a) / log(b);
+    public static float_mt8 log([This] float_mt8 a, float_mt8 b) => log(a) / log(b);
 
     [MethodImpl(256 | 512)]
     public static float_mt8 log10([This] float_mt8 a)
@@ -710,12 +778,6 @@ public partial struct float_mt16
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static float_mt16 mod([This] float_mt16 a, float_mt16 b)
-    {
-        return new(simd.Mod(a.vector, b.vector));
-    }
-
-    [MethodImpl(256 | 512)]
     public static float_mt16 ceil([This] float_mt16 a)
     {
         return new(Vector512.Ceiling(a.vector));
@@ -737,6 +799,46 @@ public static partial class math_mt
     public static float_mt16 trunc([This] float_mt16 a)
     {
         return new(simd.RoundToZero(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 mod([This] float_mt16 a, float_mt16 b)
+    {
+        var x = a;
+        var y = b;
+        var div = x / y;
+        var flr = floor(div);
+        return fnma(flr, y, x);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 mod([This] float_mt16 a, float b)
+    {
+        var x = a;
+        var y = b;
+        var div = x / y;
+        var flr = floor(div);
+        return fnma(flr, y, x);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 rem([This] float_mt16 a, float_mt16 b)
+    {
+        var x = a;
+        var y = b;
+        var div = x / y;
+        var flr = trunc(div);
+        return fnma(flr, y, x);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 rem([This] float_mt16 a, float b)
+    {
+        var x = a;
+        var y = b;
+        var div = x / y;
+        var flr = trunc(div);
+        return fnma(flr, y, x);
     }
 
     [MethodImpl(256 | 512)]
@@ -804,7 +906,7 @@ public static partial class math_mt
     }
 
     [MethodImpl(256 | 512)]
-    public static float_mt16 log2([This] float_mt16 a, float_mt16 b) => log(a) / log(b);
+    public static float_mt16 log([This] float_mt16 a, float_mt16 b) => log(a) / log(b);
 
     [MethodImpl(256 | 512)]
     public static float_mt16 log10([This] float_mt16 a)
@@ -1029,12 +1131,6 @@ public partial struct float_mt32
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static float_mt32 mod([This] float_mt32 a, float_mt32 b)
-    {
-        return new(simd.Mod(a.vector0, b.vector0), simd.Mod(a.vector1, b.vector1));
-    }
-
-    [MethodImpl(256 | 512)]
     public static float_mt32 ceil([This] float_mt32 a)
     {
         return new(Vector512.Ceiling(a.vector0), Vector512.Ceiling(a.vector1));
@@ -1056,6 +1152,46 @@ public static partial class math_mt
     public static float_mt32 trunc([This] float_mt32 a)
     {
         return new(simd.RoundToZero(a.vector0), simd.RoundToZero(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt32 mod([This] float_mt32 a, float_mt32 b)
+    {
+        var x = a;
+        var y = b;
+        var div = x / y;
+        var flr = floor(div);
+        return fnma(flr, y, x);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt32 mod([This] float_mt32 a, float b)
+    {
+        var x = a;
+        var y = b;
+        var div = x / y;
+        var flr = floor(div);
+        return fnma(flr, y, x);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt32 rem([This] float_mt32 a, float_mt32 b)
+    {
+        var x = a;
+        var y = b;
+        var div = x / y;
+        var flr = trunc(div);
+        return fnma(flr, y, x);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt32 rem([This] float_mt32 a, float b)
+    {
+        var x = a;
+        var y = b;
+        var div = x / y;
+        var flr = trunc(div);
+        return fnma(flr, y, x);
     }
 
     [MethodImpl(256 | 512)]
@@ -1127,7 +1263,7 @@ public static partial class math_mt
     }
 
     [MethodImpl(256 | 512)]
-    public static float_mt32 log2([This] float_mt32 a, float_mt32 b) => log(a) / log(b);
+    public static float_mt32 log([This] float_mt32 a, float_mt32 b) => log(a) / log(b);
 
     [MethodImpl(256 | 512)]
     public static float_mt32 log10([This] float_mt32 a)
@@ -1354,12 +1490,6 @@ public partial struct double_mt4
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static double_mt4 mod([This] double_mt4 a, double_mt4 b)
-    {
-        return new(simd.Mod(a.vector, b.vector));
-    }
-
-    [MethodImpl(256 | 512)]
     public static double_mt4 ceil([This] double_mt4 a)
     {
         return new(Vector256.Ceiling(a.vector));
@@ -1381,6 +1511,46 @@ public static partial class math_mt
     public static double_mt4 trunc([This] double_mt4 a)
     {
         return new(simd.RoundToZero(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 mod([This] double_mt4 a, double_mt4 b)
+    {
+        var x = a;
+        var y = b;
+        var div = x / y;
+        var flr = floor(div);
+        return fnma(flr, y, x);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 mod([This] double_mt4 a, double b)
+    {
+        var x = a;
+        var y = b;
+        var div = x / y;
+        var flr = floor(div);
+        return fnma(flr, y, x);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 rem([This] double_mt4 a, double_mt4 b)
+    {
+        var x = a;
+        var y = b;
+        var div = x / y;
+        var flr = trunc(div);
+        return fnma(flr, y, x);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 rem([This] double_mt4 a, double b)
+    {
+        var x = a;
+        var y = b;
+        var div = x / y;
+        var flr = trunc(div);
+        return fnma(flr, y, x);
     }
 
     [MethodImpl(256 | 512)]
@@ -1448,7 +1618,7 @@ public static partial class math_mt
     }
 
     [MethodImpl(256 | 512)]
-    public static double_mt4 log2([This] double_mt4 a, double_mt4 b) => log(a) / log(b);
+    public static double_mt4 log([This] double_mt4 a, double_mt4 b) => log(a) / log(b);
 
     [MethodImpl(256 | 512)]
     public static double_mt4 log10([This] double_mt4 a)
@@ -1673,12 +1843,6 @@ public partial struct double_mt8
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static double_mt8 mod([This] double_mt8 a, double_mt8 b)
-    {
-        return new(simd.Mod(a.vector, b.vector));
-    }
-
-    [MethodImpl(256 | 512)]
     public static double_mt8 ceil([This] double_mt8 a)
     {
         return new(Vector512.Ceiling(a.vector));
@@ -1700,6 +1864,46 @@ public static partial class math_mt
     public static double_mt8 trunc([This] double_mt8 a)
     {
         return new(simd.RoundToZero(a.vector));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 mod([This] double_mt8 a, double_mt8 b)
+    {
+        var x = a;
+        var y = b;
+        var div = x / y;
+        var flr = floor(div);
+        return fnma(flr, y, x);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 mod([This] double_mt8 a, double b)
+    {
+        var x = a;
+        var y = b;
+        var div = x / y;
+        var flr = floor(div);
+        return fnma(flr, y, x);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 rem([This] double_mt8 a, double_mt8 b)
+    {
+        var x = a;
+        var y = b;
+        var div = x / y;
+        var flr = trunc(div);
+        return fnma(flr, y, x);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 rem([This] double_mt8 a, double b)
+    {
+        var x = a;
+        var y = b;
+        var div = x / y;
+        var flr = trunc(div);
+        return fnma(flr, y, x);
     }
 
     [MethodImpl(256 | 512)]
@@ -1767,7 +1971,7 @@ public static partial class math_mt
     }
 
     [MethodImpl(256 | 512)]
-    public static double_mt8 log2([This] double_mt8 a, double_mt8 b) => log(a) / log(b);
+    public static double_mt8 log([This] double_mt8 a, double_mt8 b) => log(a) / log(b);
 
     [MethodImpl(256 | 512)]
     public static double_mt8 log10([This] double_mt8 a)
@@ -1992,12 +2196,6 @@ public partial struct double_mt16
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static double_mt16 mod([This] double_mt16 a, double_mt16 b)
-    {
-        return new(simd.Mod(a.vector0, b.vector0), simd.Mod(a.vector1, b.vector1));
-    }
-
-    [MethodImpl(256 | 512)]
     public static double_mt16 ceil([This] double_mt16 a)
     {
         return new(Vector512.Ceiling(a.vector0), Vector512.Ceiling(a.vector1));
@@ -2019,6 +2217,46 @@ public static partial class math_mt
     public static double_mt16 trunc([This] double_mt16 a)
     {
         return new(simd.RoundToZero(a.vector0), simd.RoundToZero(a.vector1));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 mod([This] double_mt16 a, double_mt16 b)
+    {
+        var x = a;
+        var y = b;
+        var div = x / y;
+        var flr = floor(div);
+        return fnma(flr, y, x);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 mod([This] double_mt16 a, double b)
+    {
+        var x = a;
+        var y = b;
+        var div = x / y;
+        var flr = floor(div);
+        return fnma(flr, y, x);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 rem([This] double_mt16 a, double_mt16 b)
+    {
+        var x = a;
+        var y = b;
+        var div = x / y;
+        var flr = trunc(div);
+        return fnma(flr, y, x);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 rem([This] double_mt16 a, double b)
+    {
+        var x = a;
+        var y = b;
+        var div = x / y;
+        var flr = trunc(div);
+        return fnma(flr, y, x);
     }
 
     [MethodImpl(256 | 512)]
@@ -2090,7 +2328,7 @@ public static partial class math_mt
     }
 
     [MethodImpl(256 | 512)]
-    public static double_mt16 log2([This] double_mt16 a, double_mt16 b) => log(a) / log(b);
+    public static double_mt16 log([This] double_mt16 a, double_mt16 b) => log(a) / log(b);
 
     [MethodImpl(256 | 512)]
     public static double_mt16 log10([This] double_mt16 a)
@@ -2317,12 +2555,6 @@ public partial struct double_mt32
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static double_mt32 mod([This] double_mt32 a, double_mt32 b)
-    {
-        return new(simd.Mod(a.vector0, b.vector0), simd.Mod(a.vector1, b.vector1), simd.Mod(a.vector2, b.vector2), simd.Mod(a.vector3, b.vector3));
-    }
-
-    [MethodImpl(256 | 512)]
     public static double_mt32 ceil([This] double_mt32 a)
     {
         return new(Vector512.Ceiling(a.vector0), Vector512.Ceiling(a.vector1), Vector512.Ceiling(a.vector2), Vector512.Ceiling(a.vector3));
@@ -2344,6 +2576,46 @@ public static partial class math_mt
     public static double_mt32 trunc([This] double_mt32 a)
     {
         return new(simd.RoundToZero(a.vector0), simd.RoundToZero(a.vector1), simd.RoundToZero(a.vector2), simd.RoundToZero(a.vector3));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt32 mod([This] double_mt32 a, double_mt32 b)
+    {
+        var x = a;
+        var y = b;
+        var div = x / y;
+        var flr = floor(div);
+        return fnma(flr, y, x);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt32 mod([This] double_mt32 a, double b)
+    {
+        var x = a;
+        var y = b;
+        var div = x / y;
+        var flr = floor(div);
+        return fnma(flr, y, x);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt32 rem([This] double_mt32 a, double_mt32 b)
+    {
+        var x = a;
+        var y = b;
+        var div = x / y;
+        var flr = trunc(div);
+        return fnma(flr, y, x);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt32 rem([This] double_mt32 a, double b)
+    {
+        var x = a;
+        var y = b;
+        var div = x / y;
+        var flr = trunc(div);
+        return fnma(flr, y, x);
     }
 
     [MethodImpl(256 | 512)]
@@ -2423,7 +2695,7 @@ public static partial class math_mt
     }
 
     [MethodImpl(256 | 512)]
-    public static double_mt32 log2([This] double_mt32 a, double_mt32 b) => log(a) / log(b);
+    public static double_mt32 log([This] double_mt32 a, double_mt32 b) => log(a) / log(b);
 
     [MethodImpl(256 | 512)]
     public static double_mt32 log10([This] double_mt32 a)

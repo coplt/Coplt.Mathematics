@@ -55,10 +55,10 @@ public partial struct float_mt4
     public static float_mt4 operator/(float_mt4 a, float b) => new(a.vector / b);
 
     [MethodImpl(256 | 512)]
-    public static float_mt4 operator%(float_mt4 a, float_mt4 b) => new(simd.Rem(a.vector, b.vector));
+    public static float_mt4 operator%(float_mt4 a, float_mt4 b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
-    public static float_mt4 operator%(float_mt4 a, float b) => new(simd.Rem(a.vector, b));
+    public static float_mt4 operator%(float_mt4 a, float b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
     public static float_mt4 operator++(float_mt4 a) => a + One;
@@ -265,10 +265,10 @@ public partial struct float_mt8
     public static float_mt8 operator/(float_mt8 a, float b) => new(a.vector / b);
 
     [MethodImpl(256 | 512)]
-    public static float_mt8 operator%(float_mt8 a, float_mt8 b) => new(simd.Rem(a.vector, b.vector));
+    public static float_mt8 operator%(float_mt8 a, float_mt8 b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
-    public static float_mt8 operator%(float_mt8 a, float b) => new(simd.Rem(a.vector, b));
+    public static float_mt8 operator%(float_mt8 a, float b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
     public static float_mt8 operator++(float_mt8 a) => a + One;
@@ -475,10 +475,10 @@ public partial struct float_mt16
     public static float_mt16 operator/(float_mt16 a, float b) => new(a.vector / b);
 
     [MethodImpl(256 | 512)]
-    public static float_mt16 operator%(float_mt16 a, float_mt16 b) => new(simd.Rem(a.vector, b.vector));
+    public static float_mt16 operator%(float_mt16 a, float_mt16 b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
-    public static float_mt16 operator%(float_mt16 a, float b) => new(simd.Rem(a.vector, b));
+    public static float_mt16 operator%(float_mt16 a, float b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
     public static float_mt16 operator++(float_mt16 a) => a + One;
@@ -685,10 +685,10 @@ public partial struct float_mt32
     public static float_mt32 operator/(float_mt32 a, float b) => new(a.vector0 / b, a.vector1 / b);
 
     [MethodImpl(256 | 512)]
-    public static float_mt32 operator%(float_mt32 a, float_mt32 b) => new(simd.Rem(a.vector0, b.vector0), simd.Rem(a.vector1, b.vector1));
+    public static float_mt32 operator%(float_mt32 a, float_mt32 b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
-    public static float_mt32 operator%(float_mt32 a, float b) => new(simd.Rem(a.vector0, b), simd.Rem(a.vector1, b));
+    public static float_mt32 operator%(float_mt32 a, float b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
     public static float_mt32 operator++(float_mt32 a) => a + One;
@@ -896,10 +896,10 @@ public partial struct double_mt4
     public static double_mt4 operator/(double_mt4 a, double b) => new(a.vector / b);
 
     [MethodImpl(256 | 512)]
-    public static double_mt4 operator%(double_mt4 a, double_mt4 b) => new(simd.Rem(a.vector, b.vector));
+    public static double_mt4 operator%(double_mt4 a, double_mt4 b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
-    public static double_mt4 operator%(double_mt4 a, double b) => new(simd.Rem(a.vector, b));
+    public static double_mt4 operator%(double_mt4 a, double b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
     public static double_mt4 operator++(double_mt4 a) => a + One;
@@ -1106,10 +1106,10 @@ public partial struct double_mt8
     public static double_mt8 operator/(double_mt8 a, double b) => new(a.vector / b);
 
     [MethodImpl(256 | 512)]
-    public static double_mt8 operator%(double_mt8 a, double_mt8 b) => new(simd.Rem(a.vector, b.vector));
+    public static double_mt8 operator%(double_mt8 a, double_mt8 b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
-    public static double_mt8 operator%(double_mt8 a, double b) => new(simd.Rem(a.vector, b));
+    public static double_mt8 operator%(double_mt8 a, double b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
     public static double_mt8 operator++(double_mt8 a) => a + One;
@@ -1316,10 +1316,10 @@ public partial struct double_mt16
     public static double_mt16 operator/(double_mt16 a, double b) => new(a.vector0 / b, a.vector1 / b);
 
     [MethodImpl(256 | 512)]
-    public static double_mt16 operator%(double_mt16 a, double_mt16 b) => new(simd.Rem(a.vector0, b.vector0), simd.Rem(a.vector1, b.vector1));
+    public static double_mt16 operator%(double_mt16 a, double_mt16 b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
-    public static double_mt16 operator%(double_mt16 a, double b) => new(simd.Rem(a.vector0, b), simd.Rem(a.vector1, b));
+    public static double_mt16 operator%(double_mt16 a, double b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
     public static double_mt16 operator++(double_mt16 a) => a + One;
@@ -1527,10 +1527,10 @@ public partial struct double_mt32
     public static double_mt32 operator/(double_mt32 a, double b) => new(a.vector0 / b, a.vector1 / b, a.vector2 / b, a.vector3 / b);
 
     [MethodImpl(256 | 512)]
-    public static double_mt32 operator%(double_mt32 a, double_mt32 b) => new(simd.Rem(a.vector0, b.vector0), simd.Rem(a.vector1, b.vector1), simd.Rem(a.vector2, b.vector2), simd.Rem(a.vector3, b.vector3));
+    public static double_mt32 operator%(double_mt32 a, double_mt32 b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
-    public static double_mt32 operator%(double_mt32 a, double b) => new(simd.Rem(a.vector0, b), simd.Rem(a.vector1, b), simd.Rem(a.vector2, b), simd.Rem(a.vector3, b));
+    public static double_mt32 operator%(double_mt32 a, double b) => math_mt.rem(a, b);
 
     [MethodImpl(256 | 512)]
     public static double_mt32 operator++(double_mt32 a) => a + One;

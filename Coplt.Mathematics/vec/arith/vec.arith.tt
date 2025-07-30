@@ -457,7 +457,11 @@ public static partial class math
 #>
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> cross([This] <#= typeName #> a, <#= typeName #> b) => (a * b.yzx - a.yzx * b).yzx;
+    public static <#= typeName #> cross([This] <#= typeName #> a, <#= typeName #> b)
+    {
+        // (a * b.yzx - a.yzx * b).yzx;
+        return fnma(a.yzx, b, a * b.yzx).yzx;
+    }
 <#
             }
 #>

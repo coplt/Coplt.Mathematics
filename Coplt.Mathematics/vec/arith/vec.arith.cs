@@ -543,7 +543,11 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 cross([This] float3 a, float3 b) => (a * b.yzx - a.yzx * b).yzx;
+    public static float3 cross([This] float3 a, float3 b)
+    {
+        // (a * b.yzx - a.yzx * b).yzx;
+        return fnma(a.yzx, b, a * b.yzx).yzx;
+    }
 
     [MethodImpl(256 | 512)]
     public static float lengthsq([This] float3 a)
@@ -1548,7 +1552,11 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 cross([This] double3 a, double3 b) => (a * b.yzx - a.yzx * b).yzx;
+    public static double3 cross([This] double3 a, double3 b)
+    {
+        // (a * b.yzx - a.yzx * b).yzx;
+        return fnma(a.yzx, b, a * b.yzx).yzx;
+    }
 
     [MethodImpl(256 | 512)]
     public static double lengthsq([This] double3 a)
@@ -2463,7 +2471,11 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static short3 cross([This] short3 a, short3 b) => (a * b.yzx - a.yzx * b).yzx;
+    public static short3 cross([This] short3 a, short3 b)
+    {
+        // (a * b.yzx - a.yzx * b).yzx;
+        return fnma(a.yzx, b, a * b.yzx).yzx;
+    }
 
     [MethodImpl(256 | 512)]
     public static short lengthsq([This] short3 a)
@@ -3302,7 +3314,11 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static ushort3 cross([This] ushort3 a, ushort3 b) => (a * b.yzx - a.yzx * b).yzx;
+    public static ushort3 cross([This] ushort3 a, ushort3 b)
+    {
+        // (a * b.yzx - a.yzx * b).yzx;
+        return fnma(a.yzx, b, a * b.yzx).yzx;
+    }
 
     [MethodImpl(256 | 512)]
     public static ushort lengthsq([This] ushort3 a)
@@ -4240,7 +4256,11 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static int3 cross([This] int3 a, int3 b) => (a * b.yzx - a.yzx * b).yzx;
+    public static int3 cross([This] int3 a, int3 b)
+    {
+        // (a * b.yzx - a.yzx * b).yzx;
+        return fnma(a.yzx, b, a * b.yzx).yzx;
+    }
 
     [MethodImpl(256 | 512)]
     public static int lengthsq([This] int3 a)
@@ -5243,7 +5263,11 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static uint3 cross([This] uint3 a, uint3 b) => (a * b.yzx - a.yzx * b).yzx;
+    public static uint3 cross([This] uint3 a, uint3 b)
+    {
+        // (a * b.yzx - a.yzx * b).yzx;
+        return fnma(a.yzx, b, a * b.yzx).yzx;
+    }
 
     [MethodImpl(256 | 512)]
     public static uint lengthsq([This] uint3 a)
@@ -6253,7 +6277,11 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static long3 cross([This] long3 a, long3 b) => (a * b.yzx - a.yzx * b).yzx;
+    public static long3 cross([This] long3 a, long3 b)
+    {
+        // (a * b.yzx - a.yzx * b).yzx;
+        return fnma(a.yzx, b, a * b.yzx).yzx;
+    }
 
     [MethodImpl(256 | 512)]
     public static long lengthsq([This] long3 a)
@@ -7256,7 +7284,11 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static ulong3 cross([This] ulong3 a, ulong3 b) => (a * b.yzx - a.yzx * b).yzx;
+    public static ulong3 cross([This] ulong3 a, ulong3 b)
+    {
+        // (a * b.yzx - a.yzx * b).yzx;
+        return fnma(a.yzx, b, a * b.yzx).yzx;
+    }
 
     [MethodImpl(256 | 512)]
     public static ulong lengthsq([This] ulong3 a)
@@ -8172,7 +8204,11 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal3 cross([This] decimal3 a, decimal3 b) => (a * b.yzx - a.yzx * b).yzx;
+    public static decimal3 cross([This] decimal3 a, decimal3 b)
+    {
+        // (a * b.yzx - a.yzx * b).yzx;
+        return fnma(a.yzx, b, a * b.yzx).yzx;
+    }
 
     [MethodImpl(256 | 512)]
     public static decimal lengthsq([This] decimal3 a)
@@ -9021,7 +9057,11 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 cross([This] half3 a, half3 b) => (a * b.yzx - a.yzx * b).yzx;
+    public static half3 cross([This] half3 a, half3 b)
+    {
+        // (a * b.yzx - a.yzx * b).yzx;
+        return fnma(a.yzx, b, a * b.yzx).yzx;
+    }
 
     [MethodImpl(256 | 512)]
     public static half lengthsq([This] half3 a)

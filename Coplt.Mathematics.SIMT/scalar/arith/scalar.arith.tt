@@ -104,7 +104,7 @@ public partial struct <#= typeName #>
             }
             else
             {
-#>new(<#= string.Join(", ", vectors.Select(v => $"simd.Rem(a.{v}, b.{v})")) #>)<#
+#>math_mt.rem(a, b)<#
             }
 #>;
 
@@ -116,7 +116,7 @@ public partial struct <#= typeName #>
             }
             else
             {
-#>new(<#= string.Join(", ", vectors.Select(v => $"simd.Rem(a.{v}, b)")) #>)<#
+#>math_mt.rem(a, b)<#
             }
 #>;
 

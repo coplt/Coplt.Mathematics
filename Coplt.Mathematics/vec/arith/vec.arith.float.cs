@@ -152,7 +152,11 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static float2 reflect([This] float2 i, float2 n) => i - 2f * n * dot(i, n);
+    public static float2 reflect([This] float2 i, float2 n)
+    {
+        // i - 2f * n * dot(i, n);
+        return fnma(2f * n, dot(i, n), i);
+    }
 
     [MethodImpl(256 | 512)]
     public static float2 project([This] float2 a, float2 onto) =>
@@ -353,7 +357,11 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static float3 reflect([This] float3 i, float3 n) => i - 2f * n * dot(i, n);
+    public static float3 reflect([This] float3 i, float3 n)
+    {
+        // i - 2f * n * dot(i, n);
+        return fnma(2f * n, dot(i, n), i);
+    }
 
     [MethodImpl(256 | 512)]
     public static float3 project([This] float3 a, float3 onto) =>
@@ -554,7 +562,11 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static float4 reflect([This] float4 i, float4 n) => i - 2f * n * dot(i, n);
+    public static float4 reflect([This] float4 i, float4 n)
+    {
+        // i - 2f * n * dot(i, n);
+        return fnma(2f * n, dot(i, n), i);
+    }
 
     [MethodImpl(256 | 512)]
     public static float4 project([This] float4 a, float4 onto) =>
@@ -755,7 +767,11 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static double2 reflect([This] double2 i, double2 n) => i - 2 * n * dot(i, n);
+    public static double2 reflect([This] double2 i, double2 n)
+    {
+        // i - 2 * n * dot(i, n);
+        return fnma(2 * n, dot(i, n), i);
+    }
 
     [MethodImpl(256 | 512)]
     public static double2 project([This] double2 a, double2 onto) =>
@@ -956,7 +972,11 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static double3 reflect([This] double3 i, double3 n) => i - 2 * n * dot(i, n);
+    public static double3 reflect([This] double3 i, double3 n)
+    {
+        // i - 2 * n * dot(i, n);
+        return fnma(2 * n, dot(i, n), i);
+    }
 
     [MethodImpl(256 | 512)]
     public static double3 project([This] double3 a, double3 onto) =>
@@ -1157,7 +1177,11 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static double4 reflect([This] double4 i, double4 n) => i - 2 * n * dot(i, n);
+    public static double4 reflect([This] double4 i, double4 n)
+    {
+        // i - 2 * n * dot(i, n);
+        return fnma(2 * n, dot(i, n), i);
+    }
 
     [MethodImpl(256 | 512)]
     public static double4 project([This] double4 a, double4 onto) =>
@@ -1337,7 +1361,11 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal2 reflect([This] decimal2 i, decimal2 n) => i - 2m * n * dot(i, n);
+    public static decimal2 reflect([This] decimal2 i, decimal2 n)
+    {
+        // i - 2m * n * dot(i, n);
+        return fnma(2m * n, dot(i, n), i);
+    }
 
     [MethodImpl(256 | 512)]
     public static decimal2 project([This] decimal2 a, decimal2 onto) =>
@@ -1505,7 +1533,11 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal3 reflect([This] decimal3 i, decimal3 n) => i - 2m * n * dot(i, n);
+    public static decimal3 reflect([This] decimal3 i, decimal3 n)
+    {
+        // i - 2m * n * dot(i, n);
+        return fnma(2m * n, dot(i, n), i);
+    }
 
     [MethodImpl(256 | 512)]
     public static decimal3 project([This] decimal3 a, decimal3 onto) =>
@@ -1673,7 +1705,11 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static decimal4 reflect([This] decimal4 i, decimal4 n) => i - 2m * n * dot(i, n);
+    public static decimal4 reflect([This] decimal4 i, decimal4 n)
+    {
+        // i - 2m * n * dot(i, n);
+        return fnma(2m * n, dot(i, n), i);
+    }
 
     [MethodImpl(256 | 512)]
     public static decimal4 project([This] decimal4 a, decimal4 onto) =>
@@ -1841,7 +1877,11 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static half2 reflect([This] half2 i, half2 n) => i - 2f.half() * n * dot(i, n);
+    public static half2 reflect([This] half2 i, half2 n)
+    {
+        // i - 2f.half() * n * dot(i, n);
+        return fnma(2f.half() * n, dot(i, n), i);
+    }
 
     [MethodImpl(256 | 512)]
     public static half2 project([This] half2 a, half2 onto) =>
@@ -2009,7 +2049,11 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static half3 reflect([This] half3 i, half3 n) => i - 2f.half() * n * dot(i, n);
+    public static half3 reflect([This] half3 i, half3 n)
+    {
+        // i - 2f.half() * n * dot(i, n);
+        return fnma(2f.half() * n, dot(i, n), i);
+    }
 
     [MethodImpl(256 | 512)]
     public static half3 project([This] half3 a, half3 onto) =>
@@ -2177,7 +2221,11 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static half4 reflect([This] half4 i, half4 n) => i - 2f.half() * n * dot(i, n);
+    public static half4 reflect([This] half4 i, half4 n)
+    {
+        // i - 2f.half() * n * dot(i, n);
+        return fnma(2f.half() * n, dot(i, n), i);
+    }
 
     [MethodImpl(256 | 512)]
     public static half4 project([This] half4 a, half4 onto) =>

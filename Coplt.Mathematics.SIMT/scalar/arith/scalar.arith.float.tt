@@ -108,12 +108,6 @@ public partial struct <#= typeName #>
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> mod([This] <#= typeName #> a, <#= typeName #> b)
-    {
-        return new(<#= string.Join(", ", vectors.Select(v => $"simd.Mod(a.{v}, b.{v})")) #>);
-    }
-
-    [MethodImpl(256 | 512)]
     public static <#= typeName #> ceil([This] <#= typeName #> a)
     {
         return new(<#= string.Join(", ", vectors.Select(v => $"Vector{bitSize}.Ceiling(a.{v})")) #>);
@@ -135,6 +129,46 @@ public static partial class math_mt
     public static <#= typeName #> trunc([This] <#= typeName #> a)
     {
         return new(<#= string.Join(", ", vectors.Select(v => $"simd.RoundToZero(a.{v})")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> mod([This] <#= typeName #> a, <#= typeName #> b)
+    {
+        var x = a;
+        var y = b;
+        var div = x / y;
+        var flr = floor(div);
+        return fnma(flr, y, x);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> mod([This] <#= typeName #> a, <#= typ.compType #> b)
+    {
+        var x = a;
+        var y = b;
+        var div = x / y;
+        var flr = floor(div);
+        return fnma(flr, y, x);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> rem([This] <#= typeName #> a, <#= typeName #> b)
+    {
+        var x = a;
+        var y = b;
+        var div = x / y;
+        var flr = trunc(div);
+        return fnma(flr, y, x);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> rem([This] <#= typeName #> a, <#= typ.compType #> b)
+    {
+        var x = a;
+        var y = b;
+        var div = x / y;
+        var flr = trunc(div);
+        return fnma(flr, y, x);
     }
 
     [MethodImpl(256 | 512)]
@@ -232,7 +266,7 @@ public static partial class math_mt
     }
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> log2([This] <#= typeName #> a, <#= typeName #> b) => log(a) / log(b);
+    public static <#= typeName #> log([This] <#= typeName #> a, <#= typeName #> b) => log(a) / log(b);
 
     [MethodImpl(256 | 512)]
     public static <#= typeName #> log10([This] <#= typeName #> a)

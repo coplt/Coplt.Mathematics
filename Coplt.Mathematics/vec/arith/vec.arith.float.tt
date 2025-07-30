@@ -237,7 +237,11 @@ public static partial class math
     }
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> reflect([This] <#= typeName #> i, <#= typeName #> n) => i - 2<#= typ.suffix #> * n * dot(i, n);
+    public static <#= typeName #> reflect([This] <#= typeName #> i, <#= typeName #> n)
+    {
+        // i - 2<#= typ.suffix #> * n * dot(i, n);
+        return fnma(2<#= typ.suffix #> * n, dot(i, n), i);
+    }
 
     [MethodImpl(256 | 512)]
     public static <#= typeName #> project([This] <#= typeName #> a, <#= typeName #> onto) =>
