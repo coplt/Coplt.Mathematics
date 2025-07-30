@@ -39,11 +39,13 @@ public partial struct <#= typeName #> : IEquatable<<#= typeName #>>
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public readonly bool Equals(<#= typeName #> other) => EqualsAll(other);
+    public readonly override int GetHashCode() => HashCode.Combine(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"c{i}.GetHashCode()")) #>);
+
     [MethodImpl(256 | 512)]
     public readonly override bool Equals(object? obj) => obj is <#= typeName #> other && Equals(other);
+
     [MethodImpl(256 | 512)]
-    public readonly override int GetHashCode() => HashCode.Combine(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"c{i}.GetHashCode()")) #>);
+    public readonly bool Equals(<#= typeName #> other) => EqualsAll(other);
 
     [MethodImpl(256 | 512)]
     public readonly bool EqualsAll(<#= typeName #> other) => <#= string.Join(" && ", Enumerable.Range(0, m).Select(i => $"c{i}.EqualsAll(other.c{i})")) #>;
@@ -56,16 +58,17 @@ public partial struct <#= typeName #> : IEquatable<<#= typeName #>>
 #>
 
     [MethodImpl(256 | 512)]
-    public readonly <#= bTypeName #> EqualsVector(<#= typeName #> other) => new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"c{i}.EqualsVector(other.c{i})")) #>);
+    public readonly <#= bTypeName #> VectorEquals(<#= typeName #> other) => new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"c{i}.VectorEquals(other.c{i})")) #>);
 
     [MethodImpl(256 | 512)]
-    public readonly <#= bTypeName #> EqualsVectorNot(<#= typeName #> other) => new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"c{i}.EqualsVectorNot(other.c{i})")) #>);
+    public readonly <#= bTypeName #> VectorNotEquals(<#= typeName #> other) => new(<#= string.Join(", ", Enumerable.Range(0, m).Select(i => $"c{i}.VectorNotEquals(other.c{i})")) #>);
 <#
                 }
 #>
 
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<<#= typeName #>, <#= typeName #>, bool>.operator ==(<#= typeName #> left, <#= typeName #> right) => left.Equals(right);
+
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<<#= typeName #>, <#= typeName #>, bool>.operator !=(<#= typeName #> left, <#= typeName #> right) => !left.Equals(right);
 
@@ -75,9 +78,10 @@ public partial struct <#= typeName #> : IEquatable<<#= typeName #>>
 #>
 
     [MethodImpl(256 | 512)]
-    public static <#= bTypeName #> operator ==(<#= typeName #> left, <#= typeName #> right) => left.EqualsVector(right);
+    public static <#= bTypeName #> operator ==(<#= typeName #> left, <#= typeName #> right) => left.VectorEquals(right);
+
     [MethodImpl(256 | 512)]
-    public static <#= bTypeName #> operator !=(<#= typeName #> left, <#= typeName #> right) => left.EqualsVectorNot(right);
+    public static <#= bTypeName #> operator !=(<#= typeName #> left, <#= typeName #> right) => left.VectorNotEquals(right);
 <#
             }
 #>

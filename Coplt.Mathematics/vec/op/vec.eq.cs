@@ -11,16 +11,18 @@ public partial struct float2 : IEquatable<float2>
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public readonly bool Equals(float2 other) => EqualsAll(other);
-    [MethodImpl(256 | 512)]
-    public readonly override bool Equals(object? obj) => obj is float2 other && Equals(other);
-    [MethodImpl(256 | 512)]
     public readonly override int GetHashCode() 
     {
         if (Vector64.IsHardwareAccelerated)
             return vector.GetHashCode();
         return HashCode.Combine(x, y);
     }
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is float2 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(float2 other) => EqualsAll(other);
 
     [MethodImpl(256 | 512)]
     public readonly bool EqualsAll(float2 other)
@@ -39,7 +41,7 @@ public partial struct float2 : IEquatable<float2>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32v2 EqualsVector(float2 other)
+    public readonly b32v2 VectorEquals(float2 other)
     {
         if (Vector64.IsHardwareAccelerated)
             return new(Vector64.Equals(vector, other.vector).AsUInt32());
@@ -47,7 +49,7 @@ public partial struct float2 : IEquatable<float2>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32v2 EqualsVectorNot(float2 other)
+    public readonly b32v2 VectorNotEquals(float2 other)
     {
         if (Vector64.IsHardwareAccelerated)
             return new(simd.Ne(vector, other.vector).AsUInt32());
@@ -56,14 +58,16 @@ public partial struct float2 : IEquatable<float2>
 
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<float2, float2, bool>.operator ==(float2 left, float2 right) => left.Equals(right);
+
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<float2, float2, bool>.operator !=(float2 left, float2 right) => !left.Equals(right);
 
 
     [MethodImpl(256 | 512)]
-    public static b32v2 operator ==(float2 left, float2 right) => left.EqualsVector(right);
+    public static b32v2 operator ==(float2 left, float2 right) => left.VectorEquals(right);
+
     [MethodImpl(256 | 512)]
-    public static b32v2 operator !=(float2 left, float2 right) => left.EqualsVectorNot(right);
+    public static b32v2 operator !=(float2 left, float2 right) => left.VectorNotEquals(right);
 
     #endregion
 }
@@ -79,16 +83,18 @@ public partial struct float3 : IEquatable<float3>
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public readonly bool Equals(float3 other) => EqualsAll(other);
-    [MethodImpl(256 | 512)]
-    public readonly override bool Equals(object? obj) => obj is float3 other && Equals(other);
-    [MethodImpl(256 | 512)]
     public readonly override int GetHashCode() 
     {
         if (Vector128.IsHardwareAccelerated)
             return vector.GetHashCode();
         return HashCode.Combine(x, y, z);
     }
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is float3 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(float3 other) => EqualsAll(other);
 
     [MethodImpl(256 | 512)]
     public readonly bool EqualsAll(float3 other)
@@ -107,7 +113,7 @@ public partial struct float3 : IEquatable<float3>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32v3 EqualsVector(float3 other)
+    public readonly b32v3 VectorEquals(float3 other)
     {
         if (Vector128.IsHardwareAccelerated)
             return new(Vector128.Equals(vector, other.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
@@ -115,7 +121,7 @@ public partial struct float3 : IEquatable<float3>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32v3 EqualsVectorNot(float3 other)
+    public readonly b32v3 VectorNotEquals(float3 other)
     {
         if (Vector128.IsHardwareAccelerated)
             return new(simd.Ne(vector, other.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
@@ -124,14 +130,16 @@ public partial struct float3 : IEquatable<float3>
 
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<float3, float3, bool>.operator ==(float3 left, float3 right) => left.Equals(right);
+
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<float3, float3, bool>.operator !=(float3 left, float3 right) => !left.Equals(right);
 
 
     [MethodImpl(256 | 512)]
-    public static b32v3 operator ==(float3 left, float3 right) => left.EqualsVector(right);
+    public static b32v3 operator ==(float3 left, float3 right) => left.VectorEquals(right);
+
     [MethodImpl(256 | 512)]
-    public static b32v3 operator !=(float3 left, float3 right) => left.EqualsVectorNot(right);
+    public static b32v3 operator !=(float3 left, float3 right) => left.VectorNotEquals(right);
 
     #endregion
 }
@@ -147,16 +155,18 @@ public partial struct float4 : IEquatable<float4>
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public readonly bool Equals(float4 other) => EqualsAll(other);
-    [MethodImpl(256 | 512)]
-    public readonly override bool Equals(object? obj) => obj is float4 other && Equals(other);
-    [MethodImpl(256 | 512)]
     public readonly override int GetHashCode() 
     {
         if (Vector128.IsHardwareAccelerated)
             return vector.GetHashCode();
         return HashCode.Combine(x, y, z, w);
     }
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is float4 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(float4 other) => EqualsAll(other);
 
     [MethodImpl(256 | 512)]
     public readonly bool EqualsAll(float4 other)
@@ -175,7 +185,7 @@ public partial struct float4 : IEquatable<float4>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32v4 EqualsVector(float4 other)
+    public readonly b32v4 VectorEquals(float4 other)
     {
         if (Vector128.IsHardwareAccelerated)
             return new(Vector128.Equals(vector, other.vector).AsUInt32());
@@ -183,7 +193,7 @@ public partial struct float4 : IEquatable<float4>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32v4 EqualsVectorNot(float4 other)
+    public readonly b32v4 VectorNotEquals(float4 other)
     {
         if (Vector128.IsHardwareAccelerated)
             return new(simd.Ne(vector, other.vector).AsUInt32());
@@ -192,14 +202,16 @@ public partial struct float4 : IEquatable<float4>
 
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<float4, float4, bool>.operator ==(float4 left, float4 right) => left.Equals(right);
+
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<float4, float4, bool>.operator !=(float4 left, float4 right) => !left.Equals(right);
 
 
     [MethodImpl(256 | 512)]
-    public static b32v4 operator ==(float4 left, float4 right) => left.EqualsVector(right);
+    public static b32v4 operator ==(float4 left, float4 right) => left.VectorEquals(right);
+
     [MethodImpl(256 | 512)]
-    public static b32v4 operator !=(float4 left, float4 right) => left.EqualsVectorNot(right);
+    public static b32v4 operator !=(float4 left, float4 right) => left.VectorNotEquals(right);
 
     #endregion
 }
@@ -215,16 +227,18 @@ public partial struct double2 : IEquatable<double2>
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public readonly bool Equals(double2 other) => EqualsAll(other);
-    [MethodImpl(256 | 512)]
-    public readonly override bool Equals(object? obj) => obj is double2 other && Equals(other);
-    [MethodImpl(256 | 512)]
     public readonly override int GetHashCode() 
     {
         if (Vector128.IsHardwareAccelerated)
             return vector.GetHashCode();
         return HashCode.Combine(x, y);
     }
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is double2 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(double2 other) => EqualsAll(other);
 
     [MethodImpl(256 | 512)]
     public readonly bool EqualsAll(double2 other)
@@ -243,7 +257,7 @@ public partial struct double2 : IEquatable<double2>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64v2 EqualsVector(double2 other)
+    public readonly b64v2 VectorEquals(double2 other)
     {
         if (Vector128.IsHardwareAccelerated)
             return new(Vector128.Equals(vector, other.vector).AsUInt64());
@@ -251,7 +265,7 @@ public partial struct double2 : IEquatable<double2>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64v2 EqualsVectorNot(double2 other)
+    public readonly b64v2 VectorNotEquals(double2 other)
     {
         if (Vector128.IsHardwareAccelerated)
             return new(simd.Ne(vector, other.vector).AsUInt64());
@@ -260,14 +274,16 @@ public partial struct double2 : IEquatable<double2>
 
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<double2, double2, bool>.operator ==(double2 left, double2 right) => left.Equals(right);
+
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<double2, double2, bool>.operator !=(double2 left, double2 right) => !left.Equals(right);
 
 
     [MethodImpl(256 | 512)]
-    public static b64v2 operator ==(double2 left, double2 right) => left.EqualsVector(right);
+    public static b64v2 operator ==(double2 left, double2 right) => left.VectorEquals(right);
+
     [MethodImpl(256 | 512)]
-    public static b64v2 operator !=(double2 left, double2 right) => left.EqualsVectorNot(right);
+    public static b64v2 operator !=(double2 left, double2 right) => left.VectorNotEquals(right);
 
     #endregion
 }
@@ -283,16 +299,18 @@ public partial struct double3 : IEquatable<double3>
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public readonly bool Equals(double3 other) => EqualsAll(other);
-    [MethodImpl(256 | 512)]
-    public readonly override bool Equals(object? obj) => obj is double3 other && Equals(other);
-    [MethodImpl(256 | 512)]
     public readonly override int GetHashCode() 
     {
         if (Vector256.IsHardwareAccelerated)
             return vector.GetHashCode();
         return HashCode.Combine(x, y, z);
     }
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is double3 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(double3 other) => EqualsAll(other);
 
     [MethodImpl(256 | 512)]
     public readonly bool EqualsAll(double3 other)
@@ -311,7 +329,7 @@ public partial struct double3 : IEquatable<double3>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64v3 EqualsVector(double3 other)
+    public readonly b64v3 VectorEquals(double3 other)
     {
         if (Vector256.IsHardwareAccelerated)
             return new(Vector256.Equals(vector, other.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
@@ -319,7 +337,7 @@ public partial struct double3 : IEquatable<double3>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64v3 EqualsVectorNot(double3 other)
+    public readonly b64v3 VectorNotEquals(double3 other)
     {
         if (Vector256.IsHardwareAccelerated)
             return new(simd.Ne(vector, other.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
@@ -328,14 +346,16 @@ public partial struct double3 : IEquatable<double3>
 
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<double3, double3, bool>.operator ==(double3 left, double3 right) => left.Equals(right);
+
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<double3, double3, bool>.operator !=(double3 left, double3 right) => !left.Equals(right);
 
 
     [MethodImpl(256 | 512)]
-    public static b64v3 operator ==(double3 left, double3 right) => left.EqualsVector(right);
+    public static b64v3 operator ==(double3 left, double3 right) => left.VectorEquals(right);
+
     [MethodImpl(256 | 512)]
-    public static b64v3 operator !=(double3 left, double3 right) => left.EqualsVectorNot(right);
+    public static b64v3 operator !=(double3 left, double3 right) => left.VectorNotEquals(right);
 
     #endregion
 }
@@ -351,16 +371,18 @@ public partial struct double4 : IEquatable<double4>
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public readonly bool Equals(double4 other) => EqualsAll(other);
-    [MethodImpl(256 | 512)]
-    public readonly override bool Equals(object? obj) => obj is double4 other && Equals(other);
-    [MethodImpl(256 | 512)]
     public readonly override int GetHashCode() 
     {
         if (Vector256.IsHardwareAccelerated)
             return vector.GetHashCode();
         return HashCode.Combine(x, y, z, w);
     }
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is double4 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(double4 other) => EqualsAll(other);
 
     [MethodImpl(256 | 512)]
     public readonly bool EqualsAll(double4 other)
@@ -379,7 +401,7 @@ public partial struct double4 : IEquatable<double4>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64v4 EqualsVector(double4 other)
+    public readonly b64v4 VectorEquals(double4 other)
     {
         if (Vector256.IsHardwareAccelerated)
             return new(Vector256.Equals(vector, other.vector).AsUInt64());
@@ -387,7 +409,7 @@ public partial struct double4 : IEquatable<double4>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64v4 EqualsVectorNot(double4 other)
+    public readonly b64v4 VectorNotEquals(double4 other)
     {
         if (Vector256.IsHardwareAccelerated)
             return new(simd.Ne(vector, other.vector).AsUInt64());
@@ -396,14 +418,16 @@ public partial struct double4 : IEquatable<double4>
 
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<double4, double4, bool>.operator ==(double4 left, double4 right) => left.Equals(right);
+
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<double4, double4, bool>.operator !=(double4 left, double4 right) => !left.Equals(right);
 
 
     [MethodImpl(256 | 512)]
-    public static b64v4 operator ==(double4 left, double4 right) => left.EqualsVector(right);
+    public static b64v4 operator ==(double4 left, double4 right) => left.VectorEquals(right);
+
     [MethodImpl(256 | 512)]
-    public static b64v4 operator !=(double4 left, double4 right) => left.EqualsVectorNot(right);
+    public static b64v4 operator !=(double4 left, double4 right) => left.VectorNotEquals(right);
 
     #endregion
 }
@@ -419,14 +443,16 @@ public partial struct short2 : IEquatable<short2>
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public readonly bool Equals(short2 other) => EqualsAll(other);
-    [MethodImpl(256 | 512)]
-    public readonly override bool Equals(object? obj) => obj is short2 other && Equals(other);
-    [MethodImpl(256 | 512)]
     public readonly override int GetHashCode() 
     {
         return HashCode.Combine(x, y);
     }
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is short2 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(short2 other) => EqualsAll(other);
 
     [MethodImpl(256 | 512)]
     public readonly bool EqualsAll(short2 other)
@@ -441,27 +467,29 @@ public partial struct short2 : IEquatable<short2>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b16v2 EqualsVector(short2 other)
+    public readonly b16v2 VectorEquals(short2 other)
     {
         return new(x == other.x, y == other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b16v2 EqualsVectorNot(short2 other)
+    public readonly b16v2 VectorNotEquals(short2 other)
     {
         return new(x != other.x, y != other.y);
     }
 
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<short2, short2, bool>.operator ==(short2 left, short2 right) => left.Equals(right);
+
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<short2, short2, bool>.operator !=(short2 left, short2 right) => !left.Equals(right);
 
 
     [MethodImpl(256 | 512)]
-    public static b16v2 operator ==(short2 left, short2 right) => left.EqualsVector(right);
+    public static b16v2 operator ==(short2 left, short2 right) => left.VectorEquals(right);
+
     [MethodImpl(256 | 512)]
-    public static b16v2 operator !=(short2 left, short2 right) => left.EqualsVectorNot(right);
+    public static b16v2 operator !=(short2 left, short2 right) => left.VectorNotEquals(right);
 
     #endregion
 }
@@ -477,14 +505,16 @@ public partial struct short3 : IEquatable<short3>
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public readonly bool Equals(short3 other) => EqualsAll(other);
-    [MethodImpl(256 | 512)]
-    public readonly override bool Equals(object? obj) => obj is short3 other && Equals(other);
-    [MethodImpl(256 | 512)]
     public readonly override int GetHashCode() 
     {
         return HashCode.Combine(x, y, z);
     }
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is short3 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(short3 other) => EqualsAll(other);
 
     [MethodImpl(256 | 512)]
     public readonly bool EqualsAll(short3 other)
@@ -499,27 +529,29 @@ public partial struct short3 : IEquatable<short3>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b16v3 EqualsVector(short3 other)
+    public readonly b16v3 VectorEquals(short3 other)
     {
         return new(x == other.x, y == other.y, z == other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b16v3 EqualsVectorNot(short3 other)
+    public readonly b16v3 VectorNotEquals(short3 other)
     {
         return new(x != other.x, y != other.y, z != other.z);
     }
 
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<short3, short3, bool>.operator ==(short3 left, short3 right) => left.Equals(right);
+
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<short3, short3, bool>.operator !=(short3 left, short3 right) => !left.Equals(right);
 
 
     [MethodImpl(256 | 512)]
-    public static b16v3 operator ==(short3 left, short3 right) => left.EqualsVector(right);
+    public static b16v3 operator ==(short3 left, short3 right) => left.VectorEquals(right);
+
     [MethodImpl(256 | 512)]
-    public static b16v3 operator !=(short3 left, short3 right) => left.EqualsVectorNot(right);
+    public static b16v3 operator !=(short3 left, short3 right) => left.VectorNotEquals(right);
 
     #endregion
 }
@@ -535,14 +567,16 @@ public partial struct short4 : IEquatable<short4>
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public readonly bool Equals(short4 other) => EqualsAll(other);
-    [MethodImpl(256 | 512)]
-    public readonly override bool Equals(object? obj) => obj is short4 other && Equals(other);
-    [MethodImpl(256 | 512)]
     public readonly override int GetHashCode() 
     {
         return HashCode.Combine(x, y, z, w);
     }
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is short4 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(short4 other) => EqualsAll(other);
 
     [MethodImpl(256 | 512)]
     public readonly bool EqualsAll(short4 other)
@@ -557,27 +591,29 @@ public partial struct short4 : IEquatable<short4>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b16v4 EqualsVector(short4 other)
+    public readonly b16v4 VectorEquals(short4 other)
     {
         return new(x == other.x, y == other.y, z == other.z, w == other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b16v4 EqualsVectorNot(short4 other)
+    public readonly b16v4 VectorNotEquals(short4 other)
     {
         return new(x != other.x, y != other.y, z != other.z, w != other.w);
     }
 
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<short4, short4, bool>.operator ==(short4 left, short4 right) => left.Equals(right);
+
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<short4, short4, bool>.operator !=(short4 left, short4 right) => !left.Equals(right);
 
 
     [MethodImpl(256 | 512)]
-    public static b16v4 operator ==(short4 left, short4 right) => left.EqualsVector(right);
+    public static b16v4 operator ==(short4 left, short4 right) => left.VectorEquals(right);
+
     [MethodImpl(256 | 512)]
-    public static b16v4 operator !=(short4 left, short4 right) => left.EqualsVectorNot(right);
+    public static b16v4 operator !=(short4 left, short4 right) => left.VectorNotEquals(right);
 
     #endregion
 }
@@ -593,14 +629,16 @@ public partial struct ushort2 : IEquatable<ushort2>
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public readonly bool Equals(ushort2 other) => EqualsAll(other);
-    [MethodImpl(256 | 512)]
-    public readonly override bool Equals(object? obj) => obj is ushort2 other && Equals(other);
-    [MethodImpl(256 | 512)]
     public readonly override int GetHashCode() 
     {
         return HashCode.Combine(x, y);
     }
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is ushort2 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(ushort2 other) => EqualsAll(other);
 
     [MethodImpl(256 | 512)]
     public readonly bool EqualsAll(ushort2 other)
@@ -615,27 +653,29 @@ public partial struct ushort2 : IEquatable<ushort2>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b16v2 EqualsVector(ushort2 other)
+    public readonly b16v2 VectorEquals(ushort2 other)
     {
         return new(x == other.x, y == other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b16v2 EqualsVectorNot(ushort2 other)
+    public readonly b16v2 VectorNotEquals(ushort2 other)
     {
         return new(x != other.x, y != other.y);
     }
 
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<ushort2, ushort2, bool>.operator ==(ushort2 left, ushort2 right) => left.Equals(right);
+
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<ushort2, ushort2, bool>.operator !=(ushort2 left, ushort2 right) => !left.Equals(right);
 
 
     [MethodImpl(256 | 512)]
-    public static b16v2 operator ==(ushort2 left, ushort2 right) => left.EqualsVector(right);
+    public static b16v2 operator ==(ushort2 left, ushort2 right) => left.VectorEquals(right);
+
     [MethodImpl(256 | 512)]
-    public static b16v2 operator !=(ushort2 left, ushort2 right) => left.EqualsVectorNot(right);
+    public static b16v2 operator !=(ushort2 left, ushort2 right) => left.VectorNotEquals(right);
 
     #endregion
 }
@@ -651,14 +691,16 @@ public partial struct ushort3 : IEquatable<ushort3>
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public readonly bool Equals(ushort3 other) => EqualsAll(other);
-    [MethodImpl(256 | 512)]
-    public readonly override bool Equals(object? obj) => obj is ushort3 other && Equals(other);
-    [MethodImpl(256 | 512)]
     public readonly override int GetHashCode() 
     {
         return HashCode.Combine(x, y, z);
     }
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is ushort3 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(ushort3 other) => EqualsAll(other);
 
     [MethodImpl(256 | 512)]
     public readonly bool EqualsAll(ushort3 other)
@@ -673,27 +715,29 @@ public partial struct ushort3 : IEquatable<ushort3>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b16v3 EqualsVector(ushort3 other)
+    public readonly b16v3 VectorEquals(ushort3 other)
     {
         return new(x == other.x, y == other.y, z == other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b16v3 EqualsVectorNot(ushort3 other)
+    public readonly b16v3 VectorNotEquals(ushort3 other)
     {
         return new(x != other.x, y != other.y, z != other.z);
     }
 
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<ushort3, ushort3, bool>.operator ==(ushort3 left, ushort3 right) => left.Equals(right);
+
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<ushort3, ushort3, bool>.operator !=(ushort3 left, ushort3 right) => !left.Equals(right);
 
 
     [MethodImpl(256 | 512)]
-    public static b16v3 operator ==(ushort3 left, ushort3 right) => left.EqualsVector(right);
+    public static b16v3 operator ==(ushort3 left, ushort3 right) => left.VectorEquals(right);
+
     [MethodImpl(256 | 512)]
-    public static b16v3 operator !=(ushort3 left, ushort3 right) => left.EqualsVectorNot(right);
+    public static b16v3 operator !=(ushort3 left, ushort3 right) => left.VectorNotEquals(right);
 
     #endregion
 }
@@ -709,14 +753,16 @@ public partial struct ushort4 : IEquatable<ushort4>
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public readonly bool Equals(ushort4 other) => EqualsAll(other);
-    [MethodImpl(256 | 512)]
-    public readonly override bool Equals(object? obj) => obj is ushort4 other && Equals(other);
-    [MethodImpl(256 | 512)]
     public readonly override int GetHashCode() 
     {
         return HashCode.Combine(x, y, z, w);
     }
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is ushort4 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(ushort4 other) => EqualsAll(other);
 
     [MethodImpl(256 | 512)]
     public readonly bool EqualsAll(ushort4 other)
@@ -731,27 +777,29 @@ public partial struct ushort4 : IEquatable<ushort4>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b16v4 EqualsVector(ushort4 other)
+    public readonly b16v4 VectorEquals(ushort4 other)
     {
         return new(x == other.x, y == other.y, z == other.z, w == other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b16v4 EqualsVectorNot(ushort4 other)
+    public readonly b16v4 VectorNotEquals(ushort4 other)
     {
         return new(x != other.x, y != other.y, z != other.z, w != other.w);
     }
 
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<ushort4, ushort4, bool>.operator ==(ushort4 left, ushort4 right) => left.Equals(right);
+
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<ushort4, ushort4, bool>.operator !=(ushort4 left, ushort4 right) => !left.Equals(right);
 
 
     [MethodImpl(256 | 512)]
-    public static b16v4 operator ==(ushort4 left, ushort4 right) => left.EqualsVector(right);
+    public static b16v4 operator ==(ushort4 left, ushort4 right) => left.VectorEquals(right);
+
     [MethodImpl(256 | 512)]
-    public static b16v4 operator !=(ushort4 left, ushort4 right) => left.EqualsVectorNot(right);
+    public static b16v4 operator !=(ushort4 left, ushort4 right) => left.VectorNotEquals(right);
 
     #endregion
 }
@@ -767,16 +815,18 @@ public partial struct int2 : IEquatable<int2>
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public readonly bool Equals(int2 other) => EqualsAll(other);
-    [MethodImpl(256 | 512)]
-    public readonly override bool Equals(object? obj) => obj is int2 other && Equals(other);
-    [MethodImpl(256 | 512)]
     public readonly override int GetHashCode() 
     {
         if (Vector64.IsHardwareAccelerated)
             return vector.GetHashCode();
         return HashCode.Combine(x, y);
     }
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is int2 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(int2 other) => EqualsAll(other);
 
     [MethodImpl(256 | 512)]
     public readonly bool EqualsAll(int2 other)
@@ -795,7 +845,7 @@ public partial struct int2 : IEquatable<int2>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32v2 EqualsVector(int2 other)
+    public readonly b32v2 VectorEquals(int2 other)
     {
         if (Vector64.IsHardwareAccelerated)
             return new(Vector64.Equals(vector, other.vector).AsUInt32());
@@ -803,7 +853,7 @@ public partial struct int2 : IEquatable<int2>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32v2 EqualsVectorNot(int2 other)
+    public readonly b32v2 VectorNotEquals(int2 other)
     {
         if (Vector64.IsHardwareAccelerated)
             return new(~Vector64.Equals(vector, other.vector).AsUInt32());
@@ -812,14 +862,16 @@ public partial struct int2 : IEquatable<int2>
 
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<int2, int2, bool>.operator ==(int2 left, int2 right) => left.Equals(right);
+
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<int2, int2, bool>.operator !=(int2 left, int2 right) => !left.Equals(right);
 
 
     [MethodImpl(256 | 512)]
-    public static b32v2 operator ==(int2 left, int2 right) => left.EqualsVector(right);
+    public static b32v2 operator ==(int2 left, int2 right) => left.VectorEquals(right);
+
     [MethodImpl(256 | 512)]
-    public static b32v2 operator !=(int2 left, int2 right) => left.EqualsVectorNot(right);
+    public static b32v2 operator !=(int2 left, int2 right) => left.VectorNotEquals(right);
 
     #endregion
 }
@@ -835,16 +887,18 @@ public partial struct int3 : IEquatable<int3>
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public readonly bool Equals(int3 other) => EqualsAll(other);
-    [MethodImpl(256 | 512)]
-    public readonly override bool Equals(object? obj) => obj is int3 other && Equals(other);
-    [MethodImpl(256 | 512)]
     public readonly override int GetHashCode() 
     {
         if (Vector128.IsHardwareAccelerated)
             return vector.GetHashCode();
         return HashCode.Combine(x, y, z);
     }
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is int3 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(int3 other) => EqualsAll(other);
 
     [MethodImpl(256 | 512)]
     public readonly bool EqualsAll(int3 other)
@@ -863,7 +917,7 @@ public partial struct int3 : IEquatable<int3>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32v3 EqualsVector(int3 other)
+    public readonly b32v3 VectorEquals(int3 other)
     {
         if (Vector128.IsHardwareAccelerated)
             return new(Vector128.Equals(vector, other.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
@@ -871,7 +925,7 @@ public partial struct int3 : IEquatable<int3>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32v3 EqualsVectorNot(int3 other)
+    public readonly b32v3 VectorNotEquals(int3 other)
     {
         if (Vector128.IsHardwareAccelerated)
             return new(~Vector128.Equals(vector, other.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
@@ -880,14 +934,16 @@ public partial struct int3 : IEquatable<int3>
 
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<int3, int3, bool>.operator ==(int3 left, int3 right) => left.Equals(right);
+
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<int3, int3, bool>.operator !=(int3 left, int3 right) => !left.Equals(right);
 
 
     [MethodImpl(256 | 512)]
-    public static b32v3 operator ==(int3 left, int3 right) => left.EqualsVector(right);
+    public static b32v3 operator ==(int3 left, int3 right) => left.VectorEquals(right);
+
     [MethodImpl(256 | 512)]
-    public static b32v3 operator !=(int3 left, int3 right) => left.EqualsVectorNot(right);
+    public static b32v3 operator !=(int3 left, int3 right) => left.VectorNotEquals(right);
 
     #endregion
 }
@@ -903,16 +959,18 @@ public partial struct int4 : IEquatable<int4>
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public readonly bool Equals(int4 other) => EqualsAll(other);
-    [MethodImpl(256 | 512)]
-    public readonly override bool Equals(object? obj) => obj is int4 other && Equals(other);
-    [MethodImpl(256 | 512)]
     public readonly override int GetHashCode() 
     {
         if (Vector128.IsHardwareAccelerated)
             return vector.GetHashCode();
         return HashCode.Combine(x, y, z, w);
     }
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is int4 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(int4 other) => EqualsAll(other);
 
     [MethodImpl(256 | 512)]
     public readonly bool EqualsAll(int4 other)
@@ -931,7 +989,7 @@ public partial struct int4 : IEquatable<int4>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32v4 EqualsVector(int4 other)
+    public readonly b32v4 VectorEquals(int4 other)
     {
         if (Vector128.IsHardwareAccelerated)
             return new(Vector128.Equals(vector, other.vector).AsUInt32());
@@ -939,7 +997,7 @@ public partial struct int4 : IEquatable<int4>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32v4 EqualsVectorNot(int4 other)
+    public readonly b32v4 VectorNotEquals(int4 other)
     {
         if (Vector128.IsHardwareAccelerated)
             return new(~Vector128.Equals(vector, other.vector).AsUInt32());
@@ -948,14 +1006,16 @@ public partial struct int4 : IEquatable<int4>
 
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<int4, int4, bool>.operator ==(int4 left, int4 right) => left.Equals(right);
+
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<int4, int4, bool>.operator !=(int4 left, int4 right) => !left.Equals(right);
 
 
     [MethodImpl(256 | 512)]
-    public static b32v4 operator ==(int4 left, int4 right) => left.EqualsVector(right);
+    public static b32v4 operator ==(int4 left, int4 right) => left.VectorEquals(right);
+
     [MethodImpl(256 | 512)]
-    public static b32v4 operator !=(int4 left, int4 right) => left.EqualsVectorNot(right);
+    public static b32v4 operator !=(int4 left, int4 right) => left.VectorNotEquals(right);
 
     #endregion
 }
@@ -971,16 +1031,18 @@ public partial struct uint2 : IEquatable<uint2>
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public readonly bool Equals(uint2 other) => EqualsAll(other);
-    [MethodImpl(256 | 512)]
-    public readonly override bool Equals(object? obj) => obj is uint2 other && Equals(other);
-    [MethodImpl(256 | 512)]
     public readonly override int GetHashCode() 
     {
         if (Vector64.IsHardwareAccelerated)
             return vector.GetHashCode();
         return HashCode.Combine(x, y);
     }
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is uint2 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(uint2 other) => EqualsAll(other);
 
     [MethodImpl(256 | 512)]
     public readonly bool EqualsAll(uint2 other)
@@ -999,7 +1061,7 @@ public partial struct uint2 : IEquatable<uint2>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32v2 EqualsVector(uint2 other)
+    public readonly b32v2 VectorEquals(uint2 other)
     {
         if (Vector64.IsHardwareAccelerated)
             return new(Vector64.Equals(vector, other.vector).AsUInt32());
@@ -1007,7 +1069,7 @@ public partial struct uint2 : IEquatable<uint2>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32v2 EqualsVectorNot(uint2 other)
+    public readonly b32v2 VectorNotEquals(uint2 other)
     {
         if (Vector64.IsHardwareAccelerated)
             return new(~Vector64.Equals(vector, other.vector).AsUInt32());
@@ -1016,14 +1078,16 @@ public partial struct uint2 : IEquatable<uint2>
 
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<uint2, uint2, bool>.operator ==(uint2 left, uint2 right) => left.Equals(right);
+
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<uint2, uint2, bool>.operator !=(uint2 left, uint2 right) => !left.Equals(right);
 
 
     [MethodImpl(256 | 512)]
-    public static b32v2 operator ==(uint2 left, uint2 right) => left.EqualsVector(right);
+    public static b32v2 operator ==(uint2 left, uint2 right) => left.VectorEquals(right);
+
     [MethodImpl(256 | 512)]
-    public static b32v2 operator !=(uint2 left, uint2 right) => left.EqualsVectorNot(right);
+    public static b32v2 operator !=(uint2 left, uint2 right) => left.VectorNotEquals(right);
 
     #endregion
 }
@@ -1039,16 +1103,18 @@ public partial struct uint3 : IEquatable<uint3>
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public readonly bool Equals(uint3 other) => EqualsAll(other);
-    [MethodImpl(256 | 512)]
-    public readonly override bool Equals(object? obj) => obj is uint3 other && Equals(other);
-    [MethodImpl(256 | 512)]
     public readonly override int GetHashCode() 
     {
         if (Vector128.IsHardwareAccelerated)
             return vector.GetHashCode();
         return HashCode.Combine(x, y, z);
     }
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is uint3 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(uint3 other) => EqualsAll(other);
 
     [MethodImpl(256 | 512)]
     public readonly bool EqualsAll(uint3 other)
@@ -1067,7 +1133,7 @@ public partial struct uint3 : IEquatable<uint3>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32v3 EqualsVector(uint3 other)
+    public readonly b32v3 VectorEquals(uint3 other)
     {
         if (Vector128.IsHardwareAccelerated)
             return new(Vector128.Equals(vector, other.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
@@ -1075,7 +1141,7 @@ public partial struct uint3 : IEquatable<uint3>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32v3 EqualsVectorNot(uint3 other)
+    public readonly b32v3 VectorNotEquals(uint3 other)
     {
         if (Vector128.IsHardwareAccelerated)
             return new(~Vector128.Equals(vector, other.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
@@ -1084,14 +1150,16 @@ public partial struct uint3 : IEquatable<uint3>
 
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<uint3, uint3, bool>.operator ==(uint3 left, uint3 right) => left.Equals(right);
+
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<uint3, uint3, bool>.operator !=(uint3 left, uint3 right) => !left.Equals(right);
 
 
     [MethodImpl(256 | 512)]
-    public static b32v3 operator ==(uint3 left, uint3 right) => left.EqualsVector(right);
+    public static b32v3 operator ==(uint3 left, uint3 right) => left.VectorEquals(right);
+
     [MethodImpl(256 | 512)]
-    public static b32v3 operator !=(uint3 left, uint3 right) => left.EqualsVectorNot(right);
+    public static b32v3 operator !=(uint3 left, uint3 right) => left.VectorNotEquals(right);
 
     #endregion
 }
@@ -1107,16 +1175,18 @@ public partial struct uint4 : IEquatable<uint4>
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public readonly bool Equals(uint4 other) => EqualsAll(other);
-    [MethodImpl(256 | 512)]
-    public readonly override bool Equals(object? obj) => obj is uint4 other && Equals(other);
-    [MethodImpl(256 | 512)]
     public readonly override int GetHashCode() 
     {
         if (Vector128.IsHardwareAccelerated)
             return vector.GetHashCode();
         return HashCode.Combine(x, y, z, w);
     }
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is uint4 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(uint4 other) => EqualsAll(other);
 
     [MethodImpl(256 | 512)]
     public readonly bool EqualsAll(uint4 other)
@@ -1135,7 +1205,7 @@ public partial struct uint4 : IEquatable<uint4>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32v4 EqualsVector(uint4 other)
+    public readonly b32v4 VectorEquals(uint4 other)
     {
         if (Vector128.IsHardwareAccelerated)
             return new(Vector128.Equals(vector, other.vector).AsUInt32());
@@ -1143,7 +1213,7 @@ public partial struct uint4 : IEquatable<uint4>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32v4 EqualsVectorNot(uint4 other)
+    public readonly b32v4 VectorNotEquals(uint4 other)
     {
         if (Vector128.IsHardwareAccelerated)
             return new(~Vector128.Equals(vector, other.vector).AsUInt32());
@@ -1152,14 +1222,16 @@ public partial struct uint4 : IEquatable<uint4>
 
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<uint4, uint4, bool>.operator ==(uint4 left, uint4 right) => left.Equals(right);
+
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<uint4, uint4, bool>.operator !=(uint4 left, uint4 right) => !left.Equals(right);
 
 
     [MethodImpl(256 | 512)]
-    public static b32v4 operator ==(uint4 left, uint4 right) => left.EqualsVector(right);
+    public static b32v4 operator ==(uint4 left, uint4 right) => left.VectorEquals(right);
+
     [MethodImpl(256 | 512)]
-    public static b32v4 operator !=(uint4 left, uint4 right) => left.EqualsVectorNot(right);
+    public static b32v4 operator !=(uint4 left, uint4 right) => left.VectorNotEquals(right);
 
     #endregion
 }
@@ -1175,16 +1247,18 @@ public partial struct long2 : IEquatable<long2>
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public readonly bool Equals(long2 other) => EqualsAll(other);
-    [MethodImpl(256 | 512)]
-    public readonly override bool Equals(object? obj) => obj is long2 other && Equals(other);
-    [MethodImpl(256 | 512)]
     public readonly override int GetHashCode() 
     {
         if (Vector128.IsHardwareAccelerated)
             return vector.GetHashCode();
         return HashCode.Combine(x, y);
     }
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is long2 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(long2 other) => EqualsAll(other);
 
     [MethodImpl(256 | 512)]
     public readonly bool EqualsAll(long2 other)
@@ -1203,7 +1277,7 @@ public partial struct long2 : IEquatable<long2>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64v2 EqualsVector(long2 other)
+    public readonly b64v2 VectorEquals(long2 other)
     {
         if (Vector128.IsHardwareAccelerated)
             return new(Vector128.Equals(vector, other.vector).AsUInt64());
@@ -1211,7 +1285,7 @@ public partial struct long2 : IEquatable<long2>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64v2 EqualsVectorNot(long2 other)
+    public readonly b64v2 VectorNotEquals(long2 other)
     {
         if (Vector128.IsHardwareAccelerated)
             return new(~Vector128.Equals(vector, other.vector).AsUInt64());
@@ -1220,14 +1294,16 @@ public partial struct long2 : IEquatable<long2>
 
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<long2, long2, bool>.operator ==(long2 left, long2 right) => left.Equals(right);
+
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<long2, long2, bool>.operator !=(long2 left, long2 right) => !left.Equals(right);
 
 
     [MethodImpl(256 | 512)]
-    public static b64v2 operator ==(long2 left, long2 right) => left.EqualsVector(right);
+    public static b64v2 operator ==(long2 left, long2 right) => left.VectorEquals(right);
+
     [MethodImpl(256 | 512)]
-    public static b64v2 operator !=(long2 left, long2 right) => left.EqualsVectorNot(right);
+    public static b64v2 operator !=(long2 left, long2 right) => left.VectorNotEquals(right);
 
     #endregion
 }
@@ -1243,16 +1319,18 @@ public partial struct long3 : IEquatable<long3>
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public readonly bool Equals(long3 other) => EqualsAll(other);
-    [MethodImpl(256 | 512)]
-    public readonly override bool Equals(object? obj) => obj is long3 other && Equals(other);
-    [MethodImpl(256 | 512)]
     public readonly override int GetHashCode() 
     {
         if (Vector256.IsHardwareAccelerated)
             return vector.GetHashCode();
         return HashCode.Combine(x, y, z);
     }
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is long3 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(long3 other) => EqualsAll(other);
 
     [MethodImpl(256 | 512)]
     public readonly bool EqualsAll(long3 other)
@@ -1271,7 +1349,7 @@ public partial struct long3 : IEquatable<long3>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64v3 EqualsVector(long3 other)
+    public readonly b64v3 VectorEquals(long3 other)
     {
         if (Vector256.IsHardwareAccelerated)
             return new(Vector256.Equals(vector, other.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
@@ -1279,7 +1357,7 @@ public partial struct long3 : IEquatable<long3>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64v3 EqualsVectorNot(long3 other)
+    public readonly b64v3 VectorNotEquals(long3 other)
     {
         if (Vector256.IsHardwareAccelerated)
             return new(~Vector256.Equals(vector, other.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
@@ -1288,14 +1366,16 @@ public partial struct long3 : IEquatable<long3>
 
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<long3, long3, bool>.operator ==(long3 left, long3 right) => left.Equals(right);
+
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<long3, long3, bool>.operator !=(long3 left, long3 right) => !left.Equals(right);
 
 
     [MethodImpl(256 | 512)]
-    public static b64v3 operator ==(long3 left, long3 right) => left.EqualsVector(right);
+    public static b64v3 operator ==(long3 left, long3 right) => left.VectorEquals(right);
+
     [MethodImpl(256 | 512)]
-    public static b64v3 operator !=(long3 left, long3 right) => left.EqualsVectorNot(right);
+    public static b64v3 operator !=(long3 left, long3 right) => left.VectorNotEquals(right);
 
     #endregion
 }
@@ -1311,16 +1391,18 @@ public partial struct long4 : IEquatable<long4>
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public readonly bool Equals(long4 other) => EqualsAll(other);
-    [MethodImpl(256 | 512)]
-    public readonly override bool Equals(object? obj) => obj is long4 other && Equals(other);
-    [MethodImpl(256 | 512)]
     public readonly override int GetHashCode() 
     {
         if (Vector256.IsHardwareAccelerated)
             return vector.GetHashCode();
         return HashCode.Combine(x, y, z, w);
     }
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is long4 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(long4 other) => EqualsAll(other);
 
     [MethodImpl(256 | 512)]
     public readonly bool EqualsAll(long4 other)
@@ -1339,7 +1421,7 @@ public partial struct long4 : IEquatable<long4>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64v4 EqualsVector(long4 other)
+    public readonly b64v4 VectorEquals(long4 other)
     {
         if (Vector256.IsHardwareAccelerated)
             return new(Vector256.Equals(vector, other.vector).AsUInt64());
@@ -1347,7 +1429,7 @@ public partial struct long4 : IEquatable<long4>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64v4 EqualsVectorNot(long4 other)
+    public readonly b64v4 VectorNotEquals(long4 other)
     {
         if (Vector256.IsHardwareAccelerated)
             return new(~Vector256.Equals(vector, other.vector).AsUInt64());
@@ -1356,14 +1438,16 @@ public partial struct long4 : IEquatable<long4>
 
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<long4, long4, bool>.operator ==(long4 left, long4 right) => left.Equals(right);
+
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<long4, long4, bool>.operator !=(long4 left, long4 right) => !left.Equals(right);
 
 
     [MethodImpl(256 | 512)]
-    public static b64v4 operator ==(long4 left, long4 right) => left.EqualsVector(right);
+    public static b64v4 operator ==(long4 left, long4 right) => left.VectorEquals(right);
+
     [MethodImpl(256 | 512)]
-    public static b64v4 operator !=(long4 left, long4 right) => left.EqualsVectorNot(right);
+    public static b64v4 operator !=(long4 left, long4 right) => left.VectorNotEquals(right);
 
     #endregion
 }
@@ -1379,16 +1463,18 @@ public partial struct ulong2 : IEquatable<ulong2>
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public readonly bool Equals(ulong2 other) => EqualsAll(other);
-    [MethodImpl(256 | 512)]
-    public readonly override bool Equals(object? obj) => obj is ulong2 other && Equals(other);
-    [MethodImpl(256 | 512)]
     public readonly override int GetHashCode() 
     {
         if (Vector128.IsHardwareAccelerated)
             return vector.GetHashCode();
         return HashCode.Combine(x, y);
     }
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is ulong2 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(ulong2 other) => EqualsAll(other);
 
     [MethodImpl(256 | 512)]
     public readonly bool EqualsAll(ulong2 other)
@@ -1407,7 +1493,7 @@ public partial struct ulong2 : IEquatable<ulong2>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64v2 EqualsVector(ulong2 other)
+    public readonly b64v2 VectorEquals(ulong2 other)
     {
         if (Vector128.IsHardwareAccelerated)
             return new(Vector128.Equals(vector, other.vector).AsUInt64());
@@ -1415,7 +1501,7 @@ public partial struct ulong2 : IEquatable<ulong2>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64v2 EqualsVectorNot(ulong2 other)
+    public readonly b64v2 VectorNotEquals(ulong2 other)
     {
         if (Vector128.IsHardwareAccelerated)
             return new(~Vector128.Equals(vector, other.vector).AsUInt64());
@@ -1424,14 +1510,16 @@ public partial struct ulong2 : IEquatable<ulong2>
 
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<ulong2, ulong2, bool>.operator ==(ulong2 left, ulong2 right) => left.Equals(right);
+
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<ulong2, ulong2, bool>.operator !=(ulong2 left, ulong2 right) => !left.Equals(right);
 
 
     [MethodImpl(256 | 512)]
-    public static b64v2 operator ==(ulong2 left, ulong2 right) => left.EqualsVector(right);
+    public static b64v2 operator ==(ulong2 left, ulong2 right) => left.VectorEquals(right);
+
     [MethodImpl(256 | 512)]
-    public static b64v2 operator !=(ulong2 left, ulong2 right) => left.EqualsVectorNot(right);
+    public static b64v2 operator !=(ulong2 left, ulong2 right) => left.VectorNotEquals(right);
 
     #endregion
 }
@@ -1447,16 +1535,18 @@ public partial struct ulong3 : IEquatable<ulong3>
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public readonly bool Equals(ulong3 other) => EqualsAll(other);
-    [MethodImpl(256 | 512)]
-    public readonly override bool Equals(object? obj) => obj is ulong3 other && Equals(other);
-    [MethodImpl(256 | 512)]
     public readonly override int GetHashCode() 
     {
         if (Vector256.IsHardwareAccelerated)
             return vector.GetHashCode();
         return HashCode.Combine(x, y, z);
     }
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is ulong3 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(ulong3 other) => EqualsAll(other);
 
     [MethodImpl(256 | 512)]
     public readonly bool EqualsAll(ulong3 other)
@@ -1475,7 +1565,7 @@ public partial struct ulong3 : IEquatable<ulong3>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64v3 EqualsVector(ulong3 other)
+    public readonly b64v3 VectorEquals(ulong3 other)
     {
         if (Vector256.IsHardwareAccelerated)
             return new(Vector256.Equals(vector, other.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
@@ -1483,7 +1573,7 @@ public partial struct ulong3 : IEquatable<ulong3>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64v3 EqualsVectorNot(ulong3 other)
+    public readonly b64v3 VectorNotEquals(ulong3 other)
     {
         if (Vector256.IsHardwareAccelerated)
             return new(~Vector256.Equals(vector, other.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
@@ -1492,14 +1582,16 @@ public partial struct ulong3 : IEquatable<ulong3>
 
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<ulong3, ulong3, bool>.operator ==(ulong3 left, ulong3 right) => left.Equals(right);
+
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<ulong3, ulong3, bool>.operator !=(ulong3 left, ulong3 right) => !left.Equals(right);
 
 
     [MethodImpl(256 | 512)]
-    public static b64v3 operator ==(ulong3 left, ulong3 right) => left.EqualsVector(right);
+    public static b64v3 operator ==(ulong3 left, ulong3 right) => left.VectorEquals(right);
+
     [MethodImpl(256 | 512)]
-    public static b64v3 operator !=(ulong3 left, ulong3 right) => left.EqualsVectorNot(right);
+    public static b64v3 operator !=(ulong3 left, ulong3 right) => left.VectorNotEquals(right);
 
     #endregion
 }
@@ -1515,16 +1607,18 @@ public partial struct ulong4 : IEquatable<ulong4>
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public readonly bool Equals(ulong4 other) => EqualsAll(other);
-    [MethodImpl(256 | 512)]
-    public readonly override bool Equals(object? obj) => obj is ulong4 other && Equals(other);
-    [MethodImpl(256 | 512)]
     public readonly override int GetHashCode() 
     {
         if (Vector256.IsHardwareAccelerated)
             return vector.GetHashCode();
         return HashCode.Combine(x, y, z, w);
     }
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is ulong4 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(ulong4 other) => EqualsAll(other);
 
     [MethodImpl(256 | 512)]
     public readonly bool EqualsAll(ulong4 other)
@@ -1543,7 +1637,7 @@ public partial struct ulong4 : IEquatable<ulong4>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64v4 EqualsVector(ulong4 other)
+    public readonly b64v4 VectorEquals(ulong4 other)
     {
         if (Vector256.IsHardwareAccelerated)
             return new(Vector256.Equals(vector, other.vector).AsUInt64());
@@ -1551,7 +1645,7 @@ public partial struct ulong4 : IEquatable<ulong4>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64v4 EqualsVectorNot(ulong4 other)
+    public readonly b64v4 VectorNotEquals(ulong4 other)
     {
         if (Vector256.IsHardwareAccelerated)
             return new(~Vector256.Equals(vector, other.vector).AsUInt64());
@@ -1560,14 +1654,16 @@ public partial struct ulong4 : IEquatable<ulong4>
 
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<ulong4, ulong4, bool>.operator ==(ulong4 left, ulong4 right) => left.Equals(right);
+
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<ulong4, ulong4, bool>.operator !=(ulong4 left, ulong4 right) => !left.Equals(right);
 
 
     [MethodImpl(256 | 512)]
-    public static b64v4 operator ==(ulong4 left, ulong4 right) => left.EqualsVector(right);
+    public static b64v4 operator ==(ulong4 left, ulong4 right) => left.VectorEquals(right);
+
     [MethodImpl(256 | 512)]
-    public static b64v4 operator !=(ulong4 left, ulong4 right) => left.EqualsVectorNot(right);
+    public static b64v4 operator !=(ulong4 left, ulong4 right) => left.VectorNotEquals(right);
 
     #endregion
 }
@@ -1582,14 +1678,16 @@ public partial struct decimal2 : IEquatable<decimal2>
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public readonly bool Equals(decimal2 other) => EqualsAll(other);
-    [MethodImpl(256 | 512)]
-    public readonly override bool Equals(object? obj) => obj is decimal2 other && Equals(other);
-    [MethodImpl(256 | 512)]
     public readonly override int GetHashCode() 
     {
         return HashCode.Combine(x, y);
     }
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is decimal2 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(decimal2 other) => EqualsAll(other);
 
     [MethodImpl(256 | 512)]
     public readonly bool EqualsAll(decimal2 other)
@@ -1605,6 +1703,7 @@ public partial struct decimal2 : IEquatable<decimal2>
 
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<decimal2, decimal2, bool>.operator ==(decimal2 left, decimal2 right) => left.Equals(right);
+
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<decimal2, decimal2, bool>.operator !=(decimal2 left, decimal2 right) => !left.Equals(right);
 
@@ -1622,14 +1721,16 @@ public partial struct decimal3 : IEquatable<decimal3>
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public readonly bool Equals(decimal3 other) => EqualsAll(other);
-    [MethodImpl(256 | 512)]
-    public readonly override bool Equals(object? obj) => obj is decimal3 other && Equals(other);
-    [MethodImpl(256 | 512)]
     public readonly override int GetHashCode() 
     {
         return HashCode.Combine(x, y, z);
     }
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is decimal3 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(decimal3 other) => EqualsAll(other);
 
     [MethodImpl(256 | 512)]
     public readonly bool EqualsAll(decimal3 other)
@@ -1645,6 +1746,7 @@ public partial struct decimal3 : IEquatable<decimal3>
 
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<decimal3, decimal3, bool>.operator ==(decimal3 left, decimal3 right) => left.Equals(right);
+
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<decimal3, decimal3, bool>.operator !=(decimal3 left, decimal3 right) => !left.Equals(right);
 
@@ -1662,14 +1764,16 @@ public partial struct decimal4 : IEquatable<decimal4>
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public readonly bool Equals(decimal4 other) => EqualsAll(other);
-    [MethodImpl(256 | 512)]
-    public readonly override bool Equals(object? obj) => obj is decimal4 other && Equals(other);
-    [MethodImpl(256 | 512)]
     public readonly override int GetHashCode() 
     {
         return HashCode.Combine(x, y, z, w);
     }
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is decimal4 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(decimal4 other) => EqualsAll(other);
 
     [MethodImpl(256 | 512)]
     public readonly bool EqualsAll(decimal4 other)
@@ -1685,6 +1789,7 @@ public partial struct decimal4 : IEquatable<decimal4>
 
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<decimal4, decimal4, bool>.operator ==(decimal4 left, decimal4 right) => left.Equals(right);
+
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<decimal4, decimal4, bool>.operator !=(decimal4 left, decimal4 right) => !left.Equals(right);
 
@@ -1703,14 +1808,16 @@ public partial struct half2 : IEquatable<half2>
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public readonly bool Equals(half2 other) => EqualsAll(other);
-    [MethodImpl(256 | 512)]
-    public readonly override bool Equals(object? obj) => obj is half2 other && Equals(other);
-    [MethodImpl(256 | 512)]
     public readonly override int GetHashCode() 
     {
         return HashCode.Combine(x, y);
     }
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is half2 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(half2 other) => EqualsAll(other);
 
     [MethodImpl(256 | 512)]
     public readonly bool EqualsAll(half2 other)
@@ -1725,27 +1832,29 @@ public partial struct half2 : IEquatable<half2>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b16v2 EqualsVector(half2 other)
+    public readonly b16v2 VectorEquals(half2 other)
     {
         return new(x == other.x, y == other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b16v2 EqualsVectorNot(half2 other)
+    public readonly b16v2 VectorNotEquals(half2 other)
     {
         return new(x != other.x, y != other.y);
     }
 
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<half2, half2, bool>.operator ==(half2 left, half2 right) => left.Equals(right);
+
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<half2, half2, bool>.operator !=(half2 left, half2 right) => !left.Equals(right);
 
 
     [MethodImpl(256 | 512)]
-    public static b16v2 operator ==(half2 left, half2 right) => left.EqualsVector(right);
+    public static b16v2 operator ==(half2 left, half2 right) => left.VectorEquals(right);
+
     [MethodImpl(256 | 512)]
-    public static b16v2 operator !=(half2 left, half2 right) => left.EqualsVectorNot(right);
+    public static b16v2 operator !=(half2 left, half2 right) => left.VectorNotEquals(right);
 
     #endregion
 }
@@ -1761,14 +1870,16 @@ public partial struct half3 : IEquatable<half3>
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public readonly bool Equals(half3 other) => EqualsAll(other);
-    [MethodImpl(256 | 512)]
-    public readonly override bool Equals(object? obj) => obj is half3 other && Equals(other);
-    [MethodImpl(256 | 512)]
     public readonly override int GetHashCode() 
     {
         return HashCode.Combine(x, y, z);
     }
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is half3 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(half3 other) => EqualsAll(other);
 
     [MethodImpl(256 | 512)]
     public readonly bool EqualsAll(half3 other)
@@ -1783,27 +1894,29 @@ public partial struct half3 : IEquatable<half3>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b16v3 EqualsVector(half3 other)
+    public readonly b16v3 VectorEquals(half3 other)
     {
         return new(x == other.x, y == other.y, z == other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b16v3 EqualsVectorNot(half3 other)
+    public readonly b16v3 VectorNotEquals(half3 other)
     {
         return new(x != other.x, y != other.y, z != other.z);
     }
 
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<half3, half3, bool>.operator ==(half3 left, half3 right) => left.Equals(right);
+
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<half3, half3, bool>.operator !=(half3 left, half3 right) => !left.Equals(right);
 
 
     [MethodImpl(256 | 512)]
-    public static b16v3 operator ==(half3 left, half3 right) => left.EqualsVector(right);
+    public static b16v3 operator ==(half3 left, half3 right) => left.VectorEquals(right);
+
     [MethodImpl(256 | 512)]
-    public static b16v3 operator !=(half3 left, half3 right) => left.EqualsVectorNot(right);
+    public static b16v3 operator !=(half3 left, half3 right) => left.VectorNotEquals(right);
 
     #endregion
 }
@@ -1819,14 +1932,16 @@ public partial struct half4 : IEquatable<half4>
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public readonly bool Equals(half4 other) => EqualsAll(other);
-    [MethodImpl(256 | 512)]
-    public readonly override bool Equals(object? obj) => obj is half4 other && Equals(other);
-    [MethodImpl(256 | 512)]
     public readonly override int GetHashCode() 
     {
         return HashCode.Combine(x, y, z, w);
     }
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is half4 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(half4 other) => EqualsAll(other);
 
     [MethodImpl(256 | 512)]
     public readonly bool EqualsAll(half4 other)
@@ -1841,27 +1956,29 @@ public partial struct half4 : IEquatable<half4>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b16v4 EqualsVector(half4 other)
+    public readonly b16v4 VectorEquals(half4 other)
     {
         return new(x == other.x, y == other.y, z == other.z, w == other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b16v4 EqualsVectorNot(half4 other)
+    public readonly b16v4 VectorNotEquals(half4 other)
     {
         return new(x != other.x, y != other.y, z != other.z, w != other.w);
     }
 
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<half4, half4, bool>.operator ==(half4 left, half4 right) => left.Equals(right);
+
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<half4, half4, bool>.operator !=(half4 left, half4 right) => !left.Equals(right);
 
 
     [MethodImpl(256 | 512)]
-    public static b16v4 operator ==(half4 left, half4 right) => left.EqualsVector(right);
+    public static b16v4 operator ==(half4 left, half4 right) => left.VectorEquals(right);
+
     [MethodImpl(256 | 512)]
-    public static b16v4 operator !=(half4 left, half4 right) => left.EqualsVectorNot(right);
+    public static b16v4 operator !=(half4 left, half4 right) => left.VectorNotEquals(right);
 
     #endregion
 }
@@ -1877,14 +1994,16 @@ public partial struct b16v2 : IEquatable<b16v2>
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public readonly bool Equals(b16v2 other) => EqualsAll(other);
-    [MethodImpl(256 | 512)]
-    public readonly override bool Equals(object? obj) => obj is b16v2 other && Equals(other);
-    [MethodImpl(256 | 512)]
     public readonly override int GetHashCode() 
     {
         return HashCode.Combine(x, y);
     }
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is b16v2 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(b16v2 other) => EqualsAll(other);
 
     [MethodImpl(256 | 512)]
     public readonly bool EqualsAll(b16v2 other)
@@ -1899,27 +2018,29 @@ public partial struct b16v2 : IEquatable<b16v2>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b16v2 EqualsVector(b16v2 other)
+    public readonly b16v2 VectorEquals(b16v2 other)
     {
         return new(x == other.x, y == other.y);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b16v2 EqualsVectorNot(b16v2 other)
+    public readonly b16v2 VectorNotEquals(b16v2 other)
     {
         return new(x != other.x, y != other.y);
     }
 
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<b16v2, b16v2, bool>.operator ==(b16v2 left, b16v2 right) => left.Equals(right);
+
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<b16v2, b16v2, bool>.operator !=(b16v2 left, b16v2 right) => !left.Equals(right);
 
 
     [MethodImpl(256 | 512)]
-    public static b16v2 operator ==(b16v2 left, b16v2 right) => left.EqualsVector(right);
+    public static b16v2 operator ==(b16v2 left, b16v2 right) => left.VectorEquals(right);
+
     [MethodImpl(256 | 512)]
-    public static b16v2 operator !=(b16v2 left, b16v2 right) => left.EqualsVectorNot(right);
+    public static b16v2 operator !=(b16v2 left, b16v2 right) => left.VectorNotEquals(right);
 
     #endregion
 }
@@ -1935,14 +2056,16 @@ public partial struct b16v3 : IEquatable<b16v3>
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public readonly bool Equals(b16v3 other) => EqualsAll(other);
-    [MethodImpl(256 | 512)]
-    public readonly override bool Equals(object? obj) => obj is b16v3 other && Equals(other);
-    [MethodImpl(256 | 512)]
     public readonly override int GetHashCode() 
     {
         return HashCode.Combine(x, y, z);
     }
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is b16v3 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(b16v3 other) => EqualsAll(other);
 
     [MethodImpl(256 | 512)]
     public readonly bool EqualsAll(b16v3 other)
@@ -1957,27 +2080,29 @@ public partial struct b16v3 : IEquatable<b16v3>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b16v3 EqualsVector(b16v3 other)
+    public readonly b16v3 VectorEquals(b16v3 other)
     {
         return new(x == other.x, y == other.y, z == other.z);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b16v3 EqualsVectorNot(b16v3 other)
+    public readonly b16v3 VectorNotEquals(b16v3 other)
     {
         return new(x != other.x, y != other.y, z != other.z);
     }
 
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<b16v3, b16v3, bool>.operator ==(b16v3 left, b16v3 right) => left.Equals(right);
+
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<b16v3, b16v3, bool>.operator !=(b16v3 left, b16v3 right) => !left.Equals(right);
 
 
     [MethodImpl(256 | 512)]
-    public static b16v3 operator ==(b16v3 left, b16v3 right) => left.EqualsVector(right);
+    public static b16v3 operator ==(b16v3 left, b16v3 right) => left.VectorEquals(right);
+
     [MethodImpl(256 | 512)]
-    public static b16v3 operator !=(b16v3 left, b16v3 right) => left.EqualsVectorNot(right);
+    public static b16v3 operator !=(b16v3 left, b16v3 right) => left.VectorNotEquals(right);
 
     #endregion
 }
@@ -1993,14 +2118,16 @@ public partial struct b16v4 : IEquatable<b16v4>
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public readonly bool Equals(b16v4 other) => EqualsAll(other);
-    [MethodImpl(256 | 512)]
-    public readonly override bool Equals(object? obj) => obj is b16v4 other && Equals(other);
-    [MethodImpl(256 | 512)]
     public readonly override int GetHashCode() 
     {
         return HashCode.Combine(x, y, z, w);
     }
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is b16v4 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(b16v4 other) => EqualsAll(other);
 
     [MethodImpl(256 | 512)]
     public readonly bool EqualsAll(b16v4 other)
@@ -2015,27 +2142,29 @@ public partial struct b16v4 : IEquatable<b16v4>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b16v4 EqualsVector(b16v4 other)
+    public readonly b16v4 VectorEquals(b16v4 other)
     {
         return new(x == other.x, y == other.y, z == other.z, w == other.w);
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b16v4 EqualsVectorNot(b16v4 other)
+    public readonly b16v4 VectorNotEquals(b16v4 other)
     {
         return new(x != other.x, y != other.y, z != other.z, w != other.w);
     }
 
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<b16v4, b16v4, bool>.operator ==(b16v4 left, b16v4 right) => left.Equals(right);
+
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<b16v4, b16v4, bool>.operator !=(b16v4 left, b16v4 right) => !left.Equals(right);
 
 
     [MethodImpl(256 | 512)]
-    public static b16v4 operator ==(b16v4 left, b16v4 right) => left.EqualsVector(right);
+    public static b16v4 operator ==(b16v4 left, b16v4 right) => left.VectorEquals(right);
+
     [MethodImpl(256 | 512)]
-    public static b16v4 operator !=(b16v4 left, b16v4 right) => left.EqualsVectorNot(right);
+    public static b16v4 operator !=(b16v4 left, b16v4 right) => left.VectorNotEquals(right);
 
     #endregion
 }
@@ -2051,16 +2180,18 @@ public partial struct b32v2 : IEquatable<b32v2>
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public readonly bool Equals(b32v2 other) => EqualsAll(other);
-    [MethodImpl(256 | 512)]
-    public readonly override bool Equals(object? obj) => obj is b32v2 other && Equals(other);
-    [MethodImpl(256 | 512)]
     public readonly override int GetHashCode() 
     {
         if (Vector64.IsHardwareAccelerated)
             return vector.GetHashCode();
         return HashCode.Combine(x, y);
     }
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is b32v2 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(b32v2 other) => EqualsAll(other);
 
     [MethodImpl(256 | 512)]
     public readonly bool EqualsAll(b32v2 other)
@@ -2079,7 +2210,7 @@ public partial struct b32v2 : IEquatable<b32v2>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32v2 EqualsVector(b32v2 other)
+    public readonly b32v2 VectorEquals(b32v2 other)
     {
         if (Vector64.IsHardwareAccelerated)
             return new(Vector64.Equals(vector, other.vector).AsUInt32());
@@ -2087,7 +2218,7 @@ public partial struct b32v2 : IEquatable<b32v2>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32v2 EqualsVectorNot(b32v2 other)
+    public readonly b32v2 VectorNotEquals(b32v2 other)
     {
         if (Vector64.IsHardwareAccelerated)
             return new(~Vector64.Equals(vector, other.vector).AsUInt32());
@@ -2096,14 +2227,16 @@ public partial struct b32v2 : IEquatable<b32v2>
 
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<b32v2, b32v2, bool>.operator ==(b32v2 left, b32v2 right) => left.Equals(right);
+
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<b32v2, b32v2, bool>.operator !=(b32v2 left, b32v2 right) => !left.Equals(right);
 
 
     [MethodImpl(256 | 512)]
-    public static b32v2 operator ==(b32v2 left, b32v2 right) => left.EqualsVector(right);
+    public static b32v2 operator ==(b32v2 left, b32v2 right) => left.VectorEquals(right);
+
     [MethodImpl(256 | 512)]
-    public static b32v2 operator !=(b32v2 left, b32v2 right) => left.EqualsVectorNot(right);
+    public static b32v2 operator !=(b32v2 left, b32v2 right) => left.VectorNotEquals(right);
 
     #endregion
 }
@@ -2119,16 +2252,18 @@ public partial struct b32v3 : IEquatable<b32v3>
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public readonly bool Equals(b32v3 other) => EqualsAll(other);
-    [MethodImpl(256 | 512)]
-    public readonly override bool Equals(object? obj) => obj is b32v3 other && Equals(other);
-    [MethodImpl(256 | 512)]
     public readonly override int GetHashCode() 
     {
         if (Vector128.IsHardwareAccelerated)
             return vector.GetHashCode();
         return HashCode.Combine(x, y, z);
     }
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is b32v3 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(b32v3 other) => EqualsAll(other);
 
     [MethodImpl(256 | 512)]
     public readonly bool EqualsAll(b32v3 other)
@@ -2147,7 +2282,7 @@ public partial struct b32v3 : IEquatable<b32v3>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32v3 EqualsVector(b32v3 other)
+    public readonly b32v3 VectorEquals(b32v3 other)
     {
         if (Vector128.IsHardwareAccelerated)
             return new(Vector128.Equals(vector, other.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
@@ -2155,7 +2290,7 @@ public partial struct b32v3 : IEquatable<b32v3>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32v3 EqualsVectorNot(b32v3 other)
+    public readonly b32v3 VectorNotEquals(b32v3 other)
     {
         if (Vector128.IsHardwareAccelerated)
             return new(~Vector128.Equals(vector, other.vector).AsUInt32() & Vector128.Create(-1, -1, -1, 0).AsUInt32());
@@ -2164,14 +2299,16 @@ public partial struct b32v3 : IEquatable<b32v3>
 
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<b32v3, b32v3, bool>.operator ==(b32v3 left, b32v3 right) => left.Equals(right);
+
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<b32v3, b32v3, bool>.operator !=(b32v3 left, b32v3 right) => !left.Equals(right);
 
 
     [MethodImpl(256 | 512)]
-    public static b32v3 operator ==(b32v3 left, b32v3 right) => left.EqualsVector(right);
+    public static b32v3 operator ==(b32v3 left, b32v3 right) => left.VectorEquals(right);
+
     [MethodImpl(256 | 512)]
-    public static b32v3 operator !=(b32v3 left, b32v3 right) => left.EqualsVectorNot(right);
+    public static b32v3 operator !=(b32v3 left, b32v3 right) => left.VectorNotEquals(right);
 
     #endregion
 }
@@ -2187,16 +2324,18 @@ public partial struct b32v4 : IEquatable<b32v4>
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public readonly bool Equals(b32v4 other) => EqualsAll(other);
-    [MethodImpl(256 | 512)]
-    public readonly override bool Equals(object? obj) => obj is b32v4 other && Equals(other);
-    [MethodImpl(256 | 512)]
     public readonly override int GetHashCode() 
     {
         if (Vector128.IsHardwareAccelerated)
             return vector.GetHashCode();
         return HashCode.Combine(x, y, z, w);
     }
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is b32v4 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(b32v4 other) => EqualsAll(other);
 
     [MethodImpl(256 | 512)]
     public readonly bool EqualsAll(b32v4 other)
@@ -2215,7 +2354,7 @@ public partial struct b32v4 : IEquatable<b32v4>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32v4 EqualsVector(b32v4 other)
+    public readonly b32v4 VectorEquals(b32v4 other)
     {
         if (Vector128.IsHardwareAccelerated)
             return new(Vector128.Equals(vector, other.vector).AsUInt32());
@@ -2223,7 +2362,7 @@ public partial struct b32v4 : IEquatable<b32v4>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b32v4 EqualsVectorNot(b32v4 other)
+    public readonly b32v4 VectorNotEquals(b32v4 other)
     {
         if (Vector128.IsHardwareAccelerated)
             return new(~Vector128.Equals(vector, other.vector).AsUInt32());
@@ -2232,14 +2371,16 @@ public partial struct b32v4 : IEquatable<b32v4>
 
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<b32v4, b32v4, bool>.operator ==(b32v4 left, b32v4 right) => left.Equals(right);
+
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<b32v4, b32v4, bool>.operator !=(b32v4 left, b32v4 right) => !left.Equals(right);
 
 
     [MethodImpl(256 | 512)]
-    public static b32v4 operator ==(b32v4 left, b32v4 right) => left.EqualsVector(right);
+    public static b32v4 operator ==(b32v4 left, b32v4 right) => left.VectorEquals(right);
+
     [MethodImpl(256 | 512)]
-    public static b32v4 operator !=(b32v4 left, b32v4 right) => left.EqualsVectorNot(right);
+    public static b32v4 operator !=(b32v4 left, b32v4 right) => left.VectorNotEquals(right);
 
     #endregion
 }
@@ -2255,16 +2396,18 @@ public partial struct b64v2 : IEquatable<b64v2>
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public readonly bool Equals(b64v2 other) => EqualsAll(other);
-    [MethodImpl(256 | 512)]
-    public readonly override bool Equals(object? obj) => obj is b64v2 other && Equals(other);
-    [MethodImpl(256 | 512)]
     public readonly override int GetHashCode() 
     {
         if (Vector128.IsHardwareAccelerated)
             return vector.GetHashCode();
         return HashCode.Combine(x, y);
     }
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is b64v2 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(b64v2 other) => EqualsAll(other);
 
     [MethodImpl(256 | 512)]
     public readonly bool EqualsAll(b64v2 other)
@@ -2283,7 +2426,7 @@ public partial struct b64v2 : IEquatable<b64v2>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64v2 EqualsVector(b64v2 other)
+    public readonly b64v2 VectorEquals(b64v2 other)
     {
         if (Vector128.IsHardwareAccelerated)
             return new(Vector128.Equals(vector, other.vector).AsUInt64());
@@ -2291,7 +2434,7 @@ public partial struct b64v2 : IEquatable<b64v2>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64v2 EqualsVectorNot(b64v2 other)
+    public readonly b64v2 VectorNotEquals(b64v2 other)
     {
         if (Vector128.IsHardwareAccelerated)
             return new(~Vector128.Equals(vector, other.vector).AsUInt64());
@@ -2300,14 +2443,16 @@ public partial struct b64v2 : IEquatable<b64v2>
 
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<b64v2, b64v2, bool>.operator ==(b64v2 left, b64v2 right) => left.Equals(right);
+
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<b64v2, b64v2, bool>.operator !=(b64v2 left, b64v2 right) => !left.Equals(right);
 
 
     [MethodImpl(256 | 512)]
-    public static b64v2 operator ==(b64v2 left, b64v2 right) => left.EqualsVector(right);
+    public static b64v2 operator ==(b64v2 left, b64v2 right) => left.VectorEquals(right);
+
     [MethodImpl(256 | 512)]
-    public static b64v2 operator !=(b64v2 left, b64v2 right) => left.EqualsVectorNot(right);
+    public static b64v2 operator !=(b64v2 left, b64v2 right) => left.VectorNotEquals(right);
 
     #endregion
 }
@@ -2323,16 +2468,18 @@ public partial struct b64v3 : IEquatable<b64v3>
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public readonly bool Equals(b64v3 other) => EqualsAll(other);
-    [MethodImpl(256 | 512)]
-    public readonly override bool Equals(object? obj) => obj is b64v3 other && Equals(other);
-    [MethodImpl(256 | 512)]
     public readonly override int GetHashCode() 
     {
         if (Vector256.IsHardwareAccelerated)
             return vector.GetHashCode();
         return HashCode.Combine(x, y, z);
     }
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is b64v3 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(b64v3 other) => EqualsAll(other);
 
     [MethodImpl(256 | 512)]
     public readonly bool EqualsAll(b64v3 other)
@@ -2351,7 +2498,7 @@ public partial struct b64v3 : IEquatable<b64v3>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64v3 EqualsVector(b64v3 other)
+    public readonly b64v3 VectorEquals(b64v3 other)
     {
         if (Vector256.IsHardwareAccelerated)
             return new(Vector256.Equals(vector, other.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
@@ -2359,7 +2506,7 @@ public partial struct b64v3 : IEquatable<b64v3>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64v3 EqualsVectorNot(b64v3 other)
+    public readonly b64v3 VectorNotEquals(b64v3 other)
     {
         if (Vector256.IsHardwareAccelerated)
             return new(~Vector256.Equals(vector, other.vector).AsUInt64() & Vector256.Create(-1, -1, -1, 0).AsUInt64());
@@ -2368,14 +2515,16 @@ public partial struct b64v3 : IEquatable<b64v3>
 
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<b64v3, b64v3, bool>.operator ==(b64v3 left, b64v3 right) => left.Equals(right);
+
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<b64v3, b64v3, bool>.operator !=(b64v3 left, b64v3 right) => !left.Equals(right);
 
 
     [MethodImpl(256 | 512)]
-    public static b64v3 operator ==(b64v3 left, b64v3 right) => left.EqualsVector(right);
+    public static b64v3 operator ==(b64v3 left, b64v3 right) => left.VectorEquals(right);
+
     [MethodImpl(256 | 512)]
-    public static b64v3 operator !=(b64v3 left, b64v3 right) => left.EqualsVectorNot(right);
+    public static b64v3 operator !=(b64v3 left, b64v3 right) => left.VectorNotEquals(right);
 
     #endregion
 }
@@ -2391,16 +2540,18 @@ public partial struct b64v4 : IEquatable<b64v4>
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public readonly bool Equals(b64v4 other) => EqualsAll(other);
-    [MethodImpl(256 | 512)]
-    public readonly override bool Equals(object? obj) => obj is b64v4 other && Equals(other);
-    [MethodImpl(256 | 512)]
     public readonly override int GetHashCode() 
     {
         if (Vector256.IsHardwareAccelerated)
             return vector.GetHashCode();
         return HashCode.Combine(x, y, z, w);
     }
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is b64v4 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(b64v4 other) => EqualsAll(other);
 
     [MethodImpl(256 | 512)]
     public readonly bool EqualsAll(b64v4 other)
@@ -2419,7 +2570,7 @@ public partial struct b64v4 : IEquatable<b64v4>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64v4 EqualsVector(b64v4 other)
+    public readonly b64v4 VectorEquals(b64v4 other)
     {
         if (Vector256.IsHardwareAccelerated)
             return new(Vector256.Equals(vector, other.vector).AsUInt64());
@@ -2427,7 +2578,7 @@ public partial struct b64v4 : IEquatable<b64v4>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly b64v4 EqualsVectorNot(b64v4 other)
+    public readonly b64v4 VectorNotEquals(b64v4 other)
     {
         if (Vector256.IsHardwareAccelerated)
             return new(~Vector256.Equals(vector, other.vector).AsUInt64());
@@ -2436,14 +2587,16 @@ public partial struct b64v4 : IEquatable<b64v4>
 
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<b64v4, b64v4, bool>.operator ==(b64v4 left, b64v4 right) => left.Equals(right);
+
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<b64v4, b64v4, bool>.operator !=(b64v4 left, b64v4 right) => !left.Equals(right);
 
 
     [MethodImpl(256 | 512)]
-    public static b64v4 operator ==(b64v4 left, b64v4 right) => left.EqualsVector(right);
+    public static b64v4 operator ==(b64v4 left, b64v4 right) => left.VectorEquals(right);
+
     [MethodImpl(256 | 512)]
-    public static b64v4 operator !=(b64v4 left, b64v4 right) => left.EqualsVectorNot(right);
+    public static b64v4 operator !=(b64v4 left, b64v4 right) => left.VectorNotEquals(right);
 
     #endregion
 }

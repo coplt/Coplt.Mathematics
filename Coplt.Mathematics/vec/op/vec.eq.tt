@@ -36,10 +36,6 @@ public partial struct <#= typeName #> : IEquatable<<#= typeName #>>
     #region Equals
 
     [MethodImpl(256 | 512)]
-    public readonly bool Equals(<#= typeName #> other) => EqualsAll(other);
-    [MethodImpl(256 | 512)]
-    public readonly override bool Equals(object? obj) => obj is <#= typeName #> other && Equals(other);
-    [MethodImpl(256 | 512)]
     public readonly override int GetHashCode() 
     {
 <#
@@ -64,6 +60,12 @@ public partial struct <#= typeName #> : IEquatable<<#= typeName #>>
             }
 #>);
     }
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is <#= typeName #> other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(<#= typeName #> other) => EqualsAll(other);
 
     [MethodImpl(256 | 512)]
     public readonly bool EqualsAll(<#= typeName #> other)
@@ -144,7 +146,7 @@ public partial struct <#= typeName #> : IEquatable<<#= typeName #>>
 #>
 
     [MethodImpl(256 | 512)]
-    public readonly <#= bTypeName #> EqualsVector(<#= typeName #> other)
+    public readonly <#= bTypeName #> VectorEquals(<#= typeName #> other)
     {
 <#
                 if (typ.simd)
@@ -175,7 +177,7 @@ public partial struct <#= typeName #> : IEquatable<<#= typeName #>>
     }
 
     [MethodImpl(256 | 512)]
-    public readonly <#= bTypeName #> EqualsVectorNot(<#= typeName #> other)
+    public readonly <#= bTypeName #> VectorNotEquals(<#= typeName #> other)
     {
 <#
                 if (typ.simd)
@@ -228,6 +230,7 @@ public partial struct <#= typeName #> : IEquatable<<#= typeName #>>
 
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<<#= typeName #>, <#= typeName #>, bool>.operator ==(<#= typeName #> left, <#= typeName #> right) => left.Equals(right);
+
     [MethodImpl(256 | 512)]
     static bool IEqualityOperators<<#= typeName #>, <#= typeName #>, bool>.operator !=(<#= typeName #> left, <#= typeName #> right) => !left.Equals(right);
 
@@ -237,9 +240,10 @@ public partial struct <#= typeName #> : IEquatable<<#= typeName #>>
 #>
 
     [MethodImpl(256 | 512)]
-    public static <#= bTypeName #> operator ==(<#= typeName #> left, <#= typeName #> right) => left.EqualsVector(right);
+    public static <#= bTypeName #> operator ==(<#= typeName #> left, <#= typeName #> right) => left.VectorEquals(right);
+
     [MethodImpl(256 | 512)]
-    public static <#= bTypeName #> operator !=(<#= typeName #> left, <#= typeName #> right) => left.EqualsVectorNot(right);
+    public static <#= bTypeName #> operator !=(<#= typeName #> left, <#= typeName #> right) => left.VectorNotEquals(right);
 <#
             }
 #>
