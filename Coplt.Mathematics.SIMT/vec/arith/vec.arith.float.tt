@@ -102,6 +102,19 @@ public static partial class math_mt
     #pragma warning restore CS1718
 
     [MethodImpl(256 | 512)]
+    public static <#= bTypeName #> isFinite([This] <#= typeName #> a) => abs(a) < <#= typ.simdComp #>.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static <#= bTypeName #> isInf([This] <#= typeName #> a) => new(<#=
+                    string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.isInf()")) #>);
+
+    [MethodImpl(256 | 512)]
+    public static <#= bTypeName #> isPosInf([This] <#= typeName #> a) => a == <#= typ.simdComp #>.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static <#= bTypeName #> isNegInf([This] <#= typeName #> a) => a == <#= typ.simdComp #>.NegativeInfinity;
+
+    [MethodImpl(256 | 512)]
     public static <#= typeName #> ceil([This] <#= typeName #> a) => new(<#=
                     string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.floor()")) #>);
 
@@ -273,20 +286,25 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static <#= typeName #> wrap([This] <#= typeName #> x, <#= typeName #> min, <#= typeName #> max)
     {
-        return new(<#=
-                    string.Join(", ", Enumerable.Range(0, i).Select(n => $"wrap(x.{Typ.xyzw[n]}, min.{Typ.xyzw[n]}, max.{Typ.xyzw[n]})")) #>);
+        var add = select(x >= <#= typeName #>.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static <#= typeName #> wrap([This] <#= typeName #> x, <#= scalarName #> min, <#= scalarName #> max)
     {
-        return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"wrap(x.{Typ.xyzw[n]}, min, max)")) #>);
+        var add = select(x >= <#= typeName #>.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static <#= typeName #> wrap([This] <#= typeName #> x, <#= typ.compType #> min, <#= typ.compType #> max)
     {
-        return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"wrap(x.{Typ.xyzw[n]}, min, max)")) #>);
+        var add = select(x >= <#= typeName #>.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
@@ -353,8 +371,36 @@ public static partial class math_mt
 
     [MethodImpl(256 | 512)]
     public static <#= typeName #> normalize([This] <#= typeName #> a) => a * dot(a, a).rsqrt();
-    
-    // todo normalizeSafe step refract projectSafe faceForward
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> normalizeSafe([This] <#= typeName #> a, <#= typeName #> defaultValue = default)
+    {
+        var len = dot(a, a);
+        return select(len > 1.175494351e-38<#= typ.suffix #>, a * rsqrt(len), defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> step(<#= typeName #> threshold, [This] <#= typeName #> a) =>
+        select(a >= threshold, <#= typeName #>.One, default);
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> refract(<#= typeName #> i, <#= typeName #> n, [This] <#= typ.simdComp #> indexOfRefraction)
+    {
+        var ni = dot(n, i);
+        var k = (<#= scalarName #>)(1.0<#= typ.suffix #> - indexOfRefraction * indexOfRefraction * (1.0<#= typ.suffix #> - ni * ni));
+        return select(k >= 0.0<#= typ.suffix #>, indexOfRefraction * i - (<#= scalarName #>)((<#= scalarName #>)(indexOfRefraction * ni) + sqrt(k)) * n, default);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> projectSafe([This] <#= typeName #> a, <#= typeName #> onto, <#= typeName #> defaultValue = default) 
+    {
+        var proj = project(a, onto);
+        return select(all(isFinite(proj)), proj, defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> faceForward([This] <#= typeName #> n, <#= typeName #> i, <#= typeName #> ng) =>
+        select(dot(ng, i) >= 0.0<#= typ.suffix #>, -n, n);
 
     [MethodImpl(256 | 512)]
     public static <#= typeName #> sin([This] <#= typeName #> a) => new(<#=

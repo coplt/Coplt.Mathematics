@@ -10,9 +10,6 @@ namespace Coplt.Mathematics.SIMT;
     var sizes = new[] { 4, 8, 16, 32 };
     foreach (var typ in Typ.Typs)
     {
-        if (!typ.i) continue;
-        if (!typ.bin) continue;
-        if (!typ.arith) continue;
         if (!typ.simd) continue;
         if (typ.size < 4) continue;
         foreach (var size in sizes)
@@ -23,9 +20,10 @@ namespace Coplt.Mathematics.SIMT;
             bitSize = Math.Min(512, bitSize);
 
             var typeName = $"{typ.compType}_mt{size}";
-
-            var bSize = typ.size * 8;
-            var bTypeName = $"b{bSize}_mt{size}";
+            var bTypeV = $"b{typ.size * 8}v";
+            var bType = $"b{typ.size * 8}";
+            var bTyp = Typ.Typs.FirstOrDefault(a => a.name == bTypeV);
+            var bTypeName = $"{bType}_mt{size}";
 
             IEnumerable<string> ForVectors(string name)
             {
@@ -47,29 +45,14 @@ namespace Coplt.Mathematics.SIMT;
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static <#= bTypeName #> isPow2([This] <#= typeName #> a)
+    public static <#= typeName #> select([This] <#= bTypeName #> c, <#= typeName #> t, <#= typeName #> f)
     {
-<#
-            if (typ.sig)
-            {
-#>
-        return ((a & (a - <#= typeName #>.One)) == default) & (a > default(<#= typeName #>));
-<#
-            }
-            else
-            {
-#>
-        return ((a & (a - <#= typeName #>.One)) == default) & (a != default);
-<#
-            }
-#>
+        return new(<#=
+                    string.Join(", ", vectors.Select(v => $"Vector{bitSize}.ConditionalSelect(c.{v}.As{typ.Type}(), t.{v}, f.{v})")) #>);
     }
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> up2pow2([This] <#= typeName #> a)
-    {
-        return new(<#= string.Join(", ", vectors.Select(v => $"simd.RoundUpToPowerOf2(a.{v})")) #>);
-    }
+    public static <#= typeName #> select([This] bool c, <#= typeName #> t, <#= typeName #> f) => c ? t : f;
 }
 
 #endregion // <#= typeName #>

@@ -74,6 +74,18 @@ public static partial class math_mt
     #pragma warning restore CS1718
 
     [MethodImpl(256 | 512)]
+    public static b32v2_mt4 isFinite([This] float2_mt4 a) => abs(a) < float.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 isInf([This] float2_mt4 a) => new(a.x.isInf(), a.y.isInf());
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 isPosInf([This] float2_mt4 a) => a == float.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 isNegInf([This] float2_mt4 a) => a == float.NegativeInfinity;
+
+    [MethodImpl(256 | 512)]
     public static float2_mt4 ceil([This] float2_mt4 a) => new(a.x.floor(), a.y.floor());
 
     [MethodImpl(256 | 512)]
@@ -240,19 +252,25 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static float2_mt4 wrap([This] float2_mt4 x, float2_mt4 min, float2_mt4 max)
     {
-        return new(wrap(x.x, min.x, max.x), wrap(x.y, min.y, max.y));
+        var add = select(x >= float2_mt4.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static float2_mt4 wrap([This] float2_mt4 x, float_mt4 min, float_mt4 max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max));
+        var add = select(x >= float2_mt4.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static float2_mt4 wrap([This] float2_mt4 x, float min, float max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max));
+        var add = select(x >= float2_mt4.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
@@ -305,8 +323,36 @@ public static partial class math_mt
 
     [MethodImpl(256 | 512)]
     public static float2_mt4 normalize([This] float2_mt4 a) => a * dot(a, a).rsqrt();
-    
-    // todo normalizeSafe step refract projectSafe faceForward
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt4 normalizeSafe([This] float2_mt4 a, float2_mt4 defaultValue = default)
+    {
+        var len = dot(a, a);
+        return select(len > 1.175494351e-38f, a * rsqrt(len), defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt4 step(float2_mt4 threshold, [This] float2_mt4 a) =>
+        select(a >= threshold, float2_mt4.One, default);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt4 refract(float2_mt4 i, float2_mt4 n, [This] float indexOfRefraction)
+    {
+        var ni = dot(n, i);
+        var k = (float_mt4)(1.0f - indexOfRefraction * indexOfRefraction * (1.0f - ni * ni));
+        return select(k >= 0.0f, indexOfRefraction * i - (float_mt4)((float_mt4)(indexOfRefraction * ni) + sqrt(k)) * n, default);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt4 projectSafe([This] float2_mt4 a, float2_mt4 onto, float2_mt4 defaultValue = default) 
+    {
+        var proj = project(a, onto);
+        return select(all(isFinite(proj)), proj, defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt4 faceForward([This] float2_mt4 n, float2_mt4 i, float2_mt4 ng) =>
+        select(dot(ng, i) >= 0.0f, -n, n);
 
     [MethodImpl(256 | 512)]
     public static float2_mt4 sin([This] float2_mt4 a) => new(sin(a.x), sin(a.y));
@@ -442,6 +488,18 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static b32v2_mt8 isNaN([This] float2_mt8 a) => a != a;
     #pragma warning restore CS1718
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 isFinite([This] float2_mt8 a) => abs(a) < float.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 isInf([This] float2_mt8 a) => new(a.x.isInf(), a.y.isInf());
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 isPosInf([This] float2_mt8 a) => a == float.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 isNegInf([This] float2_mt8 a) => a == float.NegativeInfinity;
 
     [MethodImpl(256 | 512)]
     public static float2_mt8 ceil([This] float2_mt8 a) => new(a.x.floor(), a.y.floor());
@@ -610,19 +668,25 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static float2_mt8 wrap([This] float2_mt8 x, float2_mt8 min, float2_mt8 max)
     {
-        return new(wrap(x.x, min.x, max.x), wrap(x.y, min.y, max.y));
+        var add = select(x >= float2_mt8.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static float2_mt8 wrap([This] float2_mt8 x, float_mt8 min, float_mt8 max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max));
+        var add = select(x >= float2_mt8.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static float2_mt8 wrap([This] float2_mt8 x, float min, float max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max));
+        var add = select(x >= float2_mt8.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
@@ -675,8 +739,36 @@ public static partial class math_mt
 
     [MethodImpl(256 | 512)]
     public static float2_mt8 normalize([This] float2_mt8 a) => a * dot(a, a).rsqrt();
-    
-    // todo normalizeSafe step refract projectSafe faceForward
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt8 normalizeSafe([This] float2_mt8 a, float2_mt8 defaultValue = default)
+    {
+        var len = dot(a, a);
+        return select(len > 1.175494351e-38f, a * rsqrt(len), defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt8 step(float2_mt8 threshold, [This] float2_mt8 a) =>
+        select(a >= threshold, float2_mt8.One, default);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt8 refract(float2_mt8 i, float2_mt8 n, [This] float indexOfRefraction)
+    {
+        var ni = dot(n, i);
+        var k = (float_mt8)(1.0f - indexOfRefraction * indexOfRefraction * (1.0f - ni * ni));
+        return select(k >= 0.0f, indexOfRefraction * i - (float_mt8)((float_mt8)(indexOfRefraction * ni) + sqrt(k)) * n, default);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt8 projectSafe([This] float2_mt8 a, float2_mt8 onto, float2_mt8 defaultValue = default) 
+    {
+        var proj = project(a, onto);
+        return select(all(isFinite(proj)), proj, defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt8 faceForward([This] float2_mt8 n, float2_mt8 i, float2_mt8 ng) =>
+        select(dot(ng, i) >= 0.0f, -n, n);
 
     [MethodImpl(256 | 512)]
     public static float2_mt8 sin([This] float2_mt8 a) => new(sin(a.x), sin(a.y));
@@ -812,6 +904,18 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static b32v2_mt16 isNaN([This] float2_mt16 a) => a != a;
     #pragma warning restore CS1718
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 isFinite([This] float2_mt16 a) => abs(a) < float.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 isInf([This] float2_mt16 a) => new(a.x.isInf(), a.y.isInf());
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 isPosInf([This] float2_mt16 a) => a == float.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 isNegInf([This] float2_mt16 a) => a == float.NegativeInfinity;
 
     [MethodImpl(256 | 512)]
     public static float2_mt16 ceil([This] float2_mt16 a) => new(a.x.floor(), a.y.floor());
@@ -980,19 +1084,25 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static float2_mt16 wrap([This] float2_mt16 x, float2_mt16 min, float2_mt16 max)
     {
-        return new(wrap(x.x, min.x, max.x), wrap(x.y, min.y, max.y));
+        var add = select(x >= float2_mt16.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static float2_mt16 wrap([This] float2_mt16 x, float_mt16 min, float_mt16 max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max));
+        var add = select(x >= float2_mt16.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static float2_mt16 wrap([This] float2_mt16 x, float min, float max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max));
+        var add = select(x >= float2_mt16.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
@@ -1045,8 +1155,36 @@ public static partial class math_mt
 
     [MethodImpl(256 | 512)]
     public static float2_mt16 normalize([This] float2_mt16 a) => a * dot(a, a).rsqrt();
-    
-    // todo normalizeSafe step refract projectSafe faceForward
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt16 normalizeSafe([This] float2_mt16 a, float2_mt16 defaultValue = default)
+    {
+        var len = dot(a, a);
+        return select(len > 1.175494351e-38f, a * rsqrt(len), defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt16 step(float2_mt16 threshold, [This] float2_mt16 a) =>
+        select(a >= threshold, float2_mt16.One, default);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt16 refract(float2_mt16 i, float2_mt16 n, [This] float indexOfRefraction)
+    {
+        var ni = dot(n, i);
+        var k = (float_mt16)(1.0f - indexOfRefraction * indexOfRefraction * (1.0f - ni * ni));
+        return select(k >= 0.0f, indexOfRefraction * i - (float_mt16)((float_mt16)(indexOfRefraction * ni) + sqrt(k)) * n, default);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt16 projectSafe([This] float2_mt16 a, float2_mt16 onto, float2_mt16 defaultValue = default) 
+    {
+        var proj = project(a, onto);
+        return select(all(isFinite(proj)), proj, defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt16 faceForward([This] float2_mt16 n, float2_mt16 i, float2_mt16 ng) =>
+        select(dot(ng, i) >= 0.0f, -n, n);
 
     [MethodImpl(256 | 512)]
     public static float2_mt16 sin([This] float2_mt16 a) => new(sin(a.x), sin(a.y));
@@ -1182,6 +1320,18 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static b32v2_mt32 isNaN([This] float2_mt32 a) => a != a;
     #pragma warning restore CS1718
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 isFinite([This] float2_mt32 a) => abs(a) < float.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 isInf([This] float2_mt32 a) => new(a.x.isInf(), a.y.isInf());
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 isPosInf([This] float2_mt32 a) => a == float.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 isNegInf([This] float2_mt32 a) => a == float.NegativeInfinity;
 
     [MethodImpl(256 | 512)]
     public static float2_mt32 ceil([This] float2_mt32 a) => new(a.x.floor(), a.y.floor());
@@ -1350,19 +1500,25 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static float2_mt32 wrap([This] float2_mt32 x, float2_mt32 min, float2_mt32 max)
     {
-        return new(wrap(x.x, min.x, max.x), wrap(x.y, min.y, max.y));
+        var add = select(x >= float2_mt32.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static float2_mt32 wrap([This] float2_mt32 x, float_mt32 min, float_mt32 max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max));
+        var add = select(x >= float2_mt32.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static float2_mt32 wrap([This] float2_mt32 x, float min, float max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max));
+        var add = select(x >= float2_mt32.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
@@ -1415,8 +1571,36 @@ public static partial class math_mt
 
     [MethodImpl(256 | 512)]
     public static float2_mt32 normalize([This] float2_mt32 a) => a * dot(a, a).rsqrt();
-    
-    // todo normalizeSafe step refract projectSafe faceForward
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt32 normalizeSafe([This] float2_mt32 a, float2_mt32 defaultValue = default)
+    {
+        var len = dot(a, a);
+        return select(len > 1.175494351e-38f, a * rsqrt(len), defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt32 step(float2_mt32 threshold, [This] float2_mt32 a) =>
+        select(a >= threshold, float2_mt32.One, default);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt32 refract(float2_mt32 i, float2_mt32 n, [This] float indexOfRefraction)
+    {
+        var ni = dot(n, i);
+        var k = (float_mt32)(1.0f - indexOfRefraction * indexOfRefraction * (1.0f - ni * ni));
+        return select(k >= 0.0f, indexOfRefraction * i - (float_mt32)((float_mt32)(indexOfRefraction * ni) + sqrt(k)) * n, default);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt32 projectSafe([This] float2_mt32 a, float2_mt32 onto, float2_mt32 defaultValue = default) 
+    {
+        var proj = project(a, onto);
+        return select(all(isFinite(proj)), proj, defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt32 faceForward([This] float2_mt32 n, float2_mt32 i, float2_mt32 ng) =>
+        select(dot(ng, i) >= 0.0f, -n, n);
 
     [MethodImpl(256 | 512)]
     public static float2_mt32 sin([This] float2_mt32 a) => new(sin(a.x), sin(a.y));
@@ -1552,6 +1736,18 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static b32v3_mt4 isNaN([This] float3_mt4 a) => a != a;
     #pragma warning restore CS1718
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 isFinite([This] float3_mt4 a) => abs(a) < float.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 isInf([This] float3_mt4 a) => new(a.x.isInf(), a.y.isInf(), a.z.isInf());
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 isPosInf([This] float3_mt4 a) => a == float.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 isNegInf([This] float3_mt4 a) => a == float.NegativeInfinity;
 
     [MethodImpl(256 | 512)]
     public static float3_mt4 ceil([This] float3_mt4 a) => new(a.x.floor(), a.y.floor(), a.z.floor());
@@ -1720,19 +1916,25 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static float3_mt4 wrap([This] float3_mt4 x, float3_mt4 min, float3_mt4 max)
     {
-        return new(wrap(x.x, min.x, max.x), wrap(x.y, min.y, max.y), wrap(x.z, min.z, max.z));
+        var add = select(x >= float3_mt4.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static float3_mt4 wrap([This] float3_mt4 x, float_mt4 min, float_mt4 max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max), wrap(x.z, min, max));
+        var add = select(x >= float3_mt4.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static float3_mt4 wrap([This] float3_mt4 x, float min, float max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max), wrap(x.z, min, max));
+        var add = select(x >= float3_mt4.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
@@ -1785,8 +1987,36 @@ public static partial class math_mt
 
     [MethodImpl(256 | 512)]
     public static float3_mt4 normalize([This] float3_mt4 a) => a * dot(a, a).rsqrt();
-    
-    // todo normalizeSafe step refract projectSafe faceForward
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt4 normalizeSafe([This] float3_mt4 a, float3_mt4 defaultValue = default)
+    {
+        var len = dot(a, a);
+        return select(len > 1.175494351e-38f, a * rsqrt(len), defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt4 step(float3_mt4 threshold, [This] float3_mt4 a) =>
+        select(a >= threshold, float3_mt4.One, default);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt4 refract(float3_mt4 i, float3_mt4 n, [This] float indexOfRefraction)
+    {
+        var ni = dot(n, i);
+        var k = (float_mt4)(1.0f - indexOfRefraction * indexOfRefraction * (1.0f - ni * ni));
+        return select(k >= 0.0f, indexOfRefraction * i - (float_mt4)((float_mt4)(indexOfRefraction * ni) + sqrt(k)) * n, default);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt4 projectSafe([This] float3_mt4 a, float3_mt4 onto, float3_mt4 defaultValue = default) 
+    {
+        var proj = project(a, onto);
+        return select(all(isFinite(proj)), proj, defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt4 faceForward([This] float3_mt4 n, float3_mt4 i, float3_mt4 ng) =>
+        select(dot(ng, i) >= 0.0f, -n, n);
 
     [MethodImpl(256 | 512)]
     public static float3_mt4 sin([This] float3_mt4 a) => new(sin(a.x), sin(a.y), sin(a.z));
@@ -1924,6 +2154,18 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static b32v3_mt8 isNaN([This] float3_mt8 a) => a != a;
     #pragma warning restore CS1718
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 isFinite([This] float3_mt8 a) => abs(a) < float.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 isInf([This] float3_mt8 a) => new(a.x.isInf(), a.y.isInf(), a.z.isInf());
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 isPosInf([This] float3_mt8 a) => a == float.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 isNegInf([This] float3_mt8 a) => a == float.NegativeInfinity;
 
     [MethodImpl(256 | 512)]
     public static float3_mt8 ceil([This] float3_mt8 a) => new(a.x.floor(), a.y.floor(), a.z.floor());
@@ -2092,19 +2334,25 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static float3_mt8 wrap([This] float3_mt8 x, float3_mt8 min, float3_mt8 max)
     {
-        return new(wrap(x.x, min.x, max.x), wrap(x.y, min.y, max.y), wrap(x.z, min.z, max.z));
+        var add = select(x >= float3_mt8.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static float3_mt8 wrap([This] float3_mt8 x, float_mt8 min, float_mt8 max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max), wrap(x.z, min, max));
+        var add = select(x >= float3_mt8.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static float3_mt8 wrap([This] float3_mt8 x, float min, float max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max), wrap(x.z, min, max));
+        var add = select(x >= float3_mt8.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
@@ -2157,8 +2405,36 @@ public static partial class math_mt
 
     [MethodImpl(256 | 512)]
     public static float3_mt8 normalize([This] float3_mt8 a) => a * dot(a, a).rsqrt();
-    
-    // todo normalizeSafe step refract projectSafe faceForward
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt8 normalizeSafe([This] float3_mt8 a, float3_mt8 defaultValue = default)
+    {
+        var len = dot(a, a);
+        return select(len > 1.175494351e-38f, a * rsqrt(len), defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt8 step(float3_mt8 threshold, [This] float3_mt8 a) =>
+        select(a >= threshold, float3_mt8.One, default);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt8 refract(float3_mt8 i, float3_mt8 n, [This] float indexOfRefraction)
+    {
+        var ni = dot(n, i);
+        var k = (float_mt8)(1.0f - indexOfRefraction * indexOfRefraction * (1.0f - ni * ni));
+        return select(k >= 0.0f, indexOfRefraction * i - (float_mt8)((float_mt8)(indexOfRefraction * ni) + sqrt(k)) * n, default);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt8 projectSafe([This] float3_mt8 a, float3_mt8 onto, float3_mt8 defaultValue = default) 
+    {
+        var proj = project(a, onto);
+        return select(all(isFinite(proj)), proj, defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt8 faceForward([This] float3_mt8 n, float3_mt8 i, float3_mt8 ng) =>
+        select(dot(ng, i) >= 0.0f, -n, n);
 
     [MethodImpl(256 | 512)]
     public static float3_mt8 sin([This] float3_mt8 a) => new(sin(a.x), sin(a.y), sin(a.z));
@@ -2296,6 +2572,18 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static b32v3_mt16 isNaN([This] float3_mt16 a) => a != a;
     #pragma warning restore CS1718
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 isFinite([This] float3_mt16 a) => abs(a) < float.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 isInf([This] float3_mt16 a) => new(a.x.isInf(), a.y.isInf(), a.z.isInf());
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 isPosInf([This] float3_mt16 a) => a == float.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 isNegInf([This] float3_mt16 a) => a == float.NegativeInfinity;
 
     [MethodImpl(256 | 512)]
     public static float3_mt16 ceil([This] float3_mt16 a) => new(a.x.floor(), a.y.floor(), a.z.floor());
@@ -2464,19 +2752,25 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static float3_mt16 wrap([This] float3_mt16 x, float3_mt16 min, float3_mt16 max)
     {
-        return new(wrap(x.x, min.x, max.x), wrap(x.y, min.y, max.y), wrap(x.z, min.z, max.z));
+        var add = select(x >= float3_mt16.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static float3_mt16 wrap([This] float3_mt16 x, float_mt16 min, float_mt16 max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max), wrap(x.z, min, max));
+        var add = select(x >= float3_mt16.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static float3_mt16 wrap([This] float3_mt16 x, float min, float max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max), wrap(x.z, min, max));
+        var add = select(x >= float3_mt16.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
@@ -2529,8 +2823,36 @@ public static partial class math_mt
 
     [MethodImpl(256 | 512)]
     public static float3_mt16 normalize([This] float3_mt16 a) => a * dot(a, a).rsqrt();
-    
-    // todo normalizeSafe step refract projectSafe faceForward
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt16 normalizeSafe([This] float3_mt16 a, float3_mt16 defaultValue = default)
+    {
+        var len = dot(a, a);
+        return select(len > 1.175494351e-38f, a * rsqrt(len), defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt16 step(float3_mt16 threshold, [This] float3_mt16 a) =>
+        select(a >= threshold, float3_mt16.One, default);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt16 refract(float3_mt16 i, float3_mt16 n, [This] float indexOfRefraction)
+    {
+        var ni = dot(n, i);
+        var k = (float_mt16)(1.0f - indexOfRefraction * indexOfRefraction * (1.0f - ni * ni));
+        return select(k >= 0.0f, indexOfRefraction * i - (float_mt16)((float_mt16)(indexOfRefraction * ni) + sqrt(k)) * n, default);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt16 projectSafe([This] float3_mt16 a, float3_mt16 onto, float3_mt16 defaultValue = default) 
+    {
+        var proj = project(a, onto);
+        return select(all(isFinite(proj)), proj, defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt16 faceForward([This] float3_mt16 n, float3_mt16 i, float3_mt16 ng) =>
+        select(dot(ng, i) >= 0.0f, -n, n);
 
     [MethodImpl(256 | 512)]
     public static float3_mt16 sin([This] float3_mt16 a) => new(sin(a.x), sin(a.y), sin(a.z));
@@ -2668,6 +2990,18 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static b32v3_mt32 isNaN([This] float3_mt32 a) => a != a;
     #pragma warning restore CS1718
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 isFinite([This] float3_mt32 a) => abs(a) < float.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 isInf([This] float3_mt32 a) => new(a.x.isInf(), a.y.isInf(), a.z.isInf());
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 isPosInf([This] float3_mt32 a) => a == float.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 isNegInf([This] float3_mt32 a) => a == float.NegativeInfinity;
 
     [MethodImpl(256 | 512)]
     public static float3_mt32 ceil([This] float3_mt32 a) => new(a.x.floor(), a.y.floor(), a.z.floor());
@@ -2836,19 +3170,25 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static float3_mt32 wrap([This] float3_mt32 x, float3_mt32 min, float3_mt32 max)
     {
-        return new(wrap(x.x, min.x, max.x), wrap(x.y, min.y, max.y), wrap(x.z, min.z, max.z));
+        var add = select(x >= float3_mt32.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static float3_mt32 wrap([This] float3_mt32 x, float_mt32 min, float_mt32 max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max), wrap(x.z, min, max));
+        var add = select(x >= float3_mt32.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static float3_mt32 wrap([This] float3_mt32 x, float min, float max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max), wrap(x.z, min, max));
+        var add = select(x >= float3_mt32.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
@@ -2901,8 +3241,36 @@ public static partial class math_mt
 
     [MethodImpl(256 | 512)]
     public static float3_mt32 normalize([This] float3_mt32 a) => a * dot(a, a).rsqrt();
-    
-    // todo normalizeSafe step refract projectSafe faceForward
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt32 normalizeSafe([This] float3_mt32 a, float3_mt32 defaultValue = default)
+    {
+        var len = dot(a, a);
+        return select(len > 1.175494351e-38f, a * rsqrt(len), defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt32 step(float3_mt32 threshold, [This] float3_mt32 a) =>
+        select(a >= threshold, float3_mt32.One, default);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt32 refract(float3_mt32 i, float3_mt32 n, [This] float indexOfRefraction)
+    {
+        var ni = dot(n, i);
+        var k = (float_mt32)(1.0f - indexOfRefraction * indexOfRefraction * (1.0f - ni * ni));
+        return select(k >= 0.0f, indexOfRefraction * i - (float_mt32)((float_mt32)(indexOfRefraction * ni) + sqrt(k)) * n, default);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt32 projectSafe([This] float3_mt32 a, float3_mt32 onto, float3_mt32 defaultValue = default) 
+    {
+        var proj = project(a, onto);
+        return select(all(isFinite(proj)), proj, defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt32 faceForward([This] float3_mt32 n, float3_mt32 i, float3_mt32 ng) =>
+        select(dot(ng, i) >= 0.0f, -n, n);
 
     [MethodImpl(256 | 512)]
     public static float3_mt32 sin([This] float3_mt32 a) => new(sin(a.x), sin(a.y), sin(a.z));
@@ -3040,6 +3408,18 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static b32v4_mt4 isNaN([This] float4_mt4 a) => a != a;
     #pragma warning restore CS1718
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 isFinite([This] float4_mt4 a) => abs(a) < float.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 isInf([This] float4_mt4 a) => new(a.x.isInf(), a.y.isInf(), a.z.isInf(), a.w.isInf());
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 isPosInf([This] float4_mt4 a) => a == float.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 isNegInf([This] float4_mt4 a) => a == float.NegativeInfinity;
 
     [MethodImpl(256 | 512)]
     public static float4_mt4 ceil([This] float4_mt4 a) => new(a.x.floor(), a.y.floor(), a.z.floor(), a.w.floor());
@@ -3208,19 +3588,25 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static float4_mt4 wrap([This] float4_mt4 x, float4_mt4 min, float4_mt4 max)
     {
-        return new(wrap(x.x, min.x, max.x), wrap(x.y, min.y, max.y), wrap(x.z, min.z, max.z), wrap(x.w, min.w, max.w));
+        var add = select(x >= float4_mt4.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static float4_mt4 wrap([This] float4_mt4 x, float_mt4 min, float_mt4 max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max), wrap(x.z, min, max), wrap(x.w, min, max));
+        var add = select(x >= float4_mt4.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static float4_mt4 wrap([This] float4_mt4 x, float min, float max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max), wrap(x.z, min, max), wrap(x.w, min, max));
+        var add = select(x >= float4_mt4.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
@@ -3273,8 +3659,36 @@ public static partial class math_mt
 
     [MethodImpl(256 | 512)]
     public static float4_mt4 normalize([This] float4_mt4 a) => a * dot(a, a).rsqrt();
-    
-    // todo normalizeSafe step refract projectSafe faceForward
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt4 normalizeSafe([This] float4_mt4 a, float4_mt4 defaultValue = default)
+    {
+        var len = dot(a, a);
+        return select(len > 1.175494351e-38f, a * rsqrt(len), defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt4 step(float4_mt4 threshold, [This] float4_mt4 a) =>
+        select(a >= threshold, float4_mt4.One, default);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt4 refract(float4_mt4 i, float4_mt4 n, [This] float indexOfRefraction)
+    {
+        var ni = dot(n, i);
+        var k = (float_mt4)(1.0f - indexOfRefraction * indexOfRefraction * (1.0f - ni * ni));
+        return select(k >= 0.0f, indexOfRefraction * i - (float_mt4)((float_mt4)(indexOfRefraction * ni) + sqrt(k)) * n, default);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt4 projectSafe([This] float4_mt4 a, float4_mt4 onto, float4_mt4 defaultValue = default) 
+    {
+        var proj = project(a, onto);
+        return select(all(isFinite(proj)), proj, defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt4 faceForward([This] float4_mt4 n, float4_mt4 i, float4_mt4 ng) =>
+        select(dot(ng, i) >= 0.0f, -n, n);
 
     [MethodImpl(256 | 512)]
     public static float4_mt4 sin([This] float4_mt4 a) => new(sin(a.x), sin(a.y), sin(a.z), sin(a.w));
@@ -3414,6 +3828,18 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static b32v4_mt8 isNaN([This] float4_mt8 a) => a != a;
     #pragma warning restore CS1718
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 isFinite([This] float4_mt8 a) => abs(a) < float.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 isInf([This] float4_mt8 a) => new(a.x.isInf(), a.y.isInf(), a.z.isInf(), a.w.isInf());
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 isPosInf([This] float4_mt8 a) => a == float.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 isNegInf([This] float4_mt8 a) => a == float.NegativeInfinity;
 
     [MethodImpl(256 | 512)]
     public static float4_mt8 ceil([This] float4_mt8 a) => new(a.x.floor(), a.y.floor(), a.z.floor(), a.w.floor());
@@ -3582,19 +4008,25 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static float4_mt8 wrap([This] float4_mt8 x, float4_mt8 min, float4_mt8 max)
     {
-        return new(wrap(x.x, min.x, max.x), wrap(x.y, min.y, max.y), wrap(x.z, min.z, max.z), wrap(x.w, min.w, max.w));
+        var add = select(x >= float4_mt8.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static float4_mt8 wrap([This] float4_mt8 x, float_mt8 min, float_mt8 max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max), wrap(x.z, min, max), wrap(x.w, min, max));
+        var add = select(x >= float4_mt8.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static float4_mt8 wrap([This] float4_mt8 x, float min, float max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max), wrap(x.z, min, max), wrap(x.w, min, max));
+        var add = select(x >= float4_mt8.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
@@ -3647,8 +4079,36 @@ public static partial class math_mt
 
     [MethodImpl(256 | 512)]
     public static float4_mt8 normalize([This] float4_mt8 a) => a * dot(a, a).rsqrt();
-    
-    // todo normalizeSafe step refract projectSafe faceForward
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt8 normalizeSafe([This] float4_mt8 a, float4_mt8 defaultValue = default)
+    {
+        var len = dot(a, a);
+        return select(len > 1.175494351e-38f, a * rsqrt(len), defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt8 step(float4_mt8 threshold, [This] float4_mt8 a) =>
+        select(a >= threshold, float4_mt8.One, default);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt8 refract(float4_mt8 i, float4_mt8 n, [This] float indexOfRefraction)
+    {
+        var ni = dot(n, i);
+        var k = (float_mt8)(1.0f - indexOfRefraction * indexOfRefraction * (1.0f - ni * ni));
+        return select(k >= 0.0f, indexOfRefraction * i - (float_mt8)((float_mt8)(indexOfRefraction * ni) + sqrt(k)) * n, default);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt8 projectSafe([This] float4_mt8 a, float4_mt8 onto, float4_mt8 defaultValue = default) 
+    {
+        var proj = project(a, onto);
+        return select(all(isFinite(proj)), proj, defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt8 faceForward([This] float4_mt8 n, float4_mt8 i, float4_mt8 ng) =>
+        select(dot(ng, i) >= 0.0f, -n, n);
 
     [MethodImpl(256 | 512)]
     public static float4_mt8 sin([This] float4_mt8 a) => new(sin(a.x), sin(a.y), sin(a.z), sin(a.w));
@@ -3788,6 +4248,18 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static b32v4_mt16 isNaN([This] float4_mt16 a) => a != a;
     #pragma warning restore CS1718
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 isFinite([This] float4_mt16 a) => abs(a) < float.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 isInf([This] float4_mt16 a) => new(a.x.isInf(), a.y.isInf(), a.z.isInf(), a.w.isInf());
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 isPosInf([This] float4_mt16 a) => a == float.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 isNegInf([This] float4_mt16 a) => a == float.NegativeInfinity;
 
     [MethodImpl(256 | 512)]
     public static float4_mt16 ceil([This] float4_mt16 a) => new(a.x.floor(), a.y.floor(), a.z.floor(), a.w.floor());
@@ -3956,19 +4428,25 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static float4_mt16 wrap([This] float4_mt16 x, float4_mt16 min, float4_mt16 max)
     {
-        return new(wrap(x.x, min.x, max.x), wrap(x.y, min.y, max.y), wrap(x.z, min.z, max.z), wrap(x.w, min.w, max.w));
+        var add = select(x >= float4_mt16.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static float4_mt16 wrap([This] float4_mt16 x, float_mt16 min, float_mt16 max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max), wrap(x.z, min, max), wrap(x.w, min, max));
+        var add = select(x >= float4_mt16.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static float4_mt16 wrap([This] float4_mt16 x, float min, float max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max), wrap(x.z, min, max), wrap(x.w, min, max));
+        var add = select(x >= float4_mt16.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
@@ -4021,8 +4499,36 @@ public static partial class math_mt
 
     [MethodImpl(256 | 512)]
     public static float4_mt16 normalize([This] float4_mt16 a) => a * dot(a, a).rsqrt();
-    
-    // todo normalizeSafe step refract projectSafe faceForward
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt16 normalizeSafe([This] float4_mt16 a, float4_mt16 defaultValue = default)
+    {
+        var len = dot(a, a);
+        return select(len > 1.175494351e-38f, a * rsqrt(len), defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt16 step(float4_mt16 threshold, [This] float4_mt16 a) =>
+        select(a >= threshold, float4_mt16.One, default);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt16 refract(float4_mt16 i, float4_mt16 n, [This] float indexOfRefraction)
+    {
+        var ni = dot(n, i);
+        var k = (float_mt16)(1.0f - indexOfRefraction * indexOfRefraction * (1.0f - ni * ni));
+        return select(k >= 0.0f, indexOfRefraction * i - (float_mt16)((float_mt16)(indexOfRefraction * ni) + sqrt(k)) * n, default);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt16 projectSafe([This] float4_mt16 a, float4_mt16 onto, float4_mt16 defaultValue = default) 
+    {
+        var proj = project(a, onto);
+        return select(all(isFinite(proj)), proj, defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt16 faceForward([This] float4_mt16 n, float4_mt16 i, float4_mt16 ng) =>
+        select(dot(ng, i) >= 0.0f, -n, n);
 
     [MethodImpl(256 | 512)]
     public static float4_mt16 sin([This] float4_mt16 a) => new(sin(a.x), sin(a.y), sin(a.z), sin(a.w));
@@ -4162,6 +4668,18 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static b32v4_mt32 isNaN([This] float4_mt32 a) => a != a;
     #pragma warning restore CS1718
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 isFinite([This] float4_mt32 a) => abs(a) < float.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 isInf([This] float4_mt32 a) => new(a.x.isInf(), a.y.isInf(), a.z.isInf(), a.w.isInf());
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 isPosInf([This] float4_mt32 a) => a == float.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 isNegInf([This] float4_mt32 a) => a == float.NegativeInfinity;
 
     [MethodImpl(256 | 512)]
     public static float4_mt32 ceil([This] float4_mt32 a) => new(a.x.floor(), a.y.floor(), a.z.floor(), a.w.floor());
@@ -4330,19 +4848,25 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static float4_mt32 wrap([This] float4_mt32 x, float4_mt32 min, float4_mt32 max)
     {
-        return new(wrap(x.x, min.x, max.x), wrap(x.y, min.y, max.y), wrap(x.z, min.z, max.z), wrap(x.w, min.w, max.w));
+        var add = select(x >= float4_mt32.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static float4_mt32 wrap([This] float4_mt32 x, float_mt32 min, float_mt32 max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max), wrap(x.z, min, max), wrap(x.w, min, max));
+        var add = select(x >= float4_mt32.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static float4_mt32 wrap([This] float4_mt32 x, float min, float max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max), wrap(x.z, min, max), wrap(x.w, min, max));
+        var add = select(x >= float4_mt32.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
@@ -4395,8 +4919,36 @@ public static partial class math_mt
 
     [MethodImpl(256 | 512)]
     public static float4_mt32 normalize([This] float4_mt32 a) => a * dot(a, a).rsqrt();
-    
-    // todo normalizeSafe step refract projectSafe faceForward
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt32 normalizeSafe([This] float4_mt32 a, float4_mt32 defaultValue = default)
+    {
+        var len = dot(a, a);
+        return select(len > 1.175494351e-38f, a * rsqrt(len), defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt32 step(float4_mt32 threshold, [This] float4_mt32 a) =>
+        select(a >= threshold, float4_mt32.One, default);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt32 refract(float4_mt32 i, float4_mt32 n, [This] float indexOfRefraction)
+    {
+        var ni = dot(n, i);
+        var k = (float_mt32)(1.0f - indexOfRefraction * indexOfRefraction * (1.0f - ni * ni));
+        return select(k >= 0.0f, indexOfRefraction * i - (float_mt32)((float_mt32)(indexOfRefraction * ni) + sqrt(k)) * n, default);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt32 projectSafe([This] float4_mt32 a, float4_mt32 onto, float4_mt32 defaultValue = default) 
+    {
+        var proj = project(a, onto);
+        return select(all(isFinite(proj)), proj, defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt32 faceForward([This] float4_mt32 n, float4_mt32 i, float4_mt32 ng) =>
+        select(dot(ng, i) >= 0.0f, -n, n);
 
     [MethodImpl(256 | 512)]
     public static float4_mt32 sin([This] float4_mt32 a) => new(sin(a.x), sin(a.y), sin(a.z), sin(a.w));
@@ -4536,6 +5088,18 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static b64v2_mt4 isNaN([This] double2_mt4 a) => a != a;
     #pragma warning restore CS1718
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 isFinite([This] double2_mt4 a) => abs(a) < double.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 isInf([This] double2_mt4 a) => new(a.x.isInf(), a.y.isInf());
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 isPosInf([This] double2_mt4 a) => a == double.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 isNegInf([This] double2_mt4 a) => a == double.NegativeInfinity;
 
     [MethodImpl(256 | 512)]
     public static double2_mt4 ceil([This] double2_mt4 a) => new(a.x.floor(), a.y.floor());
@@ -4704,19 +5268,25 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static double2_mt4 wrap([This] double2_mt4 x, double2_mt4 min, double2_mt4 max)
     {
-        return new(wrap(x.x, min.x, max.x), wrap(x.y, min.y, max.y));
+        var add = select(x >= double2_mt4.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static double2_mt4 wrap([This] double2_mt4 x, double_mt4 min, double_mt4 max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max));
+        var add = select(x >= double2_mt4.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static double2_mt4 wrap([This] double2_mt4 x, double min, double max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max));
+        var add = select(x >= double2_mt4.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
@@ -4769,8 +5339,36 @@ public static partial class math_mt
 
     [MethodImpl(256 | 512)]
     public static double2_mt4 normalize([This] double2_mt4 a) => a * dot(a, a).rsqrt();
-    
-    // todo normalizeSafe step refract projectSafe faceForward
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt4 normalizeSafe([This] double2_mt4 a, double2_mt4 defaultValue = default)
+    {
+        var len = dot(a, a);
+        return select(len > 1.175494351e-38, a * rsqrt(len), defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt4 step(double2_mt4 threshold, [This] double2_mt4 a) =>
+        select(a >= threshold, double2_mt4.One, default);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt4 refract(double2_mt4 i, double2_mt4 n, [This] double indexOfRefraction)
+    {
+        var ni = dot(n, i);
+        var k = (double_mt4)(1.0 - indexOfRefraction * indexOfRefraction * (1.0 - ni * ni));
+        return select(k >= 0.0, indexOfRefraction * i - (double_mt4)((double_mt4)(indexOfRefraction * ni) + sqrt(k)) * n, default);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt4 projectSafe([This] double2_mt4 a, double2_mt4 onto, double2_mt4 defaultValue = default) 
+    {
+        var proj = project(a, onto);
+        return select(all(isFinite(proj)), proj, defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt4 faceForward([This] double2_mt4 n, double2_mt4 i, double2_mt4 ng) =>
+        select(dot(ng, i) >= 0.0, -n, n);
 
     [MethodImpl(256 | 512)]
     public static double2_mt4 sin([This] double2_mt4 a) => new(sin(a.x), sin(a.y));
@@ -4906,6 +5504,18 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static b64v2_mt8 isNaN([This] double2_mt8 a) => a != a;
     #pragma warning restore CS1718
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 isFinite([This] double2_mt8 a) => abs(a) < double.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 isInf([This] double2_mt8 a) => new(a.x.isInf(), a.y.isInf());
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 isPosInf([This] double2_mt8 a) => a == double.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 isNegInf([This] double2_mt8 a) => a == double.NegativeInfinity;
 
     [MethodImpl(256 | 512)]
     public static double2_mt8 ceil([This] double2_mt8 a) => new(a.x.floor(), a.y.floor());
@@ -5074,19 +5684,25 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static double2_mt8 wrap([This] double2_mt8 x, double2_mt8 min, double2_mt8 max)
     {
-        return new(wrap(x.x, min.x, max.x), wrap(x.y, min.y, max.y));
+        var add = select(x >= double2_mt8.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static double2_mt8 wrap([This] double2_mt8 x, double_mt8 min, double_mt8 max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max));
+        var add = select(x >= double2_mt8.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static double2_mt8 wrap([This] double2_mt8 x, double min, double max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max));
+        var add = select(x >= double2_mt8.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
@@ -5139,8 +5755,36 @@ public static partial class math_mt
 
     [MethodImpl(256 | 512)]
     public static double2_mt8 normalize([This] double2_mt8 a) => a * dot(a, a).rsqrt();
-    
-    // todo normalizeSafe step refract projectSafe faceForward
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt8 normalizeSafe([This] double2_mt8 a, double2_mt8 defaultValue = default)
+    {
+        var len = dot(a, a);
+        return select(len > 1.175494351e-38, a * rsqrt(len), defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt8 step(double2_mt8 threshold, [This] double2_mt8 a) =>
+        select(a >= threshold, double2_mt8.One, default);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt8 refract(double2_mt8 i, double2_mt8 n, [This] double indexOfRefraction)
+    {
+        var ni = dot(n, i);
+        var k = (double_mt8)(1.0 - indexOfRefraction * indexOfRefraction * (1.0 - ni * ni));
+        return select(k >= 0.0, indexOfRefraction * i - (double_mt8)((double_mt8)(indexOfRefraction * ni) + sqrt(k)) * n, default);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt8 projectSafe([This] double2_mt8 a, double2_mt8 onto, double2_mt8 defaultValue = default) 
+    {
+        var proj = project(a, onto);
+        return select(all(isFinite(proj)), proj, defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt8 faceForward([This] double2_mt8 n, double2_mt8 i, double2_mt8 ng) =>
+        select(dot(ng, i) >= 0.0, -n, n);
 
     [MethodImpl(256 | 512)]
     public static double2_mt8 sin([This] double2_mt8 a) => new(sin(a.x), sin(a.y));
@@ -5276,6 +5920,18 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static b64v2_mt16 isNaN([This] double2_mt16 a) => a != a;
     #pragma warning restore CS1718
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 isFinite([This] double2_mt16 a) => abs(a) < double.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 isInf([This] double2_mt16 a) => new(a.x.isInf(), a.y.isInf());
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 isPosInf([This] double2_mt16 a) => a == double.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 isNegInf([This] double2_mt16 a) => a == double.NegativeInfinity;
 
     [MethodImpl(256 | 512)]
     public static double2_mt16 ceil([This] double2_mt16 a) => new(a.x.floor(), a.y.floor());
@@ -5444,19 +6100,25 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static double2_mt16 wrap([This] double2_mt16 x, double2_mt16 min, double2_mt16 max)
     {
-        return new(wrap(x.x, min.x, max.x), wrap(x.y, min.y, max.y));
+        var add = select(x >= double2_mt16.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static double2_mt16 wrap([This] double2_mt16 x, double_mt16 min, double_mt16 max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max));
+        var add = select(x >= double2_mt16.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static double2_mt16 wrap([This] double2_mt16 x, double min, double max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max));
+        var add = select(x >= double2_mt16.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
@@ -5509,8 +6171,36 @@ public static partial class math_mt
 
     [MethodImpl(256 | 512)]
     public static double2_mt16 normalize([This] double2_mt16 a) => a * dot(a, a).rsqrt();
-    
-    // todo normalizeSafe step refract projectSafe faceForward
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt16 normalizeSafe([This] double2_mt16 a, double2_mt16 defaultValue = default)
+    {
+        var len = dot(a, a);
+        return select(len > 1.175494351e-38, a * rsqrt(len), defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt16 step(double2_mt16 threshold, [This] double2_mt16 a) =>
+        select(a >= threshold, double2_mt16.One, default);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt16 refract(double2_mt16 i, double2_mt16 n, [This] double indexOfRefraction)
+    {
+        var ni = dot(n, i);
+        var k = (double_mt16)(1.0 - indexOfRefraction * indexOfRefraction * (1.0 - ni * ni));
+        return select(k >= 0.0, indexOfRefraction * i - (double_mt16)((double_mt16)(indexOfRefraction * ni) + sqrt(k)) * n, default);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt16 projectSafe([This] double2_mt16 a, double2_mt16 onto, double2_mt16 defaultValue = default) 
+    {
+        var proj = project(a, onto);
+        return select(all(isFinite(proj)), proj, defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt16 faceForward([This] double2_mt16 n, double2_mt16 i, double2_mt16 ng) =>
+        select(dot(ng, i) >= 0.0, -n, n);
 
     [MethodImpl(256 | 512)]
     public static double2_mt16 sin([This] double2_mt16 a) => new(sin(a.x), sin(a.y));
@@ -5646,6 +6336,18 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static b64v2_mt32 isNaN([This] double2_mt32 a) => a != a;
     #pragma warning restore CS1718
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 isFinite([This] double2_mt32 a) => abs(a) < double.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 isInf([This] double2_mt32 a) => new(a.x.isInf(), a.y.isInf());
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 isPosInf([This] double2_mt32 a) => a == double.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 isNegInf([This] double2_mt32 a) => a == double.NegativeInfinity;
 
     [MethodImpl(256 | 512)]
     public static double2_mt32 ceil([This] double2_mt32 a) => new(a.x.floor(), a.y.floor());
@@ -5814,19 +6516,25 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static double2_mt32 wrap([This] double2_mt32 x, double2_mt32 min, double2_mt32 max)
     {
-        return new(wrap(x.x, min.x, max.x), wrap(x.y, min.y, max.y));
+        var add = select(x >= double2_mt32.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static double2_mt32 wrap([This] double2_mt32 x, double_mt32 min, double_mt32 max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max));
+        var add = select(x >= double2_mt32.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static double2_mt32 wrap([This] double2_mt32 x, double min, double max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max));
+        var add = select(x >= double2_mt32.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
@@ -5879,8 +6587,36 @@ public static partial class math_mt
 
     [MethodImpl(256 | 512)]
     public static double2_mt32 normalize([This] double2_mt32 a) => a * dot(a, a).rsqrt();
-    
-    // todo normalizeSafe step refract projectSafe faceForward
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt32 normalizeSafe([This] double2_mt32 a, double2_mt32 defaultValue = default)
+    {
+        var len = dot(a, a);
+        return select(len > 1.175494351e-38, a * rsqrt(len), defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt32 step(double2_mt32 threshold, [This] double2_mt32 a) =>
+        select(a >= threshold, double2_mt32.One, default);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt32 refract(double2_mt32 i, double2_mt32 n, [This] double indexOfRefraction)
+    {
+        var ni = dot(n, i);
+        var k = (double_mt32)(1.0 - indexOfRefraction * indexOfRefraction * (1.0 - ni * ni));
+        return select(k >= 0.0, indexOfRefraction * i - (double_mt32)((double_mt32)(indexOfRefraction * ni) + sqrt(k)) * n, default);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt32 projectSafe([This] double2_mt32 a, double2_mt32 onto, double2_mt32 defaultValue = default) 
+    {
+        var proj = project(a, onto);
+        return select(all(isFinite(proj)), proj, defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt32 faceForward([This] double2_mt32 n, double2_mt32 i, double2_mt32 ng) =>
+        select(dot(ng, i) >= 0.0, -n, n);
 
     [MethodImpl(256 | 512)]
     public static double2_mt32 sin([This] double2_mt32 a) => new(sin(a.x), sin(a.y));
@@ -6016,6 +6752,18 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static b64v3_mt4 isNaN([This] double3_mt4 a) => a != a;
     #pragma warning restore CS1718
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 isFinite([This] double3_mt4 a) => abs(a) < double.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 isInf([This] double3_mt4 a) => new(a.x.isInf(), a.y.isInf(), a.z.isInf());
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 isPosInf([This] double3_mt4 a) => a == double.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 isNegInf([This] double3_mt4 a) => a == double.NegativeInfinity;
 
     [MethodImpl(256 | 512)]
     public static double3_mt4 ceil([This] double3_mt4 a) => new(a.x.floor(), a.y.floor(), a.z.floor());
@@ -6184,19 +6932,25 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static double3_mt4 wrap([This] double3_mt4 x, double3_mt4 min, double3_mt4 max)
     {
-        return new(wrap(x.x, min.x, max.x), wrap(x.y, min.y, max.y), wrap(x.z, min.z, max.z));
+        var add = select(x >= double3_mt4.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static double3_mt4 wrap([This] double3_mt4 x, double_mt4 min, double_mt4 max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max), wrap(x.z, min, max));
+        var add = select(x >= double3_mt4.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static double3_mt4 wrap([This] double3_mt4 x, double min, double max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max), wrap(x.z, min, max));
+        var add = select(x >= double3_mt4.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
@@ -6249,8 +7003,36 @@ public static partial class math_mt
 
     [MethodImpl(256 | 512)]
     public static double3_mt4 normalize([This] double3_mt4 a) => a * dot(a, a).rsqrt();
-    
-    // todo normalizeSafe step refract projectSafe faceForward
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt4 normalizeSafe([This] double3_mt4 a, double3_mt4 defaultValue = default)
+    {
+        var len = dot(a, a);
+        return select(len > 1.175494351e-38, a * rsqrt(len), defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt4 step(double3_mt4 threshold, [This] double3_mt4 a) =>
+        select(a >= threshold, double3_mt4.One, default);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt4 refract(double3_mt4 i, double3_mt4 n, [This] double indexOfRefraction)
+    {
+        var ni = dot(n, i);
+        var k = (double_mt4)(1.0 - indexOfRefraction * indexOfRefraction * (1.0 - ni * ni));
+        return select(k >= 0.0, indexOfRefraction * i - (double_mt4)((double_mt4)(indexOfRefraction * ni) + sqrt(k)) * n, default);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt4 projectSafe([This] double3_mt4 a, double3_mt4 onto, double3_mt4 defaultValue = default) 
+    {
+        var proj = project(a, onto);
+        return select(all(isFinite(proj)), proj, defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt4 faceForward([This] double3_mt4 n, double3_mt4 i, double3_mt4 ng) =>
+        select(dot(ng, i) >= 0.0, -n, n);
 
     [MethodImpl(256 | 512)]
     public static double3_mt4 sin([This] double3_mt4 a) => new(sin(a.x), sin(a.y), sin(a.z));
@@ -6388,6 +7170,18 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static b64v3_mt8 isNaN([This] double3_mt8 a) => a != a;
     #pragma warning restore CS1718
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 isFinite([This] double3_mt8 a) => abs(a) < double.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 isInf([This] double3_mt8 a) => new(a.x.isInf(), a.y.isInf(), a.z.isInf());
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 isPosInf([This] double3_mt8 a) => a == double.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 isNegInf([This] double3_mt8 a) => a == double.NegativeInfinity;
 
     [MethodImpl(256 | 512)]
     public static double3_mt8 ceil([This] double3_mt8 a) => new(a.x.floor(), a.y.floor(), a.z.floor());
@@ -6556,19 +7350,25 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static double3_mt8 wrap([This] double3_mt8 x, double3_mt8 min, double3_mt8 max)
     {
-        return new(wrap(x.x, min.x, max.x), wrap(x.y, min.y, max.y), wrap(x.z, min.z, max.z));
+        var add = select(x >= double3_mt8.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static double3_mt8 wrap([This] double3_mt8 x, double_mt8 min, double_mt8 max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max), wrap(x.z, min, max));
+        var add = select(x >= double3_mt8.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static double3_mt8 wrap([This] double3_mt8 x, double min, double max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max), wrap(x.z, min, max));
+        var add = select(x >= double3_mt8.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
@@ -6621,8 +7421,36 @@ public static partial class math_mt
 
     [MethodImpl(256 | 512)]
     public static double3_mt8 normalize([This] double3_mt8 a) => a * dot(a, a).rsqrt();
-    
-    // todo normalizeSafe step refract projectSafe faceForward
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt8 normalizeSafe([This] double3_mt8 a, double3_mt8 defaultValue = default)
+    {
+        var len = dot(a, a);
+        return select(len > 1.175494351e-38, a * rsqrt(len), defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt8 step(double3_mt8 threshold, [This] double3_mt8 a) =>
+        select(a >= threshold, double3_mt8.One, default);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt8 refract(double3_mt8 i, double3_mt8 n, [This] double indexOfRefraction)
+    {
+        var ni = dot(n, i);
+        var k = (double_mt8)(1.0 - indexOfRefraction * indexOfRefraction * (1.0 - ni * ni));
+        return select(k >= 0.0, indexOfRefraction * i - (double_mt8)((double_mt8)(indexOfRefraction * ni) + sqrt(k)) * n, default);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt8 projectSafe([This] double3_mt8 a, double3_mt8 onto, double3_mt8 defaultValue = default) 
+    {
+        var proj = project(a, onto);
+        return select(all(isFinite(proj)), proj, defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt8 faceForward([This] double3_mt8 n, double3_mt8 i, double3_mt8 ng) =>
+        select(dot(ng, i) >= 0.0, -n, n);
 
     [MethodImpl(256 | 512)]
     public static double3_mt8 sin([This] double3_mt8 a) => new(sin(a.x), sin(a.y), sin(a.z));
@@ -6760,6 +7588,18 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static b64v3_mt16 isNaN([This] double3_mt16 a) => a != a;
     #pragma warning restore CS1718
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 isFinite([This] double3_mt16 a) => abs(a) < double.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 isInf([This] double3_mt16 a) => new(a.x.isInf(), a.y.isInf(), a.z.isInf());
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 isPosInf([This] double3_mt16 a) => a == double.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 isNegInf([This] double3_mt16 a) => a == double.NegativeInfinity;
 
     [MethodImpl(256 | 512)]
     public static double3_mt16 ceil([This] double3_mt16 a) => new(a.x.floor(), a.y.floor(), a.z.floor());
@@ -6928,19 +7768,25 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static double3_mt16 wrap([This] double3_mt16 x, double3_mt16 min, double3_mt16 max)
     {
-        return new(wrap(x.x, min.x, max.x), wrap(x.y, min.y, max.y), wrap(x.z, min.z, max.z));
+        var add = select(x >= double3_mt16.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static double3_mt16 wrap([This] double3_mt16 x, double_mt16 min, double_mt16 max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max), wrap(x.z, min, max));
+        var add = select(x >= double3_mt16.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static double3_mt16 wrap([This] double3_mt16 x, double min, double max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max), wrap(x.z, min, max));
+        var add = select(x >= double3_mt16.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
@@ -6993,8 +7839,36 @@ public static partial class math_mt
 
     [MethodImpl(256 | 512)]
     public static double3_mt16 normalize([This] double3_mt16 a) => a * dot(a, a).rsqrt();
-    
-    // todo normalizeSafe step refract projectSafe faceForward
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt16 normalizeSafe([This] double3_mt16 a, double3_mt16 defaultValue = default)
+    {
+        var len = dot(a, a);
+        return select(len > 1.175494351e-38, a * rsqrt(len), defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt16 step(double3_mt16 threshold, [This] double3_mt16 a) =>
+        select(a >= threshold, double3_mt16.One, default);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt16 refract(double3_mt16 i, double3_mt16 n, [This] double indexOfRefraction)
+    {
+        var ni = dot(n, i);
+        var k = (double_mt16)(1.0 - indexOfRefraction * indexOfRefraction * (1.0 - ni * ni));
+        return select(k >= 0.0, indexOfRefraction * i - (double_mt16)((double_mt16)(indexOfRefraction * ni) + sqrt(k)) * n, default);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt16 projectSafe([This] double3_mt16 a, double3_mt16 onto, double3_mt16 defaultValue = default) 
+    {
+        var proj = project(a, onto);
+        return select(all(isFinite(proj)), proj, defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt16 faceForward([This] double3_mt16 n, double3_mt16 i, double3_mt16 ng) =>
+        select(dot(ng, i) >= 0.0, -n, n);
 
     [MethodImpl(256 | 512)]
     public static double3_mt16 sin([This] double3_mt16 a) => new(sin(a.x), sin(a.y), sin(a.z));
@@ -7132,6 +8006,18 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static b64v3_mt32 isNaN([This] double3_mt32 a) => a != a;
     #pragma warning restore CS1718
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 isFinite([This] double3_mt32 a) => abs(a) < double.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 isInf([This] double3_mt32 a) => new(a.x.isInf(), a.y.isInf(), a.z.isInf());
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 isPosInf([This] double3_mt32 a) => a == double.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 isNegInf([This] double3_mt32 a) => a == double.NegativeInfinity;
 
     [MethodImpl(256 | 512)]
     public static double3_mt32 ceil([This] double3_mt32 a) => new(a.x.floor(), a.y.floor(), a.z.floor());
@@ -7300,19 +8186,25 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static double3_mt32 wrap([This] double3_mt32 x, double3_mt32 min, double3_mt32 max)
     {
-        return new(wrap(x.x, min.x, max.x), wrap(x.y, min.y, max.y), wrap(x.z, min.z, max.z));
+        var add = select(x >= double3_mt32.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static double3_mt32 wrap([This] double3_mt32 x, double_mt32 min, double_mt32 max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max), wrap(x.z, min, max));
+        var add = select(x >= double3_mt32.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static double3_mt32 wrap([This] double3_mt32 x, double min, double max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max), wrap(x.z, min, max));
+        var add = select(x >= double3_mt32.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
@@ -7365,8 +8257,36 @@ public static partial class math_mt
 
     [MethodImpl(256 | 512)]
     public static double3_mt32 normalize([This] double3_mt32 a) => a * dot(a, a).rsqrt();
-    
-    // todo normalizeSafe step refract projectSafe faceForward
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt32 normalizeSafe([This] double3_mt32 a, double3_mt32 defaultValue = default)
+    {
+        var len = dot(a, a);
+        return select(len > 1.175494351e-38, a * rsqrt(len), defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt32 step(double3_mt32 threshold, [This] double3_mt32 a) =>
+        select(a >= threshold, double3_mt32.One, default);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt32 refract(double3_mt32 i, double3_mt32 n, [This] double indexOfRefraction)
+    {
+        var ni = dot(n, i);
+        var k = (double_mt32)(1.0 - indexOfRefraction * indexOfRefraction * (1.0 - ni * ni));
+        return select(k >= 0.0, indexOfRefraction * i - (double_mt32)((double_mt32)(indexOfRefraction * ni) + sqrt(k)) * n, default);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt32 projectSafe([This] double3_mt32 a, double3_mt32 onto, double3_mt32 defaultValue = default) 
+    {
+        var proj = project(a, onto);
+        return select(all(isFinite(proj)), proj, defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt32 faceForward([This] double3_mt32 n, double3_mt32 i, double3_mt32 ng) =>
+        select(dot(ng, i) >= 0.0, -n, n);
 
     [MethodImpl(256 | 512)]
     public static double3_mt32 sin([This] double3_mt32 a) => new(sin(a.x), sin(a.y), sin(a.z));
@@ -7504,6 +8424,18 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static b64v4_mt4 isNaN([This] double4_mt4 a) => a != a;
     #pragma warning restore CS1718
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 isFinite([This] double4_mt4 a) => abs(a) < double.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 isInf([This] double4_mt4 a) => new(a.x.isInf(), a.y.isInf(), a.z.isInf(), a.w.isInf());
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 isPosInf([This] double4_mt4 a) => a == double.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 isNegInf([This] double4_mt4 a) => a == double.NegativeInfinity;
 
     [MethodImpl(256 | 512)]
     public static double4_mt4 ceil([This] double4_mt4 a) => new(a.x.floor(), a.y.floor(), a.z.floor(), a.w.floor());
@@ -7672,19 +8604,25 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static double4_mt4 wrap([This] double4_mt4 x, double4_mt4 min, double4_mt4 max)
     {
-        return new(wrap(x.x, min.x, max.x), wrap(x.y, min.y, max.y), wrap(x.z, min.z, max.z), wrap(x.w, min.w, max.w));
+        var add = select(x >= double4_mt4.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static double4_mt4 wrap([This] double4_mt4 x, double_mt4 min, double_mt4 max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max), wrap(x.z, min, max), wrap(x.w, min, max));
+        var add = select(x >= double4_mt4.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static double4_mt4 wrap([This] double4_mt4 x, double min, double max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max), wrap(x.z, min, max), wrap(x.w, min, max));
+        var add = select(x >= double4_mt4.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
@@ -7737,8 +8675,36 @@ public static partial class math_mt
 
     [MethodImpl(256 | 512)]
     public static double4_mt4 normalize([This] double4_mt4 a) => a * dot(a, a).rsqrt();
-    
-    // todo normalizeSafe step refract projectSafe faceForward
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt4 normalizeSafe([This] double4_mt4 a, double4_mt4 defaultValue = default)
+    {
+        var len = dot(a, a);
+        return select(len > 1.175494351e-38, a * rsqrt(len), defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt4 step(double4_mt4 threshold, [This] double4_mt4 a) =>
+        select(a >= threshold, double4_mt4.One, default);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt4 refract(double4_mt4 i, double4_mt4 n, [This] double indexOfRefraction)
+    {
+        var ni = dot(n, i);
+        var k = (double_mt4)(1.0 - indexOfRefraction * indexOfRefraction * (1.0 - ni * ni));
+        return select(k >= 0.0, indexOfRefraction * i - (double_mt4)((double_mt4)(indexOfRefraction * ni) + sqrt(k)) * n, default);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt4 projectSafe([This] double4_mt4 a, double4_mt4 onto, double4_mt4 defaultValue = default) 
+    {
+        var proj = project(a, onto);
+        return select(all(isFinite(proj)), proj, defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt4 faceForward([This] double4_mt4 n, double4_mt4 i, double4_mt4 ng) =>
+        select(dot(ng, i) >= 0.0, -n, n);
 
     [MethodImpl(256 | 512)]
     public static double4_mt4 sin([This] double4_mt4 a) => new(sin(a.x), sin(a.y), sin(a.z), sin(a.w));
@@ -7878,6 +8844,18 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static b64v4_mt8 isNaN([This] double4_mt8 a) => a != a;
     #pragma warning restore CS1718
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 isFinite([This] double4_mt8 a) => abs(a) < double.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 isInf([This] double4_mt8 a) => new(a.x.isInf(), a.y.isInf(), a.z.isInf(), a.w.isInf());
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 isPosInf([This] double4_mt8 a) => a == double.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 isNegInf([This] double4_mt8 a) => a == double.NegativeInfinity;
 
     [MethodImpl(256 | 512)]
     public static double4_mt8 ceil([This] double4_mt8 a) => new(a.x.floor(), a.y.floor(), a.z.floor(), a.w.floor());
@@ -8046,19 +9024,25 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static double4_mt8 wrap([This] double4_mt8 x, double4_mt8 min, double4_mt8 max)
     {
-        return new(wrap(x.x, min.x, max.x), wrap(x.y, min.y, max.y), wrap(x.z, min.z, max.z), wrap(x.w, min.w, max.w));
+        var add = select(x >= double4_mt8.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static double4_mt8 wrap([This] double4_mt8 x, double_mt8 min, double_mt8 max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max), wrap(x.z, min, max), wrap(x.w, min, max));
+        var add = select(x >= double4_mt8.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static double4_mt8 wrap([This] double4_mt8 x, double min, double max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max), wrap(x.z, min, max), wrap(x.w, min, max));
+        var add = select(x >= double4_mt8.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
@@ -8111,8 +9095,36 @@ public static partial class math_mt
 
     [MethodImpl(256 | 512)]
     public static double4_mt8 normalize([This] double4_mt8 a) => a * dot(a, a).rsqrt();
-    
-    // todo normalizeSafe step refract projectSafe faceForward
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt8 normalizeSafe([This] double4_mt8 a, double4_mt8 defaultValue = default)
+    {
+        var len = dot(a, a);
+        return select(len > 1.175494351e-38, a * rsqrt(len), defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt8 step(double4_mt8 threshold, [This] double4_mt8 a) =>
+        select(a >= threshold, double4_mt8.One, default);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt8 refract(double4_mt8 i, double4_mt8 n, [This] double indexOfRefraction)
+    {
+        var ni = dot(n, i);
+        var k = (double_mt8)(1.0 - indexOfRefraction * indexOfRefraction * (1.0 - ni * ni));
+        return select(k >= 0.0, indexOfRefraction * i - (double_mt8)((double_mt8)(indexOfRefraction * ni) + sqrt(k)) * n, default);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt8 projectSafe([This] double4_mt8 a, double4_mt8 onto, double4_mt8 defaultValue = default) 
+    {
+        var proj = project(a, onto);
+        return select(all(isFinite(proj)), proj, defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt8 faceForward([This] double4_mt8 n, double4_mt8 i, double4_mt8 ng) =>
+        select(dot(ng, i) >= 0.0, -n, n);
 
     [MethodImpl(256 | 512)]
     public static double4_mt8 sin([This] double4_mt8 a) => new(sin(a.x), sin(a.y), sin(a.z), sin(a.w));
@@ -8252,6 +9264,18 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static b64v4_mt16 isNaN([This] double4_mt16 a) => a != a;
     #pragma warning restore CS1718
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 isFinite([This] double4_mt16 a) => abs(a) < double.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 isInf([This] double4_mt16 a) => new(a.x.isInf(), a.y.isInf(), a.z.isInf(), a.w.isInf());
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 isPosInf([This] double4_mt16 a) => a == double.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 isNegInf([This] double4_mt16 a) => a == double.NegativeInfinity;
 
     [MethodImpl(256 | 512)]
     public static double4_mt16 ceil([This] double4_mt16 a) => new(a.x.floor(), a.y.floor(), a.z.floor(), a.w.floor());
@@ -8420,19 +9444,25 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static double4_mt16 wrap([This] double4_mt16 x, double4_mt16 min, double4_mt16 max)
     {
-        return new(wrap(x.x, min.x, max.x), wrap(x.y, min.y, max.y), wrap(x.z, min.z, max.z), wrap(x.w, min.w, max.w));
+        var add = select(x >= double4_mt16.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static double4_mt16 wrap([This] double4_mt16 x, double_mt16 min, double_mt16 max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max), wrap(x.z, min, max), wrap(x.w, min, max));
+        var add = select(x >= double4_mt16.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static double4_mt16 wrap([This] double4_mt16 x, double min, double max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max), wrap(x.z, min, max), wrap(x.w, min, max));
+        var add = select(x >= double4_mt16.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
@@ -8485,8 +9515,36 @@ public static partial class math_mt
 
     [MethodImpl(256 | 512)]
     public static double4_mt16 normalize([This] double4_mt16 a) => a * dot(a, a).rsqrt();
-    
-    // todo normalizeSafe step refract projectSafe faceForward
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt16 normalizeSafe([This] double4_mt16 a, double4_mt16 defaultValue = default)
+    {
+        var len = dot(a, a);
+        return select(len > 1.175494351e-38, a * rsqrt(len), defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt16 step(double4_mt16 threshold, [This] double4_mt16 a) =>
+        select(a >= threshold, double4_mt16.One, default);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt16 refract(double4_mt16 i, double4_mt16 n, [This] double indexOfRefraction)
+    {
+        var ni = dot(n, i);
+        var k = (double_mt16)(1.0 - indexOfRefraction * indexOfRefraction * (1.0 - ni * ni));
+        return select(k >= 0.0, indexOfRefraction * i - (double_mt16)((double_mt16)(indexOfRefraction * ni) + sqrt(k)) * n, default);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt16 projectSafe([This] double4_mt16 a, double4_mt16 onto, double4_mt16 defaultValue = default) 
+    {
+        var proj = project(a, onto);
+        return select(all(isFinite(proj)), proj, defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt16 faceForward([This] double4_mt16 n, double4_mt16 i, double4_mt16 ng) =>
+        select(dot(ng, i) >= 0.0, -n, n);
 
     [MethodImpl(256 | 512)]
     public static double4_mt16 sin([This] double4_mt16 a) => new(sin(a.x), sin(a.y), sin(a.z), sin(a.w));
@@ -8626,6 +9684,18 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static b64v4_mt32 isNaN([This] double4_mt32 a) => a != a;
     #pragma warning restore CS1718
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 isFinite([This] double4_mt32 a) => abs(a) < double.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 isInf([This] double4_mt32 a) => new(a.x.isInf(), a.y.isInf(), a.z.isInf(), a.w.isInf());
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 isPosInf([This] double4_mt32 a) => a == double.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 isNegInf([This] double4_mt32 a) => a == double.NegativeInfinity;
 
     [MethodImpl(256 | 512)]
     public static double4_mt32 ceil([This] double4_mt32 a) => new(a.x.floor(), a.y.floor(), a.z.floor(), a.w.floor());
@@ -8794,19 +9864,25 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static double4_mt32 wrap([This] double4_mt32 x, double4_mt32 min, double4_mt32 max)
     {
-        return new(wrap(x.x, min.x, max.x), wrap(x.y, min.y, max.y), wrap(x.z, min.z, max.z), wrap(x.w, min.w, max.w));
+        var add = select(x >= double4_mt32.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static double4_mt32 wrap([This] double4_mt32 x, double_mt32 min, double_mt32 max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max), wrap(x.z, min, max), wrap(x.w, min, max));
+        var add = select(x >= double4_mt32.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
     public static double4_mt32 wrap([This] double4_mt32 x, double min, double max)
     {
-        return new(wrap(x.x, min, max), wrap(x.y, min, max), wrap(x.z, min, max), wrap(x.w, min, max));
+        var add = select(x >= double4_mt32.Zero, min, max);
+        var off = x % (max - min);
+        return add + off;
     }
 
     [MethodImpl(256 | 512)]
@@ -8859,8 +9935,36 @@ public static partial class math_mt
 
     [MethodImpl(256 | 512)]
     public static double4_mt32 normalize([This] double4_mt32 a) => a * dot(a, a).rsqrt();
-    
-    // todo normalizeSafe step refract projectSafe faceForward
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt32 normalizeSafe([This] double4_mt32 a, double4_mt32 defaultValue = default)
+    {
+        var len = dot(a, a);
+        return select(len > 1.175494351e-38, a * rsqrt(len), defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt32 step(double4_mt32 threshold, [This] double4_mt32 a) =>
+        select(a >= threshold, double4_mt32.One, default);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt32 refract(double4_mt32 i, double4_mt32 n, [This] double indexOfRefraction)
+    {
+        var ni = dot(n, i);
+        var k = (double_mt32)(1.0 - indexOfRefraction * indexOfRefraction * (1.0 - ni * ni));
+        return select(k >= 0.0, indexOfRefraction * i - (double_mt32)((double_mt32)(indexOfRefraction * ni) + sqrt(k)) * n, default);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt32 projectSafe([This] double4_mt32 a, double4_mt32 onto, double4_mt32 defaultValue = default) 
+    {
+        var proj = project(a, onto);
+        return select(all(isFinite(proj)), proj, defaultValue);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt32 faceForward([This] double4_mt32 n, double4_mt32 i, double4_mt32 ng) =>
+        select(dot(ng, i) >= 0.0, -n, n);
 
     [MethodImpl(256 | 512)]
     public static double4_mt32 sin([This] double4_mt32 a) => new(sin(a.x), sin(a.y), sin(a.z), sin(a.w));

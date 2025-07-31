@@ -108,6 +108,102 @@ public partial struct float2_mt4 : IComparable<float2_mt4>, IComparable
     }
 
     [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator <(float2_mt4 left, float_mt4 right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator >(float2_mt4 left, float_mt4 right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator <=(float2_mt4 left, float_mt4 right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator >=(float2_mt4 left, float_mt4 right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator <(float_mt4 left, float2_mt4 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator >(float_mt4 left, float2_mt4 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator <=(float_mt4 left, float2_mt4 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator >=(float_mt4 left, float2_mt4 right)
+    {
+        return new(left >= right.x, left >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator <(float2_mt4 left, float right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator >(float2_mt4 left, float right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator <=(float2_mt4 left, float right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator >=(float2_mt4 left, float right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator <(float left, float2_mt4 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator >(float left, float2_mt4 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator <=(float left, float2_mt4 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator >=(float left, float2_mt4 right)
+    {
+        return new(left >= right.x, left >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
     public readonly b32_mt4 LessThanAll(float2_mt4 other)
     {
         return (x < other.x) & (y < other.y);
@@ -261,6 +357,102 @@ public partial struct float2_mt8 : IComparable<float2_mt8>, IComparable
     public static b32v2_mt8 operator >=(float2_mt8 left, float2_mt8 right)
     {
         return new(left.x >= right.x, left.y >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator <(float2_mt8 left, float_mt8 right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator >(float2_mt8 left, float_mt8 right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator <=(float2_mt8 left, float_mt8 right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator >=(float2_mt8 left, float_mt8 right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator <(float_mt8 left, float2_mt8 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator >(float_mt8 left, float2_mt8 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator <=(float_mt8 left, float2_mt8 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator >=(float_mt8 left, float2_mt8 right)
+    {
+        return new(left >= right.x, left >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator <(float2_mt8 left, float right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator >(float2_mt8 left, float right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator <=(float2_mt8 left, float right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator >=(float2_mt8 left, float right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator <(float left, float2_mt8 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator >(float left, float2_mt8 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator <=(float left, float2_mt8 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator >=(float left, float2_mt8 right)
+    {
+        return new(left >= right.x, left >= right.y);
     }
 
     [MethodImpl(256 | 512)]
@@ -420,6 +612,102 @@ public partial struct float2_mt16 : IComparable<float2_mt16>, IComparable
     }
 
     [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator <(float2_mt16 left, float_mt16 right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator >(float2_mt16 left, float_mt16 right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator <=(float2_mt16 left, float_mt16 right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator >=(float2_mt16 left, float_mt16 right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator <(float_mt16 left, float2_mt16 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator >(float_mt16 left, float2_mt16 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator <=(float_mt16 left, float2_mt16 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator >=(float_mt16 left, float2_mt16 right)
+    {
+        return new(left >= right.x, left >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator <(float2_mt16 left, float right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator >(float2_mt16 left, float right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator <=(float2_mt16 left, float right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator >=(float2_mt16 left, float right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator <(float left, float2_mt16 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator >(float left, float2_mt16 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator <=(float left, float2_mt16 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator >=(float left, float2_mt16 right)
+    {
+        return new(left >= right.x, left >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
     public readonly b32_mt16 LessThanAll(float2_mt16 other)
     {
         return (x < other.x) & (y < other.y);
@@ -573,6 +861,102 @@ public partial struct float2_mt32 : IComparable<float2_mt32>, IComparable
     public static b32v2_mt32 operator >=(float2_mt32 left, float2_mt32 right)
     {
         return new(left.x >= right.x, left.y >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator <(float2_mt32 left, float_mt32 right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator >(float2_mt32 left, float_mt32 right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator <=(float2_mt32 left, float_mt32 right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator >=(float2_mt32 left, float_mt32 right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator <(float_mt32 left, float2_mt32 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator >(float_mt32 left, float2_mt32 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator <=(float_mt32 left, float2_mt32 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator >=(float_mt32 left, float2_mt32 right)
+    {
+        return new(left >= right.x, left >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator <(float2_mt32 left, float right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator >(float2_mt32 left, float right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator <=(float2_mt32 left, float right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator >=(float2_mt32 left, float right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator <(float left, float2_mt32 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator >(float left, float2_mt32 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator <=(float left, float2_mt32 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator >=(float left, float2_mt32 right)
+    {
+        return new(left >= right.x, left >= right.y);
     }
 
     [MethodImpl(256 | 512)]
@@ -732,6 +1116,102 @@ public partial struct float3_mt4 : IComparable<float3_mt4>, IComparable
     }
 
     [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator <(float3_mt4 left, float_mt4 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator >(float3_mt4 left, float_mt4 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator <=(float3_mt4 left, float_mt4 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator >=(float3_mt4 left, float_mt4 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator <(float_mt4 left, float3_mt4 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator >(float_mt4 left, float3_mt4 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator <=(float_mt4 left, float3_mt4 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator >=(float_mt4 left, float3_mt4 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator <(float3_mt4 left, float right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator >(float3_mt4 left, float right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator <=(float3_mt4 left, float right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator >=(float3_mt4 left, float right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator <(float left, float3_mt4 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator >(float left, float3_mt4 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator <=(float left, float3_mt4 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator >=(float left, float3_mt4 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
     public readonly b32_mt4 LessThanAll(float3_mt4 other)
     {
         return (x < other.x) & (y < other.y) & (z < other.z);
@@ -885,6 +1365,102 @@ public partial struct float3_mt8 : IComparable<float3_mt8>, IComparable
     public static b32v3_mt8 operator >=(float3_mt8 left, float3_mt8 right)
     {
         return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator <(float3_mt8 left, float_mt8 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator >(float3_mt8 left, float_mt8 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator <=(float3_mt8 left, float_mt8 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator >=(float3_mt8 left, float_mt8 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator <(float_mt8 left, float3_mt8 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator >(float_mt8 left, float3_mt8 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator <=(float_mt8 left, float3_mt8 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator >=(float_mt8 left, float3_mt8 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator <(float3_mt8 left, float right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator >(float3_mt8 left, float right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator <=(float3_mt8 left, float right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator >=(float3_mt8 left, float right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator <(float left, float3_mt8 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator >(float left, float3_mt8 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator <=(float left, float3_mt8 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator >=(float left, float3_mt8 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
     }
 
     [MethodImpl(256 | 512)]
@@ -1044,6 +1620,102 @@ public partial struct float3_mt16 : IComparable<float3_mt16>, IComparable
     }
 
     [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator <(float3_mt16 left, float_mt16 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator >(float3_mt16 left, float_mt16 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator <=(float3_mt16 left, float_mt16 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator >=(float3_mt16 left, float_mt16 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator <(float_mt16 left, float3_mt16 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator >(float_mt16 left, float3_mt16 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator <=(float_mt16 left, float3_mt16 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator >=(float_mt16 left, float3_mt16 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator <(float3_mt16 left, float right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator >(float3_mt16 left, float right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator <=(float3_mt16 left, float right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator >=(float3_mt16 left, float right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator <(float left, float3_mt16 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator >(float left, float3_mt16 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator <=(float left, float3_mt16 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator >=(float left, float3_mt16 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
     public readonly b32_mt16 LessThanAll(float3_mt16 other)
     {
         return (x < other.x) & (y < other.y) & (z < other.z);
@@ -1197,6 +1869,102 @@ public partial struct float3_mt32 : IComparable<float3_mt32>, IComparable
     public static b32v3_mt32 operator >=(float3_mt32 left, float3_mt32 right)
     {
         return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator <(float3_mt32 left, float_mt32 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator >(float3_mt32 left, float_mt32 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator <=(float3_mt32 left, float_mt32 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator >=(float3_mt32 left, float_mt32 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator <(float_mt32 left, float3_mt32 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator >(float_mt32 left, float3_mt32 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator <=(float_mt32 left, float3_mt32 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator >=(float_mt32 left, float3_mt32 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator <(float3_mt32 left, float right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator >(float3_mt32 left, float right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator <=(float3_mt32 left, float right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator >=(float3_mt32 left, float right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator <(float left, float3_mt32 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator >(float left, float3_mt32 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator <=(float left, float3_mt32 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator >=(float left, float3_mt32 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
     }
 
     [MethodImpl(256 | 512)]
@@ -1356,6 +2124,102 @@ public partial struct float4_mt4 : IComparable<float4_mt4>, IComparable
     }
 
     [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator <(float4_mt4 left, float_mt4 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator >(float4_mt4 left, float_mt4 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator <=(float4_mt4 left, float_mt4 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator >=(float4_mt4 left, float_mt4 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator <(float_mt4 left, float4_mt4 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator >(float_mt4 left, float4_mt4 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator <=(float_mt4 left, float4_mt4 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator >=(float_mt4 left, float4_mt4 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator <(float4_mt4 left, float right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator >(float4_mt4 left, float right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator <=(float4_mt4 left, float right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator >=(float4_mt4 left, float right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator <(float left, float4_mt4 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator >(float left, float4_mt4 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator <=(float left, float4_mt4 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator >=(float left, float4_mt4 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
     public readonly b32_mt4 LessThanAll(float4_mt4 other)
     {
         return (x < other.x) & (y < other.y) & (z < other.z) & (w < other.w);
@@ -1509,6 +2373,102 @@ public partial struct float4_mt8 : IComparable<float4_mt8>, IComparable
     public static b32v4_mt8 operator >=(float4_mt8 left, float4_mt8 right)
     {
         return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator <(float4_mt8 left, float_mt8 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator >(float4_mt8 left, float_mt8 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator <=(float4_mt8 left, float_mt8 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator >=(float4_mt8 left, float_mt8 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator <(float_mt8 left, float4_mt8 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator >(float_mt8 left, float4_mt8 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator <=(float_mt8 left, float4_mt8 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator >=(float_mt8 left, float4_mt8 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator <(float4_mt8 left, float right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator >(float4_mt8 left, float right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator <=(float4_mt8 left, float right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator >=(float4_mt8 left, float right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator <(float left, float4_mt8 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator >(float left, float4_mt8 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator <=(float left, float4_mt8 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator >=(float left, float4_mt8 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
     }
 
     [MethodImpl(256 | 512)]
@@ -1668,6 +2628,102 @@ public partial struct float4_mt16 : IComparable<float4_mt16>, IComparable
     }
 
     [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator <(float4_mt16 left, float_mt16 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator >(float4_mt16 left, float_mt16 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator <=(float4_mt16 left, float_mt16 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator >=(float4_mt16 left, float_mt16 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator <(float_mt16 left, float4_mt16 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator >(float_mt16 left, float4_mt16 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator <=(float_mt16 left, float4_mt16 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator >=(float_mt16 left, float4_mt16 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator <(float4_mt16 left, float right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator >(float4_mt16 left, float right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator <=(float4_mt16 left, float right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator >=(float4_mt16 left, float right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator <(float left, float4_mt16 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator >(float left, float4_mt16 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator <=(float left, float4_mt16 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator >=(float left, float4_mt16 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
     public readonly b32_mt16 LessThanAll(float4_mt16 other)
     {
         return (x < other.x) & (y < other.y) & (z < other.z) & (w < other.w);
@@ -1821,6 +2877,102 @@ public partial struct float4_mt32 : IComparable<float4_mt32>, IComparable
     public static b32v4_mt32 operator >=(float4_mt32 left, float4_mt32 right)
     {
         return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator <(float4_mt32 left, float_mt32 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator >(float4_mt32 left, float_mt32 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator <=(float4_mt32 left, float_mt32 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator >=(float4_mt32 left, float_mt32 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator <(float_mt32 left, float4_mt32 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator >(float_mt32 left, float4_mt32 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator <=(float_mt32 left, float4_mt32 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator >=(float_mt32 left, float4_mt32 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator <(float4_mt32 left, float right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator >(float4_mt32 left, float right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator <=(float4_mt32 left, float right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator >=(float4_mt32 left, float right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator <(float left, float4_mt32 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator >(float left, float4_mt32 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator <=(float left, float4_mt32 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator >=(float left, float4_mt32 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
     }
 
     [MethodImpl(256 | 512)]
@@ -1980,6 +3132,102 @@ public partial struct double2_mt4 : IComparable<double2_mt4>, IComparable
     }
 
     [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator <(double2_mt4 left, double_mt4 right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator >(double2_mt4 left, double_mt4 right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator <=(double2_mt4 left, double_mt4 right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator >=(double2_mt4 left, double_mt4 right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator <(double_mt4 left, double2_mt4 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator >(double_mt4 left, double2_mt4 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator <=(double_mt4 left, double2_mt4 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator >=(double_mt4 left, double2_mt4 right)
+    {
+        return new(left >= right.x, left >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator <(double2_mt4 left, double right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator >(double2_mt4 left, double right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator <=(double2_mt4 left, double right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator >=(double2_mt4 left, double right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator <(double left, double2_mt4 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator >(double left, double2_mt4 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator <=(double left, double2_mt4 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator >=(double left, double2_mt4 right)
+    {
+        return new(left >= right.x, left >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
     public readonly b64_mt4 LessThanAll(double2_mt4 other)
     {
         return (x < other.x) & (y < other.y);
@@ -2133,6 +3381,102 @@ public partial struct double2_mt8 : IComparable<double2_mt8>, IComparable
     public static b64v2_mt8 operator >=(double2_mt8 left, double2_mt8 right)
     {
         return new(left.x >= right.x, left.y >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator <(double2_mt8 left, double_mt8 right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator >(double2_mt8 left, double_mt8 right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator <=(double2_mt8 left, double_mt8 right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator >=(double2_mt8 left, double_mt8 right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator <(double_mt8 left, double2_mt8 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator >(double_mt8 left, double2_mt8 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator <=(double_mt8 left, double2_mt8 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator >=(double_mt8 left, double2_mt8 right)
+    {
+        return new(left >= right.x, left >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator <(double2_mt8 left, double right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator >(double2_mt8 left, double right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator <=(double2_mt8 left, double right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator >=(double2_mt8 left, double right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator <(double left, double2_mt8 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator >(double left, double2_mt8 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator <=(double left, double2_mt8 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator >=(double left, double2_mt8 right)
+    {
+        return new(left >= right.x, left >= right.y);
     }
 
     [MethodImpl(256 | 512)]
@@ -2292,6 +3636,102 @@ public partial struct double2_mt16 : IComparable<double2_mt16>, IComparable
     }
 
     [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator <(double2_mt16 left, double_mt16 right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator >(double2_mt16 left, double_mt16 right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator <=(double2_mt16 left, double_mt16 right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator >=(double2_mt16 left, double_mt16 right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator <(double_mt16 left, double2_mt16 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator >(double_mt16 left, double2_mt16 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator <=(double_mt16 left, double2_mt16 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator >=(double_mt16 left, double2_mt16 right)
+    {
+        return new(left >= right.x, left >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator <(double2_mt16 left, double right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator >(double2_mt16 left, double right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator <=(double2_mt16 left, double right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator >=(double2_mt16 left, double right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator <(double left, double2_mt16 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator >(double left, double2_mt16 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator <=(double left, double2_mt16 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator >=(double left, double2_mt16 right)
+    {
+        return new(left >= right.x, left >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
     public readonly b64_mt16 LessThanAll(double2_mt16 other)
     {
         return (x < other.x) & (y < other.y);
@@ -2445,6 +3885,102 @@ public partial struct double2_mt32 : IComparable<double2_mt32>, IComparable
     public static b64v2_mt32 operator >=(double2_mt32 left, double2_mt32 right)
     {
         return new(left.x >= right.x, left.y >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator <(double2_mt32 left, double_mt32 right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator >(double2_mt32 left, double_mt32 right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator <=(double2_mt32 left, double_mt32 right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator >=(double2_mt32 left, double_mt32 right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator <(double_mt32 left, double2_mt32 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator >(double_mt32 left, double2_mt32 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator <=(double_mt32 left, double2_mt32 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator >=(double_mt32 left, double2_mt32 right)
+    {
+        return new(left >= right.x, left >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator <(double2_mt32 left, double right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator >(double2_mt32 left, double right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator <=(double2_mt32 left, double right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator >=(double2_mt32 left, double right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator <(double left, double2_mt32 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator >(double left, double2_mt32 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator <=(double left, double2_mt32 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator >=(double left, double2_mt32 right)
+    {
+        return new(left >= right.x, left >= right.y);
     }
 
     [MethodImpl(256 | 512)]
@@ -2604,6 +4140,102 @@ public partial struct double3_mt4 : IComparable<double3_mt4>, IComparable
     }
 
     [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator <(double3_mt4 left, double_mt4 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator >(double3_mt4 left, double_mt4 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator <=(double3_mt4 left, double_mt4 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator >=(double3_mt4 left, double_mt4 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator <(double_mt4 left, double3_mt4 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator >(double_mt4 left, double3_mt4 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator <=(double_mt4 left, double3_mt4 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator >=(double_mt4 left, double3_mt4 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator <(double3_mt4 left, double right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator >(double3_mt4 left, double right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator <=(double3_mt4 left, double right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator >=(double3_mt4 left, double right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator <(double left, double3_mt4 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator >(double left, double3_mt4 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator <=(double left, double3_mt4 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator >=(double left, double3_mt4 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
     public readonly b64_mt4 LessThanAll(double3_mt4 other)
     {
         return (x < other.x) & (y < other.y) & (z < other.z);
@@ -2757,6 +4389,102 @@ public partial struct double3_mt8 : IComparable<double3_mt8>, IComparable
     public static b64v3_mt8 operator >=(double3_mt8 left, double3_mt8 right)
     {
         return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator <(double3_mt8 left, double_mt8 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator >(double3_mt8 left, double_mt8 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator <=(double3_mt8 left, double_mt8 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator >=(double3_mt8 left, double_mt8 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator <(double_mt8 left, double3_mt8 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator >(double_mt8 left, double3_mt8 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator <=(double_mt8 left, double3_mt8 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator >=(double_mt8 left, double3_mt8 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator <(double3_mt8 left, double right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator >(double3_mt8 left, double right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator <=(double3_mt8 left, double right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator >=(double3_mt8 left, double right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator <(double left, double3_mt8 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator >(double left, double3_mt8 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator <=(double left, double3_mt8 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator >=(double left, double3_mt8 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
     }
 
     [MethodImpl(256 | 512)]
@@ -2916,6 +4644,102 @@ public partial struct double3_mt16 : IComparable<double3_mt16>, IComparable
     }
 
     [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator <(double3_mt16 left, double_mt16 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator >(double3_mt16 left, double_mt16 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator <=(double3_mt16 left, double_mt16 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator >=(double3_mt16 left, double_mt16 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator <(double_mt16 left, double3_mt16 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator >(double_mt16 left, double3_mt16 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator <=(double_mt16 left, double3_mt16 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator >=(double_mt16 left, double3_mt16 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator <(double3_mt16 left, double right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator >(double3_mt16 left, double right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator <=(double3_mt16 left, double right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator >=(double3_mt16 left, double right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator <(double left, double3_mt16 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator >(double left, double3_mt16 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator <=(double left, double3_mt16 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator >=(double left, double3_mt16 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
     public readonly b64_mt16 LessThanAll(double3_mt16 other)
     {
         return (x < other.x) & (y < other.y) & (z < other.z);
@@ -3069,6 +4893,102 @@ public partial struct double3_mt32 : IComparable<double3_mt32>, IComparable
     public static b64v3_mt32 operator >=(double3_mt32 left, double3_mt32 right)
     {
         return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator <(double3_mt32 left, double_mt32 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator >(double3_mt32 left, double_mt32 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator <=(double3_mt32 left, double_mt32 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator >=(double3_mt32 left, double_mt32 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator <(double_mt32 left, double3_mt32 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator >(double_mt32 left, double3_mt32 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator <=(double_mt32 left, double3_mt32 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator >=(double_mt32 left, double3_mt32 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator <(double3_mt32 left, double right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator >(double3_mt32 left, double right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator <=(double3_mt32 left, double right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator >=(double3_mt32 left, double right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator <(double left, double3_mt32 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator >(double left, double3_mt32 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator <=(double left, double3_mt32 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator >=(double left, double3_mt32 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
     }
 
     [MethodImpl(256 | 512)]
@@ -3228,6 +5148,102 @@ public partial struct double4_mt4 : IComparable<double4_mt4>, IComparable
     }
 
     [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator <(double4_mt4 left, double_mt4 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator >(double4_mt4 left, double_mt4 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator <=(double4_mt4 left, double_mt4 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator >=(double4_mt4 left, double_mt4 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator <(double_mt4 left, double4_mt4 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator >(double_mt4 left, double4_mt4 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator <=(double_mt4 left, double4_mt4 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator >=(double_mt4 left, double4_mt4 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator <(double4_mt4 left, double right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator >(double4_mt4 left, double right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator <=(double4_mt4 left, double right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator >=(double4_mt4 left, double right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator <(double left, double4_mt4 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator >(double left, double4_mt4 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator <=(double left, double4_mt4 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator >=(double left, double4_mt4 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
     public readonly b64_mt4 LessThanAll(double4_mt4 other)
     {
         return (x < other.x) & (y < other.y) & (z < other.z) & (w < other.w);
@@ -3381,6 +5397,102 @@ public partial struct double4_mt8 : IComparable<double4_mt8>, IComparable
     public static b64v4_mt8 operator >=(double4_mt8 left, double4_mt8 right)
     {
         return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator <(double4_mt8 left, double_mt8 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator >(double4_mt8 left, double_mt8 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator <=(double4_mt8 left, double_mt8 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator >=(double4_mt8 left, double_mt8 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator <(double_mt8 left, double4_mt8 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator >(double_mt8 left, double4_mt8 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator <=(double_mt8 left, double4_mt8 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator >=(double_mt8 left, double4_mt8 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator <(double4_mt8 left, double right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator >(double4_mt8 left, double right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator <=(double4_mt8 left, double right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator >=(double4_mt8 left, double right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator <(double left, double4_mt8 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator >(double left, double4_mt8 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator <=(double left, double4_mt8 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator >=(double left, double4_mt8 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
     }
 
     [MethodImpl(256 | 512)]
@@ -3540,6 +5652,102 @@ public partial struct double4_mt16 : IComparable<double4_mt16>, IComparable
     }
 
     [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator <(double4_mt16 left, double_mt16 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator >(double4_mt16 left, double_mt16 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator <=(double4_mt16 left, double_mt16 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator >=(double4_mt16 left, double_mt16 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator <(double_mt16 left, double4_mt16 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator >(double_mt16 left, double4_mt16 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator <=(double_mt16 left, double4_mt16 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator >=(double_mt16 left, double4_mt16 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator <(double4_mt16 left, double right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator >(double4_mt16 left, double right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator <=(double4_mt16 left, double right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator >=(double4_mt16 left, double right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator <(double left, double4_mt16 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator >(double left, double4_mt16 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator <=(double left, double4_mt16 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator >=(double left, double4_mt16 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
     public readonly b64_mt16 LessThanAll(double4_mt16 other)
     {
         return (x < other.x) & (y < other.y) & (z < other.z) & (w < other.w);
@@ -3693,6 +5901,102 @@ public partial struct double4_mt32 : IComparable<double4_mt32>, IComparable
     public static b64v4_mt32 operator >=(double4_mt32 left, double4_mt32 right)
     {
         return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator <(double4_mt32 left, double_mt32 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator >(double4_mt32 left, double_mt32 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator <=(double4_mt32 left, double_mt32 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator >=(double4_mt32 left, double_mt32 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator <(double_mt32 left, double4_mt32 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator >(double_mt32 left, double4_mt32 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator <=(double_mt32 left, double4_mt32 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator >=(double_mt32 left, double4_mt32 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator <(double4_mt32 left, double right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator >(double4_mt32 left, double right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator <=(double4_mt32 left, double right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator >=(double4_mt32 left, double right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator <(double left, double4_mt32 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator >(double left, double4_mt32 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator <=(double left, double4_mt32 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator >=(double left, double4_mt32 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
     }
 
     [MethodImpl(256 | 512)]
@@ -3852,6 +6156,102 @@ public partial struct int2_mt4 : IComparable<int2_mt4>, IComparable
     }
 
     [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator <(int2_mt4 left, int_mt4 right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator >(int2_mt4 left, int_mt4 right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator <=(int2_mt4 left, int_mt4 right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator >=(int2_mt4 left, int_mt4 right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator <(int_mt4 left, int2_mt4 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator >(int_mt4 left, int2_mt4 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator <=(int_mt4 left, int2_mt4 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator >=(int_mt4 left, int2_mt4 right)
+    {
+        return new(left >= right.x, left >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator <(int2_mt4 left, int right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator >(int2_mt4 left, int right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator <=(int2_mt4 left, int right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator >=(int2_mt4 left, int right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator <(int left, int2_mt4 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator >(int left, int2_mt4 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator <=(int left, int2_mt4 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator >=(int left, int2_mt4 right)
+    {
+        return new(left >= right.x, left >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
     public readonly b32_mt4 LessThanAll(int2_mt4 other)
     {
         return (x < other.x) & (y < other.y);
@@ -4005,6 +6405,102 @@ public partial struct int2_mt8 : IComparable<int2_mt8>, IComparable
     public static b32v2_mt8 operator >=(int2_mt8 left, int2_mt8 right)
     {
         return new(left.x >= right.x, left.y >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator <(int2_mt8 left, int_mt8 right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator >(int2_mt8 left, int_mt8 right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator <=(int2_mt8 left, int_mt8 right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator >=(int2_mt8 left, int_mt8 right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator <(int_mt8 left, int2_mt8 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator >(int_mt8 left, int2_mt8 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator <=(int_mt8 left, int2_mt8 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator >=(int_mt8 left, int2_mt8 right)
+    {
+        return new(left >= right.x, left >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator <(int2_mt8 left, int right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator >(int2_mt8 left, int right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator <=(int2_mt8 left, int right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator >=(int2_mt8 left, int right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator <(int left, int2_mt8 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator >(int left, int2_mt8 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator <=(int left, int2_mt8 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator >=(int left, int2_mt8 right)
+    {
+        return new(left >= right.x, left >= right.y);
     }
 
     [MethodImpl(256 | 512)]
@@ -4164,6 +6660,102 @@ public partial struct int2_mt16 : IComparable<int2_mt16>, IComparable
     }
 
     [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator <(int2_mt16 left, int_mt16 right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator >(int2_mt16 left, int_mt16 right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator <=(int2_mt16 left, int_mt16 right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator >=(int2_mt16 left, int_mt16 right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator <(int_mt16 left, int2_mt16 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator >(int_mt16 left, int2_mt16 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator <=(int_mt16 left, int2_mt16 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator >=(int_mt16 left, int2_mt16 right)
+    {
+        return new(left >= right.x, left >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator <(int2_mt16 left, int right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator >(int2_mt16 left, int right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator <=(int2_mt16 left, int right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator >=(int2_mt16 left, int right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator <(int left, int2_mt16 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator >(int left, int2_mt16 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator <=(int left, int2_mt16 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator >=(int left, int2_mt16 right)
+    {
+        return new(left >= right.x, left >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
     public readonly b32_mt16 LessThanAll(int2_mt16 other)
     {
         return (x < other.x) & (y < other.y);
@@ -4317,6 +6909,102 @@ public partial struct int2_mt32 : IComparable<int2_mt32>, IComparable
     public static b32v2_mt32 operator >=(int2_mt32 left, int2_mt32 right)
     {
         return new(left.x >= right.x, left.y >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator <(int2_mt32 left, int_mt32 right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator >(int2_mt32 left, int_mt32 right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator <=(int2_mt32 left, int_mt32 right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator >=(int2_mt32 left, int_mt32 right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator <(int_mt32 left, int2_mt32 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator >(int_mt32 left, int2_mt32 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator <=(int_mt32 left, int2_mt32 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator >=(int_mt32 left, int2_mt32 right)
+    {
+        return new(left >= right.x, left >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator <(int2_mt32 left, int right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator >(int2_mt32 left, int right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator <=(int2_mt32 left, int right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator >=(int2_mt32 left, int right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator <(int left, int2_mt32 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator >(int left, int2_mt32 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator <=(int left, int2_mt32 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator >=(int left, int2_mt32 right)
+    {
+        return new(left >= right.x, left >= right.y);
     }
 
     [MethodImpl(256 | 512)]
@@ -4476,6 +7164,102 @@ public partial struct int3_mt4 : IComparable<int3_mt4>, IComparable
     }
 
     [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator <(int3_mt4 left, int_mt4 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator >(int3_mt4 left, int_mt4 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator <=(int3_mt4 left, int_mt4 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator >=(int3_mt4 left, int_mt4 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator <(int_mt4 left, int3_mt4 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator >(int_mt4 left, int3_mt4 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator <=(int_mt4 left, int3_mt4 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator >=(int_mt4 left, int3_mt4 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator <(int3_mt4 left, int right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator >(int3_mt4 left, int right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator <=(int3_mt4 left, int right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator >=(int3_mt4 left, int right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator <(int left, int3_mt4 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator >(int left, int3_mt4 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator <=(int left, int3_mt4 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator >=(int left, int3_mt4 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
     public readonly b32_mt4 LessThanAll(int3_mt4 other)
     {
         return (x < other.x) & (y < other.y) & (z < other.z);
@@ -4629,6 +7413,102 @@ public partial struct int3_mt8 : IComparable<int3_mt8>, IComparable
     public static b32v3_mt8 operator >=(int3_mt8 left, int3_mt8 right)
     {
         return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator <(int3_mt8 left, int_mt8 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator >(int3_mt8 left, int_mt8 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator <=(int3_mt8 left, int_mt8 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator >=(int3_mt8 left, int_mt8 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator <(int_mt8 left, int3_mt8 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator >(int_mt8 left, int3_mt8 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator <=(int_mt8 left, int3_mt8 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator >=(int_mt8 left, int3_mt8 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator <(int3_mt8 left, int right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator >(int3_mt8 left, int right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator <=(int3_mt8 left, int right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator >=(int3_mt8 left, int right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator <(int left, int3_mt8 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator >(int left, int3_mt8 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator <=(int left, int3_mt8 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator >=(int left, int3_mt8 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
     }
 
     [MethodImpl(256 | 512)]
@@ -4788,6 +7668,102 @@ public partial struct int3_mt16 : IComparable<int3_mt16>, IComparable
     }
 
     [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator <(int3_mt16 left, int_mt16 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator >(int3_mt16 left, int_mt16 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator <=(int3_mt16 left, int_mt16 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator >=(int3_mt16 left, int_mt16 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator <(int_mt16 left, int3_mt16 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator >(int_mt16 left, int3_mt16 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator <=(int_mt16 left, int3_mt16 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator >=(int_mt16 left, int3_mt16 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator <(int3_mt16 left, int right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator >(int3_mt16 left, int right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator <=(int3_mt16 left, int right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator >=(int3_mt16 left, int right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator <(int left, int3_mt16 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator >(int left, int3_mt16 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator <=(int left, int3_mt16 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator >=(int left, int3_mt16 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
     public readonly b32_mt16 LessThanAll(int3_mt16 other)
     {
         return (x < other.x) & (y < other.y) & (z < other.z);
@@ -4941,6 +7917,102 @@ public partial struct int3_mt32 : IComparable<int3_mt32>, IComparable
     public static b32v3_mt32 operator >=(int3_mt32 left, int3_mt32 right)
     {
         return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator <(int3_mt32 left, int_mt32 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator >(int3_mt32 left, int_mt32 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator <=(int3_mt32 left, int_mt32 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator >=(int3_mt32 left, int_mt32 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator <(int_mt32 left, int3_mt32 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator >(int_mt32 left, int3_mt32 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator <=(int_mt32 left, int3_mt32 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator >=(int_mt32 left, int3_mt32 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator <(int3_mt32 left, int right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator >(int3_mt32 left, int right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator <=(int3_mt32 left, int right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator >=(int3_mt32 left, int right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator <(int left, int3_mt32 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator >(int left, int3_mt32 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator <=(int left, int3_mt32 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator >=(int left, int3_mt32 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
     }
 
     [MethodImpl(256 | 512)]
@@ -5100,6 +8172,102 @@ public partial struct int4_mt4 : IComparable<int4_mt4>, IComparable
     }
 
     [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator <(int4_mt4 left, int_mt4 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator >(int4_mt4 left, int_mt4 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator <=(int4_mt4 left, int_mt4 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator >=(int4_mt4 left, int_mt4 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator <(int_mt4 left, int4_mt4 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator >(int_mt4 left, int4_mt4 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator <=(int_mt4 left, int4_mt4 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator >=(int_mt4 left, int4_mt4 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator <(int4_mt4 left, int right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator >(int4_mt4 left, int right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator <=(int4_mt4 left, int right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator >=(int4_mt4 left, int right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator <(int left, int4_mt4 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator >(int left, int4_mt4 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator <=(int left, int4_mt4 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator >=(int left, int4_mt4 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
     public readonly b32_mt4 LessThanAll(int4_mt4 other)
     {
         return (x < other.x) & (y < other.y) & (z < other.z) & (w < other.w);
@@ -5253,6 +8421,102 @@ public partial struct int4_mt8 : IComparable<int4_mt8>, IComparable
     public static b32v4_mt8 operator >=(int4_mt8 left, int4_mt8 right)
     {
         return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator <(int4_mt8 left, int_mt8 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator >(int4_mt8 left, int_mt8 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator <=(int4_mt8 left, int_mt8 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator >=(int4_mt8 left, int_mt8 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator <(int_mt8 left, int4_mt8 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator >(int_mt8 left, int4_mt8 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator <=(int_mt8 left, int4_mt8 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator >=(int_mt8 left, int4_mt8 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator <(int4_mt8 left, int right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator >(int4_mt8 left, int right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator <=(int4_mt8 left, int right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator >=(int4_mt8 left, int right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator <(int left, int4_mt8 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator >(int left, int4_mt8 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator <=(int left, int4_mt8 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator >=(int left, int4_mt8 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
     }
 
     [MethodImpl(256 | 512)]
@@ -5412,6 +8676,102 @@ public partial struct int4_mt16 : IComparable<int4_mt16>, IComparable
     }
 
     [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator <(int4_mt16 left, int_mt16 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator >(int4_mt16 left, int_mt16 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator <=(int4_mt16 left, int_mt16 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator >=(int4_mt16 left, int_mt16 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator <(int_mt16 left, int4_mt16 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator >(int_mt16 left, int4_mt16 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator <=(int_mt16 left, int4_mt16 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator >=(int_mt16 left, int4_mt16 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator <(int4_mt16 left, int right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator >(int4_mt16 left, int right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator <=(int4_mt16 left, int right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator >=(int4_mt16 left, int right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator <(int left, int4_mt16 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator >(int left, int4_mt16 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator <=(int left, int4_mt16 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator >=(int left, int4_mt16 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
     public readonly b32_mt16 LessThanAll(int4_mt16 other)
     {
         return (x < other.x) & (y < other.y) & (z < other.z) & (w < other.w);
@@ -5565,6 +8925,102 @@ public partial struct int4_mt32 : IComparable<int4_mt32>, IComparable
     public static b32v4_mt32 operator >=(int4_mt32 left, int4_mt32 right)
     {
         return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator <(int4_mt32 left, int_mt32 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator >(int4_mt32 left, int_mt32 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator <=(int4_mt32 left, int_mt32 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator >=(int4_mt32 left, int_mt32 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator <(int_mt32 left, int4_mt32 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator >(int_mt32 left, int4_mt32 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator <=(int_mt32 left, int4_mt32 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator >=(int_mt32 left, int4_mt32 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator <(int4_mt32 left, int right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator >(int4_mt32 left, int right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator <=(int4_mt32 left, int right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator >=(int4_mt32 left, int right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator <(int left, int4_mt32 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator >(int left, int4_mt32 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator <=(int left, int4_mt32 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator >=(int left, int4_mt32 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
     }
 
     [MethodImpl(256 | 512)]
@@ -5724,6 +9180,102 @@ public partial struct uint2_mt4 : IComparable<uint2_mt4>, IComparable
     }
 
     [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator <(uint2_mt4 left, uint_mt4 right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator >(uint2_mt4 left, uint_mt4 right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator <=(uint2_mt4 left, uint_mt4 right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator >=(uint2_mt4 left, uint_mt4 right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator <(uint_mt4 left, uint2_mt4 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator >(uint_mt4 left, uint2_mt4 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator <=(uint_mt4 left, uint2_mt4 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator >=(uint_mt4 left, uint2_mt4 right)
+    {
+        return new(left >= right.x, left >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator <(uint2_mt4 left, uint right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator >(uint2_mt4 left, uint right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator <=(uint2_mt4 left, uint right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator >=(uint2_mt4 left, uint right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator <(uint left, uint2_mt4 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator >(uint left, uint2_mt4 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator <=(uint left, uint2_mt4 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator >=(uint left, uint2_mt4 right)
+    {
+        return new(left >= right.x, left >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
     public readonly b32_mt4 LessThanAll(uint2_mt4 other)
     {
         return (x < other.x) & (y < other.y);
@@ -5877,6 +9429,102 @@ public partial struct uint2_mt8 : IComparable<uint2_mt8>, IComparable
     public static b32v2_mt8 operator >=(uint2_mt8 left, uint2_mt8 right)
     {
         return new(left.x >= right.x, left.y >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator <(uint2_mt8 left, uint_mt8 right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator >(uint2_mt8 left, uint_mt8 right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator <=(uint2_mt8 left, uint_mt8 right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator >=(uint2_mt8 left, uint_mt8 right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator <(uint_mt8 left, uint2_mt8 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator >(uint_mt8 left, uint2_mt8 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator <=(uint_mt8 left, uint2_mt8 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator >=(uint_mt8 left, uint2_mt8 right)
+    {
+        return new(left >= right.x, left >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator <(uint2_mt8 left, uint right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator >(uint2_mt8 left, uint right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator <=(uint2_mt8 left, uint right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator >=(uint2_mt8 left, uint right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator <(uint left, uint2_mt8 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator >(uint left, uint2_mt8 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator <=(uint left, uint2_mt8 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator >=(uint left, uint2_mt8 right)
+    {
+        return new(left >= right.x, left >= right.y);
     }
 
     [MethodImpl(256 | 512)]
@@ -6036,6 +9684,102 @@ public partial struct uint2_mt16 : IComparable<uint2_mt16>, IComparable
     }
 
     [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator <(uint2_mt16 left, uint_mt16 right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator >(uint2_mt16 left, uint_mt16 right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator <=(uint2_mt16 left, uint_mt16 right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator >=(uint2_mt16 left, uint_mt16 right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator <(uint_mt16 left, uint2_mt16 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator >(uint_mt16 left, uint2_mt16 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator <=(uint_mt16 left, uint2_mt16 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator >=(uint_mt16 left, uint2_mt16 right)
+    {
+        return new(left >= right.x, left >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator <(uint2_mt16 left, uint right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator >(uint2_mt16 left, uint right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator <=(uint2_mt16 left, uint right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator >=(uint2_mt16 left, uint right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator <(uint left, uint2_mt16 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator >(uint left, uint2_mt16 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator <=(uint left, uint2_mt16 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator >=(uint left, uint2_mt16 right)
+    {
+        return new(left >= right.x, left >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
     public readonly b32_mt16 LessThanAll(uint2_mt16 other)
     {
         return (x < other.x) & (y < other.y);
@@ -6189,6 +9933,102 @@ public partial struct uint2_mt32 : IComparable<uint2_mt32>, IComparable
     public static b32v2_mt32 operator >=(uint2_mt32 left, uint2_mt32 right)
     {
         return new(left.x >= right.x, left.y >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator <(uint2_mt32 left, uint_mt32 right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator >(uint2_mt32 left, uint_mt32 right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator <=(uint2_mt32 left, uint_mt32 right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator >=(uint2_mt32 left, uint_mt32 right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator <(uint_mt32 left, uint2_mt32 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator >(uint_mt32 left, uint2_mt32 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator <=(uint_mt32 left, uint2_mt32 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator >=(uint_mt32 left, uint2_mt32 right)
+    {
+        return new(left >= right.x, left >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator <(uint2_mt32 left, uint right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator >(uint2_mt32 left, uint right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator <=(uint2_mt32 left, uint right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator >=(uint2_mt32 left, uint right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator <(uint left, uint2_mt32 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator >(uint left, uint2_mt32 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator <=(uint left, uint2_mt32 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 operator >=(uint left, uint2_mt32 right)
+    {
+        return new(left >= right.x, left >= right.y);
     }
 
     [MethodImpl(256 | 512)]
@@ -6348,6 +10188,102 @@ public partial struct uint3_mt4 : IComparable<uint3_mt4>, IComparable
     }
 
     [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator <(uint3_mt4 left, uint_mt4 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator >(uint3_mt4 left, uint_mt4 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator <=(uint3_mt4 left, uint_mt4 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator >=(uint3_mt4 left, uint_mt4 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator <(uint_mt4 left, uint3_mt4 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator >(uint_mt4 left, uint3_mt4 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator <=(uint_mt4 left, uint3_mt4 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator >=(uint_mt4 left, uint3_mt4 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator <(uint3_mt4 left, uint right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator >(uint3_mt4 left, uint right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator <=(uint3_mt4 left, uint right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator >=(uint3_mt4 left, uint right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator <(uint left, uint3_mt4 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator >(uint left, uint3_mt4 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator <=(uint left, uint3_mt4 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator >=(uint left, uint3_mt4 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
     public readonly b32_mt4 LessThanAll(uint3_mt4 other)
     {
         return (x < other.x) & (y < other.y) & (z < other.z);
@@ -6501,6 +10437,102 @@ public partial struct uint3_mt8 : IComparable<uint3_mt8>, IComparable
     public static b32v3_mt8 operator >=(uint3_mt8 left, uint3_mt8 right)
     {
         return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator <(uint3_mt8 left, uint_mt8 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator >(uint3_mt8 left, uint_mt8 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator <=(uint3_mt8 left, uint_mt8 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator >=(uint3_mt8 left, uint_mt8 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator <(uint_mt8 left, uint3_mt8 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator >(uint_mt8 left, uint3_mt8 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator <=(uint_mt8 left, uint3_mt8 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator >=(uint_mt8 left, uint3_mt8 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator <(uint3_mt8 left, uint right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator >(uint3_mt8 left, uint right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator <=(uint3_mt8 left, uint right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator >=(uint3_mt8 left, uint right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator <(uint left, uint3_mt8 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator >(uint left, uint3_mt8 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator <=(uint left, uint3_mt8 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator >=(uint left, uint3_mt8 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
     }
 
     [MethodImpl(256 | 512)]
@@ -6660,6 +10692,102 @@ public partial struct uint3_mt16 : IComparable<uint3_mt16>, IComparable
     }
 
     [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator <(uint3_mt16 left, uint_mt16 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator >(uint3_mt16 left, uint_mt16 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator <=(uint3_mt16 left, uint_mt16 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator >=(uint3_mt16 left, uint_mt16 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator <(uint_mt16 left, uint3_mt16 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator >(uint_mt16 left, uint3_mt16 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator <=(uint_mt16 left, uint3_mt16 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator >=(uint_mt16 left, uint3_mt16 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator <(uint3_mt16 left, uint right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator >(uint3_mt16 left, uint right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator <=(uint3_mt16 left, uint right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator >=(uint3_mt16 left, uint right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator <(uint left, uint3_mt16 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator >(uint left, uint3_mt16 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator <=(uint left, uint3_mt16 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator >=(uint left, uint3_mt16 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
     public readonly b32_mt16 LessThanAll(uint3_mt16 other)
     {
         return (x < other.x) & (y < other.y) & (z < other.z);
@@ -6813,6 +10941,102 @@ public partial struct uint3_mt32 : IComparable<uint3_mt32>, IComparable
     public static b32v3_mt32 operator >=(uint3_mt32 left, uint3_mt32 right)
     {
         return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator <(uint3_mt32 left, uint_mt32 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator >(uint3_mt32 left, uint_mt32 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator <=(uint3_mt32 left, uint_mt32 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator >=(uint3_mt32 left, uint_mt32 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator <(uint_mt32 left, uint3_mt32 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator >(uint_mt32 left, uint3_mt32 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator <=(uint_mt32 left, uint3_mt32 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator >=(uint_mt32 left, uint3_mt32 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator <(uint3_mt32 left, uint right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator >(uint3_mt32 left, uint right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator <=(uint3_mt32 left, uint right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator >=(uint3_mt32 left, uint right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator <(uint left, uint3_mt32 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator >(uint left, uint3_mt32 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator <=(uint left, uint3_mt32 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 operator >=(uint left, uint3_mt32 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
     }
 
     [MethodImpl(256 | 512)]
@@ -6972,6 +11196,102 @@ public partial struct uint4_mt4 : IComparable<uint4_mt4>, IComparable
     }
 
     [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator <(uint4_mt4 left, uint_mt4 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator >(uint4_mt4 left, uint_mt4 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator <=(uint4_mt4 left, uint_mt4 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator >=(uint4_mt4 left, uint_mt4 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator <(uint_mt4 left, uint4_mt4 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator >(uint_mt4 left, uint4_mt4 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator <=(uint_mt4 left, uint4_mt4 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator >=(uint_mt4 left, uint4_mt4 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator <(uint4_mt4 left, uint right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator >(uint4_mt4 left, uint right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator <=(uint4_mt4 left, uint right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator >=(uint4_mt4 left, uint right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator <(uint left, uint4_mt4 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator >(uint left, uint4_mt4 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator <=(uint left, uint4_mt4 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator >=(uint left, uint4_mt4 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
     public readonly b32_mt4 LessThanAll(uint4_mt4 other)
     {
         return (x < other.x) & (y < other.y) & (z < other.z) & (w < other.w);
@@ -7125,6 +11445,102 @@ public partial struct uint4_mt8 : IComparable<uint4_mt8>, IComparable
     public static b32v4_mt8 operator >=(uint4_mt8 left, uint4_mt8 right)
     {
         return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator <(uint4_mt8 left, uint_mt8 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator >(uint4_mt8 left, uint_mt8 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator <=(uint4_mt8 left, uint_mt8 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator >=(uint4_mt8 left, uint_mt8 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator <(uint_mt8 left, uint4_mt8 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator >(uint_mt8 left, uint4_mt8 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator <=(uint_mt8 left, uint4_mt8 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator >=(uint_mt8 left, uint4_mt8 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator <(uint4_mt8 left, uint right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator >(uint4_mt8 left, uint right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator <=(uint4_mt8 left, uint right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator >=(uint4_mt8 left, uint right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator <(uint left, uint4_mt8 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator >(uint left, uint4_mt8 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator <=(uint left, uint4_mt8 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator >=(uint left, uint4_mt8 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
     }
 
     [MethodImpl(256 | 512)]
@@ -7284,6 +11700,102 @@ public partial struct uint4_mt16 : IComparable<uint4_mt16>, IComparable
     }
 
     [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator <(uint4_mt16 left, uint_mt16 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator >(uint4_mt16 left, uint_mt16 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator <=(uint4_mt16 left, uint_mt16 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator >=(uint4_mt16 left, uint_mt16 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator <(uint_mt16 left, uint4_mt16 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator >(uint_mt16 left, uint4_mt16 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator <=(uint_mt16 left, uint4_mt16 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator >=(uint_mt16 left, uint4_mt16 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator <(uint4_mt16 left, uint right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator >(uint4_mt16 left, uint right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator <=(uint4_mt16 left, uint right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator >=(uint4_mt16 left, uint right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator <(uint left, uint4_mt16 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator >(uint left, uint4_mt16 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator <=(uint left, uint4_mt16 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator >=(uint left, uint4_mt16 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
     public readonly b32_mt16 LessThanAll(uint4_mt16 other)
     {
         return (x < other.x) & (y < other.y) & (z < other.z) & (w < other.w);
@@ -7437,6 +11949,102 @@ public partial struct uint4_mt32 : IComparable<uint4_mt32>, IComparable
     public static b32v4_mt32 operator >=(uint4_mt32 left, uint4_mt32 right)
     {
         return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator <(uint4_mt32 left, uint_mt32 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator >(uint4_mt32 left, uint_mt32 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator <=(uint4_mt32 left, uint_mt32 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator >=(uint4_mt32 left, uint_mt32 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator <(uint_mt32 left, uint4_mt32 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator >(uint_mt32 left, uint4_mt32 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator <=(uint_mt32 left, uint4_mt32 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator >=(uint_mt32 left, uint4_mt32 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator <(uint4_mt32 left, uint right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator >(uint4_mt32 left, uint right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator <=(uint4_mt32 left, uint right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator >=(uint4_mt32 left, uint right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator <(uint left, uint4_mt32 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator >(uint left, uint4_mt32 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator <=(uint left, uint4_mt32 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 operator >=(uint left, uint4_mt32 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
     }
 
     [MethodImpl(256 | 512)]
@@ -7596,6 +12204,102 @@ public partial struct long2_mt4 : IComparable<long2_mt4>, IComparable
     }
 
     [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator <(long2_mt4 left, long_mt4 right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator >(long2_mt4 left, long_mt4 right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator <=(long2_mt4 left, long_mt4 right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator >=(long2_mt4 left, long_mt4 right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator <(long_mt4 left, long2_mt4 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator >(long_mt4 left, long2_mt4 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator <=(long_mt4 left, long2_mt4 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator >=(long_mt4 left, long2_mt4 right)
+    {
+        return new(left >= right.x, left >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator <(long2_mt4 left, long right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator >(long2_mt4 left, long right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator <=(long2_mt4 left, long right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator >=(long2_mt4 left, long right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator <(long left, long2_mt4 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator >(long left, long2_mt4 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator <=(long left, long2_mt4 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator >=(long left, long2_mt4 right)
+    {
+        return new(left >= right.x, left >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
     public readonly b64_mt4 LessThanAll(long2_mt4 other)
     {
         return (x < other.x) & (y < other.y);
@@ -7749,6 +12453,102 @@ public partial struct long2_mt8 : IComparable<long2_mt8>, IComparable
     public static b64v2_mt8 operator >=(long2_mt8 left, long2_mt8 right)
     {
         return new(left.x >= right.x, left.y >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator <(long2_mt8 left, long_mt8 right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator >(long2_mt8 left, long_mt8 right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator <=(long2_mt8 left, long_mt8 right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator >=(long2_mt8 left, long_mt8 right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator <(long_mt8 left, long2_mt8 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator >(long_mt8 left, long2_mt8 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator <=(long_mt8 left, long2_mt8 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator >=(long_mt8 left, long2_mt8 right)
+    {
+        return new(left >= right.x, left >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator <(long2_mt8 left, long right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator >(long2_mt8 left, long right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator <=(long2_mt8 left, long right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator >=(long2_mt8 left, long right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator <(long left, long2_mt8 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator >(long left, long2_mt8 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator <=(long left, long2_mt8 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator >=(long left, long2_mt8 right)
+    {
+        return new(left >= right.x, left >= right.y);
     }
 
     [MethodImpl(256 | 512)]
@@ -7908,6 +12708,102 @@ public partial struct long2_mt16 : IComparable<long2_mt16>, IComparable
     }
 
     [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator <(long2_mt16 left, long_mt16 right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator >(long2_mt16 left, long_mt16 right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator <=(long2_mt16 left, long_mt16 right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator >=(long2_mt16 left, long_mt16 right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator <(long_mt16 left, long2_mt16 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator >(long_mt16 left, long2_mt16 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator <=(long_mt16 left, long2_mt16 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator >=(long_mt16 left, long2_mt16 right)
+    {
+        return new(left >= right.x, left >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator <(long2_mt16 left, long right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator >(long2_mt16 left, long right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator <=(long2_mt16 left, long right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator >=(long2_mt16 left, long right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator <(long left, long2_mt16 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator >(long left, long2_mt16 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator <=(long left, long2_mt16 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator >=(long left, long2_mt16 right)
+    {
+        return new(left >= right.x, left >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
     public readonly b64_mt16 LessThanAll(long2_mt16 other)
     {
         return (x < other.x) & (y < other.y);
@@ -8061,6 +12957,102 @@ public partial struct long2_mt32 : IComparable<long2_mt32>, IComparable
     public static b64v2_mt32 operator >=(long2_mt32 left, long2_mt32 right)
     {
         return new(left.x >= right.x, left.y >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator <(long2_mt32 left, long_mt32 right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator >(long2_mt32 left, long_mt32 right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator <=(long2_mt32 left, long_mt32 right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator >=(long2_mt32 left, long_mt32 right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator <(long_mt32 left, long2_mt32 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator >(long_mt32 left, long2_mt32 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator <=(long_mt32 left, long2_mt32 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator >=(long_mt32 left, long2_mt32 right)
+    {
+        return new(left >= right.x, left >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator <(long2_mt32 left, long right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator >(long2_mt32 left, long right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator <=(long2_mt32 left, long right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator >=(long2_mt32 left, long right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator <(long left, long2_mt32 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator >(long left, long2_mt32 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator <=(long left, long2_mt32 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator >=(long left, long2_mt32 right)
+    {
+        return new(left >= right.x, left >= right.y);
     }
 
     [MethodImpl(256 | 512)]
@@ -8220,6 +13212,102 @@ public partial struct long3_mt4 : IComparable<long3_mt4>, IComparable
     }
 
     [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator <(long3_mt4 left, long_mt4 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator >(long3_mt4 left, long_mt4 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator <=(long3_mt4 left, long_mt4 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator >=(long3_mt4 left, long_mt4 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator <(long_mt4 left, long3_mt4 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator >(long_mt4 left, long3_mt4 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator <=(long_mt4 left, long3_mt4 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator >=(long_mt4 left, long3_mt4 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator <(long3_mt4 left, long right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator >(long3_mt4 left, long right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator <=(long3_mt4 left, long right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator >=(long3_mt4 left, long right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator <(long left, long3_mt4 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator >(long left, long3_mt4 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator <=(long left, long3_mt4 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator >=(long left, long3_mt4 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
     public readonly b64_mt4 LessThanAll(long3_mt4 other)
     {
         return (x < other.x) & (y < other.y) & (z < other.z);
@@ -8373,6 +13461,102 @@ public partial struct long3_mt8 : IComparable<long3_mt8>, IComparable
     public static b64v3_mt8 operator >=(long3_mt8 left, long3_mt8 right)
     {
         return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator <(long3_mt8 left, long_mt8 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator >(long3_mt8 left, long_mt8 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator <=(long3_mt8 left, long_mt8 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator >=(long3_mt8 left, long_mt8 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator <(long_mt8 left, long3_mt8 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator >(long_mt8 left, long3_mt8 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator <=(long_mt8 left, long3_mt8 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator >=(long_mt8 left, long3_mt8 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator <(long3_mt8 left, long right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator >(long3_mt8 left, long right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator <=(long3_mt8 left, long right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator >=(long3_mt8 left, long right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator <(long left, long3_mt8 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator >(long left, long3_mt8 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator <=(long left, long3_mt8 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator >=(long left, long3_mt8 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
     }
 
     [MethodImpl(256 | 512)]
@@ -8532,6 +13716,102 @@ public partial struct long3_mt16 : IComparable<long3_mt16>, IComparable
     }
 
     [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator <(long3_mt16 left, long_mt16 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator >(long3_mt16 left, long_mt16 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator <=(long3_mt16 left, long_mt16 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator >=(long3_mt16 left, long_mt16 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator <(long_mt16 left, long3_mt16 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator >(long_mt16 left, long3_mt16 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator <=(long_mt16 left, long3_mt16 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator >=(long_mt16 left, long3_mt16 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator <(long3_mt16 left, long right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator >(long3_mt16 left, long right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator <=(long3_mt16 left, long right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator >=(long3_mt16 left, long right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator <(long left, long3_mt16 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator >(long left, long3_mt16 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator <=(long left, long3_mt16 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator >=(long left, long3_mt16 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
     public readonly b64_mt16 LessThanAll(long3_mt16 other)
     {
         return (x < other.x) & (y < other.y) & (z < other.z);
@@ -8685,6 +13965,102 @@ public partial struct long3_mt32 : IComparable<long3_mt32>, IComparable
     public static b64v3_mt32 operator >=(long3_mt32 left, long3_mt32 right)
     {
         return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator <(long3_mt32 left, long_mt32 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator >(long3_mt32 left, long_mt32 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator <=(long3_mt32 left, long_mt32 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator >=(long3_mt32 left, long_mt32 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator <(long_mt32 left, long3_mt32 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator >(long_mt32 left, long3_mt32 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator <=(long_mt32 left, long3_mt32 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator >=(long_mt32 left, long3_mt32 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator <(long3_mt32 left, long right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator >(long3_mt32 left, long right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator <=(long3_mt32 left, long right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator >=(long3_mt32 left, long right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator <(long left, long3_mt32 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator >(long left, long3_mt32 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator <=(long left, long3_mt32 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator >=(long left, long3_mt32 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
     }
 
     [MethodImpl(256 | 512)]
@@ -8844,6 +14220,102 @@ public partial struct long4_mt4 : IComparable<long4_mt4>, IComparable
     }
 
     [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator <(long4_mt4 left, long_mt4 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator >(long4_mt4 left, long_mt4 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator <=(long4_mt4 left, long_mt4 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator >=(long4_mt4 left, long_mt4 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator <(long_mt4 left, long4_mt4 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator >(long_mt4 left, long4_mt4 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator <=(long_mt4 left, long4_mt4 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator >=(long_mt4 left, long4_mt4 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator <(long4_mt4 left, long right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator >(long4_mt4 left, long right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator <=(long4_mt4 left, long right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator >=(long4_mt4 left, long right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator <(long left, long4_mt4 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator >(long left, long4_mt4 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator <=(long left, long4_mt4 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator >=(long left, long4_mt4 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
     public readonly b64_mt4 LessThanAll(long4_mt4 other)
     {
         return (x < other.x) & (y < other.y) & (z < other.z) & (w < other.w);
@@ -8997,6 +14469,102 @@ public partial struct long4_mt8 : IComparable<long4_mt8>, IComparable
     public static b64v4_mt8 operator >=(long4_mt8 left, long4_mt8 right)
     {
         return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator <(long4_mt8 left, long_mt8 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator >(long4_mt8 left, long_mt8 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator <=(long4_mt8 left, long_mt8 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator >=(long4_mt8 left, long_mt8 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator <(long_mt8 left, long4_mt8 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator >(long_mt8 left, long4_mt8 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator <=(long_mt8 left, long4_mt8 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator >=(long_mt8 left, long4_mt8 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator <(long4_mt8 left, long right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator >(long4_mt8 left, long right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator <=(long4_mt8 left, long right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator >=(long4_mt8 left, long right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator <(long left, long4_mt8 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator >(long left, long4_mt8 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator <=(long left, long4_mt8 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator >=(long left, long4_mt8 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
     }
 
     [MethodImpl(256 | 512)]
@@ -9156,6 +14724,102 @@ public partial struct long4_mt16 : IComparable<long4_mt16>, IComparable
     }
 
     [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator <(long4_mt16 left, long_mt16 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator >(long4_mt16 left, long_mt16 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator <=(long4_mt16 left, long_mt16 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator >=(long4_mt16 left, long_mt16 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator <(long_mt16 left, long4_mt16 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator >(long_mt16 left, long4_mt16 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator <=(long_mt16 left, long4_mt16 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator >=(long_mt16 left, long4_mt16 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator <(long4_mt16 left, long right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator >(long4_mt16 left, long right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator <=(long4_mt16 left, long right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator >=(long4_mt16 left, long right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator <(long left, long4_mt16 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator >(long left, long4_mt16 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator <=(long left, long4_mt16 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator >=(long left, long4_mt16 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
     public readonly b64_mt16 LessThanAll(long4_mt16 other)
     {
         return (x < other.x) & (y < other.y) & (z < other.z) & (w < other.w);
@@ -9309,6 +14973,102 @@ public partial struct long4_mt32 : IComparable<long4_mt32>, IComparable
     public static b64v4_mt32 operator >=(long4_mt32 left, long4_mt32 right)
     {
         return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator <(long4_mt32 left, long_mt32 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator >(long4_mt32 left, long_mt32 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator <=(long4_mt32 left, long_mt32 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator >=(long4_mt32 left, long_mt32 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator <(long_mt32 left, long4_mt32 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator >(long_mt32 left, long4_mt32 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator <=(long_mt32 left, long4_mt32 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator >=(long_mt32 left, long4_mt32 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator <(long4_mt32 left, long right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator >(long4_mt32 left, long right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator <=(long4_mt32 left, long right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator >=(long4_mt32 left, long right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator <(long left, long4_mt32 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator >(long left, long4_mt32 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator <=(long left, long4_mt32 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator >=(long left, long4_mt32 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
     }
 
     [MethodImpl(256 | 512)]
@@ -9468,6 +15228,102 @@ public partial struct ulong2_mt4 : IComparable<ulong2_mt4>, IComparable
     }
 
     [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator <(ulong2_mt4 left, ulong_mt4 right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator >(ulong2_mt4 left, ulong_mt4 right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator <=(ulong2_mt4 left, ulong_mt4 right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator >=(ulong2_mt4 left, ulong_mt4 right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator <(ulong_mt4 left, ulong2_mt4 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator >(ulong_mt4 left, ulong2_mt4 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator <=(ulong_mt4 left, ulong2_mt4 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator >=(ulong_mt4 left, ulong2_mt4 right)
+    {
+        return new(left >= right.x, left >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator <(ulong2_mt4 left, ulong right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator >(ulong2_mt4 left, ulong right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator <=(ulong2_mt4 left, ulong right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator >=(ulong2_mt4 left, ulong right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator <(ulong left, ulong2_mt4 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator >(ulong left, ulong2_mt4 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator <=(ulong left, ulong2_mt4 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator >=(ulong left, ulong2_mt4 right)
+    {
+        return new(left >= right.x, left >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
     public readonly b64_mt4 LessThanAll(ulong2_mt4 other)
     {
         return (x < other.x) & (y < other.y);
@@ -9621,6 +15477,102 @@ public partial struct ulong2_mt8 : IComparable<ulong2_mt8>, IComparable
     public static b64v2_mt8 operator >=(ulong2_mt8 left, ulong2_mt8 right)
     {
         return new(left.x >= right.x, left.y >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator <(ulong2_mt8 left, ulong_mt8 right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator >(ulong2_mt8 left, ulong_mt8 right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator <=(ulong2_mt8 left, ulong_mt8 right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator >=(ulong2_mt8 left, ulong_mt8 right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator <(ulong_mt8 left, ulong2_mt8 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator >(ulong_mt8 left, ulong2_mt8 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator <=(ulong_mt8 left, ulong2_mt8 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator >=(ulong_mt8 left, ulong2_mt8 right)
+    {
+        return new(left >= right.x, left >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator <(ulong2_mt8 left, ulong right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator >(ulong2_mt8 left, ulong right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator <=(ulong2_mt8 left, ulong right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator >=(ulong2_mt8 left, ulong right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator <(ulong left, ulong2_mt8 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator >(ulong left, ulong2_mt8 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator <=(ulong left, ulong2_mt8 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator >=(ulong left, ulong2_mt8 right)
+    {
+        return new(left >= right.x, left >= right.y);
     }
 
     [MethodImpl(256 | 512)]
@@ -9780,6 +15732,102 @@ public partial struct ulong2_mt16 : IComparable<ulong2_mt16>, IComparable
     }
 
     [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator <(ulong2_mt16 left, ulong_mt16 right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator >(ulong2_mt16 left, ulong_mt16 right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator <=(ulong2_mt16 left, ulong_mt16 right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator >=(ulong2_mt16 left, ulong_mt16 right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator <(ulong_mt16 left, ulong2_mt16 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator >(ulong_mt16 left, ulong2_mt16 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator <=(ulong_mt16 left, ulong2_mt16 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator >=(ulong_mt16 left, ulong2_mt16 right)
+    {
+        return new(left >= right.x, left >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator <(ulong2_mt16 left, ulong right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator >(ulong2_mt16 left, ulong right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator <=(ulong2_mt16 left, ulong right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator >=(ulong2_mt16 left, ulong right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator <(ulong left, ulong2_mt16 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator >(ulong left, ulong2_mt16 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator <=(ulong left, ulong2_mt16 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator >=(ulong left, ulong2_mt16 right)
+    {
+        return new(left >= right.x, left >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
     public readonly b64_mt16 LessThanAll(ulong2_mt16 other)
     {
         return (x < other.x) & (y < other.y);
@@ -9933,6 +15981,102 @@ public partial struct ulong2_mt32 : IComparable<ulong2_mt32>, IComparable
     public static b64v2_mt32 operator >=(ulong2_mt32 left, ulong2_mt32 right)
     {
         return new(left.x >= right.x, left.y >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator <(ulong2_mt32 left, ulong_mt32 right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator >(ulong2_mt32 left, ulong_mt32 right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator <=(ulong2_mt32 left, ulong_mt32 right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator >=(ulong2_mt32 left, ulong_mt32 right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator <(ulong_mt32 left, ulong2_mt32 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator >(ulong_mt32 left, ulong2_mt32 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator <=(ulong_mt32 left, ulong2_mt32 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator >=(ulong_mt32 left, ulong2_mt32 right)
+    {
+        return new(left >= right.x, left >= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator <(ulong2_mt32 left, ulong right)
+    {
+        return new(left.x < right, left.y < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator >(ulong2_mt32 left, ulong right)
+    {
+        return new(left.x > right, left.y > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator <=(ulong2_mt32 left, ulong right)
+    {
+        return new(left.x <= right, left.y <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator >=(ulong2_mt32 left, ulong right)
+    {
+        return new(left.x >= right, left.y >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator <(ulong left, ulong2_mt32 right)
+    {
+        return new(left < right.x, left < right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator >(ulong left, ulong2_mt32 right)
+    {
+        return new(left > right.x, left > right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator <=(ulong left, ulong2_mt32 right)
+    {
+        return new(left <= right.x, left <= right.y);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 operator >=(ulong left, ulong2_mt32 right)
+    {
+        return new(left >= right.x, left >= right.y);
     }
 
     [MethodImpl(256 | 512)]
@@ -10092,6 +16236,102 @@ public partial struct ulong3_mt4 : IComparable<ulong3_mt4>, IComparable
     }
 
     [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator <(ulong3_mt4 left, ulong_mt4 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator >(ulong3_mt4 left, ulong_mt4 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator <=(ulong3_mt4 left, ulong_mt4 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator >=(ulong3_mt4 left, ulong_mt4 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator <(ulong_mt4 left, ulong3_mt4 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator >(ulong_mt4 left, ulong3_mt4 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator <=(ulong_mt4 left, ulong3_mt4 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator >=(ulong_mt4 left, ulong3_mt4 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator <(ulong3_mt4 left, ulong right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator >(ulong3_mt4 left, ulong right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator <=(ulong3_mt4 left, ulong right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator >=(ulong3_mt4 left, ulong right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator <(ulong left, ulong3_mt4 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator >(ulong left, ulong3_mt4 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator <=(ulong left, ulong3_mt4 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator >=(ulong left, ulong3_mt4 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
     public readonly b64_mt4 LessThanAll(ulong3_mt4 other)
     {
         return (x < other.x) & (y < other.y) & (z < other.z);
@@ -10245,6 +16485,102 @@ public partial struct ulong3_mt8 : IComparable<ulong3_mt8>, IComparable
     public static b64v3_mt8 operator >=(ulong3_mt8 left, ulong3_mt8 right)
     {
         return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator <(ulong3_mt8 left, ulong_mt8 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator >(ulong3_mt8 left, ulong_mt8 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator <=(ulong3_mt8 left, ulong_mt8 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator >=(ulong3_mt8 left, ulong_mt8 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator <(ulong_mt8 left, ulong3_mt8 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator >(ulong_mt8 left, ulong3_mt8 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator <=(ulong_mt8 left, ulong3_mt8 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator >=(ulong_mt8 left, ulong3_mt8 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator <(ulong3_mt8 left, ulong right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator >(ulong3_mt8 left, ulong right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator <=(ulong3_mt8 left, ulong right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator >=(ulong3_mt8 left, ulong right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator <(ulong left, ulong3_mt8 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator >(ulong left, ulong3_mt8 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator <=(ulong left, ulong3_mt8 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator >=(ulong left, ulong3_mt8 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
     }
 
     [MethodImpl(256 | 512)]
@@ -10404,6 +16740,102 @@ public partial struct ulong3_mt16 : IComparable<ulong3_mt16>, IComparable
     }
 
     [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator <(ulong3_mt16 left, ulong_mt16 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator >(ulong3_mt16 left, ulong_mt16 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator <=(ulong3_mt16 left, ulong_mt16 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator >=(ulong3_mt16 left, ulong_mt16 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator <(ulong_mt16 left, ulong3_mt16 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator >(ulong_mt16 left, ulong3_mt16 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator <=(ulong_mt16 left, ulong3_mt16 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator >=(ulong_mt16 left, ulong3_mt16 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator <(ulong3_mt16 left, ulong right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator >(ulong3_mt16 left, ulong right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator <=(ulong3_mt16 left, ulong right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator >=(ulong3_mt16 left, ulong right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator <(ulong left, ulong3_mt16 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator >(ulong left, ulong3_mt16 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator <=(ulong left, ulong3_mt16 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator >=(ulong left, ulong3_mt16 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
     public readonly b64_mt16 LessThanAll(ulong3_mt16 other)
     {
         return (x < other.x) & (y < other.y) & (z < other.z);
@@ -10557,6 +16989,102 @@ public partial struct ulong3_mt32 : IComparable<ulong3_mt32>, IComparable
     public static b64v3_mt32 operator >=(ulong3_mt32 left, ulong3_mt32 right)
     {
         return new(left.x >= right.x, left.y >= right.y, left.z >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator <(ulong3_mt32 left, ulong_mt32 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator >(ulong3_mt32 left, ulong_mt32 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator <=(ulong3_mt32 left, ulong_mt32 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator >=(ulong3_mt32 left, ulong_mt32 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator <(ulong_mt32 left, ulong3_mt32 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator >(ulong_mt32 left, ulong3_mt32 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator <=(ulong_mt32 left, ulong3_mt32 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator >=(ulong_mt32 left, ulong3_mt32 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator <(ulong3_mt32 left, ulong right)
+    {
+        return new(left.x < right, left.y < right, left.z < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator >(ulong3_mt32 left, ulong right)
+    {
+        return new(left.x > right, left.y > right, left.z > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator <=(ulong3_mt32 left, ulong right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator >=(ulong3_mt32 left, ulong right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator <(ulong left, ulong3_mt32 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator >(ulong left, ulong3_mt32 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator <=(ulong left, ulong3_mt32 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 operator >=(ulong left, ulong3_mt32 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z);
     }
 
     [MethodImpl(256 | 512)]
@@ -10716,6 +17244,102 @@ public partial struct ulong4_mt4 : IComparable<ulong4_mt4>, IComparable
     }
 
     [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator <(ulong4_mt4 left, ulong_mt4 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator >(ulong4_mt4 left, ulong_mt4 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator <=(ulong4_mt4 left, ulong_mt4 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator >=(ulong4_mt4 left, ulong_mt4 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator <(ulong_mt4 left, ulong4_mt4 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator >(ulong_mt4 left, ulong4_mt4 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator <=(ulong_mt4 left, ulong4_mt4 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator >=(ulong_mt4 left, ulong4_mt4 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator <(ulong4_mt4 left, ulong right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator >(ulong4_mt4 left, ulong right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator <=(ulong4_mt4 left, ulong right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator >=(ulong4_mt4 left, ulong right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator <(ulong left, ulong4_mt4 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator >(ulong left, ulong4_mt4 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator <=(ulong left, ulong4_mt4 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator >=(ulong left, ulong4_mt4 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
     public readonly b64_mt4 LessThanAll(ulong4_mt4 other)
     {
         return (x < other.x) & (y < other.y) & (z < other.z) & (w < other.w);
@@ -10869,6 +17493,102 @@ public partial struct ulong4_mt8 : IComparable<ulong4_mt8>, IComparable
     public static b64v4_mt8 operator >=(ulong4_mt8 left, ulong4_mt8 right)
     {
         return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator <(ulong4_mt8 left, ulong_mt8 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator >(ulong4_mt8 left, ulong_mt8 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator <=(ulong4_mt8 left, ulong_mt8 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator >=(ulong4_mt8 left, ulong_mt8 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator <(ulong_mt8 left, ulong4_mt8 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator >(ulong_mt8 left, ulong4_mt8 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator <=(ulong_mt8 left, ulong4_mt8 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator >=(ulong_mt8 left, ulong4_mt8 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator <(ulong4_mt8 left, ulong right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator >(ulong4_mt8 left, ulong right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator <=(ulong4_mt8 left, ulong right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator >=(ulong4_mt8 left, ulong right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator <(ulong left, ulong4_mt8 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator >(ulong left, ulong4_mt8 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator <=(ulong left, ulong4_mt8 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator >=(ulong left, ulong4_mt8 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
     }
 
     [MethodImpl(256 | 512)]
@@ -11028,6 +17748,102 @@ public partial struct ulong4_mt16 : IComparable<ulong4_mt16>, IComparable
     }
 
     [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator <(ulong4_mt16 left, ulong_mt16 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator >(ulong4_mt16 left, ulong_mt16 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator <=(ulong4_mt16 left, ulong_mt16 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator >=(ulong4_mt16 left, ulong_mt16 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator <(ulong_mt16 left, ulong4_mt16 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator >(ulong_mt16 left, ulong4_mt16 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator <=(ulong_mt16 left, ulong4_mt16 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator >=(ulong_mt16 left, ulong4_mt16 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator <(ulong4_mt16 left, ulong right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator >(ulong4_mt16 left, ulong right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator <=(ulong4_mt16 left, ulong right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator >=(ulong4_mt16 left, ulong right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator <(ulong left, ulong4_mt16 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator >(ulong left, ulong4_mt16 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator <=(ulong left, ulong4_mt16 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator >=(ulong left, ulong4_mt16 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
     public readonly b64_mt16 LessThanAll(ulong4_mt16 other)
     {
         return (x < other.x) & (y < other.y) & (z < other.z) & (w < other.w);
@@ -11181,6 +17997,102 @@ public partial struct ulong4_mt32 : IComparable<ulong4_mt32>, IComparable
     public static b64v4_mt32 operator >=(ulong4_mt32 left, ulong4_mt32 right)
     {
         return new(left.x >= right.x, left.y >= right.y, left.z >= right.z, left.w >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator <(ulong4_mt32 left, ulong_mt32 right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator >(ulong4_mt32 left, ulong_mt32 right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator <=(ulong4_mt32 left, ulong_mt32 right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator >=(ulong4_mt32 left, ulong_mt32 right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator <(ulong_mt32 left, ulong4_mt32 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator >(ulong_mt32 left, ulong4_mt32 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator <=(ulong_mt32 left, ulong4_mt32 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator >=(ulong_mt32 left, ulong4_mt32 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator <(ulong4_mt32 left, ulong right)
+    {
+        return new(left.x < right, left.y < right, left.z < right, left.w < right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator >(ulong4_mt32 left, ulong right)
+    {
+        return new(left.x > right, left.y > right, left.z > right, left.w > right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator <=(ulong4_mt32 left, ulong right)
+    {
+        return new(left.x <= right, left.y <= right, left.z <= right, left.w <= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator >=(ulong4_mt32 left, ulong right)
+    {
+        return new(left.x >= right, left.y >= right, left.z >= right, left.w >= right);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator <(ulong left, ulong4_mt32 right)
+    {
+        return new(left < right.x, left < right.y, left < right.z, left < right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator >(ulong left, ulong4_mt32 right)
+    {
+        return new(left > right.x, left > right.y, left > right.z, left > right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator <=(ulong left, ulong4_mt32 right)
+    {
+        return new(left <= right.x, left <= right.y, left <= right.z, left <= right.w);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 operator >=(ulong left, ulong4_mt32 right)
+    {
+        return new(left >= right.x, left >= right.y, left >= right.z, left >= right.w);
     }
 
     [MethodImpl(256 | 512)]

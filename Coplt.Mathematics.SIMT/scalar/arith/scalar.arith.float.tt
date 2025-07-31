@@ -117,6 +117,21 @@ public static partial class math_mt
     #pragma warning restore CS1718
 
     [MethodImpl(256 | 512)]
+    public static <#= bTypeName #> isFinite([This] <#= typeName #> a) => abs(a) < <#= typ.simdComp #>.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static <#= bTypeName #> isInf([This] <#= typeName #> a)
+    {
+        return new(<#= string.Join(", ", vectors.Select(v => $"simd.IsInfinity(a.{v}).AsUInt{bSize}()")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= bTypeName #> isPosInf([This] <#= typeName #> a) => a == <#= typ.simdComp #>.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static <#= bTypeName #> isNegInf([This] <#= typeName #> a) => a == <#= typ.simdComp #>.NegativeInfinity;
+
+    [MethodImpl(256 | 512)]
     public static <#= typeName #> ceil([This] <#= typeName #> a)
     {
         return new(<#= string.Join(", ", vectors.Select(v => $"Vector{bitSize}.Ceiling(a.{v})")) #>);
@@ -215,24 +230,7 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static <#= typeName #> wrap([This] <#= typeName #> x, <#= typeName #> min, <#= typeName #> max)
     {
-<#
-            // todo bool op
-            foreach (var v in vectors)
-            {
-#>
-        var a_<#= v #> = Vector<#= bitSize #>.GreaterThanOrEqual(x.<#= v #>, default);
-<#
-            }
-#>
-<#
-            foreach (var v in vectors)
-            {
-#>
-        var add_<#= v #> = Vector<#= bitSize #>.ConditionalSelect(a_<#= v #>, min.<#= v #>, max.<#= v #>);
-<#
-            }
-#>
-        var add = new <#= typeName #>(<#= string.Join(", ", vectors.Select(v => $"add_{v}")) #>);
+        var add = select(x >= <#= typeName #>.Zero, min, max);
         var off = x % (max - min);
         return add + off;
     }
@@ -240,24 +238,7 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static <#= typeName #> wrap([This] <#= typeName #> x, <#= typ.compType #> min, <#= typ.compType #> max)
     {
-<#
-            // todo bool op
-            foreach (var v in vectors)
-            {
-#>
-        var a_<#= v #> = Vector<#= bitSize #>.GreaterThanOrEqual(x.<#= v #>, default);
-<#
-            }
-#>
-<#
-            foreach (var v in vectors)
-            {
-#>
-        var add_<#= v #> = Vector<#= bitSize #>.ConditionalSelect(a_<#= v #>, Vector<#= bitSize #>.Create(min), Vector<#= bitSize #>.Create(max));
-<#
-            }
-#>
-        var add = new <#= typeName #>(<#= string.Join(", ", vectors.Select(v => $"add_{v}")) #>);
+        var add = select(x >= 0<#= typ.suffix #>, min, max);
         var off = x % (max - min);
         return add + off;
     }
@@ -324,9 +305,10 @@ public static partial class math_mt
     {
         return new(<#= string.Join(", ", vectors.Select(v => $"simd.RSqrt(a.{v})")) #>);
     }
-<#
-            // todo step
-#>
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> step(<#= typeName #> threshold, [This] <#= typeName #> a) =>
+        select(a >= threshold, <#= typeName #>.One, default);
 
     [MethodImpl(256 | 512)]
     public static <#= typeName #> sin([This] <#= typeName #> a)

@@ -26,12 +26,34 @@ namespace Coplt.Mathematics.SIMT;
                 var typeName = $"{typ.name}{i}_mt{size}";
                 var scalarName = $"{typ.compType}_mt{size}";
                 var simd_typeName = $"{typ.name}{i}";
+
+                var bSize = typ.size * 8;
+                var bTypeName = $"b{bSize}v{i}_mt{size}";
 #>
 #region <#= typeName #>
 
 [Ex]
 public static partial class math_mt
 {
+    [MethodImpl(256 | 512)]
+    public static <#= bTypeName #> isPow2([This] <#= typeName #> a)
+    {
+<#
+            if (typ.sig)
+            {
+#>
+        return ((a & (a - <#= typeName #>.One)) == <#= typeName #>.Zero) & (a > <#= typeName #>.Zero);
+<#
+            }
+            else
+            {
+#>
+        return ((a & (a - <#= typeName #>.One)) == <#= typeName #>.Zero) & (a != <#= typeName #>.Zero);
+<#
+            }
+#>
+    }
+
     [MethodImpl(256 | 512)]
     public static <#= typeName #> up2pow2([This] <#= typeName #> a) => new(<#=
                     string.Join(", ", Enumerable.Range(0, i).Select(n => $"up2pow2(a.{Typ.xyzw[n]})")) #>);

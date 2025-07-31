@@ -8,6 +8,12 @@ namespace Coplt.Mathematics.SIMT;
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
+    public static b32_mt4 isPow2([This] int_mt4 a)
+    {
+        return ((a & (a - int_mt4.One)) == default) & (a > default(int_mt4));
+    }
+
+    [MethodImpl(256 | 512)]
     public static int_mt4 up2pow2([This] int_mt4 a)
     {
         return new(simd.RoundUpToPowerOf2(a.vector));
@@ -20,6 +26,12 @@ public static partial class math_mt
 [Ex]
 public static partial class math_mt
 {
+    [MethodImpl(256 | 512)]
+    public static b32_mt8 isPow2([This] int_mt8 a)
+    {
+        return ((a & (a - int_mt8.One)) == default) & (a > default(int_mt8));
+    }
+
     [MethodImpl(256 | 512)]
     public static int_mt8 up2pow2([This] int_mt8 a)
     {
@@ -34,6 +46,12 @@ public static partial class math_mt
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
+    public static b32_mt16 isPow2([This] int_mt16 a)
+    {
+        return ((a & (a - int_mt16.One)) == default) & (a > default(int_mt16));
+    }
+
+    [MethodImpl(256 | 512)]
     public static int_mt16 up2pow2([This] int_mt16 a)
     {
         return new(simd.RoundUpToPowerOf2(a.vector));
@@ -46,6 +64,12 @@ public static partial class math_mt
 [Ex]
 public static partial class math_mt
 {
+    [MethodImpl(256 | 512)]
+    public static b32_mt32 isPow2([This] int_mt32 a)
+    {
+        return ((a & (a - int_mt32.One)) == default) & (a > default(int_mt32));
+    }
+
     [MethodImpl(256 | 512)]
     public static int_mt32 up2pow2([This] int_mt32 a)
     {
@@ -60,6 +84,12 @@ public static partial class math_mt
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
+    public static b32_mt4 isPow2([This] uint_mt4 a)
+    {
+        return ((a & (a - uint_mt4.One)) == default) & (a != default);
+    }
+
+    [MethodImpl(256 | 512)]
     public static uint_mt4 up2pow2([This] uint_mt4 a)
     {
         return new(simd.RoundUpToPowerOf2(a.vector));
@@ -72,6 +102,12 @@ public static partial class math_mt
 [Ex]
 public static partial class math_mt
 {
+    [MethodImpl(256 | 512)]
+    public static b32_mt8 isPow2([This] uint_mt8 a)
+    {
+        return ((a & (a - uint_mt8.One)) == default) & (a != default);
+    }
+
     [MethodImpl(256 | 512)]
     public static uint_mt8 up2pow2([This] uint_mt8 a)
     {
@@ -86,6 +122,12 @@ public static partial class math_mt
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
+    public static b32_mt16 isPow2([This] uint_mt16 a)
+    {
+        return ((a & (a - uint_mt16.One)) == default) & (a != default);
+    }
+
+    [MethodImpl(256 | 512)]
     public static uint_mt16 up2pow2([This] uint_mt16 a)
     {
         return new(simd.RoundUpToPowerOf2(a.vector));
@@ -98,6 +140,12 @@ public static partial class math_mt
 [Ex]
 public static partial class math_mt
 {
+    [MethodImpl(256 | 512)]
+    public static b32_mt32 isPow2([This] uint_mt32 a)
+    {
+        return ((a & (a - uint_mt32.One)) == default) & (a != default);
+    }
+
     [MethodImpl(256 | 512)]
     public static uint_mt32 up2pow2([This] uint_mt32 a)
     {
@@ -112,6 +160,12 @@ public static partial class math_mt
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
+    public static b64_mt4 isPow2([This] long_mt4 a)
+    {
+        return ((a & (a - long_mt4.One)) == default) & (a > default(long_mt4));
+    }
+
+    [MethodImpl(256 | 512)]
     public static long_mt4 up2pow2([This] long_mt4 a)
     {
         return new(simd.RoundUpToPowerOf2(a.vector));
@@ -124,6 +178,12 @@ public static partial class math_mt
 [Ex]
 public static partial class math_mt
 {
+    [MethodImpl(256 | 512)]
+    public static b64_mt8 isPow2([This] long_mt8 a)
+    {
+        return ((a & (a - long_mt8.One)) == default) & (a > default(long_mt8));
+    }
+
     [MethodImpl(256 | 512)]
     public static long_mt8 up2pow2([This] long_mt8 a)
     {
@@ -138,6 +198,12 @@ public static partial class math_mt
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
+    public static b64_mt16 isPow2([This] long_mt16 a)
+    {
+        return ((a & (a - long_mt16.One)) == default) & (a > default(long_mt16));
+    }
+
+    [MethodImpl(256 | 512)]
     public static long_mt16 up2pow2([This] long_mt16 a)
     {
         return new(simd.RoundUpToPowerOf2(a.vector0), simd.RoundUpToPowerOf2(a.vector1));
@@ -150,6 +216,12 @@ public static partial class math_mt
 [Ex]
 public static partial class math_mt
 {
+    [MethodImpl(256 | 512)]
+    public static b64_mt32 isPow2([This] long_mt32 a)
+    {
+        return ((a & (a - long_mt32.One)) == default) & (a > default(long_mt32));
+    }
+
     [MethodImpl(256 | 512)]
     public static long_mt32 up2pow2([This] long_mt32 a)
     {
@@ -164,6 +236,12 @@ public static partial class math_mt
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
+    public static b64_mt4 isPow2([This] ulong_mt4 a)
+    {
+        return ((a & (a - ulong_mt4.One)) == default) & (a != default);
+    }
+
+    [MethodImpl(256 | 512)]
     public static ulong_mt4 up2pow2([This] ulong_mt4 a)
     {
         return new(simd.RoundUpToPowerOf2(a.vector));
@@ -176,6 +254,12 @@ public static partial class math_mt
 [Ex]
 public static partial class math_mt
 {
+    [MethodImpl(256 | 512)]
+    public static b64_mt8 isPow2([This] ulong_mt8 a)
+    {
+        return ((a & (a - ulong_mt8.One)) == default) & (a != default);
+    }
+
     [MethodImpl(256 | 512)]
     public static ulong_mt8 up2pow2([This] ulong_mt8 a)
     {
@@ -190,6 +274,12 @@ public static partial class math_mt
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
+    public static b64_mt16 isPow2([This] ulong_mt16 a)
+    {
+        return ((a & (a - ulong_mt16.One)) == default) & (a != default);
+    }
+
+    [MethodImpl(256 | 512)]
     public static ulong_mt16 up2pow2([This] ulong_mt16 a)
     {
         return new(simd.RoundUpToPowerOf2(a.vector0), simd.RoundUpToPowerOf2(a.vector1));
@@ -202,6 +292,12 @@ public static partial class math_mt
 [Ex]
 public static partial class math_mt
 {
+    [MethodImpl(256 | 512)]
+    public static b64_mt32 isPow2([This] ulong_mt32 a)
+    {
+        return ((a & (a - ulong_mt32.One)) == default) & (a != default);
+    }
+
     [MethodImpl(256 | 512)]
     public static ulong_mt32 up2pow2([This] ulong_mt32 a)
     {

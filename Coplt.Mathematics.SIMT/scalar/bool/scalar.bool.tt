@@ -8,11 +8,15 @@ namespace Coplt.Mathematics.SIMT;
 
 <#
     var sizes = new[] { 4, 8, 16, 32 };
-    foreach (var typ in Typ.Typs)
+    for (int s = 2; s <= 8; s *= 2)
     {
-        if (!typ.i) continue;
-        if (!typ.bin) continue;
-        if (!typ.arith) continue;
+        var bSize = s * 8;
+        var bTypeNameV = $"b{bSize}v";
+        var bTypeName = $"b{bSize}";
+
+        var typ = Typ.Typs.FirstOrDefault(a => a.name == bTypeNameV);
+        if (typ.name == null) continue;
+
         if (!typ.simd) continue;
         if (typ.size < 4) continue;
         foreach (var size in sizes)
@@ -22,10 +26,7 @@ namespace Coplt.Mathematics.SIMT;
             var num_vectors = Math.Max(1, bitSize / 512);
             bitSize = Math.Min(512, bitSize);
 
-            var typeName = $"{typ.compType}_mt{size}";
-
-            var bSize = typ.size * 8;
-            var bTypeName = $"b{bSize}_mt{size}";
+            var typeName = $"{bTypeName}_mt{size}";
 
             IEnumerable<string> ForVectors(string name)
             {
@@ -43,32 +44,42 @@ namespace Coplt.Mathematics.SIMT;
 #>
 #region <#= typeName #>
 
+public partial struct <#= typeName #>
+{
+    public static <#= typeName #> True
+    {
+        [MethodImpl(256 | 512)]
+        get => new(<#= bTypeName #>.True);
+    }
+    public static <#= typeName #> False
+    {
+        [MethodImpl(256 | 512)]
+        get => new(<#= bTypeName #>.False);
+    }
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> operator !(<#= typeName #> self) => ~self;
+}
+
 [Ex]
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
-    public static <#= bTypeName #> isPow2([This] <#= typeName #> a)
+    public static bool lane_all([This] <#= typeName #> v)
     {
-<#
-            if (typ.sig)
-            {
-#>
-        return ((a & (a - <#= typeName #>.One)) == default) & (a > default(<#= typeName #>));
-<#
-            }
-            else
-            {
-#>
-        return ((a & (a - <#= typeName #>.One)) == default) & (a != default);
-<#
-            }
-#>
+        return <#= string.Join(" && ", vectors.Select(v => $"(v.{v} == Vector{bitSize}<{typ.simdComp}>.AllBitsSet)")) #>;
     }
 
     [MethodImpl(256 | 512)]
-    public static <#= typeName #> up2pow2([This] <#= typeName #> a)
+    public static bool lane_any([This] <#= typeName #> v)
     {
-        return new(<#= string.Join(", ", vectors.Select(v => $"simd.RoundUpToPowerOf2(a.{v})")) #>);
+        return <#= string.Join(" || ", vectors.Select(v => $"(v.{v} != default)")) #>;
+    }
+
+    [MethodImpl(256 | 512)]
+    public static bool lane_all_false([This] <#= typeName #> v)
+    {
+        return <#= string.Join(" && ", vectors.Select(v => $"(v.{v} == default)")) #>;
     }
 }
 

@@ -78,6 +78,21 @@ public static partial class math_mt
     #pragma warning restore CS1718
 
     [MethodImpl(256 | 512)]
+    public static b32_mt4 isFinite([This] float_mt4 a) => abs(a) < float.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b32_mt4 isInf([This] float_mt4 a)
+    {
+        return new(simd.IsInfinity(a.vector).AsUInt32());
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32_mt4 isPosInf([This] float_mt4 a) => a == float.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b32_mt4 isNegInf([This] float_mt4 a) => a == float.NegativeInfinity;
+
+    [MethodImpl(256 | 512)]
     public static float_mt4 ceil([This] float_mt4 a)
     {
         return new(Vector128.Ceiling(a.vector));
@@ -176,9 +191,7 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static float_mt4 wrap([This] float_mt4 x, float_mt4 min, float_mt4 max)
     {
-        var a_vector = Vector128.GreaterThanOrEqual(x.vector, default);
-        var add_vector = Vector128.ConditionalSelect(a_vector, min.vector, max.vector);
-        var add = new float_mt4(add_vector);
+        var add = select(x >= float_mt4.Zero, min, max);
         var off = x % (max - min);
         return add + off;
     }
@@ -186,9 +199,7 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static float_mt4 wrap([This] float_mt4 x, float min, float max)
     {
-        var a_vector = Vector128.GreaterThanOrEqual(x.vector, default);
-        var add_vector = Vector128.ConditionalSelect(a_vector, Vector128.Create(min), Vector128.Create(max));
-        var add = new float_mt4(add_vector);
+        var add = select(x >= 0f, min, max);
         var off = x % (max - min);
         return add + off;
     }
@@ -255,6 +266,10 @@ public static partial class math_mt
     {
         return new(simd.RSqrt(a.vector));
     }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt4 step(float_mt4 threshold, [This] float_mt4 a) =>
+        select(a >= threshold, float_mt4.One, default);
 
     [MethodImpl(256 | 512)]
     public static float_mt4 sin([This] float_mt4 a)
@@ -437,6 +452,21 @@ public static partial class math_mt
     #pragma warning restore CS1718
 
     [MethodImpl(256 | 512)]
+    public static b32_mt8 isFinite([This] float_mt8 a) => abs(a) < float.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b32_mt8 isInf([This] float_mt8 a)
+    {
+        return new(simd.IsInfinity(a.vector).AsUInt32());
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32_mt8 isPosInf([This] float_mt8 a) => a == float.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b32_mt8 isNegInf([This] float_mt8 a) => a == float.NegativeInfinity;
+
+    [MethodImpl(256 | 512)]
     public static float_mt8 ceil([This] float_mt8 a)
     {
         return new(Vector256.Ceiling(a.vector));
@@ -535,9 +565,7 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static float_mt8 wrap([This] float_mt8 x, float_mt8 min, float_mt8 max)
     {
-        var a_vector = Vector256.GreaterThanOrEqual(x.vector, default);
-        var add_vector = Vector256.ConditionalSelect(a_vector, min.vector, max.vector);
-        var add = new float_mt8(add_vector);
+        var add = select(x >= float_mt8.Zero, min, max);
         var off = x % (max - min);
         return add + off;
     }
@@ -545,9 +573,7 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static float_mt8 wrap([This] float_mt8 x, float min, float max)
     {
-        var a_vector = Vector256.GreaterThanOrEqual(x.vector, default);
-        var add_vector = Vector256.ConditionalSelect(a_vector, Vector256.Create(min), Vector256.Create(max));
-        var add = new float_mt8(add_vector);
+        var add = select(x >= 0f, min, max);
         var off = x % (max - min);
         return add + off;
     }
@@ -614,6 +640,10 @@ public static partial class math_mt
     {
         return new(simd.RSqrt(a.vector));
     }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt8 step(float_mt8 threshold, [This] float_mt8 a) =>
+        select(a >= threshold, float_mt8.One, default);
 
     [MethodImpl(256 | 512)]
     public static float_mt8 sin([This] float_mt8 a)
@@ -796,6 +826,21 @@ public static partial class math_mt
     #pragma warning restore CS1718
 
     [MethodImpl(256 | 512)]
+    public static b32_mt16 isFinite([This] float_mt16 a) => abs(a) < float.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b32_mt16 isInf([This] float_mt16 a)
+    {
+        return new(simd.IsInfinity(a.vector).AsUInt32());
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32_mt16 isPosInf([This] float_mt16 a) => a == float.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b32_mt16 isNegInf([This] float_mt16 a) => a == float.NegativeInfinity;
+
+    [MethodImpl(256 | 512)]
     public static float_mt16 ceil([This] float_mt16 a)
     {
         return new(Vector512.Ceiling(a.vector));
@@ -894,9 +939,7 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static float_mt16 wrap([This] float_mt16 x, float_mt16 min, float_mt16 max)
     {
-        var a_vector = Vector512.GreaterThanOrEqual(x.vector, default);
-        var add_vector = Vector512.ConditionalSelect(a_vector, min.vector, max.vector);
-        var add = new float_mt16(add_vector);
+        var add = select(x >= float_mt16.Zero, min, max);
         var off = x % (max - min);
         return add + off;
     }
@@ -904,9 +947,7 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static float_mt16 wrap([This] float_mt16 x, float min, float max)
     {
-        var a_vector = Vector512.GreaterThanOrEqual(x.vector, default);
-        var add_vector = Vector512.ConditionalSelect(a_vector, Vector512.Create(min), Vector512.Create(max));
-        var add = new float_mt16(add_vector);
+        var add = select(x >= 0f, min, max);
         var off = x % (max - min);
         return add + off;
     }
@@ -973,6 +1014,10 @@ public static partial class math_mt
     {
         return new(simd.RSqrt(a.vector));
     }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt16 step(float_mt16 threshold, [This] float_mt16 a) =>
+        select(a >= threshold, float_mt16.One, default);
 
     [MethodImpl(256 | 512)]
     public static float_mt16 sin([This] float_mt16 a)
@@ -1155,6 +1200,21 @@ public static partial class math_mt
     #pragma warning restore CS1718
 
     [MethodImpl(256 | 512)]
+    public static b32_mt32 isFinite([This] float_mt32 a) => abs(a) < float.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b32_mt32 isInf([This] float_mt32 a)
+    {
+        return new(simd.IsInfinity(a.vector0).AsUInt32(), simd.IsInfinity(a.vector1).AsUInt32());
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32_mt32 isPosInf([This] float_mt32 a) => a == float.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b32_mt32 isNegInf([This] float_mt32 a) => a == float.NegativeInfinity;
+
+    [MethodImpl(256 | 512)]
     public static float_mt32 ceil([This] float_mt32 a)
     {
         return new(Vector512.Ceiling(a.vector0), Vector512.Ceiling(a.vector1));
@@ -1253,11 +1313,7 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static float_mt32 wrap([This] float_mt32 x, float_mt32 min, float_mt32 max)
     {
-        var a_vector0 = Vector512.GreaterThanOrEqual(x.vector0, default);
-        var a_vector1 = Vector512.GreaterThanOrEqual(x.vector1, default);
-        var add_vector0 = Vector512.ConditionalSelect(a_vector0, min.vector0, max.vector0);
-        var add_vector1 = Vector512.ConditionalSelect(a_vector1, min.vector1, max.vector1);
-        var add = new float_mt32(add_vector0, add_vector1);
+        var add = select(x >= float_mt32.Zero, min, max);
         var off = x % (max - min);
         return add + off;
     }
@@ -1265,11 +1321,7 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static float_mt32 wrap([This] float_mt32 x, float min, float max)
     {
-        var a_vector0 = Vector512.GreaterThanOrEqual(x.vector0, default);
-        var a_vector1 = Vector512.GreaterThanOrEqual(x.vector1, default);
-        var add_vector0 = Vector512.ConditionalSelect(a_vector0, Vector512.Create(min), Vector512.Create(max));
-        var add_vector1 = Vector512.ConditionalSelect(a_vector1, Vector512.Create(min), Vector512.Create(max));
-        var add = new float_mt32(add_vector0, add_vector1);
+        var add = select(x >= 0f, min, max);
         var off = x % (max - min);
         return add + off;
     }
@@ -1336,6 +1388,10 @@ public static partial class math_mt
     {
         return new(simd.RSqrt(a.vector0), simd.RSqrt(a.vector1));
     }
+
+    [MethodImpl(256 | 512)]
+    public static float_mt32 step(float_mt32 threshold, [This] float_mt32 a) =>
+        select(a >= threshold, float_mt32.One, default);
 
     [MethodImpl(256 | 512)]
     public static float_mt32 sin([This] float_mt32 a)
@@ -1520,6 +1576,21 @@ public static partial class math_mt
     #pragma warning restore CS1718
 
     [MethodImpl(256 | 512)]
+    public static b64_mt4 isFinite([This] double_mt4 a) => abs(a) < double.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt4 isInf([This] double_mt4 a)
+    {
+        return new(simd.IsInfinity(a.vector).AsUInt64());
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt4 isPosInf([This] double_mt4 a) => a == double.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt4 isNegInf([This] double_mt4 a) => a == double.NegativeInfinity;
+
+    [MethodImpl(256 | 512)]
     public static double_mt4 ceil([This] double_mt4 a)
     {
         return new(Vector256.Ceiling(a.vector));
@@ -1618,9 +1689,7 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static double_mt4 wrap([This] double_mt4 x, double_mt4 min, double_mt4 max)
     {
-        var a_vector = Vector256.GreaterThanOrEqual(x.vector, default);
-        var add_vector = Vector256.ConditionalSelect(a_vector, min.vector, max.vector);
-        var add = new double_mt4(add_vector);
+        var add = select(x >= double_mt4.Zero, min, max);
         var off = x % (max - min);
         return add + off;
     }
@@ -1628,9 +1697,7 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static double_mt4 wrap([This] double_mt4 x, double min, double max)
     {
-        var a_vector = Vector256.GreaterThanOrEqual(x.vector, default);
-        var add_vector = Vector256.ConditionalSelect(a_vector, Vector256.Create(min), Vector256.Create(max));
-        var add = new double_mt4(add_vector);
+        var add = select(x >= 0, min, max);
         var off = x % (max - min);
         return add + off;
     }
@@ -1697,6 +1764,10 @@ public static partial class math_mt
     {
         return new(simd.RSqrt(a.vector));
     }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt4 step(double_mt4 threshold, [This] double_mt4 a) =>
+        select(a >= threshold, double_mt4.One, default);
 
     [MethodImpl(256 | 512)]
     public static double_mt4 sin([This] double_mt4 a)
@@ -1879,6 +1950,21 @@ public static partial class math_mt
     #pragma warning restore CS1718
 
     [MethodImpl(256 | 512)]
+    public static b64_mt8 isFinite([This] double_mt8 a) => abs(a) < double.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt8 isInf([This] double_mt8 a)
+    {
+        return new(simd.IsInfinity(a.vector).AsUInt64());
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt8 isPosInf([This] double_mt8 a) => a == double.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt8 isNegInf([This] double_mt8 a) => a == double.NegativeInfinity;
+
+    [MethodImpl(256 | 512)]
     public static double_mt8 ceil([This] double_mt8 a)
     {
         return new(Vector512.Ceiling(a.vector));
@@ -1977,9 +2063,7 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static double_mt8 wrap([This] double_mt8 x, double_mt8 min, double_mt8 max)
     {
-        var a_vector = Vector512.GreaterThanOrEqual(x.vector, default);
-        var add_vector = Vector512.ConditionalSelect(a_vector, min.vector, max.vector);
-        var add = new double_mt8(add_vector);
+        var add = select(x >= double_mt8.Zero, min, max);
         var off = x % (max - min);
         return add + off;
     }
@@ -1987,9 +2071,7 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static double_mt8 wrap([This] double_mt8 x, double min, double max)
     {
-        var a_vector = Vector512.GreaterThanOrEqual(x.vector, default);
-        var add_vector = Vector512.ConditionalSelect(a_vector, Vector512.Create(min), Vector512.Create(max));
-        var add = new double_mt8(add_vector);
+        var add = select(x >= 0, min, max);
         var off = x % (max - min);
         return add + off;
     }
@@ -2056,6 +2138,10 @@ public static partial class math_mt
     {
         return new(simd.RSqrt(a.vector));
     }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt8 step(double_mt8 threshold, [This] double_mt8 a) =>
+        select(a >= threshold, double_mt8.One, default);
 
     [MethodImpl(256 | 512)]
     public static double_mt8 sin([This] double_mt8 a)
@@ -2238,6 +2324,21 @@ public static partial class math_mt
     #pragma warning restore CS1718
 
     [MethodImpl(256 | 512)]
+    public static b64_mt16 isFinite([This] double_mt16 a) => abs(a) < double.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt16 isInf([This] double_mt16 a)
+    {
+        return new(simd.IsInfinity(a.vector0).AsUInt64(), simd.IsInfinity(a.vector1).AsUInt64());
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt16 isPosInf([This] double_mt16 a) => a == double.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt16 isNegInf([This] double_mt16 a) => a == double.NegativeInfinity;
+
+    [MethodImpl(256 | 512)]
     public static double_mt16 ceil([This] double_mt16 a)
     {
         return new(Vector512.Ceiling(a.vector0), Vector512.Ceiling(a.vector1));
@@ -2336,11 +2437,7 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static double_mt16 wrap([This] double_mt16 x, double_mt16 min, double_mt16 max)
     {
-        var a_vector0 = Vector512.GreaterThanOrEqual(x.vector0, default);
-        var a_vector1 = Vector512.GreaterThanOrEqual(x.vector1, default);
-        var add_vector0 = Vector512.ConditionalSelect(a_vector0, min.vector0, max.vector0);
-        var add_vector1 = Vector512.ConditionalSelect(a_vector1, min.vector1, max.vector1);
-        var add = new double_mt16(add_vector0, add_vector1);
+        var add = select(x >= double_mt16.Zero, min, max);
         var off = x % (max - min);
         return add + off;
     }
@@ -2348,11 +2445,7 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static double_mt16 wrap([This] double_mt16 x, double min, double max)
     {
-        var a_vector0 = Vector512.GreaterThanOrEqual(x.vector0, default);
-        var a_vector1 = Vector512.GreaterThanOrEqual(x.vector1, default);
-        var add_vector0 = Vector512.ConditionalSelect(a_vector0, Vector512.Create(min), Vector512.Create(max));
-        var add_vector1 = Vector512.ConditionalSelect(a_vector1, Vector512.Create(min), Vector512.Create(max));
-        var add = new double_mt16(add_vector0, add_vector1);
+        var add = select(x >= 0, min, max);
         var off = x % (max - min);
         return add + off;
     }
@@ -2419,6 +2512,10 @@ public static partial class math_mt
     {
         return new(simd.RSqrt(a.vector0), simd.RSqrt(a.vector1));
     }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt16 step(double_mt16 threshold, [This] double_mt16 a) =>
+        select(a >= threshold, double_mt16.One, default);
 
     [MethodImpl(256 | 512)]
     public static double_mt16 sin([This] double_mt16 a)
@@ -2603,6 +2700,21 @@ public static partial class math_mt
     #pragma warning restore CS1718
 
     [MethodImpl(256 | 512)]
+    public static b64_mt32 isFinite([This] double_mt32 a) => abs(a) < double.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt32 isInf([This] double_mt32 a)
+    {
+        return new(simd.IsInfinity(a.vector0).AsUInt64(), simd.IsInfinity(a.vector1).AsUInt64(), simd.IsInfinity(a.vector2).AsUInt64(), simd.IsInfinity(a.vector3).AsUInt64());
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt32 isPosInf([This] double_mt32 a) => a == double.PositiveInfinity;
+
+    [MethodImpl(256 | 512)]
+    public static b64_mt32 isNegInf([This] double_mt32 a) => a == double.NegativeInfinity;
+
+    [MethodImpl(256 | 512)]
     public static double_mt32 ceil([This] double_mt32 a)
     {
         return new(Vector512.Ceiling(a.vector0), Vector512.Ceiling(a.vector1), Vector512.Ceiling(a.vector2), Vector512.Ceiling(a.vector3));
@@ -2701,15 +2813,7 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static double_mt32 wrap([This] double_mt32 x, double_mt32 min, double_mt32 max)
     {
-        var a_vector0 = Vector512.GreaterThanOrEqual(x.vector0, default);
-        var a_vector1 = Vector512.GreaterThanOrEqual(x.vector1, default);
-        var a_vector2 = Vector512.GreaterThanOrEqual(x.vector2, default);
-        var a_vector3 = Vector512.GreaterThanOrEqual(x.vector3, default);
-        var add_vector0 = Vector512.ConditionalSelect(a_vector0, min.vector0, max.vector0);
-        var add_vector1 = Vector512.ConditionalSelect(a_vector1, min.vector1, max.vector1);
-        var add_vector2 = Vector512.ConditionalSelect(a_vector2, min.vector2, max.vector2);
-        var add_vector3 = Vector512.ConditionalSelect(a_vector3, min.vector3, max.vector3);
-        var add = new double_mt32(add_vector0, add_vector1, add_vector2, add_vector3);
+        var add = select(x >= double_mt32.Zero, min, max);
         var off = x % (max - min);
         return add + off;
     }
@@ -2717,15 +2821,7 @@ public static partial class math_mt
     [MethodImpl(256 | 512)]
     public static double_mt32 wrap([This] double_mt32 x, double min, double max)
     {
-        var a_vector0 = Vector512.GreaterThanOrEqual(x.vector0, default);
-        var a_vector1 = Vector512.GreaterThanOrEqual(x.vector1, default);
-        var a_vector2 = Vector512.GreaterThanOrEqual(x.vector2, default);
-        var a_vector3 = Vector512.GreaterThanOrEqual(x.vector3, default);
-        var add_vector0 = Vector512.ConditionalSelect(a_vector0, Vector512.Create(min), Vector512.Create(max));
-        var add_vector1 = Vector512.ConditionalSelect(a_vector1, Vector512.Create(min), Vector512.Create(max));
-        var add_vector2 = Vector512.ConditionalSelect(a_vector2, Vector512.Create(min), Vector512.Create(max));
-        var add_vector3 = Vector512.ConditionalSelect(a_vector3, Vector512.Create(min), Vector512.Create(max));
-        var add = new double_mt32(add_vector0, add_vector1, add_vector2, add_vector3);
+        var add = select(x >= 0, min, max);
         var off = x % (max - min);
         return add + off;
     }
@@ -2792,6 +2888,10 @@ public static partial class math_mt
     {
         return new(simd.RSqrt(a.vector0), simd.RSqrt(a.vector1), simd.RSqrt(a.vector2), simd.RSqrt(a.vector3));
     }
+
+    [MethodImpl(256 | 512)]
+    public static double_mt32 step(double_mt32 threshold, [This] double_mt32 a) =>
+        select(a >= threshold, double_mt32.One, default);
 
     [MethodImpl(256 | 512)]
     public static double_mt32 sin([This] double_mt32 a)

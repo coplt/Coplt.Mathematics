@@ -10,7 +10,6 @@ namespace Coplt.Mathematics.SIMT;
     var sizes = new[] { 4, 8, 16, 32 };
     foreach (var typ in Typ.Typs)
     {
-        if (!typ.arith) continue;
         if (!typ.simd) continue;
         if (typ.size < 4) continue;
         foreach (var size in sizes)

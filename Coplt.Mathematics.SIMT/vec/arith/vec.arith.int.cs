@@ -8,6 +8,12 @@ namespace Coplt.Mathematics.SIMT;
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
+    public static b32v2_mt4 isPow2([This] int2_mt4 a)
+    {
+        return ((a & (a - int2_mt4.One)) == int2_mt4.Zero) & (a > int2_mt4.Zero);
+    }
+
+    [MethodImpl(256 | 512)]
     public static int2_mt4 up2pow2([This] int2_mt4 a) => new(up2pow2(a.x), up2pow2(a.y));
 }
 
@@ -17,6 +23,12 @@ public static partial class math_mt
 [Ex]
 public static partial class math_mt
 {
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 isPow2([This] int2_mt8 a)
+    {
+        return ((a & (a - int2_mt8.One)) == int2_mt8.Zero) & (a > int2_mt8.Zero);
+    }
+
     [MethodImpl(256 | 512)]
     public static int2_mt8 up2pow2([This] int2_mt8 a) => new(up2pow2(a.x), up2pow2(a.y));
 }
@@ -28,6 +40,12 @@ public static partial class math_mt
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
+    public static b32v2_mt16 isPow2([This] int2_mt16 a)
+    {
+        return ((a & (a - int2_mt16.One)) == int2_mt16.Zero) & (a > int2_mt16.Zero);
+    }
+
+    [MethodImpl(256 | 512)]
     public static int2_mt16 up2pow2([This] int2_mt16 a) => new(up2pow2(a.x), up2pow2(a.y));
 }
 
@@ -37,6 +55,12 @@ public static partial class math_mt
 [Ex]
 public static partial class math_mt
 {
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 isPow2([This] int2_mt32 a)
+    {
+        return ((a & (a - int2_mt32.One)) == int2_mt32.Zero) & (a > int2_mt32.Zero);
+    }
+
     [MethodImpl(256 | 512)]
     public static int2_mt32 up2pow2([This] int2_mt32 a) => new(up2pow2(a.x), up2pow2(a.y));
 }
@@ -48,6 +72,12 @@ public static partial class math_mt
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
+    public static b32v3_mt4 isPow2([This] int3_mt4 a)
+    {
+        return ((a & (a - int3_mt4.One)) == int3_mt4.Zero) & (a > int3_mt4.Zero);
+    }
+
+    [MethodImpl(256 | 512)]
     public static int3_mt4 up2pow2([This] int3_mt4 a) => new(up2pow2(a.x), up2pow2(a.y), up2pow2(a.z));
 }
 
@@ -57,6 +87,12 @@ public static partial class math_mt
 [Ex]
 public static partial class math_mt
 {
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 isPow2([This] int3_mt8 a)
+    {
+        return ((a & (a - int3_mt8.One)) == int3_mt8.Zero) & (a > int3_mt8.Zero);
+    }
+
     [MethodImpl(256 | 512)]
     public static int3_mt8 up2pow2([This] int3_mt8 a) => new(up2pow2(a.x), up2pow2(a.y), up2pow2(a.z));
 }
@@ -68,6 +104,12 @@ public static partial class math_mt
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
+    public static b32v3_mt16 isPow2([This] int3_mt16 a)
+    {
+        return ((a & (a - int3_mt16.One)) == int3_mt16.Zero) & (a > int3_mt16.Zero);
+    }
+
+    [MethodImpl(256 | 512)]
     public static int3_mt16 up2pow2([This] int3_mt16 a) => new(up2pow2(a.x), up2pow2(a.y), up2pow2(a.z));
 }
 
@@ -77,6 +119,12 @@ public static partial class math_mt
 [Ex]
 public static partial class math_mt
 {
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 isPow2([This] int3_mt32 a)
+    {
+        return ((a & (a - int3_mt32.One)) == int3_mt32.Zero) & (a > int3_mt32.Zero);
+    }
+
     [MethodImpl(256 | 512)]
     public static int3_mt32 up2pow2([This] int3_mt32 a) => new(up2pow2(a.x), up2pow2(a.y), up2pow2(a.z));
 }
@@ -88,6 +136,12 @@ public static partial class math_mt
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
+    public static b32v4_mt4 isPow2([This] int4_mt4 a)
+    {
+        return ((a & (a - int4_mt4.One)) == int4_mt4.Zero) & (a > int4_mt4.Zero);
+    }
+
+    [MethodImpl(256 | 512)]
     public static int4_mt4 up2pow2([This] int4_mt4 a) => new(up2pow2(a.x), up2pow2(a.y), up2pow2(a.z), up2pow2(a.w));
 }
 
@@ -97,6 +151,12 @@ public static partial class math_mt
 [Ex]
 public static partial class math_mt
 {
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 isPow2([This] int4_mt8 a)
+    {
+        return ((a & (a - int4_mt8.One)) == int4_mt8.Zero) & (a > int4_mt8.Zero);
+    }
+
     [MethodImpl(256 | 512)]
     public static int4_mt8 up2pow2([This] int4_mt8 a) => new(up2pow2(a.x), up2pow2(a.y), up2pow2(a.z), up2pow2(a.w));
 }
@@ -108,6 +168,12 @@ public static partial class math_mt
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
+    public static b32v4_mt16 isPow2([This] int4_mt16 a)
+    {
+        return ((a & (a - int4_mt16.One)) == int4_mt16.Zero) & (a > int4_mt16.Zero);
+    }
+
+    [MethodImpl(256 | 512)]
     public static int4_mt16 up2pow2([This] int4_mt16 a) => new(up2pow2(a.x), up2pow2(a.y), up2pow2(a.z), up2pow2(a.w));
 }
 
@@ -117,6 +183,12 @@ public static partial class math_mt
 [Ex]
 public static partial class math_mt
 {
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 isPow2([This] int4_mt32 a)
+    {
+        return ((a & (a - int4_mt32.One)) == int4_mt32.Zero) & (a > int4_mt32.Zero);
+    }
+
     [MethodImpl(256 | 512)]
     public static int4_mt32 up2pow2([This] int4_mt32 a) => new(up2pow2(a.x), up2pow2(a.y), up2pow2(a.z), up2pow2(a.w));
 }
@@ -128,6 +200,12 @@ public static partial class math_mt
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
+    public static b32v2_mt4 isPow2([This] uint2_mt4 a)
+    {
+        return ((a & (a - uint2_mt4.One)) == uint2_mt4.Zero) & (a != uint2_mt4.Zero);
+    }
+
+    [MethodImpl(256 | 512)]
     public static uint2_mt4 up2pow2([This] uint2_mt4 a) => new(up2pow2(a.x), up2pow2(a.y));
 }
 
@@ -137,6 +215,12 @@ public static partial class math_mt
 [Ex]
 public static partial class math_mt
 {
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 isPow2([This] uint2_mt8 a)
+    {
+        return ((a & (a - uint2_mt8.One)) == uint2_mt8.Zero) & (a != uint2_mt8.Zero);
+    }
+
     [MethodImpl(256 | 512)]
     public static uint2_mt8 up2pow2([This] uint2_mt8 a) => new(up2pow2(a.x), up2pow2(a.y));
 }
@@ -148,6 +232,12 @@ public static partial class math_mt
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
+    public static b32v2_mt16 isPow2([This] uint2_mt16 a)
+    {
+        return ((a & (a - uint2_mt16.One)) == uint2_mt16.Zero) & (a != uint2_mt16.Zero);
+    }
+
+    [MethodImpl(256 | 512)]
     public static uint2_mt16 up2pow2([This] uint2_mt16 a) => new(up2pow2(a.x), up2pow2(a.y));
 }
 
@@ -157,6 +247,12 @@ public static partial class math_mt
 [Ex]
 public static partial class math_mt
 {
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt32 isPow2([This] uint2_mt32 a)
+    {
+        return ((a & (a - uint2_mt32.One)) == uint2_mt32.Zero) & (a != uint2_mt32.Zero);
+    }
+
     [MethodImpl(256 | 512)]
     public static uint2_mt32 up2pow2([This] uint2_mt32 a) => new(up2pow2(a.x), up2pow2(a.y));
 }
@@ -168,6 +264,12 @@ public static partial class math_mt
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
+    public static b32v3_mt4 isPow2([This] uint3_mt4 a)
+    {
+        return ((a & (a - uint3_mt4.One)) == uint3_mt4.Zero) & (a != uint3_mt4.Zero);
+    }
+
+    [MethodImpl(256 | 512)]
     public static uint3_mt4 up2pow2([This] uint3_mt4 a) => new(up2pow2(a.x), up2pow2(a.y), up2pow2(a.z));
 }
 
@@ -177,6 +279,12 @@ public static partial class math_mt
 [Ex]
 public static partial class math_mt
 {
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 isPow2([This] uint3_mt8 a)
+    {
+        return ((a & (a - uint3_mt8.One)) == uint3_mt8.Zero) & (a != uint3_mt8.Zero);
+    }
+
     [MethodImpl(256 | 512)]
     public static uint3_mt8 up2pow2([This] uint3_mt8 a) => new(up2pow2(a.x), up2pow2(a.y), up2pow2(a.z));
 }
@@ -188,6 +296,12 @@ public static partial class math_mt
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
+    public static b32v3_mt16 isPow2([This] uint3_mt16 a)
+    {
+        return ((a & (a - uint3_mt16.One)) == uint3_mt16.Zero) & (a != uint3_mt16.Zero);
+    }
+
+    [MethodImpl(256 | 512)]
     public static uint3_mt16 up2pow2([This] uint3_mt16 a) => new(up2pow2(a.x), up2pow2(a.y), up2pow2(a.z));
 }
 
@@ -197,6 +311,12 @@ public static partial class math_mt
 [Ex]
 public static partial class math_mt
 {
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt32 isPow2([This] uint3_mt32 a)
+    {
+        return ((a & (a - uint3_mt32.One)) == uint3_mt32.Zero) & (a != uint3_mt32.Zero);
+    }
+
     [MethodImpl(256 | 512)]
     public static uint3_mt32 up2pow2([This] uint3_mt32 a) => new(up2pow2(a.x), up2pow2(a.y), up2pow2(a.z));
 }
@@ -208,6 +328,12 @@ public static partial class math_mt
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
+    public static b32v4_mt4 isPow2([This] uint4_mt4 a)
+    {
+        return ((a & (a - uint4_mt4.One)) == uint4_mt4.Zero) & (a != uint4_mt4.Zero);
+    }
+
+    [MethodImpl(256 | 512)]
     public static uint4_mt4 up2pow2([This] uint4_mt4 a) => new(up2pow2(a.x), up2pow2(a.y), up2pow2(a.z), up2pow2(a.w));
 }
 
@@ -217,6 +343,12 @@ public static partial class math_mt
 [Ex]
 public static partial class math_mt
 {
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 isPow2([This] uint4_mt8 a)
+    {
+        return ((a & (a - uint4_mt8.One)) == uint4_mt8.Zero) & (a != uint4_mt8.Zero);
+    }
+
     [MethodImpl(256 | 512)]
     public static uint4_mt8 up2pow2([This] uint4_mt8 a) => new(up2pow2(a.x), up2pow2(a.y), up2pow2(a.z), up2pow2(a.w));
 }
@@ -228,6 +360,12 @@ public static partial class math_mt
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
+    public static b32v4_mt16 isPow2([This] uint4_mt16 a)
+    {
+        return ((a & (a - uint4_mt16.One)) == uint4_mt16.Zero) & (a != uint4_mt16.Zero);
+    }
+
+    [MethodImpl(256 | 512)]
     public static uint4_mt16 up2pow2([This] uint4_mt16 a) => new(up2pow2(a.x), up2pow2(a.y), up2pow2(a.z), up2pow2(a.w));
 }
 
@@ -237,6 +375,12 @@ public static partial class math_mt
 [Ex]
 public static partial class math_mt
 {
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt32 isPow2([This] uint4_mt32 a)
+    {
+        return ((a & (a - uint4_mt32.One)) == uint4_mt32.Zero) & (a != uint4_mt32.Zero);
+    }
+
     [MethodImpl(256 | 512)]
     public static uint4_mt32 up2pow2([This] uint4_mt32 a) => new(up2pow2(a.x), up2pow2(a.y), up2pow2(a.z), up2pow2(a.w));
 }
@@ -248,6 +392,12 @@ public static partial class math_mt
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
+    public static b64v2_mt4 isPow2([This] long2_mt4 a)
+    {
+        return ((a & (a - long2_mt4.One)) == long2_mt4.Zero) & (a > long2_mt4.Zero);
+    }
+
+    [MethodImpl(256 | 512)]
     public static long2_mt4 up2pow2([This] long2_mt4 a) => new(up2pow2(a.x), up2pow2(a.y));
 }
 
@@ -257,6 +407,12 @@ public static partial class math_mt
 [Ex]
 public static partial class math_mt
 {
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 isPow2([This] long2_mt8 a)
+    {
+        return ((a & (a - long2_mt8.One)) == long2_mt8.Zero) & (a > long2_mt8.Zero);
+    }
+
     [MethodImpl(256 | 512)]
     public static long2_mt8 up2pow2([This] long2_mt8 a) => new(up2pow2(a.x), up2pow2(a.y));
 }
@@ -268,6 +424,12 @@ public static partial class math_mt
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
+    public static b64v2_mt16 isPow2([This] long2_mt16 a)
+    {
+        return ((a & (a - long2_mt16.One)) == long2_mt16.Zero) & (a > long2_mt16.Zero);
+    }
+
+    [MethodImpl(256 | 512)]
     public static long2_mt16 up2pow2([This] long2_mt16 a) => new(up2pow2(a.x), up2pow2(a.y));
 }
 
@@ -277,6 +439,12 @@ public static partial class math_mt
 [Ex]
 public static partial class math_mt
 {
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 isPow2([This] long2_mt32 a)
+    {
+        return ((a & (a - long2_mt32.One)) == long2_mt32.Zero) & (a > long2_mt32.Zero);
+    }
+
     [MethodImpl(256 | 512)]
     public static long2_mt32 up2pow2([This] long2_mt32 a) => new(up2pow2(a.x), up2pow2(a.y));
 }
@@ -288,6 +456,12 @@ public static partial class math_mt
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
+    public static b64v3_mt4 isPow2([This] long3_mt4 a)
+    {
+        return ((a & (a - long3_mt4.One)) == long3_mt4.Zero) & (a > long3_mt4.Zero);
+    }
+
+    [MethodImpl(256 | 512)]
     public static long3_mt4 up2pow2([This] long3_mt4 a) => new(up2pow2(a.x), up2pow2(a.y), up2pow2(a.z));
 }
 
@@ -297,6 +471,12 @@ public static partial class math_mt
 [Ex]
 public static partial class math_mt
 {
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 isPow2([This] long3_mt8 a)
+    {
+        return ((a & (a - long3_mt8.One)) == long3_mt8.Zero) & (a > long3_mt8.Zero);
+    }
+
     [MethodImpl(256 | 512)]
     public static long3_mt8 up2pow2([This] long3_mt8 a) => new(up2pow2(a.x), up2pow2(a.y), up2pow2(a.z));
 }
@@ -308,6 +488,12 @@ public static partial class math_mt
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
+    public static b64v3_mt16 isPow2([This] long3_mt16 a)
+    {
+        return ((a & (a - long3_mt16.One)) == long3_mt16.Zero) & (a > long3_mt16.Zero);
+    }
+
+    [MethodImpl(256 | 512)]
     public static long3_mt16 up2pow2([This] long3_mt16 a) => new(up2pow2(a.x), up2pow2(a.y), up2pow2(a.z));
 }
 
@@ -317,6 +503,12 @@ public static partial class math_mt
 [Ex]
 public static partial class math_mt
 {
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 isPow2([This] long3_mt32 a)
+    {
+        return ((a & (a - long3_mt32.One)) == long3_mt32.Zero) & (a > long3_mt32.Zero);
+    }
+
     [MethodImpl(256 | 512)]
     public static long3_mt32 up2pow2([This] long3_mt32 a) => new(up2pow2(a.x), up2pow2(a.y), up2pow2(a.z));
 }
@@ -328,6 +520,12 @@ public static partial class math_mt
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
+    public static b64v4_mt4 isPow2([This] long4_mt4 a)
+    {
+        return ((a & (a - long4_mt4.One)) == long4_mt4.Zero) & (a > long4_mt4.Zero);
+    }
+
+    [MethodImpl(256 | 512)]
     public static long4_mt4 up2pow2([This] long4_mt4 a) => new(up2pow2(a.x), up2pow2(a.y), up2pow2(a.z), up2pow2(a.w));
 }
 
@@ -337,6 +535,12 @@ public static partial class math_mt
 [Ex]
 public static partial class math_mt
 {
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 isPow2([This] long4_mt8 a)
+    {
+        return ((a & (a - long4_mt8.One)) == long4_mt8.Zero) & (a > long4_mt8.Zero);
+    }
+
     [MethodImpl(256 | 512)]
     public static long4_mt8 up2pow2([This] long4_mt8 a) => new(up2pow2(a.x), up2pow2(a.y), up2pow2(a.z), up2pow2(a.w));
 }
@@ -348,6 +552,12 @@ public static partial class math_mt
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
+    public static b64v4_mt16 isPow2([This] long4_mt16 a)
+    {
+        return ((a & (a - long4_mt16.One)) == long4_mt16.Zero) & (a > long4_mt16.Zero);
+    }
+
+    [MethodImpl(256 | 512)]
     public static long4_mt16 up2pow2([This] long4_mt16 a) => new(up2pow2(a.x), up2pow2(a.y), up2pow2(a.z), up2pow2(a.w));
 }
 
@@ -357,6 +567,12 @@ public static partial class math_mt
 [Ex]
 public static partial class math_mt
 {
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 isPow2([This] long4_mt32 a)
+    {
+        return ((a & (a - long4_mt32.One)) == long4_mt32.Zero) & (a > long4_mt32.Zero);
+    }
+
     [MethodImpl(256 | 512)]
     public static long4_mt32 up2pow2([This] long4_mt32 a) => new(up2pow2(a.x), up2pow2(a.y), up2pow2(a.z), up2pow2(a.w));
 }
@@ -368,6 +584,12 @@ public static partial class math_mt
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
+    public static b64v2_mt4 isPow2([This] ulong2_mt4 a)
+    {
+        return ((a & (a - ulong2_mt4.One)) == ulong2_mt4.Zero) & (a != ulong2_mt4.Zero);
+    }
+
+    [MethodImpl(256 | 512)]
     public static ulong2_mt4 up2pow2([This] ulong2_mt4 a) => new(up2pow2(a.x), up2pow2(a.y));
 }
 
@@ -377,6 +599,12 @@ public static partial class math_mt
 [Ex]
 public static partial class math_mt
 {
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 isPow2([This] ulong2_mt8 a)
+    {
+        return ((a & (a - ulong2_mt8.One)) == ulong2_mt8.Zero) & (a != ulong2_mt8.Zero);
+    }
+
     [MethodImpl(256 | 512)]
     public static ulong2_mt8 up2pow2([This] ulong2_mt8 a) => new(up2pow2(a.x), up2pow2(a.y));
 }
@@ -388,6 +616,12 @@ public static partial class math_mt
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
+    public static b64v2_mt16 isPow2([This] ulong2_mt16 a)
+    {
+        return ((a & (a - ulong2_mt16.One)) == ulong2_mt16.Zero) & (a != ulong2_mt16.Zero);
+    }
+
+    [MethodImpl(256 | 512)]
     public static ulong2_mt16 up2pow2([This] ulong2_mt16 a) => new(up2pow2(a.x), up2pow2(a.y));
 }
 
@@ -397,6 +631,12 @@ public static partial class math_mt
 [Ex]
 public static partial class math_mt
 {
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt32 isPow2([This] ulong2_mt32 a)
+    {
+        return ((a & (a - ulong2_mt32.One)) == ulong2_mt32.Zero) & (a != ulong2_mt32.Zero);
+    }
+
     [MethodImpl(256 | 512)]
     public static ulong2_mt32 up2pow2([This] ulong2_mt32 a) => new(up2pow2(a.x), up2pow2(a.y));
 }
@@ -408,6 +648,12 @@ public static partial class math_mt
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
+    public static b64v3_mt4 isPow2([This] ulong3_mt4 a)
+    {
+        return ((a & (a - ulong3_mt4.One)) == ulong3_mt4.Zero) & (a != ulong3_mt4.Zero);
+    }
+
+    [MethodImpl(256 | 512)]
     public static ulong3_mt4 up2pow2([This] ulong3_mt4 a) => new(up2pow2(a.x), up2pow2(a.y), up2pow2(a.z));
 }
 
@@ -417,6 +663,12 @@ public static partial class math_mt
 [Ex]
 public static partial class math_mt
 {
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 isPow2([This] ulong3_mt8 a)
+    {
+        return ((a & (a - ulong3_mt8.One)) == ulong3_mt8.Zero) & (a != ulong3_mt8.Zero);
+    }
+
     [MethodImpl(256 | 512)]
     public static ulong3_mt8 up2pow2([This] ulong3_mt8 a) => new(up2pow2(a.x), up2pow2(a.y), up2pow2(a.z));
 }
@@ -428,6 +680,12 @@ public static partial class math_mt
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
+    public static b64v3_mt16 isPow2([This] ulong3_mt16 a)
+    {
+        return ((a & (a - ulong3_mt16.One)) == ulong3_mt16.Zero) & (a != ulong3_mt16.Zero);
+    }
+
+    [MethodImpl(256 | 512)]
     public static ulong3_mt16 up2pow2([This] ulong3_mt16 a) => new(up2pow2(a.x), up2pow2(a.y), up2pow2(a.z));
 }
 
@@ -437,6 +695,12 @@ public static partial class math_mt
 [Ex]
 public static partial class math_mt
 {
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt32 isPow2([This] ulong3_mt32 a)
+    {
+        return ((a & (a - ulong3_mt32.One)) == ulong3_mt32.Zero) & (a != ulong3_mt32.Zero);
+    }
+
     [MethodImpl(256 | 512)]
     public static ulong3_mt32 up2pow2([This] ulong3_mt32 a) => new(up2pow2(a.x), up2pow2(a.y), up2pow2(a.z));
 }
@@ -448,6 +712,12 @@ public static partial class math_mt
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
+    public static b64v4_mt4 isPow2([This] ulong4_mt4 a)
+    {
+        return ((a & (a - ulong4_mt4.One)) == ulong4_mt4.Zero) & (a != ulong4_mt4.Zero);
+    }
+
+    [MethodImpl(256 | 512)]
     public static ulong4_mt4 up2pow2([This] ulong4_mt4 a) => new(up2pow2(a.x), up2pow2(a.y), up2pow2(a.z), up2pow2(a.w));
 }
 
@@ -457,6 +727,12 @@ public static partial class math_mt
 [Ex]
 public static partial class math_mt
 {
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 isPow2([This] ulong4_mt8 a)
+    {
+        return ((a & (a - ulong4_mt8.One)) == ulong4_mt8.Zero) & (a != ulong4_mt8.Zero);
+    }
+
     [MethodImpl(256 | 512)]
     public static ulong4_mt8 up2pow2([This] ulong4_mt8 a) => new(up2pow2(a.x), up2pow2(a.y), up2pow2(a.z), up2pow2(a.w));
 }
@@ -468,6 +744,12 @@ public static partial class math_mt
 public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
+    public static b64v4_mt16 isPow2([This] ulong4_mt16 a)
+    {
+        return ((a & (a - ulong4_mt16.One)) == ulong4_mt16.Zero) & (a != ulong4_mt16.Zero);
+    }
+
+    [MethodImpl(256 | 512)]
     public static ulong4_mt16 up2pow2([This] ulong4_mt16 a) => new(up2pow2(a.x), up2pow2(a.y), up2pow2(a.z), up2pow2(a.w));
 }
 
@@ -477,6 +759,12 @@ public static partial class math_mt
 [Ex]
 public static partial class math_mt
 {
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt32 isPow2([This] ulong4_mt32 a)
+    {
+        return ((a & (a - ulong4_mt32.One)) == ulong4_mt32.Zero) & (a != ulong4_mt32.Zero);
+    }
+
     [MethodImpl(256 | 512)]
     public static ulong4_mt32 up2pow2([This] ulong4_mt32 a) => new(up2pow2(a.x), up2pow2(a.y), up2pow2(a.z), up2pow2(a.w));
 }

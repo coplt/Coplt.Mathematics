@@ -25,7 +25,7 @@ namespace Coplt.Mathematics.SIMT;
                 var typeName = $"{typ.name}{i}_mt{size}";
                 var scalarName = $"{typ.compType}_mt{size}";
                 var simd_typeName = $"{typ.name}{i}";
-                
+
                 var bType = $"b{typ.size * 8}v";
                 var bTyp = Typ.Typs.FirstOrDefault(a => a.name == bType);
                 var bTypeName = $"{bType}{i}_mt{size}";
@@ -35,12 +35,12 @@ namespace Coplt.Mathematics.SIMT;
 public partial struct <#= typeName #>
     : IEqualityOperators<<#= typeName #>, <#= typeName #>, bool>
 <#
-            if (bTyp.name != null)
-            {
+                if (bTyp.name != null)
+                {
 #>
     , IEqualityOperators<<#= typeName #>, <#= typeName #>, <#= bTypeName #>>
 <#
-            }
+                }
 #>
 {
     [MethodImpl(256 | 512)]
@@ -79,10 +79,82 @@ public partial struct <#= typeName #>
     }
 
     [MethodImpl(256 | 512)]
+    public readonly <#= bTypeName #> VectorEquals(<#= scalarName #> other)
+    {
+        return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"{Typ.xyzw[n]}.LaneEquals(other)")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly <#= bTypeName #> VectorNotEquals(<#= scalarName #> other)
+    {
+        return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"{Typ.xyzw[n]}.LaneNotEquals(other)")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly <#= bTypeName #> VectorEquals(<#= typ.compType #> other)
+    {
+        return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"{Typ.xyzw[n]}.LaneEquals(other)")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly <#= bTypeName #> VectorNotEquals(<#= typ.compType #> other)
+    {
+        return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"{Typ.xyzw[n]}.LaneNotEquals(other)")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly <#= bTypeName #> InvVectorEquals(<#= scalarName #> other)
+    {
+        return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"other.LaneEquals({Typ.xyzw[n]})")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly <#= bTypeName #> InvVectorNotEquals(<#= scalarName #> other)
+    {
+        return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"other.LaneNotEquals({Typ.xyzw[n]})")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly <#= bTypeName #> InvVectorEquals(<#= typ.compType #> other)
+    {
+        return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"new {scalarName}(other).LaneEquals({Typ.xyzw[n]})")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly <#= bTypeName #> InvVectorNotEquals(<#= typ.compType #> other)
+    {
+        return new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"new {scalarName}(other).LaneNotEquals({Typ.xyzw[n]})")) #>);
+    }
+
+    [MethodImpl(256 | 512)]
     public static <#= bTypeName #> operator ==(<#= typeName #> left, <#= typeName #> right) => left.VectorEquals(right);
 
     [MethodImpl(256 | 512)]
     public static <#= bTypeName #> operator !=(<#= typeName #> left, <#= typeName #> right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static <#= bTypeName #> operator ==(<#= typeName #> left, <#= scalarName #> right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static <#= bTypeName #> operator !=(<#= typeName #> left, <#= scalarName #> right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static <#= bTypeName #> operator ==(<#= scalarName #> left, <#= typeName #> right) => right.InvVectorEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static <#= bTypeName #> operator !=(<#= scalarName #> left, <#= typeName #> right) => right.InvVectorNotEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static <#= bTypeName #> operator ==(<#= typeName #> left, <#= typ.compType #> right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static <#= bTypeName #> operator !=(<#= typeName #> left, <#= typ.compType #> right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static <#= bTypeName #> operator ==(<#= typ.compType #> left, <#= typeName #> right) => right.InvVectorEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static <#= bTypeName #> operator !=(<#= typ.compType #> left, <#= typeName #> right) => right.InvVectorNotEquals(left);
 }
 
 #endregion // <#= typeName #>
