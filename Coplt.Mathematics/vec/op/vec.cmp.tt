@@ -224,7 +224,7 @@ public partial struct <#= typeName #> : IComparable<<#= typeName #>>, IComparabl
             {
 #>
         if (Vector<#= bitSize #>.IsHardwareAccelerated)
-            return Vector<#= bitSize #>.LessThanAll(vector, other.vector);
+            return Vector<#= bitSize #>.LessThanAny(vector, other.vector);
 <#
             }
 #>

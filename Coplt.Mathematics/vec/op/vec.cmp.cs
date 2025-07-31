@@ -110,7 +110,7 @@ public partial struct float2 : IComparable<float2>, IComparable
     public readonly bool LessThanAny(float2 other)
     {
         if (Vector64.IsHardwareAccelerated)
-            return Vector64.LessThanAll(vector, other.vector);
+            return Vector64.LessThanAny(vector, other.vector);
         return x < other.x || y < other.y;
     }
 
@@ -250,7 +250,7 @@ public partial struct float3 : IComparable<float3>, IComparable
     public readonly bool LessThanAny(float3 other)
     {
         if (Vector128.IsHardwareAccelerated)
-            return Vector128.LessThanAll(vector, other.vector);
+            return Vector128.LessThanAny(vector, other.vector);
         return x < other.x || y < other.y || z < other.z;
     }
 
@@ -390,7 +390,7 @@ public partial struct float4 : IComparable<float4>, IComparable
     public readonly bool LessThanAny(float4 other)
     {
         if (Vector128.IsHardwareAccelerated)
-            return Vector128.LessThanAll(vector, other.vector);
+            return Vector128.LessThanAny(vector, other.vector);
         return x < other.x || y < other.y || z < other.z || w < other.w;
     }
 
@@ -530,7 +530,7 @@ public partial struct double2 : IComparable<double2>, IComparable
     public readonly bool LessThanAny(double2 other)
     {
         if (Vector128.IsHardwareAccelerated)
-            return Vector128.LessThanAll(vector, other.vector);
+            return Vector128.LessThanAny(vector, other.vector);
         return x < other.x || y < other.y;
     }
 
@@ -670,7 +670,7 @@ public partial struct double3 : IComparable<double3>, IComparable
     public readonly bool LessThanAny(double3 other)
     {
         if (Vector256.IsHardwareAccelerated)
-            return Vector256.LessThanAll(vector, other.vector);
+            return Vector256.LessThanAny(vector, other.vector);
         return x < other.x || y < other.y || z < other.z;
     }
 
@@ -810,7 +810,7 @@ public partial struct double4 : IComparable<double4>, IComparable
     public readonly bool LessThanAny(double4 other)
     {
         if (Vector256.IsHardwareAccelerated)
-            return Vector256.LessThanAll(vector, other.vector);
+            return Vector256.LessThanAny(vector, other.vector);
         return x < other.x || y < other.y || z < other.z || w < other.w;
     }
 
@@ -1610,7 +1610,7 @@ public partial struct int2 : IComparable<int2>, IComparable
     public readonly bool LessThanAny(int2 other)
     {
         if (Vector64.IsHardwareAccelerated)
-            return Vector64.LessThanAll(vector, other.vector);
+            return Vector64.LessThanAny(vector, other.vector);
         return x < other.x || y < other.y;
     }
 
@@ -1750,7 +1750,7 @@ public partial struct int3 : IComparable<int3>, IComparable
     public readonly bool LessThanAny(int3 other)
     {
         if (Vector128.IsHardwareAccelerated)
-            return Vector128.LessThanAll(vector, other.vector);
+            return Vector128.LessThanAny(vector, other.vector);
         return x < other.x || y < other.y || z < other.z;
     }
 
@@ -1890,7 +1890,7 @@ public partial struct int4 : IComparable<int4>, IComparable
     public readonly bool LessThanAny(int4 other)
     {
         if (Vector128.IsHardwareAccelerated)
-            return Vector128.LessThanAll(vector, other.vector);
+            return Vector128.LessThanAny(vector, other.vector);
         return x < other.x || y < other.y || z < other.z || w < other.w;
     }
 
@@ -2030,7 +2030,7 @@ public partial struct uint2 : IComparable<uint2>, IComparable
     public readonly bool LessThanAny(uint2 other)
     {
         if (Vector64.IsHardwareAccelerated)
-            return Vector64.LessThanAll(vector, other.vector);
+            return Vector64.LessThanAny(vector, other.vector);
         return x < other.x || y < other.y;
     }
 
@@ -2170,7 +2170,7 @@ public partial struct uint3 : IComparable<uint3>, IComparable
     public readonly bool LessThanAny(uint3 other)
     {
         if (Vector128.IsHardwareAccelerated)
-            return Vector128.LessThanAll(vector, other.vector);
+            return Vector128.LessThanAny(vector, other.vector);
         return x < other.x || y < other.y || z < other.z;
     }
 
@@ -2310,7 +2310,7 @@ public partial struct uint4 : IComparable<uint4>, IComparable
     public readonly bool LessThanAny(uint4 other)
     {
         if (Vector128.IsHardwareAccelerated)
-            return Vector128.LessThanAll(vector, other.vector);
+            return Vector128.LessThanAny(vector, other.vector);
         return x < other.x || y < other.y || z < other.z || w < other.w;
     }
 
@@ -2450,7 +2450,7 @@ public partial struct long2 : IComparable<long2>, IComparable
     public readonly bool LessThanAny(long2 other)
     {
         if (Vector128.IsHardwareAccelerated)
-            return Vector128.LessThanAll(vector, other.vector);
+            return Vector128.LessThanAny(vector, other.vector);
         return x < other.x || y < other.y;
     }
 
@@ -2590,7 +2590,7 @@ public partial struct long3 : IComparable<long3>, IComparable
     public readonly bool LessThanAny(long3 other)
     {
         if (Vector256.IsHardwareAccelerated)
-            return Vector256.LessThanAll(vector, other.vector);
+            return Vector256.LessThanAny(vector, other.vector);
         return x < other.x || y < other.y || z < other.z;
     }
 
@@ -2730,7 +2730,7 @@ public partial struct long4 : IComparable<long4>, IComparable
     public readonly bool LessThanAny(long4 other)
     {
         if (Vector256.IsHardwareAccelerated)
-            return Vector256.LessThanAll(vector, other.vector);
+            return Vector256.LessThanAny(vector, other.vector);
         return x < other.x || y < other.y || z < other.z || w < other.w;
     }
 
@@ -2870,7 +2870,7 @@ public partial struct ulong2 : IComparable<ulong2>, IComparable
     public readonly bool LessThanAny(ulong2 other)
     {
         if (Vector128.IsHardwareAccelerated)
-            return Vector128.LessThanAll(vector, other.vector);
+            return Vector128.LessThanAny(vector, other.vector);
         return x < other.x || y < other.y;
     }
 
@@ -3010,7 +3010,7 @@ public partial struct ulong3 : IComparable<ulong3>, IComparable
     public readonly bool LessThanAny(ulong3 other)
     {
         if (Vector256.IsHardwareAccelerated)
-            return Vector256.LessThanAll(vector, other.vector);
+            return Vector256.LessThanAny(vector, other.vector);
         return x < other.x || y < other.y || z < other.z;
     }
 
@@ -3150,7 +3150,7 @@ public partial struct ulong4 : IComparable<ulong4>, IComparable
     public readonly bool LessThanAny(ulong4 other)
     {
         if (Vector256.IsHardwareAccelerated)
-            return Vector256.LessThanAll(vector, other.vector);
+            return Vector256.LessThanAny(vector, other.vector);
         return x < other.x || y < other.y || z < other.z || w < other.w;
     }
 
@@ -3950,7 +3950,7 @@ public partial struct b32v2 : IComparable<b32v2>, IComparable
     public readonly bool LessThanAny(b32v2 other)
     {
         if (Vector64.IsHardwareAccelerated)
-            return Vector64.LessThanAll(vector, other.vector);
+            return Vector64.LessThanAny(vector, other.vector);
         return x < other.x || y < other.y;
     }
 
@@ -4090,7 +4090,7 @@ public partial struct b32v3 : IComparable<b32v3>, IComparable
     public readonly bool LessThanAny(b32v3 other)
     {
         if (Vector128.IsHardwareAccelerated)
-            return Vector128.LessThanAll(vector, other.vector);
+            return Vector128.LessThanAny(vector, other.vector);
         return x < other.x || y < other.y || z < other.z;
     }
 
@@ -4230,7 +4230,7 @@ public partial struct b32v4 : IComparable<b32v4>, IComparable
     public readonly bool LessThanAny(b32v4 other)
     {
         if (Vector128.IsHardwareAccelerated)
-            return Vector128.LessThanAll(vector, other.vector);
+            return Vector128.LessThanAny(vector, other.vector);
         return x < other.x || y < other.y || z < other.z || w < other.w;
     }
 
@@ -4370,7 +4370,7 @@ public partial struct b64v2 : IComparable<b64v2>, IComparable
     public readonly bool LessThanAny(b64v2 other)
     {
         if (Vector128.IsHardwareAccelerated)
-            return Vector128.LessThanAll(vector, other.vector);
+            return Vector128.LessThanAny(vector, other.vector);
         return x < other.x || y < other.y;
     }
 
@@ -4510,7 +4510,7 @@ public partial struct b64v3 : IComparable<b64v3>, IComparable
     public readonly bool LessThanAny(b64v3 other)
     {
         if (Vector256.IsHardwareAccelerated)
-            return Vector256.LessThanAll(vector, other.vector);
+            return Vector256.LessThanAny(vector, other.vector);
         return x < other.x || y < other.y || z < other.z;
     }
 
@@ -4650,7 +4650,7 @@ public partial struct b64v4 : IComparable<b64v4>, IComparable
     public readonly bool LessThanAny(b64v4 other)
     {
         if (Vector256.IsHardwareAccelerated)
-            return Vector256.LessThanAll(vector, other.vector);
+            return Vector256.LessThanAny(vector, other.vector);
         return x < other.x || y < other.y || z < other.z || w < other.w;
     }
 

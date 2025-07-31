@@ -26,6 +26,9 @@ namespace Coplt.Mathematics.SIMT;
                 var typeName = $"{typ.name}{i}_mt{size}";
                 var scalarName = $"{typ.compType}_mt{size}";
                 var simd_typeName = $"{typ.name}{i}";
+
+                var bSize = typ.size * 8;
+                var bTypeName = $"b{bSize}v{i}_mt{size}";
 #>
 #region <#= typeName #>
 
@@ -92,6 +95,12 @@ public partial struct <#= typeName #>
 [Ex]
 public static partial class math_mt
 {
+    #pragma warning disable CS1718
+    // ReSharper disable once EqualExpressionComparison
+    [MethodImpl(256 | 512)]
+    public static <#= bTypeName #> isNaN([This] <#= typeName #> a) => a != a;
+    #pragma warning restore CS1718
+
     [MethodImpl(256 | 512)]
     public static <#= typeName #> ceil([This] <#= typeName #> a) => new(<#=
                     string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]}.floor()")) #>);

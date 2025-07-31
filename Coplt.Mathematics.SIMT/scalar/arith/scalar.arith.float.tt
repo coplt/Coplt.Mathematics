@@ -24,6 +24,9 @@ namespace Coplt.Mathematics.SIMT;
 
             var typeName = $"{typ.compType}_mt{size}";
 
+            var bSize = typ.size * 8;
+            var bTypeName = $"b{bSize}_mt{size}";
+
             IEnumerable<string> ForVectors(string name)
             {
                 if (num_vectors == 1) yield return name;
@@ -107,6 +110,12 @@ public partial struct <#= typeName #>
 [Ex]
 public static partial class math_mt
 {
+    #pragma warning disable CS1718
+    // ReSharper disable once EqualExpressionComparison
+    [MethodImpl(256 | 512)]
+    public static <#= bTypeName #> isNaN([This] <#= typeName #> a) => a != a;
+    #pragma warning restore CS1718
+
     [MethodImpl(256 | 512)]
     public static <#= typeName #> ceil([This] <#= typeName #> a)
     {

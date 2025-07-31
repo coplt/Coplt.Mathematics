@@ -71,6 +71,12 @@ public partial struct float_mt4
 [Ex]
 public static partial class math_mt
 {
+    #pragma warning disable CS1718
+    // ReSharper disable once EqualExpressionComparison
+    [MethodImpl(256 | 512)]
+    public static b32_mt4 isNaN([This] float_mt4 a) => a != a;
+    #pragma warning restore CS1718
+
     [MethodImpl(256 | 512)]
     public static float_mt4 ceil([This] float_mt4 a)
     {
@@ -424,6 +430,12 @@ public partial struct float_mt8
 [Ex]
 public static partial class math_mt
 {
+    #pragma warning disable CS1718
+    // ReSharper disable once EqualExpressionComparison
+    [MethodImpl(256 | 512)]
+    public static b32_mt8 isNaN([This] float_mt8 a) => a != a;
+    #pragma warning restore CS1718
+
     [MethodImpl(256 | 512)]
     public static float_mt8 ceil([This] float_mt8 a)
     {
@@ -777,6 +789,12 @@ public partial struct float_mt16
 [Ex]
 public static partial class math_mt
 {
+    #pragma warning disable CS1718
+    // ReSharper disable once EqualExpressionComparison
+    [MethodImpl(256 | 512)]
+    public static b32_mt16 isNaN([This] float_mt16 a) => a != a;
+    #pragma warning restore CS1718
+
     [MethodImpl(256 | 512)]
     public static float_mt16 ceil([This] float_mt16 a)
     {
@@ -1130,6 +1148,12 @@ public partial struct float_mt32
 [Ex]
 public static partial class math_mt
 {
+    #pragma warning disable CS1718
+    // ReSharper disable once EqualExpressionComparison
+    [MethodImpl(256 | 512)]
+    public static b32_mt32 isNaN([This] float_mt32 a) => a != a;
+    #pragma warning restore CS1718
+
     [MethodImpl(256 | 512)]
     public static float_mt32 ceil([This] float_mt32 a)
     {
@@ -1489,6 +1513,12 @@ public partial struct double_mt4
 [Ex]
 public static partial class math_mt
 {
+    #pragma warning disable CS1718
+    // ReSharper disable once EqualExpressionComparison
+    [MethodImpl(256 | 512)]
+    public static b64_mt4 isNaN([This] double_mt4 a) => a != a;
+    #pragma warning restore CS1718
+
     [MethodImpl(256 | 512)]
     public static double_mt4 ceil([This] double_mt4 a)
     {
@@ -1842,6 +1872,12 @@ public partial struct double_mt8
 [Ex]
 public static partial class math_mt
 {
+    #pragma warning disable CS1718
+    // ReSharper disable once EqualExpressionComparison
+    [MethodImpl(256 | 512)]
+    public static b64_mt8 isNaN([This] double_mt8 a) => a != a;
+    #pragma warning restore CS1718
+
     [MethodImpl(256 | 512)]
     public static double_mt8 ceil([This] double_mt8 a)
     {
@@ -2195,6 +2231,12 @@ public partial struct double_mt16
 [Ex]
 public static partial class math_mt
 {
+    #pragma warning disable CS1718
+    // ReSharper disable once EqualExpressionComparison
+    [MethodImpl(256 | 512)]
+    public static b64_mt16 isNaN([This] double_mt16 a) => a != a;
+    #pragma warning restore CS1718
+
     [MethodImpl(256 | 512)]
     public static double_mt16 ceil([This] double_mt16 a)
     {
@@ -2554,6 +2596,12 @@ public partial struct double_mt32
 [Ex]
 public static partial class math_mt
 {
+    #pragma warning disable CS1718
+    // ReSharper disable once EqualExpressionComparison
+    [MethodImpl(256 | 512)]
+    public static b64_mt32 isNaN([This] double_mt32 a) => a != a;
+    #pragma warning restore CS1718
+
     [MethodImpl(256 | 512)]
     public static double_mt32 ceil([This] double_mt32 a)
     {
