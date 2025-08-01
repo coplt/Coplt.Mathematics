@@ -7,7 +7,7 @@
 namespace Coplt.Mathematics.Simt;
 
 <#
-    var sizes = new[] { 4, 8, 16, 32 };
+    var sizes = new[] { 4, 8, 16 };
     for (int s = 2; s <= 8; s *= 2)
     {
         var bSize = s * 8;

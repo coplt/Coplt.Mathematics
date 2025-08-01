@@ -50,22 +50,6 @@ public static partial class math_mt
 }
 
 #endregion // float_mt16
-#region float_mt32
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static float_mt32 select([This] b32_mt32 c, float_mt32 t, float_mt32 f)
-    {
-        return new(Vector512.ConditionalSelect(c.vector0.AsSingle(), t.vector0, f.vector0), Vector512.ConditionalSelect(c.vector1.AsSingle(), t.vector1, f.vector1));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static float_mt32 select([This] bool c, float_mt32 t, float_mt32 f) => c ? t : f;
-}
-
-#endregion // float_mt32
 #region double_mt4
 
 [Ex]
@@ -114,22 +98,6 @@ public static partial class math_mt
 }
 
 #endregion // double_mt16
-#region double_mt32
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static double_mt32 select([This] b64_mt32 c, double_mt32 t, double_mt32 f)
-    {
-        return new(Vector512.ConditionalSelect(c.vector0.AsDouble(), t.vector0, f.vector0), Vector512.ConditionalSelect(c.vector1.AsDouble(), t.vector1, f.vector1), Vector512.ConditionalSelect(c.vector2.AsDouble(), t.vector2, f.vector2), Vector512.ConditionalSelect(c.vector3.AsDouble(), t.vector3, f.vector3));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static double_mt32 select([This] bool c, double_mt32 t, double_mt32 f) => c ? t : f;
-}
-
-#endregion // double_mt32
 #region int_mt4
 
 [Ex]
@@ -178,22 +146,6 @@ public static partial class math_mt
 }
 
 #endregion // int_mt16
-#region int_mt32
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static int_mt32 select([This] b32_mt32 c, int_mt32 t, int_mt32 f)
-    {
-        return new(Vector512.ConditionalSelect(c.vector0.AsInt32(), t.vector0, f.vector0), Vector512.ConditionalSelect(c.vector1.AsInt32(), t.vector1, f.vector1));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int_mt32 select([This] bool c, int_mt32 t, int_mt32 f) => c ? t : f;
-}
-
-#endregion // int_mt32
 #region uint_mt4
 
 [Ex]
@@ -242,22 +194,6 @@ public static partial class math_mt
 }
 
 #endregion // uint_mt16
-#region uint_mt32
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static uint_mt32 select([This] b32_mt32 c, uint_mt32 t, uint_mt32 f)
-    {
-        return new(Vector512.ConditionalSelect(c.vector0.AsUInt32(), t.vector0, f.vector0), Vector512.ConditionalSelect(c.vector1.AsUInt32(), t.vector1, f.vector1));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt32 select([This] bool c, uint_mt32 t, uint_mt32 f) => c ? t : f;
-}
-
-#endregion // uint_mt32
 #region long_mt4
 
 [Ex]
@@ -306,22 +242,6 @@ public static partial class math_mt
 }
 
 #endregion // long_mt16
-#region long_mt32
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static long_mt32 select([This] b64_mt32 c, long_mt32 t, long_mt32 f)
-    {
-        return new(Vector512.ConditionalSelect(c.vector0.AsInt64(), t.vector0, f.vector0), Vector512.ConditionalSelect(c.vector1.AsInt64(), t.vector1, f.vector1), Vector512.ConditionalSelect(c.vector2.AsInt64(), t.vector2, f.vector2), Vector512.ConditionalSelect(c.vector3.AsInt64(), t.vector3, f.vector3));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long_mt32 select([This] bool c, long_mt32 t, long_mt32 f) => c ? t : f;
-}
-
-#endregion // long_mt32
 #region ulong_mt4
 
 [Ex]
@@ -370,22 +290,6 @@ public static partial class math_mt
 }
 
 #endregion // ulong_mt16
-#region ulong_mt32
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static ulong_mt32 select([This] b64_mt32 c, ulong_mt32 t, ulong_mt32 f)
-    {
-        return new(Vector512.ConditionalSelect(c.vector0.AsUInt64(), t.vector0, f.vector0), Vector512.ConditionalSelect(c.vector1.AsUInt64(), t.vector1, f.vector1), Vector512.ConditionalSelect(c.vector2.AsUInt64(), t.vector2, f.vector2), Vector512.ConditionalSelect(c.vector3.AsUInt64(), t.vector3, f.vector3));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt32 select([This] bool c, ulong_mt32 t, ulong_mt32 f) => c ? t : f;
-}
-
-#endregion // ulong_mt32
 #region b32_mt4
 
 [Ex]
@@ -434,22 +338,6 @@ public static partial class math_mt
 }
 
 #endregion // b32_mt16
-#region b32_mt32
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32_mt32 select([This] b32_mt32 c, b32_mt32 t, b32_mt32 f)
-    {
-        return new(Vector512.ConditionalSelect(c.vector0.AsUInt32(), t.vector0, f.vector0), Vector512.ConditionalSelect(c.vector1.AsUInt32(), t.vector1, f.vector1));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32_mt32 select([This] bool c, b32_mt32 t, b32_mt32 f) => c ? t : f;
-}
-
-#endregion // b32_mt32
 #region b64_mt4
 
 [Ex]
@@ -498,19 +386,3 @@ public static partial class math_mt
 }
 
 #endregion // b64_mt16
-#region b64_mt32
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64_mt32 select([This] b64_mt32 c, b64_mt32 t, b64_mt32 f)
-    {
-        return new(Vector512.ConditionalSelect(c.vector0.AsUInt64(), t.vector0, f.vector0), Vector512.ConditionalSelect(c.vector1.AsUInt64(), t.vector1, f.vector1), Vector512.ConditionalSelect(c.vector2.AsUInt64(), t.vector2, f.vector2), Vector512.ConditionalSelect(c.vector3.AsUInt64(), t.vector3, f.vector3));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64_mt32 select([This] bool c, b64_mt32 t, b64_mt32 f) => c ? t : f;
-}
-
-#endregion // b64_mt32

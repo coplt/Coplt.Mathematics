@@ -6,7 +6,7 @@
 
 namespace Coplt.Mathematics.Simt;
 <#
-    var sizes = new[] { 4, 8, 16, 32 };
+    var sizes = new[] { 4, 8, 16 };
     int[] a0123 = [0,1,2,3];
     var car_pd_3 = (
         from a in a0123.AsParallel().AsOrdered()

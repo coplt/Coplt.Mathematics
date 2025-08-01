@@ -53,23 +53,6 @@ public static partial class math
 
 #endregion // float_mt16
 
-#region float_mt32
-
-[Ex]
-public static partial class math
-{
-    [MethodImpl(256 | 512)]
-    public static float_mt32 asf([This] float_mt32 v) => v.BitCast<float_mt32, float_mt32>();
-    [MethodImpl(256 | 512)]
-    public static int_mt32 asi([This] float_mt32 v) => v.BitCast<float_mt32, int_mt32>();
-    [MethodImpl(256 | 512)]
-    public static uint_mt32 asu([This] float_mt32 v) => v.BitCast<float_mt32, uint_mt32>();
-    [MethodImpl(256 | 512)]
-    public static b32_mt32 asb([This] float_mt32 v) => v.BitCast<float_mt32, b32_mt32>();
-}
-
-#endregion // float_mt32
-
 #region double_mt4
 
 [Ex]
@@ -120,23 +103,6 @@ public static partial class math
 }
 
 #endregion // double_mt16
-
-#region double_mt32
-
-[Ex]
-public static partial class math
-{
-    [MethodImpl(256 | 512)]
-    public static double_mt32 asf([This] double_mt32 v) => v.BitCast<double_mt32, double_mt32>();
-    [MethodImpl(256 | 512)]
-    public static long_mt32 asi([This] double_mt32 v) => v.BitCast<double_mt32, long_mt32>();
-    [MethodImpl(256 | 512)]
-    public static ulong_mt32 asu([This] double_mt32 v) => v.BitCast<double_mt32, ulong_mt32>();
-    [MethodImpl(256 | 512)]
-    public static b64_mt32 asb([This] double_mt32 v) => v.BitCast<double_mt32, b64_mt32>();
-}
-
-#endregion // double_mt32
 
 #region int_mt4
 
@@ -189,23 +155,6 @@ public static partial class math
 
 #endregion // int_mt16
 
-#region int_mt32
-
-[Ex]
-public static partial class math
-{
-    [MethodImpl(256 | 512)]
-    public static float_mt32 asf([This] int_mt32 v) => v.BitCast<int_mt32, float_mt32>();
-    [MethodImpl(256 | 512)]
-    public static int_mt32 asi([This] int_mt32 v) => v.BitCast<int_mt32, int_mt32>();
-    [MethodImpl(256 | 512)]
-    public static uint_mt32 asu([This] int_mt32 v) => v.BitCast<int_mt32, uint_mt32>();
-    [MethodImpl(256 | 512)]
-    public static b32_mt32 asb([This] int_mt32 v) => v.BitCast<int_mt32, b32_mt32>();
-}
-
-#endregion // int_mt32
-
 #region uint_mt4
 
 [Ex]
@@ -256,23 +205,6 @@ public static partial class math
 }
 
 #endregion // uint_mt16
-
-#region uint_mt32
-
-[Ex]
-public static partial class math
-{
-    [MethodImpl(256 | 512)]
-    public static float_mt32 asf([This] uint_mt32 v) => v.BitCast<uint_mt32, float_mt32>();
-    [MethodImpl(256 | 512)]
-    public static int_mt32 asi([This] uint_mt32 v) => v.BitCast<uint_mt32, int_mt32>();
-    [MethodImpl(256 | 512)]
-    public static uint_mt32 asu([This] uint_mt32 v) => v.BitCast<uint_mt32, uint_mt32>();
-    [MethodImpl(256 | 512)]
-    public static b32_mt32 asb([This] uint_mt32 v) => v.BitCast<uint_mt32, b32_mt32>();
-}
-
-#endregion // uint_mt32
 
 #region long_mt4
 
@@ -325,23 +257,6 @@ public static partial class math
 
 #endregion // long_mt16
 
-#region long_mt32
-
-[Ex]
-public static partial class math
-{
-    [MethodImpl(256 | 512)]
-    public static double_mt32 asf([This] long_mt32 v) => v.BitCast<long_mt32, double_mt32>();
-    [MethodImpl(256 | 512)]
-    public static long_mt32 asi([This] long_mt32 v) => v.BitCast<long_mt32, long_mt32>();
-    [MethodImpl(256 | 512)]
-    public static ulong_mt32 asu([This] long_mt32 v) => v.BitCast<long_mt32, ulong_mt32>();
-    [MethodImpl(256 | 512)]
-    public static b64_mt32 asb([This] long_mt32 v) => v.BitCast<long_mt32, b64_mt32>();
-}
-
-#endregion // long_mt32
-
 #region ulong_mt4
 
 [Ex]
@@ -392,23 +307,6 @@ public static partial class math
 }
 
 #endregion // ulong_mt16
-
-#region ulong_mt32
-
-[Ex]
-public static partial class math
-{
-    [MethodImpl(256 | 512)]
-    public static double_mt32 asf([This] ulong_mt32 v) => v.BitCast<ulong_mt32, double_mt32>();
-    [MethodImpl(256 | 512)]
-    public static long_mt32 asi([This] ulong_mt32 v) => v.BitCast<ulong_mt32, long_mt32>();
-    [MethodImpl(256 | 512)]
-    public static ulong_mt32 asu([This] ulong_mt32 v) => v.BitCast<ulong_mt32, ulong_mt32>();
-    [MethodImpl(256 | 512)]
-    public static b64_mt32 asb([This] ulong_mt32 v) => v.BitCast<ulong_mt32, b64_mt32>();
-}
-
-#endregion // ulong_mt32
 
 #region b32_mt4
 
@@ -461,23 +359,6 @@ public static partial class math
 
 #endregion // b32_mt16
 
-#region b32_mt32
-
-[Ex]
-public static partial class math
-{
-    [MethodImpl(256 | 512)]
-    public static float_mt32 asf([This] b32_mt32 v) => v.BitCast<b32_mt32, float_mt32>();
-    [MethodImpl(256 | 512)]
-    public static int_mt32 asi([This] b32_mt32 v) => v.BitCast<b32_mt32, int_mt32>();
-    [MethodImpl(256 | 512)]
-    public static uint_mt32 asu([This] b32_mt32 v) => v.BitCast<b32_mt32, uint_mt32>();
-    [MethodImpl(256 | 512)]
-    public static b32_mt32 asb([This] b32_mt32 v) => v.BitCast<b32_mt32, b32_mt32>();
-}
-
-#endregion // b32_mt32
-
 #region b64_mt4
 
 [Ex]
@@ -528,20 +409,3 @@ public static partial class math
 }
 
 #endregion // b64_mt16
-
-#region b64_mt32
-
-[Ex]
-public static partial class math
-{
-    [MethodImpl(256 | 512)]
-    public static double_mt32 asf([This] b64_mt32 v) => v.BitCast<b64_mt32, double_mt32>();
-    [MethodImpl(256 | 512)]
-    public static long_mt32 asi([This] b64_mt32 v) => v.BitCast<b64_mt32, long_mt32>();
-    [MethodImpl(256 | 512)]
-    public static ulong_mt32 asu([This] b64_mt32 v) => v.BitCast<b64_mt32, ulong_mt32>();
-    [MethodImpl(256 | 512)]
-    public static b64_mt32 asb([This] b64_mt32 v) => v.BitCast<b64_mt32, b64_mt32>();
-}
-
-#endregion // b64_mt32

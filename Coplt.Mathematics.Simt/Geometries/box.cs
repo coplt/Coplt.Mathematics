@@ -32,13 +32,3 @@ public partial record struct box_mt16
 }
 
 #endregion // box_mt16
-#region box_mt32
-
-[CpuOnly]
-public partial record struct box_mt32
-{
-    public float3_mt32 min;
-    public float3_mt32 max;
-}
-
-#endregion // box_mt32

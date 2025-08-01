@@ -170,62 +170,6 @@ public partial struct float2_mt16
 
 #endregion // float2_mt16
 
-#region float2_mt32
-
-public partial struct float2_mt32 
-{
-    public readonly float2_mt32 xx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public readonly float2_mt32 rr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public float2_mt32 xy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => this;
-        [MethodImpl(256 | 512)]
-        set => this = value;
-    }
-    public float2_mt32 rg
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => this;
-        [MethodImpl(256 | 512)]
-        set => this = value;
-    }
-    public float2_mt32 yx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set => this = value.yx;
-    }
-    public float2_mt32 gr
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set => this = value.yx;
-    }
-    public readonly float2_mt32 yy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-    public readonly float2_mt32 gg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-}
-
-#endregion // float2_mt32
-
 #region double2_mt4
 
 public partial struct double2_mt4 
@@ -393,62 +337,6 @@ public partial struct double2_mt16
 }
 
 #endregion // double2_mt16
-
-#region double2_mt32
-
-public partial struct double2_mt32 
-{
-    public readonly double2_mt32 xx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public readonly double2_mt32 rr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public double2_mt32 xy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => this;
-        [MethodImpl(256 | 512)]
-        set => this = value;
-    }
-    public double2_mt32 rg
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => this;
-        [MethodImpl(256 | 512)]
-        set => this = value;
-    }
-    public double2_mt32 yx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set => this = value.yx;
-    }
-    public double2_mt32 gr
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set => this = value.yx;
-    }
-    public readonly double2_mt32 yy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-    public readonly double2_mt32 gg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-}
-
-#endregion // double2_mt32
 
 #region int2_mt4
 
@@ -618,62 +506,6 @@ public partial struct int2_mt16
 
 #endregion // int2_mt16
 
-#region int2_mt32
-
-public partial struct int2_mt32 
-{
-    public readonly int2_mt32 xx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public readonly int2_mt32 rr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public int2_mt32 xy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => this;
-        [MethodImpl(256 | 512)]
-        set => this = value;
-    }
-    public int2_mt32 rg
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => this;
-        [MethodImpl(256 | 512)]
-        set => this = value;
-    }
-    public int2_mt32 yx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set => this = value.yx;
-    }
-    public int2_mt32 gr
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set => this = value.yx;
-    }
-    public readonly int2_mt32 yy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-    public readonly int2_mt32 gg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-}
-
-#endregion // int2_mt32
-
 #region uint2_mt4
 
 public partial struct uint2_mt4 
@@ -841,62 +673,6 @@ public partial struct uint2_mt16
 }
 
 #endregion // uint2_mt16
-
-#region uint2_mt32
-
-public partial struct uint2_mt32 
-{
-    public readonly uint2_mt32 xx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public readonly uint2_mt32 rr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public uint2_mt32 xy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => this;
-        [MethodImpl(256 | 512)]
-        set => this = value;
-    }
-    public uint2_mt32 rg
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => this;
-        [MethodImpl(256 | 512)]
-        set => this = value;
-    }
-    public uint2_mt32 yx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set => this = value.yx;
-    }
-    public uint2_mt32 gr
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set => this = value.yx;
-    }
-    public readonly uint2_mt32 yy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-    public readonly uint2_mt32 gg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-}
-
-#endregion // uint2_mt32
 
 #region long2_mt4
 
@@ -1066,62 +842,6 @@ public partial struct long2_mt16
 
 #endregion // long2_mt16
 
-#region long2_mt32
-
-public partial struct long2_mt32 
-{
-    public readonly long2_mt32 xx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public readonly long2_mt32 rr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public long2_mt32 xy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => this;
-        [MethodImpl(256 | 512)]
-        set => this = value;
-    }
-    public long2_mt32 rg
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => this;
-        [MethodImpl(256 | 512)]
-        set => this = value;
-    }
-    public long2_mt32 yx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set => this = value.yx;
-    }
-    public long2_mt32 gr
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set => this = value.yx;
-    }
-    public readonly long2_mt32 yy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-    public readonly long2_mt32 gg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-}
-
-#endregion // long2_mt32
-
 #region ulong2_mt4
 
 public partial struct ulong2_mt4 
@@ -1289,62 +1009,6 @@ public partial struct ulong2_mt16
 }
 
 #endregion // ulong2_mt16
-
-#region ulong2_mt32
-
-public partial struct ulong2_mt32 
-{
-    public readonly ulong2_mt32 xx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public readonly ulong2_mt32 rr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public ulong2_mt32 xy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => this;
-        [MethodImpl(256 | 512)]
-        set => this = value;
-    }
-    public ulong2_mt32 rg
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => this;
-        [MethodImpl(256 | 512)]
-        set => this = value;
-    }
-    public ulong2_mt32 yx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set => this = value.yx;
-    }
-    public ulong2_mt32 gr
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set => this = value.yx;
-    }
-    public readonly ulong2_mt32 yy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-    public readonly ulong2_mt32 gg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-}
-
-#endregion // ulong2_mt32
 
 #region b32v2_mt4
 
@@ -1514,62 +1178,6 @@ public partial struct b32v2_mt16
 
 #endregion // b32v2_mt16
 
-#region b32v2_mt32
-
-public partial struct b32v2_mt32 
-{
-    public readonly b32v2_mt32 xx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public readonly b32v2_mt32 rr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public b32v2_mt32 xy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => this;
-        [MethodImpl(256 | 512)]
-        set => this = value;
-    }
-    public b32v2_mt32 rg
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => this;
-        [MethodImpl(256 | 512)]
-        set => this = value;
-    }
-    public b32v2_mt32 yx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set => this = value.yx;
-    }
-    public b32v2_mt32 gr
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set => this = value.yx;
-    }
-    public readonly b32v2_mt32 yy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-    public readonly b32v2_mt32 gg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-}
-
-#endregion // b32v2_mt32
-
 #region b64v2_mt4
 
 public partial struct b64v2_mt4 
@@ -1737,59 +1345,3 @@ public partial struct b64v2_mt16
 }
 
 #endregion // b64v2_mt16
-
-#region b64v2_mt32
-
-public partial struct b64v2_mt32 
-{
-    public readonly b64v2_mt32 xx
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public readonly b64v2_mt32 rr
-    {
-        [MethodImpl(256 | 512)]
-        get => new(x, x);
-    }
-    public b64v2_mt32 xy
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => this;
-        [MethodImpl(256 | 512)]
-        set => this = value;
-    }
-    public b64v2_mt32 rg
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => this;
-        [MethodImpl(256 | 512)]
-        set => this = value;
-    }
-    public b64v2_mt32 yx
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set => this = value.yx;
-    }
-    public b64v2_mt32 gr
-    {
-        [MethodImpl(256 | 512)]
-        readonly get => new(y, x);
-        [MethodImpl(256 | 512)]
-        set => this = value.yx;
-    }
-    public readonly b64v2_mt32 yy
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-    public readonly b64v2_mt32 gg
-    {
-        [MethodImpl(256 | 512)]
-        get => new(y, y);
-    }
-}
-
-#endregion // b64v2_mt32

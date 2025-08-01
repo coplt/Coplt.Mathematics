@@ -57,24 +57,6 @@ public partial struct float2_mt16
 
 #endregion // float2_mt16
 
-#region float2_mt32
-
-public partial struct float2_mt32 
-{
-    [MethodImpl(256 | 512)]
-    public static explicit operator uint2_mt32(float2_mt32 self) => new((uint_mt32)self.x, (uint_mt32)self.y);
-    [MethodImpl(256 | 512)]
-    public static explicit operator int2_mt32(float2_mt32 self) => new((int_mt32)self.x, (int_mt32)self.y);
-    [MethodImpl(256 | 512)]
-    public static explicit operator ulong2_mt32(float2_mt32 self) => new((ulong_mt32)self.x, (ulong_mt32)self.y);
-    [MethodImpl(256 | 512)]
-    public static explicit operator long2_mt32(float2_mt32 self) => new((long_mt32)self.x, (long_mt32)self.y);
-    [MethodImpl(256 | 512)]
-    public static implicit operator double2_mt32(float2_mt32 self) => new((double_mt32)self.x, (double_mt32)self.y);
-}
-
-#endregion // float2_mt32
-
 #region float3_mt4
 
 public partial struct float3_mt4 
@@ -128,24 +110,6 @@ public partial struct float3_mt16
 }
 
 #endregion // float3_mt16
-
-#region float3_mt32
-
-public partial struct float3_mt32 
-{
-    [MethodImpl(256 | 512)]
-    public static explicit operator uint3_mt32(float3_mt32 self) => new((uint_mt32)self.x, (uint_mt32)self.y, (uint_mt32)self.z);
-    [MethodImpl(256 | 512)]
-    public static explicit operator int3_mt32(float3_mt32 self) => new((int_mt32)self.x, (int_mt32)self.y, (int_mt32)self.z);
-    [MethodImpl(256 | 512)]
-    public static explicit operator ulong3_mt32(float3_mt32 self) => new((ulong_mt32)self.x, (ulong_mt32)self.y, (ulong_mt32)self.z);
-    [MethodImpl(256 | 512)]
-    public static explicit operator long3_mt32(float3_mt32 self) => new((long_mt32)self.x, (long_mt32)self.y, (long_mt32)self.z);
-    [MethodImpl(256 | 512)]
-    public static implicit operator double3_mt32(float3_mt32 self) => new((double_mt32)self.x, (double_mt32)self.y, (double_mt32)self.z);
-}
-
-#endregion // float3_mt32
 
 #region float4_mt4
 
@@ -201,24 +165,6 @@ public partial struct float4_mt16
 
 #endregion // float4_mt16
 
-#region float4_mt32
-
-public partial struct float4_mt32 
-{
-    [MethodImpl(256 | 512)]
-    public static explicit operator uint4_mt32(float4_mt32 self) => new((uint_mt32)self.x, (uint_mt32)self.y, (uint_mt32)self.z, (uint_mt32)self.w);
-    [MethodImpl(256 | 512)]
-    public static explicit operator int4_mt32(float4_mt32 self) => new((int_mt32)self.x, (int_mt32)self.y, (int_mt32)self.z, (int_mt32)self.w);
-    [MethodImpl(256 | 512)]
-    public static explicit operator ulong4_mt32(float4_mt32 self) => new((ulong_mt32)self.x, (ulong_mt32)self.y, (ulong_mt32)self.z, (ulong_mt32)self.w);
-    [MethodImpl(256 | 512)]
-    public static explicit operator long4_mt32(float4_mt32 self) => new((long_mt32)self.x, (long_mt32)self.y, (long_mt32)self.z, (long_mt32)self.w);
-    [MethodImpl(256 | 512)]
-    public static implicit operator double4_mt32(float4_mt32 self) => new((double_mt32)self.x, (double_mt32)self.y, (double_mt32)self.z, (double_mt32)self.w);
-}
-
-#endregion // float4_mt32
-
 #region double2_mt4
 
 public partial struct double2_mt4 
@@ -272,24 +218,6 @@ public partial struct double2_mt16
 }
 
 #endregion // double2_mt16
-
-#region double2_mt32
-
-public partial struct double2_mt32 
-{
-    [MethodImpl(256 | 512)]
-    public static explicit operator uint2_mt32(double2_mt32 self) => new((uint_mt32)self.x, (uint_mt32)self.y);
-    [MethodImpl(256 | 512)]
-    public static explicit operator int2_mt32(double2_mt32 self) => new((int_mt32)self.x, (int_mt32)self.y);
-    [MethodImpl(256 | 512)]
-    public static explicit operator ulong2_mt32(double2_mt32 self) => new((ulong_mt32)self.x, (ulong_mt32)self.y);
-    [MethodImpl(256 | 512)]
-    public static explicit operator long2_mt32(double2_mt32 self) => new((long_mt32)self.x, (long_mt32)self.y);
-    [MethodImpl(256 | 512)]
-    public static explicit operator float2_mt32(double2_mt32 self) => new((float_mt32)self.x, (float_mt32)self.y);
-}
-
-#endregion // double2_mt32
 
 #region double3_mt4
 
@@ -345,24 +273,6 @@ public partial struct double3_mt16
 
 #endregion // double3_mt16
 
-#region double3_mt32
-
-public partial struct double3_mt32 
-{
-    [MethodImpl(256 | 512)]
-    public static explicit operator uint3_mt32(double3_mt32 self) => new((uint_mt32)self.x, (uint_mt32)self.y, (uint_mt32)self.z);
-    [MethodImpl(256 | 512)]
-    public static explicit operator int3_mt32(double3_mt32 self) => new((int_mt32)self.x, (int_mt32)self.y, (int_mt32)self.z);
-    [MethodImpl(256 | 512)]
-    public static explicit operator ulong3_mt32(double3_mt32 self) => new((ulong_mt32)self.x, (ulong_mt32)self.y, (ulong_mt32)self.z);
-    [MethodImpl(256 | 512)]
-    public static explicit operator long3_mt32(double3_mt32 self) => new((long_mt32)self.x, (long_mt32)self.y, (long_mt32)self.z);
-    [MethodImpl(256 | 512)]
-    public static explicit operator float3_mt32(double3_mt32 self) => new((float_mt32)self.x, (float_mt32)self.y, (float_mt32)self.z);
-}
-
-#endregion // double3_mt32
-
 #region double4_mt4
 
 public partial struct double4_mt4 
@@ -416,24 +326,6 @@ public partial struct double4_mt16
 }
 
 #endregion // double4_mt16
-
-#region double4_mt32
-
-public partial struct double4_mt32 
-{
-    [MethodImpl(256 | 512)]
-    public static explicit operator uint4_mt32(double4_mt32 self) => new((uint_mt32)self.x, (uint_mt32)self.y, (uint_mt32)self.z, (uint_mt32)self.w);
-    [MethodImpl(256 | 512)]
-    public static explicit operator int4_mt32(double4_mt32 self) => new((int_mt32)self.x, (int_mt32)self.y, (int_mt32)self.z, (int_mt32)self.w);
-    [MethodImpl(256 | 512)]
-    public static explicit operator ulong4_mt32(double4_mt32 self) => new((ulong_mt32)self.x, (ulong_mt32)self.y, (ulong_mt32)self.z, (ulong_mt32)self.w);
-    [MethodImpl(256 | 512)]
-    public static explicit operator long4_mt32(double4_mt32 self) => new((long_mt32)self.x, (long_mt32)self.y, (long_mt32)self.z, (long_mt32)self.w);
-    [MethodImpl(256 | 512)]
-    public static explicit operator float4_mt32(double4_mt32 self) => new((float_mt32)self.x, (float_mt32)self.y, (float_mt32)self.z, (float_mt32)self.w);
-}
-
-#endregion // double4_mt32
 
 #region int2_mt4
 
@@ -489,24 +381,6 @@ public partial struct int2_mt16
 
 #endregion // int2_mt16
 
-#region int2_mt32
-
-public partial struct int2_mt32 
-{
-    [MethodImpl(256 | 512)]
-    public static explicit operator uint2_mt32(int2_mt32 self) => new((uint_mt32)self.x, (uint_mt32)self.y);
-    [MethodImpl(256 | 512)]
-    public static explicit operator ulong2_mt32(int2_mt32 self) => new((ulong_mt32)self.x, (ulong_mt32)self.y);
-    [MethodImpl(256 | 512)]
-    public static implicit operator long2_mt32(int2_mt32 self) => new((long_mt32)self.x, (long_mt32)self.y);
-    [MethodImpl(256 | 512)]
-    public static implicit operator float2_mt32(int2_mt32 self) => new((float_mt32)self.x, (float_mt32)self.y);
-    [MethodImpl(256 | 512)]
-    public static implicit operator double2_mt32(int2_mt32 self) => new((double_mt32)self.x, (double_mt32)self.y);
-}
-
-#endregion // int2_mt32
-
 #region int3_mt4
 
 public partial struct int3_mt4 
@@ -560,24 +434,6 @@ public partial struct int3_mt16
 }
 
 #endregion // int3_mt16
-
-#region int3_mt32
-
-public partial struct int3_mt32 
-{
-    [MethodImpl(256 | 512)]
-    public static explicit operator uint3_mt32(int3_mt32 self) => new((uint_mt32)self.x, (uint_mt32)self.y, (uint_mt32)self.z);
-    [MethodImpl(256 | 512)]
-    public static explicit operator ulong3_mt32(int3_mt32 self) => new((ulong_mt32)self.x, (ulong_mt32)self.y, (ulong_mt32)self.z);
-    [MethodImpl(256 | 512)]
-    public static implicit operator long3_mt32(int3_mt32 self) => new((long_mt32)self.x, (long_mt32)self.y, (long_mt32)self.z);
-    [MethodImpl(256 | 512)]
-    public static implicit operator float3_mt32(int3_mt32 self) => new((float_mt32)self.x, (float_mt32)self.y, (float_mt32)self.z);
-    [MethodImpl(256 | 512)]
-    public static implicit operator double3_mt32(int3_mt32 self) => new((double_mt32)self.x, (double_mt32)self.y, (double_mt32)self.z);
-}
-
-#endregion // int3_mt32
 
 #region int4_mt4
 
@@ -633,24 +489,6 @@ public partial struct int4_mt16
 
 #endregion // int4_mt16
 
-#region int4_mt32
-
-public partial struct int4_mt32 
-{
-    [MethodImpl(256 | 512)]
-    public static explicit operator uint4_mt32(int4_mt32 self) => new((uint_mt32)self.x, (uint_mt32)self.y, (uint_mt32)self.z, (uint_mt32)self.w);
-    [MethodImpl(256 | 512)]
-    public static explicit operator ulong4_mt32(int4_mt32 self) => new((ulong_mt32)self.x, (ulong_mt32)self.y, (ulong_mt32)self.z, (ulong_mt32)self.w);
-    [MethodImpl(256 | 512)]
-    public static implicit operator long4_mt32(int4_mt32 self) => new((long_mt32)self.x, (long_mt32)self.y, (long_mt32)self.z, (long_mt32)self.w);
-    [MethodImpl(256 | 512)]
-    public static implicit operator float4_mt32(int4_mt32 self) => new((float_mt32)self.x, (float_mt32)self.y, (float_mt32)self.z, (float_mt32)self.w);
-    [MethodImpl(256 | 512)]
-    public static implicit operator double4_mt32(int4_mt32 self) => new((double_mt32)self.x, (double_mt32)self.y, (double_mt32)self.z, (double_mt32)self.w);
-}
-
-#endregion // int4_mt32
-
 #region uint2_mt4
 
 public partial struct uint2_mt4 
@@ -704,24 +542,6 @@ public partial struct uint2_mt16
 }
 
 #endregion // uint2_mt16
-
-#region uint2_mt32
-
-public partial struct uint2_mt32 
-{
-    [MethodImpl(256 | 512)]
-    public static explicit operator int2_mt32(uint2_mt32 self) => new((int_mt32)self.x, (int_mt32)self.y);
-    [MethodImpl(256 | 512)]
-    public static implicit operator long2_mt32(uint2_mt32 self) => new((long_mt32)self.x, (long_mt32)self.y);
-    [MethodImpl(256 | 512)]
-    public static implicit operator ulong2_mt32(uint2_mt32 self) => new((ulong_mt32)self.x, (ulong_mt32)self.y);
-    [MethodImpl(256 | 512)]
-    public static implicit operator float2_mt32(uint2_mt32 self) => new((float_mt32)self.x, (float_mt32)self.y);
-    [MethodImpl(256 | 512)]
-    public static implicit operator double2_mt32(uint2_mt32 self) => new((double_mt32)self.x, (double_mt32)self.y);
-}
-
-#endregion // uint2_mt32
 
 #region uint3_mt4
 
@@ -777,24 +597,6 @@ public partial struct uint3_mt16
 
 #endregion // uint3_mt16
 
-#region uint3_mt32
-
-public partial struct uint3_mt32 
-{
-    [MethodImpl(256 | 512)]
-    public static explicit operator int3_mt32(uint3_mt32 self) => new((int_mt32)self.x, (int_mt32)self.y, (int_mt32)self.z);
-    [MethodImpl(256 | 512)]
-    public static implicit operator long3_mt32(uint3_mt32 self) => new((long_mt32)self.x, (long_mt32)self.y, (long_mt32)self.z);
-    [MethodImpl(256 | 512)]
-    public static implicit operator ulong3_mt32(uint3_mt32 self) => new((ulong_mt32)self.x, (ulong_mt32)self.y, (ulong_mt32)self.z);
-    [MethodImpl(256 | 512)]
-    public static implicit operator float3_mt32(uint3_mt32 self) => new((float_mt32)self.x, (float_mt32)self.y, (float_mt32)self.z);
-    [MethodImpl(256 | 512)]
-    public static implicit operator double3_mt32(uint3_mt32 self) => new((double_mt32)self.x, (double_mt32)self.y, (double_mt32)self.z);
-}
-
-#endregion // uint3_mt32
-
 #region uint4_mt4
 
 public partial struct uint4_mt4 
@@ -849,24 +651,6 @@ public partial struct uint4_mt16
 
 #endregion // uint4_mt16
 
-#region uint4_mt32
-
-public partial struct uint4_mt32 
-{
-    [MethodImpl(256 | 512)]
-    public static explicit operator int4_mt32(uint4_mt32 self) => new((int_mt32)self.x, (int_mt32)self.y, (int_mt32)self.z, (int_mt32)self.w);
-    [MethodImpl(256 | 512)]
-    public static implicit operator long4_mt32(uint4_mt32 self) => new((long_mt32)self.x, (long_mt32)self.y, (long_mt32)self.z, (long_mt32)self.w);
-    [MethodImpl(256 | 512)]
-    public static implicit operator ulong4_mt32(uint4_mt32 self) => new((ulong_mt32)self.x, (ulong_mt32)self.y, (ulong_mt32)self.z, (ulong_mt32)self.w);
-    [MethodImpl(256 | 512)]
-    public static implicit operator float4_mt32(uint4_mt32 self) => new((float_mt32)self.x, (float_mt32)self.y, (float_mt32)self.z, (float_mt32)self.w);
-    [MethodImpl(256 | 512)]
-    public static implicit operator double4_mt32(uint4_mt32 self) => new((double_mt32)self.x, (double_mt32)self.y, (double_mt32)self.z, (double_mt32)self.w);
-}
-
-#endregion // uint4_mt32
-
 #region long2_mt4
 
 public partial struct long2_mt4 
@@ -914,22 +698,6 @@ public partial struct long2_mt16
 }
 
 #endregion // long2_mt16
-
-#region long2_mt32
-
-public partial struct long2_mt32 
-{
-    [MethodImpl(256 | 512)]
-    public static explicit operator uint2_mt32(long2_mt32 self) => new((uint_mt32)self.x, (uint_mt32)self.y);
-    [MethodImpl(256 | 512)]
-    public static explicit operator int2_mt32(long2_mt32 self) => new((int_mt32)self.x, (int_mt32)self.y);
-    [MethodImpl(256 | 512)]
-    public static explicit operator ulong2_mt32(long2_mt32 self) => new((ulong_mt32)self.x, (ulong_mt32)self.y);
-    [MethodImpl(256 | 512)]
-    public static implicit operator double2_mt32(long2_mt32 self) => new((double_mt32)self.x, (double_mt32)self.y);
-}
-
-#endregion // long2_mt32
 
 #region long3_mt4
 
@@ -979,22 +747,6 @@ public partial struct long3_mt16
 
 #endregion // long3_mt16
 
-#region long3_mt32
-
-public partial struct long3_mt32 
-{
-    [MethodImpl(256 | 512)]
-    public static explicit operator uint3_mt32(long3_mt32 self) => new((uint_mt32)self.x, (uint_mt32)self.y, (uint_mt32)self.z);
-    [MethodImpl(256 | 512)]
-    public static explicit operator int3_mt32(long3_mt32 self) => new((int_mt32)self.x, (int_mt32)self.y, (int_mt32)self.z);
-    [MethodImpl(256 | 512)]
-    public static explicit operator ulong3_mt32(long3_mt32 self) => new((ulong_mt32)self.x, (ulong_mt32)self.y, (ulong_mt32)self.z);
-    [MethodImpl(256 | 512)]
-    public static implicit operator double3_mt32(long3_mt32 self) => new((double_mt32)self.x, (double_mt32)self.y, (double_mt32)self.z);
-}
-
-#endregion // long3_mt32
-
 #region long4_mt4
 
 public partial struct long4_mt4 
@@ -1042,22 +794,6 @@ public partial struct long4_mt16
 }
 
 #endregion // long4_mt16
-
-#region long4_mt32
-
-public partial struct long4_mt32 
-{
-    [MethodImpl(256 | 512)]
-    public static explicit operator uint4_mt32(long4_mt32 self) => new((uint_mt32)self.x, (uint_mt32)self.y, (uint_mt32)self.z, (uint_mt32)self.w);
-    [MethodImpl(256 | 512)]
-    public static explicit operator int4_mt32(long4_mt32 self) => new((int_mt32)self.x, (int_mt32)self.y, (int_mt32)self.z, (int_mt32)self.w);
-    [MethodImpl(256 | 512)]
-    public static explicit operator ulong4_mt32(long4_mt32 self) => new((ulong_mt32)self.x, (ulong_mt32)self.y, (ulong_mt32)self.z, (ulong_mt32)self.w);
-    [MethodImpl(256 | 512)]
-    public static implicit operator double4_mt32(long4_mt32 self) => new((double_mt32)self.x, (double_mt32)self.y, (double_mt32)self.z, (double_mt32)self.w);
-}
-
-#endregion // long4_mt32
 
 #region ulong2_mt4
 
@@ -1107,22 +843,6 @@ public partial struct ulong2_mt16
 
 #endregion // ulong2_mt16
 
-#region ulong2_mt32
-
-public partial struct ulong2_mt32 
-{
-    [MethodImpl(256 | 512)]
-    public static explicit operator uint2_mt32(ulong2_mt32 self) => new((uint_mt32)self.x, (uint_mt32)self.y);
-    [MethodImpl(256 | 512)]
-    public static explicit operator int2_mt32(ulong2_mt32 self) => new((int_mt32)self.x, (int_mt32)self.y);
-    [MethodImpl(256 | 512)]
-    public static explicit operator long2_mt32(ulong2_mt32 self) => new((long_mt32)self.x, (long_mt32)self.y);
-    [MethodImpl(256 | 512)]
-    public static implicit operator double2_mt32(ulong2_mt32 self) => new((double_mt32)self.x, (double_mt32)self.y);
-}
-
-#endregion // ulong2_mt32
-
 #region ulong3_mt4
 
 public partial struct ulong3_mt4 
@@ -1171,22 +891,6 @@ public partial struct ulong3_mt16
 
 #endregion // ulong3_mt16
 
-#region ulong3_mt32
-
-public partial struct ulong3_mt32 
-{
-    [MethodImpl(256 | 512)]
-    public static explicit operator uint3_mt32(ulong3_mt32 self) => new((uint_mt32)self.x, (uint_mt32)self.y, (uint_mt32)self.z);
-    [MethodImpl(256 | 512)]
-    public static explicit operator int3_mt32(ulong3_mt32 self) => new((int_mt32)self.x, (int_mt32)self.y, (int_mt32)self.z);
-    [MethodImpl(256 | 512)]
-    public static explicit operator long3_mt32(ulong3_mt32 self) => new((long_mt32)self.x, (long_mt32)self.y, (long_mt32)self.z);
-    [MethodImpl(256 | 512)]
-    public static implicit operator double3_mt32(ulong3_mt32 self) => new((double_mt32)self.x, (double_mt32)self.y, (double_mt32)self.z);
-}
-
-#endregion // ulong3_mt32
-
 #region ulong4_mt4
 
 public partial struct ulong4_mt4 
@@ -1234,22 +938,6 @@ public partial struct ulong4_mt16
 }
 
 #endregion // ulong4_mt16
-
-#region ulong4_mt32
-
-public partial struct ulong4_mt32 
-{
-    [MethodImpl(256 | 512)]
-    public static explicit operator uint4_mt32(ulong4_mt32 self) => new((uint_mt32)self.x, (uint_mt32)self.y, (uint_mt32)self.z, (uint_mt32)self.w);
-    [MethodImpl(256 | 512)]
-    public static explicit operator int4_mt32(ulong4_mt32 self) => new((int_mt32)self.x, (int_mt32)self.y, (int_mt32)self.z, (int_mt32)self.w);
-    [MethodImpl(256 | 512)]
-    public static explicit operator long4_mt32(ulong4_mt32 self) => new((long_mt32)self.x, (long_mt32)self.y, (long_mt32)self.z, (long_mt32)self.w);
-    [MethodImpl(256 | 512)]
-    public static implicit operator double4_mt32(ulong4_mt32 self) => new((double_mt32)self.x, (double_mt32)self.y, (double_mt32)self.z, (double_mt32)self.w);
-}
-
-#endregion // ulong4_mt32
 
 #region b32v2_mt4
 
@@ -1317,28 +1005,6 @@ public partial struct b32v2_mt16
 
 #endregion // b32v2_mt16
 
-#region b32v2_mt32
-
-public partial struct b32v2_mt32 
-{
-    [MethodImpl(256 | 512)]
-    public static explicit operator uint2_mt32(b32v2_mt32 self) => new((uint_mt32)self.x, (uint_mt32)self.y);
-    [MethodImpl(256 | 512)]
-    public static explicit operator int2_mt32(b32v2_mt32 self) => new((int_mt32)self.x, (int_mt32)self.y);
-    [MethodImpl(256 | 512)]
-    public static explicit operator ulong2_mt32(b32v2_mt32 self) => new((ulong_mt32)self.x, (ulong_mt32)self.y);
-    [MethodImpl(256 | 512)]
-    public static explicit operator long2_mt32(b32v2_mt32 self) => new((long_mt32)self.x, (long_mt32)self.y);
-    [MethodImpl(256 | 512)]
-    public static explicit operator float2_mt32(b32v2_mt32 self) => new((float_mt32)self.x, (float_mt32)self.y);
-    [MethodImpl(256 | 512)]
-    public static explicit operator double2_mt32(b32v2_mt32 self) => new((double_mt32)self.x, (double_mt32)self.y);
-    [MethodImpl(256 | 512)]
-    public static explicit operator b64v2_mt32(b32v2_mt32 self) => new((b64_mt32)self.x, (b64_mt32)self.y);
-}
-
-#endregion // b32v2_mt32
-
 #region b32v3_mt4
 
 public partial struct b32v3_mt4 
@@ -1404,28 +1070,6 @@ public partial struct b32v3_mt16
 }
 
 #endregion // b32v3_mt16
-
-#region b32v3_mt32
-
-public partial struct b32v3_mt32 
-{
-    [MethodImpl(256 | 512)]
-    public static explicit operator uint3_mt32(b32v3_mt32 self) => new((uint_mt32)self.x, (uint_mt32)self.y, (uint_mt32)self.z);
-    [MethodImpl(256 | 512)]
-    public static explicit operator int3_mt32(b32v3_mt32 self) => new((int_mt32)self.x, (int_mt32)self.y, (int_mt32)self.z);
-    [MethodImpl(256 | 512)]
-    public static explicit operator ulong3_mt32(b32v3_mt32 self) => new((ulong_mt32)self.x, (ulong_mt32)self.y, (ulong_mt32)self.z);
-    [MethodImpl(256 | 512)]
-    public static explicit operator long3_mt32(b32v3_mt32 self) => new((long_mt32)self.x, (long_mt32)self.y, (long_mt32)self.z);
-    [MethodImpl(256 | 512)]
-    public static explicit operator float3_mt32(b32v3_mt32 self) => new((float_mt32)self.x, (float_mt32)self.y, (float_mt32)self.z);
-    [MethodImpl(256 | 512)]
-    public static explicit operator double3_mt32(b32v3_mt32 self) => new((double_mt32)self.x, (double_mt32)self.y, (double_mt32)self.z);
-    [MethodImpl(256 | 512)]
-    public static explicit operator b64v3_mt32(b32v3_mt32 self) => new((b64_mt32)self.x, (b64_mt32)self.y, (b64_mt32)self.z);
-}
-
-#endregion // b32v3_mt32
 
 #region b32v4_mt4
 
@@ -1493,28 +1137,6 @@ public partial struct b32v4_mt16
 
 #endregion // b32v4_mt16
 
-#region b32v4_mt32
-
-public partial struct b32v4_mt32 
-{
-    [MethodImpl(256 | 512)]
-    public static explicit operator uint4_mt32(b32v4_mt32 self) => new((uint_mt32)self.x, (uint_mt32)self.y, (uint_mt32)self.z, (uint_mt32)self.w);
-    [MethodImpl(256 | 512)]
-    public static explicit operator int4_mt32(b32v4_mt32 self) => new((int_mt32)self.x, (int_mt32)self.y, (int_mt32)self.z, (int_mt32)self.w);
-    [MethodImpl(256 | 512)]
-    public static explicit operator ulong4_mt32(b32v4_mt32 self) => new((ulong_mt32)self.x, (ulong_mt32)self.y, (ulong_mt32)self.z, (ulong_mt32)self.w);
-    [MethodImpl(256 | 512)]
-    public static explicit operator long4_mt32(b32v4_mt32 self) => new((long_mt32)self.x, (long_mt32)self.y, (long_mt32)self.z, (long_mt32)self.w);
-    [MethodImpl(256 | 512)]
-    public static explicit operator float4_mt32(b32v4_mt32 self) => new((float_mt32)self.x, (float_mt32)self.y, (float_mt32)self.z, (float_mt32)self.w);
-    [MethodImpl(256 | 512)]
-    public static explicit operator double4_mt32(b32v4_mt32 self) => new((double_mt32)self.x, (double_mt32)self.y, (double_mt32)self.z, (double_mt32)self.w);
-    [MethodImpl(256 | 512)]
-    public static explicit operator b64v4_mt32(b32v4_mt32 self) => new((b64_mt32)self.x, (b64_mt32)self.y, (b64_mt32)self.z, (b64_mt32)self.w);
-}
-
-#endregion // b32v4_mt32
-
 #region b64v2_mt4
 
 public partial struct b64v2_mt4 
@@ -1580,28 +1202,6 @@ public partial struct b64v2_mt16
 }
 
 #endregion // b64v2_mt16
-
-#region b64v2_mt32
-
-public partial struct b64v2_mt32 
-{
-    [MethodImpl(256 | 512)]
-    public static explicit operator uint2_mt32(b64v2_mt32 self) => new((uint_mt32)self.x, (uint_mt32)self.y);
-    [MethodImpl(256 | 512)]
-    public static explicit operator int2_mt32(b64v2_mt32 self) => new((int_mt32)self.x, (int_mt32)self.y);
-    [MethodImpl(256 | 512)]
-    public static explicit operator ulong2_mt32(b64v2_mt32 self) => new((ulong_mt32)self.x, (ulong_mt32)self.y);
-    [MethodImpl(256 | 512)]
-    public static explicit operator long2_mt32(b64v2_mt32 self) => new((long_mt32)self.x, (long_mt32)self.y);
-    [MethodImpl(256 | 512)]
-    public static explicit operator float2_mt32(b64v2_mt32 self) => new((float_mt32)self.x, (float_mt32)self.y);
-    [MethodImpl(256 | 512)]
-    public static explicit operator double2_mt32(b64v2_mt32 self) => new((double_mt32)self.x, (double_mt32)self.y);
-    [MethodImpl(256 | 512)]
-    public static explicit operator b32v2_mt32(b64v2_mt32 self) => new((b32_mt32)self.x, (b32_mt32)self.y);
-}
-
-#endregion // b64v2_mt32
 
 #region b64v3_mt4
 
@@ -1669,28 +1269,6 @@ public partial struct b64v3_mt16
 
 #endregion // b64v3_mt16
 
-#region b64v3_mt32
-
-public partial struct b64v3_mt32 
-{
-    [MethodImpl(256 | 512)]
-    public static explicit operator uint3_mt32(b64v3_mt32 self) => new((uint_mt32)self.x, (uint_mt32)self.y, (uint_mt32)self.z);
-    [MethodImpl(256 | 512)]
-    public static explicit operator int3_mt32(b64v3_mt32 self) => new((int_mt32)self.x, (int_mt32)self.y, (int_mt32)self.z);
-    [MethodImpl(256 | 512)]
-    public static explicit operator ulong3_mt32(b64v3_mt32 self) => new((ulong_mt32)self.x, (ulong_mt32)self.y, (ulong_mt32)self.z);
-    [MethodImpl(256 | 512)]
-    public static explicit operator long3_mt32(b64v3_mt32 self) => new((long_mt32)self.x, (long_mt32)self.y, (long_mt32)self.z);
-    [MethodImpl(256 | 512)]
-    public static explicit operator float3_mt32(b64v3_mt32 self) => new((float_mt32)self.x, (float_mt32)self.y, (float_mt32)self.z);
-    [MethodImpl(256 | 512)]
-    public static explicit operator double3_mt32(b64v3_mt32 self) => new((double_mt32)self.x, (double_mt32)self.y, (double_mt32)self.z);
-    [MethodImpl(256 | 512)]
-    public static explicit operator b32v3_mt32(b64v3_mt32 self) => new((b32_mt32)self.x, (b32_mt32)self.y, (b32_mt32)self.z);
-}
-
-#endregion // b64v3_mt32
-
 #region b64v4_mt4
 
 public partial struct b64v4_mt4 
@@ -1756,25 +1334,3 @@ public partial struct b64v4_mt16
 }
 
 #endregion // b64v4_mt16
-
-#region b64v4_mt32
-
-public partial struct b64v4_mt32 
-{
-    [MethodImpl(256 | 512)]
-    public static explicit operator uint4_mt32(b64v4_mt32 self) => new((uint_mt32)self.x, (uint_mt32)self.y, (uint_mt32)self.z, (uint_mt32)self.w);
-    [MethodImpl(256 | 512)]
-    public static explicit operator int4_mt32(b64v4_mt32 self) => new((int_mt32)self.x, (int_mt32)self.y, (int_mt32)self.z, (int_mt32)self.w);
-    [MethodImpl(256 | 512)]
-    public static explicit operator ulong4_mt32(b64v4_mt32 self) => new((ulong_mt32)self.x, (ulong_mt32)self.y, (ulong_mt32)self.z, (ulong_mt32)self.w);
-    [MethodImpl(256 | 512)]
-    public static explicit operator long4_mt32(b64v4_mt32 self) => new((long_mt32)self.x, (long_mt32)self.y, (long_mt32)self.z, (long_mt32)self.w);
-    [MethodImpl(256 | 512)]
-    public static explicit operator float4_mt32(b64v4_mt32 self) => new((float_mt32)self.x, (float_mt32)self.y, (float_mt32)self.z, (float_mt32)self.w);
-    [MethodImpl(256 | 512)]
-    public static explicit operator double4_mt32(b64v4_mt32 self) => new((double_mt32)self.x, (double_mt32)self.y, (double_mt32)self.z, (double_mt32)self.w);
-    [MethodImpl(256 | 512)]
-    public static explicit operator b32v4_mt32(b64v4_mt32 self) => new((b32_mt32)self.x, (b32_mt32)self.y, (b32_mt32)self.z, (b32_mt32)self.w);
-}
-
-#endregion // b64v4_mt32

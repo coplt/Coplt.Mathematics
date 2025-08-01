@@ -50,22 +50,6 @@ public static partial class math_mt
 }
 
 #endregion // int2_mt16
-#region int2_mt32
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt32 isPow2([This] int2_mt32 a)
-    {
-        return ((a & (a - int2_mt32.One)) == int2_mt32.Zero) & (a > int2_mt32.Zero);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int2_mt32 up2pow2([This] int2_mt32 a) => new(up2pow2(a.x), up2pow2(a.y));
-}
-
-#endregion // int2_mt32
 #region int3_mt4
 
 [Ex]
@@ -114,22 +98,6 @@ public static partial class math_mt
 }
 
 #endregion // int3_mt16
-#region int3_mt32
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt32 isPow2([This] int3_mt32 a)
-    {
-        return ((a & (a - int3_mt32.One)) == int3_mt32.Zero) & (a > int3_mt32.Zero);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int3_mt32 up2pow2([This] int3_mt32 a) => new(up2pow2(a.x), up2pow2(a.y), up2pow2(a.z));
-}
-
-#endregion // int3_mt32
 #region int4_mt4
 
 [Ex]
@@ -178,22 +146,6 @@ public static partial class math_mt
 }
 
 #endregion // int4_mt16
-#region int4_mt32
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt32 isPow2([This] int4_mt32 a)
-    {
-        return ((a & (a - int4_mt32.One)) == int4_mt32.Zero) & (a > int4_mt32.Zero);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int4_mt32 up2pow2([This] int4_mt32 a) => new(up2pow2(a.x), up2pow2(a.y), up2pow2(a.z), up2pow2(a.w));
-}
-
-#endregion // int4_mt32
 #region uint2_mt4
 
 [Ex]
@@ -242,22 +194,6 @@ public static partial class math_mt
 }
 
 #endregion // uint2_mt16
-#region uint2_mt32
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32v2_mt32 isPow2([This] uint2_mt32 a)
-    {
-        return ((a & (a - uint2_mt32.One)) == uint2_mt32.Zero) & (a != uint2_mt32.Zero);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint2_mt32 up2pow2([This] uint2_mt32 a) => new(up2pow2(a.x), up2pow2(a.y));
-}
-
-#endregion // uint2_mt32
 #region uint3_mt4
 
 [Ex]
@@ -306,22 +242,6 @@ public static partial class math_mt
 }
 
 #endregion // uint3_mt16
-#region uint3_mt32
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32v3_mt32 isPow2([This] uint3_mt32 a)
-    {
-        return ((a & (a - uint3_mt32.One)) == uint3_mt32.Zero) & (a != uint3_mt32.Zero);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint3_mt32 up2pow2([This] uint3_mt32 a) => new(up2pow2(a.x), up2pow2(a.y), up2pow2(a.z));
-}
-
-#endregion // uint3_mt32
 #region uint4_mt4
 
 [Ex]
@@ -370,22 +290,6 @@ public static partial class math_mt
 }
 
 #endregion // uint4_mt16
-#region uint4_mt32
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32v4_mt32 isPow2([This] uint4_mt32 a)
-    {
-        return ((a & (a - uint4_mt32.One)) == uint4_mt32.Zero) & (a != uint4_mt32.Zero);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint4_mt32 up2pow2([This] uint4_mt32 a) => new(up2pow2(a.x), up2pow2(a.y), up2pow2(a.z), up2pow2(a.w));
-}
-
-#endregion // uint4_mt32
 #region long2_mt4
 
 [Ex]
@@ -434,22 +338,6 @@ public static partial class math_mt
 }
 
 #endregion // long2_mt16
-#region long2_mt32
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt32 isPow2([This] long2_mt32 a)
-    {
-        return ((a & (a - long2_mt32.One)) == long2_mt32.Zero) & (a > long2_mt32.Zero);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long2_mt32 up2pow2([This] long2_mt32 a) => new(up2pow2(a.x), up2pow2(a.y));
-}
-
-#endregion // long2_mt32
 #region long3_mt4
 
 [Ex]
@@ -498,22 +386,6 @@ public static partial class math_mt
 }
 
 #endregion // long3_mt16
-#region long3_mt32
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt32 isPow2([This] long3_mt32 a)
-    {
-        return ((a & (a - long3_mt32.One)) == long3_mt32.Zero) & (a > long3_mt32.Zero);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long3_mt32 up2pow2([This] long3_mt32 a) => new(up2pow2(a.x), up2pow2(a.y), up2pow2(a.z));
-}
-
-#endregion // long3_mt32
 #region long4_mt4
 
 [Ex]
@@ -562,22 +434,6 @@ public static partial class math_mt
 }
 
 #endregion // long4_mt16
-#region long4_mt32
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt32 isPow2([This] long4_mt32 a)
-    {
-        return ((a & (a - long4_mt32.One)) == long4_mt32.Zero) & (a > long4_mt32.Zero);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long4_mt32 up2pow2([This] long4_mt32 a) => new(up2pow2(a.x), up2pow2(a.y), up2pow2(a.z), up2pow2(a.w));
-}
-
-#endregion // long4_mt32
 #region ulong2_mt4
 
 [Ex]
@@ -626,22 +482,6 @@ public static partial class math_mt
 }
 
 #endregion // ulong2_mt16
-#region ulong2_mt32
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64v2_mt32 isPow2([This] ulong2_mt32 a)
-    {
-        return ((a & (a - ulong2_mt32.One)) == ulong2_mt32.Zero) & (a != ulong2_mt32.Zero);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong2_mt32 up2pow2([This] ulong2_mt32 a) => new(up2pow2(a.x), up2pow2(a.y));
-}
-
-#endregion // ulong2_mt32
 #region ulong3_mt4
 
 [Ex]
@@ -690,22 +530,6 @@ public static partial class math_mt
 }
 
 #endregion // ulong3_mt16
-#region ulong3_mt32
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64v3_mt32 isPow2([This] ulong3_mt32 a)
-    {
-        return ((a & (a - ulong3_mt32.One)) == ulong3_mt32.Zero) & (a != ulong3_mt32.Zero);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong3_mt32 up2pow2([This] ulong3_mt32 a) => new(up2pow2(a.x), up2pow2(a.y), up2pow2(a.z));
-}
-
-#endregion // ulong3_mt32
 #region ulong4_mt4
 
 [Ex]
@@ -754,19 +578,3 @@ public static partial class math_mt
 }
 
 #endregion // ulong4_mt16
-#region ulong4_mt32
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64v4_mt32 isPow2([This] ulong4_mt32 a)
-    {
-        return ((a & (a - ulong4_mt32.One)) == ulong4_mt32.Zero) & (a != ulong4_mt32.Zero);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong4_mt32 up2pow2([This] ulong4_mt32 a) => new(up2pow2(a.x), up2pow2(a.y), up2pow2(a.z), up2pow2(a.w));
-}
-
-#endregion // ulong4_mt32

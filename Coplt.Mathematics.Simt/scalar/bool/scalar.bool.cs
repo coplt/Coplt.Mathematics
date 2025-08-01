@@ -128,48 +128,6 @@ public static partial class math_mt
 }
 
 #endregion // b32_mt16
-#region b32_mt32
-
-public partial struct b32_mt32
-{
-    public static b32_mt32 True
-    {
-        [MethodImpl(256 | 512)]
-        get => new(b32.True);
-    }
-    public static b32_mt32 False
-    {
-        [MethodImpl(256 | 512)]
-        get => new(b32.False);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b32_mt32 operator !(b32_mt32 self) => ~self;
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static bool lane_all([This] b32_mt32 v)
-    {
-        return (v.vector0 == Vector512<uint>.AllBitsSet) && (v.vector1 == Vector512<uint>.AllBitsSet);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_any([This] b32_mt32 v)
-    {
-        return (v.vector0 != default) || (v.vector1 != default);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_all_false([This] b32_mt32 v)
-    {
-        return (v.vector0 == default) && (v.vector1 == default);
-    }
-}
-
-#endregion // b32_mt32
 #region b64_mt4
 
 public partial struct b64_mt4
@@ -296,45 +254,3 @@ public static partial class math_mt
 }
 
 #endregion // b64_mt16
-#region b64_mt32
-
-public partial struct b64_mt32
-{
-    public static b64_mt32 True
-    {
-        [MethodImpl(256 | 512)]
-        get => new(b64.True);
-    }
-    public static b64_mt32 False
-    {
-        [MethodImpl(256 | 512)]
-        get => new(b64.False);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static b64_mt32 operator !(b64_mt32 self) => ~self;
-}
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static bool lane_all([This] b64_mt32 v)
-    {
-        return (v.vector0 == Vector512<ulong>.AllBitsSet) && (v.vector1 == Vector512<ulong>.AllBitsSet) && (v.vector2 == Vector512<ulong>.AllBitsSet) && (v.vector3 == Vector512<ulong>.AllBitsSet);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_any([This] b64_mt32 v)
-    {
-        return (v.vector0 != default) || (v.vector1 != default) || (v.vector2 != default) || (v.vector3 != default);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static bool lane_all_false([This] b64_mt32 v)
-    {
-        return (v.vector0 == default) && (v.vector1 == default) && (v.vector2 == default) && (v.vector3 == default);
-    }
-}
-
-#endregion // b64_mt32

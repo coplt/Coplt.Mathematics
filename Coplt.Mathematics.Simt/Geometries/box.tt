@@ -7,7 +7,7 @@
 namespace Coplt.Mathematics.Simt.Geometries;
 
 <#
-    var sizes = new[] { 4, 8, 16, 32 };
+    var sizes = new[] { 4, 8, 16 };
     foreach (var size in sizes)
     {
         var byteSize = 4 * size;

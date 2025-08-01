@@ -59,25 +59,6 @@ public static partial class math_mt
 }
 
 #endregion // int_mt16
-#region int_mt32
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32_mt32 isPow2([This] int_mt32 a)
-    {
-        return ((a & (a - int_mt32.One)) == default) & (a > default(int_mt32));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static int_mt32 up2pow2([This] int_mt32 a)
-    {
-        return new(simd.RoundUpToPowerOf2(a.vector0), simd.RoundUpToPowerOf2(a.vector1));
-    }
-}
-
-#endregion // int_mt32
 #region uint_mt4
 
 [Ex]
@@ -135,25 +116,6 @@ public static partial class math_mt
 }
 
 #endregion // uint_mt16
-#region uint_mt32
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b32_mt32 isPow2([This] uint_mt32 a)
-    {
-        return ((a & (a - uint_mt32.One)) == default) & (a != default);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static uint_mt32 up2pow2([This] uint_mt32 a)
-    {
-        return new(simd.RoundUpToPowerOf2(a.vector0), simd.RoundUpToPowerOf2(a.vector1));
-    }
-}
-
-#endregion // uint_mt32
 #region long_mt4
 
 [Ex]
@@ -211,25 +173,6 @@ public static partial class math_mt
 }
 
 #endregion // long_mt16
-#region long_mt32
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64_mt32 isPow2([This] long_mt32 a)
-    {
-        return ((a & (a - long_mt32.One)) == default) & (a > default(long_mt32));
-    }
-
-    [MethodImpl(256 | 512)]
-    public static long_mt32 up2pow2([This] long_mt32 a)
-    {
-        return new(simd.RoundUpToPowerOf2(a.vector0), simd.RoundUpToPowerOf2(a.vector1), simd.RoundUpToPowerOf2(a.vector2), simd.RoundUpToPowerOf2(a.vector3));
-    }
-}
-
-#endregion // long_mt32
 #region ulong_mt4
 
 [Ex]
@@ -287,22 +230,3 @@ public static partial class math_mt
 }
 
 #endregion // ulong_mt16
-#region ulong_mt32
-
-[Ex]
-public static partial class math_mt
-{
-    [MethodImpl(256 | 512)]
-    public static b64_mt32 isPow2([This] ulong_mt32 a)
-    {
-        return ((a & (a - ulong_mt32.One)) == default) & (a != default);
-    }
-
-    [MethodImpl(256 | 512)]
-    public static ulong_mt32 up2pow2([This] ulong_mt32 a)
-    {
-        return new(simd.RoundUpToPowerOf2(a.vector0), simd.RoundUpToPowerOf2(a.vector1), simd.RoundUpToPowerOf2(a.vector2), simd.RoundUpToPowerOf2(a.vector3));
-    }
-}
-
-#endregion // ulong_mt32

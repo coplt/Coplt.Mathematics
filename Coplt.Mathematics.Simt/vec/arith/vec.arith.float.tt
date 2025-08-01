@@ -7,7 +7,7 @@
 namespace Coplt.Mathematics.Simt;
 
 <#
-    var sizes = new[] { 4, 8, 16, 32 };
+    var sizes = new[] { 4, 8, 16 };
     foreach (var typ in Typ.Typs)
     {
         if (!typ.f) continue;
