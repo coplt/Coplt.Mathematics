@@ -18,6 +18,23 @@ public partial struct float3x3_mt4
         c2 = m4x4.c2.xyz;
     }
 
+    /// <summary>Constructs a float3x3_mt4 matrix from a unit quaternion</summary>
+    /// <param name="q">The quaternion rotation</param>
+    [MethodImpl(256 | 512)]
+    public float3x3_mt4(quaternion_mt4 q)
+    {
+        var v = q.value;
+        var v2 = v + v;
+
+        var npn = new uint3_mt4(0x80000000, default, 0x80000000).asf();
+        var nnp = new uint3_mt4(0x80000000, 0x80000000, default).asf();
+        var pnn = new uint3_mt4(default, 0x80000000, 0x80000000).asf();
+
+        c0 = v2.yyy.fms(v.yxw ^ npn, v2.zzz * (v.zwx ^ pnn)) + new float3_mt4(1.0f, default, default);
+        c1 = v2.zzz.fms(v.wzy ^ nnp, v2.xxx * (v.yxw ^ npn)) + new float3_mt4(default, 1.0f, default);
+        c2 = v2.xxx.fms(v.zwx ^ pnn, v2.yyy * (v.wzy ^ nnp)) + new float3_mt4(default, default, 1.0f);
+    }
+
     /// <summary>
     /// Returns a float3x3_mt4 view rotation matrix given a unit length forward vector and a unit length up vector.
     /// The two input vectors are assumed to be unit length and not collinear.
@@ -365,6 +382,23 @@ public partial struct float3x3_mt8
         c0 = m4x4.c0.xyz;
         c1 = m4x4.c1.xyz;
         c2 = m4x4.c2.xyz;
+    }
+
+    /// <summary>Constructs a float3x3_mt8 matrix from a unit quaternion</summary>
+    /// <param name="q">The quaternion rotation</param>
+    [MethodImpl(256 | 512)]
+    public float3x3_mt8(quaternion_mt8 q)
+    {
+        var v = q.value;
+        var v2 = v + v;
+
+        var npn = new uint3_mt8(0x80000000, default, 0x80000000).asf();
+        var nnp = new uint3_mt8(0x80000000, 0x80000000, default).asf();
+        var pnn = new uint3_mt8(default, 0x80000000, 0x80000000).asf();
+
+        c0 = v2.yyy.fms(v.yxw ^ npn, v2.zzz * (v.zwx ^ pnn)) + new float3_mt8(1.0f, default, default);
+        c1 = v2.zzz.fms(v.wzy ^ nnp, v2.xxx * (v.yxw ^ npn)) + new float3_mt8(default, 1.0f, default);
+        c2 = v2.xxx.fms(v.zwx ^ pnn, v2.yyy * (v.wzy ^ nnp)) + new float3_mt8(default, default, 1.0f);
     }
 
     /// <summary>
@@ -716,6 +750,23 @@ public partial struct float3x3_mt16
         c2 = m4x4.c2.xyz;
     }
 
+    /// <summary>Constructs a float3x3_mt16 matrix from a unit quaternion</summary>
+    /// <param name="q">The quaternion rotation</param>
+    [MethodImpl(256 | 512)]
+    public float3x3_mt16(quaternion_mt16 q)
+    {
+        var v = q.value;
+        var v2 = v + v;
+
+        var npn = new uint3_mt16(0x80000000, default, 0x80000000).asf();
+        var nnp = new uint3_mt16(0x80000000, 0x80000000, default).asf();
+        var pnn = new uint3_mt16(default, 0x80000000, 0x80000000).asf();
+
+        c0 = v2.yyy.fms(v.yxw ^ npn, v2.zzz * (v.zwx ^ pnn)) + new float3_mt16(1.0f, default, default);
+        c1 = v2.zzz.fms(v.wzy ^ nnp, v2.xxx * (v.yxw ^ npn)) + new float3_mt16(default, 1.0f, default);
+        c2 = v2.xxx.fms(v.zwx ^ pnn, v2.yyy * (v.wzy ^ nnp)) + new float3_mt16(default, default, 1.0f);
+    }
+
     /// <summary>
     /// Returns a float3x3_mt16 view rotation matrix given a unit length forward vector and a unit length up vector.
     /// The two input vectors are assumed to be unit length and not collinear.
@@ -1063,6 +1114,23 @@ public partial struct double3x3_mt4
         c0 = m4x4.c0.xyz;
         c1 = m4x4.c1.xyz;
         c2 = m4x4.c2.xyz;
+    }
+
+    /// <summary>Constructs a double3x3_mt4 matrix from a unit quaternion</summary>
+    /// <param name="q">The quaternion rotation</param>
+    [MethodImpl(256 | 512)]
+    public double3x3_mt4(quaternion_d_mt4 q)
+    {
+        var v = q.value;
+        var v2 = v + v;
+
+        var npn = new ulong3_mt4(0x8000000000000000, default, 0x8000000000000000).asf();
+        var nnp = new ulong3_mt4(0x8000000000000000, 0x8000000000000000, default).asf();
+        var pnn = new ulong3_mt4(default, 0x8000000000000000, 0x8000000000000000).asf();
+
+        c0 = v2.yyy.fms(v.yxw ^ npn, v2.zzz * (v.zwx ^ pnn)) + new double3_mt4(1.0, default, default);
+        c1 = v2.zzz.fms(v.wzy ^ nnp, v2.xxx * (v.yxw ^ npn)) + new double3_mt4(default, 1.0, default);
+        c2 = v2.xxx.fms(v.zwx ^ pnn, v2.yyy * (v.wzy ^ nnp)) + new double3_mt4(default, default, 1.0);
     }
 
     /// <summary>
@@ -1414,6 +1482,23 @@ public partial struct double3x3_mt8
         c2 = m4x4.c2.xyz;
     }
 
+    /// <summary>Constructs a double3x3_mt8 matrix from a unit quaternion</summary>
+    /// <param name="q">The quaternion rotation</param>
+    [MethodImpl(256 | 512)]
+    public double3x3_mt8(quaternion_d_mt8 q)
+    {
+        var v = q.value;
+        var v2 = v + v;
+
+        var npn = new ulong3_mt8(0x8000000000000000, default, 0x8000000000000000).asf();
+        var nnp = new ulong3_mt8(0x8000000000000000, 0x8000000000000000, default).asf();
+        var pnn = new ulong3_mt8(default, 0x8000000000000000, 0x8000000000000000).asf();
+
+        c0 = v2.yyy.fms(v.yxw ^ npn, v2.zzz * (v.zwx ^ pnn)) + new double3_mt8(1.0, default, default);
+        c1 = v2.zzz.fms(v.wzy ^ nnp, v2.xxx * (v.yxw ^ npn)) + new double3_mt8(default, 1.0, default);
+        c2 = v2.xxx.fms(v.zwx ^ pnn, v2.yyy * (v.wzy ^ nnp)) + new double3_mt8(default, default, 1.0);
+    }
+
     /// <summary>
     /// Returns a double3x3_mt8 view rotation matrix given a unit length forward vector and a unit length up vector.
     /// The two input vectors are assumed to be unit length and not collinear.
@@ -1761,6 +1846,23 @@ public partial struct double3x3_mt16
         c0 = m4x4.c0.xyz;
         c1 = m4x4.c1.xyz;
         c2 = m4x4.c2.xyz;
+    }
+
+    /// <summary>Constructs a double3x3_mt16 matrix from a unit quaternion</summary>
+    /// <param name="q">The quaternion rotation</param>
+    [MethodImpl(256 | 512)]
+    public double3x3_mt16(quaternion_d_mt16 q)
+    {
+        var v = q.value;
+        var v2 = v + v;
+
+        var npn = new ulong3_mt16(0x8000000000000000, default, 0x8000000000000000).asf();
+        var nnp = new ulong3_mt16(0x8000000000000000, 0x8000000000000000, default).asf();
+        var pnn = new ulong3_mt16(default, 0x8000000000000000, 0x8000000000000000).asf();
+
+        c0 = v2.yyy.fms(v.yxw ^ npn, v2.zzz * (v.zwx ^ pnn)) + new double3_mt16(1.0, default, default);
+        c1 = v2.zzz.fms(v.wzy ^ nnp, v2.xxx * (v.yxw ^ npn)) + new double3_mt16(default, 1.0, default);
+        c2 = v2.xxx.fms(v.zwx ^ pnn, v2.yyy * (v.wzy ^ nnp)) + new double3_mt16(default, default, 1.0);
     }
 
     /// <summary>

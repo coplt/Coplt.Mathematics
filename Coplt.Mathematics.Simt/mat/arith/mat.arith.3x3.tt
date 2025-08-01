@@ -44,10 +44,6 @@ public partial struct <#= typeName #>
             {
 #>
 
-<#
-                if (false)
-                {
-#>
     /// <summary>Constructs a <#= typeName #> matrix from a unit quaternion</summary>
     /// <param name="q">The quaternion rotation</param>
     [MethodImpl(256 | 512)]
@@ -56,18 +52,15 @@ public partial struct <#= typeName #>
         var v = q.value;
         var v2 = v + v;
 
-        var npn = new <#= typ.maskType #>3(<#= typ.maskNeg #>, default, <#= typ.maskNeg #>).asf();
-        var nnp = new <#= typ.maskType #>3(<#= typ.maskNeg #>, <#= typ.maskNeg #>, default).asf();
-        var pnn = new <#= typ.maskType #>3(default, <#= typ.maskNeg #>, <#= typ.maskNeg #>).asf();
+        var npn = new <#= typ.maskType #>3_mt<#= size #>(<#= typ.maskNeg #>, default, <#= typ.maskNeg #>).asf();
+        var nnp = new <#= typ.maskType #>3_mt<#= size #>(<#= typ.maskNeg #>, <#= typ.maskNeg #>, default).asf();
+        var pnn = new <#= typ.maskType #>3_mt<#= size #>(default, <#= typ.maskNeg #>, <#= typ.maskNeg #>).asf();
 
         c0 = v2.yyy.fms(v.yxw ^ npn, v2.zzz * (v.zwx ^ pnn)) + new <#= vecTypeName #>(<#= typ.one #>, default, default);
         c1 = v2.zzz.fms(v.wzy ^ nnp, v2.xxx * (v.yxw ^ npn)) + new <#= vecTypeName #>(default, <#= typ.one #>, default);
         c2 = v2.xxx.fms(v.zwx ^ pnn, v2.yyy * (v.wzy ^ nnp)) + new <#= vecTypeName #>(default, default, <#= typ.one #>);
     }
 
-<#
-                }
-#>
     /// <summary>
     /// Returns a <#= typeName #> view rotation matrix given a unit length forward vector and a unit length up vector.
     /// The two input vectors are assumed to be unit length and not collinear.
@@ -128,9 +121,9 @@ public partial struct <#= typeName #>
         var u_inv_cosa = math_mt.fsm(u, u, cosa); // u - u * cosa // u * (1 - cosa);
         var t = new <#= vecTypeName4 #>(u * sina, cosa);
 
-        var ppn = new <#= typ.maskType #>3_mt<#=size#>(default, default, <#= typ.maskNeg #>).as<#= typ.compType #>();
-        var npp = new <#= typ.maskType #>3_mt<#=size#>(<#= typ.maskNeg #>, default, default).as<#= typ.compType #>();
-        var pnp = new <#= typ.maskType #>3_mt<#=size#>(default, <#= typ.maskNeg #>, default).as<#= typ.compType #>();
+        var ppn = new <#= typ.maskType #>3_mt<#= size #>(default, default, <#= typ.maskNeg #>).as<#= typ.compType #>();
+        var npp = new <#= typ.maskType #>3_mt<#= size #>(<#= typ.maskNeg #>, default, default).as<#= typ.compType #>();
+        var pnp = new <#= typ.maskType #>3_mt<#= size #>(default, <#= typ.maskNeg #>, default).as<#= typ.compType #>();
 
         return new(
             u.xxx.fma(u_inv_cosa, t.wzy ^ ppn),
@@ -154,9 +147,9 @@ public partial struct <#= typeName #>
         var u_inv_cosa = math_mt.fsm(u, u, cosa); // u - u * cosa // u * (1 - cosa);
         var t = new <#= vecTypeName4 #>(u * sina, cosa);
 
-        var ppn = new <#= typ.maskType #>3_mt<#=size#>(default, default, <#= typ.maskNeg #>).as<#= typ.compType #>();
-        var npp = new <#= typ.maskType #>3_mt<#=size#>(<#= typ.maskNeg #>, default, default).as<#= typ.compType #>();
-        var pnp = new <#= typ.maskType #>3_mt<#=size#>(default, <#= typ.maskNeg #>, default).as<#= typ.compType #>();
+        var ppn = new <#= typ.maskType #>3_mt<#= size #>(default, default, <#= typ.maskNeg #>).as<#= typ.compType #>();
+        var npp = new <#= typ.maskType #>3_mt<#= size #>(<#= typ.maskNeg #>, default, default).as<#= typ.compType #>();
+        var pnp = new <#= typ.maskType #>3_mt<#= size #>(default, <#= typ.maskNeg #>, default).as<#= typ.compType #>();
 
         return new(
             u.xxx.fma(u_inv_cosa, t.wzy ^ ppn),
