@@ -27,18 +27,6 @@ public partial struct float2x2_mt4
         get => new(2, 2); 
     }
 
-    public static float2x2_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static float2x2_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0f); 
-    }
-
     public static float2x2_mt4 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -313,18 +301,6 @@ public partial struct float2x2_mt8
     { 
         [MethodImpl(256 | 512)]
         get => new(2, 2); 
-    }
-
-    public static float2x2_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static float2x2_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0f); 
     }
 
     public static float2x2_mt8 Identity
@@ -603,18 +579,6 @@ public partial struct float2x2_mt16
         get => new(2, 2); 
     }
 
-    public static float2x2_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static float2x2_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0f); 
-    }
-
     public static float2x2_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -889,18 +853,6 @@ public partial struct float2x3_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(2, 3); 
-    }
-
-    public static float2x3_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static float2x3_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0f); 
     }
 
     public static float2x3_mt4 Identity
@@ -1212,18 +1164,6 @@ public partial struct float2x3_mt8
         get => new(2, 3); 
     }
 
-    public static float2x3_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static float2x3_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0f); 
-    }
-
     public static float2x3_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -1533,18 +1473,6 @@ public partial struct float2x3_mt16
         get => new(2, 3); 
     }
 
-    public static float2x3_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static float2x3_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0f); 
-    }
-
     public static float2x3_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -1852,18 +1780,6 @@ public partial struct float2x4_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(2, 4); 
-    }
-
-    public static float2x4_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static float2x4_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0f); 
     }
 
     public static float2x4_mt4 Identity
@@ -2208,18 +2124,6 @@ public partial struct float2x4_mt8
         get => new(2, 4); 
     }
 
-    public static float2x4_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static float2x4_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0f); 
-    }
-
     public static float2x4_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -2560,18 +2464,6 @@ public partial struct float2x4_mt16
     { 
         [MethodImpl(256 | 512)]
         get => new(2, 4); 
-    }
-
-    public static float2x4_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static float2x4_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0f); 
     }
 
     public static float2x4_mt16 Identity
@@ -2916,18 +2808,6 @@ public partial struct float3x2_mt4
         get => new(3, 2); 
     }
 
-    public static float3x2_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static float3x2_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0f); 
-    }
-
     public static float3x2_mt4 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -3223,18 +3103,6 @@ public partial struct float3x2_mt8
     { 
         [MethodImpl(256 | 512)]
         get => new(3, 2); 
-    }
-
-    public static float3x2_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static float3x2_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0f); 
     }
 
     public static float3x2_mt8 Identity
@@ -3534,18 +3402,6 @@ public partial struct float3x2_mt16
         get => new(3, 2); 
     }
 
-    public static float3x2_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static float3x2_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0f); 
-    }
-
     public static float3x2_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -3841,18 +3697,6 @@ public partial struct float3x3_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(3, 3); 
-    }
-
-    public static float3x3_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static float3x3_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0f); 
     }
 
     public static float3x3_mt4 Identity
@@ -4192,18 +4036,6 @@ public partial struct float3x3_mt8
         get => new(3, 3); 
     }
 
-    public static float3x3_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static float3x3_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0f); 
-    }
-
     public static float3x3_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -4541,18 +4373,6 @@ public partial struct float3x3_mt16
         get => new(3, 3); 
     }
 
-    public static float3x3_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static float3x3_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0f); 
-    }
-
     public static float3x3_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -4888,18 +4708,6 @@ public partial struct float3x4_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(3, 4); 
-    }
-
-    public static float3x4_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static float3x4_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0f); 
     }
 
     public static float3x4_mt4 Identity
@@ -5279,18 +5087,6 @@ public partial struct float3x4_mt8
         get => new(3, 4); 
     }
 
-    public static float3x4_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static float3x4_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0f); 
-    }
-
     public static float3x4_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -5666,18 +5462,6 @@ public partial struct float3x4_mt16
     { 
         [MethodImpl(256 | 512)]
         get => new(3, 4); 
-    }
-
-    public static float3x4_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static float3x4_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0f); 
     }
 
     public static float3x4_mt16 Identity
@@ -6057,18 +5841,6 @@ public partial struct float4x2_mt4
         get => new(4, 2); 
     }
 
-    public static float4x2_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static float4x2_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0f); 
-    }
-
     public static float4x2_mt4 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -6385,18 +6157,6 @@ public partial struct float4x2_mt8
     { 
         [MethodImpl(256 | 512)]
         get => new(4, 2); 
-    }
-
-    public static float4x2_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static float4x2_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0f); 
     }
 
     public static float4x2_mt8 Identity
@@ -6717,18 +6477,6 @@ public partial struct float4x2_mt16
         get => new(4, 2); 
     }
 
-    public static float4x2_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static float4x2_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0f); 
-    }
-
     public static float4x2_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -7045,18 +6793,6 @@ public partial struct float4x3_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(4, 3); 
-    }
-
-    public static float4x3_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static float4x3_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0f); 
     }
 
     public static float4x3_mt4 Identity
@@ -7424,18 +7160,6 @@ public partial struct float4x3_mt8
         get => new(4, 3); 
     }
 
-    public static float4x3_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static float4x3_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0f); 
-    }
-
     public static float4x3_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -7801,18 +7525,6 @@ public partial struct float4x3_mt16
         get => new(4, 3); 
     }
 
-    public static float4x3_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static float4x3_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0f); 
-    }
-
     public static float4x3_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -8176,18 +7888,6 @@ public partial struct float4x4_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(4, 4); 
-    }
-
-    public static float4x4_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static float4x4_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0f); 
     }
 
     public static float4x4_mt4 Identity
@@ -8602,18 +8302,6 @@ public partial struct float4x4_mt8
         get => new(4, 4); 
     }
 
-    public static float4x4_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static float4x4_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0f); 
-    }
-
     public static float4x4_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -9024,18 +8712,6 @@ public partial struct float4x4_mt16
     { 
         [MethodImpl(256 | 512)]
         get => new(4, 4); 
-    }
-
-    public static float4x4_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static float4x4_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0f); 
     }
 
     public static float4x4_mt16 Identity
@@ -9450,18 +9126,6 @@ public partial struct double2x2_mt4
         get => new(2, 2); 
     }
 
-    public static double2x2_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static double2x2_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0); 
-    }
-
     public static double2x2_mt4 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -9736,18 +9400,6 @@ public partial struct double2x2_mt8
     { 
         [MethodImpl(256 | 512)]
         get => new(2, 2); 
-    }
-
-    public static double2x2_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static double2x2_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0); 
     }
 
     public static double2x2_mt8 Identity
@@ -10026,18 +9678,6 @@ public partial struct double2x2_mt16
         get => new(2, 2); 
     }
 
-    public static double2x2_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static double2x2_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0); 
-    }
-
     public static double2x2_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -10312,18 +9952,6 @@ public partial struct double2x3_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(2, 3); 
-    }
-
-    public static double2x3_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static double2x3_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0); 
     }
 
     public static double2x3_mt4 Identity
@@ -10635,18 +10263,6 @@ public partial struct double2x3_mt8
         get => new(2, 3); 
     }
 
-    public static double2x3_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static double2x3_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0); 
-    }
-
     public static double2x3_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -10956,18 +10572,6 @@ public partial struct double2x3_mt16
         get => new(2, 3); 
     }
 
-    public static double2x3_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static double2x3_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0); 
-    }
-
     public static double2x3_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -11275,18 +10879,6 @@ public partial struct double2x4_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(2, 4); 
-    }
-
-    public static double2x4_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static double2x4_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0); 
     }
 
     public static double2x4_mt4 Identity
@@ -11631,18 +11223,6 @@ public partial struct double2x4_mt8
         get => new(2, 4); 
     }
 
-    public static double2x4_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static double2x4_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0); 
-    }
-
     public static double2x4_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -11983,18 +11563,6 @@ public partial struct double2x4_mt16
     { 
         [MethodImpl(256 | 512)]
         get => new(2, 4); 
-    }
-
-    public static double2x4_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static double2x4_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0); 
     }
 
     public static double2x4_mt16 Identity
@@ -12339,18 +11907,6 @@ public partial struct double3x2_mt4
         get => new(3, 2); 
     }
 
-    public static double3x2_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static double3x2_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0); 
-    }
-
     public static double3x2_mt4 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -12646,18 +12202,6 @@ public partial struct double3x2_mt8
     { 
         [MethodImpl(256 | 512)]
         get => new(3, 2); 
-    }
-
-    public static double3x2_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static double3x2_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0); 
     }
 
     public static double3x2_mt8 Identity
@@ -12957,18 +12501,6 @@ public partial struct double3x2_mt16
         get => new(3, 2); 
     }
 
-    public static double3x2_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static double3x2_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0); 
-    }
-
     public static double3x2_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -13264,18 +12796,6 @@ public partial struct double3x3_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(3, 3); 
-    }
-
-    public static double3x3_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static double3x3_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0); 
     }
 
     public static double3x3_mt4 Identity
@@ -13615,18 +13135,6 @@ public partial struct double3x3_mt8
         get => new(3, 3); 
     }
 
-    public static double3x3_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static double3x3_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0); 
-    }
-
     public static double3x3_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -13964,18 +13472,6 @@ public partial struct double3x3_mt16
         get => new(3, 3); 
     }
 
-    public static double3x3_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static double3x3_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0); 
-    }
-
     public static double3x3_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -14311,18 +13807,6 @@ public partial struct double3x4_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(3, 4); 
-    }
-
-    public static double3x4_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static double3x4_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0); 
     }
 
     public static double3x4_mt4 Identity
@@ -14702,18 +14186,6 @@ public partial struct double3x4_mt8
         get => new(3, 4); 
     }
 
-    public static double3x4_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static double3x4_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0); 
-    }
-
     public static double3x4_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -15089,18 +14561,6 @@ public partial struct double3x4_mt16
     { 
         [MethodImpl(256 | 512)]
         get => new(3, 4); 
-    }
-
-    public static double3x4_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static double3x4_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0); 
     }
 
     public static double3x4_mt16 Identity
@@ -15480,18 +14940,6 @@ public partial struct double4x2_mt4
         get => new(4, 2); 
     }
 
-    public static double4x2_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static double4x2_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0); 
-    }
-
     public static double4x2_mt4 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -15808,18 +15256,6 @@ public partial struct double4x2_mt8
     { 
         [MethodImpl(256 | 512)]
         get => new(4, 2); 
-    }
-
-    public static double4x2_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static double4x2_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0); 
     }
 
     public static double4x2_mt8 Identity
@@ -16140,18 +15576,6 @@ public partial struct double4x2_mt16
         get => new(4, 2); 
     }
 
-    public static double4x2_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static double4x2_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0); 
-    }
-
     public static double4x2_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -16468,18 +15892,6 @@ public partial struct double4x3_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(4, 3); 
-    }
-
-    public static double4x3_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static double4x3_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0); 
     }
 
     public static double4x3_mt4 Identity
@@ -16847,18 +16259,6 @@ public partial struct double4x3_mt8
         get => new(4, 3); 
     }
 
-    public static double4x3_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static double4x3_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0); 
-    }
-
     public static double4x3_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -17224,18 +16624,6 @@ public partial struct double4x3_mt16
         get => new(4, 3); 
     }
 
-    public static double4x3_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static double4x3_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0); 
-    }
-
     public static double4x3_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -17599,18 +16987,6 @@ public partial struct double4x4_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(4, 4); 
-    }
-
-    public static double4x4_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static double4x4_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0); 
     }
 
     public static double4x4_mt4 Identity
@@ -18025,18 +17401,6 @@ public partial struct double4x4_mt8
         get => new(4, 4); 
     }
 
-    public static double4x4_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static double4x4_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0); 
-    }
-
     public static double4x4_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -18447,18 +17811,6 @@ public partial struct double4x4_mt16
     { 
         [MethodImpl(256 | 512)]
         get => new(4, 4); 
-    }
-
-    public static double4x4_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static double4x4_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1.0); 
     }
 
     public static double4x4_mt16 Identity
@@ -18873,18 +18225,6 @@ public partial struct int2x2_mt4
         get => new(2, 2); 
     }
 
-    public static int2x2_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static int2x2_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1); 
-    }
-
     public static int2x2_mt4 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -19159,18 +18499,6 @@ public partial struct int2x2_mt8
     { 
         [MethodImpl(256 | 512)]
         get => new(2, 2); 
-    }
-
-    public static int2x2_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static int2x2_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1); 
     }
 
     public static int2x2_mt8 Identity
@@ -19449,18 +18777,6 @@ public partial struct int2x2_mt16
         get => new(2, 2); 
     }
 
-    public static int2x2_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static int2x2_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1); 
-    }
-
     public static int2x2_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -19735,18 +19051,6 @@ public partial struct int2x3_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(2, 3); 
-    }
-
-    public static int2x3_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static int2x3_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1); 
     }
 
     public static int2x3_mt4 Identity
@@ -20058,18 +19362,6 @@ public partial struct int2x3_mt8
         get => new(2, 3); 
     }
 
-    public static int2x3_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static int2x3_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1); 
-    }
-
     public static int2x3_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -20379,18 +19671,6 @@ public partial struct int2x3_mt16
         get => new(2, 3); 
     }
 
-    public static int2x3_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static int2x3_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1); 
-    }
-
     public static int2x3_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -20698,18 +19978,6 @@ public partial struct int2x4_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(2, 4); 
-    }
-
-    public static int2x4_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static int2x4_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1); 
     }
 
     public static int2x4_mt4 Identity
@@ -21054,18 +20322,6 @@ public partial struct int2x4_mt8
         get => new(2, 4); 
     }
 
-    public static int2x4_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static int2x4_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1); 
-    }
-
     public static int2x4_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -21406,18 +20662,6 @@ public partial struct int2x4_mt16
     { 
         [MethodImpl(256 | 512)]
         get => new(2, 4); 
-    }
-
-    public static int2x4_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static int2x4_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1); 
     }
 
     public static int2x4_mt16 Identity
@@ -21762,18 +21006,6 @@ public partial struct int3x2_mt4
         get => new(3, 2); 
     }
 
-    public static int3x2_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static int3x2_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1); 
-    }
-
     public static int3x2_mt4 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -22069,18 +21301,6 @@ public partial struct int3x2_mt8
     { 
         [MethodImpl(256 | 512)]
         get => new(3, 2); 
-    }
-
-    public static int3x2_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static int3x2_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1); 
     }
 
     public static int3x2_mt8 Identity
@@ -22380,18 +21600,6 @@ public partial struct int3x2_mt16
         get => new(3, 2); 
     }
 
-    public static int3x2_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static int3x2_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1); 
-    }
-
     public static int3x2_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -22687,18 +21895,6 @@ public partial struct int3x3_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(3, 3); 
-    }
-
-    public static int3x3_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static int3x3_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1); 
     }
 
     public static int3x3_mt4 Identity
@@ -23038,18 +22234,6 @@ public partial struct int3x3_mt8
         get => new(3, 3); 
     }
 
-    public static int3x3_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static int3x3_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1); 
-    }
-
     public static int3x3_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -23387,18 +22571,6 @@ public partial struct int3x3_mt16
         get => new(3, 3); 
     }
 
-    public static int3x3_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static int3x3_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1); 
-    }
-
     public static int3x3_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -23734,18 +22906,6 @@ public partial struct int3x4_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(3, 4); 
-    }
-
-    public static int3x4_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static int3x4_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1); 
     }
 
     public static int3x4_mt4 Identity
@@ -24125,18 +23285,6 @@ public partial struct int3x4_mt8
         get => new(3, 4); 
     }
 
-    public static int3x4_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static int3x4_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1); 
-    }
-
     public static int3x4_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -24512,18 +23660,6 @@ public partial struct int3x4_mt16
     { 
         [MethodImpl(256 | 512)]
         get => new(3, 4); 
-    }
-
-    public static int3x4_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static int3x4_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1); 
     }
 
     public static int3x4_mt16 Identity
@@ -24903,18 +24039,6 @@ public partial struct int4x2_mt4
         get => new(4, 2); 
     }
 
-    public static int4x2_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static int4x2_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1); 
-    }
-
     public static int4x2_mt4 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -25231,18 +24355,6 @@ public partial struct int4x2_mt8
     { 
         [MethodImpl(256 | 512)]
         get => new(4, 2); 
-    }
-
-    public static int4x2_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static int4x2_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1); 
     }
 
     public static int4x2_mt8 Identity
@@ -25563,18 +24675,6 @@ public partial struct int4x2_mt16
         get => new(4, 2); 
     }
 
-    public static int4x2_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static int4x2_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1); 
-    }
-
     public static int4x2_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -25891,18 +24991,6 @@ public partial struct int4x3_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(4, 3); 
-    }
-
-    public static int4x3_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static int4x3_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1); 
     }
 
     public static int4x3_mt4 Identity
@@ -26270,18 +25358,6 @@ public partial struct int4x3_mt8
         get => new(4, 3); 
     }
 
-    public static int4x3_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static int4x3_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1); 
-    }
-
     public static int4x3_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -26647,18 +25723,6 @@ public partial struct int4x3_mt16
         get => new(4, 3); 
     }
 
-    public static int4x3_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static int4x3_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1); 
-    }
-
     public static int4x3_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -27022,18 +26086,6 @@ public partial struct int4x4_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(4, 4); 
-    }
-
-    public static int4x4_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static int4x4_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1); 
     }
 
     public static int4x4_mt4 Identity
@@ -27448,18 +26500,6 @@ public partial struct int4x4_mt8
         get => new(4, 4); 
     }
 
-    public static int4x4_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static int4x4_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1); 
-    }
-
     public static int4x4_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -27870,18 +26910,6 @@ public partial struct int4x4_mt16
     { 
         [MethodImpl(256 | 512)]
         get => new(4, 4); 
-    }
-
-    public static int4x4_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static int4x4_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1); 
     }
 
     public static int4x4_mt16 Identity
@@ -28296,18 +27324,6 @@ public partial struct uint2x2_mt4
         get => new(2, 2); 
     }
 
-    public static uint2x2_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static uint2x2_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1u); 
-    }
-
     public static uint2x2_mt4 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -28582,18 +27598,6 @@ public partial struct uint2x2_mt8
     { 
         [MethodImpl(256 | 512)]
         get => new(2, 2); 
-    }
-
-    public static uint2x2_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static uint2x2_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1u); 
     }
 
     public static uint2x2_mt8 Identity
@@ -28872,18 +27876,6 @@ public partial struct uint2x2_mt16
         get => new(2, 2); 
     }
 
-    public static uint2x2_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static uint2x2_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1u); 
-    }
-
     public static uint2x2_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -29158,18 +28150,6 @@ public partial struct uint2x3_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(2, 3); 
-    }
-
-    public static uint2x3_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static uint2x3_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1u); 
     }
 
     public static uint2x3_mt4 Identity
@@ -29481,18 +28461,6 @@ public partial struct uint2x3_mt8
         get => new(2, 3); 
     }
 
-    public static uint2x3_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static uint2x3_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1u); 
-    }
-
     public static uint2x3_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -29802,18 +28770,6 @@ public partial struct uint2x3_mt16
         get => new(2, 3); 
     }
 
-    public static uint2x3_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static uint2x3_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1u); 
-    }
-
     public static uint2x3_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -30121,18 +29077,6 @@ public partial struct uint2x4_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(2, 4); 
-    }
-
-    public static uint2x4_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static uint2x4_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1u); 
     }
 
     public static uint2x4_mt4 Identity
@@ -30477,18 +29421,6 @@ public partial struct uint2x4_mt8
         get => new(2, 4); 
     }
 
-    public static uint2x4_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static uint2x4_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1u); 
-    }
-
     public static uint2x4_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -30829,18 +29761,6 @@ public partial struct uint2x4_mt16
     { 
         [MethodImpl(256 | 512)]
         get => new(2, 4); 
-    }
-
-    public static uint2x4_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static uint2x4_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1u); 
     }
 
     public static uint2x4_mt16 Identity
@@ -31185,18 +30105,6 @@ public partial struct uint3x2_mt4
         get => new(3, 2); 
     }
 
-    public static uint3x2_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static uint3x2_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1u); 
-    }
-
     public static uint3x2_mt4 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -31492,18 +30400,6 @@ public partial struct uint3x2_mt8
     { 
         [MethodImpl(256 | 512)]
         get => new(3, 2); 
-    }
-
-    public static uint3x2_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static uint3x2_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1u); 
     }
 
     public static uint3x2_mt8 Identity
@@ -31803,18 +30699,6 @@ public partial struct uint3x2_mt16
         get => new(3, 2); 
     }
 
-    public static uint3x2_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static uint3x2_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1u); 
-    }
-
     public static uint3x2_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -32110,18 +30994,6 @@ public partial struct uint3x3_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(3, 3); 
-    }
-
-    public static uint3x3_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static uint3x3_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1u); 
     }
 
     public static uint3x3_mt4 Identity
@@ -32461,18 +31333,6 @@ public partial struct uint3x3_mt8
         get => new(3, 3); 
     }
 
-    public static uint3x3_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static uint3x3_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1u); 
-    }
-
     public static uint3x3_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -32810,18 +31670,6 @@ public partial struct uint3x3_mt16
         get => new(3, 3); 
     }
 
-    public static uint3x3_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static uint3x3_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1u); 
-    }
-
     public static uint3x3_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -33157,18 +32005,6 @@ public partial struct uint3x4_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(3, 4); 
-    }
-
-    public static uint3x4_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static uint3x4_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1u); 
     }
 
     public static uint3x4_mt4 Identity
@@ -33548,18 +32384,6 @@ public partial struct uint3x4_mt8
         get => new(3, 4); 
     }
 
-    public static uint3x4_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static uint3x4_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1u); 
-    }
-
     public static uint3x4_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -33935,18 +32759,6 @@ public partial struct uint3x4_mt16
     { 
         [MethodImpl(256 | 512)]
         get => new(3, 4); 
-    }
-
-    public static uint3x4_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static uint3x4_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1u); 
     }
 
     public static uint3x4_mt16 Identity
@@ -34326,18 +33138,6 @@ public partial struct uint4x2_mt4
         get => new(4, 2); 
     }
 
-    public static uint4x2_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static uint4x2_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1u); 
-    }
-
     public static uint4x2_mt4 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -34654,18 +33454,6 @@ public partial struct uint4x2_mt8
     { 
         [MethodImpl(256 | 512)]
         get => new(4, 2); 
-    }
-
-    public static uint4x2_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static uint4x2_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1u); 
     }
 
     public static uint4x2_mt8 Identity
@@ -34986,18 +33774,6 @@ public partial struct uint4x2_mt16
         get => new(4, 2); 
     }
 
-    public static uint4x2_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static uint4x2_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1u); 
-    }
-
     public static uint4x2_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -35314,18 +34090,6 @@ public partial struct uint4x3_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(4, 3); 
-    }
-
-    public static uint4x3_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static uint4x3_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1u); 
     }
 
     public static uint4x3_mt4 Identity
@@ -35693,18 +34457,6 @@ public partial struct uint4x3_mt8
         get => new(4, 3); 
     }
 
-    public static uint4x3_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static uint4x3_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1u); 
-    }
-
     public static uint4x3_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -36070,18 +34822,6 @@ public partial struct uint4x3_mt16
         get => new(4, 3); 
     }
 
-    public static uint4x3_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static uint4x3_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1u); 
-    }
-
     public static uint4x3_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -36445,18 +35185,6 @@ public partial struct uint4x4_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(4, 4); 
-    }
-
-    public static uint4x4_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static uint4x4_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1u); 
     }
 
     public static uint4x4_mt4 Identity
@@ -36871,18 +35599,6 @@ public partial struct uint4x4_mt8
         get => new(4, 4); 
     }
 
-    public static uint4x4_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static uint4x4_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1u); 
-    }
-
     public static uint4x4_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -37293,18 +36009,6 @@ public partial struct uint4x4_mt16
     { 
         [MethodImpl(256 | 512)]
         get => new(4, 4); 
-    }
-
-    public static uint4x4_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static uint4x4_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1u); 
     }
 
     public static uint4x4_mt16 Identity
@@ -37719,18 +36423,6 @@ public partial struct long2x2_mt4
         get => new(2, 2); 
     }
 
-    public static long2x2_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static long2x2_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1L); 
-    }
-
     public static long2x2_mt4 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -38005,18 +36697,6 @@ public partial struct long2x2_mt8
     { 
         [MethodImpl(256 | 512)]
         get => new(2, 2); 
-    }
-
-    public static long2x2_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static long2x2_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1L); 
     }
 
     public static long2x2_mt8 Identity
@@ -38295,18 +36975,6 @@ public partial struct long2x2_mt16
         get => new(2, 2); 
     }
 
-    public static long2x2_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static long2x2_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1L); 
-    }
-
     public static long2x2_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -38581,18 +37249,6 @@ public partial struct long2x3_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(2, 3); 
-    }
-
-    public static long2x3_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static long2x3_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1L); 
     }
 
     public static long2x3_mt4 Identity
@@ -38904,18 +37560,6 @@ public partial struct long2x3_mt8
         get => new(2, 3); 
     }
 
-    public static long2x3_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static long2x3_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1L); 
-    }
-
     public static long2x3_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -39225,18 +37869,6 @@ public partial struct long2x3_mt16
         get => new(2, 3); 
     }
 
-    public static long2x3_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static long2x3_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1L); 
-    }
-
     public static long2x3_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -39544,18 +38176,6 @@ public partial struct long2x4_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(2, 4); 
-    }
-
-    public static long2x4_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static long2x4_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1L); 
     }
 
     public static long2x4_mt4 Identity
@@ -39900,18 +38520,6 @@ public partial struct long2x4_mt8
         get => new(2, 4); 
     }
 
-    public static long2x4_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static long2x4_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1L); 
-    }
-
     public static long2x4_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -40252,18 +38860,6 @@ public partial struct long2x4_mt16
     { 
         [MethodImpl(256 | 512)]
         get => new(2, 4); 
-    }
-
-    public static long2x4_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static long2x4_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1L); 
     }
 
     public static long2x4_mt16 Identity
@@ -40608,18 +39204,6 @@ public partial struct long3x2_mt4
         get => new(3, 2); 
     }
 
-    public static long3x2_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static long3x2_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1L); 
-    }
-
     public static long3x2_mt4 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -40915,18 +39499,6 @@ public partial struct long3x2_mt8
     { 
         [MethodImpl(256 | 512)]
         get => new(3, 2); 
-    }
-
-    public static long3x2_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static long3x2_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1L); 
     }
 
     public static long3x2_mt8 Identity
@@ -41226,18 +39798,6 @@ public partial struct long3x2_mt16
         get => new(3, 2); 
     }
 
-    public static long3x2_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static long3x2_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1L); 
-    }
-
     public static long3x2_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -41533,18 +40093,6 @@ public partial struct long3x3_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(3, 3); 
-    }
-
-    public static long3x3_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static long3x3_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1L); 
     }
 
     public static long3x3_mt4 Identity
@@ -41884,18 +40432,6 @@ public partial struct long3x3_mt8
         get => new(3, 3); 
     }
 
-    public static long3x3_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static long3x3_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1L); 
-    }
-
     public static long3x3_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -42233,18 +40769,6 @@ public partial struct long3x3_mt16
         get => new(3, 3); 
     }
 
-    public static long3x3_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static long3x3_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1L); 
-    }
-
     public static long3x3_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -42580,18 +41104,6 @@ public partial struct long3x4_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(3, 4); 
-    }
-
-    public static long3x4_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static long3x4_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1L); 
     }
 
     public static long3x4_mt4 Identity
@@ -42971,18 +41483,6 @@ public partial struct long3x4_mt8
         get => new(3, 4); 
     }
 
-    public static long3x4_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static long3x4_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1L); 
-    }
-
     public static long3x4_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -43358,18 +41858,6 @@ public partial struct long3x4_mt16
     { 
         [MethodImpl(256 | 512)]
         get => new(3, 4); 
-    }
-
-    public static long3x4_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static long3x4_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1L); 
     }
 
     public static long3x4_mt16 Identity
@@ -43749,18 +42237,6 @@ public partial struct long4x2_mt4
         get => new(4, 2); 
     }
 
-    public static long4x2_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static long4x2_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1L); 
-    }
-
     public static long4x2_mt4 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -44077,18 +42553,6 @@ public partial struct long4x2_mt8
     { 
         [MethodImpl(256 | 512)]
         get => new(4, 2); 
-    }
-
-    public static long4x2_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static long4x2_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1L); 
     }
 
     public static long4x2_mt8 Identity
@@ -44409,18 +42873,6 @@ public partial struct long4x2_mt16
         get => new(4, 2); 
     }
 
-    public static long4x2_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static long4x2_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1L); 
-    }
-
     public static long4x2_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -44737,18 +43189,6 @@ public partial struct long4x3_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(4, 3); 
-    }
-
-    public static long4x3_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static long4x3_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1L); 
     }
 
     public static long4x3_mt4 Identity
@@ -45116,18 +43556,6 @@ public partial struct long4x3_mt8
         get => new(4, 3); 
     }
 
-    public static long4x3_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static long4x3_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1L); 
-    }
-
     public static long4x3_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -45493,18 +43921,6 @@ public partial struct long4x3_mt16
         get => new(4, 3); 
     }
 
-    public static long4x3_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static long4x3_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1L); 
-    }
-
     public static long4x3_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -45868,18 +44284,6 @@ public partial struct long4x4_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(4, 4); 
-    }
-
-    public static long4x4_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static long4x4_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1L); 
     }
 
     public static long4x4_mt4 Identity
@@ -46294,18 +44698,6 @@ public partial struct long4x4_mt8
         get => new(4, 4); 
     }
 
-    public static long4x4_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static long4x4_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1L); 
-    }
-
     public static long4x4_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -46716,18 +45108,6 @@ public partial struct long4x4_mt16
     { 
         [MethodImpl(256 | 512)]
         get => new(4, 4); 
-    }
-
-    public static long4x4_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static long4x4_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1L); 
     }
 
     public static long4x4_mt16 Identity
@@ -47142,18 +45522,6 @@ public partial struct ulong2x2_mt4
         get => new(2, 2); 
     }
 
-    public static ulong2x2_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static ulong2x2_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1UL); 
-    }
-
     public static ulong2x2_mt4 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -47428,18 +45796,6 @@ public partial struct ulong2x2_mt8
     { 
         [MethodImpl(256 | 512)]
         get => new(2, 2); 
-    }
-
-    public static ulong2x2_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static ulong2x2_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1UL); 
     }
 
     public static ulong2x2_mt8 Identity
@@ -47718,18 +46074,6 @@ public partial struct ulong2x2_mt16
         get => new(2, 2); 
     }
 
-    public static ulong2x2_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static ulong2x2_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1UL); 
-    }
-
     public static ulong2x2_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -48004,18 +46348,6 @@ public partial struct ulong2x3_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(2, 3); 
-    }
-
-    public static ulong2x3_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static ulong2x3_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1UL); 
     }
 
     public static ulong2x3_mt4 Identity
@@ -48327,18 +46659,6 @@ public partial struct ulong2x3_mt8
         get => new(2, 3); 
     }
 
-    public static ulong2x3_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static ulong2x3_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1UL); 
-    }
-
     public static ulong2x3_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -48648,18 +46968,6 @@ public partial struct ulong2x3_mt16
         get => new(2, 3); 
     }
 
-    public static ulong2x3_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static ulong2x3_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1UL); 
-    }
-
     public static ulong2x3_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -48967,18 +47275,6 @@ public partial struct ulong2x4_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(2, 4); 
-    }
-
-    public static ulong2x4_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static ulong2x4_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1UL); 
     }
 
     public static ulong2x4_mt4 Identity
@@ -49323,18 +47619,6 @@ public partial struct ulong2x4_mt8
         get => new(2, 4); 
     }
 
-    public static ulong2x4_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static ulong2x4_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1UL); 
-    }
-
     public static ulong2x4_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -49675,18 +47959,6 @@ public partial struct ulong2x4_mt16
     { 
         [MethodImpl(256 | 512)]
         get => new(2, 4); 
-    }
-
-    public static ulong2x4_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static ulong2x4_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1UL); 
     }
 
     public static ulong2x4_mt16 Identity
@@ -50031,18 +48303,6 @@ public partial struct ulong3x2_mt4
         get => new(3, 2); 
     }
 
-    public static ulong3x2_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static ulong3x2_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1UL); 
-    }
-
     public static ulong3x2_mt4 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -50338,18 +48598,6 @@ public partial struct ulong3x2_mt8
     { 
         [MethodImpl(256 | 512)]
         get => new(3, 2); 
-    }
-
-    public static ulong3x2_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static ulong3x2_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1UL); 
     }
 
     public static ulong3x2_mt8 Identity
@@ -50649,18 +48897,6 @@ public partial struct ulong3x2_mt16
         get => new(3, 2); 
     }
 
-    public static ulong3x2_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static ulong3x2_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1UL); 
-    }
-
     public static ulong3x2_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -50956,18 +49192,6 @@ public partial struct ulong3x3_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(3, 3); 
-    }
-
-    public static ulong3x3_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static ulong3x3_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1UL); 
     }
 
     public static ulong3x3_mt4 Identity
@@ -51307,18 +49531,6 @@ public partial struct ulong3x3_mt8
         get => new(3, 3); 
     }
 
-    public static ulong3x3_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static ulong3x3_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1UL); 
-    }
-
     public static ulong3x3_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -51656,18 +49868,6 @@ public partial struct ulong3x3_mt16
         get => new(3, 3); 
     }
 
-    public static ulong3x3_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static ulong3x3_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1UL); 
-    }
-
     public static ulong3x3_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -52003,18 +50203,6 @@ public partial struct ulong3x4_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(3, 4); 
-    }
-
-    public static ulong3x4_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static ulong3x4_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1UL); 
     }
 
     public static ulong3x4_mt4 Identity
@@ -52394,18 +50582,6 @@ public partial struct ulong3x4_mt8
         get => new(3, 4); 
     }
 
-    public static ulong3x4_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static ulong3x4_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1UL); 
-    }
-
     public static ulong3x4_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -52781,18 +50957,6 @@ public partial struct ulong3x4_mt16
     { 
         [MethodImpl(256 | 512)]
         get => new(3, 4); 
-    }
-
-    public static ulong3x4_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static ulong3x4_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1UL); 
     }
 
     public static ulong3x4_mt16 Identity
@@ -53172,18 +51336,6 @@ public partial struct ulong4x2_mt4
         get => new(4, 2); 
     }
 
-    public static ulong4x2_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static ulong4x2_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1UL); 
-    }
-
     public static ulong4x2_mt4 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -53500,18 +51652,6 @@ public partial struct ulong4x2_mt8
     { 
         [MethodImpl(256 | 512)]
         get => new(4, 2); 
-    }
-
-    public static ulong4x2_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static ulong4x2_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1UL); 
     }
 
     public static ulong4x2_mt8 Identity
@@ -53832,18 +51972,6 @@ public partial struct ulong4x2_mt16
         get => new(4, 2); 
     }
 
-    public static ulong4x2_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static ulong4x2_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1UL); 
-    }
-
     public static ulong4x2_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -54160,18 +52288,6 @@ public partial struct ulong4x3_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(4, 3); 
-    }
-
-    public static ulong4x3_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static ulong4x3_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1UL); 
     }
 
     public static ulong4x3_mt4 Identity
@@ -54539,18 +52655,6 @@ public partial struct ulong4x3_mt8
         get => new(4, 3); 
     }
 
-    public static ulong4x3_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static ulong4x3_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1UL); 
-    }
-
     public static ulong4x3_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -54916,18 +53020,6 @@ public partial struct ulong4x3_mt16
         get => new(4, 3); 
     }
 
-    public static ulong4x3_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static ulong4x3_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1UL); 
-    }
-
     public static ulong4x3_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -55291,18 +53383,6 @@ public partial struct ulong4x4_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(4, 4); 
-    }
-
-    public static ulong4x4_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static ulong4x4_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1UL); 
     }
 
     public static ulong4x4_mt4 Identity
@@ -55717,18 +53797,6 @@ public partial struct ulong4x4_mt8
         get => new(4, 4); 
     }
 
-    public static ulong4x4_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static ulong4x4_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1UL); 
-    }
-
     public static ulong4x4_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -56139,18 +54207,6 @@ public partial struct ulong4x4_mt16
     { 
         [MethodImpl(256 | 512)]
         get => new(4, 4); 
-    }
-
-    public static ulong4x4_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static ulong4x4_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(1UL); 
     }
 
     public static ulong4x4_mt16 Identity
@@ -56565,18 +54621,6 @@ public partial struct b32m2x2_mt4
         get => new(2, 2); 
     }
 
-    public static b32m2x2_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b32m2x2_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
-    }
-
     public static b32m2x2_mt4 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -56854,18 +54898,6 @@ public partial struct b32m2x2_mt8
     { 
         [MethodImpl(256 | 512)]
         get => new(2, 2); 
-    }
-
-    public static b32m2x2_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b32m2x2_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
     }
 
     public static b32m2x2_mt8 Identity
@@ -57147,18 +55179,6 @@ public partial struct b32m2x2_mt16
         get => new(2, 2); 
     }
 
-    public static b32m2x2_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b32m2x2_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
-    }
-
     public static b32m2x2_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -57436,18 +55456,6 @@ public partial struct b32m2x3_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(2, 3); 
-    }
-
-    public static b32m2x3_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b32m2x3_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
     }
 
     public static b32m2x3_mt4 Identity
@@ -57762,18 +55770,6 @@ public partial struct b32m2x3_mt8
         get => new(2, 3); 
     }
 
-    public static b32m2x3_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b32m2x3_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
-    }
-
     public static b32m2x3_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -58086,18 +56082,6 @@ public partial struct b32m2x3_mt16
         get => new(2, 3); 
     }
 
-    public static b32m2x3_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b32m2x3_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
-    }
-
     public static b32m2x3_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -58408,18 +56392,6 @@ public partial struct b32m2x4_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(2, 4); 
-    }
-
-    public static b32m2x4_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b32m2x4_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
     }
 
     public static b32m2x4_mt4 Identity
@@ -58767,18 +56739,6 @@ public partial struct b32m2x4_mt8
         get => new(2, 4); 
     }
 
-    public static b32m2x4_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b32m2x4_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
-    }
-
     public static b32m2x4_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -59122,18 +57082,6 @@ public partial struct b32m2x4_mt16
     { 
         [MethodImpl(256 | 512)]
         get => new(2, 4); 
-    }
-
-    public static b32m2x4_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b32m2x4_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
     }
 
     public static b32m2x4_mt16 Identity
@@ -59481,18 +57429,6 @@ public partial struct b32m3x2_mt4
         get => new(3, 2); 
     }
 
-    public static b32m3x2_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b32m3x2_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
-    }
-
     public static b32m3x2_mt4 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -59791,18 +57727,6 @@ public partial struct b32m3x2_mt8
     { 
         [MethodImpl(256 | 512)]
         get => new(3, 2); 
-    }
-
-    public static b32m3x2_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b32m3x2_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
     }
 
     public static b32m3x2_mt8 Identity
@@ -60105,18 +58029,6 @@ public partial struct b32m3x2_mt16
         get => new(3, 2); 
     }
 
-    public static b32m3x2_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b32m3x2_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
-    }
-
     public static b32m3x2_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -60415,18 +58327,6 @@ public partial struct b32m3x3_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(3, 3); 
-    }
-
-    public static b32m3x3_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b32m3x3_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
     }
 
     public static b32m3x3_mt4 Identity
@@ -60769,18 +58669,6 @@ public partial struct b32m3x3_mt8
         get => new(3, 3); 
     }
 
-    public static b32m3x3_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b32m3x3_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
-    }
-
     public static b32m3x3_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -61121,18 +59009,6 @@ public partial struct b32m3x3_mt16
         get => new(3, 3); 
     }
 
-    public static b32m3x3_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b32m3x3_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
-    }
-
     public static b32m3x3_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -61471,18 +59347,6 @@ public partial struct b32m3x4_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(3, 4); 
-    }
-
-    public static b32m3x4_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b32m3x4_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
     }
 
     public static b32m3x4_mt4 Identity
@@ -61865,18 +59729,6 @@ public partial struct b32m3x4_mt8
         get => new(3, 4); 
     }
 
-    public static b32m3x4_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b32m3x4_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
-    }
-
     public static b32m3x4_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -62255,18 +60107,6 @@ public partial struct b32m3x4_mt16
     { 
         [MethodImpl(256 | 512)]
         get => new(3, 4); 
-    }
-
-    public static b32m3x4_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b32m3x4_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
     }
 
     public static b32m3x4_mt16 Identity
@@ -62649,18 +60489,6 @@ public partial struct b32m4x2_mt4
         get => new(4, 2); 
     }
 
-    public static b32m4x2_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b32m4x2_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
-    }
-
     public static b32m4x2_mt4 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -62980,18 +60808,6 @@ public partial struct b32m4x2_mt8
     { 
         [MethodImpl(256 | 512)]
         get => new(4, 2); 
-    }
-
-    public static b32m4x2_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b32m4x2_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
     }
 
     public static b32m4x2_mt8 Identity
@@ -63315,18 +61131,6 @@ public partial struct b32m4x2_mt16
         get => new(4, 2); 
     }
 
-    public static b32m4x2_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b32m4x2_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
-    }
-
     public static b32m4x2_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -63646,18 +61450,6 @@ public partial struct b32m4x3_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(4, 3); 
-    }
-
-    public static b32m4x3_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b32m4x3_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
     }
 
     public static b32m4x3_mt4 Identity
@@ -64028,18 +61820,6 @@ public partial struct b32m4x3_mt8
         get => new(4, 3); 
     }
 
-    public static b32m4x3_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b32m4x3_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
-    }
-
     public static b32m4x3_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -64408,18 +62188,6 @@ public partial struct b32m4x3_mt16
         get => new(4, 3); 
     }
 
-    public static b32m4x3_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b32m4x3_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
-    }
-
     public static b32m4x3_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -64786,18 +62554,6 @@ public partial struct b32m4x4_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(4, 4); 
-    }
-
-    public static b32m4x4_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b32m4x4_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
     }
 
     public static b32m4x4_mt4 Identity
@@ -65215,18 +62971,6 @@ public partial struct b32m4x4_mt8
         get => new(4, 4); 
     }
 
-    public static b32m4x4_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b32m4x4_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
-    }
-
     public static b32m4x4_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -65640,18 +63384,6 @@ public partial struct b32m4x4_mt16
     { 
         [MethodImpl(256 | 512)]
         get => new(4, 4); 
-    }
-
-    public static b32m4x4_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b32m4x4_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
     }
 
     public static b32m4x4_mt16 Identity
@@ -66069,18 +63801,6 @@ public partial struct b64m2x2_mt4
         get => new(2, 2); 
     }
 
-    public static b64m2x2_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b64m2x2_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
-    }
-
     public static b64m2x2_mt4 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -66358,18 +64078,6 @@ public partial struct b64m2x2_mt8
     { 
         [MethodImpl(256 | 512)]
         get => new(2, 2); 
-    }
-
-    public static b64m2x2_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b64m2x2_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
     }
 
     public static b64m2x2_mt8 Identity
@@ -66651,18 +64359,6 @@ public partial struct b64m2x2_mt16
         get => new(2, 2); 
     }
 
-    public static b64m2x2_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b64m2x2_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
-    }
-
     public static b64m2x2_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -66940,18 +64636,6 @@ public partial struct b64m2x3_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(2, 3); 
-    }
-
-    public static b64m2x3_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b64m2x3_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
     }
 
     public static b64m2x3_mt4 Identity
@@ -67266,18 +64950,6 @@ public partial struct b64m2x3_mt8
         get => new(2, 3); 
     }
 
-    public static b64m2x3_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b64m2x3_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
-    }
-
     public static b64m2x3_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -67590,18 +65262,6 @@ public partial struct b64m2x3_mt16
         get => new(2, 3); 
     }
 
-    public static b64m2x3_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b64m2x3_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
-    }
-
     public static b64m2x3_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -67912,18 +65572,6 @@ public partial struct b64m2x4_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(2, 4); 
-    }
-
-    public static b64m2x4_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b64m2x4_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
     }
 
     public static b64m2x4_mt4 Identity
@@ -68271,18 +65919,6 @@ public partial struct b64m2x4_mt8
         get => new(2, 4); 
     }
 
-    public static b64m2x4_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b64m2x4_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
-    }
-
     public static b64m2x4_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -68626,18 +66262,6 @@ public partial struct b64m2x4_mt16
     { 
         [MethodImpl(256 | 512)]
         get => new(2, 4); 
-    }
-
-    public static b64m2x4_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b64m2x4_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
     }
 
     public static b64m2x4_mt16 Identity
@@ -68985,18 +66609,6 @@ public partial struct b64m3x2_mt4
         get => new(3, 2); 
     }
 
-    public static b64m3x2_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b64m3x2_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
-    }
-
     public static b64m3x2_mt4 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -69295,18 +66907,6 @@ public partial struct b64m3x2_mt8
     { 
         [MethodImpl(256 | 512)]
         get => new(3, 2); 
-    }
-
-    public static b64m3x2_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b64m3x2_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
     }
 
     public static b64m3x2_mt8 Identity
@@ -69609,18 +67209,6 @@ public partial struct b64m3x2_mt16
         get => new(3, 2); 
     }
 
-    public static b64m3x2_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b64m3x2_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
-    }
-
     public static b64m3x2_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -69919,18 +67507,6 @@ public partial struct b64m3x3_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(3, 3); 
-    }
-
-    public static b64m3x3_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b64m3x3_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
     }
 
     public static b64m3x3_mt4 Identity
@@ -70273,18 +67849,6 @@ public partial struct b64m3x3_mt8
         get => new(3, 3); 
     }
 
-    public static b64m3x3_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b64m3x3_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
-    }
-
     public static b64m3x3_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -70625,18 +68189,6 @@ public partial struct b64m3x3_mt16
         get => new(3, 3); 
     }
 
-    public static b64m3x3_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b64m3x3_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
-    }
-
     public static b64m3x3_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -70975,18 +68527,6 @@ public partial struct b64m3x4_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(3, 4); 
-    }
-
-    public static b64m3x4_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b64m3x4_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
     }
 
     public static b64m3x4_mt4 Identity
@@ -71369,18 +68909,6 @@ public partial struct b64m3x4_mt8
         get => new(3, 4); 
     }
 
-    public static b64m3x4_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b64m3x4_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
-    }
-
     public static b64m3x4_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -71759,18 +69287,6 @@ public partial struct b64m3x4_mt16
     { 
         [MethodImpl(256 | 512)]
         get => new(3, 4); 
-    }
-
-    public static b64m3x4_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b64m3x4_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
     }
 
     public static b64m3x4_mt16 Identity
@@ -72153,18 +69669,6 @@ public partial struct b64m4x2_mt4
         get => new(4, 2); 
     }
 
-    public static b64m4x2_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b64m4x2_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
-    }
-
     public static b64m4x2_mt4 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -72484,18 +69988,6 @@ public partial struct b64m4x2_mt8
     { 
         [MethodImpl(256 | 512)]
         get => new(4, 2); 
-    }
-
-    public static b64m4x2_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b64m4x2_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
     }
 
     public static b64m4x2_mt8 Identity
@@ -72819,18 +70311,6 @@ public partial struct b64m4x2_mt16
         get => new(4, 2); 
     }
 
-    public static b64m4x2_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b64m4x2_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
-    }
-
     public static b64m4x2_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -73150,18 +70630,6 @@ public partial struct b64m4x3_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(4, 3); 
-    }
-
-    public static b64m4x3_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b64m4x3_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
     }
 
     public static b64m4x3_mt4 Identity
@@ -73532,18 +71000,6 @@ public partial struct b64m4x3_mt8
         get => new(4, 3); 
     }
 
-    public static b64m4x3_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b64m4x3_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
-    }
-
     public static b64m4x3_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -73912,18 +71368,6 @@ public partial struct b64m4x3_mt16
         get => new(4, 3); 
     }
 
-    public static b64m4x3_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b64m4x3_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
-    }
-
     public static b64m4x3_mt16 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -74290,18 +71734,6 @@ public partial struct b64m4x4_mt4
     { 
         [MethodImpl(256 | 512)]
         get => new(4, 4); 
-    }
-
-    public static b64m4x4_mt4 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b64m4x4_mt4 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
     }
 
     public static b64m4x4_mt4 Identity
@@ -74719,18 +72151,6 @@ public partial struct b64m4x4_mt8
         get => new(4, 4); 
     }
 
-    public static b64m4x4_mt8 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b64m4x4_mt8 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
-    }
-
     public static b64m4x4_mt8 Identity
     { 
         [MethodImpl(256 | 512)]
@@ -75144,18 +72564,6 @@ public partial struct b64m4x4_mt16
     { 
         [MethodImpl(256 | 512)]
         get => new(4, 4); 
-    }
-
-    public static b64m4x4_mt16 Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static b64m4x4_mt16 One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(true); 
     }
 
     public static b64m4x4_mt16 Identity

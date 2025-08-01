@@ -53,18 +53,6 @@ public partial struct <#= typeName #>
         get => new(<#= n #>, <#= m #>); 
     }
 
-    public static <#= typeName #> Zero
-    { 
-        [MethodImpl(256 | 512)]
-        get => default; 
-    }
-
-    public static <#= typeName #> One
-    { 
-        [MethodImpl(256 | 512)]
-        get => new(<#= typ.one #>); 
-    }
-
     public static <#= typeName #> Identity
     { 
         [MethodImpl(256 | 512)]
