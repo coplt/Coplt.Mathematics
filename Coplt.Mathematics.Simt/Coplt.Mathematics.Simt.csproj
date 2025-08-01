@@ -16,7 +16,6 @@
         <RepositoryUrl>https://github.com/coplt/Coplt.Mathematics</RepositoryUrl>
         <PackageReadmeFile>Readme.md</PackageReadmeFile>
         <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
-        <RootNamespace>Coplt.Mathematics.SIMT</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

@@ -8,7 +8,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coplt.Mathematics.SignedDis
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SourceGenerator", "SourceGenerator\SourceGenerator.csproj", "{D7F6B482-EFD3-46E0-964E-4E2CC53CCE0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coplt.Mathematics.Simt1", "Coplt.Mathematics.Simt1\Coplt.Mathematics.Simt1.csproj", "{18B7AA4D-1D2F-406F-9C77-5FA06A592895}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coplt.Mathematics.Simt", "Coplt.Mathematics.Simt\Coplt.Mathematics.Simt.csproj", "{18B7AA4D-1D2F-406F-9C77-5FA06A592895}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
