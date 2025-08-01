@@ -5,7 +5,7 @@ namespace Coplt.Mathematics.Simt;
 #region float_mt4
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
     public static float_mt4 asf([This] float_mt4 v) => v.BitCast<float_mt4, float_mt4>();
@@ -22,7 +22,7 @@ public static partial class math
 #region float_mt8
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
     public static float_mt8 asf([This] float_mt8 v) => v.BitCast<float_mt8, float_mt8>();
@@ -39,7 +39,7 @@ public static partial class math
 #region float_mt16
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
     public static float_mt16 asf([This] float_mt16 v) => v.BitCast<float_mt16, float_mt16>();
@@ -56,7 +56,7 @@ public static partial class math
 #region double_mt4
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
     public static double_mt4 asf([This] double_mt4 v) => v.BitCast<double_mt4, double_mt4>();
@@ -73,7 +73,7 @@ public static partial class math
 #region double_mt8
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
     public static double_mt8 asf([This] double_mt8 v) => v.BitCast<double_mt8, double_mt8>();
@@ -90,7 +90,7 @@ public static partial class math
 #region double_mt16
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
     public static double_mt16 asf([This] double_mt16 v) => v.BitCast<double_mt16, double_mt16>();
@@ -107,7 +107,7 @@ public static partial class math
 #region int_mt4
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
     public static float_mt4 asf([This] int_mt4 v) => v.BitCast<int_mt4, float_mt4>();
@@ -124,7 +124,7 @@ public static partial class math
 #region int_mt8
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
     public static float_mt8 asf([This] int_mt8 v) => v.BitCast<int_mt8, float_mt8>();
@@ -141,7 +141,7 @@ public static partial class math
 #region int_mt16
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
     public static float_mt16 asf([This] int_mt16 v) => v.BitCast<int_mt16, float_mt16>();
@@ -158,7 +158,7 @@ public static partial class math
 #region uint_mt4
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
     public static float_mt4 asf([This] uint_mt4 v) => v.BitCast<uint_mt4, float_mt4>();
@@ -175,7 +175,7 @@ public static partial class math
 #region uint_mt8
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
     public static float_mt8 asf([This] uint_mt8 v) => v.BitCast<uint_mt8, float_mt8>();
@@ -192,7 +192,7 @@ public static partial class math
 #region uint_mt16
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
     public static float_mt16 asf([This] uint_mt16 v) => v.BitCast<uint_mt16, float_mt16>();
@@ -209,7 +209,7 @@ public static partial class math
 #region long_mt4
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
     public static double_mt4 asf([This] long_mt4 v) => v.BitCast<long_mt4, double_mt4>();
@@ -226,7 +226,7 @@ public static partial class math
 #region long_mt8
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
     public static double_mt8 asf([This] long_mt8 v) => v.BitCast<long_mt8, double_mt8>();
@@ -243,7 +243,7 @@ public static partial class math
 #region long_mt16
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
     public static double_mt16 asf([This] long_mt16 v) => v.BitCast<long_mt16, double_mt16>();
@@ -260,7 +260,7 @@ public static partial class math
 #region ulong_mt4
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
     public static double_mt4 asf([This] ulong_mt4 v) => v.BitCast<ulong_mt4, double_mt4>();
@@ -277,7 +277,7 @@ public static partial class math
 #region ulong_mt8
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
     public static double_mt8 asf([This] ulong_mt8 v) => v.BitCast<ulong_mt8, double_mt8>();
@@ -294,7 +294,7 @@ public static partial class math
 #region ulong_mt16
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
     public static double_mt16 asf([This] ulong_mt16 v) => v.BitCast<ulong_mt16, double_mt16>();
@@ -311,7 +311,7 @@ public static partial class math
 #region b32_mt4
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
     public static float_mt4 asf([This] b32_mt4 v) => v.BitCast<b32_mt4, float_mt4>();
@@ -328,7 +328,7 @@ public static partial class math
 #region b32_mt8
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
     public static float_mt8 asf([This] b32_mt8 v) => v.BitCast<b32_mt8, float_mt8>();
@@ -345,7 +345,7 @@ public static partial class math
 #region b32_mt16
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
     public static float_mt16 asf([This] b32_mt16 v) => v.BitCast<b32_mt16, float_mt16>();
@@ -362,7 +362,7 @@ public static partial class math
 #region b64_mt4
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
     public static double_mt4 asf([This] b64_mt4 v) => v.BitCast<b64_mt4, double_mt4>();
@@ -379,7 +379,7 @@ public static partial class math
 #region b64_mt8
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
     public static double_mt8 asf([This] b64_mt8 v) => v.BitCast<b64_mt8, double_mt8>();
@@ -396,7 +396,7 @@ public static partial class math
 #region b64_mt16
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     [MethodImpl(256 | 512)]
     public static double_mt16 asf([This] b64_mt16 v) => v.BitCast<b64_mt16, double_mt16>();

@@ -31,7 +31,7 @@ namespace Coplt.Mathematics.Simt;
 #region <#= typeName #>
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
 <#
             foreach (var (target, name) in ss)

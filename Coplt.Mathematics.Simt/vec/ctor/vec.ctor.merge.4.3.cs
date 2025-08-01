@@ -5,7 +5,7 @@ namespace Coplt.Mathematics.Simt;
 #region float4_mt4
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     /// <summary>
     /// Unchecked convert (reinterpret if simd) to float3_mt4, must ensure that the w component is 0.
@@ -116,7 +116,7 @@ public static partial class math_mt_ex
 #region float4_mt8
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     /// <summary>
     /// Unchecked convert (reinterpret if simd) to float3_mt8, must ensure that the w component is 0.
@@ -227,7 +227,7 @@ public static partial class math_mt_ex
 #region float4_mt16
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     /// <summary>
     /// Unchecked convert (reinterpret if simd) to float3_mt16, must ensure that the w component is 0.
@@ -338,7 +338,7 @@ public static partial class math_mt_ex
 #region double4_mt4
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     /// <summary>
     /// Unchecked convert (reinterpret if simd) to double3_mt4, must ensure that the w component is 0.
@@ -449,7 +449,7 @@ public static partial class math_mt_ex
 #region double4_mt8
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     /// <summary>
     /// Unchecked convert (reinterpret if simd) to double3_mt8, must ensure that the w component is 0.
@@ -560,7 +560,7 @@ public static partial class math_mt_ex
 #region double4_mt16
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     /// <summary>
     /// Unchecked convert (reinterpret if simd) to double3_mt16, must ensure that the w component is 0.
@@ -671,7 +671,7 @@ public static partial class math_mt_ex
 #region int4_mt4
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     /// <summary>
     /// Unchecked convert (reinterpret if simd) to int3_mt4, must ensure that the w component is 0.
@@ -782,7 +782,7 @@ public static partial class math_mt_ex
 #region int4_mt8
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     /// <summary>
     /// Unchecked convert (reinterpret if simd) to int3_mt8, must ensure that the w component is 0.
@@ -893,7 +893,7 @@ public static partial class math_mt_ex
 #region int4_mt16
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     /// <summary>
     /// Unchecked convert (reinterpret if simd) to int3_mt16, must ensure that the w component is 0.
@@ -1004,7 +1004,7 @@ public static partial class math_mt_ex
 #region uint4_mt4
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     /// <summary>
     /// Unchecked convert (reinterpret if simd) to uint3_mt4, must ensure that the w component is 0.
@@ -1115,7 +1115,7 @@ public static partial class math_mt_ex
 #region uint4_mt8
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     /// <summary>
     /// Unchecked convert (reinterpret if simd) to uint3_mt8, must ensure that the w component is 0.
@@ -1226,7 +1226,7 @@ public static partial class math_mt_ex
 #region uint4_mt16
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     /// <summary>
     /// Unchecked convert (reinterpret if simd) to uint3_mt16, must ensure that the w component is 0.
@@ -1337,7 +1337,7 @@ public static partial class math_mt_ex
 #region long4_mt4
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     /// <summary>
     /// Unchecked convert (reinterpret if simd) to long3_mt4, must ensure that the w component is 0.
@@ -1448,7 +1448,7 @@ public static partial class math_mt_ex
 #region long4_mt8
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     /// <summary>
     /// Unchecked convert (reinterpret if simd) to long3_mt8, must ensure that the w component is 0.
@@ -1559,7 +1559,7 @@ public static partial class math_mt_ex
 #region long4_mt16
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     /// <summary>
     /// Unchecked convert (reinterpret if simd) to long3_mt16, must ensure that the w component is 0.
@@ -1670,7 +1670,7 @@ public static partial class math_mt_ex
 #region ulong4_mt4
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     /// <summary>
     /// Unchecked convert (reinterpret if simd) to ulong3_mt4, must ensure that the w component is 0.
@@ -1781,7 +1781,7 @@ public static partial class math_mt_ex
 #region ulong4_mt8
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     /// <summary>
     /// Unchecked convert (reinterpret if simd) to ulong3_mt8, must ensure that the w component is 0.
@@ -1892,7 +1892,7 @@ public static partial class math_mt_ex
 #region ulong4_mt16
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     /// <summary>
     /// Unchecked convert (reinterpret if simd) to ulong3_mt16, must ensure that the w component is 0.
@@ -2003,7 +2003,7 @@ public static partial class math_mt_ex
 #region b32v4_mt4
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     /// <summary>
     /// Unchecked convert (reinterpret if simd) to b32v3_mt4, must ensure that the w component is 0.
@@ -2114,7 +2114,7 @@ public static partial class math_mt_ex
 #region b32v4_mt8
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     /// <summary>
     /// Unchecked convert (reinterpret if simd) to b32v3_mt8, must ensure that the w component is 0.
@@ -2225,7 +2225,7 @@ public static partial class math_mt_ex
 #region b32v4_mt16
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     /// <summary>
     /// Unchecked convert (reinterpret if simd) to b32v3_mt16, must ensure that the w component is 0.
@@ -2336,7 +2336,7 @@ public static partial class math_mt_ex
 #region b64v4_mt4
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     /// <summary>
     /// Unchecked convert (reinterpret if simd) to b64v3_mt4, must ensure that the w component is 0.
@@ -2447,7 +2447,7 @@ public static partial class math_mt_ex
 #region b64v4_mt8
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     /// <summary>
     /// Unchecked convert (reinterpret if simd) to b64v3_mt8, must ensure that the w component is 0.
@@ -2558,7 +2558,7 @@ public static partial class math_mt_ex
 #region b64v4_mt16
 
 [Ex]
-public static partial class math
+public static partial class math_mt
 {
     /// <summary>
     /// Unchecked convert (reinterpret if simd) to b64v3_mt16, must ensure that the w component is 0.
