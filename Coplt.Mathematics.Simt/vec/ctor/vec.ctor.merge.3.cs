@@ -7,7 +7,7 @@ namespace Coplt.Mathematics.Simt;
 public partial struct float3_mt4 
 {
     [MethodImpl(256 | 512)]
-    public float3_mt4(float2_mt4 xy, float z)
+    public float3_mt4(float2_mt4 xy, float_mt4 z)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -15,7 +15,7 @@ public partial struct float3_mt4
     }
 
     [MethodImpl(256 | 512)]
-    public float3_mt4(float x, float2_mt4 yz)
+    public float3_mt4(float_mt4 x, float2_mt4 yz)
     {
         this.x = x;
         this.y = yz.x;
@@ -23,7 +23,7 @@ public partial struct float3_mt4
     }
 
     [MethodImpl(256 | 512)]
-    internal float3_mt4(float2_mt4 xz, float y, insert_y _)
+    internal float3_mt4(float2_mt4 xz, float_mt4 y, insert_y _)
     {
         this.x = xz.x;
         this.y = y;
@@ -34,10 +34,10 @@ public partial struct float3_mt4
 public static partial class ctor_mt
 {
     [MethodImpl(256 | 512)]
-    public static float3_mt4 float3_mt4(float2_mt4 xy, float z) => new(xy, z);
+    public static float3_mt4 float3_mt4(float2_mt4 xy, float_mt4 z) => new(xy, z);
 
     [MethodImpl(256 | 512)]
-    public static float3_mt4 float3_mt4(float x, float2_mt4 yz) => new(x, yz);
+    public static float3_mt4 float3_mt4(float_mt4 x, float2_mt4 yz) => new(x, yz);
 }
 
 public static partial class math_mt_ex
@@ -47,21 +47,21 @@ public static partial class math_mt_ex
     /// <code>X -> (y, z) => (X, y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float3_mt4 Ix(this float2_mt4 yz, float x) => new(x, yz);
+    public static float3_mt4 Ix(this float2_mt4 yz, float_mt4 x) => new(x, yz);
 
     /// <summary>
     /// Insert Y component
     /// <code>Y -> (x, z) => (x, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float3_mt4 Iy(this float2_mt4 xz, float y) => new(xz, y, new insert_y());
+    public static float3_mt4 Iy(this float2_mt4 xz, float_mt4 y) => new(xz, y, new insert_y());
 
     /// <summary>
     /// Insert Z component
     /// <code>Z -> (x, y) => (x, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float3_mt4 Iz(this float2_mt4 xy, float z) => new(xy, z);
+    public static float3_mt4 Iz(this float2_mt4 xy, float_mt4 z) => new(xy, z);
 }
 
 #endregion // float3_mt4
@@ -71,7 +71,7 @@ public static partial class math_mt_ex
 public partial struct float3_mt8 
 {
     [MethodImpl(256 | 512)]
-    public float3_mt8(float2_mt8 xy, float z)
+    public float3_mt8(float2_mt8 xy, float_mt8 z)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -79,7 +79,7 @@ public partial struct float3_mt8
     }
 
     [MethodImpl(256 | 512)]
-    public float3_mt8(float x, float2_mt8 yz)
+    public float3_mt8(float_mt8 x, float2_mt8 yz)
     {
         this.x = x;
         this.y = yz.x;
@@ -87,7 +87,7 @@ public partial struct float3_mt8
     }
 
     [MethodImpl(256 | 512)]
-    internal float3_mt8(float2_mt8 xz, float y, insert_y _)
+    internal float3_mt8(float2_mt8 xz, float_mt8 y, insert_y _)
     {
         this.x = xz.x;
         this.y = y;
@@ -98,10 +98,10 @@ public partial struct float3_mt8
 public static partial class ctor_mt
 {
     [MethodImpl(256 | 512)]
-    public static float3_mt8 float3_mt8(float2_mt8 xy, float z) => new(xy, z);
+    public static float3_mt8 float3_mt8(float2_mt8 xy, float_mt8 z) => new(xy, z);
 
     [MethodImpl(256 | 512)]
-    public static float3_mt8 float3_mt8(float x, float2_mt8 yz) => new(x, yz);
+    public static float3_mt8 float3_mt8(float_mt8 x, float2_mt8 yz) => new(x, yz);
 }
 
 public static partial class math_mt_ex
@@ -111,21 +111,21 @@ public static partial class math_mt_ex
     /// <code>X -> (y, z) => (X, y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float3_mt8 Ix(this float2_mt8 yz, float x) => new(x, yz);
+    public static float3_mt8 Ix(this float2_mt8 yz, float_mt8 x) => new(x, yz);
 
     /// <summary>
     /// Insert Y component
     /// <code>Y -> (x, z) => (x, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float3_mt8 Iy(this float2_mt8 xz, float y) => new(xz, y, new insert_y());
+    public static float3_mt8 Iy(this float2_mt8 xz, float_mt8 y) => new(xz, y, new insert_y());
 
     /// <summary>
     /// Insert Z component
     /// <code>Z -> (x, y) => (x, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float3_mt8 Iz(this float2_mt8 xy, float z) => new(xy, z);
+    public static float3_mt8 Iz(this float2_mt8 xy, float_mt8 z) => new(xy, z);
 }
 
 #endregion // float3_mt8
@@ -135,7 +135,7 @@ public static partial class math_mt_ex
 public partial struct float3_mt16 
 {
     [MethodImpl(256 | 512)]
-    public float3_mt16(float2_mt16 xy, float z)
+    public float3_mt16(float2_mt16 xy, float_mt16 z)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -143,7 +143,7 @@ public partial struct float3_mt16
     }
 
     [MethodImpl(256 | 512)]
-    public float3_mt16(float x, float2_mt16 yz)
+    public float3_mt16(float_mt16 x, float2_mt16 yz)
     {
         this.x = x;
         this.y = yz.x;
@@ -151,7 +151,7 @@ public partial struct float3_mt16
     }
 
     [MethodImpl(256 | 512)]
-    internal float3_mt16(float2_mt16 xz, float y, insert_y _)
+    internal float3_mt16(float2_mt16 xz, float_mt16 y, insert_y _)
     {
         this.x = xz.x;
         this.y = y;
@@ -162,10 +162,10 @@ public partial struct float3_mt16
 public static partial class ctor_mt
 {
     [MethodImpl(256 | 512)]
-    public static float3_mt16 float3_mt16(float2_mt16 xy, float z) => new(xy, z);
+    public static float3_mt16 float3_mt16(float2_mt16 xy, float_mt16 z) => new(xy, z);
 
     [MethodImpl(256 | 512)]
-    public static float3_mt16 float3_mt16(float x, float2_mt16 yz) => new(x, yz);
+    public static float3_mt16 float3_mt16(float_mt16 x, float2_mt16 yz) => new(x, yz);
 }
 
 public static partial class math_mt_ex
@@ -175,21 +175,21 @@ public static partial class math_mt_ex
     /// <code>X -> (y, z) => (X, y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float3_mt16 Ix(this float2_mt16 yz, float x) => new(x, yz);
+    public static float3_mt16 Ix(this float2_mt16 yz, float_mt16 x) => new(x, yz);
 
     /// <summary>
     /// Insert Y component
     /// <code>Y -> (x, z) => (x, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float3_mt16 Iy(this float2_mt16 xz, float y) => new(xz, y, new insert_y());
+    public static float3_mt16 Iy(this float2_mt16 xz, float_mt16 y) => new(xz, y, new insert_y());
 
     /// <summary>
     /// Insert Z component
     /// <code>Z -> (x, y) => (x, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float3_mt16 Iz(this float2_mt16 xy, float z) => new(xy, z);
+    public static float3_mt16 Iz(this float2_mt16 xy, float_mt16 z) => new(xy, z);
 }
 
 #endregion // float3_mt16
@@ -199,7 +199,7 @@ public static partial class math_mt_ex
 public partial struct float3_mt32 
 {
     [MethodImpl(256 | 512)]
-    public float3_mt32(float2_mt32 xy, float z)
+    public float3_mt32(float2_mt32 xy, float_mt32 z)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -207,7 +207,7 @@ public partial struct float3_mt32
     }
 
     [MethodImpl(256 | 512)]
-    public float3_mt32(float x, float2_mt32 yz)
+    public float3_mt32(float_mt32 x, float2_mt32 yz)
     {
         this.x = x;
         this.y = yz.x;
@@ -215,7 +215,7 @@ public partial struct float3_mt32
     }
 
     [MethodImpl(256 | 512)]
-    internal float3_mt32(float2_mt32 xz, float y, insert_y _)
+    internal float3_mt32(float2_mt32 xz, float_mt32 y, insert_y _)
     {
         this.x = xz.x;
         this.y = y;
@@ -226,10 +226,10 @@ public partial struct float3_mt32
 public static partial class ctor_mt
 {
     [MethodImpl(256 | 512)]
-    public static float3_mt32 float3_mt32(float2_mt32 xy, float z) => new(xy, z);
+    public static float3_mt32 float3_mt32(float2_mt32 xy, float_mt32 z) => new(xy, z);
 
     [MethodImpl(256 | 512)]
-    public static float3_mt32 float3_mt32(float x, float2_mt32 yz) => new(x, yz);
+    public static float3_mt32 float3_mt32(float_mt32 x, float2_mt32 yz) => new(x, yz);
 }
 
 public static partial class math_mt_ex
@@ -239,21 +239,21 @@ public static partial class math_mt_ex
     /// <code>X -> (y, z) => (X, y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float3_mt32 Ix(this float2_mt32 yz, float x) => new(x, yz);
+    public static float3_mt32 Ix(this float2_mt32 yz, float_mt32 x) => new(x, yz);
 
     /// <summary>
     /// Insert Y component
     /// <code>Y -> (x, z) => (x, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float3_mt32 Iy(this float2_mt32 xz, float y) => new(xz, y, new insert_y());
+    public static float3_mt32 Iy(this float2_mt32 xz, float_mt32 y) => new(xz, y, new insert_y());
 
     /// <summary>
     /// Insert Z component
     /// <code>Z -> (x, y) => (x, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static float3_mt32 Iz(this float2_mt32 xy, float z) => new(xy, z);
+    public static float3_mt32 Iz(this float2_mt32 xy, float_mt32 z) => new(xy, z);
 }
 
 #endregion // float3_mt32
@@ -263,7 +263,7 @@ public static partial class math_mt_ex
 public partial struct double3_mt4 
 {
     [MethodImpl(256 | 512)]
-    public double3_mt4(double2_mt4 xy, double z)
+    public double3_mt4(double2_mt4 xy, double_mt4 z)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -271,7 +271,7 @@ public partial struct double3_mt4
     }
 
     [MethodImpl(256 | 512)]
-    public double3_mt4(double x, double2_mt4 yz)
+    public double3_mt4(double_mt4 x, double2_mt4 yz)
     {
         this.x = x;
         this.y = yz.x;
@@ -279,7 +279,7 @@ public partial struct double3_mt4
     }
 
     [MethodImpl(256 | 512)]
-    internal double3_mt4(double2_mt4 xz, double y, insert_y _)
+    internal double3_mt4(double2_mt4 xz, double_mt4 y, insert_y _)
     {
         this.x = xz.x;
         this.y = y;
@@ -290,10 +290,10 @@ public partial struct double3_mt4
 public static partial class ctor_mt
 {
     [MethodImpl(256 | 512)]
-    public static double3_mt4 double3_mt4(double2_mt4 xy, double z) => new(xy, z);
+    public static double3_mt4 double3_mt4(double2_mt4 xy, double_mt4 z) => new(xy, z);
 
     [MethodImpl(256 | 512)]
-    public static double3_mt4 double3_mt4(double x, double2_mt4 yz) => new(x, yz);
+    public static double3_mt4 double3_mt4(double_mt4 x, double2_mt4 yz) => new(x, yz);
 }
 
 public static partial class math_mt_ex
@@ -303,21 +303,21 @@ public static partial class math_mt_ex
     /// <code>X -> (y, z) => (X, y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double3_mt4 Ix(this double2_mt4 yz, double x) => new(x, yz);
+    public static double3_mt4 Ix(this double2_mt4 yz, double_mt4 x) => new(x, yz);
 
     /// <summary>
     /// Insert Y component
     /// <code>Y -> (x, z) => (x, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double3_mt4 Iy(this double2_mt4 xz, double y) => new(xz, y, new insert_y());
+    public static double3_mt4 Iy(this double2_mt4 xz, double_mt4 y) => new(xz, y, new insert_y());
 
     /// <summary>
     /// Insert Z component
     /// <code>Z -> (x, y) => (x, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double3_mt4 Iz(this double2_mt4 xy, double z) => new(xy, z);
+    public static double3_mt4 Iz(this double2_mt4 xy, double_mt4 z) => new(xy, z);
 }
 
 #endregion // double3_mt4
@@ -327,7 +327,7 @@ public static partial class math_mt_ex
 public partial struct double3_mt8 
 {
     [MethodImpl(256 | 512)]
-    public double3_mt8(double2_mt8 xy, double z)
+    public double3_mt8(double2_mt8 xy, double_mt8 z)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -335,7 +335,7 @@ public partial struct double3_mt8
     }
 
     [MethodImpl(256 | 512)]
-    public double3_mt8(double x, double2_mt8 yz)
+    public double3_mt8(double_mt8 x, double2_mt8 yz)
     {
         this.x = x;
         this.y = yz.x;
@@ -343,7 +343,7 @@ public partial struct double3_mt8
     }
 
     [MethodImpl(256 | 512)]
-    internal double3_mt8(double2_mt8 xz, double y, insert_y _)
+    internal double3_mt8(double2_mt8 xz, double_mt8 y, insert_y _)
     {
         this.x = xz.x;
         this.y = y;
@@ -354,10 +354,10 @@ public partial struct double3_mt8
 public static partial class ctor_mt
 {
     [MethodImpl(256 | 512)]
-    public static double3_mt8 double3_mt8(double2_mt8 xy, double z) => new(xy, z);
+    public static double3_mt8 double3_mt8(double2_mt8 xy, double_mt8 z) => new(xy, z);
 
     [MethodImpl(256 | 512)]
-    public static double3_mt8 double3_mt8(double x, double2_mt8 yz) => new(x, yz);
+    public static double3_mt8 double3_mt8(double_mt8 x, double2_mt8 yz) => new(x, yz);
 }
 
 public static partial class math_mt_ex
@@ -367,21 +367,21 @@ public static partial class math_mt_ex
     /// <code>X -> (y, z) => (X, y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double3_mt8 Ix(this double2_mt8 yz, double x) => new(x, yz);
+    public static double3_mt8 Ix(this double2_mt8 yz, double_mt8 x) => new(x, yz);
 
     /// <summary>
     /// Insert Y component
     /// <code>Y -> (x, z) => (x, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double3_mt8 Iy(this double2_mt8 xz, double y) => new(xz, y, new insert_y());
+    public static double3_mt8 Iy(this double2_mt8 xz, double_mt8 y) => new(xz, y, new insert_y());
 
     /// <summary>
     /// Insert Z component
     /// <code>Z -> (x, y) => (x, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double3_mt8 Iz(this double2_mt8 xy, double z) => new(xy, z);
+    public static double3_mt8 Iz(this double2_mt8 xy, double_mt8 z) => new(xy, z);
 }
 
 #endregion // double3_mt8
@@ -391,7 +391,7 @@ public static partial class math_mt_ex
 public partial struct double3_mt16 
 {
     [MethodImpl(256 | 512)]
-    public double3_mt16(double2_mt16 xy, double z)
+    public double3_mt16(double2_mt16 xy, double_mt16 z)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -399,7 +399,7 @@ public partial struct double3_mt16
     }
 
     [MethodImpl(256 | 512)]
-    public double3_mt16(double x, double2_mt16 yz)
+    public double3_mt16(double_mt16 x, double2_mt16 yz)
     {
         this.x = x;
         this.y = yz.x;
@@ -407,7 +407,7 @@ public partial struct double3_mt16
     }
 
     [MethodImpl(256 | 512)]
-    internal double3_mt16(double2_mt16 xz, double y, insert_y _)
+    internal double3_mt16(double2_mt16 xz, double_mt16 y, insert_y _)
     {
         this.x = xz.x;
         this.y = y;
@@ -418,10 +418,10 @@ public partial struct double3_mt16
 public static partial class ctor_mt
 {
     [MethodImpl(256 | 512)]
-    public static double3_mt16 double3_mt16(double2_mt16 xy, double z) => new(xy, z);
+    public static double3_mt16 double3_mt16(double2_mt16 xy, double_mt16 z) => new(xy, z);
 
     [MethodImpl(256 | 512)]
-    public static double3_mt16 double3_mt16(double x, double2_mt16 yz) => new(x, yz);
+    public static double3_mt16 double3_mt16(double_mt16 x, double2_mt16 yz) => new(x, yz);
 }
 
 public static partial class math_mt_ex
@@ -431,21 +431,21 @@ public static partial class math_mt_ex
     /// <code>X -> (y, z) => (X, y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double3_mt16 Ix(this double2_mt16 yz, double x) => new(x, yz);
+    public static double3_mt16 Ix(this double2_mt16 yz, double_mt16 x) => new(x, yz);
 
     /// <summary>
     /// Insert Y component
     /// <code>Y -> (x, z) => (x, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double3_mt16 Iy(this double2_mt16 xz, double y) => new(xz, y, new insert_y());
+    public static double3_mt16 Iy(this double2_mt16 xz, double_mt16 y) => new(xz, y, new insert_y());
 
     /// <summary>
     /// Insert Z component
     /// <code>Z -> (x, y) => (x, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double3_mt16 Iz(this double2_mt16 xy, double z) => new(xy, z);
+    public static double3_mt16 Iz(this double2_mt16 xy, double_mt16 z) => new(xy, z);
 }
 
 #endregion // double3_mt16
@@ -455,7 +455,7 @@ public static partial class math_mt_ex
 public partial struct double3_mt32 
 {
     [MethodImpl(256 | 512)]
-    public double3_mt32(double2_mt32 xy, double z)
+    public double3_mt32(double2_mt32 xy, double_mt32 z)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -463,7 +463,7 @@ public partial struct double3_mt32
     }
 
     [MethodImpl(256 | 512)]
-    public double3_mt32(double x, double2_mt32 yz)
+    public double3_mt32(double_mt32 x, double2_mt32 yz)
     {
         this.x = x;
         this.y = yz.x;
@@ -471,7 +471,7 @@ public partial struct double3_mt32
     }
 
     [MethodImpl(256 | 512)]
-    internal double3_mt32(double2_mt32 xz, double y, insert_y _)
+    internal double3_mt32(double2_mt32 xz, double_mt32 y, insert_y _)
     {
         this.x = xz.x;
         this.y = y;
@@ -482,10 +482,10 @@ public partial struct double3_mt32
 public static partial class ctor_mt
 {
     [MethodImpl(256 | 512)]
-    public static double3_mt32 double3_mt32(double2_mt32 xy, double z) => new(xy, z);
+    public static double3_mt32 double3_mt32(double2_mt32 xy, double_mt32 z) => new(xy, z);
 
     [MethodImpl(256 | 512)]
-    public static double3_mt32 double3_mt32(double x, double2_mt32 yz) => new(x, yz);
+    public static double3_mt32 double3_mt32(double_mt32 x, double2_mt32 yz) => new(x, yz);
 }
 
 public static partial class math_mt_ex
@@ -495,21 +495,21 @@ public static partial class math_mt_ex
     /// <code>X -> (y, z) => (X, y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double3_mt32 Ix(this double2_mt32 yz, double x) => new(x, yz);
+    public static double3_mt32 Ix(this double2_mt32 yz, double_mt32 x) => new(x, yz);
 
     /// <summary>
     /// Insert Y component
     /// <code>Y -> (x, z) => (x, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double3_mt32 Iy(this double2_mt32 xz, double y) => new(xz, y, new insert_y());
+    public static double3_mt32 Iy(this double2_mt32 xz, double_mt32 y) => new(xz, y, new insert_y());
 
     /// <summary>
     /// Insert Z component
     /// <code>Z -> (x, y) => (x, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static double3_mt32 Iz(this double2_mt32 xy, double z) => new(xy, z);
+    public static double3_mt32 Iz(this double2_mt32 xy, double_mt32 z) => new(xy, z);
 }
 
 #endregion // double3_mt32
@@ -519,7 +519,7 @@ public static partial class math_mt_ex
 public partial struct int3_mt4 
 {
     [MethodImpl(256 | 512)]
-    public int3_mt4(int2_mt4 xy, int z)
+    public int3_mt4(int2_mt4 xy, int_mt4 z)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -527,7 +527,7 @@ public partial struct int3_mt4
     }
 
     [MethodImpl(256 | 512)]
-    public int3_mt4(int x, int2_mt4 yz)
+    public int3_mt4(int_mt4 x, int2_mt4 yz)
     {
         this.x = x;
         this.y = yz.x;
@@ -535,7 +535,7 @@ public partial struct int3_mt4
     }
 
     [MethodImpl(256 | 512)]
-    internal int3_mt4(int2_mt4 xz, int y, insert_y _)
+    internal int3_mt4(int2_mt4 xz, int_mt4 y, insert_y _)
     {
         this.x = xz.x;
         this.y = y;
@@ -546,10 +546,10 @@ public partial struct int3_mt4
 public static partial class ctor_mt
 {
     [MethodImpl(256 | 512)]
-    public static int3_mt4 int3_mt4(int2_mt4 xy, int z) => new(xy, z);
+    public static int3_mt4 int3_mt4(int2_mt4 xy, int_mt4 z) => new(xy, z);
 
     [MethodImpl(256 | 512)]
-    public static int3_mt4 int3_mt4(int x, int2_mt4 yz) => new(x, yz);
+    public static int3_mt4 int3_mt4(int_mt4 x, int2_mt4 yz) => new(x, yz);
 }
 
 public static partial class math_mt_ex
@@ -559,21 +559,21 @@ public static partial class math_mt_ex
     /// <code>X -> (y, z) => (X, y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int3_mt4 Ix(this int2_mt4 yz, int x) => new(x, yz);
+    public static int3_mt4 Ix(this int2_mt4 yz, int_mt4 x) => new(x, yz);
 
     /// <summary>
     /// Insert Y component
     /// <code>Y -> (x, z) => (x, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int3_mt4 Iy(this int2_mt4 xz, int y) => new(xz, y, new insert_y());
+    public static int3_mt4 Iy(this int2_mt4 xz, int_mt4 y) => new(xz, y, new insert_y());
 
     /// <summary>
     /// Insert Z component
     /// <code>Z -> (x, y) => (x, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int3_mt4 Iz(this int2_mt4 xy, int z) => new(xy, z);
+    public static int3_mt4 Iz(this int2_mt4 xy, int_mt4 z) => new(xy, z);
 }
 
 #endregion // int3_mt4
@@ -583,7 +583,7 @@ public static partial class math_mt_ex
 public partial struct int3_mt8 
 {
     [MethodImpl(256 | 512)]
-    public int3_mt8(int2_mt8 xy, int z)
+    public int3_mt8(int2_mt8 xy, int_mt8 z)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -591,7 +591,7 @@ public partial struct int3_mt8
     }
 
     [MethodImpl(256 | 512)]
-    public int3_mt8(int x, int2_mt8 yz)
+    public int3_mt8(int_mt8 x, int2_mt8 yz)
     {
         this.x = x;
         this.y = yz.x;
@@ -599,7 +599,7 @@ public partial struct int3_mt8
     }
 
     [MethodImpl(256 | 512)]
-    internal int3_mt8(int2_mt8 xz, int y, insert_y _)
+    internal int3_mt8(int2_mt8 xz, int_mt8 y, insert_y _)
     {
         this.x = xz.x;
         this.y = y;
@@ -610,10 +610,10 @@ public partial struct int3_mt8
 public static partial class ctor_mt
 {
     [MethodImpl(256 | 512)]
-    public static int3_mt8 int3_mt8(int2_mt8 xy, int z) => new(xy, z);
+    public static int3_mt8 int3_mt8(int2_mt8 xy, int_mt8 z) => new(xy, z);
 
     [MethodImpl(256 | 512)]
-    public static int3_mt8 int3_mt8(int x, int2_mt8 yz) => new(x, yz);
+    public static int3_mt8 int3_mt8(int_mt8 x, int2_mt8 yz) => new(x, yz);
 }
 
 public static partial class math_mt_ex
@@ -623,21 +623,21 @@ public static partial class math_mt_ex
     /// <code>X -> (y, z) => (X, y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int3_mt8 Ix(this int2_mt8 yz, int x) => new(x, yz);
+    public static int3_mt8 Ix(this int2_mt8 yz, int_mt8 x) => new(x, yz);
 
     /// <summary>
     /// Insert Y component
     /// <code>Y -> (x, z) => (x, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int3_mt8 Iy(this int2_mt8 xz, int y) => new(xz, y, new insert_y());
+    public static int3_mt8 Iy(this int2_mt8 xz, int_mt8 y) => new(xz, y, new insert_y());
 
     /// <summary>
     /// Insert Z component
     /// <code>Z -> (x, y) => (x, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int3_mt8 Iz(this int2_mt8 xy, int z) => new(xy, z);
+    public static int3_mt8 Iz(this int2_mt8 xy, int_mt8 z) => new(xy, z);
 }
 
 #endregion // int3_mt8
@@ -647,7 +647,7 @@ public static partial class math_mt_ex
 public partial struct int3_mt16 
 {
     [MethodImpl(256 | 512)]
-    public int3_mt16(int2_mt16 xy, int z)
+    public int3_mt16(int2_mt16 xy, int_mt16 z)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -655,7 +655,7 @@ public partial struct int3_mt16
     }
 
     [MethodImpl(256 | 512)]
-    public int3_mt16(int x, int2_mt16 yz)
+    public int3_mt16(int_mt16 x, int2_mt16 yz)
     {
         this.x = x;
         this.y = yz.x;
@@ -663,7 +663,7 @@ public partial struct int3_mt16
     }
 
     [MethodImpl(256 | 512)]
-    internal int3_mt16(int2_mt16 xz, int y, insert_y _)
+    internal int3_mt16(int2_mt16 xz, int_mt16 y, insert_y _)
     {
         this.x = xz.x;
         this.y = y;
@@ -674,10 +674,10 @@ public partial struct int3_mt16
 public static partial class ctor_mt
 {
     [MethodImpl(256 | 512)]
-    public static int3_mt16 int3_mt16(int2_mt16 xy, int z) => new(xy, z);
+    public static int3_mt16 int3_mt16(int2_mt16 xy, int_mt16 z) => new(xy, z);
 
     [MethodImpl(256 | 512)]
-    public static int3_mt16 int3_mt16(int x, int2_mt16 yz) => new(x, yz);
+    public static int3_mt16 int3_mt16(int_mt16 x, int2_mt16 yz) => new(x, yz);
 }
 
 public static partial class math_mt_ex
@@ -687,21 +687,21 @@ public static partial class math_mt_ex
     /// <code>X -> (y, z) => (X, y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int3_mt16 Ix(this int2_mt16 yz, int x) => new(x, yz);
+    public static int3_mt16 Ix(this int2_mt16 yz, int_mt16 x) => new(x, yz);
 
     /// <summary>
     /// Insert Y component
     /// <code>Y -> (x, z) => (x, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int3_mt16 Iy(this int2_mt16 xz, int y) => new(xz, y, new insert_y());
+    public static int3_mt16 Iy(this int2_mt16 xz, int_mt16 y) => new(xz, y, new insert_y());
 
     /// <summary>
     /// Insert Z component
     /// <code>Z -> (x, y) => (x, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int3_mt16 Iz(this int2_mt16 xy, int z) => new(xy, z);
+    public static int3_mt16 Iz(this int2_mt16 xy, int_mt16 z) => new(xy, z);
 }
 
 #endregion // int3_mt16
@@ -711,7 +711,7 @@ public static partial class math_mt_ex
 public partial struct int3_mt32 
 {
     [MethodImpl(256 | 512)]
-    public int3_mt32(int2_mt32 xy, int z)
+    public int3_mt32(int2_mt32 xy, int_mt32 z)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -719,7 +719,7 @@ public partial struct int3_mt32
     }
 
     [MethodImpl(256 | 512)]
-    public int3_mt32(int x, int2_mt32 yz)
+    public int3_mt32(int_mt32 x, int2_mt32 yz)
     {
         this.x = x;
         this.y = yz.x;
@@ -727,7 +727,7 @@ public partial struct int3_mt32
     }
 
     [MethodImpl(256 | 512)]
-    internal int3_mt32(int2_mt32 xz, int y, insert_y _)
+    internal int3_mt32(int2_mt32 xz, int_mt32 y, insert_y _)
     {
         this.x = xz.x;
         this.y = y;
@@ -738,10 +738,10 @@ public partial struct int3_mt32
 public static partial class ctor_mt
 {
     [MethodImpl(256 | 512)]
-    public static int3_mt32 int3_mt32(int2_mt32 xy, int z) => new(xy, z);
+    public static int3_mt32 int3_mt32(int2_mt32 xy, int_mt32 z) => new(xy, z);
 
     [MethodImpl(256 | 512)]
-    public static int3_mt32 int3_mt32(int x, int2_mt32 yz) => new(x, yz);
+    public static int3_mt32 int3_mt32(int_mt32 x, int2_mt32 yz) => new(x, yz);
 }
 
 public static partial class math_mt_ex
@@ -751,21 +751,21 @@ public static partial class math_mt_ex
     /// <code>X -> (y, z) => (X, y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int3_mt32 Ix(this int2_mt32 yz, int x) => new(x, yz);
+    public static int3_mt32 Ix(this int2_mt32 yz, int_mt32 x) => new(x, yz);
 
     /// <summary>
     /// Insert Y component
     /// <code>Y -> (x, z) => (x, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int3_mt32 Iy(this int2_mt32 xz, int y) => new(xz, y, new insert_y());
+    public static int3_mt32 Iy(this int2_mt32 xz, int_mt32 y) => new(xz, y, new insert_y());
 
     /// <summary>
     /// Insert Z component
     /// <code>Z -> (x, y) => (x, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static int3_mt32 Iz(this int2_mt32 xy, int z) => new(xy, z);
+    public static int3_mt32 Iz(this int2_mt32 xy, int_mt32 z) => new(xy, z);
 }
 
 #endregion // int3_mt32
@@ -775,7 +775,7 @@ public static partial class math_mt_ex
 public partial struct uint3_mt4 
 {
     [MethodImpl(256 | 512)]
-    public uint3_mt4(uint2_mt4 xy, uint z)
+    public uint3_mt4(uint2_mt4 xy, uint_mt4 z)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -783,7 +783,7 @@ public partial struct uint3_mt4
     }
 
     [MethodImpl(256 | 512)]
-    public uint3_mt4(uint x, uint2_mt4 yz)
+    public uint3_mt4(uint_mt4 x, uint2_mt4 yz)
     {
         this.x = x;
         this.y = yz.x;
@@ -791,7 +791,7 @@ public partial struct uint3_mt4
     }
 
     [MethodImpl(256 | 512)]
-    internal uint3_mt4(uint2_mt4 xz, uint y, insert_y _)
+    internal uint3_mt4(uint2_mt4 xz, uint_mt4 y, insert_y _)
     {
         this.x = xz.x;
         this.y = y;
@@ -802,10 +802,10 @@ public partial struct uint3_mt4
 public static partial class ctor_mt
 {
     [MethodImpl(256 | 512)]
-    public static uint3_mt4 uint3_mt4(uint2_mt4 xy, uint z) => new(xy, z);
+    public static uint3_mt4 uint3_mt4(uint2_mt4 xy, uint_mt4 z) => new(xy, z);
 
     [MethodImpl(256 | 512)]
-    public static uint3_mt4 uint3_mt4(uint x, uint2_mt4 yz) => new(x, yz);
+    public static uint3_mt4 uint3_mt4(uint_mt4 x, uint2_mt4 yz) => new(x, yz);
 }
 
 public static partial class math_mt_ex
@@ -815,21 +815,21 @@ public static partial class math_mt_ex
     /// <code>X -> (y, z) => (X, y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static uint3_mt4 Ix(this uint2_mt4 yz, uint x) => new(x, yz);
+    public static uint3_mt4 Ix(this uint2_mt4 yz, uint_mt4 x) => new(x, yz);
 
     /// <summary>
     /// Insert Y component
     /// <code>Y -> (x, z) => (x, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static uint3_mt4 Iy(this uint2_mt4 xz, uint y) => new(xz, y, new insert_y());
+    public static uint3_mt4 Iy(this uint2_mt4 xz, uint_mt4 y) => new(xz, y, new insert_y());
 
     /// <summary>
     /// Insert Z component
     /// <code>Z -> (x, y) => (x, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static uint3_mt4 Iz(this uint2_mt4 xy, uint z) => new(xy, z);
+    public static uint3_mt4 Iz(this uint2_mt4 xy, uint_mt4 z) => new(xy, z);
 }
 
 #endregion // uint3_mt4
@@ -839,7 +839,7 @@ public static partial class math_mt_ex
 public partial struct uint3_mt8 
 {
     [MethodImpl(256 | 512)]
-    public uint3_mt8(uint2_mt8 xy, uint z)
+    public uint3_mt8(uint2_mt8 xy, uint_mt8 z)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -847,7 +847,7 @@ public partial struct uint3_mt8
     }
 
     [MethodImpl(256 | 512)]
-    public uint3_mt8(uint x, uint2_mt8 yz)
+    public uint3_mt8(uint_mt8 x, uint2_mt8 yz)
     {
         this.x = x;
         this.y = yz.x;
@@ -855,7 +855,7 @@ public partial struct uint3_mt8
     }
 
     [MethodImpl(256 | 512)]
-    internal uint3_mt8(uint2_mt8 xz, uint y, insert_y _)
+    internal uint3_mt8(uint2_mt8 xz, uint_mt8 y, insert_y _)
     {
         this.x = xz.x;
         this.y = y;
@@ -866,10 +866,10 @@ public partial struct uint3_mt8
 public static partial class ctor_mt
 {
     [MethodImpl(256 | 512)]
-    public static uint3_mt8 uint3_mt8(uint2_mt8 xy, uint z) => new(xy, z);
+    public static uint3_mt8 uint3_mt8(uint2_mt8 xy, uint_mt8 z) => new(xy, z);
 
     [MethodImpl(256 | 512)]
-    public static uint3_mt8 uint3_mt8(uint x, uint2_mt8 yz) => new(x, yz);
+    public static uint3_mt8 uint3_mt8(uint_mt8 x, uint2_mt8 yz) => new(x, yz);
 }
 
 public static partial class math_mt_ex
@@ -879,21 +879,21 @@ public static partial class math_mt_ex
     /// <code>X -> (y, z) => (X, y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static uint3_mt8 Ix(this uint2_mt8 yz, uint x) => new(x, yz);
+    public static uint3_mt8 Ix(this uint2_mt8 yz, uint_mt8 x) => new(x, yz);
 
     /// <summary>
     /// Insert Y component
     /// <code>Y -> (x, z) => (x, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static uint3_mt8 Iy(this uint2_mt8 xz, uint y) => new(xz, y, new insert_y());
+    public static uint3_mt8 Iy(this uint2_mt8 xz, uint_mt8 y) => new(xz, y, new insert_y());
 
     /// <summary>
     /// Insert Z component
     /// <code>Z -> (x, y) => (x, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static uint3_mt8 Iz(this uint2_mt8 xy, uint z) => new(xy, z);
+    public static uint3_mt8 Iz(this uint2_mt8 xy, uint_mt8 z) => new(xy, z);
 }
 
 #endregion // uint3_mt8
@@ -903,7 +903,7 @@ public static partial class math_mt_ex
 public partial struct uint3_mt16 
 {
     [MethodImpl(256 | 512)]
-    public uint3_mt16(uint2_mt16 xy, uint z)
+    public uint3_mt16(uint2_mt16 xy, uint_mt16 z)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -911,7 +911,7 @@ public partial struct uint3_mt16
     }
 
     [MethodImpl(256 | 512)]
-    public uint3_mt16(uint x, uint2_mt16 yz)
+    public uint3_mt16(uint_mt16 x, uint2_mt16 yz)
     {
         this.x = x;
         this.y = yz.x;
@@ -919,7 +919,7 @@ public partial struct uint3_mt16
     }
 
     [MethodImpl(256 | 512)]
-    internal uint3_mt16(uint2_mt16 xz, uint y, insert_y _)
+    internal uint3_mt16(uint2_mt16 xz, uint_mt16 y, insert_y _)
     {
         this.x = xz.x;
         this.y = y;
@@ -930,10 +930,10 @@ public partial struct uint3_mt16
 public static partial class ctor_mt
 {
     [MethodImpl(256 | 512)]
-    public static uint3_mt16 uint3_mt16(uint2_mt16 xy, uint z) => new(xy, z);
+    public static uint3_mt16 uint3_mt16(uint2_mt16 xy, uint_mt16 z) => new(xy, z);
 
     [MethodImpl(256 | 512)]
-    public static uint3_mt16 uint3_mt16(uint x, uint2_mt16 yz) => new(x, yz);
+    public static uint3_mt16 uint3_mt16(uint_mt16 x, uint2_mt16 yz) => new(x, yz);
 }
 
 public static partial class math_mt_ex
@@ -943,21 +943,21 @@ public static partial class math_mt_ex
     /// <code>X -> (y, z) => (X, y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static uint3_mt16 Ix(this uint2_mt16 yz, uint x) => new(x, yz);
+    public static uint3_mt16 Ix(this uint2_mt16 yz, uint_mt16 x) => new(x, yz);
 
     /// <summary>
     /// Insert Y component
     /// <code>Y -> (x, z) => (x, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static uint3_mt16 Iy(this uint2_mt16 xz, uint y) => new(xz, y, new insert_y());
+    public static uint3_mt16 Iy(this uint2_mt16 xz, uint_mt16 y) => new(xz, y, new insert_y());
 
     /// <summary>
     /// Insert Z component
     /// <code>Z -> (x, y) => (x, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static uint3_mt16 Iz(this uint2_mt16 xy, uint z) => new(xy, z);
+    public static uint3_mt16 Iz(this uint2_mt16 xy, uint_mt16 z) => new(xy, z);
 }
 
 #endregion // uint3_mt16
@@ -967,7 +967,7 @@ public static partial class math_mt_ex
 public partial struct uint3_mt32 
 {
     [MethodImpl(256 | 512)]
-    public uint3_mt32(uint2_mt32 xy, uint z)
+    public uint3_mt32(uint2_mt32 xy, uint_mt32 z)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -975,7 +975,7 @@ public partial struct uint3_mt32
     }
 
     [MethodImpl(256 | 512)]
-    public uint3_mt32(uint x, uint2_mt32 yz)
+    public uint3_mt32(uint_mt32 x, uint2_mt32 yz)
     {
         this.x = x;
         this.y = yz.x;
@@ -983,7 +983,7 @@ public partial struct uint3_mt32
     }
 
     [MethodImpl(256 | 512)]
-    internal uint3_mt32(uint2_mt32 xz, uint y, insert_y _)
+    internal uint3_mt32(uint2_mt32 xz, uint_mt32 y, insert_y _)
     {
         this.x = xz.x;
         this.y = y;
@@ -994,10 +994,10 @@ public partial struct uint3_mt32
 public static partial class ctor_mt
 {
     [MethodImpl(256 | 512)]
-    public static uint3_mt32 uint3_mt32(uint2_mt32 xy, uint z) => new(xy, z);
+    public static uint3_mt32 uint3_mt32(uint2_mt32 xy, uint_mt32 z) => new(xy, z);
 
     [MethodImpl(256 | 512)]
-    public static uint3_mt32 uint3_mt32(uint x, uint2_mt32 yz) => new(x, yz);
+    public static uint3_mt32 uint3_mt32(uint_mt32 x, uint2_mt32 yz) => new(x, yz);
 }
 
 public static partial class math_mt_ex
@@ -1007,21 +1007,21 @@ public static partial class math_mt_ex
     /// <code>X -> (y, z) => (X, y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static uint3_mt32 Ix(this uint2_mt32 yz, uint x) => new(x, yz);
+    public static uint3_mt32 Ix(this uint2_mt32 yz, uint_mt32 x) => new(x, yz);
 
     /// <summary>
     /// Insert Y component
     /// <code>Y -> (x, z) => (x, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static uint3_mt32 Iy(this uint2_mt32 xz, uint y) => new(xz, y, new insert_y());
+    public static uint3_mt32 Iy(this uint2_mt32 xz, uint_mt32 y) => new(xz, y, new insert_y());
 
     /// <summary>
     /// Insert Z component
     /// <code>Z -> (x, y) => (x, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static uint3_mt32 Iz(this uint2_mt32 xy, uint z) => new(xy, z);
+    public static uint3_mt32 Iz(this uint2_mt32 xy, uint_mt32 z) => new(xy, z);
 }
 
 #endregion // uint3_mt32
@@ -1031,7 +1031,7 @@ public static partial class math_mt_ex
 public partial struct long3_mt4 
 {
     [MethodImpl(256 | 512)]
-    public long3_mt4(long2_mt4 xy, long z)
+    public long3_mt4(long2_mt4 xy, long_mt4 z)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -1039,7 +1039,7 @@ public partial struct long3_mt4
     }
 
     [MethodImpl(256 | 512)]
-    public long3_mt4(long x, long2_mt4 yz)
+    public long3_mt4(long_mt4 x, long2_mt4 yz)
     {
         this.x = x;
         this.y = yz.x;
@@ -1047,7 +1047,7 @@ public partial struct long3_mt4
     }
 
     [MethodImpl(256 | 512)]
-    internal long3_mt4(long2_mt4 xz, long y, insert_y _)
+    internal long3_mt4(long2_mt4 xz, long_mt4 y, insert_y _)
     {
         this.x = xz.x;
         this.y = y;
@@ -1058,10 +1058,10 @@ public partial struct long3_mt4
 public static partial class ctor_mt
 {
     [MethodImpl(256 | 512)]
-    public static long3_mt4 long3_mt4(long2_mt4 xy, long z) => new(xy, z);
+    public static long3_mt4 long3_mt4(long2_mt4 xy, long_mt4 z) => new(xy, z);
 
     [MethodImpl(256 | 512)]
-    public static long3_mt4 long3_mt4(long x, long2_mt4 yz) => new(x, yz);
+    public static long3_mt4 long3_mt4(long_mt4 x, long2_mt4 yz) => new(x, yz);
 }
 
 public static partial class math_mt_ex
@@ -1071,21 +1071,21 @@ public static partial class math_mt_ex
     /// <code>X -> (y, z) => (X, y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static long3_mt4 Ix(this long2_mt4 yz, long x) => new(x, yz);
+    public static long3_mt4 Ix(this long2_mt4 yz, long_mt4 x) => new(x, yz);
 
     /// <summary>
     /// Insert Y component
     /// <code>Y -> (x, z) => (x, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static long3_mt4 Iy(this long2_mt4 xz, long y) => new(xz, y, new insert_y());
+    public static long3_mt4 Iy(this long2_mt4 xz, long_mt4 y) => new(xz, y, new insert_y());
 
     /// <summary>
     /// Insert Z component
     /// <code>Z -> (x, y) => (x, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static long3_mt4 Iz(this long2_mt4 xy, long z) => new(xy, z);
+    public static long3_mt4 Iz(this long2_mt4 xy, long_mt4 z) => new(xy, z);
 }
 
 #endregion // long3_mt4
@@ -1095,7 +1095,7 @@ public static partial class math_mt_ex
 public partial struct long3_mt8 
 {
     [MethodImpl(256 | 512)]
-    public long3_mt8(long2_mt8 xy, long z)
+    public long3_mt8(long2_mt8 xy, long_mt8 z)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -1103,7 +1103,7 @@ public partial struct long3_mt8
     }
 
     [MethodImpl(256 | 512)]
-    public long3_mt8(long x, long2_mt8 yz)
+    public long3_mt8(long_mt8 x, long2_mt8 yz)
     {
         this.x = x;
         this.y = yz.x;
@@ -1111,7 +1111,7 @@ public partial struct long3_mt8
     }
 
     [MethodImpl(256 | 512)]
-    internal long3_mt8(long2_mt8 xz, long y, insert_y _)
+    internal long3_mt8(long2_mt8 xz, long_mt8 y, insert_y _)
     {
         this.x = xz.x;
         this.y = y;
@@ -1122,10 +1122,10 @@ public partial struct long3_mt8
 public static partial class ctor_mt
 {
     [MethodImpl(256 | 512)]
-    public static long3_mt8 long3_mt8(long2_mt8 xy, long z) => new(xy, z);
+    public static long3_mt8 long3_mt8(long2_mt8 xy, long_mt8 z) => new(xy, z);
 
     [MethodImpl(256 | 512)]
-    public static long3_mt8 long3_mt8(long x, long2_mt8 yz) => new(x, yz);
+    public static long3_mt8 long3_mt8(long_mt8 x, long2_mt8 yz) => new(x, yz);
 }
 
 public static partial class math_mt_ex
@@ -1135,21 +1135,21 @@ public static partial class math_mt_ex
     /// <code>X -> (y, z) => (X, y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static long3_mt8 Ix(this long2_mt8 yz, long x) => new(x, yz);
+    public static long3_mt8 Ix(this long2_mt8 yz, long_mt8 x) => new(x, yz);
 
     /// <summary>
     /// Insert Y component
     /// <code>Y -> (x, z) => (x, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static long3_mt8 Iy(this long2_mt8 xz, long y) => new(xz, y, new insert_y());
+    public static long3_mt8 Iy(this long2_mt8 xz, long_mt8 y) => new(xz, y, new insert_y());
 
     /// <summary>
     /// Insert Z component
     /// <code>Z -> (x, y) => (x, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static long3_mt8 Iz(this long2_mt8 xy, long z) => new(xy, z);
+    public static long3_mt8 Iz(this long2_mt8 xy, long_mt8 z) => new(xy, z);
 }
 
 #endregion // long3_mt8
@@ -1159,7 +1159,7 @@ public static partial class math_mt_ex
 public partial struct long3_mt16 
 {
     [MethodImpl(256 | 512)]
-    public long3_mt16(long2_mt16 xy, long z)
+    public long3_mt16(long2_mt16 xy, long_mt16 z)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -1167,7 +1167,7 @@ public partial struct long3_mt16
     }
 
     [MethodImpl(256 | 512)]
-    public long3_mt16(long x, long2_mt16 yz)
+    public long3_mt16(long_mt16 x, long2_mt16 yz)
     {
         this.x = x;
         this.y = yz.x;
@@ -1175,7 +1175,7 @@ public partial struct long3_mt16
     }
 
     [MethodImpl(256 | 512)]
-    internal long3_mt16(long2_mt16 xz, long y, insert_y _)
+    internal long3_mt16(long2_mt16 xz, long_mt16 y, insert_y _)
     {
         this.x = xz.x;
         this.y = y;
@@ -1186,10 +1186,10 @@ public partial struct long3_mt16
 public static partial class ctor_mt
 {
     [MethodImpl(256 | 512)]
-    public static long3_mt16 long3_mt16(long2_mt16 xy, long z) => new(xy, z);
+    public static long3_mt16 long3_mt16(long2_mt16 xy, long_mt16 z) => new(xy, z);
 
     [MethodImpl(256 | 512)]
-    public static long3_mt16 long3_mt16(long x, long2_mt16 yz) => new(x, yz);
+    public static long3_mt16 long3_mt16(long_mt16 x, long2_mt16 yz) => new(x, yz);
 }
 
 public static partial class math_mt_ex
@@ -1199,21 +1199,21 @@ public static partial class math_mt_ex
     /// <code>X -> (y, z) => (X, y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static long3_mt16 Ix(this long2_mt16 yz, long x) => new(x, yz);
+    public static long3_mt16 Ix(this long2_mt16 yz, long_mt16 x) => new(x, yz);
 
     /// <summary>
     /// Insert Y component
     /// <code>Y -> (x, z) => (x, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static long3_mt16 Iy(this long2_mt16 xz, long y) => new(xz, y, new insert_y());
+    public static long3_mt16 Iy(this long2_mt16 xz, long_mt16 y) => new(xz, y, new insert_y());
 
     /// <summary>
     /// Insert Z component
     /// <code>Z -> (x, y) => (x, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static long3_mt16 Iz(this long2_mt16 xy, long z) => new(xy, z);
+    public static long3_mt16 Iz(this long2_mt16 xy, long_mt16 z) => new(xy, z);
 }
 
 #endregion // long3_mt16
@@ -1223,7 +1223,7 @@ public static partial class math_mt_ex
 public partial struct long3_mt32 
 {
     [MethodImpl(256 | 512)]
-    public long3_mt32(long2_mt32 xy, long z)
+    public long3_mt32(long2_mt32 xy, long_mt32 z)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -1231,7 +1231,7 @@ public partial struct long3_mt32
     }
 
     [MethodImpl(256 | 512)]
-    public long3_mt32(long x, long2_mt32 yz)
+    public long3_mt32(long_mt32 x, long2_mt32 yz)
     {
         this.x = x;
         this.y = yz.x;
@@ -1239,7 +1239,7 @@ public partial struct long3_mt32
     }
 
     [MethodImpl(256 | 512)]
-    internal long3_mt32(long2_mt32 xz, long y, insert_y _)
+    internal long3_mt32(long2_mt32 xz, long_mt32 y, insert_y _)
     {
         this.x = xz.x;
         this.y = y;
@@ -1250,10 +1250,10 @@ public partial struct long3_mt32
 public static partial class ctor_mt
 {
     [MethodImpl(256 | 512)]
-    public static long3_mt32 long3_mt32(long2_mt32 xy, long z) => new(xy, z);
+    public static long3_mt32 long3_mt32(long2_mt32 xy, long_mt32 z) => new(xy, z);
 
     [MethodImpl(256 | 512)]
-    public static long3_mt32 long3_mt32(long x, long2_mt32 yz) => new(x, yz);
+    public static long3_mt32 long3_mt32(long_mt32 x, long2_mt32 yz) => new(x, yz);
 }
 
 public static partial class math_mt_ex
@@ -1263,21 +1263,21 @@ public static partial class math_mt_ex
     /// <code>X -> (y, z) => (X, y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static long3_mt32 Ix(this long2_mt32 yz, long x) => new(x, yz);
+    public static long3_mt32 Ix(this long2_mt32 yz, long_mt32 x) => new(x, yz);
 
     /// <summary>
     /// Insert Y component
     /// <code>Y -> (x, z) => (x, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static long3_mt32 Iy(this long2_mt32 xz, long y) => new(xz, y, new insert_y());
+    public static long3_mt32 Iy(this long2_mt32 xz, long_mt32 y) => new(xz, y, new insert_y());
 
     /// <summary>
     /// Insert Z component
     /// <code>Z -> (x, y) => (x, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static long3_mt32 Iz(this long2_mt32 xy, long z) => new(xy, z);
+    public static long3_mt32 Iz(this long2_mt32 xy, long_mt32 z) => new(xy, z);
 }
 
 #endregion // long3_mt32
@@ -1287,7 +1287,7 @@ public static partial class math_mt_ex
 public partial struct ulong3_mt4 
 {
     [MethodImpl(256 | 512)]
-    public ulong3_mt4(ulong2_mt4 xy, ulong z)
+    public ulong3_mt4(ulong2_mt4 xy, ulong_mt4 z)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -1295,7 +1295,7 @@ public partial struct ulong3_mt4
     }
 
     [MethodImpl(256 | 512)]
-    public ulong3_mt4(ulong x, ulong2_mt4 yz)
+    public ulong3_mt4(ulong_mt4 x, ulong2_mt4 yz)
     {
         this.x = x;
         this.y = yz.x;
@@ -1303,7 +1303,7 @@ public partial struct ulong3_mt4
     }
 
     [MethodImpl(256 | 512)]
-    internal ulong3_mt4(ulong2_mt4 xz, ulong y, insert_y _)
+    internal ulong3_mt4(ulong2_mt4 xz, ulong_mt4 y, insert_y _)
     {
         this.x = xz.x;
         this.y = y;
@@ -1314,10 +1314,10 @@ public partial struct ulong3_mt4
 public static partial class ctor_mt
 {
     [MethodImpl(256 | 512)]
-    public static ulong3_mt4 ulong3_mt4(ulong2_mt4 xy, ulong z) => new(xy, z);
+    public static ulong3_mt4 ulong3_mt4(ulong2_mt4 xy, ulong_mt4 z) => new(xy, z);
 
     [MethodImpl(256 | 512)]
-    public static ulong3_mt4 ulong3_mt4(ulong x, ulong2_mt4 yz) => new(x, yz);
+    public static ulong3_mt4 ulong3_mt4(ulong_mt4 x, ulong2_mt4 yz) => new(x, yz);
 }
 
 public static partial class math_mt_ex
@@ -1327,21 +1327,21 @@ public static partial class math_mt_ex
     /// <code>X -> (y, z) => (X, y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static ulong3_mt4 Ix(this ulong2_mt4 yz, ulong x) => new(x, yz);
+    public static ulong3_mt4 Ix(this ulong2_mt4 yz, ulong_mt4 x) => new(x, yz);
 
     /// <summary>
     /// Insert Y component
     /// <code>Y -> (x, z) => (x, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static ulong3_mt4 Iy(this ulong2_mt4 xz, ulong y) => new(xz, y, new insert_y());
+    public static ulong3_mt4 Iy(this ulong2_mt4 xz, ulong_mt4 y) => new(xz, y, new insert_y());
 
     /// <summary>
     /// Insert Z component
     /// <code>Z -> (x, y) => (x, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static ulong3_mt4 Iz(this ulong2_mt4 xy, ulong z) => new(xy, z);
+    public static ulong3_mt4 Iz(this ulong2_mt4 xy, ulong_mt4 z) => new(xy, z);
 }
 
 #endregion // ulong3_mt4
@@ -1351,7 +1351,7 @@ public static partial class math_mt_ex
 public partial struct ulong3_mt8 
 {
     [MethodImpl(256 | 512)]
-    public ulong3_mt8(ulong2_mt8 xy, ulong z)
+    public ulong3_mt8(ulong2_mt8 xy, ulong_mt8 z)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -1359,7 +1359,7 @@ public partial struct ulong3_mt8
     }
 
     [MethodImpl(256 | 512)]
-    public ulong3_mt8(ulong x, ulong2_mt8 yz)
+    public ulong3_mt8(ulong_mt8 x, ulong2_mt8 yz)
     {
         this.x = x;
         this.y = yz.x;
@@ -1367,7 +1367,7 @@ public partial struct ulong3_mt8
     }
 
     [MethodImpl(256 | 512)]
-    internal ulong3_mt8(ulong2_mt8 xz, ulong y, insert_y _)
+    internal ulong3_mt8(ulong2_mt8 xz, ulong_mt8 y, insert_y _)
     {
         this.x = xz.x;
         this.y = y;
@@ -1378,10 +1378,10 @@ public partial struct ulong3_mt8
 public static partial class ctor_mt
 {
     [MethodImpl(256 | 512)]
-    public static ulong3_mt8 ulong3_mt8(ulong2_mt8 xy, ulong z) => new(xy, z);
+    public static ulong3_mt8 ulong3_mt8(ulong2_mt8 xy, ulong_mt8 z) => new(xy, z);
 
     [MethodImpl(256 | 512)]
-    public static ulong3_mt8 ulong3_mt8(ulong x, ulong2_mt8 yz) => new(x, yz);
+    public static ulong3_mt8 ulong3_mt8(ulong_mt8 x, ulong2_mt8 yz) => new(x, yz);
 }
 
 public static partial class math_mt_ex
@@ -1391,21 +1391,21 @@ public static partial class math_mt_ex
     /// <code>X -> (y, z) => (X, y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static ulong3_mt8 Ix(this ulong2_mt8 yz, ulong x) => new(x, yz);
+    public static ulong3_mt8 Ix(this ulong2_mt8 yz, ulong_mt8 x) => new(x, yz);
 
     /// <summary>
     /// Insert Y component
     /// <code>Y -> (x, z) => (x, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static ulong3_mt8 Iy(this ulong2_mt8 xz, ulong y) => new(xz, y, new insert_y());
+    public static ulong3_mt8 Iy(this ulong2_mt8 xz, ulong_mt8 y) => new(xz, y, new insert_y());
 
     /// <summary>
     /// Insert Z component
     /// <code>Z -> (x, y) => (x, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static ulong3_mt8 Iz(this ulong2_mt8 xy, ulong z) => new(xy, z);
+    public static ulong3_mt8 Iz(this ulong2_mt8 xy, ulong_mt8 z) => new(xy, z);
 }
 
 #endregion // ulong3_mt8
@@ -1415,7 +1415,7 @@ public static partial class math_mt_ex
 public partial struct ulong3_mt16 
 {
     [MethodImpl(256 | 512)]
-    public ulong3_mt16(ulong2_mt16 xy, ulong z)
+    public ulong3_mt16(ulong2_mt16 xy, ulong_mt16 z)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -1423,7 +1423,7 @@ public partial struct ulong3_mt16
     }
 
     [MethodImpl(256 | 512)]
-    public ulong3_mt16(ulong x, ulong2_mt16 yz)
+    public ulong3_mt16(ulong_mt16 x, ulong2_mt16 yz)
     {
         this.x = x;
         this.y = yz.x;
@@ -1431,7 +1431,7 @@ public partial struct ulong3_mt16
     }
 
     [MethodImpl(256 | 512)]
-    internal ulong3_mt16(ulong2_mt16 xz, ulong y, insert_y _)
+    internal ulong3_mt16(ulong2_mt16 xz, ulong_mt16 y, insert_y _)
     {
         this.x = xz.x;
         this.y = y;
@@ -1442,10 +1442,10 @@ public partial struct ulong3_mt16
 public static partial class ctor_mt
 {
     [MethodImpl(256 | 512)]
-    public static ulong3_mt16 ulong3_mt16(ulong2_mt16 xy, ulong z) => new(xy, z);
+    public static ulong3_mt16 ulong3_mt16(ulong2_mt16 xy, ulong_mt16 z) => new(xy, z);
 
     [MethodImpl(256 | 512)]
-    public static ulong3_mt16 ulong3_mt16(ulong x, ulong2_mt16 yz) => new(x, yz);
+    public static ulong3_mt16 ulong3_mt16(ulong_mt16 x, ulong2_mt16 yz) => new(x, yz);
 }
 
 public static partial class math_mt_ex
@@ -1455,21 +1455,21 @@ public static partial class math_mt_ex
     /// <code>X -> (y, z) => (X, y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static ulong3_mt16 Ix(this ulong2_mt16 yz, ulong x) => new(x, yz);
+    public static ulong3_mt16 Ix(this ulong2_mt16 yz, ulong_mt16 x) => new(x, yz);
 
     /// <summary>
     /// Insert Y component
     /// <code>Y -> (x, z) => (x, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static ulong3_mt16 Iy(this ulong2_mt16 xz, ulong y) => new(xz, y, new insert_y());
+    public static ulong3_mt16 Iy(this ulong2_mt16 xz, ulong_mt16 y) => new(xz, y, new insert_y());
 
     /// <summary>
     /// Insert Z component
     /// <code>Z -> (x, y) => (x, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static ulong3_mt16 Iz(this ulong2_mt16 xy, ulong z) => new(xy, z);
+    public static ulong3_mt16 Iz(this ulong2_mt16 xy, ulong_mt16 z) => new(xy, z);
 }
 
 #endregion // ulong3_mt16
@@ -1479,7 +1479,7 @@ public static partial class math_mt_ex
 public partial struct ulong3_mt32 
 {
     [MethodImpl(256 | 512)]
-    public ulong3_mt32(ulong2_mt32 xy, ulong z)
+    public ulong3_mt32(ulong2_mt32 xy, ulong_mt32 z)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -1487,7 +1487,7 @@ public partial struct ulong3_mt32
     }
 
     [MethodImpl(256 | 512)]
-    public ulong3_mt32(ulong x, ulong2_mt32 yz)
+    public ulong3_mt32(ulong_mt32 x, ulong2_mt32 yz)
     {
         this.x = x;
         this.y = yz.x;
@@ -1495,7 +1495,7 @@ public partial struct ulong3_mt32
     }
 
     [MethodImpl(256 | 512)]
-    internal ulong3_mt32(ulong2_mt32 xz, ulong y, insert_y _)
+    internal ulong3_mt32(ulong2_mt32 xz, ulong_mt32 y, insert_y _)
     {
         this.x = xz.x;
         this.y = y;
@@ -1506,10 +1506,10 @@ public partial struct ulong3_mt32
 public static partial class ctor_mt
 {
     [MethodImpl(256 | 512)]
-    public static ulong3_mt32 ulong3_mt32(ulong2_mt32 xy, ulong z) => new(xy, z);
+    public static ulong3_mt32 ulong3_mt32(ulong2_mt32 xy, ulong_mt32 z) => new(xy, z);
 
     [MethodImpl(256 | 512)]
-    public static ulong3_mt32 ulong3_mt32(ulong x, ulong2_mt32 yz) => new(x, yz);
+    public static ulong3_mt32 ulong3_mt32(ulong_mt32 x, ulong2_mt32 yz) => new(x, yz);
 }
 
 public static partial class math_mt_ex
@@ -1519,21 +1519,21 @@ public static partial class math_mt_ex
     /// <code>X -> (y, z) => (X, y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static ulong3_mt32 Ix(this ulong2_mt32 yz, ulong x) => new(x, yz);
+    public static ulong3_mt32 Ix(this ulong2_mt32 yz, ulong_mt32 x) => new(x, yz);
 
     /// <summary>
     /// Insert Y component
     /// <code>Y -> (x, z) => (x, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static ulong3_mt32 Iy(this ulong2_mt32 xz, ulong y) => new(xz, y, new insert_y());
+    public static ulong3_mt32 Iy(this ulong2_mt32 xz, ulong_mt32 y) => new(xz, y, new insert_y());
 
     /// <summary>
     /// Insert Z component
     /// <code>Z -> (x, y) => (x, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static ulong3_mt32 Iz(this ulong2_mt32 xy, ulong z) => new(xy, z);
+    public static ulong3_mt32 Iz(this ulong2_mt32 xy, ulong_mt32 z) => new(xy, z);
 }
 
 #endregion // ulong3_mt32
@@ -1543,7 +1543,7 @@ public static partial class math_mt_ex
 public partial struct b32v3_mt4 
 {
     [MethodImpl(256 | 512)]
-    public b32v3_mt4(b32v2_mt4 xy, b32 z)
+    public b32v3_mt4(b32v2_mt4 xy, b32_mt4 z)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -1551,7 +1551,7 @@ public partial struct b32v3_mt4
     }
 
     [MethodImpl(256 | 512)]
-    public b32v3_mt4(b32 x, b32v2_mt4 yz)
+    public b32v3_mt4(b32_mt4 x, b32v2_mt4 yz)
     {
         this.x = x;
         this.y = yz.x;
@@ -1559,7 +1559,7 @@ public partial struct b32v3_mt4
     }
 
     [MethodImpl(256 | 512)]
-    internal b32v3_mt4(b32v2_mt4 xz, b32 y, insert_y _)
+    internal b32v3_mt4(b32v2_mt4 xz, b32_mt4 y, insert_y _)
     {
         this.x = xz.x;
         this.y = y;
@@ -1570,10 +1570,10 @@ public partial struct b32v3_mt4
 public static partial class ctor_mt
 {
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 b32v3_mt4(b32v2_mt4 xy, b32 z) => new(xy, z);
+    public static b32v3_mt4 b32v3_mt4(b32v2_mt4 xy, b32_mt4 z) => new(xy, z);
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 b32v3_mt4(b32 x, b32v2_mt4 yz) => new(x, yz);
+    public static b32v3_mt4 b32v3_mt4(b32_mt4 x, b32v2_mt4 yz) => new(x, yz);
 }
 
 public static partial class math_mt_ex
@@ -1583,21 +1583,21 @@ public static partial class math_mt_ex
     /// <code>X -> (y, z) => (X, y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 Ix(this b32v2_mt4 yz, b32 x) => new(x, yz);
+    public static b32v3_mt4 Ix(this b32v2_mt4 yz, b32_mt4 x) => new(x, yz);
 
     /// <summary>
     /// Insert Y component
     /// <code>Y -> (x, z) => (x, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 Iy(this b32v2_mt4 xz, b32 y) => new(xz, y, new insert_y());
+    public static b32v3_mt4 Iy(this b32v2_mt4 xz, b32_mt4 y) => new(xz, y, new insert_y());
 
     /// <summary>
     /// Insert Z component
     /// <code>Z -> (x, y) => (x, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static b32v3_mt4 Iz(this b32v2_mt4 xy, b32 z) => new(xy, z);
+    public static b32v3_mt4 Iz(this b32v2_mt4 xy, b32_mt4 z) => new(xy, z);
 }
 
 #endregion // b32v3_mt4
@@ -1607,7 +1607,7 @@ public static partial class math_mt_ex
 public partial struct b32v3_mt8 
 {
     [MethodImpl(256 | 512)]
-    public b32v3_mt8(b32v2_mt8 xy, b32 z)
+    public b32v3_mt8(b32v2_mt8 xy, b32_mt8 z)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -1615,7 +1615,7 @@ public partial struct b32v3_mt8
     }
 
     [MethodImpl(256 | 512)]
-    public b32v3_mt8(b32 x, b32v2_mt8 yz)
+    public b32v3_mt8(b32_mt8 x, b32v2_mt8 yz)
     {
         this.x = x;
         this.y = yz.x;
@@ -1623,7 +1623,7 @@ public partial struct b32v3_mt8
     }
 
     [MethodImpl(256 | 512)]
-    internal b32v3_mt8(b32v2_mt8 xz, b32 y, insert_y _)
+    internal b32v3_mt8(b32v2_mt8 xz, b32_mt8 y, insert_y _)
     {
         this.x = xz.x;
         this.y = y;
@@ -1634,10 +1634,10 @@ public partial struct b32v3_mt8
 public static partial class ctor_mt
 {
     [MethodImpl(256 | 512)]
-    public static b32v3_mt8 b32v3_mt8(b32v2_mt8 xy, b32 z) => new(xy, z);
+    public static b32v3_mt8 b32v3_mt8(b32v2_mt8 xy, b32_mt8 z) => new(xy, z);
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt8 b32v3_mt8(b32 x, b32v2_mt8 yz) => new(x, yz);
+    public static b32v3_mt8 b32v3_mt8(b32_mt8 x, b32v2_mt8 yz) => new(x, yz);
 }
 
 public static partial class math_mt_ex
@@ -1647,21 +1647,21 @@ public static partial class math_mt_ex
     /// <code>X -> (y, z) => (X, y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static b32v3_mt8 Ix(this b32v2_mt8 yz, b32 x) => new(x, yz);
+    public static b32v3_mt8 Ix(this b32v2_mt8 yz, b32_mt8 x) => new(x, yz);
 
     /// <summary>
     /// Insert Y component
     /// <code>Y -> (x, z) => (x, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static b32v3_mt8 Iy(this b32v2_mt8 xz, b32 y) => new(xz, y, new insert_y());
+    public static b32v3_mt8 Iy(this b32v2_mt8 xz, b32_mt8 y) => new(xz, y, new insert_y());
 
     /// <summary>
     /// Insert Z component
     /// <code>Z -> (x, y) => (x, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static b32v3_mt8 Iz(this b32v2_mt8 xy, b32 z) => new(xy, z);
+    public static b32v3_mt8 Iz(this b32v2_mt8 xy, b32_mt8 z) => new(xy, z);
 }
 
 #endregion // b32v3_mt8
@@ -1671,7 +1671,7 @@ public static partial class math_mt_ex
 public partial struct b32v3_mt16 
 {
     [MethodImpl(256 | 512)]
-    public b32v3_mt16(b32v2_mt16 xy, b32 z)
+    public b32v3_mt16(b32v2_mt16 xy, b32_mt16 z)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -1679,7 +1679,7 @@ public partial struct b32v3_mt16
     }
 
     [MethodImpl(256 | 512)]
-    public b32v3_mt16(b32 x, b32v2_mt16 yz)
+    public b32v3_mt16(b32_mt16 x, b32v2_mt16 yz)
     {
         this.x = x;
         this.y = yz.x;
@@ -1687,7 +1687,7 @@ public partial struct b32v3_mt16
     }
 
     [MethodImpl(256 | 512)]
-    internal b32v3_mt16(b32v2_mt16 xz, b32 y, insert_y _)
+    internal b32v3_mt16(b32v2_mt16 xz, b32_mt16 y, insert_y _)
     {
         this.x = xz.x;
         this.y = y;
@@ -1698,10 +1698,10 @@ public partial struct b32v3_mt16
 public static partial class ctor_mt
 {
     [MethodImpl(256 | 512)]
-    public static b32v3_mt16 b32v3_mt16(b32v2_mt16 xy, b32 z) => new(xy, z);
+    public static b32v3_mt16 b32v3_mt16(b32v2_mt16 xy, b32_mt16 z) => new(xy, z);
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt16 b32v3_mt16(b32 x, b32v2_mt16 yz) => new(x, yz);
+    public static b32v3_mt16 b32v3_mt16(b32_mt16 x, b32v2_mt16 yz) => new(x, yz);
 }
 
 public static partial class math_mt_ex
@@ -1711,21 +1711,21 @@ public static partial class math_mt_ex
     /// <code>X -> (y, z) => (X, y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static b32v3_mt16 Ix(this b32v2_mt16 yz, b32 x) => new(x, yz);
+    public static b32v3_mt16 Ix(this b32v2_mt16 yz, b32_mt16 x) => new(x, yz);
 
     /// <summary>
     /// Insert Y component
     /// <code>Y -> (x, z) => (x, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static b32v3_mt16 Iy(this b32v2_mt16 xz, b32 y) => new(xz, y, new insert_y());
+    public static b32v3_mt16 Iy(this b32v2_mt16 xz, b32_mt16 y) => new(xz, y, new insert_y());
 
     /// <summary>
     /// Insert Z component
     /// <code>Z -> (x, y) => (x, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static b32v3_mt16 Iz(this b32v2_mt16 xy, b32 z) => new(xy, z);
+    public static b32v3_mt16 Iz(this b32v2_mt16 xy, b32_mt16 z) => new(xy, z);
 }
 
 #endregion // b32v3_mt16
@@ -1735,7 +1735,7 @@ public static partial class math_mt_ex
 public partial struct b32v3_mt32 
 {
     [MethodImpl(256 | 512)]
-    public b32v3_mt32(b32v2_mt32 xy, b32 z)
+    public b32v3_mt32(b32v2_mt32 xy, b32_mt32 z)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -1743,7 +1743,7 @@ public partial struct b32v3_mt32
     }
 
     [MethodImpl(256 | 512)]
-    public b32v3_mt32(b32 x, b32v2_mt32 yz)
+    public b32v3_mt32(b32_mt32 x, b32v2_mt32 yz)
     {
         this.x = x;
         this.y = yz.x;
@@ -1751,7 +1751,7 @@ public partial struct b32v3_mt32
     }
 
     [MethodImpl(256 | 512)]
-    internal b32v3_mt32(b32v2_mt32 xz, b32 y, insert_y _)
+    internal b32v3_mt32(b32v2_mt32 xz, b32_mt32 y, insert_y _)
     {
         this.x = xz.x;
         this.y = y;
@@ -1762,10 +1762,10 @@ public partial struct b32v3_mt32
 public static partial class ctor_mt
 {
     [MethodImpl(256 | 512)]
-    public static b32v3_mt32 b32v3_mt32(b32v2_mt32 xy, b32 z) => new(xy, z);
+    public static b32v3_mt32 b32v3_mt32(b32v2_mt32 xy, b32_mt32 z) => new(xy, z);
 
     [MethodImpl(256 | 512)]
-    public static b32v3_mt32 b32v3_mt32(b32 x, b32v2_mt32 yz) => new(x, yz);
+    public static b32v3_mt32 b32v3_mt32(b32_mt32 x, b32v2_mt32 yz) => new(x, yz);
 }
 
 public static partial class math_mt_ex
@@ -1775,21 +1775,21 @@ public static partial class math_mt_ex
     /// <code>X -> (y, z) => (X, y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static b32v3_mt32 Ix(this b32v2_mt32 yz, b32 x) => new(x, yz);
+    public static b32v3_mt32 Ix(this b32v2_mt32 yz, b32_mt32 x) => new(x, yz);
 
     /// <summary>
     /// Insert Y component
     /// <code>Y -> (x, z) => (x, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static b32v3_mt32 Iy(this b32v2_mt32 xz, b32 y) => new(xz, y, new insert_y());
+    public static b32v3_mt32 Iy(this b32v2_mt32 xz, b32_mt32 y) => new(xz, y, new insert_y());
 
     /// <summary>
     /// Insert Z component
     /// <code>Z -> (x, y) => (x, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static b32v3_mt32 Iz(this b32v2_mt32 xy, b32 z) => new(xy, z);
+    public static b32v3_mt32 Iz(this b32v2_mt32 xy, b32_mt32 z) => new(xy, z);
 }
 
 #endregion // b32v3_mt32
@@ -1799,7 +1799,7 @@ public static partial class math_mt_ex
 public partial struct b64v3_mt4 
 {
     [MethodImpl(256 | 512)]
-    public b64v3_mt4(b64v2_mt4 xy, b64 z)
+    public b64v3_mt4(b64v2_mt4 xy, b64_mt4 z)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -1807,7 +1807,7 @@ public partial struct b64v3_mt4
     }
 
     [MethodImpl(256 | 512)]
-    public b64v3_mt4(b64 x, b64v2_mt4 yz)
+    public b64v3_mt4(b64_mt4 x, b64v2_mt4 yz)
     {
         this.x = x;
         this.y = yz.x;
@@ -1815,7 +1815,7 @@ public partial struct b64v3_mt4
     }
 
     [MethodImpl(256 | 512)]
-    internal b64v3_mt4(b64v2_mt4 xz, b64 y, insert_y _)
+    internal b64v3_mt4(b64v2_mt4 xz, b64_mt4 y, insert_y _)
     {
         this.x = xz.x;
         this.y = y;
@@ -1826,10 +1826,10 @@ public partial struct b64v3_mt4
 public static partial class ctor_mt
 {
     [MethodImpl(256 | 512)]
-    public static b64v3_mt4 b64v3_mt4(b64v2_mt4 xy, b64 z) => new(xy, z);
+    public static b64v3_mt4 b64v3_mt4(b64v2_mt4 xy, b64_mt4 z) => new(xy, z);
 
     [MethodImpl(256 | 512)]
-    public static b64v3_mt4 b64v3_mt4(b64 x, b64v2_mt4 yz) => new(x, yz);
+    public static b64v3_mt4 b64v3_mt4(b64_mt4 x, b64v2_mt4 yz) => new(x, yz);
 }
 
 public static partial class math_mt_ex
@@ -1839,21 +1839,21 @@ public static partial class math_mt_ex
     /// <code>X -> (y, z) => (X, y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static b64v3_mt4 Ix(this b64v2_mt4 yz, b64 x) => new(x, yz);
+    public static b64v3_mt4 Ix(this b64v2_mt4 yz, b64_mt4 x) => new(x, yz);
 
     /// <summary>
     /// Insert Y component
     /// <code>Y -> (x, z) => (x, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static b64v3_mt4 Iy(this b64v2_mt4 xz, b64 y) => new(xz, y, new insert_y());
+    public static b64v3_mt4 Iy(this b64v2_mt4 xz, b64_mt4 y) => new(xz, y, new insert_y());
 
     /// <summary>
     /// Insert Z component
     /// <code>Z -> (x, y) => (x, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static b64v3_mt4 Iz(this b64v2_mt4 xy, b64 z) => new(xy, z);
+    public static b64v3_mt4 Iz(this b64v2_mt4 xy, b64_mt4 z) => new(xy, z);
 }
 
 #endregion // b64v3_mt4
@@ -1863,7 +1863,7 @@ public static partial class math_mt_ex
 public partial struct b64v3_mt8 
 {
     [MethodImpl(256 | 512)]
-    public b64v3_mt8(b64v2_mt8 xy, b64 z)
+    public b64v3_mt8(b64v2_mt8 xy, b64_mt8 z)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -1871,7 +1871,7 @@ public partial struct b64v3_mt8
     }
 
     [MethodImpl(256 | 512)]
-    public b64v3_mt8(b64 x, b64v2_mt8 yz)
+    public b64v3_mt8(b64_mt8 x, b64v2_mt8 yz)
     {
         this.x = x;
         this.y = yz.x;
@@ -1879,7 +1879,7 @@ public partial struct b64v3_mt8
     }
 
     [MethodImpl(256 | 512)]
-    internal b64v3_mt8(b64v2_mt8 xz, b64 y, insert_y _)
+    internal b64v3_mt8(b64v2_mt8 xz, b64_mt8 y, insert_y _)
     {
         this.x = xz.x;
         this.y = y;
@@ -1890,10 +1890,10 @@ public partial struct b64v3_mt8
 public static partial class ctor_mt
 {
     [MethodImpl(256 | 512)]
-    public static b64v3_mt8 b64v3_mt8(b64v2_mt8 xy, b64 z) => new(xy, z);
+    public static b64v3_mt8 b64v3_mt8(b64v2_mt8 xy, b64_mt8 z) => new(xy, z);
 
     [MethodImpl(256 | 512)]
-    public static b64v3_mt8 b64v3_mt8(b64 x, b64v2_mt8 yz) => new(x, yz);
+    public static b64v3_mt8 b64v3_mt8(b64_mt8 x, b64v2_mt8 yz) => new(x, yz);
 }
 
 public static partial class math_mt_ex
@@ -1903,21 +1903,21 @@ public static partial class math_mt_ex
     /// <code>X -> (y, z) => (X, y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static b64v3_mt8 Ix(this b64v2_mt8 yz, b64 x) => new(x, yz);
+    public static b64v3_mt8 Ix(this b64v2_mt8 yz, b64_mt8 x) => new(x, yz);
 
     /// <summary>
     /// Insert Y component
     /// <code>Y -> (x, z) => (x, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static b64v3_mt8 Iy(this b64v2_mt8 xz, b64 y) => new(xz, y, new insert_y());
+    public static b64v3_mt8 Iy(this b64v2_mt8 xz, b64_mt8 y) => new(xz, y, new insert_y());
 
     /// <summary>
     /// Insert Z component
     /// <code>Z -> (x, y) => (x, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static b64v3_mt8 Iz(this b64v2_mt8 xy, b64 z) => new(xy, z);
+    public static b64v3_mt8 Iz(this b64v2_mt8 xy, b64_mt8 z) => new(xy, z);
 }
 
 #endregion // b64v3_mt8
@@ -1927,7 +1927,7 @@ public static partial class math_mt_ex
 public partial struct b64v3_mt16 
 {
     [MethodImpl(256 | 512)]
-    public b64v3_mt16(b64v2_mt16 xy, b64 z)
+    public b64v3_mt16(b64v2_mt16 xy, b64_mt16 z)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -1935,7 +1935,7 @@ public partial struct b64v3_mt16
     }
 
     [MethodImpl(256 | 512)]
-    public b64v3_mt16(b64 x, b64v2_mt16 yz)
+    public b64v3_mt16(b64_mt16 x, b64v2_mt16 yz)
     {
         this.x = x;
         this.y = yz.x;
@@ -1943,7 +1943,7 @@ public partial struct b64v3_mt16
     }
 
     [MethodImpl(256 | 512)]
-    internal b64v3_mt16(b64v2_mt16 xz, b64 y, insert_y _)
+    internal b64v3_mt16(b64v2_mt16 xz, b64_mt16 y, insert_y _)
     {
         this.x = xz.x;
         this.y = y;
@@ -1954,10 +1954,10 @@ public partial struct b64v3_mt16
 public static partial class ctor_mt
 {
     [MethodImpl(256 | 512)]
-    public static b64v3_mt16 b64v3_mt16(b64v2_mt16 xy, b64 z) => new(xy, z);
+    public static b64v3_mt16 b64v3_mt16(b64v2_mt16 xy, b64_mt16 z) => new(xy, z);
 
     [MethodImpl(256 | 512)]
-    public static b64v3_mt16 b64v3_mt16(b64 x, b64v2_mt16 yz) => new(x, yz);
+    public static b64v3_mt16 b64v3_mt16(b64_mt16 x, b64v2_mt16 yz) => new(x, yz);
 }
 
 public static partial class math_mt_ex
@@ -1967,21 +1967,21 @@ public static partial class math_mt_ex
     /// <code>X -> (y, z) => (X, y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static b64v3_mt16 Ix(this b64v2_mt16 yz, b64 x) => new(x, yz);
+    public static b64v3_mt16 Ix(this b64v2_mt16 yz, b64_mt16 x) => new(x, yz);
 
     /// <summary>
     /// Insert Y component
     /// <code>Y -> (x, z) => (x, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static b64v3_mt16 Iy(this b64v2_mt16 xz, b64 y) => new(xz, y, new insert_y());
+    public static b64v3_mt16 Iy(this b64v2_mt16 xz, b64_mt16 y) => new(xz, y, new insert_y());
 
     /// <summary>
     /// Insert Z component
     /// <code>Z -> (x, y) => (x, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static b64v3_mt16 Iz(this b64v2_mt16 xy, b64 z) => new(xy, z);
+    public static b64v3_mt16 Iz(this b64v2_mt16 xy, b64_mt16 z) => new(xy, z);
 }
 
 #endregion // b64v3_mt16
@@ -1991,7 +1991,7 @@ public static partial class math_mt_ex
 public partial struct b64v3_mt32 
 {
     [MethodImpl(256 | 512)]
-    public b64v3_mt32(b64v2_mt32 xy, b64 z)
+    public b64v3_mt32(b64v2_mt32 xy, b64_mt32 z)
     {
         this.x = xy.x;
         this.y = xy.y;
@@ -1999,7 +1999,7 @@ public partial struct b64v3_mt32
     }
 
     [MethodImpl(256 | 512)]
-    public b64v3_mt32(b64 x, b64v2_mt32 yz)
+    public b64v3_mt32(b64_mt32 x, b64v2_mt32 yz)
     {
         this.x = x;
         this.y = yz.x;
@@ -2007,7 +2007,7 @@ public partial struct b64v3_mt32
     }
 
     [MethodImpl(256 | 512)]
-    internal b64v3_mt32(b64v2_mt32 xz, b64 y, insert_y _)
+    internal b64v3_mt32(b64v2_mt32 xz, b64_mt32 y, insert_y _)
     {
         this.x = xz.x;
         this.y = y;
@@ -2018,10 +2018,10 @@ public partial struct b64v3_mt32
 public static partial class ctor_mt
 {
     [MethodImpl(256 | 512)]
-    public static b64v3_mt32 b64v3_mt32(b64v2_mt32 xy, b64 z) => new(xy, z);
+    public static b64v3_mt32 b64v3_mt32(b64v2_mt32 xy, b64_mt32 z) => new(xy, z);
 
     [MethodImpl(256 | 512)]
-    public static b64v3_mt32 b64v3_mt32(b64 x, b64v2_mt32 yz) => new(x, yz);
+    public static b64v3_mt32 b64v3_mt32(b64_mt32 x, b64v2_mt32 yz) => new(x, yz);
 }
 
 public static partial class math_mt_ex
@@ -2031,21 +2031,21 @@ public static partial class math_mt_ex
     /// <code>X -> (y, z) => (X, y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static b64v3_mt32 Ix(this b64v2_mt32 yz, b64 x) => new(x, yz);
+    public static b64v3_mt32 Ix(this b64v2_mt32 yz, b64_mt32 x) => new(x, yz);
 
     /// <summary>
     /// Insert Y component
     /// <code>Y -> (x, z) => (x, Y, z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static b64v3_mt32 Iy(this b64v2_mt32 xz, b64 y) => new(xz, y, new insert_y());
+    public static b64v3_mt32 Iy(this b64v2_mt32 xz, b64_mt32 y) => new(xz, y, new insert_y());
 
     /// <summary>
     /// Insert Z component
     /// <code>Z -> (x, y) => (x, y, Z)</code>
     /// </summary>
     [MethodImpl(256 | 512)]
-    public static b64v3_mt32 Iz(this b64v2_mt32 xy, b64 z) => new(xy, z);
+    public static b64v3_mt32 Iz(this b64v2_mt32 xy, b64_mt32 z) => new(xy, z);
 }
 
 #endregion // b64v3_mt32

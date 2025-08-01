@@ -11,12 +11,11 @@ namespace Coplt.Mathematics.Simt;
     {
         if (!typ.simd) continue;
         if (typ.size < 4) continue;
-
         foreach (var size in sizes)
         {
             var typeName = $"{typ.name}3_mt{size}";
             var typeName2 = $"{typ.name}2_mt{size}";
-            var type = typ.compType;
+            var type = $"{typ.compType}_mt{size}";
 #>
 
 #region <#= typeName #>
