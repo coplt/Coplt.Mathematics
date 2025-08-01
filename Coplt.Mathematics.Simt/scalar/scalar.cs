@@ -3189,6 +3189,9 @@ public partial struct b32_mt4
     public static implicit operator b32_mt4(b32 value) => new(value);
 
     [MethodImpl(256 | 512)]
+    public static implicit operator b32_mt4(bool value) => (b32)(value);
+
+    [MethodImpl(256 | 512)]
     public static b32_mt4 operator~(b32_mt4 a) => new(~a.vector);
 
     [MethodImpl(256 | 512)]
@@ -3313,6 +3316,9 @@ public partial struct b32_mt8
     public static implicit operator b32_mt8(b32 value) => new(value);
 
     [MethodImpl(256 | 512)]
+    public static implicit operator b32_mt8(bool value) => (b32)(value);
+
+    [MethodImpl(256 | 512)]
     public static b32_mt8 operator~(b32_mt8 a) => new(~a.vector);
 
     [MethodImpl(256 | 512)]
@@ -3435,6 +3441,9 @@ public partial struct b32_mt16
 
     [MethodImpl(256 | 512)]
     public static implicit operator b32_mt16(b32 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b32_mt16(bool value) => (b32)(value);
 
     [MethodImpl(256 | 512)]
     public static b32_mt16 operator~(b32_mt16 a) => new(~a.vector);
@@ -3570,6 +3579,9 @@ public partial struct b32_mt32
     public static implicit operator b32_mt32(b32 value) => new(value);
 
     [MethodImpl(256 | 512)]
+    public static implicit operator b32_mt32(bool value) => (b32)(value);
+
+    [MethodImpl(256 | 512)]
     public static b32_mt32 operator~(b32_mt32 a) => new(~a.vector0, ~a.vector1);
 
     [MethodImpl(256 | 512)]
@@ -3694,6 +3706,9 @@ public partial struct b64_mt4
     public static implicit operator b64_mt4(b64 value) => new(value);
 
     [MethodImpl(256 | 512)]
+    public static implicit operator b64_mt4(bool value) => (b64)(value);
+
+    [MethodImpl(256 | 512)]
     public static b64_mt4 operator~(b64_mt4 a) => new(~a.vector);
 
     [MethodImpl(256 | 512)]
@@ -3816,6 +3831,9 @@ public partial struct b64_mt8
 
     [MethodImpl(256 | 512)]
     public static implicit operator b64_mt8(b64 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64_mt8(bool value) => (b64)(value);
 
     [MethodImpl(256 | 512)]
     public static b64_mt8 operator~(b64_mt8 a) => new(~a.vector);
@@ -3949,6 +3967,9 @@ public partial struct b64_mt16
 
     [MethodImpl(256 | 512)]
     public static implicit operator b64_mt16(b64 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64_mt16(bool value) => (b64)(value);
 
     [MethodImpl(256 | 512)]
     public static b64_mt16 operator~(b64_mt16 a) => new(~a.vector0, ~a.vector1);
@@ -4094,6 +4115,9 @@ public partial struct b64_mt32
 
     [MethodImpl(256 | 512)]
     public static implicit operator b64_mt32(b64 value) => new(value);
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator b64_mt32(bool value) => (b64)(value);
 
     [MethodImpl(256 | 512)]
     public static b64_mt32 operator~(b64_mt32 a) => new(~a.vector0, ~a.vector1, ~a.vector2, ~a.vector3);

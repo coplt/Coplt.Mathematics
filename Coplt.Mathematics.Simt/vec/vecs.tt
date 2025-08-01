@@ -55,21 +55,20 @@ public partial struct <#= typeName #>
 
     #region Properties
 
-    public <#= simd_typeName #> this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly <#= simd_typeName #> LaneGet(int index) => new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"{Typ.xyzw[n]}[index]")) #>);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, <#= simd_typeName #> value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"{Typ.xyzw[n]}[index]")) #>);
-        set 
-        {
 <#
                 foreach (var n in Enumerable.Range(0, i))
                 {
 #>
-           <#= Typ.xyzw[n] #>[index] = value.<#= Typ.xyzw[n] #>;
+        <#= Typ.xyzw[n] #>[index] = value.<#= Typ.xyzw[n] #>;
 <#
                 }
 #>
-        }
     }
 
     #endregion // Properties
@@ -120,6 +119,16 @@ public partial struct <#= typeName #>
 
     [MethodImpl(256 | 512)]
     public static implicit operator <#= typeName #>(<#= typ.compType #> value) => new <#= scalarName #>(value);
+<#
+                if (typ.bol)
+                {
+#>
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator <#= typeName #>(bool value) => (<#= typ.compType #>)(value);
+<#
+                }
+#>
 
     [MethodImpl(256 | 512)]
     public static implicit operator <#= typeName #>(<#= scalarName #> value) => new(value);
@@ -145,10 +154,67 @@ public partial struct <#= typeName #>
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"out {scalarName} {Typ.xyzw[n]}")) #>)
+    {
+<#
+                for (var n = 0; n < i; n++)
+                {
+#>
+        <#= Typ.xyzw[n] #> = this.<#= Typ.xyzw[n] #>;
+<#
+                }
+#>
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public <#= scalarName #> this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+<#
+                for (var j = 0; j < i; j++)
+                {
+#>
+            <#= j #> => <#= Typ.xyzw[j] #>,
+<#
+                }
+#>
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+<#
+                for (var j = 0; j < i; j++)
+                {
+#>
+                case <#= j #>:
+                    <#= Typ.xyzw[j] #> = value;
+                    break;
+<#
+                }
+#>
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
     public readonly override string ToString() => $"<#= typeName #> {{ <#=
-                string.Join(", ", Enumerable.Range(0, size).Select(l => $"t{l} = {{this[{l}]}}")) #> }}";
+                    string.Join(", ", Enumerable.Range(0, size).Select(l => $"t{l} = {{this.LaneGet({l})}}")) #> }}";
     
     #endregion // ToString
 }

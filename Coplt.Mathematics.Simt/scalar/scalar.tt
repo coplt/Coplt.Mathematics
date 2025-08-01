@@ -259,6 +259,16 @@ public partial struct <#= typeName #>
 
     [MethodImpl(256 | 512)]
     public static implicit operator <#= typeName #>(<#= typ.compType #> value) => new(value);
+<#
+                if (typ.bol)
+                {
+#>
+
+    [MethodImpl(256 | 512)]
+    public static implicit operator <#= typeName #>(bool value) => (<#= typ.compType #>)(value);
+<#
+                }
+#>
 
     [MethodImpl(256 | 512)]
     public static <#= typeName #> operator~(<#= typeName #> a) => <#=

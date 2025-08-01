@@ -26,15 +26,14 @@ public partial struct float2_mt4
 
     #region Properties
 
-    public float2 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly float2 LaneGet(int index) => new(x[index], y[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, float2 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
     }
 
     #endregion // Properties
@@ -94,9 +93,50 @@ public partial struct float2_mt4
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out float_mt4 x, out float_mt4 y)
+    {
+        x = this.x;
+        y = this.y;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public float_mt4 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"float2_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    public readonly override string ToString() => $"float2_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
     
     #endregion // ToString
 }
@@ -126,15 +166,14 @@ public partial struct float2_mt8
 
     #region Properties
 
-    public float2 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly float2 LaneGet(int index) => new(x[index], y[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, float2 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
     }
 
     #endregion // Properties
@@ -194,9 +233,50 @@ public partial struct float2_mt8
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out float_mt8 x, out float_mt8 y)
+    {
+        x = this.x;
+        y = this.y;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public float_mt8 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"float2_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    public readonly override string ToString() => $"float2_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
     
     #endregion // ToString
 }
@@ -226,15 +306,14 @@ public partial struct float2_mt16
 
     #region Properties
 
-    public float2 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly float2 LaneGet(int index) => new(x[index], y[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, float2 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
     }
 
     #endregion // Properties
@@ -294,9 +373,50 @@ public partial struct float2_mt16
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out float_mt16 x, out float_mt16 y)
+    {
+        x = this.x;
+        y = this.y;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public float_mt16 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"float2_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    public readonly override string ToString() => $"float2_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
@@ -326,15 +446,14 @@ public partial struct float2_mt32
 
     #region Properties
 
-    public float2 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly float2 LaneGet(int index) => new(x[index], y[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, float2 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
     }
 
     #endregion // Properties
@@ -394,9 +513,50 @@ public partial struct float2_mt32
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out float_mt32 x, out float_mt32 y)
+    {
+        x = this.x;
+        y = this.y;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public float_mt32 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"float2_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    public readonly override string ToString() => $"float2_mt32 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)}, t16 = {this.LaneGet(16)}, t17 = {this.LaneGet(17)}, t18 = {this.LaneGet(18)}, t19 = {this.LaneGet(19)}, t20 = {this.LaneGet(20)}, t21 = {this.LaneGet(21)}, t22 = {this.LaneGet(22)}, t23 = {this.LaneGet(23)}, t24 = {this.LaneGet(24)}, t25 = {this.LaneGet(25)}, t26 = {this.LaneGet(26)}, t27 = {this.LaneGet(27)}, t28 = {this.LaneGet(28)}, t29 = {this.LaneGet(29)}, t30 = {this.LaneGet(30)}, t31 = {this.LaneGet(31)} }}";
     
     #endregion // ToString
 }
@@ -427,16 +587,15 @@ public partial struct float3_mt4
 
     #region Properties
 
-    public float3 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly float3 LaneGet(int index) => new(x[index], y[index], z[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, float3 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
     }
 
     #endregion // Properties
@@ -498,9 +657,55 @@ public partial struct float3_mt4
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out float_mt4 x, out float_mt4 y, out float_mt4 z)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public float_mt4 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"float3_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    public readonly override string ToString() => $"float3_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
     
     #endregion // ToString
 }
@@ -531,16 +736,15 @@ public partial struct float3_mt8
 
     #region Properties
 
-    public float3 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly float3 LaneGet(int index) => new(x[index], y[index], z[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, float3 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
     }
 
     #endregion // Properties
@@ -602,9 +806,55 @@ public partial struct float3_mt8
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out float_mt8 x, out float_mt8 y, out float_mt8 z)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public float_mt8 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"float3_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    public readonly override string ToString() => $"float3_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
     
     #endregion // ToString
 }
@@ -635,16 +885,15 @@ public partial struct float3_mt16
 
     #region Properties
 
-    public float3 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly float3 LaneGet(int index) => new(x[index], y[index], z[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, float3 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
     }
 
     #endregion // Properties
@@ -706,9 +955,55 @@ public partial struct float3_mt16
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out float_mt16 x, out float_mt16 y, out float_mt16 z)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public float_mt16 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"float3_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    public readonly override string ToString() => $"float3_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
@@ -739,16 +1034,15 @@ public partial struct float3_mt32
 
     #region Properties
 
-    public float3 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly float3 LaneGet(int index) => new(x[index], y[index], z[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, float3 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
     }
 
     #endregion // Properties
@@ -810,9 +1104,55 @@ public partial struct float3_mt32
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out float_mt32 x, out float_mt32 y, out float_mt32 z)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public float_mt32 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"float3_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    public readonly override string ToString() => $"float3_mt32 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)}, t16 = {this.LaneGet(16)}, t17 = {this.LaneGet(17)}, t18 = {this.LaneGet(18)}, t19 = {this.LaneGet(19)}, t20 = {this.LaneGet(20)}, t21 = {this.LaneGet(21)}, t22 = {this.LaneGet(22)}, t23 = {this.LaneGet(23)}, t24 = {this.LaneGet(24)}, t25 = {this.LaneGet(25)}, t26 = {this.LaneGet(26)}, t27 = {this.LaneGet(27)}, t28 = {this.LaneGet(28)}, t29 = {this.LaneGet(29)}, t30 = {this.LaneGet(30)}, t31 = {this.LaneGet(31)} }}";
     
     #endregion // ToString
 }
@@ -844,17 +1184,16 @@ public partial struct float4_mt4
 
     #region Properties
 
-    public float4 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly float4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, float4 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index], w[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-           w[index] = value.w;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
+        w[index] = value.w;
     }
 
     #endregion // Properties
@@ -918,9 +1257,60 @@ public partial struct float4_mt4
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out float_mt4 x, out float_mt4 y, out float_mt4 z, out float_mt4 w)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+        w = this.w;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public float_mt4 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            3 => w,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                case 3:
+                    w = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"float4_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    public readonly override string ToString() => $"float4_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
     
     #endregion // ToString
 }
@@ -952,17 +1342,16 @@ public partial struct float4_mt8
 
     #region Properties
 
-    public float4 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly float4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, float4 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index], w[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-           w[index] = value.w;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
+        w[index] = value.w;
     }
 
     #endregion // Properties
@@ -1026,9 +1415,60 @@ public partial struct float4_mt8
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out float_mt8 x, out float_mt8 y, out float_mt8 z, out float_mt8 w)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+        w = this.w;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public float_mt8 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            3 => w,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                case 3:
+                    w = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"float4_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    public readonly override string ToString() => $"float4_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
     
     #endregion // ToString
 }
@@ -1060,17 +1500,16 @@ public partial struct float4_mt16
 
     #region Properties
 
-    public float4 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly float4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, float4 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index], w[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-           w[index] = value.w;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
+        w[index] = value.w;
     }
 
     #endregion // Properties
@@ -1134,9 +1573,60 @@ public partial struct float4_mt16
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out float_mt16 x, out float_mt16 y, out float_mt16 z, out float_mt16 w)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+        w = this.w;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public float_mt16 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            3 => w,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                case 3:
+                    w = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"float4_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    public readonly override string ToString() => $"float4_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
@@ -1168,17 +1658,16 @@ public partial struct float4_mt32
 
     #region Properties
 
-    public float4 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly float4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, float4 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index], w[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-           w[index] = value.w;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
+        w[index] = value.w;
     }
 
     #endregion // Properties
@@ -1242,9 +1731,60 @@ public partial struct float4_mt32
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out float_mt32 x, out float_mt32 y, out float_mt32 z, out float_mt32 w)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+        w = this.w;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public float_mt32 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            3 => w,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                case 3:
+                    w = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"float4_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    public readonly override string ToString() => $"float4_mt32 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)}, t16 = {this.LaneGet(16)}, t17 = {this.LaneGet(17)}, t18 = {this.LaneGet(18)}, t19 = {this.LaneGet(19)}, t20 = {this.LaneGet(20)}, t21 = {this.LaneGet(21)}, t22 = {this.LaneGet(22)}, t23 = {this.LaneGet(23)}, t24 = {this.LaneGet(24)}, t25 = {this.LaneGet(25)}, t26 = {this.LaneGet(26)}, t27 = {this.LaneGet(27)}, t28 = {this.LaneGet(28)}, t29 = {this.LaneGet(29)}, t30 = {this.LaneGet(30)}, t31 = {this.LaneGet(31)} }}";
     
     #endregion // ToString
 }
@@ -1274,15 +1814,14 @@ public partial struct double2_mt4
 
     #region Properties
 
-    public double2 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly double2 LaneGet(int index) => new(x[index], y[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, double2 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
     }
 
     #endregion // Properties
@@ -1342,9 +1881,50 @@ public partial struct double2_mt4
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out double_mt4 x, out double_mt4 y)
+    {
+        x = this.x;
+        y = this.y;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public double_mt4 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"double2_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    public readonly override string ToString() => $"double2_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
     
     #endregion // ToString
 }
@@ -1374,15 +1954,14 @@ public partial struct double2_mt8
 
     #region Properties
 
-    public double2 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly double2 LaneGet(int index) => new(x[index], y[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, double2 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
     }
 
     #endregion // Properties
@@ -1442,9 +2021,50 @@ public partial struct double2_mt8
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out double_mt8 x, out double_mt8 y)
+    {
+        x = this.x;
+        y = this.y;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public double_mt8 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"double2_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    public readonly override string ToString() => $"double2_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
     
     #endregion // ToString
 }
@@ -1474,15 +2094,14 @@ public partial struct double2_mt16
 
     #region Properties
 
-    public double2 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly double2 LaneGet(int index) => new(x[index], y[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, double2 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
     }
 
     #endregion // Properties
@@ -1542,9 +2161,50 @@ public partial struct double2_mt16
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out double_mt16 x, out double_mt16 y)
+    {
+        x = this.x;
+        y = this.y;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public double_mt16 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"double2_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    public readonly override string ToString() => $"double2_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
@@ -1574,15 +2234,14 @@ public partial struct double2_mt32
 
     #region Properties
 
-    public double2 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly double2 LaneGet(int index) => new(x[index], y[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, double2 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
     }
 
     #endregion // Properties
@@ -1642,9 +2301,50 @@ public partial struct double2_mt32
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out double_mt32 x, out double_mt32 y)
+    {
+        x = this.x;
+        y = this.y;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public double_mt32 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"double2_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    public readonly override string ToString() => $"double2_mt32 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)}, t16 = {this.LaneGet(16)}, t17 = {this.LaneGet(17)}, t18 = {this.LaneGet(18)}, t19 = {this.LaneGet(19)}, t20 = {this.LaneGet(20)}, t21 = {this.LaneGet(21)}, t22 = {this.LaneGet(22)}, t23 = {this.LaneGet(23)}, t24 = {this.LaneGet(24)}, t25 = {this.LaneGet(25)}, t26 = {this.LaneGet(26)}, t27 = {this.LaneGet(27)}, t28 = {this.LaneGet(28)}, t29 = {this.LaneGet(29)}, t30 = {this.LaneGet(30)}, t31 = {this.LaneGet(31)} }}";
     
     #endregion // ToString
 }
@@ -1675,16 +2375,15 @@ public partial struct double3_mt4
 
     #region Properties
 
-    public double3 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly double3 LaneGet(int index) => new(x[index], y[index], z[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, double3 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
     }
 
     #endregion // Properties
@@ -1746,9 +2445,55 @@ public partial struct double3_mt4
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out double_mt4 x, out double_mt4 y, out double_mt4 z)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public double_mt4 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"double3_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    public readonly override string ToString() => $"double3_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
     
     #endregion // ToString
 }
@@ -1779,16 +2524,15 @@ public partial struct double3_mt8
 
     #region Properties
 
-    public double3 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly double3 LaneGet(int index) => new(x[index], y[index], z[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, double3 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
     }
 
     #endregion // Properties
@@ -1850,9 +2594,55 @@ public partial struct double3_mt8
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out double_mt8 x, out double_mt8 y, out double_mt8 z)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public double_mt8 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"double3_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    public readonly override string ToString() => $"double3_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
     
     #endregion // ToString
 }
@@ -1883,16 +2673,15 @@ public partial struct double3_mt16
 
     #region Properties
 
-    public double3 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly double3 LaneGet(int index) => new(x[index], y[index], z[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, double3 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
     }
 
     #endregion // Properties
@@ -1954,9 +2743,55 @@ public partial struct double3_mt16
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out double_mt16 x, out double_mt16 y, out double_mt16 z)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public double_mt16 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"double3_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    public readonly override string ToString() => $"double3_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
@@ -1987,16 +2822,15 @@ public partial struct double3_mt32
 
     #region Properties
 
-    public double3 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly double3 LaneGet(int index) => new(x[index], y[index], z[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, double3 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
     }
 
     #endregion // Properties
@@ -2058,9 +2892,55 @@ public partial struct double3_mt32
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out double_mt32 x, out double_mt32 y, out double_mt32 z)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public double_mt32 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"double3_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    public readonly override string ToString() => $"double3_mt32 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)}, t16 = {this.LaneGet(16)}, t17 = {this.LaneGet(17)}, t18 = {this.LaneGet(18)}, t19 = {this.LaneGet(19)}, t20 = {this.LaneGet(20)}, t21 = {this.LaneGet(21)}, t22 = {this.LaneGet(22)}, t23 = {this.LaneGet(23)}, t24 = {this.LaneGet(24)}, t25 = {this.LaneGet(25)}, t26 = {this.LaneGet(26)}, t27 = {this.LaneGet(27)}, t28 = {this.LaneGet(28)}, t29 = {this.LaneGet(29)}, t30 = {this.LaneGet(30)}, t31 = {this.LaneGet(31)} }}";
     
     #endregion // ToString
 }
@@ -2092,17 +2972,16 @@ public partial struct double4_mt4
 
     #region Properties
 
-    public double4 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly double4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, double4 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index], w[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-           w[index] = value.w;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
+        w[index] = value.w;
     }
 
     #endregion // Properties
@@ -2166,9 +3045,60 @@ public partial struct double4_mt4
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out double_mt4 x, out double_mt4 y, out double_mt4 z, out double_mt4 w)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+        w = this.w;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public double_mt4 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            3 => w,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                case 3:
+                    w = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"double4_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    public readonly override string ToString() => $"double4_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
     
     #endregion // ToString
 }
@@ -2200,17 +3130,16 @@ public partial struct double4_mt8
 
     #region Properties
 
-    public double4 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly double4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, double4 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index], w[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-           w[index] = value.w;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
+        w[index] = value.w;
     }
 
     #endregion // Properties
@@ -2274,9 +3203,60 @@ public partial struct double4_mt8
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out double_mt8 x, out double_mt8 y, out double_mt8 z, out double_mt8 w)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+        w = this.w;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public double_mt8 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            3 => w,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                case 3:
+                    w = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"double4_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    public readonly override string ToString() => $"double4_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
     
     #endregion // ToString
 }
@@ -2308,17 +3288,16 @@ public partial struct double4_mt16
 
     #region Properties
 
-    public double4 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly double4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, double4 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index], w[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-           w[index] = value.w;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
+        w[index] = value.w;
     }
 
     #endregion // Properties
@@ -2382,9 +3361,60 @@ public partial struct double4_mt16
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out double_mt16 x, out double_mt16 y, out double_mt16 z, out double_mt16 w)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+        w = this.w;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public double_mt16 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            3 => w,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                case 3:
+                    w = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"double4_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    public readonly override string ToString() => $"double4_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
@@ -2416,17 +3446,16 @@ public partial struct double4_mt32
 
     #region Properties
 
-    public double4 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly double4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, double4 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index], w[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-           w[index] = value.w;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
+        w[index] = value.w;
     }
 
     #endregion // Properties
@@ -2490,9 +3519,60 @@ public partial struct double4_mt32
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out double_mt32 x, out double_mt32 y, out double_mt32 z, out double_mt32 w)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+        w = this.w;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public double_mt32 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            3 => w,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                case 3:
+                    w = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"double4_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    public readonly override string ToString() => $"double4_mt32 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)}, t16 = {this.LaneGet(16)}, t17 = {this.LaneGet(17)}, t18 = {this.LaneGet(18)}, t19 = {this.LaneGet(19)}, t20 = {this.LaneGet(20)}, t21 = {this.LaneGet(21)}, t22 = {this.LaneGet(22)}, t23 = {this.LaneGet(23)}, t24 = {this.LaneGet(24)}, t25 = {this.LaneGet(25)}, t26 = {this.LaneGet(26)}, t27 = {this.LaneGet(27)}, t28 = {this.LaneGet(28)}, t29 = {this.LaneGet(29)}, t30 = {this.LaneGet(30)}, t31 = {this.LaneGet(31)} }}";
     
     #endregion // ToString
 }
@@ -2522,15 +3602,14 @@ public partial struct int2_mt4
 
     #region Properties
 
-    public int2 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly int2 LaneGet(int index) => new(x[index], y[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, int2 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
     }
 
     #endregion // Properties
@@ -2590,9 +3669,50 @@ public partial struct int2_mt4
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out int_mt4 x, out int_mt4 y)
+    {
+        x = this.x;
+        y = this.y;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public int_mt4 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"int2_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    public readonly override string ToString() => $"int2_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
     
     #endregion // ToString
 }
@@ -2622,15 +3742,14 @@ public partial struct int2_mt8
 
     #region Properties
 
-    public int2 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly int2 LaneGet(int index) => new(x[index], y[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, int2 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
     }
 
     #endregion // Properties
@@ -2690,9 +3809,50 @@ public partial struct int2_mt8
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out int_mt8 x, out int_mt8 y)
+    {
+        x = this.x;
+        y = this.y;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public int_mt8 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"int2_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    public readonly override string ToString() => $"int2_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
     
     #endregion // ToString
 }
@@ -2722,15 +3882,14 @@ public partial struct int2_mt16
 
     #region Properties
 
-    public int2 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly int2 LaneGet(int index) => new(x[index], y[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, int2 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
     }
 
     #endregion // Properties
@@ -2790,9 +3949,50 @@ public partial struct int2_mt16
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out int_mt16 x, out int_mt16 y)
+    {
+        x = this.x;
+        y = this.y;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public int_mt16 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"int2_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    public readonly override string ToString() => $"int2_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
@@ -2822,15 +4022,14 @@ public partial struct int2_mt32
 
     #region Properties
 
-    public int2 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly int2 LaneGet(int index) => new(x[index], y[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, int2 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
     }
 
     #endregion // Properties
@@ -2890,9 +4089,50 @@ public partial struct int2_mt32
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out int_mt32 x, out int_mt32 y)
+    {
+        x = this.x;
+        y = this.y;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public int_mt32 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"int2_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    public readonly override string ToString() => $"int2_mt32 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)}, t16 = {this.LaneGet(16)}, t17 = {this.LaneGet(17)}, t18 = {this.LaneGet(18)}, t19 = {this.LaneGet(19)}, t20 = {this.LaneGet(20)}, t21 = {this.LaneGet(21)}, t22 = {this.LaneGet(22)}, t23 = {this.LaneGet(23)}, t24 = {this.LaneGet(24)}, t25 = {this.LaneGet(25)}, t26 = {this.LaneGet(26)}, t27 = {this.LaneGet(27)}, t28 = {this.LaneGet(28)}, t29 = {this.LaneGet(29)}, t30 = {this.LaneGet(30)}, t31 = {this.LaneGet(31)} }}";
     
     #endregion // ToString
 }
@@ -2923,16 +4163,15 @@ public partial struct int3_mt4
 
     #region Properties
 
-    public int3 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly int3 LaneGet(int index) => new(x[index], y[index], z[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, int3 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
     }
 
     #endregion // Properties
@@ -2994,9 +4233,55 @@ public partial struct int3_mt4
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out int_mt4 x, out int_mt4 y, out int_mt4 z)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public int_mt4 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"int3_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    public readonly override string ToString() => $"int3_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
     
     #endregion // ToString
 }
@@ -3027,16 +4312,15 @@ public partial struct int3_mt8
 
     #region Properties
 
-    public int3 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly int3 LaneGet(int index) => new(x[index], y[index], z[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, int3 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
     }
 
     #endregion // Properties
@@ -3098,9 +4382,55 @@ public partial struct int3_mt8
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out int_mt8 x, out int_mt8 y, out int_mt8 z)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public int_mt8 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"int3_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    public readonly override string ToString() => $"int3_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
     
     #endregion // ToString
 }
@@ -3131,16 +4461,15 @@ public partial struct int3_mt16
 
     #region Properties
 
-    public int3 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly int3 LaneGet(int index) => new(x[index], y[index], z[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, int3 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
     }
 
     #endregion // Properties
@@ -3202,9 +4531,55 @@ public partial struct int3_mt16
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out int_mt16 x, out int_mt16 y, out int_mt16 z)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public int_mt16 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"int3_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    public readonly override string ToString() => $"int3_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
@@ -3235,16 +4610,15 @@ public partial struct int3_mt32
 
     #region Properties
 
-    public int3 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly int3 LaneGet(int index) => new(x[index], y[index], z[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, int3 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
     }
 
     #endregion // Properties
@@ -3306,9 +4680,55 @@ public partial struct int3_mt32
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out int_mt32 x, out int_mt32 y, out int_mt32 z)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public int_mt32 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"int3_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    public readonly override string ToString() => $"int3_mt32 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)}, t16 = {this.LaneGet(16)}, t17 = {this.LaneGet(17)}, t18 = {this.LaneGet(18)}, t19 = {this.LaneGet(19)}, t20 = {this.LaneGet(20)}, t21 = {this.LaneGet(21)}, t22 = {this.LaneGet(22)}, t23 = {this.LaneGet(23)}, t24 = {this.LaneGet(24)}, t25 = {this.LaneGet(25)}, t26 = {this.LaneGet(26)}, t27 = {this.LaneGet(27)}, t28 = {this.LaneGet(28)}, t29 = {this.LaneGet(29)}, t30 = {this.LaneGet(30)}, t31 = {this.LaneGet(31)} }}";
     
     #endregion // ToString
 }
@@ -3340,17 +4760,16 @@ public partial struct int4_mt4
 
     #region Properties
 
-    public int4 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly int4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, int4 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index], w[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-           w[index] = value.w;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
+        w[index] = value.w;
     }
 
     #endregion // Properties
@@ -3414,9 +4833,60 @@ public partial struct int4_mt4
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out int_mt4 x, out int_mt4 y, out int_mt4 z, out int_mt4 w)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+        w = this.w;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public int_mt4 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            3 => w,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                case 3:
+                    w = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"int4_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    public readonly override string ToString() => $"int4_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
     
     #endregion // ToString
 }
@@ -3448,17 +4918,16 @@ public partial struct int4_mt8
 
     #region Properties
 
-    public int4 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly int4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, int4 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index], w[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-           w[index] = value.w;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
+        w[index] = value.w;
     }
 
     #endregion // Properties
@@ -3522,9 +4991,60 @@ public partial struct int4_mt8
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out int_mt8 x, out int_mt8 y, out int_mt8 z, out int_mt8 w)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+        w = this.w;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public int_mt8 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            3 => w,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                case 3:
+                    w = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"int4_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    public readonly override string ToString() => $"int4_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
     
     #endregion // ToString
 }
@@ -3556,17 +5076,16 @@ public partial struct int4_mt16
 
     #region Properties
 
-    public int4 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly int4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, int4 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index], w[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-           w[index] = value.w;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
+        w[index] = value.w;
     }
 
     #endregion // Properties
@@ -3630,9 +5149,60 @@ public partial struct int4_mt16
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out int_mt16 x, out int_mt16 y, out int_mt16 z, out int_mt16 w)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+        w = this.w;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public int_mt16 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            3 => w,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                case 3:
+                    w = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"int4_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    public readonly override string ToString() => $"int4_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
@@ -3664,17 +5234,16 @@ public partial struct int4_mt32
 
     #region Properties
 
-    public int4 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly int4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, int4 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index], w[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-           w[index] = value.w;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
+        w[index] = value.w;
     }
 
     #endregion // Properties
@@ -3738,9 +5307,60 @@ public partial struct int4_mt32
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out int_mt32 x, out int_mt32 y, out int_mt32 z, out int_mt32 w)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+        w = this.w;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public int_mt32 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            3 => w,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                case 3:
+                    w = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"int4_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    public readonly override string ToString() => $"int4_mt32 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)}, t16 = {this.LaneGet(16)}, t17 = {this.LaneGet(17)}, t18 = {this.LaneGet(18)}, t19 = {this.LaneGet(19)}, t20 = {this.LaneGet(20)}, t21 = {this.LaneGet(21)}, t22 = {this.LaneGet(22)}, t23 = {this.LaneGet(23)}, t24 = {this.LaneGet(24)}, t25 = {this.LaneGet(25)}, t26 = {this.LaneGet(26)}, t27 = {this.LaneGet(27)}, t28 = {this.LaneGet(28)}, t29 = {this.LaneGet(29)}, t30 = {this.LaneGet(30)}, t31 = {this.LaneGet(31)} }}";
     
     #endregion // ToString
 }
@@ -3770,15 +5390,14 @@ public partial struct uint2_mt4
 
     #region Properties
 
-    public uint2 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly uint2 LaneGet(int index) => new(x[index], y[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, uint2 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
     }
 
     #endregion // Properties
@@ -3838,9 +5457,50 @@ public partial struct uint2_mt4
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out uint_mt4 x, out uint_mt4 y)
+    {
+        x = this.x;
+        y = this.y;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public uint_mt4 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"uint2_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    public readonly override string ToString() => $"uint2_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
     
     #endregion // ToString
 }
@@ -3870,15 +5530,14 @@ public partial struct uint2_mt8
 
     #region Properties
 
-    public uint2 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly uint2 LaneGet(int index) => new(x[index], y[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, uint2 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
     }
 
     #endregion // Properties
@@ -3938,9 +5597,50 @@ public partial struct uint2_mt8
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out uint_mt8 x, out uint_mt8 y)
+    {
+        x = this.x;
+        y = this.y;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public uint_mt8 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"uint2_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    public readonly override string ToString() => $"uint2_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
     
     #endregion // ToString
 }
@@ -3970,15 +5670,14 @@ public partial struct uint2_mt16
 
     #region Properties
 
-    public uint2 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly uint2 LaneGet(int index) => new(x[index], y[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, uint2 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
     }
 
     #endregion // Properties
@@ -4038,9 +5737,50 @@ public partial struct uint2_mt16
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out uint_mt16 x, out uint_mt16 y)
+    {
+        x = this.x;
+        y = this.y;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public uint_mt16 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"uint2_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    public readonly override string ToString() => $"uint2_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
@@ -4070,15 +5810,14 @@ public partial struct uint2_mt32
 
     #region Properties
 
-    public uint2 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly uint2 LaneGet(int index) => new(x[index], y[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, uint2 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
     }
 
     #endregion // Properties
@@ -4138,9 +5877,50 @@ public partial struct uint2_mt32
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out uint_mt32 x, out uint_mt32 y)
+    {
+        x = this.x;
+        y = this.y;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public uint_mt32 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"uint2_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    public readonly override string ToString() => $"uint2_mt32 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)}, t16 = {this.LaneGet(16)}, t17 = {this.LaneGet(17)}, t18 = {this.LaneGet(18)}, t19 = {this.LaneGet(19)}, t20 = {this.LaneGet(20)}, t21 = {this.LaneGet(21)}, t22 = {this.LaneGet(22)}, t23 = {this.LaneGet(23)}, t24 = {this.LaneGet(24)}, t25 = {this.LaneGet(25)}, t26 = {this.LaneGet(26)}, t27 = {this.LaneGet(27)}, t28 = {this.LaneGet(28)}, t29 = {this.LaneGet(29)}, t30 = {this.LaneGet(30)}, t31 = {this.LaneGet(31)} }}";
     
     #endregion // ToString
 }
@@ -4171,16 +5951,15 @@ public partial struct uint3_mt4
 
     #region Properties
 
-    public uint3 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly uint3 LaneGet(int index) => new(x[index], y[index], z[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, uint3 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
     }
 
     #endregion // Properties
@@ -4242,9 +6021,55 @@ public partial struct uint3_mt4
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out uint_mt4 x, out uint_mt4 y, out uint_mt4 z)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public uint_mt4 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"uint3_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    public readonly override string ToString() => $"uint3_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
     
     #endregion // ToString
 }
@@ -4275,16 +6100,15 @@ public partial struct uint3_mt8
 
     #region Properties
 
-    public uint3 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly uint3 LaneGet(int index) => new(x[index], y[index], z[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, uint3 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
     }
 
     #endregion // Properties
@@ -4346,9 +6170,55 @@ public partial struct uint3_mt8
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out uint_mt8 x, out uint_mt8 y, out uint_mt8 z)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public uint_mt8 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"uint3_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    public readonly override string ToString() => $"uint3_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
     
     #endregion // ToString
 }
@@ -4379,16 +6249,15 @@ public partial struct uint3_mt16
 
     #region Properties
 
-    public uint3 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly uint3 LaneGet(int index) => new(x[index], y[index], z[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, uint3 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
     }
 
     #endregion // Properties
@@ -4450,9 +6319,55 @@ public partial struct uint3_mt16
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out uint_mt16 x, out uint_mt16 y, out uint_mt16 z)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public uint_mt16 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"uint3_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    public readonly override string ToString() => $"uint3_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
@@ -4483,16 +6398,15 @@ public partial struct uint3_mt32
 
     #region Properties
 
-    public uint3 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly uint3 LaneGet(int index) => new(x[index], y[index], z[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, uint3 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
     }
 
     #endregion // Properties
@@ -4554,9 +6468,55 @@ public partial struct uint3_mt32
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out uint_mt32 x, out uint_mt32 y, out uint_mt32 z)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public uint_mt32 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"uint3_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    public readonly override string ToString() => $"uint3_mt32 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)}, t16 = {this.LaneGet(16)}, t17 = {this.LaneGet(17)}, t18 = {this.LaneGet(18)}, t19 = {this.LaneGet(19)}, t20 = {this.LaneGet(20)}, t21 = {this.LaneGet(21)}, t22 = {this.LaneGet(22)}, t23 = {this.LaneGet(23)}, t24 = {this.LaneGet(24)}, t25 = {this.LaneGet(25)}, t26 = {this.LaneGet(26)}, t27 = {this.LaneGet(27)}, t28 = {this.LaneGet(28)}, t29 = {this.LaneGet(29)}, t30 = {this.LaneGet(30)}, t31 = {this.LaneGet(31)} }}";
     
     #endregion // ToString
 }
@@ -4588,17 +6548,16 @@ public partial struct uint4_mt4
 
     #region Properties
 
-    public uint4 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly uint4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, uint4 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index], w[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-           w[index] = value.w;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
+        w[index] = value.w;
     }
 
     #endregion // Properties
@@ -4662,9 +6621,60 @@ public partial struct uint4_mt4
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out uint_mt4 x, out uint_mt4 y, out uint_mt4 z, out uint_mt4 w)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+        w = this.w;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public uint_mt4 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            3 => w,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                case 3:
+                    w = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"uint4_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    public readonly override string ToString() => $"uint4_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
     
     #endregion // ToString
 }
@@ -4696,17 +6706,16 @@ public partial struct uint4_mt8
 
     #region Properties
 
-    public uint4 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly uint4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, uint4 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index], w[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-           w[index] = value.w;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
+        w[index] = value.w;
     }
 
     #endregion // Properties
@@ -4770,9 +6779,60 @@ public partial struct uint4_mt8
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out uint_mt8 x, out uint_mt8 y, out uint_mt8 z, out uint_mt8 w)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+        w = this.w;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public uint_mt8 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            3 => w,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                case 3:
+                    w = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"uint4_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    public readonly override string ToString() => $"uint4_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
     
     #endregion // ToString
 }
@@ -4804,17 +6864,16 @@ public partial struct uint4_mt16
 
     #region Properties
 
-    public uint4 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly uint4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, uint4 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index], w[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-           w[index] = value.w;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
+        w[index] = value.w;
     }
 
     #endregion // Properties
@@ -4878,9 +6937,60 @@ public partial struct uint4_mt16
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out uint_mt16 x, out uint_mt16 y, out uint_mt16 z, out uint_mt16 w)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+        w = this.w;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public uint_mt16 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            3 => w,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                case 3:
+                    w = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"uint4_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    public readonly override string ToString() => $"uint4_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
@@ -4912,17 +7022,16 @@ public partial struct uint4_mt32
 
     #region Properties
 
-    public uint4 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly uint4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, uint4 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index], w[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-           w[index] = value.w;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
+        w[index] = value.w;
     }
 
     #endregion // Properties
@@ -4986,9 +7095,60 @@ public partial struct uint4_mt32
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out uint_mt32 x, out uint_mt32 y, out uint_mt32 z, out uint_mt32 w)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+        w = this.w;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public uint_mt32 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            3 => w,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                case 3:
+                    w = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"uint4_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    public readonly override string ToString() => $"uint4_mt32 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)}, t16 = {this.LaneGet(16)}, t17 = {this.LaneGet(17)}, t18 = {this.LaneGet(18)}, t19 = {this.LaneGet(19)}, t20 = {this.LaneGet(20)}, t21 = {this.LaneGet(21)}, t22 = {this.LaneGet(22)}, t23 = {this.LaneGet(23)}, t24 = {this.LaneGet(24)}, t25 = {this.LaneGet(25)}, t26 = {this.LaneGet(26)}, t27 = {this.LaneGet(27)}, t28 = {this.LaneGet(28)}, t29 = {this.LaneGet(29)}, t30 = {this.LaneGet(30)}, t31 = {this.LaneGet(31)} }}";
     
     #endregion // ToString
 }
@@ -5018,15 +7178,14 @@ public partial struct long2_mt4
 
     #region Properties
 
-    public long2 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly long2 LaneGet(int index) => new(x[index], y[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, long2 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
     }
 
     #endregion // Properties
@@ -5086,9 +7245,50 @@ public partial struct long2_mt4
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out long_mt4 x, out long_mt4 y)
+    {
+        x = this.x;
+        y = this.y;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public long_mt4 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"long2_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    public readonly override string ToString() => $"long2_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
     
     #endregion // ToString
 }
@@ -5118,15 +7318,14 @@ public partial struct long2_mt8
 
     #region Properties
 
-    public long2 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly long2 LaneGet(int index) => new(x[index], y[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, long2 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
     }
 
     #endregion // Properties
@@ -5186,9 +7385,50 @@ public partial struct long2_mt8
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out long_mt8 x, out long_mt8 y)
+    {
+        x = this.x;
+        y = this.y;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public long_mt8 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"long2_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    public readonly override string ToString() => $"long2_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
     
     #endregion // ToString
 }
@@ -5218,15 +7458,14 @@ public partial struct long2_mt16
 
     #region Properties
 
-    public long2 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly long2 LaneGet(int index) => new(x[index], y[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, long2 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
     }
 
     #endregion // Properties
@@ -5286,9 +7525,50 @@ public partial struct long2_mt16
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out long_mt16 x, out long_mt16 y)
+    {
+        x = this.x;
+        y = this.y;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public long_mt16 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"long2_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    public readonly override string ToString() => $"long2_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
@@ -5318,15 +7598,14 @@ public partial struct long2_mt32
 
     #region Properties
 
-    public long2 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly long2 LaneGet(int index) => new(x[index], y[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, long2 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
     }
 
     #endregion // Properties
@@ -5386,9 +7665,50 @@ public partial struct long2_mt32
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out long_mt32 x, out long_mt32 y)
+    {
+        x = this.x;
+        y = this.y;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public long_mt32 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"long2_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    public readonly override string ToString() => $"long2_mt32 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)}, t16 = {this.LaneGet(16)}, t17 = {this.LaneGet(17)}, t18 = {this.LaneGet(18)}, t19 = {this.LaneGet(19)}, t20 = {this.LaneGet(20)}, t21 = {this.LaneGet(21)}, t22 = {this.LaneGet(22)}, t23 = {this.LaneGet(23)}, t24 = {this.LaneGet(24)}, t25 = {this.LaneGet(25)}, t26 = {this.LaneGet(26)}, t27 = {this.LaneGet(27)}, t28 = {this.LaneGet(28)}, t29 = {this.LaneGet(29)}, t30 = {this.LaneGet(30)}, t31 = {this.LaneGet(31)} }}";
     
     #endregion // ToString
 }
@@ -5419,16 +7739,15 @@ public partial struct long3_mt4
 
     #region Properties
 
-    public long3 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly long3 LaneGet(int index) => new(x[index], y[index], z[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, long3 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
     }
 
     #endregion // Properties
@@ -5490,9 +7809,55 @@ public partial struct long3_mt4
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out long_mt4 x, out long_mt4 y, out long_mt4 z)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public long_mt4 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"long3_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    public readonly override string ToString() => $"long3_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
     
     #endregion // ToString
 }
@@ -5523,16 +7888,15 @@ public partial struct long3_mt8
 
     #region Properties
 
-    public long3 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly long3 LaneGet(int index) => new(x[index], y[index], z[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, long3 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
     }
 
     #endregion // Properties
@@ -5594,9 +7958,55 @@ public partial struct long3_mt8
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out long_mt8 x, out long_mt8 y, out long_mt8 z)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public long_mt8 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"long3_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    public readonly override string ToString() => $"long3_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
     
     #endregion // ToString
 }
@@ -5627,16 +8037,15 @@ public partial struct long3_mt16
 
     #region Properties
 
-    public long3 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly long3 LaneGet(int index) => new(x[index], y[index], z[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, long3 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
     }
 
     #endregion // Properties
@@ -5698,9 +8107,55 @@ public partial struct long3_mt16
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out long_mt16 x, out long_mt16 y, out long_mt16 z)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public long_mt16 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"long3_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    public readonly override string ToString() => $"long3_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
@@ -5731,16 +8186,15 @@ public partial struct long3_mt32
 
     #region Properties
 
-    public long3 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly long3 LaneGet(int index) => new(x[index], y[index], z[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, long3 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
     }
 
     #endregion // Properties
@@ -5802,9 +8256,55 @@ public partial struct long3_mt32
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out long_mt32 x, out long_mt32 y, out long_mt32 z)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public long_mt32 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"long3_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    public readonly override string ToString() => $"long3_mt32 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)}, t16 = {this.LaneGet(16)}, t17 = {this.LaneGet(17)}, t18 = {this.LaneGet(18)}, t19 = {this.LaneGet(19)}, t20 = {this.LaneGet(20)}, t21 = {this.LaneGet(21)}, t22 = {this.LaneGet(22)}, t23 = {this.LaneGet(23)}, t24 = {this.LaneGet(24)}, t25 = {this.LaneGet(25)}, t26 = {this.LaneGet(26)}, t27 = {this.LaneGet(27)}, t28 = {this.LaneGet(28)}, t29 = {this.LaneGet(29)}, t30 = {this.LaneGet(30)}, t31 = {this.LaneGet(31)} }}";
     
     #endregion // ToString
 }
@@ -5836,17 +8336,16 @@ public partial struct long4_mt4
 
     #region Properties
 
-    public long4 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly long4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, long4 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index], w[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-           w[index] = value.w;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
+        w[index] = value.w;
     }
 
     #endregion // Properties
@@ -5910,9 +8409,60 @@ public partial struct long4_mt4
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out long_mt4 x, out long_mt4 y, out long_mt4 z, out long_mt4 w)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+        w = this.w;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public long_mt4 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            3 => w,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                case 3:
+                    w = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"long4_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    public readonly override string ToString() => $"long4_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
     
     #endregion // ToString
 }
@@ -5944,17 +8494,16 @@ public partial struct long4_mt8
 
     #region Properties
 
-    public long4 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly long4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, long4 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index], w[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-           w[index] = value.w;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
+        w[index] = value.w;
     }
 
     #endregion // Properties
@@ -6018,9 +8567,60 @@ public partial struct long4_mt8
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out long_mt8 x, out long_mt8 y, out long_mt8 z, out long_mt8 w)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+        w = this.w;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public long_mt8 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            3 => w,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                case 3:
+                    w = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"long4_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    public readonly override string ToString() => $"long4_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
     
     #endregion // ToString
 }
@@ -6052,17 +8652,16 @@ public partial struct long4_mt16
 
     #region Properties
 
-    public long4 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly long4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, long4 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index], w[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-           w[index] = value.w;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
+        w[index] = value.w;
     }
 
     #endregion // Properties
@@ -6126,9 +8725,60 @@ public partial struct long4_mt16
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out long_mt16 x, out long_mt16 y, out long_mt16 z, out long_mt16 w)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+        w = this.w;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public long_mt16 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            3 => w,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                case 3:
+                    w = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"long4_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    public readonly override string ToString() => $"long4_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
@@ -6160,17 +8810,16 @@ public partial struct long4_mt32
 
     #region Properties
 
-    public long4 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly long4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, long4 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index], w[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-           w[index] = value.w;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
+        w[index] = value.w;
     }
 
     #endregion // Properties
@@ -6234,9 +8883,60 @@ public partial struct long4_mt32
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out long_mt32 x, out long_mt32 y, out long_mt32 z, out long_mt32 w)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+        w = this.w;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public long_mt32 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            3 => w,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                case 3:
+                    w = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"long4_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    public readonly override string ToString() => $"long4_mt32 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)}, t16 = {this.LaneGet(16)}, t17 = {this.LaneGet(17)}, t18 = {this.LaneGet(18)}, t19 = {this.LaneGet(19)}, t20 = {this.LaneGet(20)}, t21 = {this.LaneGet(21)}, t22 = {this.LaneGet(22)}, t23 = {this.LaneGet(23)}, t24 = {this.LaneGet(24)}, t25 = {this.LaneGet(25)}, t26 = {this.LaneGet(26)}, t27 = {this.LaneGet(27)}, t28 = {this.LaneGet(28)}, t29 = {this.LaneGet(29)}, t30 = {this.LaneGet(30)}, t31 = {this.LaneGet(31)} }}";
     
     #endregion // ToString
 }
@@ -6266,15 +8966,14 @@ public partial struct ulong2_mt4
 
     #region Properties
 
-    public ulong2 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly ulong2 LaneGet(int index) => new(x[index], y[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, ulong2 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
     }
 
     #endregion // Properties
@@ -6334,9 +9033,50 @@ public partial struct ulong2_mt4
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out ulong_mt4 x, out ulong_mt4 y)
+    {
+        x = this.x;
+        y = this.y;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public ulong_mt4 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"ulong2_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    public readonly override string ToString() => $"ulong2_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
     
     #endregion // ToString
 }
@@ -6366,15 +9106,14 @@ public partial struct ulong2_mt8
 
     #region Properties
 
-    public ulong2 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly ulong2 LaneGet(int index) => new(x[index], y[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, ulong2 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
     }
 
     #endregion // Properties
@@ -6434,9 +9173,50 @@ public partial struct ulong2_mt8
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out ulong_mt8 x, out ulong_mt8 y)
+    {
+        x = this.x;
+        y = this.y;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public ulong_mt8 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"ulong2_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    public readonly override string ToString() => $"ulong2_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
     
     #endregion // ToString
 }
@@ -6466,15 +9246,14 @@ public partial struct ulong2_mt16
 
     #region Properties
 
-    public ulong2 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly ulong2 LaneGet(int index) => new(x[index], y[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, ulong2 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
     }
 
     #endregion // Properties
@@ -6534,9 +9313,50 @@ public partial struct ulong2_mt16
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out ulong_mt16 x, out ulong_mt16 y)
+    {
+        x = this.x;
+        y = this.y;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public ulong_mt16 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"ulong2_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    public readonly override string ToString() => $"ulong2_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
@@ -6566,15 +9386,14 @@ public partial struct ulong2_mt32
 
     #region Properties
 
-    public ulong2 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly ulong2 LaneGet(int index) => new(x[index], y[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, ulong2 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
     }
 
     #endregion // Properties
@@ -6634,9 +9453,50 @@ public partial struct ulong2_mt32
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out ulong_mt32 x, out ulong_mt32 y)
+    {
+        x = this.x;
+        y = this.y;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public ulong_mt32 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"ulong2_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    public readonly override string ToString() => $"ulong2_mt32 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)}, t16 = {this.LaneGet(16)}, t17 = {this.LaneGet(17)}, t18 = {this.LaneGet(18)}, t19 = {this.LaneGet(19)}, t20 = {this.LaneGet(20)}, t21 = {this.LaneGet(21)}, t22 = {this.LaneGet(22)}, t23 = {this.LaneGet(23)}, t24 = {this.LaneGet(24)}, t25 = {this.LaneGet(25)}, t26 = {this.LaneGet(26)}, t27 = {this.LaneGet(27)}, t28 = {this.LaneGet(28)}, t29 = {this.LaneGet(29)}, t30 = {this.LaneGet(30)}, t31 = {this.LaneGet(31)} }}";
     
     #endregion // ToString
 }
@@ -6667,16 +9527,15 @@ public partial struct ulong3_mt4
 
     #region Properties
 
-    public ulong3 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly ulong3 LaneGet(int index) => new(x[index], y[index], z[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, ulong3 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
     }
 
     #endregion // Properties
@@ -6738,9 +9597,55 @@ public partial struct ulong3_mt4
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out ulong_mt4 x, out ulong_mt4 y, out ulong_mt4 z)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public ulong_mt4 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"ulong3_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    public readonly override string ToString() => $"ulong3_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
     
     #endregion // ToString
 }
@@ -6771,16 +9676,15 @@ public partial struct ulong3_mt8
 
     #region Properties
 
-    public ulong3 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly ulong3 LaneGet(int index) => new(x[index], y[index], z[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, ulong3 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
     }
 
     #endregion // Properties
@@ -6842,9 +9746,55 @@ public partial struct ulong3_mt8
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out ulong_mt8 x, out ulong_mt8 y, out ulong_mt8 z)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public ulong_mt8 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"ulong3_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    public readonly override string ToString() => $"ulong3_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
     
     #endregion // ToString
 }
@@ -6875,16 +9825,15 @@ public partial struct ulong3_mt16
 
     #region Properties
 
-    public ulong3 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly ulong3 LaneGet(int index) => new(x[index], y[index], z[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, ulong3 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
     }
 
     #endregion // Properties
@@ -6946,9 +9895,55 @@ public partial struct ulong3_mt16
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out ulong_mt16 x, out ulong_mt16 y, out ulong_mt16 z)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public ulong_mt16 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"ulong3_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    public readonly override string ToString() => $"ulong3_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
@@ -6979,16 +9974,15 @@ public partial struct ulong3_mt32
 
     #region Properties
 
-    public ulong3 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly ulong3 LaneGet(int index) => new(x[index], y[index], z[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, ulong3 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
     }
 
     #endregion // Properties
@@ -7050,9 +10044,55 @@ public partial struct ulong3_mt32
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out ulong_mt32 x, out ulong_mt32 y, out ulong_mt32 z)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public ulong_mt32 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"ulong3_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    public readonly override string ToString() => $"ulong3_mt32 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)}, t16 = {this.LaneGet(16)}, t17 = {this.LaneGet(17)}, t18 = {this.LaneGet(18)}, t19 = {this.LaneGet(19)}, t20 = {this.LaneGet(20)}, t21 = {this.LaneGet(21)}, t22 = {this.LaneGet(22)}, t23 = {this.LaneGet(23)}, t24 = {this.LaneGet(24)}, t25 = {this.LaneGet(25)}, t26 = {this.LaneGet(26)}, t27 = {this.LaneGet(27)}, t28 = {this.LaneGet(28)}, t29 = {this.LaneGet(29)}, t30 = {this.LaneGet(30)}, t31 = {this.LaneGet(31)} }}";
     
     #endregion // ToString
 }
@@ -7084,17 +10124,16 @@ public partial struct ulong4_mt4
 
     #region Properties
 
-    public ulong4 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly ulong4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, ulong4 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index], w[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-           w[index] = value.w;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
+        w[index] = value.w;
     }
 
     #endregion // Properties
@@ -7158,9 +10197,60 @@ public partial struct ulong4_mt4
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out ulong_mt4 x, out ulong_mt4 y, out ulong_mt4 z, out ulong_mt4 w)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+        w = this.w;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public ulong_mt4 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            3 => w,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                case 3:
+                    w = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"ulong4_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    public readonly override string ToString() => $"ulong4_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
     
     #endregion // ToString
 }
@@ -7192,17 +10282,16 @@ public partial struct ulong4_mt8
 
     #region Properties
 
-    public ulong4 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly ulong4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, ulong4 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index], w[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-           w[index] = value.w;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
+        w[index] = value.w;
     }
 
     #endregion // Properties
@@ -7266,9 +10355,60 @@ public partial struct ulong4_mt8
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out ulong_mt8 x, out ulong_mt8 y, out ulong_mt8 z, out ulong_mt8 w)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+        w = this.w;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public ulong_mt8 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            3 => w,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                case 3:
+                    w = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"ulong4_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    public readonly override string ToString() => $"ulong4_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
     
     #endregion // ToString
 }
@@ -7300,17 +10440,16 @@ public partial struct ulong4_mt16
 
     #region Properties
 
-    public ulong4 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly ulong4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, ulong4 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index], w[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-           w[index] = value.w;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
+        w[index] = value.w;
     }
 
     #endregion // Properties
@@ -7374,9 +10513,60 @@ public partial struct ulong4_mt16
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out ulong_mt16 x, out ulong_mt16 y, out ulong_mt16 z, out ulong_mt16 w)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+        w = this.w;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public ulong_mt16 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            3 => w,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                case 3:
+                    w = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"ulong4_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    public readonly override string ToString() => $"ulong4_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
@@ -7408,17 +10598,16 @@ public partial struct ulong4_mt32
 
     #region Properties
 
-    public ulong4 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly ulong4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, ulong4 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index], w[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-           w[index] = value.w;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
+        w[index] = value.w;
     }
 
     #endregion // Properties
@@ -7482,9 +10671,60 @@ public partial struct ulong4_mt32
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out ulong_mt32 x, out ulong_mt32 y, out ulong_mt32 z, out ulong_mt32 w)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+        w = this.w;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public ulong_mt32 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            3 => w,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                case 3:
+                    w = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"ulong4_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    public readonly override string ToString() => $"ulong4_mt32 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)}, t16 = {this.LaneGet(16)}, t17 = {this.LaneGet(17)}, t18 = {this.LaneGet(18)}, t19 = {this.LaneGet(19)}, t20 = {this.LaneGet(20)}, t21 = {this.LaneGet(21)}, t22 = {this.LaneGet(22)}, t23 = {this.LaneGet(23)}, t24 = {this.LaneGet(24)}, t25 = {this.LaneGet(25)}, t26 = {this.LaneGet(26)}, t27 = {this.LaneGet(27)}, t28 = {this.LaneGet(28)}, t29 = {this.LaneGet(29)}, t30 = {this.LaneGet(30)}, t31 = {this.LaneGet(31)} }}";
     
     #endregion // ToString
 }
@@ -7514,15 +10754,14 @@ public partial struct b32v2_mt4
 
     #region Properties
 
-    public b32v2 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly b32v2 LaneGet(int index) => new(x[index], y[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, b32v2 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
     }
 
     #endregion // Properties
@@ -7563,6 +10802,9 @@ public partial struct b32v2_mt4
     public static implicit operator b32v2_mt4(b32 value) => new b32_mt4(value);
 
     [MethodImpl(256 | 512)]
+    public static implicit operator b32v2_mt4(bool value) => (b32)(value);
+
+    [MethodImpl(256 | 512)]
     public static implicit operator b32v2_mt4(b32_mt4 value) => new(value);
 
     [MethodImpl(256 | 512)]
@@ -7582,9 +10824,50 @@ public partial struct b32v2_mt4
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out b32_mt4 x, out b32_mt4 y)
+    {
+        x = this.x;
+        y = this.y;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public b32_mt4 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"b32v2_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    public readonly override string ToString() => $"b32v2_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
     
     #endregion // ToString
 }
@@ -7614,15 +10897,14 @@ public partial struct b32v2_mt8
 
     #region Properties
 
-    public b32v2 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly b32v2 LaneGet(int index) => new(x[index], y[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, b32v2 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
     }
 
     #endregion // Properties
@@ -7663,6 +10945,9 @@ public partial struct b32v2_mt8
     public static implicit operator b32v2_mt8(b32 value) => new b32_mt8(value);
 
     [MethodImpl(256 | 512)]
+    public static implicit operator b32v2_mt8(bool value) => (b32)(value);
+
+    [MethodImpl(256 | 512)]
     public static implicit operator b32v2_mt8(b32_mt8 value) => new(value);
 
     [MethodImpl(256 | 512)]
@@ -7682,9 +10967,50 @@ public partial struct b32v2_mt8
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out b32_mt8 x, out b32_mt8 y)
+    {
+        x = this.x;
+        y = this.y;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public b32_mt8 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"b32v2_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    public readonly override string ToString() => $"b32v2_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
     
     #endregion // ToString
 }
@@ -7714,15 +11040,14 @@ public partial struct b32v2_mt16
 
     #region Properties
 
-    public b32v2 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly b32v2 LaneGet(int index) => new(x[index], y[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, b32v2 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
     }
 
     #endregion // Properties
@@ -7763,6 +11088,9 @@ public partial struct b32v2_mt16
     public static implicit operator b32v2_mt16(b32 value) => new b32_mt16(value);
 
     [MethodImpl(256 | 512)]
+    public static implicit operator b32v2_mt16(bool value) => (b32)(value);
+
+    [MethodImpl(256 | 512)]
     public static implicit operator b32v2_mt16(b32_mt16 value) => new(value);
 
     [MethodImpl(256 | 512)]
@@ -7782,9 +11110,50 @@ public partial struct b32v2_mt16
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out b32_mt16 x, out b32_mt16 y)
+    {
+        x = this.x;
+        y = this.y;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public b32_mt16 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"b32v2_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    public readonly override string ToString() => $"b32v2_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
@@ -7814,15 +11183,14 @@ public partial struct b32v2_mt32
 
     #region Properties
 
-    public b32v2 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly b32v2 LaneGet(int index) => new(x[index], y[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, b32v2 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
     }
 
     #endregion // Properties
@@ -7863,6 +11231,9 @@ public partial struct b32v2_mt32
     public static implicit operator b32v2_mt32(b32 value) => new b32_mt32(value);
 
     [MethodImpl(256 | 512)]
+    public static implicit operator b32v2_mt32(bool value) => (b32)(value);
+
+    [MethodImpl(256 | 512)]
     public static implicit operator b32v2_mt32(b32_mt32 value) => new(value);
 
     [MethodImpl(256 | 512)]
@@ -7882,9 +11253,50 @@ public partial struct b32v2_mt32
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out b32_mt32 x, out b32_mt32 y)
+    {
+        x = this.x;
+        y = this.y;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public b32_mt32 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"b32v2_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    public readonly override string ToString() => $"b32v2_mt32 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)}, t16 = {this.LaneGet(16)}, t17 = {this.LaneGet(17)}, t18 = {this.LaneGet(18)}, t19 = {this.LaneGet(19)}, t20 = {this.LaneGet(20)}, t21 = {this.LaneGet(21)}, t22 = {this.LaneGet(22)}, t23 = {this.LaneGet(23)}, t24 = {this.LaneGet(24)}, t25 = {this.LaneGet(25)}, t26 = {this.LaneGet(26)}, t27 = {this.LaneGet(27)}, t28 = {this.LaneGet(28)}, t29 = {this.LaneGet(29)}, t30 = {this.LaneGet(30)}, t31 = {this.LaneGet(31)} }}";
     
     #endregion // ToString
 }
@@ -7915,16 +11327,15 @@ public partial struct b32v3_mt4
 
     #region Properties
 
-    public b32v3 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly b32v3 LaneGet(int index) => new(x[index], y[index], z[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, b32v3 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
     }
 
     #endregion // Properties
@@ -7967,6 +11378,9 @@ public partial struct b32v3_mt4
     public static implicit operator b32v3_mt4(b32 value) => new b32_mt4(value);
 
     [MethodImpl(256 | 512)]
+    public static implicit operator b32v3_mt4(bool value) => (b32)(value);
+
+    [MethodImpl(256 | 512)]
     public static implicit operator b32v3_mt4(b32_mt4 value) => new(value);
 
     [MethodImpl(256 | 512)]
@@ -7986,9 +11400,55 @@ public partial struct b32v3_mt4
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out b32_mt4 x, out b32_mt4 y, out b32_mt4 z)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public b32_mt4 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"b32v3_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    public readonly override string ToString() => $"b32v3_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
     
     #endregion // ToString
 }
@@ -8019,16 +11479,15 @@ public partial struct b32v3_mt8
 
     #region Properties
 
-    public b32v3 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly b32v3 LaneGet(int index) => new(x[index], y[index], z[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, b32v3 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
     }
 
     #endregion // Properties
@@ -8071,6 +11530,9 @@ public partial struct b32v3_mt8
     public static implicit operator b32v3_mt8(b32 value) => new b32_mt8(value);
 
     [MethodImpl(256 | 512)]
+    public static implicit operator b32v3_mt8(bool value) => (b32)(value);
+
+    [MethodImpl(256 | 512)]
     public static implicit operator b32v3_mt8(b32_mt8 value) => new(value);
 
     [MethodImpl(256 | 512)]
@@ -8090,9 +11552,55 @@ public partial struct b32v3_mt8
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out b32_mt8 x, out b32_mt8 y, out b32_mt8 z)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public b32_mt8 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"b32v3_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    public readonly override string ToString() => $"b32v3_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
     
     #endregion // ToString
 }
@@ -8123,16 +11631,15 @@ public partial struct b32v3_mt16
 
     #region Properties
 
-    public b32v3 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly b32v3 LaneGet(int index) => new(x[index], y[index], z[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, b32v3 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
     }
 
     #endregion // Properties
@@ -8175,6 +11682,9 @@ public partial struct b32v3_mt16
     public static implicit operator b32v3_mt16(b32 value) => new b32_mt16(value);
 
     [MethodImpl(256 | 512)]
+    public static implicit operator b32v3_mt16(bool value) => (b32)(value);
+
+    [MethodImpl(256 | 512)]
     public static implicit operator b32v3_mt16(b32_mt16 value) => new(value);
 
     [MethodImpl(256 | 512)]
@@ -8194,9 +11704,55 @@ public partial struct b32v3_mt16
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out b32_mt16 x, out b32_mt16 y, out b32_mt16 z)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public b32_mt16 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"b32v3_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    public readonly override string ToString() => $"b32v3_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
@@ -8227,16 +11783,15 @@ public partial struct b32v3_mt32
 
     #region Properties
 
-    public b32v3 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly b32v3 LaneGet(int index) => new(x[index], y[index], z[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, b32v3 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
     }
 
     #endregion // Properties
@@ -8279,6 +11834,9 @@ public partial struct b32v3_mt32
     public static implicit operator b32v3_mt32(b32 value) => new b32_mt32(value);
 
     [MethodImpl(256 | 512)]
+    public static implicit operator b32v3_mt32(bool value) => (b32)(value);
+
+    [MethodImpl(256 | 512)]
     public static implicit operator b32v3_mt32(b32_mt32 value) => new(value);
 
     [MethodImpl(256 | 512)]
@@ -8298,9 +11856,55 @@ public partial struct b32v3_mt32
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out b32_mt32 x, out b32_mt32 y, out b32_mt32 z)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public b32_mt32 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"b32v3_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    public readonly override string ToString() => $"b32v3_mt32 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)}, t16 = {this.LaneGet(16)}, t17 = {this.LaneGet(17)}, t18 = {this.LaneGet(18)}, t19 = {this.LaneGet(19)}, t20 = {this.LaneGet(20)}, t21 = {this.LaneGet(21)}, t22 = {this.LaneGet(22)}, t23 = {this.LaneGet(23)}, t24 = {this.LaneGet(24)}, t25 = {this.LaneGet(25)}, t26 = {this.LaneGet(26)}, t27 = {this.LaneGet(27)}, t28 = {this.LaneGet(28)}, t29 = {this.LaneGet(29)}, t30 = {this.LaneGet(30)}, t31 = {this.LaneGet(31)} }}";
     
     #endregion // ToString
 }
@@ -8332,17 +11936,16 @@ public partial struct b32v4_mt4
 
     #region Properties
 
-    public b32v4 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly b32v4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, b32v4 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index], w[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-           w[index] = value.w;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
+        w[index] = value.w;
     }
 
     #endregion // Properties
@@ -8387,6 +11990,9 @@ public partial struct b32v4_mt4
     public static implicit operator b32v4_mt4(b32 value) => new b32_mt4(value);
 
     [MethodImpl(256 | 512)]
+    public static implicit operator b32v4_mt4(bool value) => (b32)(value);
+
+    [MethodImpl(256 | 512)]
     public static implicit operator b32v4_mt4(b32_mt4 value) => new(value);
 
     [MethodImpl(256 | 512)]
@@ -8406,9 +12012,60 @@ public partial struct b32v4_mt4
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out b32_mt4 x, out b32_mt4 y, out b32_mt4 z, out b32_mt4 w)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+        w = this.w;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public b32_mt4 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            3 => w,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                case 3:
+                    w = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"b32v4_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    public readonly override string ToString() => $"b32v4_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
     
     #endregion // ToString
 }
@@ -8440,17 +12097,16 @@ public partial struct b32v4_mt8
 
     #region Properties
 
-    public b32v4 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly b32v4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, b32v4 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index], w[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-           w[index] = value.w;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
+        w[index] = value.w;
     }
 
     #endregion // Properties
@@ -8495,6 +12151,9 @@ public partial struct b32v4_mt8
     public static implicit operator b32v4_mt8(b32 value) => new b32_mt8(value);
 
     [MethodImpl(256 | 512)]
+    public static implicit operator b32v4_mt8(bool value) => (b32)(value);
+
+    [MethodImpl(256 | 512)]
     public static implicit operator b32v4_mt8(b32_mt8 value) => new(value);
 
     [MethodImpl(256 | 512)]
@@ -8514,9 +12173,60 @@ public partial struct b32v4_mt8
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out b32_mt8 x, out b32_mt8 y, out b32_mt8 z, out b32_mt8 w)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+        w = this.w;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public b32_mt8 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            3 => w,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                case 3:
+                    w = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"b32v4_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    public readonly override string ToString() => $"b32v4_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
     
     #endregion // ToString
 }
@@ -8548,17 +12258,16 @@ public partial struct b32v4_mt16
 
     #region Properties
 
-    public b32v4 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly b32v4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, b32v4 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index], w[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-           w[index] = value.w;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
+        w[index] = value.w;
     }
 
     #endregion // Properties
@@ -8603,6 +12312,9 @@ public partial struct b32v4_mt16
     public static implicit operator b32v4_mt16(b32 value) => new b32_mt16(value);
 
     [MethodImpl(256 | 512)]
+    public static implicit operator b32v4_mt16(bool value) => (b32)(value);
+
+    [MethodImpl(256 | 512)]
     public static implicit operator b32v4_mt16(b32_mt16 value) => new(value);
 
     [MethodImpl(256 | 512)]
@@ -8622,9 +12334,60 @@ public partial struct b32v4_mt16
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out b32_mt16 x, out b32_mt16 y, out b32_mt16 z, out b32_mt16 w)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+        w = this.w;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public b32_mt16 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            3 => w,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                case 3:
+                    w = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"b32v4_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    public readonly override string ToString() => $"b32v4_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
@@ -8656,17 +12419,16 @@ public partial struct b32v4_mt32
 
     #region Properties
 
-    public b32v4 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly b32v4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, b32v4 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index], w[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-           w[index] = value.w;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
+        w[index] = value.w;
     }
 
     #endregion // Properties
@@ -8711,6 +12473,9 @@ public partial struct b32v4_mt32
     public static implicit operator b32v4_mt32(b32 value) => new b32_mt32(value);
 
     [MethodImpl(256 | 512)]
+    public static implicit operator b32v4_mt32(bool value) => (b32)(value);
+
+    [MethodImpl(256 | 512)]
     public static implicit operator b32v4_mt32(b32_mt32 value) => new(value);
 
     [MethodImpl(256 | 512)]
@@ -8730,9 +12495,60 @@ public partial struct b32v4_mt32
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out b32_mt32 x, out b32_mt32 y, out b32_mt32 z, out b32_mt32 w)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+        w = this.w;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public b32_mt32 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            3 => w,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                case 3:
+                    w = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"b32v4_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    public readonly override string ToString() => $"b32v4_mt32 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)}, t16 = {this.LaneGet(16)}, t17 = {this.LaneGet(17)}, t18 = {this.LaneGet(18)}, t19 = {this.LaneGet(19)}, t20 = {this.LaneGet(20)}, t21 = {this.LaneGet(21)}, t22 = {this.LaneGet(22)}, t23 = {this.LaneGet(23)}, t24 = {this.LaneGet(24)}, t25 = {this.LaneGet(25)}, t26 = {this.LaneGet(26)}, t27 = {this.LaneGet(27)}, t28 = {this.LaneGet(28)}, t29 = {this.LaneGet(29)}, t30 = {this.LaneGet(30)}, t31 = {this.LaneGet(31)} }}";
     
     #endregion // ToString
 }
@@ -8762,15 +12578,14 @@ public partial struct b64v2_mt4
 
     #region Properties
 
-    public b64v2 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly b64v2 LaneGet(int index) => new(x[index], y[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, b64v2 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
     }
 
     #endregion // Properties
@@ -8811,6 +12626,9 @@ public partial struct b64v2_mt4
     public static implicit operator b64v2_mt4(b64 value) => new b64_mt4(value);
 
     [MethodImpl(256 | 512)]
+    public static implicit operator b64v2_mt4(bool value) => (b64)(value);
+
+    [MethodImpl(256 | 512)]
     public static implicit operator b64v2_mt4(b64_mt4 value) => new(value);
 
     [MethodImpl(256 | 512)]
@@ -8830,9 +12648,50 @@ public partial struct b64v2_mt4
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out b64_mt4 x, out b64_mt4 y)
+    {
+        x = this.x;
+        y = this.y;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public b64_mt4 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"b64v2_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    public readonly override string ToString() => $"b64v2_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
     
     #endregion // ToString
 }
@@ -8862,15 +12721,14 @@ public partial struct b64v2_mt8
 
     #region Properties
 
-    public b64v2 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly b64v2 LaneGet(int index) => new(x[index], y[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, b64v2 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
     }
 
     #endregion // Properties
@@ -8911,6 +12769,9 @@ public partial struct b64v2_mt8
     public static implicit operator b64v2_mt8(b64 value) => new b64_mt8(value);
 
     [MethodImpl(256 | 512)]
+    public static implicit operator b64v2_mt8(bool value) => (b64)(value);
+
+    [MethodImpl(256 | 512)]
     public static implicit operator b64v2_mt8(b64_mt8 value) => new(value);
 
     [MethodImpl(256 | 512)]
@@ -8930,9 +12791,50 @@ public partial struct b64v2_mt8
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out b64_mt8 x, out b64_mt8 y)
+    {
+        x = this.x;
+        y = this.y;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public b64_mt8 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"b64v2_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    public readonly override string ToString() => $"b64v2_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
     
     #endregion // ToString
 }
@@ -8962,15 +12864,14 @@ public partial struct b64v2_mt16
 
     #region Properties
 
-    public b64v2 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly b64v2 LaneGet(int index) => new(x[index], y[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, b64v2 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
     }
 
     #endregion // Properties
@@ -9011,6 +12912,9 @@ public partial struct b64v2_mt16
     public static implicit operator b64v2_mt16(b64 value) => new b64_mt16(value);
 
     [MethodImpl(256 | 512)]
+    public static implicit operator b64v2_mt16(bool value) => (b64)(value);
+
+    [MethodImpl(256 | 512)]
     public static implicit operator b64v2_mt16(b64_mt16 value) => new(value);
 
     [MethodImpl(256 | 512)]
@@ -9030,9 +12934,50 @@ public partial struct b64v2_mt16
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out b64_mt16 x, out b64_mt16 y)
+    {
+        x = this.x;
+        y = this.y;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public b64_mt16 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"b64v2_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    public readonly override string ToString() => $"b64v2_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
@@ -9062,15 +13007,14 @@ public partial struct b64v2_mt32
 
     #region Properties
 
-    public b64v2 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly b64v2 LaneGet(int index) => new(x[index], y[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, b64v2 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
     }
 
     #endregion // Properties
@@ -9111,6 +13055,9 @@ public partial struct b64v2_mt32
     public static implicit operator b64v2_mt32(b64 value) => new b64_mt32(value);
 
     [MethodImpl(256 | 512)]
+    public static implicit operator b64v2_mt32(bool value) => (b64)(value);
+
+    [MethodImpl(256 | 512)]
     public static implicit operator b64v2_mt32(b64_mt32 value) => new(value);
 
     [MethodImpl(256 | 512)]
@@ -9130,9 +13077,50 @@ public partial struct b64v2_mt32
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out b64_mt32 x, out b64_mt32 y)
+    {
+        x = this.x;
+        y = this.y;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public b64_mt32 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"b64v2_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    public readonly override string ToString() => $"b64v2_mt32 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)}, t16 = {this.LaneGet(16)}, t17 = {this.LaneGet(17)}, t18 = {this.LaneGet(18)}, t19 = {this.LaneGet(19)}, t20 = {this.LaneGet(20)}, t21 = {this.LaneGet(21)}, t22 = {this.LaneGet(22)}, t23 = {this.LaneGet(23)}, t24 = {this.LaneGet(24)}, t25 = {this.LaneGet(25)}, t26 = {this.LaneGet(26)}, t27 = {this.LaneGet(27)}, t28 = {this.LaneGet(28)}, t29 = {this.LaneGet(29)}, t30 = {this.LaneGet(30)}, t31 = {this.LaneGet(31)} }}";
     
     #endregion // ToString
 }
@@ -9163,16 +13151,15 @@ public partial struct b64v3_mt4
 
     #region Properties
 
-    public b64v3 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly b64v3 LaneGet(int index) => new(x[index], y[index], z[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, b64v3 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
     }
 
     #endregion // Properties
@@ -9215,6 +13202,9 @@ public partial struct b64v3_mt4
     public static implicit operator b64v3_mt4(b64 value) => new b64_mt4(value);
 
     [MethodImpl(256 | 512)]
+    public static implicit operator b64v3_mt4(bool value) => (b64)(value);
+
+    [MethodImpl(256 | 512)]
     public static implicit operator b64v3_mt4(b64_mt4 value) => new(value);
 
     [MethodImpl(256 | 512)]
@@ -9234,9 +13224,55 @@ public partial struct b64v3_mt4
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out b64_mt4 x, out b64_mt4 y, out b64_mt4 z)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public b64_mt4 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"b64v3_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    public readonly override string ToString() => $"b64v3_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
     
     #endregion // ToString
 }
@@ -9267,16 +13303,15 @@ public partial struct b64v3_mt8
 
     #region Properties
 
-    public b64v3 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly b64v3 LaneGet(int index) => new(x[index], y[index], z[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, b64v3 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
     }
 
     #endregion // Properties
@@ -9319,6 +13354,9 @@ public partial struct b64v3_mt8
     public static implicit operator b64v3_mt8(b64 value) => new b64_mt8(value);
 
     [MethodImpl(256 | 512)]
+    public static implicit operator b64v3_mt8(bool value) => (b64)(value);
+
+    [MethodImpl(256 | 512)]
     public static implicit operator b64v3_mt8(b64_mt8 value) => new(value);
 
     [MethodImpl(256 | 512)]
@@ -9338,9 +13376,55 @@ public partial struct b64v3_mt8
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out b64_mt8 x, out b64_mt8 y, out b64_mt8 z)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public b64_mt8 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"b64v3_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    public readonly override string ToString() => $"b64v3_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
     
     #endregion // ToString
 }
@@ -9371,16 +13455,15 @@ public partial struct b64v3_mt16
 
     #region Properties
 
-    public b64v3 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly b64v3 LaneGet(int index) => new(x[index], y[index], z[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, b64v3 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
     }
 
     #endregion // Properties
@@ -9423,6 +13506,9 @@ public partial struct b64v3_mt16
     public static implicit operator b64v3_mt16(b64 value) => new b64_mt16(value);
 
     [MethodImpl(256 | 512)]
+    public static implicit operator b64v3_mt16(bool value) => (b64)(value);
+
+    [MethodImpl(256 | 512)]
     public static implicit operator b64v3_mt16(b64_mt16 value) => new(value);
 
     [MethodImpl(256 | 512)]
@@ -9442,9 +13528,55 @@ public partial struct b64v3_mt16
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out b64_mt16 x, out b64_mt16 y, out b64_mt16 z)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public b64_mt16 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"b64v3_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    public readonly override string ToString() => $"b64v3_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
@@ -9475,16 +13607,15 @@ public partial struct b64v3_mt32
 
     #region Properties
 
-    public b64v3 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly b64v3 LaneGet(int index) => new(x[index], y[index], z[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, b64v3 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
     }
 
     #endregion // Properties
@@ -9527,6 +13658,9 @@ public partial struct b64v3_mt32
     public static implicit operator b64v3_mt32(b64 value) => new b64_mt32(value);
 
     [MethodImpl(256 | 512)]
+    public static implicit operator b64v3_mt32(bool value) => (b64)(value);
+
+    [MethodImpl(256 | 512)]
     public static implicit operator b64v3_mt32(b64_mt32 value) => new(value);
 
     [MethodImpl(256 | 512)]
@@ -9546,9 +13680,55 @@ public partial struct b64v3_mt32
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out b64_mt32 x, out b64_mt32 y, out b64_mt32 z)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public b64_mt32 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"b64v3_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    public readonly override string ToString() => $"b64v3_mt32 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)}, t16 = {this.LaneGet(16)}, t17 = {this.LaneGet(17)}, t18 = {this.LaneGet(18)}, t19 = {this.LaneGet(19)}, t20 = {this.LaneGet(20)}, t21 = {this.LaneGet(21)}, t22 = {this.LaneGet(22)}, t23 = {this.LaneGet(23)}, t24 = {this.LaneGet(24)}, t25 = {this.LaneGet(25)}, t26 = {this.LaneGet(26)}, t27 = {this.LaneGet(27)}, t28 = {this.LaneGet(28)}, t29 = {this.LaneGet(29)}, t30 = {this.LaneGet(30)}, t31 = {this.LaneGet(31)} }}";
     
     #endregion // ToString
 }
@@ -9580,17 +13760,16 @@ public partial struct b64v4_mt4
 
     #region Properties
 
-    public b64v4 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly b64v4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, b64v4 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index], w[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-           w[index] = value.w;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
+        w[index] = value.w;
     }
 
     #endregion // Properties
@@ -9635,6 +13814,9 @@ public partial struct b64v4_mt4
     public static implicit operator b64v4_mt4(b64 value) => new b64_mt4(value);
 
     [MethodImpl(256 | 512)]
+    public static implicit operator b64v4_mt4(bool value) => (b64)(value);
+
+    [MethodImpl(256 | 512)]
     public static implicit operator b64v4_mt4(b64_mt4 value) => new(value);
 
     [MethodImpl(256 | 512)]
@@ -9654,9 +13836,60 @@ public partial struct b64v4_mt4
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out b64_mt4 x, out b64_mt4 y, out b64_mt4 z, out b64_mt4 w)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+        w = this.w;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public b64_mt4 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            3 => w,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                case 3:
+                    w = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"b64v4_mt4 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]} }}";
+    public readonly override string ToString() => $"b64v4_mt4 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)} }}";
     
     #endregion // ToString
 }
@@ -9688,17 +13921,16 @@ public partial struct b64v4_mt8
 
     #region Properties
 
-    public b64v4 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly b64v4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, b64v4 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index], w[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-           w[index] = value.w;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
+        w[index] = value.w;
     }
 
     #endregion // Properties
@@ -9743,6 +13975,9 @@ public partial struct b64v4_mt8
     public static implicit operator b64v4_mt8(b64 value) => new b64_mt8(value);
 
     [MethodImpl(256 | 512)]
+    public static implicit operator b64v4_mt8(bool value) => (b64)(value);
+
+    [MethodImpl(256 | 512)]
     public static implicit operator b64v4_mt8(b64_mt8 value) => new(value);
 
     [MethodImpl(256 | 512)]
@@ -9762,9 +13997,60 @@ public partial struct b64v4_mt8
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out b64_mt8 x, out b64_mt8 y, out b64_mt8 z, out b64_mt8 w)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+        w = this.w;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public b64_mt8 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            3 => w,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                case 3:
+                    w = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"b64v4_mt8 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]} }}";
+    public readonly override string ToString() => $"b64v4_mt8 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)} }}";
     
     #endregion // ToString
 }
@@ -9796,17 +14082,16 @@ public partial struct b64v4_mt16
 
     #region Properties
 
-    public b64v4 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly b64v4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, b64v4 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index], w[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-           w[index] = value.w;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
+        w[index] = value.w;
     }
 
     #endregion // Properties
@@ -9851,6 +14136,9 @@ public partial struct b64v4_mt16
     public static implicit operator b64v4_mt16(b64 value) => new b64_mt16(value);
 
     [MethodImpl(256 | 512)]
+    public static implicit operator b64v4_mt16(bool value) => (b64)(value);
+
+    [MethodImpl(256 | 512)]
     public static implicit operator b64v4_mt16(b64_mt16 value) => new(value);
 
     [MethodImpl(256 | 512)]
@@ -9870,9 +14158,60 @@ public partial struct b64v4_mt16
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out b64_mt16 x, out b64_mt16 y, out b64_mt16 z, out b64_mt16 w)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+        w = this.w;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public b64_mt16 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            3 => w,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                case 3:
+                    w = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"b64v4_mt16 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]} }}";
+    public readonly override string ToString() => $"b64v4_mt16 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)} }}";
     
     #endregion // ToString
 }
@@ -9904,17 +14243,16 @@ public partial struct b64v4_mt32
 
     #region Properties
 
-    public b64v4 this[int index]
+    [MethodImpl(256 | 512)]
+    public readonly b64v4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
+
+    [MethodImpl(256 | 512)]
+    public void LaneSet(int index, b64v4 value)
     {
-        [MethodImpl(256 | 512)]
-        readonly get => new(x[index], y[index], z[index], w[index]);
-        set 
-        {
-           x[index] = value.x;
-           y[index] = value.y;
-           z[index] = value.z;
-           w[index] = value.w;
-        }
+        x[index] = value.x;
+        y[index] = value.y;
+        z[index] = value.z;
+        w[index] = value.w;
     }
 
     #endregion // Properties
@@ -9959,6 +14297,9 @@ public partial struct b64v4_mt32
     public static implicit operator b64v4_mt32(b64 value) => new b64_mt32(value);
 
     [MethodImpl(256 | 512)]
+    public static implicit operator b64v4_mt32(bool value) => (b64)(value);
+
+    [MethodImpl(256 | 512)]
     public static implicit operator b64v4_mt32(b64_mt32 value) => new(value);
 
     [MethodImpl(256 | 512)]
@@ -9978,9 +14319,60 @@ public partial struct b64v4_mt32
 
     #endregion // Operators
 
+    #region Deconstruct
+
+    [MethodImpl(256 | 512)]
+    public readonly void Deconstruct(out b64_mt32 x, out b64_mt32 y, out b64_mt32 z, out b64_mt32 w)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+        w = this.w;
+    }
+
+    #endregion // Deconstruct
+
+    #region Index
+
+    public b64_mt32 this[int i]
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => i switch
+        {
+            0 => x,
+            1 => y,
+            2 => z,
+            3 => w,
+            _ => throw new IndexOutOfRangeException(nameof(i)),
+        };
+        [MethodImpl(256 | 512)]
+        set
+        {
+            switch (i)
+            {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                case 3:
+                    w = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException(nameof(i));
+            }
+        }
+    }
+
+    #endregion // Index
+
     #region ToString
 
-    public readonly override string ToString() => $"b64v4_mt32 {{ t0 = {this[0]}, t1 = {this[1]}, t2 = {this[2]}, t3 = {this[3]}, t4 = {this[4]}, t5 = {this[5]}, t6 = {this[6]}, t7 = {this[7]}, t8 = {this[8]}, t9 = {this[9]}, t10 = {this[10]}, t11 = {this[11]}, t12 = {this[12]}, t13 = {this[13]}, t14 = {this[14]}, t15 = {this[15]}, t16 = {this[16]}, t17 = {this[17]}, t18 = {this[18]}, t19 = {this[19]}, t20 = {this[20]}, t21 = {this[21]}, t22 = {this[22]}, t23 = {this[23]}, t24 = {this[24]}, t25 = {this[25]}, t26 = {this[26]}, t27 = {this[27]}, t28 = {this[28]}, t29 = {this[29]}, t30 = {this[30]}, t31 = {this[31]} }}";
+    public readonly override string ToString() => $"b64v4_mt32 {{ t0 = {this.LaneGet(0)}, t1 = {this.LaneGet(1)}, t2 = {this.LaneGet(2)}, t3 = {this.LaneGet(3)}, t4 = {this.LaneGet(4)}, t5 = {this.LaneGet(5)}, t6 = {this.LaneGet(6)}, t7 = {this.LaneGet(7)}, t8 = {this.LaneGet(8)}, t9 = {this.LaneGet(9)}, t10 = {this.LaneGet(10)}, t11 = {this.LaneGet(11)}, t12 = {this.LaneGet(12)}, t13 = {this.LaneGet(13)}, t14 = {this.LaneGet(14)}, t15 = {this.LaneGet(15)}, t16 = {this.LaneGet(16)}, t17 = {this.LaneGet(17)}, t18 = {this.LaneGet(18)}, t19 = {this.LaneGet(19)}, t20 = {this.LaneGet(20)}, t21 = {this.LaneGet(21)}, t22 = {this.LaneGet(22)}, t23 = {this.LaneGet(23)}, t24 = {this.LaneGet(24)}, t25 = {this.LaneGet(25)}, t26 = {this.LaneGet(26)}, t27 = {this.LaneGet(27)}, t28 = {this.LaneGet(28)}, t29 = {this.LaneGet(29)}, t30 = {this.LaneGet(30)}, t31 = {this.LaneGet(31)} }}";
     
     #endregion // ToString
 }
