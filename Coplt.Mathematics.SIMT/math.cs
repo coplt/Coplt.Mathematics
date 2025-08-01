@@ -1,4 +1,4 @@
-﻿namespace Coplt.Mathematics.SIMT;
+﻿namespace Coplt.Mathematics.Simt;
 
 public static partial class math_mt_ex;
 
