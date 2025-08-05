@@ -6266,3 +6266,2091 @@ public partial struct ulong4_mt16
 }
 
 #endregion // ulong4_mt16
+#region b32v2_mt4
+
+public partial struct b32v2_mt4
+    : IEqualityOperators<b32v2_mt4, b32v2_mt4, bool>
+    , IEqualityOperators<b32v2_mt4, b32v2_mt4, b32v2_mt4>
+{
+    [MethodImpl(256 | 512)]
+    public readonly override int GetHashCode() => HashCode.Combine(x, y);
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is b32v2_mt4 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(b32v2_mt4 other) => x.Equals(other.x) && y.Equals(other.y);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool NotEquals(b32v2_mt4 other) => !x.Equals(other.x) || !y.Equals(other.y);
+
+    [MethodImpl(256 | 512)]
+    static bool IEqualityOperators<b32v2_mt4, b32v2_mt4, bool>.operator ==(b32v2_mt4 left, b32v2_mt4 right) => left.Equals(right);
+
+    [MethodImpl(256 | 512)]
+    static bool IEqualityOperators<b32v2_mt4, b32v2_mt4, bool>.operator !=(b32v2_mt4 left, b32v2_mt4 right) => left.NotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v2_mt4 VectorEquals(b32v2_mt4 other)
+    {
+        return new(x.LaneEquals(other.x), y.LaneEquals(other.y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v2_mt4 VectorNotEquals(b32v2_mt4 other)
+    {
+        return new(x.LaneNotEquals(other.x), y.LaneNotEquals(other.y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v2_mt4 VectorEquals(b32_mt4 other)
+    {
+        return new(x.LaneEquals(other), y.LaneEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v2_mt4 VectorNotEquals(b32_mt4 other)
+    {
+        return new(x.LaneNotEquals(other), y.LaneNotEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v2_mt4 VectorEquals(b32 other)
+    {
+        return new(x.LaneEquals(other), y.LaneEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v2_mt4 VectorNotEquals(b32 other)
+    {
+        return new(x.LaneNotEquals(other), y.LaneNotEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v2_mt4 InvVectorEquals(b32_mt4 other)
+    {
+        return new(other.LaneEquals(x), other.LaneEquals(y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v2_mt4 InvVectorNotEquals(b32_mt4 other)
+    {
+        return new(other.LaneNotEquals(x), other.LaneNotEquals(y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v2_mt4 InvVectorEquals(b32 other)
+    {
+        return new(new b32_mt4(other).LaneEquals(x), new b32_mt4(other).LaneEquals(y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v2_mt4 InvVectorNotEquals(b32 other)
+    {
+        return new(new b32_mt4(other).LaneNotEquals(x), new b32_mt4(other).LaneNotEquals(y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator ==(b32v2_mt4 left, b32v2_mt4 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator !=(b32v2_mt4 left, b32v2_mt4 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator ==(b32v2_mt4 left, b32_mt4 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator !=(b32v2_mt4 left, b32_mt4 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator ==(b32_mt4 left, b32v2_mt4 right) => right.InvVectorEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator !=(b32_mt4 left, b32v2_mt4 right) => right.InvVectorNotEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator ==(b32v2_mt4 left, b32 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator !=(b32v2_mt4 left, b32 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator ==(b32 left, b32v2_mt4 right) => right.InvVectorEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator !=(b32 left, b32v2_mt4 right) => right.InvVectorNotEquals(left);
+}
+
+#endregion // b32v2_mt4
+#region b32v2_mt8
+
+public partial struct b32v2_mt8
+    : IEqualityOperators<b32v2_mt8, b32v2_mt8, bool>
+    , IEqualityOperators<b32v2_mt8, b32v2_mt8, b32v2_mt8>
+{
+    [MethodImpl(256 | 512)]
+    public readonly override int GetHashCode() => HashCode.Combine(x, y);
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is b32v2_mt8 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(b32v2_mt8 other) => x.Equals(other.x) && y.Equals(other.y);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool NotEquals(b32v2_mt8 other) => !x.Equals(other.x) || !y.Equals(other.y);
+
+    [MethodImpl(256 | 512)]
+    static bool IEqualityOperators<b32v2_mt8, b32v2_mt8, bool>.operator ==(b32v2_mt8 left, b32v2_mt8 right) => left.Equals(right);
+
+    [MethodImpl(256 | 512)]
+    static bool IEqualityOperators<b32v2_mt8, b32v2_mt8, bool>.operator !=(b32v2_mt8 left, b32v2_mt8 right) => left.NotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v2_mt8 VectorEquals(b32v2_mt8 other)
+    {
+        return new(x.LaneEquals(other.x), y.LaneEquals(other.y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v2_mt8 VectorNotEquals(b32v2_mt8 other)
+    {
+        return new(x.LaneNotEquals(other.x), y.LaneNotEquals(other.y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v2_mt8 VectorEquals(b32_mt8 other)
+    {
+        return new(x.LaneEquals(other), y.LaneEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v2_mt8 VectorNotEquals(b32_mt8 other)
+    {
+        return new(x.LaneNotEquals(other), y.LaneNotEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v2_mt8 VectorEquals(b32 other)
+    {
+        return new(x.LaneEquals(other), y.LaneEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v2_mt8 VectorNotEquals(b32 other)
+    {
+        return new(x.LaneNotEquals(other), y.LaneNotEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v2_mt8 InvVectorEquals(b32_mt8 other)
+    {
+        return new(other.LaneEquals(x), other.LaneEquals(y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v2_mt8 InvVectorNotEquals(b32_mt8 other)
+    {
+        return new(other.LaneNotEquals(x), other.LaneNotEquals(y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v2_mt8 InvVectorEquals(b32 other)
+    {
+        return new(new b32_mt8(other).LaneEquals(x), new b32_mt8(other).LaneEquals(y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v2_mt8 InvVectorNotEquals(b32 other)
+    {
+        return new(new b32_mt8(other).LaneNotEquals(x), new b32_mt8(other).LaneNotEquals(y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator ==(b32v2_mt8 left, b32v2_mt8 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator !=(b32v2_mt8 left, b32v2_mt8 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator ==(b32v2_mt8 left, b32_mt8 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator !=(b32v2_mt8 left, b32_mt8 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator ==(b32_mt8 left, b32v2_mt8 right) => right.InvVectorEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator !=(b32_mt8 left, b32v2_mt8 right) => right.InvVectorNotEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator ==(b32v2_mt8 left, b32 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator !=(b32v2_mt8 left, b32 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator ==(b32 left, b32v2_mt8 right) => right.InvVectorEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator !=(b32 left, b32v2_mt8 right) => right.InvVectorNotEquals(left);
+}
+
+#endregion // b32v2_mt8
+#region b32v2_mt16
+
+public partial struct b32v2_mt16
+    : IEqualityOperators<b32v2_mt16, b32v2_mt16, bool>
+    , IEqualityOperators<b32v2_mt16, b32v2_mt16, b32v2_mt16>
+{
+    [MethodImpl(256 | 512)]
+    public readonly override int GetHashCode() => HashCode.Combine(x, y);
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is b32v2_mt16 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(b32v2_mt16 other) => x.Equals(other.x) && y.Equals(other.y);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool NotEquals(b32v2_mt16 other) => !x.Equals(other.x) || !y.Equals(other.y);
+
+    [MethodImpl(256 | 512)]
+    static bool IEqualityOperators<b32v2_mt16, b32v2_mt16, bool>.operator ==(b32v2_mt16 left, b32v2_mt16 right) => left.Equals(right);
+
+    [MethodImpl(256 | 512)]
+    static bool IEqualityOperators<b32v2_mt16, b32v2_mt16, bool>.operator !=(b32v2_mt16 left, b32v2_mt16 right) => left.NotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v2_mt16 VectorEquals(b32v2_mt16 other)
+    {
+        return new(x.LaneEquals(other.x), y.LaneEquals(other.y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v2_mt16 VectorNotEquals(b32v2_mt16 other)
+    {
+        return new(x.LaneNotEquals(other.x), y.LaneNotEquals(other.y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v2_mt16 VectorEquals(b32_mt16 other)
+    {
+        return new(x.LaneEquals(other), y.LaneEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v2_mt16 VectorNotEquals(b32_mt16 other)
+    {
+        return new(x.LaneNotEquals(other), y.LaneNotEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v2_mt16 VectorEquals(b32 other)
+    {
+        return new(x.LaneEquals(other), y.LaneEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v2_mt16 VectorNotEquals(b32 other)
+    {
+        return new(x.LaneNotEquals(other), y.LaneNotEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v2_mt16 InvVectorEquals(b32_mt16 other)
+    {
+        return new(other.LaneEquals(x), other.LaneEquals(y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v2_mt16 InvVectorNotEquals(b32_mt16 other)
+    {
+        return new(other.LaneNotEquals(x), other.LaneNotEquals(y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v2_mt16 InvVectorEquals(b32 other)
+    {
+        return new(new b32_mt16(other).LaneEquals(x), new b32_mt16(other).LaneEquals(y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v2_mt16 InvVectorNotEquals(b32 other)
+    {
+        return new(new b32_mt16(other).LaneNotEquals(x), new b32_mt16(other).LaneNotEquals(y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator ==(b32v2_mt16 left, b32v2_mt16 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator !=(b32v2_mt16 left, b32v2_mt16 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator ==(b32v2_mt16 left, b32_mt16 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator !=(b32v2_mt16 left, b32_mt16 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator ==(b32_mt16 left, b32v2_mt16 right) => right.InvVectorEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator !=(b32_mt16 left, b32v2_mt16 right) => right.InvVectorNotEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator ==(b32v2_mt16 left, b32 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator !=(b32v2_mt16 left, b32 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator ==(b32 left, b32v2_mt16 right) => right.InvVectorEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator !=(b32 left, b32v2_mt16 right) => right.InvVectorNotEquals(left);
+}
+
+#endregion // b32v2_mt16
+#region b32v3_mt4
+
+public partial struct b32v3_mt4
+    : IEqualityOperators<b32v3_mt4, b32v3_mt4, bool>
+    , IEqualityOperators<b32v3_mt4, b32v3_mt4, b32v3_mt4>
+{
+    [MethodImpl(256 | 512)]
+    public readonly override int GetHashCode() => HashCode.Combine(x, y, z);
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is b32v3_mt4 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(b32v3_mt4 other) => x.Equals(other.x) && y.Equals(other.y) && z.Equals(other.z);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool NotEquals(b32v3_mt4 other) => !x.Equals(other.x) || !y.Equals(other.y) || !z.Equals(other.z);
+
+    [MethodImpl(256 | 512)]
+    static bool IEqualityOperators<b32v3_mt4, b32v3_mt4, bool>.operator ==(b32v3_mt4 left, b32v3_mt4 right) => left.Equals(right);
+
+    [MethodImpl(256 | 512)]
+    static bool IEqualityOperators<b32v3_mt4, b32v3_mt4, bool>.operator !=(b32v3_mt4 left, b32v3_mt4 right) => left.NotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v3_mt4 VectorEquals(b32v3_mt4 other)
+    {
+        return new(x.LaneEquals(other.x), y.LaneEquals(other.y), z.LaneEquals(other.z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v3_mt4 VectorNotEquals(b32v3_mt4 other)
+    {
+        return new(x.LaneNotEquals(other.x), y.LaneNotEquals(other.y), z.LaneNotEquals(other.z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v3_mt4 VectorEquals(b32_mt4 other)
+    {
+        return new(x.LaneEquals(other), y.LaneEquals(other), z.LaneEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v3_mt4 VectorNotEquals(b32_mt4 other)
+    {
+        return new(x.LaneNotEquals(other), y.LaneNotEquals(other), z.LaneNotEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v3_mt4 VectorEquals(b32 other)
+    {
+        return new(x.LaneEquals(other), y.LaneEquals(other), z.LaneEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v3_mt4 VectorNotEquals(b32 other)
+    {
+        return new(x.LaneNotEquals(other), y.LaneNotEquals(other), z.LaneNotEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v3_mt4 InvVectorEquals(b32_mt4 other)
+    {
+        return new(other.LaneEquals(x), other.LaneEquals(y), other.LaneEquals(z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v3_mt4 InvVectorNotEquals(b32_mt4 other)
+    {
+        return new(other.LaneNotEquals(x), other.LaneNotEquals(y), other.LaneNotEquals(z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v3_mt4 InvVectorEquals(b32 other)
+    {
+        return new(new b32_mt4(other).LaneEquals(x), new b32_mt4(other).LaneEquals(y), new b32_mt4(other).LaneEquals(z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v3_mt4 InvVectorNotEquals(b32 other)
+    {
+        return new(new b32_mt4(other).LaneNotEquals(x), new b32_mt4(other).LaneNotEquals(y), new b32_mt4(other).LaneNotEquals(z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator ==(b32v3_mt4 left, b32v3_mt4 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator !=(b32v3_mt4 left, b32v3_mt4 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator ==(b32v3_mt4 left, b32_mt4 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator !=(b32v3_mt4 left, b32_mt4 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator ==(b32_mt4 left, b32v3_mt4 right) => right.InvVectorEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator !=(b32_mt4 left, b32v3_mt4 right) => right.InvVectorNotEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator ==(b32v3_mt4 left, b32 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator !=(b32v3_mt4 left, b32 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator ==(b32 left, b32v3_mt4 right) => right.InvVectorEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator !=(b32 left, b32v3_mt4 right) => right.InvVectorNotEquals(left);
+}
+
+#endregion // b32v3_mt4
+#region b32v3_mt8
+
+public partial struct b32v3_mt8
+    : IEqualityOperators<b32v3_mt8, b32v3_mt8, bool>
+    , IEqualityOperators<b32v3_mt8, b32v3_mt8, b32v3_mt8>
+{
+    [MethodImpl(256 | 512)]
+    public readonly override int GetHashCode() => HashCode.Combine(x, y, z);
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is b32v3_mt8 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(b32v3_mt8 other) => x.Equals(other.x) && y.Equals(other.y) && z.Equals(other.z);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool NotEquals(b32v3_mt8 other) => !x.Equals(other.x) || !y.Equals(other.y) || !z.Equals(other.z);
+
+    [MethodImpl(256 | 512)]
+    static bool IEqualityOperators<b32v3_mt8, b32v3_mt8, bool>.operator ==(b32v3_mt8 left, b32v3_mt8 right) => left.Equals(right);
+
+    [MethodImpl(256 | 512)]
+    static bool IEqualityOperators<b32v3_mt8, b32v3_mt8, bool>.operator !=(b32v3_mt8 left, b32v3_mt8 right) => left.NotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v3_mt8 VectorEquals(b32v3_mt8 other)
+    {
+        return new(x.LaneEquals(other.x), y.LaneEquals(other.y), z.LaneEquals(other.z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v3_mt8 VectorNotEquals(b32v3_mt8 other)
+    {
+        return new(x.LaneNotEquals(other.x), y.LaneNotEquals(other.y), z.LaneNotEquals(other.z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v3_mt8 VectorEquals(b32_mt8 other)
+    {
+        return new(x.LaneEquals(other), y.LaneEquals(other), z.LaneEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v3_mt8 VectorNotEquals(b32_mt8 other)
+    {
+        return new(x.LaneNotEquals(other), y.LaneNotEquals(other), z.LaneNotEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v3_mt8 VectorEquals(b32 other)
+    {
+        return new(x.LaneEquals(other), y.LaneEquals(other), z.LaneEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v3_mt8 VectorNotEquals(b32 other)
+    {
+        return new(x.LaneNotEquals(other), y.LaneNotEquals(other), z.LaneNotEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v3_mt8 InvVectorEquals(b32_mt8 other)
+    {
+        return new(other.LaneEquals(x), other.LaneEquals(y), other.LaneEquals(z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v3_mt8 InvVectorNotEquals(b32_mt8 other)
+    {
+        return new(other.LaneNotEquals(x), other.LaneNotEquals(y), other.LaneNotEquals(z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v3_mt8 InvVectorEquals(b32 other)
+    {
+        return new(new b32_mt8(other).LaneEquals(x), new b32_mt8(other).LaneEquals(y), new b32_mt8(other).LaneEquals(z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v3_mt8 InvVectorNotEquals(b32 other)
+    {
+        return new(new b32_mt8(other).LaneNotEquals(x), new b32_mt8(other).LaneNotEquals(y), new b32_mt8(other).LaneNotEquals(z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator ==(b32v3_mt8 left, b32v3_mt8 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator !=(b32v3_mt8 left, b32v3_mt8 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator ==(b32v3_mt8 left, b32_mt8 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator !=(b32v3_mt8 left, b32_mt8 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator ==(b32_mt8 left, b32v3_mt8 right) => right.InvVectorEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator !=(b32_mt8 left, b32v3_mt8 right) => right.InvVectorNotEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator ==(b32v3_mt8 left, b32 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator !=(b32v3_mt8 left, b32 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator ==(b32 left, b32v3_mt8 right) => right.InvVectorEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator !=(b32 left, b32v3_mt8 right) => right.InvVectorNotEquals(left);
+}
+
+#endregion // b32v3_mt8
+#region b32v3_mt16
+
+public partial struct b32v3_mt16
+    : IEqualityOperators<b32v3_mt16, b32v3_mt16, bool>
+    , IEqualityOperators<b32v3_mt16, b32v3_mt16, b32v3_mt16>
+{
+    [MethodImpl(256 | 512)]
+    public readonly override int GetHashCode() => HashCode.Combine(x, y, z);
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is b32v3_mt16 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(b32v3_mt16 other) => x.Equals(other.x) && y.Equals(other.y) && z.Equals(other.z);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool NotEquals(b32v3_mt16 other) => !x.Equals(other.x) || !y.Equals(other.y) || !z.Equals(other.z);
+
+    [MethodImpl(256 | 512)]
+    static bool IEqualityOperators<b32v3_mt16, b32v3_mt16, bool>.operator ==(b32v3_mt16 left, b32v3_mt16 right) => left.Equals(right);
+
+    [MethodImpl(256 | 512)]
+    static bool IEqualityOperators<b32v3_mt16, b32v3_mt16, bool>.operator !=(b32v3_mt16 left, b32v3_mt16 right) => left.NotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v3_mt16 VectorEquals(b32v3_mt16 other)
+    {
+        return new(x.LaneEquals(other.x), y.LaneEquals(other.y), z.LaneEquals(other.z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v3_mt16 VectorNotEquals(b32v3_mt16 other)
+    {
+        return new(x.LaneNotEquals(other.x), y.LaneNotEquals(other.y), z.LaneNotEquals(other.z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v3_mt16 VectorEquals(b32_mt16 other)
+    {
+        return new(x.LaneEquals(other), y.LaneEquals(other), z.LaneEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v3_mt16 VectorNotEquals(b32_mt16 other)
+    {
+        return new(x.LaneNotEquals(other), y.LaneNotEquals(other), z.LaneNotEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v3_mt16 VectorEquals(b32 other)
+    {
+        return new(x.LaneEquals(other), y.LaneEquals(other), z.LaneEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v3_mt16 VectorNotEquals(b32 other)
+    {
+        return new(x.LaneNotEquals(other), y.LaneNotEquals(other), z.LaneNotEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v3_mt16 InvVectorEquals(b32_mt16 other)
+    {
+        return new(other.LaneEquals(x), other.LaneEquals(y), other.LaneEquals(z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v3_mt16 InvVectorNotEquals(b32_mt16 other)
+    {
+        return new(other.LaneNotEquals(x), other.LaneNotEquals(y), other.LaneNotEquals(z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v3_mt16 InvVectorEquals(b32 other)
+    {
+        return new(new b32_mt16(other).LaneEquals(x), new b32_mt16(other).LaneEquals(y), new b32_mt16(other).LaneEquals(z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v3_mt16 InvVectorNotEquals(b32 other)
+    {
+        return new(new b32_mt16(other).LaneNotEquals(x), new b32_mt16(other).LaneNotEquals(y), new b32_mt16(other).LaneNotEquals(z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator ==(b32v3_mt16 left, b32v3_mt16 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator !=(b32v3_mt16 left, b32v3_mt16 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator ==(b32v3_mt16 left, b32_mt16 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator !=(b32v3_mt16 left, b32_mt16 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator ==(b32_mt16 left, b32v3_mt16 right) => right.InvVectorEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator !=(b32_mt16 left, b32v3_mt16 right) => right.InvVectorNotEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator ==(b32v3_mt16 left, b32 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator !=(b32v3_mt16 left, b32 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator ==(b32 left, b32v3_mt16 right) => right.InvVectorEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator !=(b32 left, b32v3_mt16 right) => right.InvVectorNotEquals(left);
+}
+
+#endregion // b32v3_mt16
+#region b32v4_mt4
+
+public partial struct b32v4_mt4
+    : IEqualityOperators<b32v4_mt4, b32v4_mt4, bool>
+    , IEqualityOperators<b32v4_mt4, b32v4_mt4, b32v4_mt4>
+{
+    [MethodImpl(256 | 512)]
+    public readonly override int GetHashCode() => HashCode.Combine(x, y, z, w);
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is b32v4_mt4 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(b32v4_mt4 other) => x.Equals(other.x) && y.Equals(other.y) && z.Equals(other.z) && w.Equals(other.w);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool NotEquals(b32v4_mt4 other) => !x.Equals(other.x) || !y.Equals(other.y) || !z.Equals(other.z) || !w.Equals(other.w);
+
+    [MethodImpl(256 | 512)]
+    static bool IEqualityOperators<b32v4_mt4, b32v4_mt4, bool>.operator ==(b32v4_mt4 left, b32v4_mt4 right) => left.Equals(right);
+
+    [MethodImpl(256 | 512)]
+    static bool IEqualityOperators<b32v4_mt4, b32v4_mt4, bool>.operator !=(b32v4_mt4 left, b32v4_mt4 right) => left.NotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v4_mt4 VectorEquals(b32v4_mt4 other)
+    {
+        return new(x.LaneEquals(other.x), y.LaneEquals(other.y), z.LaneEquals(other.z), w.LaneEquals(other.w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v4_mt4 VectorNotEquals(b32v4_mt4 other)
+    {
+        return new(x.LaneNotEquals(other.x), y.LaneNotEquals(other.y), z.LaneNotEquals(other.z), w.LaneNotEquals(other.w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v4_mt4 VectorEquals(b32_mt4 other)
+    {
+        return new(x.LaneEquals(other), y.LaneEquals(other), z.LaneEquals(other), w.LaneEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v4_mt4 VectorNotEquals(b32_mt4 other)
+    {
+        return new(x.LaneNotEquals(other), y.LaneNotEquals(other), z.LaneNotEquals(other), w.LaneNotEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v4_mt4 VectorEquals(b32 other)
+    {
+        return new(x.LaneEquals(other), y.LaneEquals(other), z.LaneEquals(other), w.LaneEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v4_mt4 VectorNotEquals(b32 other)
+    {
+        return new(x.LaneNotEquals(other), y.LaneNotEquals(other), z.LaneNotEquals(other), w.LaneNotEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v4_mt4 InvVectorEquals(b32_mt4 other)
+    {
+        return new(other.LaneEquals(x), other.LaneEquals(y), other.LaneEquals(z), other.LaneEquals(w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v4_mt4 InvVectorNotEquals(b32_mt4 other)
+    {
+        return new(other.LaneNotEquals(x), other.LaneNotEquals(y), other.LaneNotEquals(z), other.LaneNotEquals(w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v4_mt4 InvVectorEquals(b32 other)
+    {
+        return new(new b32_mt4(other).LaneEquals(x), new b32_mt4(other).LaneEquals(y), new b32_mt4(other).LaneEquals(z), new b32_mt4(other).LaneEquals(w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v4_mt4 InvVectorNotEquals(b32 other)
+    {
+        return new(new b32_mt4(other).LaneNotEquals(x), new b32_mt4(other).LaneNotEquals(y), new b32_mt4(other).LaneNotEquals(z), new b32_mt4(other).LaneNotEquals(w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator ==(b32v4_mt4 left, b32v4_mt4 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator !=(b32v4_mt4 left, b32v4_mt4 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator ==(b32v4_mt4 left, b32_mt4 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator !=(b32v4_mt4 left, b32_mt4 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator ==(b32_mt4 left, b32v4_mt4 right) => right.InvVectorEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator !=(b32_mt4 left, b32v4_mt4 right) => right.InvVectorNotEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator ==(b32v4_mt4 left, b32 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator !=(b32v4_mt4 left, b32 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator ==(b32 left, b32v4_mt4 right) => right.InvVectorEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator !=(b32 left, b32v4_mt4 right) => right.InvVectorNotEquals(left);
+}
+
+#endregion // b32v4_mt4
+#region b32v4_mt8
+
+public partial struct b32v4_mt8
+    : IEqualityOperators<b32v4_mt8, b32v4_mt8, bool>
+    , IEqualityOperators<b32v4_mt8, b32v4_mt8, b32v4_mt8>
+{
+    [MethodImpl(256 | 512)]
+    public readonly override int GetHashCode() => HashCode.Combine(x, y, z, w);
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is b32v4_mt8 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(b32v4_mt8 other) => x.Equals(other.x) && y.Equals(other.y) && z.Equals(other.z) && w.Equals(other.w);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool NotEquals(b32v4_mt8 other) => !x.Equals(other.x) || !y.Equals(other.y) || !z.Equals(other.z) || !w.Equals(other.w);
+
+    [MethodImpl(256 | 512)]
+    static bool IEqualityOperators<b32v4_mt8, b32v4_mt8, bool>.operator ==(b32v4_mt8 left, b32v4_mt8 right) => left.Equals(right);
+
+    [MethodImpl(256 | 512)]
+    static bool IEqualityOperators<b32v4_mt8, b32v4_mt8, bool>.operator !=(b32v4_mt8 left, b32v4_mt8 right) => left.NotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v4_mt8 VectorEquals(b32v4_mt8 other)
+    {
+        return new(x.LaneEquals(other.x), y.LaneEquals(other.y), z.LaneEquals(other.z), w.LaneEquals(other.w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v4_mt8 VectorNotEquals(b32v4_mt8 other)
+    {
+        return new(x.LaneNotEquals(other.x), y.LaneNotEquals(other.y), z.LaneNotEquals(other.z), w.LaneNotEquals(other.w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v4_mt8 VectorEquals(b32_mt8 other)
+    {
+        return new(x.LaneEquals(other), y.LaneEquals(other), z.LaneEquals(other), w.LaneEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v4_mt8 VectorNotEquals(b32_mt8 other)
+    {
+        return new(x.LaneNotEquals(other), y.LaneNotEquals(other), z.LaneNotEquals(other), w.LaneNotEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v4_mt8 VectorEquals(b32 other)
+    {
+        return new(x.LaneEquals(other), y.LaneEquals(other), z.LaneEquals(other), w.LaneEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v4_mt8 VectorNotEquals(b32 other)
+    {
+        return new(x.LaneNotEquals(other), y.LaneNotEquals(other), z.LaneNotEquals(other), w.LaneNotEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v4_mt8 InvVectorEquals(b32_mt8 other)
+    {
+        return new(other.LaneEquals(x), other.LaneEquals(y), other.LaneEquals(z), other.LaneEquals(w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v4_mt8 InvVectorNotEquals(b32_mt8 other)
+    {
+        return new(other.LaneNotEquals(x), other.LaneNotEquals(y), other.LaneNotEquals(z), other.LaneNotEquals(w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v4_mt8 InvVectorEquals(b32 other)
+    {
+        return new(new b32_mt8(other).LaneEquals(x), new b32_mt8(other).LaneEquals(y), new b32_mt8(other).LaneEquals(z), new b32_mt8(other).LaneEquals(w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v4_mt8 InvVectorNotEquals(b32 other)
+    {
+        return new(new b32_mt8(other).LaneNotEquals(x), new b32_mt8(other).LaneNotEquals(y), new b32_mt8(other).LaneNotEquals(z), new b32_mt8(other).LaneNotEquals(w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator ==(b32v4_mt8 left, b32v4_mt8 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator !=(b32v4_mt8 left, b32v4_mt8 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator ==(b32v4_mt8 left, b32_mt8 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator !=(b32v4_mt8 left, b32_mt8 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator ==(b32_mt8 left, b32v4_mt8 right) => right.InvVectorEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator !=(b32_mt8 left, b32v4_mt8 right) => right.InvVectorNotEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator ==(b32v4_mt8 left, b32 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator !=(b32v4_mt8 left, b32 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator ==(b32 left, b32v4_mt8 right) => right.InvVectorEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator !=(b32 left, b32v4_mt8 right) => right.InvVectorNotEquals(left);
+}
+
+#endregion // b32v4_mt8
+#region b32v4_mt16
+
+public partial struct b32v4_mt16
+    : IEqualityOperators<b32v4_mt16, b32v4_mt16, bool>
+    , IEqualityOperators<b32v4_mt16, b32v4_mt16, b32v4_mt16>
+{
+    [MethodImpl(256 | 512)]
+    public readonly override int GetHashCode() => HashCode.Combine(x, y, z, w);
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is b32v4_mt16 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(b32v4_mt16 other) => x.Equals(other.x) && y.Equals(other.y) && z.Equals(other.z) && w.Equals(other.w);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool NotEquals(b32v4_mt16 other) => !x.Equals(other.x) || !y.Equals(other.y) || !z.Equals(other.z) || !w.Equals(other.w);
+
+    [MethodImpl(256 | 512)]
+    static bool IEqualityOperators<b32v4_mt16, b32v4_mt16, bool>.operator ==(b32v4_mt16 left, b32v4_mt16 right) => left.Equals(right);
+
+    [MethodImpl(256 | 512)]
+    static bool IEqualityOperators<b32v4_mt16, b32v4_mt16, bool>.operator !=(b32v4_mt16 left, b32v4_mt16 right) => left.NotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v4_mt16 VectorEquals(b32v4_mt16 other)
+    {
+        return new(x.LaneEquals(other.x), y.LaneEquals(other.y), z.LaneEquals(other.z), w.LaneEquals(other.w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v4_mt16 VectorNotEquals(b32v4_mt16 other)
+    {
+        return new(x.LaneNotEquals(other.x), y.LaneNotEquals(other.y), z.LaneNotEquals(other.z), w.LaneNotEquals(other.w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v4_mt16 VectorEquals(b32_mt16 other)
+    {
+        return new(x.LaneEquals(other), y.LaneEquals(other), z.LaneEquals(other), w.LaneEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v4_mt16 VectorNotEquals(b32_mt16 other)
+    {
+        return new(x.LaneNotEquals(other), y.LaneNotEquals(other), z.LaneNotEquals(other), w.LaneNotEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v4_mt16 VectorEquals(b32 other)
+    {
+        return new(x.LaneEquals(other), y.LaneEquals(other), z.LaneEquals(other), w.LaneEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v4_mt16 VectorNotEquals(b32 other)
+    {
+        return new(x.LaneNotEquals(other), y.LaneNotEquals(other), z.LaneNotEquals(other), w.LaneNotEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v4_mt16 InvVectorEquals(b32_mt16 other)
+    {
+        return new(other.LaneEquals(x), other.LaneEquals(y), other.LaneEquals(z), other.LaneEquals(w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v4_mt16 InvVectorNotEquals(b32_mt16 other)
+    {
+        return new(other.LaneNotEquals(x), other.LaneNotEquals(y), other.LaneNotEquals(z), other.LaneNotEquals(w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v4_mt16 InvVectorEquals(b32 other)
+    {
+        return new(new b32_mt16(other).LaneEquals(x), new b32_mt16(other).LaneEquals(y), new b32_mt16(other).LaneEquals(z), new b32_mt16(other).LaneEquals(w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b32v4_mt16 InvVectorNotEquals(b32 other)
+    {
+        return new(new b32_mt16(other).LaneNotEquals(x), new b32_mt16(other).LaneNotEquals(y), new b32_mt16(other).LaneNotEquals(z), new b32_mt16(other).LaneNotEquals(w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator ==(b32v4_mt16 left, b32v4_mt16 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator !=(b32v4_mt16 left, b32v4_mt16 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator ==(b32v4_mt16 left, b32_mt16 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator !=(b32v4_mt16 left, b32_mt16 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator ==(b32_mt16 left, b32v4_mt16 right) => right.InvVectorEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator !=(b32_mt16 left, b32v4_mt16 right) => right.InvVectorNotEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator ==(b32v4_mt16 left, b32 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator !=(b32v4_mt16 left, b32 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator ==(b32 left, b32v4_mt16 right) => right.InvVectorEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator !=(b32 left, b32v4_mt16 right) => right.InvVectorNotEquals(left);
+}
+
+#endregion // b32v4_mt16
+#region b64v2_mt4
+
+public partial struct b64v2_mt4
+    : IEqualityOperators<b64v2_mt4, b64v2_mt4, bool>
+    , IEqualityOperators<b64v2_mt4, b64v2_mt4, b64v2_mt4>
+{
+    [MethodImpl(256 | 512)]
+    public readonly override int GetHashCode() => HashCode.Combine(x, y);
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is b64v2_mt4 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(b64v2_mt4 other) => x.Equals(other.x) && y.Equals(other.y);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool NotEquals(b64v2_mt4 other) => !x.Equals(other.x) || !y.Equals(other.y);
+
+    [MethodImpl(256 | 512)]
+    static bool IEqualityOperators<b64v2_mt4, b64v2_mt4, bool>.operator ==(b64v2_mt4 left, b64v2_mt4 right) => left.Equals(right);
+
+    [MethodImpl(256 | 512)]
+    static bool IEqualityOperators<b64v2_mt4, b64v2_mt4, bool>.operator !=(b64v2_mt4 left, b64v2_mt4 right) => left.NotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v2_mt4 VectorEquals(b64v2_mt4 other)
+    {
+        return new(x.LaneEquals(other.x), y.LaneEquals(other.y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v2_mt4 VectorNotEquals(b64v2_mt4 other)
+    {
+        return new(x.LaneNotEquals(other.x), y.LaneNotEquals(other.y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v2_mt4 VectorEquals(b64_mt4 other)
+    {
+        return new(x.LaneEquals(other), y.LaneEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v2_mt4 VectorNotEquals(b64_mt4 other)
+    {
+        return new(x.LaneNotEquals(other), y.LaneNotEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v2_mt4 VectorEquals(b64 other)
+    {
+        return new(x.LaneEquals(other), y.LaneEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v2_mt4 VectorNotEquals(b64 other)
+    {
+        return new(x.LaneNotEquals(other), y.LaneNotEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v2_mt4 InvVectorEquals(b64_mt4 other)
+    {
+        return new(other.LaneEquals(x), other.LaneEquals(y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v2_mt4 InvVectorNotEquals(b64_mt4 other)
+    {
+        return new(other.LaneNotEquals(x), other.LaneNotEquals(y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v2_mt4 InvVectorEquals(b64 other)
+    {
+        return new(new b64_mt4(other).LaneEquals(x), new b64_mt4(other).LaneEquals(y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v2_mt4 InvVectorNotEquals(b64 other)
+    {
+        return new(new b64_mt4(other).LaneNotEquals(x), new b64_mt4(other).LaneNotEquals(y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator ==(b64v2_mt4 left, b64v2_mt4 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator !=(b64v2_mt4 left, b64v2_mt4 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator ==(b64v2_mt4 left, b64_mt4 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator !=(b64v2_mt4 left, b64_mt4 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator ==(b64_mt4 left, b64v2_mt4 right) => right.InvVectorEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator !=(b64_mt4 left, b64v2_mt4 right) => right.InvVectorNotEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator ==(b64v2_mt4 left, b64 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator !=(b64v2_mt4 left, b64 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator ==(b64 left, b64v2_mt4 right) => right.InvVectorEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator !=(b64 left, b64v2_mt4 right) => right.InvVectorNotEquals(left);
+}
+
+#endregion // b64v2_mt4
+#region b64v2_mt8
+
+public partial struct b64v2_mt8
+    : IEqualityOperators<b64v2_mt8, b64v2_mt8, bool>
+    , IEqualityOperators<b64v2_mt8, b64v2_mt8, b64v2_mt8>
+{
+    [MethodImpl(256 | 512)]
+    public readonly override int GetHashCode() => HashCode.Combine(x, y);
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is b64v2_mt8 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(b64v2_mt8 other) => x.Equals(other.x) && y.Equals(other.y);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool NotEquals(b64v2_mt8 other) => !x.Equals(other.x) || !y.Equals(other.y);
+
+    [MethodImpl(256 | 512)]
+    static bool IEqualityOperators<b64v2_mt8, b64v2_mt8, bool>.operator ==(b64v2_mt8 left, b64v2_mt8 right) => left.Equals(right);
+
+    [MethodImpl(256 | 512)]
+    static bool IEqualityOperators<b64v2_mt8, b64v2_mt8, bool>.operator !=(b64v2_mt8 left, b64v2_mt8 right) => left.NotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v2_mt8 VectorEquals(b64v2_mt8 other)
+    {
+        return new(x.LaneEquals(other.x), y.LaneEquals(other.y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v2_mt8 VectorNotEquals(b64v2_mt8 other)
+    {
+        return new(x.LaneNotEquals(other.x), y.LaneNotEquals(other.y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v2_mt8 VectorEquals(b64_mt8 other)
+    {
+        return new(x.LaneEquals(other), y.LaneEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v2_mt8 VectorNotEquals(b64_mt8 other)
+    {
+        return new(x.LaneNotEquals(other), y.LaneNotEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v2_mt8 VectorEquals(b64 other)
+    {
+        return new(x.LaneEquals(other), y.LaneEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v2_mt8 VectorNotEquals(b64 other)
+    {
+        return new(x.LaneNotEquals(other), y.LaneNotEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v2_mt8 InvVectorEquals(b64_mt8 other)
+    {
+        return new(other.LaneEquals(x), other.LaneEquals(y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v2_mt8 InvVectorNotEquals(b64_mt8 other)
+    {
+        return new(other.LaneNotEquals(x), other.LaneNotEquals(y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v2_mt8 InvVectorEquals(b64 other)
+    {
+        return new(new b64_mt8(other).LaneEquals(x), new b64_mt8(other).LaneEquals(y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v2_mt8 InvVectorNotEquals(b64 other)
+    {
+        return new(new b64_mt8(other).LaneNotEquals(x), new b64_mt8(other).LaneNotEquals(y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator ==(b64v2_mt8 left, b64v2_mt8 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator !=(b64v2_mt8 left, b64v2_mt8 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator ==(b64v2_mt8 left, b64_mt8 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator !=(b64v2_mt8 left, b64_mt8 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator ==(b64_mt8 left, b64v2_mt8 right) => right.InvVectorEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator !=(b64_mt8 left, b64v2_mt8 right) => right.InvVectorNotEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator ==(b64v2_mt8 left, b64 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator !=(b64v2_mt8 left, b64 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator ==(b64 left, b64v2_mt8 right) => right.InvVectorEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator !=(b64 left, b64v2_mt8 right) => right.InvVectorNotEquals(left);
+}
+
+#endregion // b64v2_mt8
+#region b64v2_mt16
+
+public partial struct b64v2_mt16
+    : IEqualityOperators<b64v2_mt16, b64v2_mt16, bool>
+    , IEqualityOperators<b64v2_mt16, b64v2_mt16, b64v2_mt16>
+{
+    [MethodImpl(256 | 512)]
+    public readonly override int GetHashCode() => HashCode.Combine(x, y);
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is b64v2_mt16 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(b64v2_mt16 other) => x.Equals(other.x) && y.Equals(other.y);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool NotEquals(b64v2_mt16 other) => !x.Equals(other.x) || !y.Equals(other.y);
+
+    [MethodImpl(256 | 512)]
+    static bool IEqualityOperators<b64v2_mt16, b64v2_mt16, bool>.operator ==(b64v2_mt16 left, b64v2_mt16 right) => left.Equals(right);
+
+    [MethodImpl(256 | 512)]
+    static bool IEqualityOperators<b64v2_mt16, b64v2_mt16, bool>.operator !=(b64v2_mt16 left, b64v2_mt16 right) => left.NotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v2_mt16 VectorEquals(b64v2_mt16 other)
+    {
+        return new(x.LaneEquals(other.x), y.LaneEquals(other.y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v2_mt16 VectorNotEquals(b64v2_mt16 other)
+    {
+        return new(x.LaneNotEquals(other.x), y.LaneNotEquals(other.y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v2_mt16 VectorEquals(b64_mt16 other)
+    {
+        return new(x.LaneEquals(other), y.LaneEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v2_mt16 VectorNotEquals(b64_mt16 other)
+    {
+        return new(x.LaneNotEquals(other), y.LaneNotEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v2_mt16 VectorEquals(b64 other)
+    {
+        return new(x.LaneEquals(other), y.LaneEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v2_mt16 VectorNotEquals(b64 other)
+    {
+        return new(x.LaneNotEquals(other), y.LaneNotEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v2_mt16 InvVectorEquals(b64_mt16 other)
+    {
+        return new(other.LaneEquals(x), other.LaneEquals(y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v2_mt16 InvVectorNotEquals(b64_mt16 other)
+    {
+        return new(other.LaneNotEquals(x), other.LaneNotEquals(y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v2_mt16 InvVectorEquals(b64 other)
+    {
+        return new(new b64_mt16(other).LaneEquals(x), new b64_mt16(other).LaneEquals(y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v2_mt16 InvVectorNotEquals(b64 other)
+    {
+        return new(new b64_mt16(other).LaneNotEquals(x), new b64_mt16(other).LaneNotEquals(y));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator ==(b64v2_mt16 left, b64v2_mt16 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator !=(b64v2_mt16 left, b64v2_mt16 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator ==(b64v2_mt16 left, b64_mt16 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator !=(b64v2_mt16 left, b64_mt16 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator ==(b64_mt16 left, b64v2_mt16 right) => right.InvVectorEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator !=(b64_mt16 left, b64v2_mt16 right) => right.InvVectorNotEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator ==(b64v2_mt16 left, b64 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator !=(b64v2_mt16 left, b64 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator ==(b64 left, b64v2_mt16 right) => right.InvVectorEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator !=(b64 left, b64v2_mt16 right) => right.InvVectorNotEquals(left);
+}
+
+#endregion // b64v2_mt16
+#region b64v3_mt4
+
+public partial struct b64v3_mt4
+    : IEqualityOperators<b64v3_mt4, b64v3_mt4, bool>
+    , IEqualityOperators<b64v3_mt4, b64v3_mt4, b64v3_mt4>
+{
+    [MethodImpl(256 | 512)]
+    public readonly override int GetHashCode() => HashCode.Combine(x, y, z);
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is b64v3_mt4 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(b64v3_mt4 other) => x.Equals(other.x) && y.Equals(other.y) && z.Equals(other.z);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool NotEquals(b64v3_mt4 other) => !x.Equals(other.x) || !y.Equals(other.y) || !z.Equals(other.z);
+
+    [MethodImpl(256 | 512)]
+    static bool IEqualityOperators<b64v3_mt4, b64v3_mt4, bool>.operator ==(b64v3_mt4 left, b64v3_mt4 right) => left.Equals(right);
+
+    [MethodImpl(256 | 512)]
+    static bool IEqualityOperators<b64v3_mt4, b64v3_mt4, bool>.operator !=(b64v3_mt4 left, b64v3_mt4 right) => left.NotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v3_mt4 VectorEquals(b64v3_mt4 other)
+    {
+        return new(x.LaneEquals(other.x), y.LaneEquals(other.y), z.LaneEquals(other.z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v3_mt4 VectorNotEquals(b64v3_mt4 other)
+    {
+        return new(x.LaneNotEquals(other.x), y.LaneNotEquals(other.y), z.LaneNotEquals(other.z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v3_mt4 VectorEquals(b64_mt4 other)
+    {
+        return new(x.LaneEquals(other), y.LaneEquals(other), z.LaneEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v3_mt4 VectorNotEquals(b64_mt4 other)
+    {
+        return new(x.LaneNotEquals(other), y.LaneNotEquals(other), z.LaneNotEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v3_mt4 VectorEquals(b64 other)
+    {
+        return new(x.LaneEquals(other), y.LaneEquals(other), z.LaneEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v3_mt4 VectorNotEquals(b64 other)
+    {
+        return new(x.LaneNotEquals(other), y.LaneNotEquals(other), z.LaneNotEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v3_mt4 InvVectorEquals(b64_mt4 other)
+    {
+        return new(other.LaneEquals(x), other.LaneEquals(y), other.LaneEquals(z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v3_mt4 InvVectorNotEquals(b64_mt4 other)
+    {
+        return new(other.LaneNotEquals(x), other.LaneNotEquals(y), other.LaneNotEquals(z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v3_mt4 InvVectorEquals(b64 other)
+    {
+        return new(new b64_mt4(other).LaneEquals(x), new b64_mt4(other).LaneEquals(y), new b64_mt4(other).LaneEquals(z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v3_mt4 InvVectorNotEquals(b64 other)
+    {
+        return new(new b64_mt4(other).LaneNotEquals(x), new b64_mt4(other).LaneNotEquals(y), new b64_mt4(other).LaneNotEquals(z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator ==(b64v3_mt4 left, b64v3_mt4 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator !=(b64v3_mt4 left, b64v3_mt4 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator ==(b64v3_mt4 left, b64_mt4 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator !=(b64v3_mt4 left, b64_mt4 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator ==(b64_mt4 left, b64v3_mt4 right) => right.InvVectorEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator !=(b64_mt4 left, b64v3_mt4 right) => right.InvVectorNotEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator ==(b64v3_mt4 left, b64 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator !=(b64v3_mt4 left, b64 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator ==(b64 left, b64v3_mt4 right) => right.InvVectorEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator !=(b64 left, b64v3_mt4 right) => right.InvVectorNotEquals(left);
+}
+
+#endregion // b64v3_mt4
+#region b64v3_mt8
+
+public partial struct b64v3_mt8
+    : IEqualityOperators<b64v3_mt8, b64v3_mt8, bool>
+    , IEqualityOperators<b64v3_mt8, b64v3_mt8, b64v3_mt8>
+{
+    [MethodImpl(256 | 512)]
+    public readonly override int GetHashCode() => HashCode.Combine(x, y, z);
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is b64v3_mt8 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(b64v3_mt8 other) => x.Equals(other.x) && y.Equals(other.y) && z.Equals(other.z);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool NotEquals(b64v3_mt8 other) => !x.Equals(other.x) || !y.Equals(other.y) || !z.Equals(other.z);
+
+    [MethodImpl(256 | 512)]
+    static bool IEqualityOperators<b64v3_mt8, b64v3_mt8, bool>.operator ==(b64v3_mt8 left, b64v3_mt8 right) => left.Equals(right);
+
+    [MethodImpl(256 | 512)]
+    static bool IEqualityOperators<b64v3_mt8, b64v3_mt8, bool>.operator !=(b64v3_mt8 left, b64v3_mt8 right) => left.NotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v3_mt8 VectorEquals(b64v3_mt8 other)
+    {
+        return new(x.LaneEquals(other.x), y.LaneEquals(other.y), z.LaneEquals(other.z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v3_mt8 VectorNotEquals(b64v3_mt8 other)
+    {
+        return new(x.LaneNotEquals(other.x), y.LaneNotEquals(other.y), z.LaneNotEquals(other.z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v3_mt8 VectorEquals(b64_mt8 other)
+    {
+        return new(x.LaneEquals(other), y.LaneEquals(other), z.LaneEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v3_mt8 VectorNotEquals(b64_mt8 other)
+    {
+        return new(x.LaneNotEquals(other), y.LaneNotEquals(other), z.LaneNotEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v3_mt8 VectorEquals(b64 other)
+    {
+        return new(x.LaneEquals(other), y.LaneEquals(other), z.LaneEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v3_mt8 VectorNotEquals(b64 other)
+    {
+        return new(x.LaneNotEquals(other), y.LaneNotEquals(other), z.LaneNotEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v3_mt8 InvVectorEquals(b64_mt8 other)
+    {
+        return new(other.LaneEquals(x), other.LaneEquals(y), other.LaneEquals(z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v3_mt8 InvVectorNotEquals(b64_mt8 other)
+    {
+        return new(other.LaneNotEquals(x), other.LaneNotEquals(y), other.LaneNotEquals(z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v3_mt8 InvVectorEquals(b64 other)
+    {
+        return new(new b64_mt8(other).LaneEquals(x), new b64_mt8(other).LaneEquals(y), new b64_mt8(other).LaneEquals(z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v3_mt8 InvVectorNotEquals(b64 other)
+    {
+        return new(new b64_mt8(other).LaneNotEquals(x), new b64_mt8(other).LaneNotEquals(y), new b64_mt8(other).LaneNotEquals(z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator ==(b64v3_mt8 left, b64v3_mt8 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator !=(b64v3_mt8 left, b64v3_mt8 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator ==(b64v3_mt8 left, b64_mt8 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator !=(b64v3_mt8 left, b64_mt8 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator ==(b64_mt8 left, b64v3_mt8 right) => right.InvVectorEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator !=(b64_mt8 left, b64v3_mt8 right) => right.InvVectorNotEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator ==(b64v3_mt8 left, b64 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator !=(b64v3_mt8 left, b64 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator ==(b64 left, b64v3_mt8 right) => right.InvVectorEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator !=(b64 left, b64v3_mt8 right) => right.InvVectorNotEquals(left);
+}
+
+#endregion // b64v3_mt8
+#region b64v3_mt16
+
+public partial struct b64v3_mt16
+    : IEqualityOperators<b64v3_mt16, b64v3_mt16, bool>
+    , IEqualityOperators<b64v3_mt16, b64v3_mt16, b64v3_mt16>
+{
+    [MethodImpl(256 | 512)]
+    public readonly override int GetHashCode() => HashCode.Combine(x, y, z);
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is b64v3_mt16 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(b64v3_mt16 other) => x.Equals(other.x) && y.Equals(other.y) && z.Equals(other.z);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool NotEquals(b64v3_mt16 other) => !x.Equals(other.x) || !y.Equals(other.y) || !z.Equals(other.z);
+
+    [MethodImpl(256 | 512)]
+    static bool IEqualityOperators<b64v3_mt16, b64v3_mt16, bool>.operator ==(b64v3_mt16 left, b64v3_mt16 right) => left.Equals(right);
+
+    [MethodImpl(256 | 512)]
+    static bool IEqualityOperators<b64v3_mt16, b64v3_mt16, bool>.operator !=(b64v3_mt16 left, b64v3_mt16 right) => left.NotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v3_mt16 VectorEquals(b64v3_mt16 other)
+    {
+        return new(x.LaneEquals(other.x), y.LaneEquals(other.y), z.LaneEquals(other.z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v3_mt16 VectorNotEquals(b64v3_mt16 other)
+    {
+        return new(x.LaneNotEquals(other.x), y.LaneNotEquals(other.y), z.LaneNotEquals(other.z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v3_mt16 VectorEquals(b64_mt16 other)
+    {
+        return new(x.LaneEquals(other), y.LaneEquals(other), z.LaneEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v3_mt16 VectorNotEquals(b64_mt16 other)
+    {
+        return new(x.LaneNotEquals(other), y.LaneNotEquals(other), z.LaneNotEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v3_mt16 VectorEquals(b64 other)
+    {
+        return new(x.LaneEquals(other), y.LaneEquals(other), z.LaneEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v3_mt16 VectorNotEquals(b64 other)
+    {
+        return new(x.LaneNotEquals(other), y.LaneNotEquals(other), z.LaneNotEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v3_mt16 InvVectorEquals(b64_mt16 other)
+    {
+        return new(other.LaneEquals(x), other.LaneEquals(y), other.LaneEquals(z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v3_mt16 InvVectorNotEquals(b64_mt16 other)
+    {
+        return new(other.LaneNotEquals(x), other.LaneNotEquals(y), other.LaneNotEquals(z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v3_mt16 InvVectorEquals(b64 other)
+    {
+        return new(new b64_mt16(other).LaneEquals(x), new b64_mt16(other).LaneEquals(y), new b64_mt16(other).LaneEquals(z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v3_mt16 InvVectorNotEquals(b64 other)
+    {
+        return new(new b64_mt16(other).LaneNotEquals(x), new b64_mt16(other).LaneNotEquals(y), new b64_mt16(other).LaneNotEquals(z));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator ==(b64v3_mt16 left, b64v3_mt16 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator !=(b64v3_mt16 left, b64v3_mt16 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator ==(b64v3_mt16 left, b64_mt16 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator !=(b64v3_mt16 left, b64_mt16 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator ==(b64_mt16 left, b64v3_mt16 right) => right.InvVectorEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator !=(b64_mt16 left, b64v3_mt16 right) => right.InvVectorNotEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator ==(b64v3_mt16 left, b64 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator !=(b64v3_mt16 left, b64 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator ==(b64 left, b64v3_mt16 right) => right.InvVectorEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator !=(b64 left, b64v3_mt16 right) => right.InvVectorNotEquals(left);
+}
+
+#endregion // b64v3_mt16
+#region b64v4_mt4
+
+public partial struct b64v4_mt4
+    : IEqualityOperators<b64v4_mt4, b64v4_mt4, bool>
+    , IEqualityOperators<b64v4_mt4, b64v4_mt4, b64v4_mt4>
+{
+    [MethodImpl(256 | 512)]
+    public readonly override int GetHashCode() => HashCode.Combine(x, y, z, w);
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is b64v4_mt4 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(b64v4_mt4 other) => x.Equals(other.x) && y.Equals(other.y) && z.Equals(other.z) && w.Equals(other.w);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool NotEquals(b64v4_mt4 other) => !x.Equals(other.x) || !y.Equals(other.y) || !z.Equals(other.z) || !w.Equals(other.w);
+
+    [MethodImpl(256 | 512)]
+    static bool IEqualityOperators<b64v4_mt4, b64v4_mt4, bool>.operator ==(b64v4_mt4 left, b64v4_mt4 right) => left.Equals(right);
+
+    [MethodImpl(256 | 512)]
+    static bool IEqualityOperators<b64v4_mt4, b64v4_mt4, bool>.operator !=(b64v4_mt4 left, b64v4_mt4 right) => left.NotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v4_mt4 VectorEquals(b64v4_mt4 other)
+    {
+        return new(x.LaneEquals(other.x), y.LaneEquals(other.y), z.LaneEquals(other.z), w.LaneEquals(other.w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v4_mt4 VectorNotEquals(b64v4_mt4 other)
+    {
+        return new(x.LaneNotEquals(other.x), y.LaneNotEquals(other.y), z.LaneNotEquals(other.z), w.LaneNotEquals(other.w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v4_mt4 VectorEquals(b64_mt4 other)
+    {
+        return new(x.LaneEquals(other), y.LaneEquals(other), z.LaneEquals(other), w.LaneEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v4_mt4 VectorNotEquals(b64_mt4 other)
+    {
+        return new(x.LaneNotEquals(other), y.LaneNotEquals(other), z.LaneNotEquals(other), w.LaneNotEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v4_mt4 VectorEquals(b64 other)
+    {
+        return new(x.LaneEquals(other), y.LaneEquals(other), z.LaneEquals(other), w.LaneEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v4_mt4 VectorNotEquals(b64 other)
+    {
+        return new(x.LaneNotEquals(other), y.LaneNotEquals(other), z.LaneNotEquals(other), w.LaneNotEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v4_mt4 InvVectorEquals(b64_mt4 other)
+    {
+        return new(other.LaneEquals(x), other.LaneEquals(y), other.LaneEquals(z), other.LaneEquals(w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v4_mt4 InvVectorNotEquals(b64_mt4 other)
+    {
+        return new(other.LaneNotEquals(x), other.LaneNotEquals(y), other.LaneNotEquals(z), other.LaneNotEquals(w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v4_mt4 InvVectorEquals(b64 other)
+    {
+        return new(new b64_mt4(other).LaneEquals(x), new b64_mt4(other).LaneEquals(y), new b64_mt4(other).LaneEquals(z), new b64_mt4(other).LaneEquals(w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v4_mt4 InvVectorNotEquals(b64 other)
+    {
+        return new(new b64_mt4(other).LaneNotEquals(x), new b64_mt4(other).LaneNotEquals(y), new b64_mt4(other).LaneNotEquals(z), new b64_mt4(other).LaneNotEquals(w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator ==(b64v4_mt4 left, b64v4_mt4 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator !=(b64v4_mt4 left, b64v4_mt4 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator ==(b64v4_mt4 left, b64_mt4 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator !=(b64v4_mt4 left, b64_mt4 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator ==(b64_mt4 left, b64v4_mt4 right) => right.InvVectorEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator !=(b64_mt4 left, b64v4_mt4 right) => right.InvVectorNotEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator ==(b64v4_mt4 left, b64 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator !=(b64v4_mt4 left, b64 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator ==(b64 left, b64v4_mt4 right) => right.InvVectorEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator !=(b64 left, b64v4_mt4 right) => right.InvVectorNotEquals(left);
+}
+
+#endregion // b64v4_mt4
+#region b64v4_mt8
+
+public partial struct b64v4_mt8
+    : IEqualityOperators<b64v4_mt8, b64v4_mt8, bool>
+    , IEqualityOperators<b64v4_mt8, b64v4_mt8, b64v4_mt8>
+{
+    [MethodImpl(256 | 512)]
+    public readonly override int GetHashCode() => HashCode.Combine(x, y, z, w);
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is b64v4_mt8 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(b64v4_mt8 other) => x.Equals(other.x) && y.Equals(other.y) && z.Equals(other.z) && w.Equals(other.w);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool NotEquals(b64v4_mt8 other) => !x.Equals(other.x) || !y.Equals(other.y) || !z.Equals(other.z) || !w.Equals(other.w);
+
+    [MethodImpl(256 | 512)]
+    static bool IEqualityOperators<b64v4_mt8, b64v4_mt8, bool>.operator ==(b64v4_mt8 left, b64v4_mt8 right) => left.Equals(right);
+
+    [MethodImpl(256 | 512)]
+    static bool IEqualityOperators<b64v4_mt8, b64v4_mt8, bool>.operator !=(b64v4_mt8 left, b64v4_mt8 right) => left.NotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v4_mt8 VectorEquals(b64v4_mt8 other)
+    {
+        return new(x.LaneEquals(other.x), y.LaneEquals(other.y), z.LaneEquals(other.z), w.LaneEquals(other.w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v4_mt8 VectorNotEquals(b64v4_mt8 other)
+    {
+        return new(x.LaneNotEquals(other.x), y.LaneNotEquals(other.y), z.LaneNotEquals(other.z), w.LaneNotEquals(other.w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v4_mt8 VectorEquals(b64_mt8 other)
+    {
+        return new(x.LaneEquals(other), y.LaneEquals(other), z.LaneEquals(other), w.LaneEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v4_mt8 VectorNotEquals(b64_mt8 other)
+    {
+        return new(x.LaneNotEquals(other), y.LaneNotEquals(other), z.LaneNotEquals(other), w.LaneNotEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v4_mt8 VectorEquals(b64 other)
+    {
+        return new(x.LaneEquals(other), y.LaneEquals(other), z.LaneEquals(other), w.LaneEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v4_mt8 VectorNotEquals(b64 other)
+    {
+        return new(x.LaneNotEquals(other), y.LaneNotEquals(other), z.LaneNotEquals(other), w.LaneNotEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v4_mt8 InvVectorEquals(b64_mt8 other)
+    {
+        return new(other.LaneEquals(x), other.LaneEquals(y), other.LaneEquals(z), other.LaneEquals(w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v4_mt8 InvVectorNotEquals(b64_mt8 other)
+    {
+        return new(other.LaneNotEquals(x), other.LaneNotEquals(y), other.LaneNotEquals(z), other.LaneNotEquals(w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v4_mt8 InvVectorEquals(b64 other)
+    {
+        return new(new b64_mt8(other).LaneEquals(x), new b64_mt8(other).LaneEquals(y), new b64_mt8(other).LaneEquals(z), new b64_mt8(other).LaneEquals(w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v4_mt8 InvVectorNotEquals(b64 other)
+    {
+        return new(new b64_mt8(other).LaneNotEquals(x), new b64_mt8(other).LaneNotEquals(y), new b64_mt8(other).LaneNotEquals(z), new b64_mt8(other).LaneNotEquals(w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator ==(b64v4_mt8 left, b64v4_mt8 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator !=(b64v4_mt8 left, b64v4_mt8 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator ==(b64v4_mt8 left, b64_mt8 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator !=(b64v4_mt8 left, b64_mt8 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator ==(b64_mt8 left, b64v4_mt8 right) => right.InvVectorEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator !=(b64_mt8 left, b64v4_mt8 right) => right.InvVectorNotEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator ==(b64v4_mt8 left, b64 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator !=(b64v4_mt8 left, b64 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator ==(b64 left, b64v4_mt8 right) => right.InvVectorEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator !=(b64 left, b64v4_mt8 right) => right.InvVectorNotEquals(left);
+}
+
+#endregion // b64v4_mt8
+#region b64v4_mt16
+
+public partial struct b64v4_mt16
+    : IEqualityOperators<b64v4_mt16, b64v4_mt16, bool>
+    , IEqualityOperators<b64v4_mt16, b64v4_mt16, b64v4_mt16>
+{
+    [MethodImpl(256 | 512)]
+    public readonly override int GetHashCode() => HashCode.Combine(x, y, z, w);
+
+    [MethodImpl(256 | 512)]
+    public readonly override bool Equals(object? obj) => obj is b64v4_mt16 other && Equals(other);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool Equals(b64v4_mt16 other) => x.Equals(other.x) && y.Equals(other.y) && z.Equals(other.z) && w.Equals(other.w);
+
+    [MethodImpl(256 | 512)]
+    public readonly bool NotEquals(b64v4_mt16 other) => !x.Equals(other.x) || !y.Equals(other.y) || !z.Equals(other.z) || !w.Equals(other.w);
+
+    [MethodImpl(256 | 512)]
+    static bool IEqualityOperators<b64v4_mt16, b64v4_mt16, bool>.operator ==(b64v4_mt16 left, b64v4_mt16 right) => left.Equals(right);
+
+    [MethodImpl(256 | 512)]
+    static bool IEqualityOperators<b64v4_mt16, b64v4_mt16, bool>.operator !=(b64v4_mt16 left, b64v4_mt16 right) => left.NotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v4_mt16 VectorEquals(b64v4_mt16 other)
+    {
+        return new(x.LaneEquals(other.x), y.LaneEquals(other.y), z.LaneEquals(other.z), w.LaneEquals(other.w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v4_mt16 VectorNotEquals(b64v4_mt16 other)
+    {
+        return new(x.LaneNotEquals(other.x), y.LaneNotEquals(other.y), z.LaneNotEquals(other.z), w.LaneNotEquals(other.w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v4_mt16 VectorEquals(b64_mt16 other)
+    {
+        return new(x.LaneEquals(other), y.LaneEquals(other), z.LaneEquals(other), w.LaneEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v4_mt16 VectorNotEquals(b64_mt16 other)
+    {
+        return new(x.LaneNotEquals(other), y.LaneNotEquals(other), z.LaneNotEquals(other), w.LaneNotEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v4_mt16 VectorEquals(b64 other)
+    {
+        return new(x.LaneEquals(other), y.LaneEquals(other), z.LaneEquals(other), w.LaneEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v4_mt16 VectorNotEquals(b64 other)
+    {
+        return new(x.LaneNotEquals(other), y.LaneNotEquals(other), z.LaneNotEquals(other), w.LaneNotEquals(other));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v4_mt16 InvVectorEquals(b64_mt16 other)
+    {
+        return new(other.LaneEquals(x), other.LaneEquals(y), other.LaneEquals(z), other.LaneEquals(w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v4_mt16 InvVectorNotEquals(b64_mt16 other)
+    {
+        return new(other.LaneNotEquals(x), other.LaneNotEquals(y), other.LaneNotEquals(z), other.LaneNotEquals(w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v4_mt16 InvVectorEquals(b64 other)
+    {
+        return new(new b64_mt16(other).LaneEquals(x), new b64_mt16(other).LaneEquals(y), new b64_mt16(other).LaneEquals(z), new b64_mt16(other).LaneEquals(w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public readonly b64v4_mt16 InvVectorNotEquals(b64 other)
+    {
+        return new(new b64_mt16(other).LaneNotEquals(x), new b64_mt16(other).LaneNotEquals(y), new b64_mt16(other).LaneNotEquals(z), new b64_mt16(other).LaneNotEquals(w));
+    }
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator ==(b64v4_mt16 left, b64v4_mt16 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator !=(b64v4_mt16 left, b64v4_mt16 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator ==(b64v4_mt16 left, b64_mt16 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator !=(b64v4_mt16 left, b64_mt16 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator ==(b64_mt16 left, b64v4_mt16 right) => right.InvVectorEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator !=(b64_mt16 left, b64v4_mt16 right) => right.InvVectorNotEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator ==(b64v4_mt16 left, b64 right) => left.VectorEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator !=(b64v4_mt16 left, b64 right) => left.VectorNotEquals(right);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator ==(b64 left, b64v4_mt16 right) => right.InvVectorEquals(left);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator !=(b64 left, b64v4_mt16 right) => right.InvVectorNotEquals(left);
+}
+
+#endregion // b64v4_mt16
