@@ -55,6 +55,21 @@ public partial struct <#= typeName #>
 
     #region Properties
 
+<#
+                foreach (var n in Enumerable.Range(0, i))
+                {
+#>
+    public <#= scalarName #> <#= Typ.rgba[n] #>
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => <#= Typ.xyzw[n] #>;
+        [MethodImpl(256 | 512)]
+        set => <#= Typ.xyzw[n] #> = value;
+    }
+<#
+                }
+#>
+
     [MethodImpl(256 | 512)]
     public readonly <#= simd_typeName #> LaneGet(int index) => new(<#= string.Join(", ", Enumerable.Range(0, i).Select(n => $"{Typ.xyzw[n]}[index]")) #>);
 
@@ -151,6 +166,18 @@ public partial struct <#= typeName #>
     [MethodImpl(256 | 512)]
     public static <#= typeName #> operator^(<#= typeName #> a, <#= typeName #> b) => new(<#=
                     string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]} ^ b.{Typ.xyzw[n]}")) #>);
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> operator<<(<#= typeName #> a, int b) => new(<#=
+                    string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]} << b")) #>);
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> operator>>(<#= typeName #> a, int b) => new(<#=
+                    string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]} >> b")) #>);
+
+    [MethodImpl(256 | 512)]
+    public static <#= typeName #> operator>>>(<#= typeName #> a, int b) => new(<#=
+                    string.Join(", ", Enumerable.Range(0, i).Select(n => $"a.{Typ.xyzw[n]} >>> b")) #>);
 
     #endregion // Operators
 

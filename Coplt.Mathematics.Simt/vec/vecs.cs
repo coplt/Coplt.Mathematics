@@ -26,6 +26,21 @@ public partial struct float2_mt4
 
     #region Properties
 
+    public float_mt4 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public float_mt4 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly float2 LaneGet(int index) => new(x[index], y[index]);
 
@@ -90,6 +105,15 @@ public partial struct float2_mt4
 
     [MethodImpl(256 | 512)]
     public static float2_mt4 operator^(float2_mt4 a, float2_mt4 b) => new(a.x ^ b.x, a.y ^ b.y);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt4 operator<<(float2_mt4 a, int b) => new(a.x << b, a.y << b);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt4 operator>>(float2_mt4 a, int b) => new(a.x >> b, a.y >> b);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt4 operator>>>(float2_mt4 a, int b) => new(a.x >>> b, a.y >>> b);
 
     #endregion // Operators
 
@@ -166,6 +190,21 @@ public partial struct float2_mt8
 
     #region Properties
 
+    public float_mt8 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public float_mt8 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly float2 LaneGet(int index) => new(x[index], y[index]);
 
@@ -230,6 +269,15 @@ public partial struct float2_mt8
 
     [MethodImpl(256 | 512)]
     public static float2_mt8 operator^(float2_mt8 a, float2_mt8 b) => new(a.x ^ b.x, a.y ^ b.y);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt8 operator<<(float2_mt8 a, int b) => new(a.x << b, a.y << b);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt8 operator>>(float2_mt8 a, int b) => new(a.x >> b, a.y >> b);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt8 operator>>>(float2_mt8 a, int b) => new(a.x >>> b, a.y >>> b);
 
     #endregion // Operators
 
@@ -306,6 +354,21 @@ public partial struct float2_mt16
 
     #region Properties
 
+    public float_mt16 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public float_mt16 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly float2 LaneGet(int index) => new(x[index], y[index]);
 
@@ -370,6 +433,15 @@ public partial struct float2_mt16
 
     [MethodImpl(256 | 512)]
     public static float2_mt16 operator^(float2_mt16 a, float2_mt16 b) => new(a.x ^ b.x, a.y ^ b.y);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt16 operator<<(float2_mt16 a, int b) => new(a.x << b, a.y << b);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt16 operator>>(float2_mt16 a, int b) => new(a.x >> b, a.y >> b);
+
+    [MethodImpl(256 | 512)]
+    public static float2_mt16 operator>>>(float2_mt16 a, int b) => new(a.x >>> b, a.y >>> b);
 
     #endregion // Operators
 
@@ -447,6 +519,28 @@ public partial struct float3_mt4
 
     #region Properties
 
+    public float_mt4 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public float_mt4 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public float_mt4 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly float3 LaneGet(int index) => new(x[index], y[index], z[index]);
 
@@ -514,6 +608,15 @@ public partial struct float3_mt4
 
     [MethodImpl(256 | 512)]
     public static float3_mt4 operator^(float3_mt4 a, float3_mt4 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt4 operator<<(float3_mt4 a, int b) => new(a.x << b, a.y << b, a.z << b);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt4 operator>>(float3_mt4 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt4 operator>>>(float3_mt4 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
 
     #endregion // Operators
 
@@ -596,6 +699,28 @@ public partial struct float3_mt8
 
     #region Properties
 
+    public float_mt8 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public float_mt8 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public float_mt8 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly float3 LaneGet(int index) => new(x[index], y[index], z[index]);
 
@@ -663,6 +788,15 @@ public partial struct float3_mt8
 
     [MethodImpl(256 | 512)]
     public static float3_mt8 operator^(float3_mt8 a, float3_mt8 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt8 operator<<(float3_mt8 a, int b) => new(a.x << b, a.y << b, a.z << b);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt8 operator>>(float3_mt8 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt8 operator>>>(float3_mt8 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
 
     #endregion // Operators
 
@@ -745,6 +879,28 @@ public partial struct float3_mt16
 
     #region Properties
 
+    public float_mt16 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public float_mt16 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public float_mt16 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly float3 LaneGet(int index) => new(x[index], y[index], z[index]);
 
@@ -812,6 +968,15 @@ public partial struct float3_mt16
 
     [MethodImpl(256 | 512)]
     public static float3_mt16 operator^(float3_mt16 a, float3_mt16 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt16 operator<<(float3_mt16 a, int b) => new(a.x << b, a.y << b, a.z << b);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt16 operator>>(float3_mt16 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
+
+    [MethodImpl(256 | 512)]
+    public static float3_mt16 operator>>>(float3_mt16 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
 
     #endregion // Operators
 
@@ -895,6 +1060,35 @@ public partial struct float4_mt4
 
     #region Properties
 
+    public float_mt4 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public float_mt4 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public float_mt4 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+    public float_mt4 a
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => w;
+        [MethodImpl(256 | 512)]
+        set => w = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly float4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
 
@@ -965,6 +1159,15 @@ public partial struct float4_mt4
 
     [MethodImpl(256 | 512)]
     public static float4_mt4 operator^(float4_mt4 a, float4_mt4 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt4 operator<<(float4_mt4 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt4 operator>>(float4_mt4 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt4 operator>>>(float4_mt4 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
 
     #endregion // Operators
 
@@ -1053,6 +1256,35 @@ public partial struct float4_mt8
 
     #region Properties
 
+    public float_mt8 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public float_mt8 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public float_mt8 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+    public float_mt8 a
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => w;
+        [MethodImpl(256 | 512)]
+        set => w = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly float4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
 
@@ -1123,6 +1355,15 @@ public partial struct float4_mt8
 
     [MethodImpl(256 | 512)]
     public static float4_mt8 operator^(float4_mt8 a, float4_mt8 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt8 operator<<(float4_mt8 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt8 operator>>(float4_mt8 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt8 operator>>>(float4_mt8 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
 
     #endregion // Operators
 
@@ -1211,6 +1452,35 @@ public partial struct float4_mt16
 
     #region Properties
 
+    public float_mt16 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public float_mt16 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public float_mt16 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+    public float_mt16 a
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => w;
+        [MethodImpl(256 | 512)]
+        set => w = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly float4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
 
@@ -1281,6 +1551,15 @@ public partial struct float4_mt16
 
     [MethodImpl(256 | 512)]
     public static float4_mt16 operator^(float4_mt16 a, float4_mt16 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt16 operator<<(float4_mt16 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt16 operator>>(float4_mt16 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
+
+    [MethodImpl(256 | 512)]
+    public static float4_mt16 operator>>>(float4_mt16 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
 
     #endregion // Operators
 
@@ -1367,6 +1646,21 @@ public partial struct double2_mt4
 
     #region Properties
 
+    public double_mt4 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public double_mt4 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly double2 LaneGet(int index) => new(x[index], y[index]);
 
@@ -1431,6 +1725,15 @@ public partial struct double2_mt4
 
     [MethodImpl(256 | 512)]
     public static double2_mt4 operator^(double2_mt4 a, double2_mt4 b) => new(a.x ^ b.x, a.y ^ b.y);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt4 operator<<(double2_mt4 a, int b) => new(a.x << b, a.y << b);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt4 operator>>(double2_mt4 a, int b) => new(a.x >> b, a.y >> b);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt4 operator>>>(double2_mt4 a, int b) => new(a.x >>> b, a.y >>> b);
 
     #endregion // Operators
 
@@ -1507,6 +1810,21 @@ public partial struct double2_mt8
 
     #region Properties
 
+    public double_mt8 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public double_mt8 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly double2 LaneGet(int index) => new(x[index], y[index]);
 
@@ -1571,6 +1889,15 @@ public partial struct double2_mt8
 
     [MethodImpl(256 | 512)]
     public static double2_mt8 operator^(double2_mt8 a, double2_mt8 b) => new(a.x ^ b.x, a.y ^ b.y);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt8 operator<<(double2_mt8 a, int b) => new(a.x << b, a.y << b);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt8 operator>>(double2_mt8 a, int b) => new(a.x >> b, a.y >> b);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt8 operator>>>(double2_mt8 a, int b) => new(a.x >>> b, a.y >>> b);
 
     #endregion // Operators
 
@@ -1647,6 +1974,21 @@ public partial struct double2_mt16
 
     #region Properties
 
+    public double_mt16 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public double_mt16 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly double2 LaneGet(int index) => new(x[index], y[index]);
 
@@ -1711,6 +2053,15 @@ public partial struct double2_mt16
 
     [MethodImpl(256 | 512)]
     public static double2_mt16 operator^(double2_mt16 a, double2_mt16 b) => new(a.x ^ b.x, a.y ^ b.y);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt16 operator<<(double2_mt16 a, int b) => new(a.x << b, a.y << b);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt16 operator>>(double2_mt16 a, int b) => new(a.x >> b, a.y >> b);
+
+    [MethodImpl(256 | 512)]
+    public static double2_mt16 operator>>>(double2_mt16 a, int b) => new(a.x >>> b, a.y >>> b);
 
     #endregion // Operators
 
@@ -1788,6 +2139,28 @@ public partial struct double3_mt4
 
     #region Properties
 
+    public double_mt4 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public double_mt4 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public double_mt4 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly double3 LaneGet(int index) => new(x[index], y[index], z[index]);
 
@@ -1855,6 +2228,15 @@ public partial struct double3_mt4
 
     [MethodImpl(256 | 512)]
     public static double3_mt4 operator^(double3_mt4 a, double3_mt4 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt4 operator<<(double3_mt4 a, int b) => new(a.x << b, a.y << b, a.z << b);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt4 operator>>(double3_mt4 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt4 operator>>>(double3_mt4 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
 
     #endregion // Operators
 
@@ -1937,6 +2319,28 @@ public partial struct double3_mt8
 
     #region Properties
 
+    public double_mt8 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public double_mt8 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public double_mt8 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly double3 LaneGet(int index) => new(x[index], y[index], z[index]);
 
@@ -2004,6 +2408,15 @@ public partial struct double3_mt8
 
     [MethodImpl(256 | 512)]
     public static double3_mt8 operator^(double3_mt8 a, double3_mt8 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt8 operator<<(double3_mt8 a, int b) => new(a.x << b, a.y << b, a.z << b);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt8 operator>>(double3_mt8 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt8 operator>>>(double3_mt8 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
 
     #endregion // Operators
 
@@ -2086,6 +2499,28 @@ public partial struct double3_mt16
 
     #region Properties
 
+    public double_mt16 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public double_mt16 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public double_mt16 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly double3 LaneGet(int index) => new(x[index], y[index], z[index]);
 
@@ -2153,6 +2588,15 @@ public partial struct double3_mt16
 
     [MethodImpl(256 | 512)]
     public static double3_mt16 operator^(double3_mt16 a, double3_mt16 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt16 operator<<(double3_mt16 a, int b) => new(a.x << b, a.y << b, a.z << b);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt16 operator>>(double3_mt16 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
+
+    [MethodImpl(256 | 512)]
+    public static double3_mt16 operator>>>(double3_mt16 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
 
     #endregion // Operators
 
@@ -2236,6 +2680,35 @@ public partial struct double4_mt4
 
     #region Properties
 
+    public double_mt4 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public double_mt4 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public double_mt4 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+    public double_mt4 a
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => w;
+        [MethodImpl(256 | 512)]
+        set => w = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly double4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
 
@@ -2306,6 +2779,15 @@ public partial struct double4_mt4
 
     [MethodImpl(256 | 512)]
     public static double4_mt4 operator^(double4_mt4 a, double4_mt4 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt4 operator<<(double4_mt4 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt4 operator>>(double4_mt4 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt4 operator>>>(double4_mt4 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
 
     #endregion // Operators
 
@@ -2394,6 +2876,35 @@ public partial struct double4_mt8
 
     #region Properties
 
+    public double_mt8 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public double_mt8 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public double_mt8 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+    public double_mt8 a
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => w;
+        [MethodImpl(256 | 512)]
+        set => w = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly double4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
 
@@ -2464,6 +2975,15 @@ public partial struct double4_mt8
 
     [MethodImpl(256 | 512)]
     public static double4_mt8 operator^(double4_mt8 a, double4_mt8 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt8 operator<<(double4_mt8 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt8 operator>>(double4_mt8 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt8 operator>>>(double4_mt8 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
 
     #endregion // Operators
 
@@ -2552,6 +3072,35 @@ public partial struct double4_mt16
 
     #region Properties
 
+    public double_mt16 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public double_mt16 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public double_mt16 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+    public double_mt16 a
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => w;
+        [MethodImpl(256 | 512)]
+        set => w = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly double4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
 
@@ -2622,6 +3171,15 @@ public partial struct double4_mt16
 
     [MethodImpl(256 | 512)]
     public static double4_mt16 operator^(double4_mt16 a, double4_mt16 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt16 operator<<(double4_mt16 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt16 operator>>(double4_mt16 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
+
+    [MethodImpl(256 | 512)]
+    public static double4_mt16 operator>>>(double4_mt16 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
 
     #endregion // Operators
 
@@ -2708,6 +3266,21 @@ public partial struct int2_mt4
 
     #region Properties
 
+    public int_mt4 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public int_mt4 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly int2 LaneGet(int index) => new(x[index], y[index]);
 
@@ -2772,6 +3345,15 @@ public partial struct int2_mt4
 
     [MethodImpl(256 | 512)]
     public static int2_mt4 operator^(int2_mt4 a, int2_mt4 b) => new(a.x ^ b.x, a.y ^ b.y);
+
+    [MethodImpl(256 | 512)]
+    public static int2_mt4 operator<<(int2_mt4 a, int b) => new(a.x << b, a.y << b);
+
+    [MethodImpl(256 | 512)]
+    public static int2_mt4 operator>>(int2_mt4 a, int b) => new(a.x >> b, a.y >> b);
+
+    [MethodImpl(256 | 512)]
+    public static int2_mt4 operator>>>(int2_mt4 a, int b) => new(a.x >>> b, a.y >>> b);
 
     #endregion // Operators
 
@@ -2848,6 +3430,21 @@ public partial struct int2_mt8
 
     #region Properties
 
+    public int_mt8 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public int_mt8 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly int2 LaneGet(int index) => new(x[index], y[index]);
 
@@ -2912,6 +3509,15 @@ public partial struct int2_mt8
 
     [MethodImpl(256 | 512)]
     public static int2_mt8 operator^(int2_mt8 a, int2_mt8 b) => new(a.x ^ b.x, a.y ^ b.y);
+
+    [MethodImpl(256 | 512)]
+    public static int2_mt8 operator<<(int2_mt8 a, int b) => new(a.x << b, a.y << b);
+
+    [MethodImpl(256 | 512)]
+    public static int2_mt8 operator>>(int2_mt8 a, int b) => new(a.x >> b, a.y >> b);
+
+    [MethodImpl(256 | 512)]
+    public static int2_mt8 operator>>>(int2_mt8 a, int b) => new(a.x >>> b, a.y >>> b);
 
     #endregion // Operators
 
@@ -2988,6 +3594,21 @@ public partial struct int2_mt16
 
     #region Properties
 
+    public int_mt16 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public int_mt16 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly int2 LaneGet(int index) => new(x[index], y[index]);
 
@@ -3052,6 +3673,15 @@ public partial struct int2_mt16
 
     [MethodImpl(256 | 512)]
     public static int2_mt16 operator^(int2_mt16 a, int2_mt16 b) => new(a.x ^ b.x, a.y ^ b.y);
+
+    [MethodImpl(256 | 512)]
+    public static int2_mt16 operator<<(int2_mt16 a, int b) => new(a.x << b, a.y << b);
+
+    [MethodImpl(256 | 512)]
+    public static int2_mt16 operator>>(int2_mt16 a, int b) => new(a.x >> b, a.y >> b);
+
+    [MethodImpl(256 | 512)]
+    public static int2_mt16 operator>>>(int2_mt16 a, int b) => new(a.x >>> b, a.y >>> b);
 
     #endregion // Operators
 
@@ -3129,6 +3759,28 @@ public partial struct int3_mt4
 
     #region Properties
 
+    public int_mt4 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public int_mt4 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public int_mt4 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly int3 LaneGet(int index) => new(x[index], y[index], z[index]);
 
@@ -3196,6 +3848,15 @@ public partial struct int3_mt4
 
     [MethodImpl(256 | 512)]
     public static int3_mt4 operator^(int3_mt4 a, int3_mt4 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
+
+    [MethodImpl(256 | 512)]
+    public static int3_mt4 operator<<(int3_mt4 a, int b) => new(a.x << b, a.y << b, a.z << b);
+
+    [MethodImpl(256 | 512)]
+    public static int3_mt4 operator>>(int3_mt4 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
+
+    [MethodImpl(256 | 512)]
+    public static int3_mt4 operator>>>(int3_mt4 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
 
     #endregion // Operators
 
@@ -3278,6 +3939,28 @@ public partial struct int3_mt8
 
     #region Properties
 
+    public int_mt8 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public int_mt8 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public int_mt8 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly int3 LaneGet(int index) => new(x[index], y[index], z[index]);
 
@@ -3345,6 +4028,15 @@ public partial struct int3_mt8
 
     [MethodImpl(256 | 512)]
     public static int3_mt8 operator^(int3_mt8 a, int3_mt8 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
+
+    [MethodImpl(256 | 512)]
+    public static int3_mt8 operator<<(int3_mt8 a, int b) => new(a.x << b, a.y << b, a.z << b);
+
+    [MethodImpl(256 | 512)]
+    public static int3_mt8 operator>>(int3_mt8 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
+
+    [MethodImpl(256 | 512)]
+    public static int3_mt8 operator>>>(int3_mt8 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
 
     #endregion // Operators
 
@@ -3427,6 +4119,28 @@ public partial struct int3_mt16
 
     #region Properties
 
+    public int_mt16 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public int_mt16 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public int_mt16 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly int3 LaneGet(int index) => new(x[index], y[index], z[index]);
 
@@ -3494,6 +4208,15 @@ public partial struct int3_mt16
 
     [MethodImpl(256 | 512)]
     public static int3_mt16 operator^(int3_mt16 a, int3_mt16 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
+
+    [MethodImpl(256 | 512)]
+    public static int3_mt16 operator<<(int3_mt16 a, int b) => new(a.x << b, a.y << b, a.z << b);
+
+    [MethodImpl(256 | 512)]
+    public static int3_mt16 operator>>(int3_mt16 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
+
+    [MethodImpl(256 | 512)]
+    public static int3_mt16 operator>>>(int3_mt16 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
 
     #endregion // Operators
 
@@ -3577,6 +4300,35 @@ public partial struct int4_mt4
 
     #region Properties
 
+    public int_mt4 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public int_mt4 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public int_mt4 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+    public int_mt4 a
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => w;
+        [MethodImpl(256 | 512)]
+        set => w = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly int4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
 
@@ -3647,6 +4399,15 @@ public partial struct int4_mt4
 
     [MethodImpl(256 | 512)]
     public static int4_mt4 operator^(int4_mt4 a, int4_mt4 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
+
+    [MethodImpl(256 | 512)]
+    public static int4_mt4 operator<<(int4_mt4 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
+
+    [MethodImpl(256 | 512)]
+    public static int4_mt4 operator>>(int4_mt4 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
+
+    [MethodImpl(256 | 512)]
+    public static int4_mt4 operator>>>(int4_mt4 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
 
     #endregion // Operators
 
@@ -3735,6 +4496,35 @@ public partial struct int4_mt8
 
     #region Properties
 
+    public int_mt8 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public int_mt8 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public int_mt8 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+    public int_mt8 a
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => w;
+        [MethodImpl(256 | 512)]
+        set => w = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly int4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
 
@@ -3805,6 +4595,15 @@ public partial struct int4_mt8
 
     [MethodImpl(256 | 512)]
     public static int4_mt8 operator^(int4_mt8 a, int4_mt8 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
+
+    [MethodImpl(256 | 512)]
+    public static int4_mt8 operator<<(int4_mt8 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
+
+    [MethodImpl(256 | 512)]
+    public static int4_mt8 operator>>(int4_mt8 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
+
+    [MethodImpl(256 | 512)]
+    public static int4_mt8 operator>>>(int4_mt8 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
 
     #endregion // Operators
 
@@ -3893,6 +4692,35 @@ public partial struct int4_mt16
 
     #region Properties
 
+    public int_mt16 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public int_mt16 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public int_mt16 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+    public int_mt16 a
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => w;
+        [MethodImpl(256 | 512)]
+        set => w = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly int4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
 
@@ -3963,6 +4791,15 @@ public partial struct int4_mt16
 
     [MethodImpl(256 | 512)]
     public static int4_mt16 operator^(int4_mt16 a, int4_mt16 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
+
+    [MethodImpl(256 | 512)]
+    public static int4_mt16 operator<<(int4_mt16 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
+
+    [MethodImpl(256 | 512)]
+    public static int4_mt16 operator>>(int4_mt16 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
+
+    [MethodImpl(256 | 512)]
+    public static int4_mt16 operator>>>(int4_mt16 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
 
     #endregion // Operators
 
@@ -4049,6 +4886,21 @@ public partial struct uint2_mt4
 
     #region Properties
 
+    public uint_mt4 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public uint_mt4 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly uint2 LaneGet(int index) => new(x[index], y[index]);
 
@@ -4113,6 +4965,15 @@ public partial struct uint2_mt4
 
     [MethodImpl(256 | 512)]
     public static uint2_mt4 operator^(uint2_mt4 a, uint2_mt4 b) => new(a.x ^ b.x, a.y ^ b.y);
+
+    [MethodImpl(256 | 512)]
+    public static uint2_mt4 operator<<(uint2_mt4 a, int b) => new(a.x << b, a.y << b);
+
+    [MethodImpl(256 | 512)]
+    public static uint2_mt4 operator>>(uint2_mt4 a, int b) => new(a.x >> b, a.y >> b);
+
+    [MethodImpl(256 | 512)]
+    public static uint2_mt4 operator>>>(uint2_mt4 a, int b) => new(a.x >>> b, a.y >>> b);
 
     #endregion // Operators
 
@@ -4189,6 +5050,21 @@ public partial struct uint2_mt8
 
     #region Properties
 
+    public uint_mt8 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public uint_mt8 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly uint2 LaneGet(int index) => new(x[index], y[index]);
 
@@ -4253,6 +5129,15 @@ public partial struct uint2_mt8
 
     [MethodImpl(256 | 512)]
     public static uint2_mt8 operator^(uint2_mt8 a, uint2_mt8 b) => new(a.x ^ b.x, a.y ^ b.y);
+
+    [MethodImpl(256 | 512)]
+    public static uint2_mt8 operator<<(uint2_mt8 a, int b) => new(a.x << b, a.y << b);
+
+    [MethodImpl(256 | 512)]
+    public static uint2_mt8 operator>>(uint2_mt8 a, int b) => new(a.x >> b, a.y >> b);
+
+    [MethodImpl(256 | 512)]
+    public static uint2_mt8 operator>>>(uint2_mt8 a, int b) => new(a.x >>> b, a.y >>> b);
 
     #endregion // Operators
 
@@ -4329,6 +5214,21 @@ public partial struct uint2_mt16
 
     #region Properties
 
+    public uint_mt16 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public uint_mt16 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly uint2 LaneGet(int index) => new(x[index], y[index]);
 
@@ -4393,6 +5293,15 @@ public partial struct uint2_mt16
 
     [MethodImpl(256 | 512)]
     public static uint2_mt16 operator^(uint2_mt16 a, uint2_mt16 b) => new(a.x ^ b.x, a.y ^ b.y);
+
+    [MethodImpl(256 | 512)]
+    public static uint2_mt16 operator<<(uint2_mt16 a, int b) => new(a.x << b, a.y << b);
+
+    [MethodImpl(256 | 512)]
+    public static uint2_mt16 operator>>(uint2_mt16 a, int b) => new(a.x >> b, a.y >> b);
+
+    [MethodImpl(256 | 512)]
+    public static uint2_mt16 operator>>>(uint2_mt16 a, int b) => new(a.x >>> b, a.y >>> b);
 
     #endregion // Operators
 
@@ -4470,6 +5379,28 @@ public partial struct uint3_mt4
 
     #region Properties
 
+    public uint_mt4 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public uint_mt4 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public uint_mt4 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly uint3 LaneGet(int index) => new(x[index], y[index], z[index]);
 
@@ -4537,6 +5468,15 @@ public partial struct uint3_mt4
 
     [MethodImpl(256 | 512)]
     public static uint3_mt4 operator^(uint3_mt4 a, uint3_mt4 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
+
+    [MethodImpl(256 | 512)]
+    public static uint3_mt4 operator<<(uint3_mt4 a, int b) => new(a.x << b, a.y << b, a.z << b);
+
+    [MethodImpl(256 | 512)]
+    public static uint3_mt4 operator>>(uint3_mt4 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
+
+    [MethodImpl(256 | 512)]
+    public static uint3_mt4 operator>>>(uint3_mt4 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
 
     #endregion // Operators
 
@@ -4619,6 +5559,28 @@ public partial struct uint3_mt8
 
     #region Properties
 
+    public uint_mt8 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public uint_mt8 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public uint_mt8 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly uint3 LaneGet(int index) => new(x[index], y[index], z[index]);
 
@@ -4686,6 +5648,15 @@ public partial struct uint3_mt8
 
     [MethodImpl(256 | 512)]
     public static uint3_mt8 operator^(uint3_mt8 a, uint3_mt8 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
+
+    [MethodImpl(256 | 512)]
+    public static uint3_mt8 operator<<(uint3_mt8 a, int b) => new(a.x << b, a.y << b, a.z << b);
+
+    [MethodImpl(256 | 512)]
+    public static uint3_mt8 operator>>(uint3_mt8 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
+
+    [MethodImpl(256 | 512)]
+    public static uint3_mt8 operator>>>(uint3_mt8 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
 
     #endregion // Operators
 
@@ -4768,6 +5739,28 @@ public partial struct uint3_mt16
 
     #region Properties
 
+    public uint_mt16 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public uint_mt16 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public uint_mt16 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly uint3 LaneGet(int index) => new(x[index], y[index], z[index]);
 
@@ -4835,6 +5828,15 @@ public partial struct uint3_mt16
 
     [MethodImpl(256 | 512)]
     public static uint3_mt16 operator^(uint3_mt16 a, uint3_mt16 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
+
+    [MethodImpl(256 | 512)]
+    public static uint3_mt16 operator<<(uint3_mt16 a, int b) => new(a.x << b, a.y << b, a.z << b);
+
+    [MethodImpl(256 | 512)]
+    public static uint3_mt16 operator>>(uint3_mt16 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
+
+    [MethodImpl(256 | 512)]
+    public static uint3_mt16 operator>>>(uint3_mt16 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
 
     #endregion // Operators
 
@@ -4918,6 +5920,35 @@ public partial struct uint4_mt4
 
     #region Properties
 
+    public uint_mt4 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public uint_mt4 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public uint_mt4 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+    public uint_mt4 a
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => w;
+        [MethodImpl(256 | 512)]
+        set => w = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly uint4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
 
@@ -4988,6 +6019,15 @@ public partial struct uint4_mt4
 
     [MethodImpl(256 | 512)]
     public static uint4_mt4 operator^(uint4_mt4 a, uint4_mt4 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
+
+    [MethodImpl(256 | 512)]
+    public static uint4_mt4 operator<<(uint4_mt4 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
+
+    [MethodImpl(256 | 512)]
+    public static uint4_mt4 operator>>(uint4_mt4 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
+
+    [MethodImpl(256 | 512)]
+    public static uint4_mt4 operator>>>(uint4_mt4 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
 
     #endregion // Operators
 
@@ -5076,6 +6116,35 @@ public partial struct uint4_mt8
 
     #region Properties
 
+    public uint_mt8 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public uint_mt8 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public uint_mt8 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+    public uint_mt8 a
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => w;
+        [MethodImpl(256 | 512)]
+        set => w = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly uint4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
 
@@ -5146,6 +6215,15 @@ public partial struct uint4_mt8
 
     [MethodImpl(256 | 512)]
     public static uint4_mt8 operator^(uint4_mt8 a, uint4_mt8 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
+
+    [MethodImpl(256 | 512)]
+    public static uint4_mt8 operator<<(uint4_mt8 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
+
+    [MethodImpl(256 | 512)]
+    public static uint4_mt8 operator>>(uint4_mt8 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
+
+    [MethodImpl(256 | 512)]
+    public static uint4_mt8 operator>>>(uint4_mt8 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
 
     #endregion // Operators
 
@@ -5234,6 +6312,35 @@ public partial struct uint4_mt16
 
     #region Properties
 
+    public uint_mt16 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public uint_mt16 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public uint_mt16 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+    public uint_mt16 a
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => w;
+        [MethodImpl(256 | 512)]
+        set => w = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly uint4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
 
@@ -5304,6 +6411,15 @@ public partial struct uint4_mt16
 
     [MethodImpl(256 | 512)]
     public static uint4_mt16 operator^(uint4_mt16 a, uint4_mt16 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
+
+    [MethodImpl(256 | 512)]
+    public static uint4_mt16 operator<<(uint4_mt16 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
+
+    [MethodImpl(256 | 512)]
+    public static uint4_mt16 operator>>(uint4_mt16 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
+
+    [MethodImpl(256 | 512)]
+    public static uint4_mt16 operator>>>(uint4_mt16 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
 
     #endregion // Operators
 
@@ -5390,6 +6506,21 @@ public partial struct long2_mt4
 
     #region Properties
 
+    public long_mt4 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public long_mt4 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly long2 LaneGet(int index) => new(x[index], y[index]);
 
@@ -5454,6 +6585,15 @@ public partial struct long2_mt4
 
     [MethodImpl(256 | 512)]
     public static long2_mt4 operator^(long2_mt4 a, long2_mt4 b) => new(a.x ^ b.x, a.y ^ b.y);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt4 operator<<(long2_mt4 a, int b) => new(a.x << b, a.y << b);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt4 operator>>(long2_mt4 a, int b) => new(a.x >> b, a.y >> b);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt4 operator>>>(long2_mt4 a, int b) => new(a.x >>> b, a.y >>> b);
 
     #endregion // Operators
 
@@ -5530,6 +6670,21 @@ public partial struct long2_mt8
 
     #region Properties
 
+    public long_mt8 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public long_mt8 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly long2 LaneGet(int index) => new(x[index], y[index]);
 
@@ -5594,6 +6749,15 @@ public partial struct long2_mt8
 
     [MethodImpl(256 | 512)]
     public static long2_mt8 operator^(long2_mt8 a, long2_mt8 b) => new(a.x ^ b.x, a.y ^ b.y);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt8 operator<<(long2_mt8 a, int b) => new(a.x << b, a.y << b);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt8 operator>>(long2_mt8 a, int b) => new(a.x >> b, a.y >> b);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt8 operator>>>(long2_mt8 a, int b) => new(a.x >>> b, a.y >>> b);
 
     #endregion // Operators
 
@@ -5670,6 +6834,21 @@ public partial struct long2_mt16
 
     #region Properties
 
+    public long_mt16 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public long_mt16 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly long2 LaneGet(int index) => new(x[index], y[index]);
 
@@ -5734,6 +6913,15 @@ public partial struct long2_mt16
 
     [MethodImpl(256 | 512)]
     public static long2_mt16 operator^(long2_mt16 a, long2_mt16 b) => new(a.x ^ b.x, a.y ^ b.y);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt16 operator<<(long2_mt16 a, int b) => new(a.x << b, a.y << b);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt16 operator>>(long2_mt16 a, int b) => new(a.x >> b, a.y >> b);
+
+    [MethodImpl(256 | 512)]
+    public static long2_mt16 operator>>>(long2_mt16 a, int b) => new(a.x >>> b, a.y >>> b);
 
     #endregion // Operators
 
@@ -5811,6 +6999,28 @@ public partial struct long3_mt4
 
     #region Properties
 
+    public long_mt4 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public long_mt4 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public long_mt4 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly long3 LaneGet(int index) => new(x[index], y[index], z[index]);
 
@@ -5878,6 +7088,15 @@ public partial struct long3_mt4
 
     [MethodImpl(256 | 512)]
     public static long3_mt4 operator^(long3_mt4 a, long3_mt4 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt4 operator<<(long3_mt4 a, int b) => new(a.x << b, a.y << b, a.z << b);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt4 operator>>(long3_mt4 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt4 operator>>>(long3_mt4 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
 
     #endregion // Operators
 
@@ -5960,6 +7179,28 @@ public partial struct long3_mt8
 
     #region Properties
 
+    public long_mt8 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public long_mt8 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public long_mt8 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly long3 LaneGet(int index) => new(x[index], y[index], z[index]);
 
@@ -6027,6 +7268,15 @@ public partial struct long3_mt8
 
     [MethodImpl(256 | 512)]
     public static long3_mt8 operator^(long3_mt8 a, long3_mt8 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt8 operator<<(long3_mt8 a, int b) => new(a.x << b, a.y << b, a.z << b);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt8 operator>>(long3_mt8 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt8 operator>>>(long3_mt8 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
 
     #endregion // Operators
 
@@ -6109,6 +7359,28 @@ public partial struct long3_mt16
 
     #region Properties
 
+    public long_mt16 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public long_mt16 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public long_mt16 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly long3 LaneGet(int index) => new(x[index], y[index], z[index]);
 
@@ -6176,6 +7448,15 @@ public partial struct long3_mt16
 
     [MethodImpl(256 | 512)]
     public static long3_mt16 operator^(long3_mt16 a, long3_mt16 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt16 operator<<(long3_mt16 a, int b) => new(a.x << b, a.y << b, a.z << b);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt16 operator>>(long3_mt16 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
+
+    [MethodImpl(256 | 512)]
+    public static long3_mt16 operator>>>(long3_mt16 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
 
     #endregion // Operators
 
@@ -6259,6 +7540,35 @@ public partial struct long4_mt4
 
     #region Properties
 
+    public long_mt4 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public long_mt4 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public long_mt4 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+    public long_mt4 a
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => w;
+        [MethodImpl(256 | 512)]
+        set => w = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly long4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
 
@@ -6329,6 +7639,15 @@ public partial struct long4_mt4
 
     [MethodImpl(256 | 512)]
     public static long4_mt4 operator^(long4_mt4 a, long4_mt4 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt4 operator<<(long4_mt4 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt4 operator>>(long4_mt4 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt4 operator>>>(long4_mt4 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
 
     #endregion // Operators
 
@@ -6417,6 +7736,35 @@ public partial struct long4_mt8
 
     #region Properties
 
+    public long_mt8 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public long_mt8 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public long_mt8 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+    public long_mt8 a
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => w;
+        [MethodImpl(256 | 512)]
+        set => w = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly long4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
 
@@ -6487,6 +7835,15 @@ public partial struct long4_mt8
 
     [MethodImpl(256 | 512)]
     public static long4_mt8 operator^(long4_mt8 a, long4_mt8 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt8 operator<<(long4_mt8 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt8 operator>>(long4_mt8 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt8 operator>>>(long4_mt8 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
 
     #endregion // Operators
 
@@ -6575,6 +7932,35 @@ public partial struct long4_mt16
 
     #region Properties
 
+    public long_mt16 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public long_mt16 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public long_mt16 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+    public long_mt16 a
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => w;
+        [MethodImpl(256 | 512)]
+        set => w = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly long4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
 
@@ -6645,6 +8031,15 @@ public partial struct long4_mt16
 
     [MethodImpl(256 | 512)]
     public static long4_mt16 operator^(long4_mt16 a, long4_mt16 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt16 operator<<(long4_mt16 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt16 operator>>(long4_mt16 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
+
+    [MethodImpl(256 | 512)]
+    public static long4_mt16 operator>>>(long4_mt16 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
 
     #endregion // Operators
 
@@ -6731,6 +8126,21 @@ public partial struct ulong2_mt4
 
     #region Properties
 
+    public ulong_mt4 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public ulong_mt4 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly ulong2 LaneGet(int index) => new(x[index], y[index]);
 
@@ -6795,6 +8205,15 @@ public partial struct ulong2_mt4
 
     [MethodImpl(256 | 512)]
     public static ulong2_mt4 operator^(ulong2_mt4 a, ulong2_mt4 b) => new(a.x ^ b.x, a.y ^ b.y);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt4 operator<<(ulong2_mt4 a, int b) => new(a.x << b, a.y << b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt4 operator>>(ulong2_mt4 a, int b) => new(a.x >> b, a.y >> b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt4 operator>>>(ulong2_mt4 a, int b) => new(a.x >>> b, a.y >>> b);
 
     #endregion // Operators
 
@@ -6871,6 +8290,21 @@ public partial struct ulong2_mt8
 
     #region Properties
 
+    public ulong_mt8 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public ulong_mt8 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly ulong2 LaneGet(int index) => new(x[index], y[index]);
 
@@ -6935,6 +8369,15 @@ public partial struct ulong2_mt8
 
     [MethodImpl(256 | 512)]
     public static ulong2_mt8 operator^(ulong2_mt8 a, ulong2_mt8 b) => new(a.x ^ b.x, a.y ^ b.y);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt8 operator<<(ulong2_mt8 a, int b) => new(a.x << b, a.y << b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt8 operator>>(ulong2_mt8 a, int b) => new(a.x >> b, a.y >> b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt8 operator>>>(ulong2_mt8 a, int b) => new(a.x >>> b, a.y >>> b);
 
     #endregion // Operators
 
@@ -7011,6 +8454,21 @@ public partial struct ulong2_mt16
 
     #region Properties
 
+    public ulong_mt16 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public ulong_mt16 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly ulong2 LaneGet(int index) => new(x[index], y[index]);
 
@@ -7075,6 +8533,15 @@ public partial struct ulong2_mt16
 
     [MethodImpl(256 | 512)]
     public static ulong2_mt16 operator^(ulong2_mt16 a, ulong2_mt16 b) => new(a.x ^ b.x, a.y ^ b.y);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt16 operator<<(ulong2_mt16 a, int b) => new(a.x << b, a.y << b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt16 operator>>(ulong2_mt16 a, int b) => new(a.x >> b, a.y >> b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong2_mt16 operator>>>(ulong2_mt16 a, int b) => new(a.x >>> b, a.y >>> b);
 
     #endregion // Operators
 
@@ -7152,6 +8619,28 @@ public partial struct ulong3_mt4
 
     #region Properties
 
+    public ulong_mt4 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public ulong_mt4 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public ulong_mt4 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly ulong3 LaneGet(int index) => new(x[index], y[index], z[index]);
 
@@ -7219,6 +8708,15 @@ public partial struct ulong3_mt4
 
     [MethodImpl(256 | 512)]
     public static ulong3_mt4 operator^(ulong3_mt4 a, ulong3_mt4 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt4 operator<<(ulong3_mt4 a, int b) => new(a.x << b, a.y << b, a.z << b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt4 operator>>(ulong3_mt4 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt4 operator>>>(ulong3_mt4 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
 
     #endregion // Operators
 
@@ -7301,6 +8799,28 @@ public partial struct ulong3_mt8
 
     #region Properties
 
+    public ulong_mt8 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public ulong_mt8 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public ulong_mt8 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly ulong3 LaneGet(int index) => new(x[index], y[index], z[index]);
 
@@ -7368,6 +8888,15 @@ public partial struct ulong3_mt8
 
     [MethodImpl(256 | 512)]
     public static ulong3_mt8 operator^(ulong3_mt8 a, ulong3_mt8 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt8 operator<<(ulong3_mt8 a, int b) => new(a.x << b, a.y << b, a.z << b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt8 operator>>(ulong3_mt8 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt8 operator>>>(ulong3_mt8 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
 
     #endregion // Operators
 
@@ -7450,6 +8979,28 @@ public partial struct ulong3_mt16
 
     #region Properties
 
+    public ulong_mt16 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public ulong_mt16 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public ulong_mt16 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly ulong3 LaneGet(int index) => new(x[index], y[index], z[index]);
 
@@ -7517,6 +9068,15 @@ public partial struct ulong3_mt16
 
     [MethodImpl(256 | 512)]
     public static ulong3_mt16 operator^(ulong3_mt16 a, ulong3_mt16 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt16 operator<<(ulong3_mt16 a, int b) => new(a.x << b, a.y << b, a.z << b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt16 operator>>(ulong3_mt16 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong3_mt16 operator>>>(ulong3_mt16 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
 
     #endregion // Operators
 
@@ -7600,6 +9160,35 @@ public partial struct ulong4_mt4
 
     #region Properties
 
+    public ulong_mt4 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public ulong_mt4 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public ulong_mt4 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+    public ulong_mt4 a
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => w;
+        [MethodImpl(256 | 512)]
+        set => w = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly ulong4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
 
@@ -7670,6 +9259,15 @@ public partial struct ulong4_mt4
 
     [MethodImpl(256 | 512)]
     public static ulong4_mt4 operator^(ulong4_mt4 a, ulong4_mt4 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt4 operator<<(ulong4_mt4 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt4 operator>>(ulong4_mt4 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt4 operator>>>(ulong4_mt4 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
 
     #endregion // Operators
 
@@ -7758,6 +9356,35 @@ public partial struct ulong4_mt8
 
     #region Properties
 
+    public ulong_mt8 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public ulong_mt8 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public ulong_mt8 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+    public ulong_mt8 a
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => w;
+        [MethodImpl(256 | 512)]
+        set => w = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly ulong4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
 
@@ -7828,6 +9455,15 @@ public partial struct ulong4_mt8
 
     [MethodImpl(256 | 512)]
     public static ulong4_mt8 operator^(ulong4_mt8 a, ulong4_mt8 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt8 operator<<(ulong4_mt8 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt8 operator>>(ulong4_mt8 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt8 operator>>>(ulong4_mt8 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
 
     #endregion // Operators
 
@@ -7916,6 +9552,35 @@ public partial struct ulong4_mt16
 
     #region Properties
 
+    public ulong_mt16 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public ulong_mt16 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public ulong_mt16 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+    public ulong_mt16 a
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => w;
+        [MethodImpl(256 | 512)]
+        set => w = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly ulong4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
 
@@ -7986,6 +9651,15 @@ public partial struct ulong4_mt16
 
     [MethodImpl(256 | 512)]
     public static ulong4_mt16 operator^(ulong4_mt16 a, ulong4_mt16 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt16 operator<<(ulong4_mt16 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt16 operator>>(ulong4_mt16 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
+
+    [MethodImpl(256 | 512)]
+    public static ulong4_mt16 operator>>>(ulong4_mt16 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
 
     #endregion // Operators
 
@@ -8072,6 +9746,21 @@ public partial struct b32v2_mt4
 
     #region Properties
 
+    public b32_mt4 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public b32_mt4 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly b32v2 LaneGet(int index) => new(x[index], y[index]);
 
@@ -8139,6 +9828,15 @@ public partial struct b32v2_mt4
 
     [MethodImpl(256 | 512)]
     public static b32v2_mt4 operator^(b32v2_mt4 a, b32v2_mt4 b) => new(a.x ^ b.x, a.y ^ b.y);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator<<(b32v2_mt4 a, int b) => new(a.x << b, a.y << b);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator>>(b32v2_mt4 a, int b) => new(a.x >> b, a.y >> b);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt4 operator>>>(b32v2_mt4 a, int b) => new(a.x >>> b, a.y >>> b);
 
     #endregion // Operators
 
@@ -8215,6 +9913,21 @@ public partial struct b32v2_mt8
 
     #region Properties
 
+    public b32_mt8 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public b32_mt8 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly b32v2 LaneGet(int index) => new(x[index], y[index]);
 
@@ -8282,6 +9995,15 @@ public partial struct b32v2_mt8
 
     [MethodImpl(256 | 512)]
     public static b32v2_mt8 operator^(b32v2_mt8 a, b32v2_mt8 b) => new(a.x ^ b.x, a.y ^ b.y);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator<<(b32v2_mt8 a, int b) => new(a.x << b, a.y << b);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator>>(b32v2_mt8 a, int b) => new(a.x >> b, a.y >> b);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt8 operator>>>(b32v2_mt8 a, int b) => new(a.x >>> b, a.y >>> b);
 
     #endregion // Operators
 
@@ -8358,6 +10080,21 @@ public partial struct b32v2_mt16
 
     #region Properties
 
+    public b32_mt16 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public b32_mt16 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly b32v2 LaneGet(int index) => new(x[index], y[index]);
 
@@ -8425,6 +10162,15 @@ public partial struct b32v2_mt16
 
     [MethodImpl(256 | 512)]
     public static b32v2_mt16 operator^(b32v2_mt16 a, b32v2_mt16 b) => new(a.x ^ b.x, a.y ^ b.y);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator<<(b32v2_mt16 a, int b) => new(a.x << b, a.y << b);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator>>(b32v2_mt16 a, int b) => new(a.x >> b, a.y >> b);
+
+    [MethodImpl(256 | 512)]
+    public static b32v2_mt16 operator>>>(b32v2_mt16 a, int b) => new(a.x >>> b, a.y >>> b);
 
     #endregion // Operators
 
@@ -8502,6 +10248,28 @@ public partial struct b32v3_mt4
 
     #region Properties
 
+    public b32_mt4 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public b32_mt4 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public b32_mt4 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly b32v3 LaneGet(int index) => new(x[index], y[index], z[index]);
 
@@ -8572,6 +10340,15 @@ public partial struct b32v3_mt4
 
     [MethodImpl(256 | 512)]
     public static b32v3_mt4 operator^(b32v3_mt4 a, b32v3_mt4 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator<<(b32v3_mt4 a, int b) => new(a.x << b, a.y << b, a.z << b);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator>>(b32v3_mt4 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt4 operator>>>(b32v3_mt4 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
 
     #endregion // Operators
 
@@ -8654,6 +10431,28 @@ public partial struct b32v3_mt8
 
     #region Properties
 
+    public b32_mt8 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public b32_mt8 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public b32_mt8 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly b32v3 LaneGet(int index) => new(x[index], y[index], z[index]);
 
@@ -8724,6 +10523,15 @@ public partial struct b32v3_mt8
 
     [MethodImpl(256 | 512)]
     public static b32v3_mt8 operator^(b32v3_mt8 a, b32v3_mt8 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator<<(b32v3_mt8 a, int b) => new(a.x << b, a.y << b, a.z << b);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator>>(b32v3_mt8 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt8 operator>>>(b32v3_mt8 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
 
     #endregion // Operators
 
@@ -8806,6 +10614,28 @@ public partial struct b32v3_mt16
 
     #region Properties
 
+    public b32_mt16 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public b32_mt16 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public b32_mt16 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly b32v3 LaneGet(int index) => new(x[index], y[index], z[index]);
 
@@ -8876,6 +10706,15 @@ public partial struct b32v3_mt16
 
     [MethodImpl(256 | 512)]
     public static b32v3_mt16 operator^(b32v3_mt16 a, b32v3_mt16 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator<<(b32v3_mt16 a, int b) => new(a.x << b, a.y << b, a.z << b);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator>>(b32v3_mt16 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
+
+    [MethodImpl(256 | 512)]
+    public static b32v3_mt16 operator>>>(b32v3_mt16 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
 
     #endregion // Operators
 
@@ -8959,6 +10798,35 @@ public partial struct b32v4_mt4
 
     #region Properties
 
+    public b32_mt4 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public b32_mt4 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public b32_mt4 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+    public b32_mt4 a
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => w;
+        [MethodImpl(256 | 512)]
+        set => w = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly b32v4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
 
@@ -9032,6 +10900,15 @@ public partial struct b32v4_mt4
 
     [MethodImpl(256 | 512)]
     public static b32v4_mt4 operator^(b32v4_mt4 a, b32v4_mt4 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator<<(b32v4_mt4 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator>>(b32v4_mt4 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt4 operator>>>(b32v4_mt4 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
 
     #endregion // Operators
 
@@ -9120,6 +10997,35 @@ public partial struct b32v4_mt8
 
     #region Properties
 
+    public b32_mt8 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public b32_mt8 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public b32_mt8 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+    public b32_mt8 a
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => w;
+        [MethodImpl(256 | 512)]
+        set => w = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly b32v4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
 
@@ -9193,6 +11099,15 @@ public partial struct b32v4_mt8
 
     [MethodImpl(256 | 512)]
     public static b32v4_mt8 operator^(b32v4_mt8 a, b32v4_mt8 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator<<(b32v4_mt8 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator>>(b32v4_mt8 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt8 operator>>>(b32v4_mt8 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
 
     #endregion // Operators
 
@@ -9281,6 +11196,35 @@ public partial struct b32v4_mt16
 
     #region Properties
 
+    public b32_mt16 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public b32_mt16 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public b32_mt16 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+    public b32_mt16 a
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => w;
+        [MethodImpl(256 | 512)]
+        set => w = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly b32v4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
 
@@ -9354,6 +11298,15 @@ public partial struct b32v4_mt16
 
     [MethodImpl(256 | 512)]
     public static b32v4_mt16 operator^(b32v4_mt16 a, b32v4_mt16 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator<<(b32v4_mt16 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator>>(b32v4_mt16 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
+
+    [MethodImpl(256 | 512)]
+    public static b32v4_mt16 operator>>>(b32v4_mt16 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
 
     #endregion // Operators
 
@@ -9440,6 +11393,21 @@ public partial struct b64v2_mt4
 
     #region Properties
 
+    public b64_mt4 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public b64_mt4 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly b64v2 LaneGet(int index) => new(x[index], y[index]);
 
@@ -9507,6 +11475,15 @@ public partial struct b64v2_mt4
 
     [MethodImpl(256 | 512)]
     public static b64v2_mt4 operator^(b64v2_mt4 a, b64v2_mt4 b) => new(a.x ^ b.x, a.y ^ b.y);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator<<(b64v2_mt4 a, int b) => new(a.x << b, a.y << b);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator>>(b64v2_mt4 a, int b) => new(a.x >> b, a.y >> b);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt4 operator>>>(b64v2_mt4 a, int b) => new(a.x >>> b, a.y >>> b);
 
     #endregion // Operators
 
@@ -9583,6 +11560,21 @@ public partial struct b64v2_mt8
 
     #region Properties
 
+    public b64_mt8 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public b64_mt8 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly b64v2 LaneGet(int index) => new(x[index], y[index]);
 
@@ -9650,6 +11642,15 @@ public partial struct b64v2_mt8
 
     [MethodImpl(256 | 512)]
     public static b64v2_mt8 operator^(b64v2_mt8 a, b64v2_mt8 b) => new(a.x ^ b.x, a.y ^ b.y);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator<<(b64v2_mt8 a, int b) => new(a.x << b, a.y << b);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator>>(b64v2_mt8 a, int b) => new(a.x >> b, a.y >> b);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt8 operator>>>(b64v2_mt8 a, int b) => new(a.x >>> b, a.y >>> b);
 
     #endregion // Operators
 
@@ -9726,6 +11727,21 @@ public partial struct b64v2_mt16
 
     #region Properties
 
+    public b64_mt16 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public b64_mt16 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly b64v2 LaneGet(int index) => new(x[index], y[index]);
 
@@ -9793,6 +11809,15 @@ public partial struct b64v2_mt16
 
     [MethodImpl(256 | 512)]
     public static b64v2_mt16 operator^(b64v2_mt16 a, b64v2_mt16 b) => new(a.x ^ b.x, a.y ^ b.y);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator<<(b64v2_mt16 a, int b) => new(a.x << b, a.y << b);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator>>(b64v2_mt16 a, int b) => new(a.x >> b, a.y >> b);
+
+    [MethodImpl(256 | 512)]
+    public static b64v2_mt16 operator>>>(b64v2_mt16 a, int b) => new(a.x >>> b, a.y >>> b);
 
     #endregion // Operators
 
@@ -9870,6 +11895,28 @@ public partial struct b64v3_mt4
 
     #region Properties
 
+    public b64_mt4 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public b64_mt4 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public b64_mt4 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly b64v3 LaneGet(int index) => new(x[index], y[index], z[index]);
 
@@ -9940,6 +11987,15 @@ public partial struct b64v3_mt4
 
     [MethodImpl(256 | 512)]
     public static b64v3_mt4 operator^(b64v3_mt4 a, b64v3_mt4 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator<<(b64v3_mt4 a, int b) => new(a.x << b, a.y << b, a.z << b);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator>>(b64v3_mt4 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt4 operator>>>(b64v3_mt4 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
 
     #endregion // Operators
 
@@ -10022,6 +12078,28 @@ public partial struct b64v3_mt8
 
     #region Properties
 
+    public b64_mt8 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public b64_mt8 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public b64_mt8 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly b64v3 LaneGet(int index) => new(x[index], y[index], z[index]);
 
@@ -10092,6 +12170,15 @@ public partial struct b64v3_mt8
 
     [MethodImpl(256 | 512)]
     public static b64v3_mt8 operator^(b64v3_mt8 a, b64v3_mt8 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator<<(b64v3_mt8 a, int b) => new(a.x << b, a.y << b, a.z << b);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator>>(b64v3_mt8 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt8 operator>>>(b64v3_mt8 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
 
     #endregion // Operators
 
@@ -10174,6 +12261,28 @@ public partial struct b64v3_mt16
 
     #region Properties
 
+    public b64_mt16 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public b64_mt16 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public b64_mt16 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly b64v3 LaneGet(int index) => new(x[index], y[index], z[index]);
 
@@ -10244,6 +12353,15 @@ public partial struct b64v3_mt16
 
     [MethodImpl(256 | 512)]
     public static b64v3_mt16 operator^(b64v3_mt16 a, b64v3_mt16 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator<<(b64v3_mt16 a, int b) => new(a.x << b, a.y << b, a.z << b);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator>>(b64v3_mt16 a, int b) => new(a.x >> b, a.y >> b, a.z >> b);
+
+    [MethodImpl(256 | 512)]
+    public static b64v3_mt16 operator>>>(b64v3_mt16 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b);
 
     #endregion // Operators
 
@@ -10327,6 +12445,35 @@ public partial struct b64v4_mt4
 
     #region Properties
 
+    public b64_mt4 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public b64_mt4 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public b64_mt4 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+    public b64_mt4 a
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => w;
+        [MethodImpl(256 | 512)]
+        set => w = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly b64v4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
 
@@ -10400,6 +12547,15 @@ public partial struct b64v4_mt4
 
     [MethodImpl(256 | 512)]
     public static b64v4_mt4 operator^(b64v4_mt4 a, b64v4_mt4 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator<<(b64v4_mt4 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator>>(b64v4_mt4 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt4 operator>>>(b64v4_mt4 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
 
     #endregion // Operators
 
@@ -10488,6 +12644,35 @@ public partial struct b64v4_mt8
 
     #region Properties
 
+    public b64_mt8 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public b64_mt8 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public b64_mt8 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+    public b64_mt8 a
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => w;
+        [MethodImpl(256 | 512)]
+        set => w = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly b64v4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
 
@@ -10561,6 +12746,15 @@ public partial struct b64v4_mt8
 
     [MethodImpl(256 | 512)]
     public static b64v4_mt8 operator^(b64v4_mt8 a, b64v4_mt8 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator<<(b64v4_mt8 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator>>(b64v4_mt8 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt8 operator>>>(b64v4_mt8 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
 
     #endregion // Operators
 
@@ -10649,6 +12843,35 @@ public partial struct b64v4_mt16
 
     #region Properties
 
+    public b64_mt16 r
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => x;
+        [MethodImpl(256 | 512)]
+        set => x = value;
+    }
+    public b64_mt16 g
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => y;
+        [MethodImpl(256 | 512)]
+        set => y = value;
+    }
+    public b64_mt16 b
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => z;
+        [MethodImpl(256 | 512)]
+        set => z = value;
+    }
+    public b64_mt16 a
+    {
+        [MethodImpl(256 | 512)]
+        readonly get => w;
+        [MethodImpl(256 | 512)]
+        set => w = value;
+    }
+
     [MethodImpl(256 | 512)]
     public readonly b64v4 LaneGet(int index) => new(x[index], y[index], z[index], w[index]);
 
@@ -10722,6 +12945,15 @@ public partial struct b64v4_mt16
 
     [MethodImpl(256 | 512)]
     public static b64v4_mt16 operator^(b64v4_mt16 a, b64v4_mt16 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z, a.w ^ b.w);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator<<(b64v4_mt16 a, int b) => new(a.x << b, a.y << b, a.z << b, a.w << b);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator>>(b64v4_mt16 a, int b) => new(a.x >> b, a.y >> b, a.z >> b, a.w >> b);
+
+    [MethodImpl(256 | 512)]
+    public static b64v4_mt16 operator>>>(b64v4_mt16 a, int b) => new(a.x >>> b, a.y >>> b, a.z >>> b, a.w >>> b);
 
     #endregion // Operators
 
